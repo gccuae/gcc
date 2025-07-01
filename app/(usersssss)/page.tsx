@@ -1,4 +1,4 @@
- import HeroSlider from "../components/Home/HeroSlider"; 
+import HeroSlider from "../components/Home/HeroSlider"; 
 import { homeData } from "@/public/data/homebanner-data"
 export default function Home() {
   return (

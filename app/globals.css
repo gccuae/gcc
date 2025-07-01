@@ -4,6 +4,8 @@
 :root {
   --background: #ffffff;
   --foreground: #515151;
+  --forground-two: #151515;
+  --md-gray: #787878;
 }
 
 @theme inline {
@@ -20,6 +22,9 @@
   --text-lg: clamp(1.125rem, 2.5vw, 1.1875rem); /* ~19px */
   --text-base: clamp(1rem, 2vw, 1rem);      /* 16px */
 
+  --color-foreground: var(--foreground);
+  --color-mdgray: var(--md-gray);
+  --color-forground-two: var(--forground-two);
 }
 
 /* 
@@ -33,7 +38,7 @@
 
 body {
   background: var(--background);
-  color: var(--foreground);
+  color: var(--color-foreground);
   font-family: var(--font-sans);
 }
 .container {
