@@ -1,26 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 @import "tailwindcss";
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #515151;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --font-sans: "DM Sans", sans-serif;
+  --color-primary: #EE3524;
+  --color-secondary: #7AC142;
+  --breakpoint-3xl: 96.875rem;
+
+  --text-6xl: clamp(3.5rem, 6vw, 4.5rem);   /* ~72px */
+  --text-5xl: clamp(3.25rem, 5.5vw, 4.25rem); /* ~68px */
+  --text-2xl: clamp(1.75rem, 4vw, 2rem);    /* ~32px */
+  --text-xl: clamp(1.25rem, 3vw, 1.4375rem); /* ~23px */
+  --text-lg: clamp(1.125rem, 2.5vw, 1.1875rem); /* ~19px */
+  --text-base: clamp(1rem, 2vw, 1rem);      /* 16px */
+
 }
 
+/* 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} 
+*/
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+.container {
+  @apply px-[15px] mx-auto;
+
+}
+.section-spacing {
+  @apply py-[60px] lg:py-[90px] xl:py-[100px] 2xl:py-[120px];
+}
+.left-spacing {
+  @apply pl-[15px] lg:pl-[calc((100%-930px)/2)] xl:pl-[calc((100%-79rem)/2)] 3xl:pl-[calc((100%-96.875rem)/2)];
 }
