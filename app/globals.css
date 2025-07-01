@@ -2,17 +2,28 @@
 @import "tailwindcss";
 
 :root {
+  --primary-color: #EE3524;
+  --secondary-color: #7AC142;
   --background: #ffffff;
   --foreground: #515151;
   --forground-two: #151515;
   --md-gray: #787878;
+  --sm-gray: #c2c2c2;
+  --accent-color: #7AC142;
 }
 
 @theme inline {
 
   --font-sans: "DM Sans", sans-serif;
-  --color-primary: #EE3524;
-  --color-secondary: #7AC142;
+
+  --color-primary: var(--primary-color);
+  --color-secondary: var(--secondary-color);
+  --color-accent: var(--accent-color);
+  --color-foreground: var(--foreground);
+  --color-mdgray: var(--md-gray);
+  --color-smgray: var(--sm-gray);
+  --color-forground-two: var(--forground-two);
+
   --breakpoint-3xl: 96.875rem;
 
   --text-6xl: clamp(3.5rem, 6vw, 4.5rem);   /* ~72px */
@@ -22,9 +33,6 @@
   --text-lg: clamp(1.125rem, 2.5vw, 1.1875rem); /* ~19px */
   --text-base: clamp(1rem, 2vw, 1rem);      /* 16px */
 
-  --color-foreground: var(--foreground);
-  --color-mdgray: var(--md-gray);
-  --color-forground-two: var(--forground-two);
 }
 
 /* 
@@ -50,4 +58,17 @@ body {
 }
 .left-spacing {
   @apply pl-[15px] lg:pl-[calc((100%-930px)/2)] xl:pl-[calc((100%-79rem)/2)] 3xl:pl-[calc((100%-96.875rem)/2)];
+}
+.home-news-swiper {
+ .swiper-pagination {
+  @apply flex justify-center;
+ }
+ .swiper-pagination-bullet {
+  @apply w-[9px] h-[3px] rounded-full bg-foreground opacity-100;
+  border-radius: 4px;
+  margin: 0 2px !important;
+ }
+ .swiper-pagination-bullet-active {
+  @apply bg-accent w-[27px];
+ }
 }
