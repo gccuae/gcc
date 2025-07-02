@@ -26,8 +26,8 @@
 
   --breakpoint-3xl: 96.875rem;
 
-  --text-6xl: clamp(3.5rem, 6vw, 4.5rem);   /* ~72px */
-  --text-5xl: clamp(3.25rem, 5.5vw, 4.25rem); /* ~68px */
+  --text-6xl: clamp(3rem, 6vw, 4.5rem);   /* ~72px */
+  --text-5xl: clamp(2.5rem, 5.5vw + 0.2rem, 4.25rem); /* ~68px */
   --text-2xl: clamp(1.75rem, 4vw, 2rem);    /* ~32px */
   --text-xl: clamp(1.25rem, 3vw, 1.4375rem); /* ~23px */
   --text-lg: clamp(1.125rem, 2.5vw, 1.1875rem); /* ~19px */
@@ -94,4 +94,10 @@ body {
 :focus-visible 
  {
     outline: none !important;
+}
+.sector-slider .swiper-slide-active .sector-description {
+  /* @apply h-auto opacity-100 pb-4 xl:pb-[63px]; */
+}
+.featured-slider .swiper-slide {
+  @apply min-h-[250px];
 }

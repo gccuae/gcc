@@ -38,7 +38,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
   }, []);
 
   return (
-    <section className="bg-[#F5F3F0]">
+    <section className="bg-[#F5F3F0] overflow-hidden">
       <div >
         <div className="container" ref={containerRef}>
           <div className="md:flex justify-between items-center py-8 md:pt-[53px] md:pb-[57px] border-b border-[#C2C2C2]">
@@ -86,7 +86,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
               >
                 {data.banners.map((slide, index) => (
                   <SwiperSlide key={index} >
-                    <div>
+                    <div className="">
                       <h3 className="text-2xl font-normal mb-5 lg:mb-15">{slide.title}</h3>
                       <div className="w-full lg:w-[80%]">
                         <motion.div variants={moveUp(0.5)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="pb-4 mb-6 border-b border-[#C2C2C2]">
@@ -118,7 +118,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
 
             </div>
             <motion.div className="pb-0 pt-10 md:py-10 md:ps-10 md:w-[68.5%] w-full" variants={moveLeft(0.5)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
-              <Swiper
+              <Swiper className="h-full featured-slider"
                 modules={[Autoplay, Navigation]}
                 // autoplay={{ delay: 4000 }}  
                 loop
@@ -155,23 +155,14 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                   },
 
                 }}
-                className="w-full h-full "
               >
                 {data.banners.map((slide, index) => (
-                  <SwiperSlide key={index} >
-                    <div className="h-full">
-                      <Image
-                        src={slide.image}
-                        alt={slide.title}
-                        width={290}
-                        height={290}
-                        className="   inset-0 w-full h-full object-cover   "
-                      />
+                  <SwiperSlide key={index} className="h-full min-h-[250px]">
+                    <div className="h-full absolute">
+                      <Image src={slide.image} alt={slide.title} width={290} height={290} className="w-full h-full object-cover" />
                     </div>
                   </SwiperSlide>
                 ))}
-
-
               </Swiper>
             </motion.div>
           </div>
