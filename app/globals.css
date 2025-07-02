@@ -85,3 +85,9 @@ body {
   top: 0;
 
 }
+.area-of-expertise-thumbs .swiper-slide.swiper-slide-thumb-active .icon-wrapper{
+  @apply bg-primary;
+}
+.area-of-expertise-thumbs .swiper-slide.swiper-slide-thumb-active .icon-wrapper img {
+  @apply brightness-0 invert-100;
+}

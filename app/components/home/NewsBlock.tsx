@@ -25,7 +25,7 @@ const NewsBlock = ({ title, link, items }: NewsBlockProps) => {
     <section className="pt-10 pb-12 xl:pt-[57px] xl:pb-25"> 
       <div className="container">
         <div className="flex justify-between items-center pb-8 xl:pb-[45px] mb-8 xl:mb-15 border-b border-smgray">
-          <h2 className="text-5xl font-normal leading-[1.147058823529412] ">{title}</h2>
+          <h2 className="text-5xl font-normal leading-[1.147058823529412] text-black">{title}</h2>
           <BtnPrimary link={link} text="View All" />
         </div>
         <div>
