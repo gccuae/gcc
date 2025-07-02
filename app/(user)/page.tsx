@@ -1,9 +1,10 @@
-import Index from "../components/home/Index";
-
+ 
+import Index from "../components/Home/Index";
 export default function Home() {
   return (
-    <main className="">
-      <Index />
-    </main>
+    <>  
+        <Index /> 
+    </>
+
   );
 }
