@@ -5,6 +5,7 @@ import { Swiper as SwiperClass } from "swiper";
 import { Autoplay } from "swiper/modules";
 import "swiper/css"; 
 import { Home } from "@/types/Common"; 
+import BtnPrimary from "../common/BtnPrimary";
  
 
 interface HeroSliderProps {
@@ -20,12 +21,12 @@ const HeroSlider = ({ data }: HeroSliderProps) => {
       <div className="relative w-full overflow-hidden     ">
         <div className="  ">
 
-          <div className="relative w-full  slideroverlay    " style={{ backgroundImage: `url(${data.banners[activeIndex].image})` }} >
+          <div className="relative w-full  slideroverlay bg-cover bg-center   " style={{ backgroundImage: `url(${data.bannerimage})` }} >
             
-           <div className="slidermns h-full  container relative pt-[200px]  z-[999]">
+           <div className="slidermns h-full  container relative pt-10  md:pt-[50px] lg:pt-[200px]  z-[99]">
            <Swiper
               modules={[Autoplay]}
-              autoplay={{ delay: 5000 }}
+              autoplay={{ delay: 4000 }}  
               loop
               onSwiper={(swiper) => {
                 swiperRef.current = swiper;
@@ -44,13 +45,10 @@ const HeroSlider = ({ data }: HeroSliderProps) => {
                   className="   inset-0 w-full h-full object-cover   "
                 />  */}
                     <div className="">
-                      <h1 className="text-white text-6xl font-normal max-w-[20ch] leading-[1.18]">Pioneering Progress with Quality & Expertise</h1>
-                      <p className="text-white text-xl font-[300] max-w-[73ch] leading-[1.4] pt-[35px] pb-[35px]">Gulf Contractors Company (GCC) is a subsidiary of Abu Dhabi-based Al Sharafi Group and United Eastern (UE) Group, leading conglomerates with diverse interests across the MENA region.</p>
-                      <button className={`flex items-center gap-[12px] px-6 py-[6px] cursor-pointer   rounded-full transition-all duration-300 text-white    border border-white`}  ><span className="font-light leading-[1.8]">READ MORE</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="10" viewBox="0 0 26 10" fill="none">
-                          <path d="M0 9.53003H24L15 0.530029" stroke="#7AC142" stroke-width="1.5" stroke-miterlimit="10" />
-                        </svg>
-                      </button>
+                      <h1 className="text-white text-6xl font-normal max-w-[20ch] leading-[1.18]">{slide.title}</h1>
+                      <p className="text-white text-xl font-light max-w-[73ch] leading-[1.4] pt-[35px] pb-[35px]">{slide.subtitle}</p>
+                    
+                      <BtnPrimary link={slide.btnLink} text={slide.btn} bgtrans={true} />
 
                     </div>
 
@@ -59,17 +57,17 @@ const HeroSlider = ({ data }: HeroSliderProps) => {
               ))}
             </Swiper>
             {/* Custom Pagination */}
-            <div className="absolute bottom-[128px] z-20 w-full">
+            <div className="md:absolute bottom-[128px] z-20 w-full">
               <div className="container">
-                <div className="flex gap-2 justify-end" >
+                <div className="flex gap-3 md:gap-5   md:flex-col  md:border-r border-[#FFFFFF80] relative right-1" style={{alignItems:"flex-end"}}>
                   {data.banners.map((_, index: number) => (
-                    <div key={index}>
+                    <div key={index} className="lead">
                       {data.banners.length > 1 ? (
                         <button
 
-                          className={`w-[50px] h-[3px] cursor-pointer rounded-full transition-all duration-300 ${activeIndex === index
-                            ? "bg-primary scale-125 max-w-[27px]"
-                            : "bg-white max-w-[9px]"
+                          className={`mt-8 md:mt-0 text-[14px] leading-[1.8] font-light  relative md:right-[-4px] cursor-pointer px-3 md:px-0 md:pe-[13px]  transition-all duration-300 ${activeIndex === index
+                            ? "border-b-[3px] md:border-b-0 md:border-r-[3px] border-accent md:py-3 md:mb-20 text-accent md:text-white"
+                            : "md:border-r-[3px] border-[transparent] text-white"
                             }`}
                           onClick={() => swiperRef.current?.slideToLoop(index)}
                         > 0{index + 1} </button>
@@ -83,19 +81,31 @@ const HeroSlider = ({ data }: HeroSliderProps) => {
             </div>
            </div>
             <div className="container">
-            <div className="grid grid-cols-4 pt-8 lg:pt-[76px] relative z-10">
-              <div className="text-white text-2xl font-normal">
-                <div className="border border-[#C2C2C2] border-b-0 ps-12 py-[32px]">
-                  <p className="text-5xl font-normal leading-[1.1]  ">35<span>+</span></p>
-                  <p className="uppercase">Years of Expertise</p>
+            <div className="grid grid-cols-2  lg:grid-cols-4 pt-8 lg:pt-[76px] relative z-10">
+              <div className="text-white border border-[#C2C2C2] border-b-0 transition-all duration-300 group hover:bg-primary">
+                <div className=" pe-3  ps-3 xl:ps-12 py-5 xl:py-[32px]">
+                  <p className="text-2xl md:text-5xl font-normal leading-[.8] mb-4 lg:mb-6 ">35<span>+</span></p>
+                  <p className="uppercase font-light text-base xl:text-lg">Years of Expertise</p>
                 </div>
               </div>
-              <div className="text-white text-2xl font-normal">
-                  <p>35<span>+</span></p>
-                  <p className="uppercase">Years of Expertise</p>
-                  </div>
-              <div className="text-white text-2xl font-normal">3</div>
-              <div className="text-white text-2xl font-normal">4</div>
+              <div className="text-white border border-[#C2C2C2] border-b-0 pe-3 transition-all duration-300 group hover:bg-primary">
+                <div className="  ps-3 xl:ps-12 py-5 xl:py-[32px]">
+                  <p className="text-2xl md:text-5xl font-normal leading-[.8] mb-4 lg:mb-6 ">180M<span></span></p>
+                  <p className="uppercase font-light text-base xl:text-lg">Portfolio Value</p>
+                </div>
+              </div>
+              <div className="text-white border border-[#C2C2C2] border-b-0 pe-3 transition-all duration-300 group hover:bg-primary">
+                <div className="  ps-3 xl:ps-12 py-5 xl:py-[32px]">
+                  <p className="text-2xl md:text-5xl font-normal leading-[.8] mb-4 lg:mb-6 ">750<span>+</span></p>
+                  <p className="uppercase font-light text-base xl:text-lg">Projects Completed</p>
+                </div>
+              </div>
+              <div className="text-white border border-[#C2C2C2] border-b-0 pe-3 transition-all duration-300 group hover:bg-primary">
+                <div className="  ps-3 xl:ps-12 py-5 xl:py-[32px]">
+                  <p className="text-2xl md:text-5xl font-normal leading-[.8] mb-4 lg:mb-6 ">5000<span>+</span></p>
+                  <p className="uppercase font-light text-base xl:text-lg">Dedicated Manpower</p>
+                </div>
+              </div>
             </div>
           </div>
           </div>
