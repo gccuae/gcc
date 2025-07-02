@@ -5,7 +5,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import Image from "next/image";
 import BtnPrimary from "../common/BtnPrimary";
-
+import { motion } from "framer-motion";
+import { moveUp } from "../../components/motionVarients"
 const AboutCompany = () => {
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -41,7 +42,7 @@ const AboutCompany = () => {
     <section className="py-12 xl:py-25">
       <div className="container">
         <div className="lg:flex gap-8 xl:gap-17 ">
-          <div className="relative w-full lg:w-[48%] mb-8 lg:mb-0">
+          <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="relative w-full lg:w-[48%] mb-8 lg:mb-0">
             <video
               ref={videoRef}
               poster="/assets/img/home/video-poster.jpg"
@@ -95,10 +96,12 @@ const AboutCompany = () => {
                 </div>
               </div>
             )}
-          </div>
+          </motion.div>
           <div className="w-full lg:w-[52%]">
-            <p className="text-2xl font-light text-foreground mb-10 lg:mb-20 xl:mb-29">GCC, <span className="font-semibold text-primary">established in 1988</span>, is known for innovation and excellence in construction, with projects ranging from infrastructure and defense to industrial, commercial, and residential developments.</p>
-            <BtnPrimary link={'#'} text="About Company" bgtrans={false} />
+            <motion.p variants={moveUp(0.5)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-2xl font-light text-foreground mb-10 lg:mb-20 xl:mb-29">GCC, <span className="font-semibold text-primary">established in 1988</span>, is known for innovation and excellence in construction, with projects ranging from infrastructure and defense to industrial, commercial, and residential developments.</motion.p>
+            <motion.div variants={moveUp(1)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
+              <BtnPrimary link={'#'} text="About Company" bgtrans={false} />
+            </motion.div>
           </div>
         </div>
       </div>
