@@ -25,11 +25,9 @@ const AboutCompany = () => {
     }
   };
   useEffect(() => {
-    if (isPopupOpen) {
-      console.log("make hidden")
+    if (isPopupOpen) { 
       document.documentElement.style.overflow = "hidden"; // Disable scroll
     } else {
-      console.log("make bla")
       document.documentElement.style.overflow = "auto";// Re-enable scroll
     }
 

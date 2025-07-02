@@ -113,7 +113,7 @@ const MobileNav = () => {
     <>
 
       {/* Navbar */}
-      <nav className="w-full bg-white text-white tanspheader py-4  top-0 z-10">
+      <nav className="w-full bg-black text-white tanspheader py-4  top-0 z-10">
         <div className="container mx-auto flex items-center justify-between">
           <div>
           <div className="flex items-center">
@@ -171,16 +171,15 @@ const MobileNav = () => {
          <div className="text-left ">
             <Link href="/">
               <Image
-                src="/assets/img/logo.svg"
+                src="/assets/img/invertlogo.svg"
                 alt="Assent"
-                width={80}
+                width={120}
                 height={50}
-                className="h-[30px] w-auto"
+                className="h-[45px] w-auto"
               />
             </Link>
           </div>
-          <p className="mb-0 text-center text-[10px] xl:text-[14px] text-gray xl:mt-1 italic">Your gateway to safety </p>
-
+         
          </div>
           {/* Navigation Items */}
           <ul className="flex flex-col gap-4">

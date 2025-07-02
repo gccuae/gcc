@@ -91,3 +91,7 @@ body {
 .area-of-expertise-thumbs .swiper-slide.swiper-slide-thumb-active .icon-wrapper img {
   @apply brightness-0 invert-100;
 }
+:focus-visible 
+ {
+    outline: none !important;
+}

@@ -43,6 +43,12 @@ const Header = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (window.scrollY > 50) {
+      setIsScrolled(true);
+    }
+  }, []);
+
   if (isMobile) {
     return <MobileNav />;
   } else if (isMobile == null) {
