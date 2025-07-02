@@ -73,6 +73,7 @@ body {
   @apply bg-accent w-[27px];
  }
 
+}
 
 .slideroverlay:after {
   content: "";

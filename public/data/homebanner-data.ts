@@ -1,6 +1,6 @@
 import type { Home } from "@/types/Common";
 
-export const homeData: Home = {
+export const homeDataBanner: Home = {
     metaTitle: "Welcome to Our Platform",
     metaDescription: "Discover amazing products and services",
     banners: [
