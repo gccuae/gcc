@@ -1,5 +1,5 @@
 "use client";
-import React, { ReactNode } from "react";
+import React, { ReactNode ,useRef, useState,useEffect} from "react";
 import { AnimatePresence, motion, easeOut } from "framer-motion";
 import Link, { LinkProps } from "next/link";
 import Image from "next/image";
@@ -31,9 +31,9 @@ export const MenuItem = ({
       <div className="flex gap-2 mb-0">
         <Link href={url}>
           <motion.p
-            transition={{ duration: 0.3, ease: easeOut }}
-            className="cursor-pointer text-white   hover:text-secondary dark:text-white text-xs uppercase transition-all duration-500 ease-in-out">
-            <span className="flex gap-3  text-base  leading-[1.82]     hover:text-primary transition-all duration-300 font-normal">{item}</span>
+            transition={{ duration: 0.3, ease: easeOut }} 
+            className="cursor-pointer text-white   hover:text-secondary dark:text-white  uppercase transition-all duration-500 ease-in-out">
+            <span className="flex gap-3  text-base  leading-[1.82] text-[13px] xl:text-[15px]  2xl:text-base   hover:text-primary transition-all duration-300 font-normal">{item}</span>
           </motion.p>
         </Link>
         {!noMenu && <Image src={arrow} alt="arrow" className="arrowst" />}
@@ -68,10 +68,24 @@ export const Menu = ({
 }: {
   setActive: (item: string | null) => void;
   children: React.ReactNode;
-}) => {
+}) => { 
 
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [rightMargin, setRightMargin] = useState(0);
 
-
+  useEffect(() => {
+    const updateMargin = () => {
+      if (containerRef.current) {
+        const containerWidth = containerRef.current.offsetWidth;
+        const windowWidth = window.innerWidth;
+        const margin = (windowWidth - containerWidth) / 2;
+        setRightMargin(margin);
+      }
+    };
+    updateMargin();
+    window.addEventListener("resize", updateMargin);
+    return () => window.removeEventListener("resize", updateMargin);
+  }, []);
   return (
     <div>
        <AnimatePresence>
@@ -80,12 +94,13 @@ export const Menu = ({
       {...slideDown()}
       className=""
     >
-        <div className="relative">
-
+        <div className="container" ref={containerRef}></div>
+        <div className="relative" style={{ marginLeft: `${rightMargin}px` }}>
       <nav
         onMouseLeave={() => setActive(null)} // resets the state
         className=" relative  z-50      flex justify-center items-stretch  gap-2 xl:gap-[20px]  h-full">
-        <div className="left-spacing pr-[28px] xxl:pr-[28px] xxxl:pr-[50px] w-full flex items-center justify-between gap-3 py-[10px]  ">
+          
+        <div className="  pr-[28px] xxl:pr-[28px] xxxl:pr-[50px] w-full flex items-center justify-between gap-3 py-[10px]  " >
           <div className="pl-5">
           <Link href="/">
           <div className="flex items-center ">
