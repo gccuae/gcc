@@ -86,7 +86,7 @@ const HeroSlider = ({ data }: HeroSliderProps) => {
             <div className="grid grid-cols-4 pt-8 lg:pt-[76px] relative z-10">
               <div className="text-white text-2xl font-normal">
                 <div className="border border-[#C2C2C2] border-b-0 ps-12 py-[32px]">
-                  <p className="text-5xl font-normal  ">35<span>+</span></p>
+                  <p className="text-5xl font-normal leading-[1.1]  ">35<span>+</span></p>
                   <p className="uppercase">Years of Expertise</p>
                 </div>
               </div>
