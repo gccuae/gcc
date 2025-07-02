@@ -1,29 +1,27 @@
 export interface Home {
   metaTitle: string;
   metaDescription: string;
-  banners: {
-    image: string;
-    imageAlt: string;
-    title: string;
-    description: string;
+  bannerimage: string;
+  bannerAlt: string;
+  banners: { 
+    title: string; 
+    subtitle: string;
+    btn: string;
+    btnLink: string;
   }[];
 }
-
-// Animation types for Framer Motion
-import { Transition } from 'framer-motion';
-
-export type AnimationProps = {
-  initial?: {
-    opacity: number;
-    x?: number;
-  };
-  animate?: {
-    opacity: number;
-    x?: number;
-  };
-  exit?: {
-    opacity: number;
-    x?: number;
-  };
-  transition?: Transition;
+export interface TypeFeaturedProjects {
+  title: string;
+  banners: { 
+    image: string;   
+    title: string; 
+    location: string;
+    client: string;
+    projectvalue: string;
+    superficie: string;
+    sector: string;
+    btn: string;
+    btnLink: string;
+  }[];
 }
+ 
