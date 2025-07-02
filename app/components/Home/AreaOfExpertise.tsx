@@ -8,6 +8,7 @@ import "swiper/css/thumbs";
 import { Swiper as SwiperType } from "swiper";
 import { StaticImageData } from "next/image";
 import Image from "next/image";
+import BtnPrimary from "../common/BtnPrimary";
 interface AreaOfExpertiseProps {
     data: {
         title: string;
@@ -82,6 +83,9 @@ const AreaOfExpertise = ({data}: AreaOfExpertiseProps) => {
                     <div>
                       <h3 className="text-2xl font-normal leading-[1.5625] mb-2">{item.title}</h3>
                       <p className="text-lg font-[300] leading-[1.526315789473684] text-foreground">{item.description}</p>
+                      <div className="mt-6 xl:mt-[43px]">
+                        <BtnPrimary link={item.slug} text="Read More" />
+                      </div>
                     </div>
                   </div>
                 </SwiperSlide>
