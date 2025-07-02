@@ -23,7 +23,7 @@ const HeroSlider = ({ data }: HeroSliderProps) => {
 
           <div className="relative w-full  slideroverlay bg-cover bg-center   " style={{ backgroundImage: `url(${data.bannerimage})` }} >
             
-           <div className="slidermns h-full  container relative pt-10  md:pt-[50px] lg:pt-[200px]  z-[99]">
+           <div className="slidermns h-full  container relative pt-10  md:pt-[50px] lg:pt-[200px]  z-[9]">
            <Swiper
               modules={[Autoplay]}
               autoplay={{ delay: 4000 }}  
