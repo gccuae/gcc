@@ -59,7 +59,7 @@ const HeroSlider = ({ data }: HeroSliderProps) => {
             {/* Custom Pagination */}
             <div className="md:absolute bottom-[128px] z-20 w-full">
               <div className="container">
-                <div className="flex gap-3 md:gap-5   md:flex-col  md:border-r border-[#FFFFFF80] relative right-1" style={{alignItems:"flex-end"}}>
+                <div className="flex gap-3 md:gap-5   md:flex-col  md:border-r border-[#FFFFFF80] relative right-1 justify-end" style={{alignItems:"flex-end"}}>
                   {data.banners.map((_, index: number) => (
                     <div key={index} className="lead">
                       {data.banners.length > 1 ? (
