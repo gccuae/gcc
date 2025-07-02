@@ -27,7 +27,7 @@ const SectorSlider = ({data}: SectorSliderProps) => {
       <div className="container"> 
         <motion.h2 variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-5xl font-normal leading-[1.147058823529412] pb-4 xl:pb-[56px] ">{data.title}</motion.h2>
         <div>
-          <Swiper className="!overflow-visible"
+          <Swiper className="!overflow-visible sector-slider"
             slidesPerView={2}
             spaceBetween={0}
             modules={[Pagination]}
@@ -57,7 +57,7 @@ const SectorSlider = ({data}: SectorSliderProps) => {
                   </motion.div>
                   <div>
                     <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-2xl font-normal mb-4 xl:mb-[49px] group-hover:xl:mb-6 transition-all duration-300">{item.title}</motion.h3>
-                    <p className="text-lg font-[300] leading-[1.526315789473684] opacity-0 h-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-300 group-hover:xl:pb-[63px]">{item.description}</p>
+                    <p className="text-lg font-[300] leading-[1.526315789473684] opacity-0 h-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-300 group-hover:xl:pb-[63px] sector-description">{item.description}</p>
                   </div>
                   <div className="mt-auto overflow-hidden">
                     <Image src={item.image} alt={item.title} width={600} height={600} className="w-full h-full xl:h-[400px] object-cover flex overflow-hidden" />

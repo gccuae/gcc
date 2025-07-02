@@ -2,8 +2,10 @@
 "use client";
 import {useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Thumbs } from "swiper/modules";
+
+import { Thumbs, EffectFade } from "swiper/modules";
 import "swiper/css";
+import "swiper/css/effect-fade";
 import "swiper/css/thumbs";
 import { Swiper as SwiperType } from "swiper";
 import { StaticImageData } from "next/image";
@@ -41,10 +43,10 @@ const AreaOfExpertise = ({data}: AreaOfExpertiseProps) => {
             loop = {true}
             breakpoints={{
               0: {
-                slidesPerView: 1,
+                slidesPerView: 1.2,
               },
               768: {
-                slidesPerView: 2,
+                slidesPerView: 2.5,
               },
               1024: {
                 slidesPerView: 3,
@@ -68,27 +70,31 @@ const AreaOfExpertise = ({data}: AreaOfExpertiseProps) => {
           </Swiper>
 
           {/* Content Swiper */}
-          <div className="relative -mx-6">
+          <div className="relative">
             <Swiper
               thumbs={{ swiper: thumbsSwiper }}
               slidesPerView={1}
               spaceBetween={30}
-              modules={[Thumbs]}
+              modules={[Thumbs, EffectFade]}
+              loop={true}
+              speed={800}
+              effect="fade"
+              fadeEffect={{ crossFade: true }}
               className="px-6"
             >
               {data.items.map((item) => (
                 <SwiperSlide key={item.id}>
                   <div className="grid md:grid-cols-2 items-center gap-6 bg-white">
-                    <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="border-r-2 border-r-smgray pr-4 pb-4 xl:pr-10 xl:pb-10">
+                    <div className="border-r-2 border-r-smgray pr-4 pb-4 xl:pr-10 xl:pb-10">
                       <Image src={item.image} alt={item.title} width={1000} height={1000} className="w-full h-auto rounded object-cover" />
-                    </motion.div>
-                    <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
-                      <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-2xl font-normal leading-[1.5625] mb-2">{item.title}</motion.h3>
-                      <motion.p variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-lg font-[300] leading-[1.526315789473684] text-foreground">{item.description}</motion.p>
-                      <motion.div variants={moveUp(0.6)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="mt-6 xl:mt-[43px]">
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-normal leading-[1.5625] mb-2">{item.title}</h3>
+                      <p className="text-lg font-[300] leading-[1.526315789473684] text-foreground">{item.description}</p>
+                      <div className="mt-6 xl:mt-[43px] mb-4">
                         <BtnPrimary link={item.slug} text="Read More" />
-                      </motion.div>
-                    </motion.div>
+                      </div>
+                    </div>
                   </div>
                 </SwiperSlide>
               ))}

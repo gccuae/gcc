@@ -33,11 +33,11 @@ const NewsBlock = ({ title, link, items }: NewsBlockProps) => {
           <Swiper className="w-full home-news-swiper !pb-15" slidesPerView={1} spaceBetween={0} modules={[Pagination]} pagination={{ clickable: true }} >
             {items.map((item, index) => (
               <SwiperSlide key={index}>
-                <div className="flex items-center gap-4 xl:gap-[69px]">
-                  <div className="lg:w-1/2">
+                <div className="flex flex-wrap xl:flex-nowrap items-center gap-4 xl:gap-[69px]">
+                  <div className="xl:w-1/2">
                     <Image src={item.image} alt="newsBlockImage" width={2000} height={2000} className="w-full h-full object-cover" />
                   </div>
-                  <div className="lg:w-1/2 group">
+                  <div className="xl:w-1/2 group">
                     <div className="flex items-center justify-between mb-3 xl:mb-[28px]">
                       <button className="bg-accent px-5 py-2 transition-all duration-300 uppercase ">
                         <span className="text-foreground group-hover:text-white transition-all duration-300">{item.category}</span>
