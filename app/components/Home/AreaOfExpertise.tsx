@@ -92,7 +92,7 @@ const AreaOfExpertise = ({data}: AreaOfExpertiseProps) => {
                       <h3 className="text-2xl font-normal leading-[1.5625] mb-2">{item.title}</h3>
                       <p className="text-lg font-[300] leading-[1.526315789473684] text-foreground">{item.description}</p>
                       <div className="mt-6 xl:mt-[43px] mb-4">
-                        <BtnPrimary link={item.slug} text="Read More" />
+                        <BtnPrimary link={item.slug} text="Read More" bgtrans={false}/>
                       </div>
                     </div>
                   </div>
