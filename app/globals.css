@@ -9,6 +9,7 @@
   --forground-two: #151515;
   --md-gray: #787878;
   --sm-gray: #c2c2c2;
+  --light-white:#F5F3F0;
   --accent-color: #7AC142;
 }
 
@@ -23,6 +24,7 @@
   --color-mdgray: var(--md-gray);
   --color-smgray: var(--sm-gray);
   --color-forground-two: var(--forground-two);
+  --color-light-white: var(--light-white);
 
   --breakpoint-3xl: 96.875rem;
 

@@ -123,7 +123,7 @@ const MobileNav = () => {
                 alt="Assent"
                 width={80}
                 height={40}
-                className="h-[35px] w-[200px]"
+                className="h-[35px] w-auto"
               />
             </Link>
           </div> 
