@@ -64,5 +64,27 @@ export const homeDataFeaturedProjects = {
              btn:"READ MORE",
               btnLink:"/"       
            },    
+           { 
+               image:"/assets/img/home/banner.svg",
+               title: "Ruwais Mall2", 
+               location:"Abu Dhabi - UAE",
+              client:"Client Name",
+              projectvalue:"10M", 
+              superficie:"150000 sq ft",
+              sector:"Commercial",
+              btn:"READ MORE",
+               btnLink:"/"       
+            },    
+            { 
+                image:"/assets/img/home/banner.svg",
+                title: "Ruwais Mall2", 
+                location:"Abu Dhabi - UAE",
+               client:"Client Name",
+               projectvalue:"10M", 
+               superficie:"150000 sq ft",
+               sector:"Commercial",
+               btn:"READ MORE",
+                btnLink:"/"       
+             },    
     ]
 };

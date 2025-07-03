@@ -101,3 +101,7 @@ body {
 .featured-slider .swiper-slide {
   @apply min-h-[250px];
 }
+@media (max-width: 767px) {
+  .onside-margin{max-width: 40rem !important;
+  margin: auto !important;}
+}
