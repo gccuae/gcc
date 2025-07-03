@@ -15,6 +15,7 @@ interface FeaturedProjectsProps {
 }
 
 const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
+  
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
@@ -79,7 +80,8 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                   swiper.navigation.update();
                 }}
 
-                // autoplay={{ delay: 4000 }}  
+             autoplay={{ delay: 4000 }}  
+             allowTouchMove={false} 
                 loop
 
                 className="w-full h-full "
@@ -120,7 +122,8 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
             <motion.div className="pb-0 pt-10 md:py-10 md:ps-10 md:w-[68.5%] w-full" variants={moveLeft(0.5)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
               <Swiper className="h-full featured-slider"
                 modules={[Autoplay, Navigation]}
-                // autoplay={{ delay: 4000 }}  
+                autoplay={{ delay: 4000 }}
+                allowTouchMove={false}   
                 loop
                 navigation={{
                   prevEl: prevRef.current,
