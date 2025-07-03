@@ -48,7 +48,7 @@ const HeroSlider = ({ data }: HeroSliderProps) => {
                       <h1 className="text-white text-6xl font-normal max-w-[20ch] leading-[1.18]">{slide.title}</h1>
                       <p className="text-white text-xl font-light max-w-[73ch] leading-[1.4] pt-[35px] pb-[35px]">{slide.subtitle}</p>
                     
-                      <BtnPrimary link={slide.btnLink} text={slide.btn} bgtrans={true} />
+                      <BtnPrimary link={slide.btnLink} text={slide.btn} bgtrans={true} borderwight={true} />
 
                     </div>
 

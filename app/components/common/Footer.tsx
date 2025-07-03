@@ -12,7 +12,7 @@ const Footer = () => {
           <div className="pt-6 pb-4 xl:pb-12 xl:pt-[63px] border-b border-foreground">
             <h2 className="text-5xl font-normal leading-[1.147058823529412] text-white">Transforming Spaces, Building Futures</h2>
           </div>
-          <div className="grid gap-y-4 lg:grid-cols-2 xl:grid-cols-[6fr_3fr] pt-4 pb-4 xl:pt-[63px] xl:pb-[70px] border-b border-foreground">
+          <div className="grid gap-y-8 lg:grid-cols-2 xl:grid-cols-[6fr_3fr] pt-4 pb-4 xl:pt-[63px] xl:pb-[70px] border-b border-foreground">
             <div>
               <p className="text-lg font-normal text-white leading-[1.526315789473684] max-w-[472px]">Gulf Contractors Company (GCC) LLCSuite No. 023, Liberty Tower, Khalifa St., P O Box 45363 Abu Dhabi, UAE</p>
               <div className="flex flex-col gap-2 pt-3 xl:pt-[18px]">
@@ -76,16 +76,16 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="grid lg:grid-cols-2 xl:grid-cols-[6fr_3fr] pt-4 pb-4 xl:pt-[63px] xl:pb-[70px] gap-y-4">
+          <div className="grid lg:grid-cols-2 xl:grid-cols-[6fr_3fr] pt-4 pb-4 xl:pt-[48px] xl:pb-[48px] gap-y-8">
             <div className="flex flex-wrap gap-4 xl:gap-6">
               <Link href="#" className="flex items-center gap-2">
-                <span className="text-white text-lg font-light leading-[1.578947368421053] uppercase hover:text-primary transition-all duration-300">LinkedIn</span>
+                <span className="text-mdgray text-lg font-light leading-[1.578947368421053] uppercase hover:text-primary transition-all duration-300">LinkedIn</span>
                 <Image src={assets.linkArrowGreen} alt="linkArrowGreen" width={22} height={22} className="w-5 h-5 xl:w-[10.97px] xl:h-auto" /></Link>
               <Link href="#" className="flex items-center gap-2">
-                <span className="text-white text-lg font-light leading-[1.578947368421053] uppercase hover:text-primary transition-all duration-300">Facebook</span>
+                <span className="text-mdgray text-lg font-light leading-[1.578947368421053] uppercase hover:text-primary transition-all duration-300">Facebook</span>
                 <Image src={assets.linkArrowGreen} alt="linkArrowGreen" width={22} height={22} className="w-5 h-5 xl:w-[10.97px] xl:h-auto" /></Link>
               <Link href="#" className="flex items-center gap-2">
-                <span className="text-white text-lg font-light leading-[1.578947368421053] uppercase hover:text-primary transition-all duration-300">Youtube</span>
+                <span className="text-mdgray text-lg font-light leading-[1.578947368421053] uppercase hover:text-primary transition-all duration-300">Youtube</span>
                 <Image src={assets.linkArrowGreen} alt="linkArrowGreen" width={22} height={22} className="w-5 h-5 xl:w-[10.97px] xl:h-auto" /></Link>
             </div>
             <div>

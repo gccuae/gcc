@@ -10,6 +10,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { moveUp, moveLeft } from "../../components/motionVarients";
 import { TypeFeaturedProjects } from "@/types/Common";
+import Link from "next/link";
 interface FeaturedProjectsProps {
   data: TypeFeaturedProjects;
 }
@@ -47,16 +48,24 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
             <div className="flex gap-3 md:gap-5 items-center  ">
               <motion.div variants={moveUp(0.5)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="flex border border-foreground rounded-full ">
                 <div ref={prevRef}
-                  className="px-4 py-3 md:px-6 md:py-4 border-r border-foreground rounded-tl-full rounded-bl-full group  cursor-pointer hover:bg-accent  transition-all duration-300">
-                  <Image src="/assets/img/icons/greenrightarrow.svg" alt="image" className="rotate-180 group-hover:brightness-0 group-hover:invert transition-all duration-300 min-w-[6px] min-h-[13px]" width={6} height={13} />
+                  className="px-4 py-3 md:px-6 md:py-4 xl:py-[12px] border-r border-foreground rounded-tl-full rounded-bl-full group  cursor-pointer hover:bg-accent  transition-all duration-300">
+                  {/* <Image src="/assets/img/icons/greenrightarrow.svg" alt="image" className="rotate-180 group-hover:brightness-0 group-hover:invert transition-all duration-300 min-w-[6px] min-h-[13px]" width={6} height={13} /> */}
+                  <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex">
+                    <path d="M8.33594 1.33154L1.66731 8.00017L8.33594 14.6688" stroke="#7AC142" className="group-hover:stroke-white transition-all duration-300" strokeWidth="2" strokeLinecap="round" />
+                  </svg>
+
                 </div>
                 <div ref={nextRef}
-                  className="px-4 py-3 md:px-6 md:py-4 rounded-tr-full rounded-br-full cursor-pointer group hover:bg-accent transition-all duration-300">
-                  <Image src="/assets/img/icons/greenrightarrow.svg" alt="image" className="group-hover:brightness-0 group-hover:invert transition-all duration-300 min-w-[6px] min-h-[13px]" width={6} height={13} />
+                  className="px-4 py-3 md:px-6 md:py-4 xl:py-[12px] rounded-tr-full rounded-br-full cursor-pointer group hover:bg-accent transition-all duration-300">
+                  {/* <Image src="/assets/img/icons/greenrightarrow.svg" alt="image" className="group-hover:brightness-0 group-hover:invert transition-all duration-300 min-w-[6px] min-h-[13px]" width={6} height={13} /> */}
+                  <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex">
+                    <path d="M1.66406 1.33154L8.33269 8.00017L1.66406 14.6688" stroke="#7AC142" className="group-hover:stroke-white transition-all duration-300" strokeWidth="2" strokeLinecap="round" />
+                  </svg>
+
                 </div>
               </motion.div>
               <motion.div variants={moveUp(1)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
-                <BtnPrimary link={'#'} text="Explore Projects" bgtrans={false} />
+                <BtnPrimary link={'#'} text="Explore Projects" bgtrans={true} />
               </motion.div>
             </div>
           </div>
@@ -160,8 +169,9 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                 }}
               >
                 {data.banners.map((slide, index) => (
-                  <SwiperSlide key={index} className="h-full min-h-[250px]">
-                    <div className="h-full absolute">
+                  <SwiperSlide key={index} className="h-full min-h-[250px] relative p-5 xl:p-[30px]">
+                    <Link href={slide.btnLink} className="relative z-10 bg-accent text-base font-light leading-[1.75] text-foreground uppercase px-5 xl:px-[25px] py-2 xl:py-[7px] rounded-3xl">{slide.sector}</Link>
+                    <div className="h-full absolute top-0 left-0 z-0">
                       <Image src={slide.image} alt={slide.title} width={290} height={290} className="w-full h-full object-cover" />
                     </div>
                   </SwiperSlide>
