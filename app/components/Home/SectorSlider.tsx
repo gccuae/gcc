@@ -28,7 +28,7 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   return (
-    <section className="wrapper pt-6 xl:pt-[56px] pb-6 xl:pb-[120px] bg-black text-white overflow-hidden">
+    <section className="wrapper pt-10 xl:pt-[56px] pb-0 xl:pb-[120px] bg-black text-white overflow-hidden">
       <div className="container">
         <motion.h2 variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}
          className="text-5xl font-normal leading-[1.147058823529412] pb-4 xl:pb-[56px] ">{data.title}</motion.h2>
