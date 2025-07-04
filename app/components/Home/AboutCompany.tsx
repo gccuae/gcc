@@ -50,9 +50,7 @@ const AboutCompany = () => {
               height={740}
               playsInline
               onEnded={() => setIsPlaying(false)}
-            >
-
-              Your browser does not support the video tag.
+            > Your browser does not support the video tag.
             </video>
 
             <div className="absolute inset-0 flex items-center justify-center">
@@ -96,7 +94,7 @@ const AboutCompany = () => {
             )}
           </motion.div>
           <div className="w-full lg:w-[52%]">
-            <motion.p variants={moveUp(0.5)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-2xl font-light text-foreground mb-10 lg:mb-20 xl:mb-29">GCC, <span className="font-semibold text-primary">established in 1988</span>, is known for innovation and excellence in construction, with projects ranging from infrastructure and defense to industrial, commercial, and residential developments.</motion.p>
+            <motion.p variants={moveUp(0.5)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-2xl font-light text-foreground mb-6 lg:mb-20 xl:mb-29">GCC, <span className="font-semibold text-primary">established in 1988</span>, is known for innovation and excellence in construction, with projects ranging from infrastructure and defense to industrial, commercial, and residential developments.</motion.p>
             <motion.div variants={moveUp(1)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
               <BtnPrimary link={'#'} text="About Company" bgtrans={false} />
             </motion.div>

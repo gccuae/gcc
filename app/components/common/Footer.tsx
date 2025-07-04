@@ -9,7 +9,7 @@ const Footer = () => {
           <Image src={assets.footerbg} alt="footerbg" width={1920} height={1080} className="w-full h-full object-cover" />
         </div>
         <div className="container relative z-2">
-          <div className="pt-6 pb-4 xl:pb-12 xl:pt-[63px] border-b border-foreground">
+          <div className="pt-10 pb-6 xl:pb-12 xl:pt-[63px] border-b border-foreground">
             <h2 className="text-5xl font-normal leading-[1.147058823529412] text-white">Transforming Spaces, Building Futures</h2>
           </div>
           <div className="grid gap-y-8 lg:grid-cols-2 xl:grid-cols-[6fr_3fr] pt-4 pb-4 xl:pt-[63px] xl:pb-[70px] border-b border-foreground">
@@ -31,7 +31,7 @@ const Footer = () => {
                     </svg>
 
                   </div>
-                  <Link href="mailto:info@gcc.ae" className="text-2xl font-normal text-white leading-[1.3125] hover:text-accent transition-all duration-300">info@gcc.ae</Link>
+                  <Link href="mailto:info@gcc.ae" className="text-lg xl:text-2xl font-normal text-white leading-[1.3125] hover:text-accent transition-all duration-300">info@gcc.ae</Link>
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="flex items-center justify-center bg-black rounded-full border border-foreground w-10 h-10">
@@ -50,7 +50,7 @@ const Footer = () => {
 
 
                   </div>
-                  <Link href="tel:+97126267510" className="text-2xl font-normal text-white leading-[1.3125] hover:text-accent transition-all duration-300">+971 2 626 7510</Link>
+                  <Link href="tel:+97126267510" className="text-lg xl:text-2xl font-normal text-white leading-[1.3125] hover:text-accent transition-all duration-300">+971 2 626 7510</Link>
                 </div>
               </div>
             </div>
@@ -89,10 +89,10 @@ const Footer = () => {
                 <Image src={assets.linkArrowGreen} alt="linkArrowGreen" width={22} height={22} className="w-5 h-5 xl:w-[10.97px] xl:h-auto" /></Link>
             </div>
             <div>
-              <a href="#" className="bg-white text-foreground hover:bg-primary hover:text-white flex items-center justify-center rounded-4xl py-3 xl:py-[13px] gap-2 transition-all
-               duration-300 ease-in-out group max-w-[285.33px]">
-                <span className="text-base font-light uppercase leading-[1.578947368421053]">Download Profile</span>
-                <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <a href="#" className="bg-white text-foreground hover:bg-primary hover:text-white flex items-center justify-center rounded-4xl py-1 px-4 xl:py-[13px] gap-2 transition-all
+               duration-300 ease-in-out group max-w-fit lg:max-w-[285.33px]">
+                <span className="text-sm lg:text-base font-light uppercase leading-[1.578947368421053]">Download Profile</span>
+                <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 xl:w-[33px] xl:h-[33px]">
                   <path d="M8.49593 14.9186H4.79222C3.00365 14.9186 1.55078 16.3401 1.55078 18.0901V25.7901C1.55078 27.5401 3.00365 28.9617 4.79222 28.9617H5.02335M5.02335 28.9617C6.9385 28.9617 8.49593 27.4378 8.49593 25.564V3.07242C8.49593 2.50165 8.96921 2.03857 9.55256 2.03857H30.388C30.9713 2.03857 31.4446 2.50165 31.4446 3.07242V26.5009C31.4446 27.8578 30.322 28.9617 28.9296 28.9617H5.02335Z" stroke="#AD4545" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:stroke-white transition-all duration-300 ease-in-out" />
                   <path d="M13.7891 9.73828H23.0456" stroke="#AD4545" className="group-hover:stroke-white transition-all duration-300 ease-in-out" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   <path d="M13.7891 15.8877H25.8908" stroke="#AD4545" className="group-hover:stroke-white transition-all duration-300 ease-in-out" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />

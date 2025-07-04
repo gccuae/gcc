@@ -31,7 +31,7 @@ const AreaOfExpertise = ({data}: AreaOfExpertiseProps) => {
   // Change this line
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
   return ( 
-    <section className="wrapper pt-6 xl:pt-[88px] overflow-hidden">
+    <section className="wrapper pt-10 xl:pt-[88px] overflow-hidden">
       <div className="container">
         <h2 className="text-5xl font-normal leading-[1.147058823529412] pb-4 xl:pb-[56px] text-black mb-4 xl:mb-[43px]">{data.title}</h2>
         <div>
@@ -85,7 +85,7 @@ const AreaOfExpertise = ({data}: AreaOfExpertiseProps) => {
               {data.items.map((item) => (
                 <SwiperSlide key={item.id}>
                   <div className="grid md:grid-cols-2 items-center gap-6 bg-white">
-                    <div className="border-r-2 border-r-smgray pr-4 pb-4 xl:pr-10 xl:pb-10">
+                    <div className="border-r-2 border-r-smgray pr-4 pb-0 xl:pr-10 xl:pb-10">
                       <Image src={item.image} alt={item.title} width={1000} height={1000} className="w-full h-auto rounded object-cover" />
                     </div>
                     <div>
