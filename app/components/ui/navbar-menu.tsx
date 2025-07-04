@@ -117,13 +117,13 @@ export const Menu = ({
 
                   <div>
                     <div className="flex items-center justify-end gap-2   mb-[19px] ">
-                      <div className="w-8 h-8 bg-white rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center" >
+                      <div className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center" >
                         <Image src="/assets/img/icons/fb.svg" alt="fb" width={8} height={14} />
                       </div>
-                      <div className="w-8 h-8 bg-white rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center" >
+                      <div className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center" >
                         <Image src="/assets/img/icons/ln.svg" alt="ln" width={12} height={11} />
                       </div>
-                      <div className="w-8 h-8 bg-white rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center" >
+                      <div className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center" >
                         <Image src="/assets/img/icons/youtube.svg" alt="youtube" width={14} height={10} className="group-hover:filter-[brightness(0)_invert(1)]" />
                       </div>
                     </div>
