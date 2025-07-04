@@ -1,7 +1,7 @@
 import React from 'react'
 import { homeData } from "./data"
-import HeroSlider from "./HeroSlider"; 
 import { homeDataBanner,homeDataFeaturedProjects } from "@/public/data/homebanner-data"
+import HeroSlider from "./HeroSlider";
 import AboutCompany from "./AboutCompany";
 import FeaturedProjects from "./FeaturedProjects";
 import AreaOfExpertise from "./AreaOfExpertise";
