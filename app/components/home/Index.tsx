@@ -1,7 +1,10 @@
 import React from 'react'
-/* import { homeData } from "./data"
-import { homeDataBanner,homeDataFeaturedProjects } from "@/public/data/homebanner-data"
+
 import HeroSlider from "./HeroSlider";
+import { homeDataBanner } from "@/public/data/homebanner-data"
+/* import { homeData } from "./data"
+
+import { homeDataBanner,homeDataFeaturedProjects } from "@/public/data/homebanner-data"
 import AboutCompany from "./AboutCompany";
 import FeaturedProjects from "./FeaturedProjects";
 import AreaOfExpertise from "./AreaOfExpertise";
@@ -11,8 +14,9 @@ import NewsBlock from './NewsBlock'; */
 const Index = () => {
   return (
     <>
-    <p>Test</p>
-   {/*  <HeroSlider data={homeDataBanner}/>
+
+    <HeroSlider data={homeDataBanner}/>
+   {/*  
        <AboutCompany />
        <FeaturedProjects data={homeDataFeaturedProjects} />
       
