@@ -6,7 +6,7 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css"; 
 import { Home } from "@/types/Common"; 
 import BtnPrimary from "../common/BtnPrimary";
-import Counter from "../common/Counter";
+// import Counter from "../common/Counter";
  
 
 interface HeroSliderProps {
@@ -85,28 +85,27 @@ const HeroSlider = ({ data }: HeroSliderProps) => {
             <div className="grid grid-cols-2  lg:grid-cols-4 pt-8 lg:pt-[76px] relative z-10">
               <div className="text-white border border-[#C2C2C2] border-b-0 transition-all duration-300 group hover:bg-primary">
                 <div className=" pe-3  ps-3 xl:ps-12 py-5 xl:py-[32px]">
-                  <p className="text-2xl md:text-5xl font-normal leading-[.8] mb-4 lg:mb-6 "><Counter from={0} to={35} duration={2} /> <span>+</span></p>
+                  {/* <p className="text-2xl md:text-5xl font-normal leading-[.8] mb-4 lg:mb-6 "><Counter from={0} to={35} duration={2} /> <span>+</span></p> */}
                   
                   <p className="uppercase font-light text-base xl:text-lg">Years of Expertise</p>
                 </div>
               </div>
               <div className="text-white border border-[#C2C2C2] border-b-0 pe-3 transition-all duration-300 group hover:bg-primary">
                 <div className="  ps-3 xl:ps-12 py-5 xl:py-[32px]">
-                  <p className="text-2xl md:text-5xl font-normal leading-[.8] mb-4 lg:mb-6 "><Counter from={0} to={180} duration={2} />M<span></span></p>
+                  {/* <p className="text-2xl md:text-5xl font-normal leading-[.8] mb-4 lg:mb-6 "><Counter from={0} to={180} duration={2} />M<span></span></p> */}
                   <p className="uppercase font-light text-base xl:text-lg">Portfolio Value</p>
                 </div>
               </div>
               <div className="text-white border border-[#C2C2C2] border-b-0 pe-3 transition-all duration-300 group hover:bg-primary">
                 <div className="  ps-3 xl:ps-12 py-5 xl:py-[32px]">
-                  <p className="text-2xl md:text-5xl font-normal leading-[.8] mb-4 lg:mb-6 "><Counter from={0} to={750} duration={2} /><span>+</span></p>
+                  {/* <p className="text-2xl md:text-5xl font-normal leading-[.8] mb-4 lg:mb-6 "><Counter from={0} to={750} duration={2} /><span>+</span></p> */}
                   <p className="uppercase font-light text-base xl:text-lg">Projects Completed</p>
                 </div>
               </div>
               <div className="text-white border border-[#C2C2C2] border-b-0 pe-3 transition-all duration-300 group hover:bg-primary">
                 <div className="  ps-3 xl:ps-12 py-5 xl:py-[32px]">
-                  <p className="text-2xl md:text-5xl font-normal leading-[.8] mb-4 lg:mb-6 "><Counter from={0} to={5000} duration={2} /><span>+</span></p>
+                  {/* <p className="text-2xl md:text-5xl font-normal leading-[.8] mb-4 lg:mb-6 "><Counter from={0} to={5000} duration={2} /><span>+</span></p> */}
                   <p className="uppercase font-light text-base xl:text-lg">Dedicated Manpower</p> 
-                
                 </div>
               </div>
             </div>
