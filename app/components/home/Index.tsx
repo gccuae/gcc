@@ -1,4 +1,4 @@
-import NewsBlock from  "./NewsBlock"
+import React from 'react'
 import { homeData } from "./data"
 import HeroSlider from "./HeroSlider"; 
 import { homeDataBanner,homeDataFeaturedProjects } from "@/public/data/homebanner-data"
@@ -6,19 +6,19 @@ import AboutCompany from "./AboutCompany";
 import FeaturedProjects from "./FeaturedProjects";
 import AreaOfExpertise from "./AreaOfExpertise";
 import SectorSlider from "./SectorSlider";
+import NewsBlock from './NewsBlock';
 const Index = () => {
-  return ( 
+  return (
     <>
-       <HeroSlider data={homeDataBanner}/>
+      <HeroSlider data={homeDataBanner}/>
        <AboutCompany />
        <FeaturedProjects data={homeDataFeaturedProjects} />
       
       <AreaOfExpertise data={homeData.fourthSection}/>
       <SectorSlider data={homeData.fifthSection} />
       <NewsBlock title={homeData.sixthSection.title} link={homeData.sixthSection.link} items={homeData.sixthSection.items} /> 
-
     </>
-   );
+  )
 }
- 
-export default Index;
+
+export default Index

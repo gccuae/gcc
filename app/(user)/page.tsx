@@ -1,10 +1,10 @@
- 
-import Index from "../components/home/Index";
-export default function home() {
-  return (
-    <>  
-        <Index /> 
-    </>
+import React from 'react'
+import Index from '../components/Home/Index'
 
-  );
+const page = () => {
+  return (
+    <Index/>
+  )
 }
+
+export default page
