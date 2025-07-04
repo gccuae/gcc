@@ -1,4 +1,8 @@
 
+import React from 'react'
+import Index from '../components/Home/Index'
+
+
 'use client'
 import {  } from "react";
 import Index from "../components/home/Index";
