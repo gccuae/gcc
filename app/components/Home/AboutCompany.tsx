@@ -6,7 +6,7 @@ import "swiper/css/pagination";
 import Image from "next/image";
 import BtnPrimary from "../common/BtnPrimary";
 import { motion } from "framer-motion";
-import { moveUp } from "../../components/motionVarients"
+import { moveUp } from "../motionVarients"
 const AboutCompany = () => {
 
   const videoRef = useRef<HTMLVideoElement | null>(null);

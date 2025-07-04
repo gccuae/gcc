@@ -9,7 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { assets } from "@/public/assets/assets";
 import { motion } from "framer-motion";
-import { moveUp } from "../../components/motionVarients";
+import { moveUp } from "../motionVarients";
 import { useRef } from "react";
 interface SectorSliderProps {
   data: {

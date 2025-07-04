@@ -8,7 +8,7 @@ import { Navigation } from "swiper/modules";
 import BtnPrimary from "../common/BtnPrimary";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { moveUp, moveLeft } from "../../components/motionVarients";
+import { moveUp, moveLeft } from "../motionVarients";
 import { TypeFeaturedProjects } from "@/types/Common";
 import Link from "next/link";
 interface FeaturedProjectsProps {

@@ -7,10 +7,11 @@ import FeaturedProjects from "./FeaturedProjects";
 import AreaOfExpertise from "./AreaOfExpertise";
 import SectorSlider from "./SectorSlider";
 import NewsBlock from './NewsBlock';
+
 const Index = () => {
   return (
     <>
-      <HeroSlider data={homeDataBanner}/>
+    <HeroSlider data={homeDataBanner}/>
        <AboutCompany />
        <FeaturedProjects data={homeDataFeaturedProjects} />
       
