@@ -1,13 +1,14 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperClass } from "swiper";
-import { Autoplay } from "swiper/modules";
+import { Autoplay, EffectFade } from "swiper/modules";
 import "swiper/css"; 
 import { Home } from "@/types/Common"; 
 import BtnPrimary from "../common/BtnPrimary";
 import Counter from "../common/Counter";
- 
+import { motion } from "framer-motion";
+import { moveUp } from "../../components/motionVarients"; 
 
 interface HeroSliderProps {
   data: Home;
@@ -16,6 +17,13 @@ interface HeroSliderProps {
 const HeroSlider = ({ data }: HeroSliderProps) => {
   const swiperRef = useRef<SwiperClass | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+
+  const [animationKey, setAnimationKey] = useState(0);
+
+  useEffect(() => {
+    // This triggers Framer Motion animation on each slide change
+    setAnimationKey((prev) => prev + 1);
+  }, [activeIndex]);
 
   return (
     <section className="relative">
@@ -26,9 +34,12 @@ const HeroSlider = ({ data }: HeroSliderProps) => {
             
            <div className="slidermns h-full  container relative pt-10  md:pt-[50px] lg:pt-[200px]  z-[9]">
            <Swiper
-              modules={[Autoplay]}
+              modules={[Autoplay, EffectFade]}
               autoplay={{ delay: 4000 }}  
               loop
+              effect="fade"
+              fadeEffect={{ crossFade: true }}
+              speed={1000}
               onSwiper={(swiper) => {
                 swiperRef.current = swiper;
               }}
@@ -45,13 +56,16 @@ const HeroSlider = ({ data }: HeroSliderProps) => {
                   height={290}
                   className="   inset-0 w-full h-full object-cover   "
                 />  */}
-                    <div className="">
-                      <h1 className="text-white text-6xl font-normal max-w-[20ch] leading-[1.18]">{slide.title}</h1>
-                      <p className="text-white text-xl font-light max-w-[73ch] leading-[1.4] pt-[35px] pb-[35px]">{slide.subtitle}</p>
-                    
+                    <motion.div key={animationKey} // this key causes remount, so animation retriggers
+                      initial="hidden"
+                      animate="show"
+                      variants={moveUp(0)}>
+                      <motion.h1 variants={moveUp(0)} initial="hidden" animate="show"  className="text-white text-6xl font-normal max-w-[20ch] leading-[1.18]">{slide.title}</motion.h1>
+                      <motion.p variants={moveUp(0.5)} initial="hidden" animate="show"  className="text-white text-xl font-light max-w-[73ch] leading-[1.4] pt-[35px] pb-[35px]">{slide.subtitle}</motion.p>
+                      <motion.div variants={moveUp(1)} initial="hidden" animate="show" >
                       <BtnPrimary link={slide.btnLink} text={slide.btn} bgtrans={true} borderwight={true} />
-
-                    </div>
+                      </motion.div>
+                    </motion.div>
 
                   </div>
                 </SwiperSlide>
