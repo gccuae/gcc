@@ -111,8 +111,6 @@ const HeroSlider = ({ data }: HeroSliderProps) => {
             </div>
           </div>
           </div>
-          
-
         </div>
 
       </div>
