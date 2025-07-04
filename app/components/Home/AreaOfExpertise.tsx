@@ -12,7 +12,7 @@ import { StaticImageData } from "next/image";
 import Image from "next/image";
 import BtnPrimary from "../common/BtnPrimary";
 import { motion } from "framer-motion";
-import { moveUp } from "../motionVarients";
+import { fadeIn, moveUp } from "../motionVarients";
 interface AreaOfExpertiseProps {
     data: {
         title: string;
@@ -60,7 +60,7 @@ const AreaOfExpertise = ({data}: AreaOfExpertiseProps) => {
             {data.items.map((item, index) => (
               <SwiperSlide key={item.id} className="cursor-pointer transition mb-8 xl:mb-[65px] group">
                 <div className="border-b-2 border-b-smgray group-hover:border-primary transition-all duration-400 pb-4 mb-4">
-                  <motion.div variants={moveUp(index * 0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="flex items-center justify-center rounded-full border-1 border-mdgray w-[85px] h-[85px] group-hover:bg-primary transition-all duration-300 icon-wrapper">
+                  <motion.div variants={fadeIn(index * 0.5)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="flex items-center justify-center rounded-full border-1 border-mdgray w-[85px] h-[85px] group-hover:bg-primary transition-all duration-300 icon-wrapper">
                     <Image src={item.icon} alt={item.title} width={200} height={200} className=" mb-2 w-10 h-10 object-contain group-hover:brightness-0 group-hover:invert-100" />
                   </motion.div>
                 </div>
