@@ -1,10 +1,15 @@
-import React from 'react'
-import Index from '../components/home/Index'
 
-const page = () => {
+'use client'
+import {  } from "react";
+import Index from "../components/home/Index";
+/* import Index from "../component/home/Index"; */
+
+
+export default function Home() {
+
   return (
-    <Index/>
-  )
+    <>
+     <Index />
+    </>
+  );
 }
-
-export default page
