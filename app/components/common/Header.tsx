@@ -55,7 +55,7 @@ const Header = () => {
     return null;
   } else {
     return (
-      <header className={`transition duration-300 ease-in-out w-full top-0 fixed border-b border-[#DBDBDB] z-[999]
+      <header className={` w-full top-0 fixed border-b border-[#DBDBDB] z-[999]
           ${
             isScrolled
               ? "  left-0 bg-black  border-b-0 "
