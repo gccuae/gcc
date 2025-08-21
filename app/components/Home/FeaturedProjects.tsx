@@ -10,19 +10,27 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { moveUp, moveLeft } from "../motionVarients";
 import { TypeFeaturedProjects } from "@/types/Common";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+// import parse, { domToReact, DOMNode, Element } from "html-react-parser";
+
+gsap.registerPlugin(ScrollTrigger);
+
 import Link from "next/link";
 interface FeaturedProjectsProps {
   data: TypeFeaturedProjects;
 }
 
 const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
-  
+
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const [rightMargin, setRightMargin] = useState(0);
+
+
 
   useEffect(() => {
     const updateMargin = () => {
@@ -38,6 +46,36 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
     window.addEventListener("resize", updateMargin);
     return () => window.removeEventListener("resize", updateMargin);
   }, []);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const wrappers = gsap.utils.toArray<HTMLDivElement>(
+      ".featured-image-wrapper"
+    );
+
+    wrappers.forEach((wrapper) => {
+      gsap.fromTo(
+        wrapper,
+        { y: "-10vh" },
+        {
+          y: "10vh",
+          ease: "none",
+          scrollTrigger: {
+            trigger: wrapper,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        }
+      );
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+    };
+  }, []);
+
 
   return (
     <section className="bg-light-white dark:bg-[#191919] overflow-hidden">
@@ -89,8 +127,8 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                   swiper.navigation.update();
                 }}
 
-             autoplay={{ delay: 4000 }}  
-             allowTouchMove={false} 
+                autoplay={{ delay: 4000 }}
+                allowTouchMove={false}
                 loop
 
                 className="w-full h-full "
@@ -132,7 +170,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
               <Swiper className="h-full featured-slider"
                 modules={[Autoplay, Navigation]}
                 autoplay={{ delay: 4000 }}
-                allowTouchMove={false}   
+                allowTouchMove={false}
                 loop
                 navigation={{
                   prevEl: prevRef.current,
@@ -171,8 +209,8 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                 {data.banners.map((slide, index) => (
                   <SwiperSlide key={index} className="h-full min-h-[250px] relative p-5 xl:p-[30px]">
                     <Link href={slide.btnLink} className="relative z-10 bg-accent text-base font-light leading-[1.75] text-foreground uppercase px-5 xl:px-[25px] py-2 xl:py-[7px] rounded-3xl">{slide.sector}</Link>
-                    <div className="h-full absolute top-0 left-0 z-0">
-                      <Image src={slide.image} alt={slide.title} width={290} height={290} className="w-full h-full object-cover" />
+                    <div className="h-full absolute top-0 left-0 z-0 featured-image-wrapper" >
+                      <Image src={slide.image} alt={slide.title} width={290} height={290} className="w-full h-full object-cover"  />
                     </div>
                   </SwiperSlide>
                 ))}
