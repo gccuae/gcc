@@ -6,6 +6,8 @@ import Image from "next/image";
 import arrow from "@/public/assets/img/redarrow.svg";
 import { slideDown } from "@/public/frameranimation/animation";
 
+import { useTheme } from "next-themes";
+
 
 
 export const MenuItem = ({
@@ -23,16 +25,16 @@ export const MenuItem = ({
   children?: React.ReactNode;
   noMenu?: boolean;
 }) => {
+  
 
   return (
-    <div
-      onMouseEnter={() => (noMenu ? setActive(null) : setActive(item))}
+    <div onMouseEnter={() => (noMenu ? setActive(null) : setActive(item))}
       className="relative mr-0 not-first:ml-3 not-first:lg:ml-[15px] not-first:xl:ml-[25px] not-first:2xl:ml-[37px] ">
       <div className="flex gap-2 mb-0">
         <Link href={url}>
           <motion.p
             transition={{ duration: 0.3, ease: easeOut }}
-            className="cursor-pointer text-white   hover:text-secondary dark:text-white  uppercase transition-all duration-500 ease-in-out">
+            className="cursor-pointer hover:text-secondary text-black dark:text-white  uppercase transition-all duration-500 ease-in-out">
             <span className="flex gap-3  text-base  leading-[1.82] text-[13px] xl:text-[15px]  2xl:text-base   hover:text-primary transition-all duration-300 font-normal">{item}</span>
           </motion.p>
         </Link>
@@ -86,37 +88,31 @@ export const Menu = ({
     window.addEventListener("resize", updateMargin);
     return () => window.removeEventListener("resize", updateMargin);
   }, []);
+  const { theme, setTheme } = useTheme();
   return (
     <div>
       <AnimatePresence>
         <motion.div
           key="header-menu"
           {...slideDown()}
-          className=""
+          className="bg-white dark:bg-black"
         >
           <div className="container" ref={containerRef}></div>
           <div className="relative" style={{ marginLeft: `${rightMargin}px` }}>
             <nav onMouseLeave={() => setActive(null)} // resets the state
               className="relative z-50 flex justify-center items-stretch gap-2 xl:gap-[20px] h-full">
-
               <div className="pr-[28px] xxl:pr-[28px] xxxl:pr-[50px] w-full flex items-center justify-between gap-3 py-[10px]  " >
                 <div className="pl-5">
                   <Link href="/">
                     <div className="flex items-center ">
-                      <Image
-                        src="/assets/img/logo.svg"
-                        alt="Crest Logo"
-                        width={233}
-                        height={66}
-                        className="h-[66px] w-auto"
-                      />
+                      <Image src="/assets/img/logo.svg" alt="Crest Logo" width={233} height={66} className="h-[66px] w-auto" />
                     </div>
                   </Link>
                 </div>
                 <div>
 
-                  <div>
-                    <div className="flex items-center justify-end gap-2   mb-[19px] ">
+                  <div className="flex items-center gap-4 w-fit ml-auto  mb-[19px] ">
+                    <div className="flex items-center justify-end gap-2">
                       <div className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center" >
                         <Image src="/assets/img/icons/fb.svg" alt="fb" width={8} height={14} />
                       </div>
@@ -126,6 +122,37 @@ export const Menu = ({
                       <div className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center" >
                         <Image src="/assets/img/icons/youtube.svg" alt="youtube" width={14} height={10} className="group-hover:filter-[brightness(0)_invert(1)]" />
                       </div>
+                      <div className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center" >
+                        <Image src="/assets/img/icons/search.svg" alt="youtube" width={14} height={10} className="group-hover:filter-[brightness(0)_invert(1)]" />
+                      </div>
+                    </div>
+                    <div>
+                      <button
+                        onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                        className="bg-light-white dark:bg-black border border-foreground dark:border-white rounded-full px-[14px] py-[5px] flex gap-3"
+                      >
+                        {/* Light mode icon */}
+                        <span className="opacity-100 dark:opacity-0 transition-all duration-300">
+                          <Image
+                            src="/assets/img/icons/light.svg"
+                            alt="light"
+                            width={30}
+                            height={30}
+                            className="w-[20px] h-[20px]"
+                          />
+                        </span>
+
+                        {/* Dark mode icon */}
+                        <span className="opacity-0 dark:opacity-100 transition-all duration-300">
+                          <Image
+                            src="/assets/img/icons/dark.svg"
+                            alt="dark"
+                            width={30}
+                            height={30}
+                            className="w-[20px] h-[20px]"
+                          />
+                        </span>
+                      </button>
                     </div>
                   </div>
 
@@ -144,12 +171,9 @@ export const Menu = ({
                     <span className="text-white text-base leading-[1.82] group-hover:text-primary transition-all duration-200">CONTACT</span>
                   </Link>
                 </div>
-
               </div>
-
             </nav>
           </div>
-
         </motion.div>
       </AnimatePresence>
     </div>

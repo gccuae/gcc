@@ -37,7 +37,7 @@ const AboutCompany = () => {
     };
   }, [isPopupOpen]);
   return (
-    <section className="py-12 xl:py-25">
+    <section className="py-12 xl:py-25 dark:bg-black">
       <div className="container">
         <div className="lg:flex gap-8 xl:gap-17 ">
           <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="relative w-full lg:w-[48%] mb-8 lg:mb-0">
@@ -55,16 +55,8 @@ const AboutCompany = () => {
 
             <div className="absolute inset-0 flex items-center justify-center">
               {!isPlaying && (
-                <button
-                className="cursor-pointer transition-transform duration-300 hover:scale-110"
-                onClick={togglePlay}
-              >
-                <Image
-                  src={"/assets/img/icons/play.svg"}
-                  alt="Play"
-                  width={52}
-                  height={52}
-                />
+                <button className="cursor-pointer transition-transform duration-300 hover:scale-110" onClick={togglePlay} >
+                <Image src={"/assets/img/icons/play.svg"} alt="Play" width={52} height={52} />
               </button>
               )}
             </div>
@@ -83,18 +75,14 @@ const AboutCompany = () => {
                   <video
                     className="w-full h-full rounded-lg object-cover"
                     src="/assets/img/abt_bnr.mp4"
-                    poster="/assets/img/home/video-poster.jpg"
-                    width={1080}
-                    height={740}
-                    controls
-                    autoPlay
+                    poster="/assets/img/home/video-poster.jpg" width={1080} height={740} controls autoPlay
                   />
                 </div>
               </div>
             )}
           </motion.div>
           <div className="w-full lg:w-[52%]">
-            <motion.p variants={moveUp(0.5)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-2xl font-light text-foreground mb-6 lg:mb-20 xl:mb-29">GCC, <span className="font-semibold text-primary">established in 1988</span>, is known for innovation and excellence in construction, with projects ranging from infrastructure and defense to industrial, commercial, and residential developments.</motion.p>
+            <motion.p variants={moveUp(0.5)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-2xl font-light text-foreground mb-6 lg:mb-20 xl:mb-29 dark:text-white">GCC, <span className="font-semibold text-primary">established in 1988</span>, is known for innovation and excellence in construction, with projects ranging from infrastructure and defense to industrial, commercial, and residential developments.</motion.p>
             <motion.div variants={moveUp(1)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
               <BtnPrimary link={'#'} text="About Company" bgtrans={false} />
             </motion.div>
