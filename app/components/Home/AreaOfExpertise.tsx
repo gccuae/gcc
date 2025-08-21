@@ -1,8 +1,8 @@
 
 "use client";
-import {useState } from "react";
+import {useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import gsap from "gsap";
 import { Thumbs, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-fade";
@@ -30,6 +30,74 @@ const AreaOfExpertise = ({data}: AreaOfExpertiseProps) => {
   // const thumbsSwiperRef = useRef<SwiperType | null>(null);
   // Change this line
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
+
+ 
+
+  useEffect(() => {
+    // Parallax images
+    gsap.utils.toArray<HTMLElement>(".slide-container").forEach((container) => {
+      const img = container.querySelector(".slide-img");
+      if (!img) return;
+
+      gsap.fromTo(
+        img,
+        { y: "-20vh" },
+        {
+          y: "20vh",
+          ease: "none",
+          scrollTrigger: {
+            trigger: container,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        }
+      );
+    });
+
+    // Text fade
+    gsap.utils.toArray<HTMLElement>(".slide-text").forEach((text) => {
+      gsap.fromTo(
+        text,
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: text,
+            start: "top 80%",
+          },
+        }
+      );
+    });
+
+    // Button fade
+    gsap.utils.toArray<HTMLElement>(".slide-btn").forEach((btn) => {
+      gsap.fromTo(
+        btn,
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: btn,
+            start: "top 70%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    });
+  }, []);
+
+
+
+
+
+
   return ( 
     <section className="wrapper pt-10 xl:pt-[88px] overflow-hidden dark:bg-black">
       <div className="container">
@@ -85,19 +153,32 @@ const AreaOfExpertise = ({data}: AreaOfExpertiseProps) => {
             >
               {data.items.map((item) => (
                 <SwiperSlide key={item.id}>
-                  <div className="grid md:grid-cols-2 xl:grid-cols-[60%_40%] items-center gap-6 bg-white dark:bg-black">
-                    <div className="border-r-1 border-r-smgray pr-4 xl:pr-[50px] pb-0 xl:py-5">
-                      <Image src={item.image} alt={item.title} width={1000} height={1000} className="w-full h-auto rounded object-cover" />
+                  <div className="slide-container grid md:grid-cols-2 xl:grid-cols-[60%_40%] items-center gap-6 bg-white dark:bg-black">
+                    <div className="img-wrapper border-r-1 border-r-smgray pr-4 xl:pr-[50px] pb-0 xl:py-5 relative overflow-hidden">
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        width={1000}
+                        height={1000}
+                        className="slide-img w-full h-auto rounded object-cover"
+                      />
                     </div>
+
                     <div>
-                      <h3 className="text-2xl font-normal leading-[1.5625] mb-2 dark:text-white">{item.title}</h3>
-                      <p className="text-lg font-[300] leading-[1.526315789473684] text-foreground dark:text-white/80">{item.description}</p>
-                      <div className="mt-6 xl:mt-[43px] mb-4">
-                        <BtnPrimary link={item.slug} text="Read More" bgtrans={false}/>
+                      <h3 className="text-2xl font-normal leading-[1.5625] mb-2 dark:text-white">
+                        {item.title}
+                      </h3>
+                      <p className="slide-text text-lg font-[300] leading-[1.526315789473684] text-foreground dark:text-white/80">
+                        {item.description}
+                      </p>
+                      <div className="slide-btn mt-6 xl:mt-[43px] mb-4">
+                        <BtnPrimary link={item.slug} text="Read More" bgtrans={false} />
                       </div>
                     </div>
                   </div>
                 </SwiperSlide>
+
+
               ))}
             </Swiper>
           </div> 
