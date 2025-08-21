@@ -213,10 +213,7 @@ const MobileNav = () => {
                 </li>
               ) : (
                 <li key={index} className="pb-2 uppercase">
-                  <Link
-                    href={item.url}
-                    onClick={() => setMenuOpen(false)}
-                    className="font-semibold">
+                  <Link href={item.url} onClick={() => setMenuOpen(false)} className="font-semibold">
                     {item.title}
                   </Link>
                 </li>
@@ -225,10 +222,7 @@ const MobileNav = () => {
 
             {/* Contact Link */}
             <li className="uppercase">
-              <Link
-                href="/contact"
-                onClick={() => setMenuOpen(false)}
-                className="font-semibold">
+              <Link href="/contact" onClick={() => setMenuOpen(false)} className="font-semibold">
                 Contact Us
               </Link>
             </li>
@@ -250,8 +244,6 @@ const MobileNav = () => {
                     <FaYoutube className="cursor-pointer w-5 h-5 hover:text-primary transition-all duration-500" />
                   </Link>
                 </div>
-
-
               </div>
             </div>
           </div>

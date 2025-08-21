@@ -28,7 +28,7 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   return (
-    <section className="wrapper pt-10 xl:pt-[56px] pb-0 xl:pb-[120px] bg-black text-white overflow-hidden">
+    <section className="wrapper pt-10 xl:pt-[56px] pb-0 xl:pb-[120px] bg-black dark:bg-[#191919] text-white overflow-hidden">
       <div className="container">
         <motion.h2 variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}
          className="text-5xl font-normal leading-[1.147058823529412] pb-4 xl:pb-[56px] ">{data.title}</motion.h2>
@@ -85,7 +85,7 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
                     </motion.div>
                     <div className="pl-4 pr-3 pt-6 group-hover:xl:pl-[37px] group-hover:xl:pt-[35px] group-hover:xl:pr-[35px] group-first:pl-0 transition-all duration-300">
                       <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-2xl font-normal mb-4 xl:mb-[49px] group-hover:xl:mb-6 transition-all duration-300">{item.title}</motion.h3>
-                      <p className="text-lg font-[300] leading-[1.526315789473684] opacity-0 h-0 group-hover:h-auto group-hover:opacity-100 transition-all ease-in-out duration-300 group-hover:xl:pb-[63px] sector-description relative z-10">{item.description}</p>
+                      <p className="text-lg font-[300] leading-[1.526315789473684] opacity-0 h-0 group-hover:h-auto group-hover:opacity-100 transition-all ease-in-out duration-300 group-hover:xl:pb-[63px] sector-description relative z-10 dark:text-white/80">{item.description}</p>
                     </div>
                     <div className="mt-auto overflow-hidden pr-[15px] pl-[15px] group-first:pl-0 transition-all duration-300 relative z-20">
                       <Image src={item.image} alt={item.title} width={600} height={600} className="w-full h-full xl:h-[400px] object-cover object-top flex overflow-hidden" />

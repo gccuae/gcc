@@ -80,12 +80,7 @@ const Header = () => {
                     <HoveredLink href={`${item.url}`} key={index}>
                       <div className="hover:bg-black/5 pl-3 pr-[80px] py-2 rounded-[8px] transition-transform duration-300 hover:text-secondary hover:scale-105 flex gap-2 items-center self-start spckbtn whts">
                         <div>
-                          <Image
-                            src={"/assets/img/icons/arrow.svg"}
-                            alt=""
-                            width={15}
-                            height={15}
-                          />
+                          <Image src={"/assets/img/icons/arrow.svg"} alt="" width={15} height={15} />
                         </div>{" "}
                         <p className="m-0 p-0 text-[16px] uppercase ">
                           {item.title}
@@ -96,14 +91,7 @@ const Header = () => {
                 </div>
               </MenuItem>
             ) : (
-              <MenuItem
-                item={menuItem.title}
-                url={menuItem.url}
-                setActive={setActive}
-                active={active}
-                noMenu={true}
-                key={index}
-              >
+              <MenuItem item={menuItem.title} url={menuItem.url} setActive={setActive} active={active} noMenu={true} key={index} >
                 <div className="p-4">
                   <Link href="/">{menuItem.title}</Link>
                 </div>
