@@ -59,10 +59,11 @@ const AreaOfExpertise = ({data}: AreaOfExpertiseProps) => {
           >
             {data.items.map((item, index) => (
               <SwiperSlide key={item.id} className="cursor-pointer transition mb-8 xl:mb-[65px] group">
-                <div className="border-b-2 border-b-smgray group-hover:border-primary transition-all duration-400 pb-4 mb-4">
-                  <motion.div variants={fadeIn(index * 0.5)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="flex items-center justify-center rounded-full border-1 border-mdgray dark:border-white w-[85px] h-[85px] group-hover:bg-primary transition-all duration-300 icon-wrapper dark:bg-[#0d0d0d]">
+                <div className="exp-icon-div group-hover:border-primary transition-all duration-400 pb-4 mb-4 relative">
+                  <motion.div variants={fadeIn(index * 0.5)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="flex items-center justify-center rounded-full border-1 border-mdgray dark:border-white w-[85px] h-[85px] group-hover:bg-primary transition-all duration-300 icon-wrapper dark:bg-[#0d0d0d]  ">
                     <Image src={item.icon} alt={item.title} width={200} height={200} className=" mb-2 w-10 h-10 object-contain group-hover:brightness-0 group-hover:invert-100" />
                   </motion.div>
+                  <div className="absolute bottom-[-6px] left-0 w-full h-[2px] bg-smgray -z-[1]"> </div>
                 </div>
                 <motion.h3 variants={moveUp(index * 0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-xl text-foreground font-normal leading-[2.173913043478261] dark:text-white">{item.title}</motion.h3>
               </SwiperSlide>
@@ -84,8 +85,8 @@ const AreaOfExpertise = ({data}: AreaOfExpertiseProps) => {
             >
               {data.items.map((item) => (
                 <SwiperSlide key={item.id}>
-                  <div className="grid md:grid-cols-2 items-center gap-6 bg-white dark:bg-black">
-                    <div className="border-r-1 border-r-smgray pr-4 pb-0 xl:pr-10 xl:pb-10">
+                  <div className="grid md:grid-cols-2 xl:grid-cols-[60%_40%] items-center gap-6 bg-white dark:bg-black">
+                    <div className="border-r-1 border-r-smgray pr-4 xl:pr-[50px] pb-0 xl:py-5">
                       <Image src={item.image} alt={item.title} width={1000} height={1000} className="w-full h-auto rounded object-cover" />
                     </div>
                     <div>
