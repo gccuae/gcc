@@ -102,7 +102,13 @@ body {
 
 }
 .area-of-expertise-thumbs .swiper-slide.swiper-slide-thumb-active .icon-wrapper{
-  @apply bg-primary;
+  @apply bg-primary border-black;
+}
+.area-of-expertise-thumbs .swiper-slide .exp-icon-div{
+  /* @apply border-b-2 border-b-smgray ; */
+}
+.area-of-expertise-thumbs .swiper-slide.swiper-slide-thumb-active .exp-icon-div{
+  @apply border-b-[6px] border-b-primary;
 }
 .area-of-expertise-thumbs .swiper-slide.swiper-slide-thumb-active .icon-wrapper img {
   @apply brightness-0 invert-100;

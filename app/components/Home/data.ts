@@ -89,7 +89,7 @@ export const homeData = {
       },
       {
         id: 2,
-        icon: "/assets/img/icons/industrial.svg",
+        icon: "/assets/img/icons/infrastructure.svg",
         title: "Infrastructure",
         description: "At GCC, teamwork, quality, service, and creativity drive our success. With over AED 200 million..",
         image: "/assets/img/sectors/infrastructure.jpg",
@@ -97,7 +97,7 @@ export const homeData = {
       },
       {
         id: 3,
-        icon: "/assets/img/icons/infrastructure.svg",
+        icon: "/assets/img/icons/industrial.svg",
         title: "Industrial",
         description: "At GCC, teamwork, quality, service, and creativity drive our success. With over AED 200 million..",
         image: "/assets/img/sectors/industrial.jpg",

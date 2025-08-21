@@ -25,7 +25,7 @@ export const MenuItem = ({
   children?: React.ReactNode;
   noMenu?: boolean;
 }) => {
-  
+
 
   return (
     <div onMouseEnter={() => (noMenu ? setActive(null) : setActive(item))}
@@ -105,7 +105,9 @@ export const Menu = ({
                 <div className="pl-5">
                   <Link href="/">
                     <div className="flex items-center ">
-                      <Image src="/assets/img/logo.svg" alt="Crest Logo" width={233} height={66} className="h-[66px] w-auto" />
+
+                      <Image src="/assets/img/logo-light.svg" alt="Crest Logo" width={233} height={66} className="h-[66px] w-auto dark:hidden" />
+                      <Image src="/assets/img/logo.svg" alt="Crest Logo" width={233} height={66} className="h-[66px] w-auto hidden dark:block" />
                     </div>
                   </Link>
                 </div>
@@ -129,28 +131,18 @@ export const Menu = ({
                     <div>
                       <button
                         onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-                        className="bg-light-white dark:bg-black border border-foreground dark:border-white rounded-full px-[14px] py-[5px] flex gap-3"
+                        className="relative w-[68px] h-[30px] flex items-center  overflow-hidden rounded-full border border-foreground dark:border-white bg-light-white dark:bg-black"
                       >
                         {/* Light mode icon */}
-                        <span className="opacity-100 dark:opacity-0 transition-all duration-300">
-                          <Image
-                            src="/assets/img/icons/light.svg"
-                            alt="light"
-                            width={30}
-                            height={30}
-                            className="w-[20px] h-[20px]"
-                          />
+                        <span className={` transition-all duration-500 ease-in-out ${theme === "light" ? "translate-x-2 opacity-100" : "translate-x-10 opacity-0"} `}
+                        >
+                          <Image src="/assets/img/icons/light.svg" alt="light" width={20} height={20} />
                         </span>
 
                         {/* Dark mode icon */}
-                        <span className="opacity-0 dark:opacity-100 transition-all duration-300">
-                          <Image
-                            src="/assets/img/icons/dark.svg"
-                            alt="dark"
-                            width={30}
-                            height={30}
-                            className="w-[20px] h-[20px]"
-                          />
+                        <span className={`transition-all duration-500 ease-in-out ${theme === "dark" ? "translate-x-5 opacity-100" : "translate-x-[50%] opacity-0"}`}
+                        >
+                          <Image src="/assets/img/icons/dark.svg" alt="dark" width={20} height={20} />
                         </span>
                       </button>
                     </div>

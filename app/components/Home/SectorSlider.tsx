@@ -81,7 +81,7 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
                     <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} 
                       className="flex items-center justify-between mb-3 xl:mb-[25px] pl-4 pr-3 pt-6 group-hover:xl:pl-[37px] group-hover:xl:pt-[35px] group-hover:xl:pr-[35px] group-first:pl-0 transition-all duration-300">
                       <Image src={item.icon} alt={item.title} width={200} height={200} className="w-auto h-15 object-contain" />
-                      <Link href={item.slug} className="bg-white px-4 py-2 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-300"><Image src={assets.singleGreenArrow} alt={item.title} width={200} height={200} className="w-4 xl:w-[21.5px] h-auto object-contain" /> </Link>
+                      <Link href={item.slug} className="bg-white dark:bg-transparent border border-smgray px-4 py-2 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-300"><Image src={assets.singleGreenArrow} alt={item.title} width={200} height={200} className="w-4 xl:w-[21.5px] h-auto object-contain" /> </Link>
                     </motion.div>
                     <div className="pl-4 pr-3 pt-6 group-hover:xl:pl-[37px] group-hover:xl:pt-[35px] group-hover:xl:pr-[35px] group-first:pl-0 transition-all duration-300">
                       <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-2xl font-normal mb-4 xl:mb-[49px] group-hover:xl:mb-6 transition-all duration-300">{item.title}</motion.h3>
