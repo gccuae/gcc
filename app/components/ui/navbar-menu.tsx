@@ -52,7 +52,7 @@ export const MenuItem = ({
                 className="bg-white absolute dark:bg-black backdrop-blur-sm mt-6 overflow-hidden rounded-[8px] dark:border-white/[0.2] shadow-xl">
                 <motion.div
                   layout // layout ensures smooth animation
-                  className="w-max h-full px-3  ">
+                  className="w-max h-full px-3 ">
                   {children}
                 </motion.div>
               </motion.div>
@@ -176,7 +176,6 @@ export const Menu = ({
                 <div className="pl-5">
                   <Link href="/">
                     <div className="flex items-center ">
-
                       <Image src="/assets/img/logo-light.svg" alt="Crest Logo" width={233} height={66} className="h-[66px] w-auto dark:hidden" />
                       <Image src="/assets/img/logo.svg" alt="Crest Logo" width={233} height={66} className="h-[66px] w-auto hidden dark:block" />
                     </div>

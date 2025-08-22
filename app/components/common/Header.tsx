@@ -55,7 +55,7 @@ const Header = () => {
     return null;
   } else {
     return (
-      <header className={` w-full top-0 fixed border-b border-[#DBDBDB] z-[999]
+      <header className={` w-full top-0 fixed z-[999]
           ${
             isScrolled
               ? "  left-0 bg-black  border-b-0 "
@@ -93,7 +93,7 @@ const Header = () => {
             ) : (
               <MenuItem item={menuItem.title} url={menuItem.url} setActive={setActive} active={active} noMenu={true} key={index} >
                 <div className="p-4">
-                  <Link href="/">{menuItem.title}</Link>
+                  <Link href={menuItem.url}>{menuItem.title}</Link>
                 </div>
               </MenuItem>
             )
