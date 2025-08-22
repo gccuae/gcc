@@ -7,7 +7,7 @@ import arrow from "@/public/assets/img/redarrow.svg";
 import { slideDown } from "@/public/frameranimation/animation";
 
 import { useTheme } from "next-themes";
-
+import { Search, X } from 'lucide-react';
 
 
 export const MenuItem = ({
@@ -89,6 +89,77 @@ export const Menu = ({
     return () => window.removeEventListener("resize", updateMargin);
   }, []);
   const { theme, setTheme } = useTheme();
+
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const popupRef = useRef<HTMLDivElement>(null);
+
+  // Focus input when popup opens and is animating in
+  useEffect(() => {
+    if (isOpen && isAnimating && searchInputRef.current) {
+      // Delay focus slightly to let animation start
+      setTimeout(() => {
+        searchInputRef.current?.focus();
+      }, 150);
+    }
+  }, [isOpen, isAnimating]);
+
+  // Handle escape key and click outside
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closePopup();
+      }
+    };
+
+    const handleClickOutside = (e: MouseEvent) => {
+      if (popupRef.current && !popupRef.current.contains(e.target as Node)) {
+        closePopup();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('keydown', handleKeyDown);
+      document.addEventListener('mousedown', handleClickOutside);
+      // Prevent body scroll when popup is open
+      document.body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
+  const handleSearch = (e: React.MouseEvent | React.KeyboardEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      console.log('Searching for:', searchQuery);
+      // Add your search logic here
+      closePopup();
+    }
+  };
+
+  const openPopup = () => {
+    setIsOpen(true);
+    // Small delay to trigger entry animation
+    requestAnimationFrame(() => {
+      setIsAnimating(true);
+    });
+  };
+
+  const closePopup = () => {
+    setIsAnimating(false);
+    // Delay the actual close to allow exit animation
+    setTimeout(() => {
+      setIsOpen(false);
+      setSearchQuery('');
+    }, 200);
+  };
   return (
     <div>
       <AnimatePresence>
@@ -115,23 +186,23 @@ export const Menu = ({
 
                   <div className="flex items-center gap-4 w-fit ml-auto  mb-[19px] ">
                     <div className="flex items-center justify-end gap-2">
-                      <div className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center" >
+                      <Link href="https://www.facebook.com" target="_blank" className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center" >
                         <Image src="/assets/img/icons/fb.svg" alt="fb" width={8} height={14} />
-                      </div>
-                      <div className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center" >
+                      </Link>
+                      <Link href="https://www.linkedin.com" target="_blank" className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center" >
                         <Image src="/assets/img/icons/ln.svg" alt="ln" width={12} height={11} />
-                      </div>
-                      <div className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center" >
+                      </Link>
+                      <Link href="https://www.youtube.com" target="_blank" className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center" >
                         <Image src="/assets/img/icons/youtube.svg" alt="youtube" width={14} height={10} className="group-hover:filter-[brightness(0)_invert(1)]" />
-                      </div>
-                      <div className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center" >
+                      </Link>
+                      <button onClick={openPopup} className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center" >
                         <Image src="/assets/img/icons/search.svg" alt="youtube" width={14} height={10} className="group-hover:filter-[brightness(0)_invert(1)]" />
-                      </div>
+                      </button>
                     </div>
                     <div>
                       <button
                         onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-                        className="relative w-[68px] h-[30px] flex items-center  overflow-hidden rounded-full border border-foreground dark:border-white bg-light-white dark:bg-black"
+                        className="relative w-[68px] h-[30px] flex items-center  overflow-hidden rounded-full border border-foreground dark:border-white bg-light-white dark:bg-black cursor-pointer"
                       >
                         {/* Light mode icon */}
                         <span className={` transition-all duration-500 ease-in-out ${theme === "light" ? "translate-x-2 opacity-100" : "translate-x-10 opacity-0"} `}
@@ -159,7 +230,7 @@ export const Menu = ({
 
               <div className="rghtsc flex flex-col justify-center ml-[2px] bg-primary px-6 xl:px-10 ">
                 <div className="rounded-full px-6 py-[7px] border border-white hover:bg-white transition-all duration-300 hover:scale-110 group">
-                  <Link href="/contact" className="flex flex-1 justify-center items-center transition h-full w-full gap-2 ">
+                  <Link href="/" className="flex flex-1 justify-center items-center transition h-full w-full gap-2 ">
                     <span className="text-white text-base leading-[1.82] group-hover:text-primary transition-all duration-200">CONTACT</span>
                   </Link>
                 </div>
@@ -168,6 +239,99 @@ export const Menu = ({
           </div>
         </motion.div>
       </AnimatePresence>
+
+      {/* Backdrop */}
+      {isOpen && (
+        <div
+          className={`fixed inset-0 bg-black/50 z-40 transition-all duration-300 ease-out ${isAnimating ? 'bg-opacity-50' : 'bg-opacity-0'
+            }`}
+        />
+      )}
+
+      {/* Search Popup */}
+      {isOpen && (
+        <div className="fixed inset-0 z-50 flex items-start justify-center pt-40 px-4">
+          <div
+            ref={popupRef}
+            className={`bg-white rounded-2xl shadow-2xl w-full max-w-2xl transform transition-all duration-300 ease-out ${isAnimating
+                ? 'translate-y-0 opacity-100 scale-100'
+                : '-translate-y-8 opacity-0 scale-95'
+              }`}
+            style={{
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05)'
+            }}
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-100">
+              <h2 className="text-xl font-semibold text-gray-900">Search</h2>
+              <button
+                onClick={closePopup}
+                className="p-2 hover:bg-gray-100 rounded-full transition-all duration-200 hover:scale-105"
+              >
+                <X size={20} className="text-gray-500" />
+              </button>
+            </div>
+
+            {/* Search Form */}
+            <div className="p-6">
+              <div className="space-y-6">
+                <div className="relative">
+                  <Search
+                    size={20}
+                    className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
+                  />
+                  <input
+                    ref={searchInputRef}
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        handleSearch(e);
+                      }
+                    }}
+                    placeholder="What are you looking for?"
+                    className="w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-slate-500 focus:border-transparent outline-none transition-all duration-300 text-lg placeholder-gray-400 hover:border-gray-300 text-black"
+                  />
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <div className="text-sm text-gray-500">
+                    Press Enter to search or Escape to close
+                  </div>
+                  <button
+                    onClick={handleSearch}
+                    disabled={!searchQuery.trim()}
+                    className="px-8 py-3 bg-primary text-white rounded-xl hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-all duration-200 font-medium hover:scale-105 active:scale-95"
+                  >
+                    Search
+                  </button>
+                </div>
+              </div>
+
+              {/* Recent Searches or Suggestions */}
+              <div className="mt-8">
+                <h3 className="text-sm font-medium text-gray-700 mb-4">Popular Searches</h3>
+                <div className="flex flex-wrap gap-3">
+                  {['Civil & Structural Works', 'Projects Completed', 'Manpower'].map((suggestion, index) => (
+                    <button
+                      key={suggestion}
+                      onClick={() => setSearchQuery(suggestion)}
+                      className={`px-4 py-2 text-sm bg-gray-50 text-gray-700 rounded-full hover:bg-gray-100 transition-all duration-200 hover:scale-105 border border-gray-200 hover:border-gray-300`}
+                      style={{
+                        animationDelay: `${index * 50}ms`
+                      }}
+                    >
+                      {suggestion}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
 
   );
