@@ -7,7 +7,7 @@ export type MenuItem = {
 export const menuItems: MenuItem[] = [
   {
     title: "About",
-    url: "#",
+    url: "/about-us",
     // children: [
     //   {
     //     title: "",
