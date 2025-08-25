@@ -1,3 +1,5 @@
+
+
 export const aboutData = {
   pageTitle: "Company Overview",
   bannerImg: "/assets/img/about/banner.jpg",
@@ -83,5 +85,66 @@ export const aboutData = {
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
       ],
     },
+  },
+  timelineData: {
+    title: "Our Legacy",
+    items: [
+      {
+        year: 1988,
+        title: "GULF CONTRACTORS CO LLC, Was Established",
+        description: "Gulf Contractors Co. LLC was established in 1988. With decades of industry experience, the company has built a strong reputation for quality and reliability. Today, it stands as a trusted name in delivering innovative construction solutions.",
+        backgroundImage: "/assets/img/about/legacy-slider/bg-1.jpg",
+      },
+      {
+        year: 1999,
+        title: "Expansion into New Markets",
+        description: "Expanded operations into new regional markets, establishing key partnerships and growing our client base significantly. This period marked substantial growth in our construction capabilities.",
+        backgroundImage: "/assets/img/about/legacy-slider/bg-2.jpg",
+      },
+      {
+        year: 2000,
+        title: "Technology Integration",
+        description: "Implemented cutting-edge construction technologies and project management systems, revolutionizing our approach to large-scale projects and improving efficiency across all operations.",
+        backgroundImage: "/assets/img/about/legacy-slider/bg-3.jpg",
+      },
+      {
+        year: 2005,
+        title: "Quality Certifications",
+        description: "Achieved major industry certifications and quality standards, reinforcing our commitment to excellence and positioning us as a leader in sustainable construction practices.",
+        backgroundImage: "/assets/img/about/legacy-slider/bg-1.jpg",
+      },
+      {
+        year: 2010,
+        title: "International Recognition",
+        description: "Received international recognition for outstanding construction projects and innovation in engineering solutions, establishing our reputation on a global scale.",
+        backgroundImage: "/assets/img/about/legacy-slider/bg-2.jpg",
+      },
+    ],
+  },
+  whyChoose: {
+    title: "Why Choose Us",
+    subTitle: "Experience Illuminates the Possibilities",
+    items: [
+      {
+        title: "Certified Quality & Safety",
+        desc: "GCC, established in 1988, is known for innovation and excellence in construction, with projects",
+        icon: "/assets/img/icons/why-choose-1.svg",
+      },
+      {
+        title: "Total Quality Management (TQM)",
+        desc: "Company-wide implementation of TQM reflects our commitment to continuous improvement and client satisfaction.",
+        icon: "/assets/img/icons/why-choose-2.svg",
+      },
+      {
+        title: "Eco-Conscious Building",
+        desc: "Dedicated to building responsibly, with a clear focus on protecting the environment and future generations.",
+        icon: "/assets/img/icons/why-choose-3.svg",
+      },
+      {
+        title: "Strength of Group Synergy",
+        desc: "Access to a wide network of affiliated companies and supply partners enhances our capabilities and accelerates project success.",
+        icon: "/assets/img/icons/why-choose-4.svg",
+      },
+    ],
   },
 };

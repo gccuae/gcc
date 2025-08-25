@@ -7,12 +7,15 @@ type Props = {
   containerSelector?: string;
   className?: string;
   children?: React.ReactNode;
+  /** Which side to extend: "left" (default) or "right" */
+  side?: 'left' | 'right';
 };
 
 export default function SpecialContainer({
   containerSelector = '.container',
   className = '',
   children,
+  side = 'right', // default: extend to right edge
 }: Props) {
   const ref = useRef<HTMLDivElement | null>(null);
 
@@ -27,11 +30,19 @@ export default function SpecialContainer({
       const rect = container.getBoundingClientRect();
       const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
-      const leftGap = rect.left;          // distance from viewport left to container left
-      const targetWidth = vw - leftGap;   // span from container left to viewport right
-
-      el.style.marginLeft = `${leftGap}px`;
-      el.style.width = `${targetWidth}px`;
+      if (side === 'right') {
+        // start where container starts, extend to viewport right
+        const leftGap = rect.left;
+        const targetWidth = vw - leftGap;
+        el.style.marginLeft = `${leftGap}px`;
+        el.style.width = `${targetWidth}px`;
+      } else {
+        // extend from viewport left to container right
+        const rightGap = vw - rect.right;
+        const targetWidth = vw - rightGap;
+        el.style.marginLeft = '0px';
+        el.style.width = `${targetWidth}px`;
+      }
     };
 
     measure();
@@ -41,7 +52,7 @@ export default function SpecialContainer({
     window.addEventListener('resize', onResize);
     window.addEventListener('orientationchange', onResize);
 
-    // Recalculate if the container itself changes size (breakpoints, layout shifts)
+    // Recalculate if the container itself changes size
     let ro: ResizeObserver | null = null;
     const container = document.querySelector<HTMLElement>(containerSelector);
     if (container && 'ResizeObserver' in window) {
@@ -54,7 +65,7 @@ export default function SpecialContainer({
       window.removeEventListener('orientationchange', onResize);
       if (ro) ro.disconnect();
     };
-  }, [containerSelector]);
+  }, [containerSelector, side]);
 
   return (
     <div ref={ref} className={`box-border ${className}`}>

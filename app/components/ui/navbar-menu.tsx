@@ -173,7 +173,7 @@ export const Menu = ({
             <nav onMouseLeave={() => setActive(null)} // resets the state
               className="relative z-50 flex justify-center items-stretch gap-2 xl:gap-[20px] h-full">
               <div className="pr-[28px] xxl:pr-[28px] xxxl:pr-[50px] w-full flex items-center justify-between gap-3 py-[10px]  " >
-                <div className="pl-5">
+                <div className="">
                   <Link href="/">
                     <div className="flex items-center ">
                       <Image src="/assets/img/logo-light.svg" alt="Crest Logo" width={233} height={66} className="h-[66px] w-auto dark:hidden" />
