@@ -14,7 +14,7 @@ const WhatWeDo = () => {
           <h3 className="text-2xl leading-[1.5625] dark:text-white">Unlocking Potential Through Construction Excellence</h3>
         </div>
       </div>
-      <SpecialContainer className="pl-[15px]">
+      <SpecialContainer className="pl-[15px]" side="right">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[52%_48%] ">
           <div className="xl:pr-70px border-r border-smgray py-4 xl:pt-[86px] xl:pb-[90px] flex flex-col justify-between">
             <p className="text-lg leading-lh-text19 dark:text-white mb-4 xl:mb-10">{aboutData.whatWeDo.descTop}</p>
