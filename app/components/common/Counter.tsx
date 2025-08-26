@@ -39,13 +39,8 @@ const Counter: React.FC<CounterProps> = ({ from = 0, to, duration = 2 }) => {
   }, [isInView, from, to, duration]);
 
   return (
-    <motion.span
-      ref={ref}
-      initial={{ opacity: 0, y: 20 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.4 }}
-    >
-      {count.toLocaleString()}
+    <motion.span ref={ref} initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.4 }}>
+      {count.toLocaleString().padStart(2, "0")}
     </motion.span>
   );
 };
