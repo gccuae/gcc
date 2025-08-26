@@ -15,7 +15,9 @@
   --title-line-height: 1.147058823529412;
   --text19-line-height: 1.526315789473684;
   --text32-line-height: 1.5625;
-  --spacing-57px: clamp(1rem, 4vw + 0.1em, 57px);
+  --text68-line-height: 0.7352941176470588;
+  --spacing-57px: clamp(2rem, 4vw + 0.1em, 57px);
+  --spacing-47px: clamp(1.8rem, 3vw + 0.1em, 47px);
 }
 
 @theme inline {
@@ -44,8 +46,10 @@
   --lh-title: var(--title-line-height);
   --lh-text19: var(--text19-line-height);
   --lh-text32: var(--text32-line-height);
+  --lh-text68: var(--text68-line-height);
 
   /* spacing */
+  --spacing-47px: var(--spacing-47px);
   --spacing-50px: clamp(2em, 4vw + 0.5em, 50px);
   --spacing-57px: var(--spacing-57px);
   --spacing-70px: clamp(4em, 7vw + 0.5em, 70px);
