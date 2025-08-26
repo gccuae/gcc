@@ -8,12 +8,16 @@ export const menuItems: MenuItem[] = [
   {
     title: "About",
     url: "/about-us",
-    // children: [
-    //   {
-    //     title: "",
-    //     url: "",
-    //   },
-    // ],
+    children: [
+      {
+        title: "Message from leaders",
+        url: "/message-from-leaders",
+      },
+      {
+        title: "Our Team",
+        url: "/our-team",
+      },
+    ],
   },
   {
     title: "Expertise",

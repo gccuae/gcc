@@ -32,27 +32,20 @@ export const MenuItem = ({
       className="relative mr-0 not-first:ml-3 not-first:lg:ml-[15px] not-first:xl:ml-[25px] not-first:2xl:ml-[37px] ">
       <div className="flex gap-2 mb-0">
         <Link href={url}>
-          <motion.p
-            transition={{ duration: 0.3, ease: easeOut }}
+          <motion.p transition={{ duration: 0.3, ease: easeOut }}
             className="cursor-pointer hover:text-secondary text-black dark:text-white  uppercase transition-all duration-500 ease-in-out">
-            <span className="flex gap-3  text-base  leading-[1.82] text-[13px] xl:text-[15px]  2xl:text-base   hover:text-primary transition-all duration-300 font-normal">{item}</span>
+            <span className="flex gap-3 text-base leading-[1.82] text-[13px] xl:text-[15px]  2xl:text-base hover:text-primary transition-all duration-300 font-normal">{item}</span>
           </motion.p>
         </Link>
         {!noMenu && <Image src={arrow} alt="arrow" className="arrowst" />}
       </div>
       {active !== null && !noMenu && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.85, y: 10 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-        >
+        <motion.div initial={{ opacity: 0, scale: 0.85, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }}>
           {active === item && (
             <div className="">
-              <motion.div
-                layoutId="active" // layoutId ensures smooth animation
-                className="bg-white absolute dark:bg-black backdrop-blur-sm mt-6 overflow-hidden rounded-[8px] dark:border-white/[0.2] shadow-xl">
-                <motion.div
-                  layout // layout ensures smooth animation
-                  className="w-max h-full px-3 ">
+              <motion.div layoutId="active" 
+                className="bg-white absolute dark:bg-black backdrop-blur-sm  overflow-hidden rounded-[8px] dark:border-white/[0.2] shadow-xl">
+                <motion.div layout className="w-max h-full px-3 ">
                   {children}
                 </motion.div>
               </motion.div>
@@ -163,11 +156,7 @@ export const Menu = ({
   return (
     <div>
       <AnimatePresence>
-        <motion.div
-          key="header-menu"
-          {...slideDown()}
-          className="bg-white dark:bg-black"
-        >
+        <motion.div key="header-menu" {...slideDown()} className="bg-white dark:bg-black" >
           <div className="container" ref={containerRef}></div>
           <div className="relative" style={{ marginLeft: `${rightMargin}px` }}>
             <nav onMouseLeave={() => setActive(null)} // resets the state
@@ -199,19 +188,15 @@ export const Menu = ({
                       </button>
                     </div>
                     <div>
-                      <button
-                        onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-                        className="relative w-[68px] h-[30px] flex items-center  overflow-hidden rounded-full border border-foreground dark:border-white bg-light-white dark:bg-black cursor-pointer"
-                      >
+                      <button onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                        className="relative w-[68px] h-[30px] flex items-center  overflow-hidden rounded-full border border-foreground dark:border-white bg-light-white dark:bg-black cursor-pointer" >
                         {/* Light mode icon */}
-                        <span className={` transition-all duration-500 ease-in-out ${theme === "light" ? "translate-x-2 opacity-100" : "translate-x-10 opacity-0"} `}
-                        >
+                        <span className={` transition-all duration-500 ease-in-out ${theme === "light" ? "translate-x-2 opacity-100" : "translate-x-10 opacity-0"} `} >
                           <Image src="/assets/img/icons/light.svg" alt="light" width={20} height={20} />
                         </span>
 
                         {/* Dark mode icon */}
-                        <span className={`transition-all duration-500 ease-in-out ${theme === "dark" ? "translate-x-5 opacity-100" : "translate-x-[50%] opacity-0"}`}
-                        >
+                        <span className={`transition-all duration-500 ease-in-out ${theme === "dark" ? "translate-x-5 opacity-100" : "translate-x-[50%] opacity-0"}`} >
                           <Image src="/assets/img/icons/dark.svg" alt="dark" width={20} height={20} />
                         </span>
                       </button>
@@ -253,8 +238,8 @@ export const Menu = ({
           <div
             ref={popupRef}
             className={`bg-white rounded-2xl shadow-2xl w-full max-w-2xl transform transition-all duration-300 ease-out ${isAnimating
-                ? 'translate-y-0 opacity-100 scale-100'
-                : '-translate-y-8 opacity-0 scale-95'
+              ? 'translate-y-0 opacity-100 scale-100'
+              : '-translate-y-8 opacity-0 scale-95'
               }`}
             style={{
               boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05)'
