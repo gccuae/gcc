@@ -14,7 +14,8 @@
   --accent-color: #7AC142;
   --title-line-height: 1.147058823529412;
   --text19-line-height: 1.526315789473684;
-  
+  --text32-line-height: 1.5625;
+  --spacing-57px: clamp(1rem, 4vw + 0.1em, 57px);
 }
 
 @theme inline {
@@ -42,10 +43,11 @@
   /* line-height */
   --lh-title: var(--title-line-height);
   --lh-text19: var(--text19-line-height);
+  --lh-text32: var(--text32-line-height);
 
   /* spacing */
   --spacing-50px: clamp(2em, 4vw + 0.5em, 50px);
-  --spacing-57px: clamp(3em, 5vw + 0.5em, 57px);
+  --spacing-57px: var(--spacing-57px);
   --spacing-70px: clamp(4em, 7vw + 0.5em, 70px);
 
 }

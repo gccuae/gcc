@@ -92,7 +92,7 @@ const Header = () => {
               </MenuItem>
             ) : (
               <MenuItem item={menuItem.title} url={menuItem.url} setActive={setActive} active={active} noMenu={true} key={index} >
-                <div className="p-4">
+                <div className="p-2">
                   <Link href={menuItem.url}>{menuItem.title}</Link>
                 </div>
               </MenuItem>
