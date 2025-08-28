@@ -150,7 +150,7 @@ const AboutCompany = () => {
               ref={videoRef}
               poster="/assets/img/home/video-poster.jpg"
               controls={false}
-              className="h-full w-full object-cover will-change-transform"
+              className="h-full w-full object-cover will-change-transform hover:scale-110"
               width={1080}
               height={740}
               playsInline
@@ -162,16 +162,8 @@ const AboutCompany = () => {
             {/* Play Button */}
             <div className="absolute inset-0 flex items-center justify-center">
               {!isPlaying && (
-                <button
-                  className="cursor-pointer transition-transform duration-300 hover:scale-110"
-                  onClick={togglePlay}
-                >
-                  <Image
-                    src={"/assets/img/icons/play.svg"}
-                    alt="Play"
-                    width={52}
-                    height={52}
-                  />
+                <button className="cursor-pointer transition-transform duration-300 hover:scale-110" onClick={togglePlay}>
+                  <Image src={"/assets/img/icons/play.svg"} alt="Play" width={52} height={52} />
                 </button>
               )}
             </div>
@@ -204,10 +196,7 @@ const AboutCompany = () => {
 
           {/* Text Block with Split Animation */}
           <div className="w-full lg:w-[52%]">
-            <p
-              ref={textRef}
-              className="text-2xl font-light text-foreground mb-6 lg:mb-20 xl:mb-29 dark:text-white"
-            >
+            <p ref={textRef} className="text-2xl font-light text-foreground mb-6 lg:mb-20 xl:mb-29 dark:text-white leading-[1.46875]" >
               {splitTextToSpans(
                 `GCC, <span class="font-semibold text-primary">established in 1988</span>, is known for innovation and excellence in construction, with projects ranging from infrastructure and defense to industrial, commercial, and residential developments.`
               )}

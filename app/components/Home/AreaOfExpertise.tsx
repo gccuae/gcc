@@ -94,14 +94,10 @@ const AreaOfExpertise = ({data}: AreaOfExpertiseProps) => {
   }, []);
 
 
-
-
-
-
   return ( 
     <section className="wrapper pt-10 xl:pt-[88px] overflow-hidden dark:bg-black">
       <div className="container">
-        <h2 className="text-5xl font-normal leading-[1.147058823529412] pb-4 xl:pb-[56px] text-black mb-4 xl:mb-[43px] dark:text-white">{data.title}</h2>
+        <h2 className="text-5xl font-normal leading-[1.147058823529412] text-black mb-4 xl:mb-[43px] dark:text-white">{data.title}</h2>
         <div>
           <Swiper className="!overflow-visible area-of-expertise-thumbs"
             onSwiper={setThumbsSwiper}
@@ -127,13 +123,14 @@ const AreaOfExpertise = ({data}: AreaOfExpertiseProps) => {
           >
             {data.items.map((item, index) => (
               <SwiperSlide key={item.id} className="cursor-pointer transition mb-8 xl:mb-[65px] group">
-                <div className="exp-icon-div group-hover:border-primary transition-all duration-400 pb-4 mb-4 relative">
-                  <motion.div variants={fadeIn(index * 0.5)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="flex items-center justify-center rounded-full border-1 border-mdgray dark:border-white w-[85px] h-[85px] group-hover:bg-primary transition-all duration-300 icon-wrapper dark:bg-[#0d0d0d]  ">
+                <div className="exp-icon-div group-hover:border-primary transition-colors duration-400 pb-4 mb-2 xl:pb-[30px] xl:mb-[15px] relative">
+                  <motion.div variants={fadeIn(index * 0.5)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="flex items-center justify-center rounded-full border-1 border-smgray dark:border-white w-[85px] h-[85px] group-hover:bg-primary transition-all duration-300 icon-wrapper dark:bg-[#0d0d0d]  ">
                     <Image src={item.icon} alt={item.title} width={200} height={200} className=" mb-2 w-10 h-10 object-contain group-hover:brightness-0 group-hover:invert-100" />
                   </motion.div>
                   <div className="absolute bottom-[-6px] left-0 w-full h-[2px] bg-smgray -z-[1]"> </div>
                 </div>
-                <motion.h3 variants={moveUp(index * 0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-xl text-foreground font-normal leading-[2.173913043478261] dark:text-white">{item.title}</motion.h3>
+                <motion.h3 variants={moveUp(index * 0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}
+                 className="text-xl text-foreground font-normal leading-[2.173913043478261] group-hover:text-primary dark:text-white transition-all duration-300">{item.title}</motion.h3>
               </SwiperSlide>
             ))}
           </Swiper>
@@ -153,27 +150,15 @@ const AreaOfExpertise = ({data}: AreaOfExpertiseProps) => {
             >
               {data.items.map((item) => (
                 <SwiperSlide key={item.id}>
-                  <div className="slide-container grid md:grid-cols-2 xl:grid-cols-[60%_40%] items-center gap-6 bg-white dark:bg-black">
-                    <div className="img-wrapper border-r-1 border-r-smgray pr-4 xl:pr-[50px] pb-0 xl:py-5 relative overflow-hidden">
-                      <Image
-                        src={item.image}
-                        alt={item.title}
-                        width={1000}
-                        height={1000}
-                        className="slide-img w-full h-auto rounded object-cover"
-                      />
+                  <div className="slide-container grid md:grid-cols-2 xl:grid-cols-[60%_40%] items-center gap-6 xl:gap-50px bg-white dark:bg-black group">
+                    <div className="img-wrapper border-r-1 border-r-smgray pr-4 xl:pr-[50px] pb-0 xl:py-5 relative overflow-hidden ">
+                      <Image src={item.image} alt={item.title} width={1000} height={1000} className="slide-img w-full h-auto rounded object-cover " />
                     </div>
 
-                    <div>
-                      <h3 className="text-2xl font-normal leading-[1.5625] mb-2 dark:text-white">
-                        {item.title}
-                      </h3>
-                      <p className="slide-text text-lg font-[300] leading-[1.526315789473684] text-foreground dark:text-white/80">
-                        {item.description}
-                      </p>
-                      <div className="slide-btn mt-6 xl:mt-[43px] mb-4">
-                        <BtnPrimary link={item.slug} text="Read More" bgtrans={false} />
-                      </div>
+                    <div className="group">
+                      <h3 className="text-2xl font-normal leading-[1.5625] mb-2 xl:mb-5 dark:text-white group-hover:text-primary transition-all duration-300 "> {item.title}</h3>
+                      <p className="slide-text text-lg font-[300] leading-[1.526315789473684] text-foreground dark:text-white/80 group-hover:text-black dark:group-hover:text-white transition-all duration-300"> {item.description}</p>
+                      <div className="slide-btn mt-6 xl:mt-[43px] mb-4"> <BtnPrimary link={item.slug} text="Read More" bgtrans={false} /></div>
                     </div>
                   </div>
                 </SwiperSlide>

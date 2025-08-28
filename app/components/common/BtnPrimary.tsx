@@ -5,7 +5,7 @@ const BtnPrimary = ({link, text, bgtrans, borderwight}: {link: string, text: str
     <Link href={link} className={`${bgtrans ? "bg-transparent" : "bg-white"}
      hover:bg-mdgray dark:hover:bg-transparent hover:text-white flex items-center justify-center py-1 xl:py-[7.39px] px-4 xl:px-[28px] gap-2 transition-all
      duration-300 ease-in-out group border ${borderwight ? "border-white text-white" : "border-foreground"} dark:border-white rounded-4xl w-fit hover:shadow-xl dark:bg-transparent`}>
-      <span className="text-sm lg:text-base font-light uppercase leading-[1.578947368421053] dark:text-white">{text}</span>
+      <span className="text-sm lg:text-base font-light uppercase leading-[1.75] dark:text-white">{text}</span>
       <svg width="26" height="10" viewBox="0 0 26 10" fill="none" xmlns="http://www.w3.org/2000/svg" className="group-hover:translate-x-2 transition-all duration-300">
         <path d="M0 9.53027H24L15 0.530273" stroke="#7AC142" strokeWidth="1.5" strokeMiterlimit="10" />
       </svg>

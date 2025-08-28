@@ -82,7 +82,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
       <div >
         <div className="container" ref={containerRef}>
           <div className="md:flex justify-between items-center py-10 md:pt-[53px] md:pb-[57px] border-b border-[#C2C2C2]">
-            <motion.h2 className="text-5xl font-normal text-black dark:text-white mb-8 md:mb-0" variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>{data.title}</motion.h2>
+            <motion.h2 className="text-5xl font-normal text-black dark:text-white mb-8 md:mb-0 leading-[1.147058823529412]" variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>{data.title}</motion.h2>
             <div className="flex gap-3 md:gap-5 items-center  ">
               <motion.div variants={moveUp(0.5)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="flex border border-foreground dark:border-white rounded-full ">
                 <div ref={prevRef}
@@ -113,7 +113,6 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
             <div className="py-8 md:py-10 md:w-[31.5%] w-full md:border-r border-[#C2C2C2]">
               <Swiper
                 modules={[Autoplay, Navigation]}
-
                 navigation={{
                   prevEl: prevRef.current,
                   nextEl: nextRef.current,
@@ -136,23 +135,23 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                 {data.banners.map((slide, index) => (
                   <SwiperSlide key={index} >
                     <div className="">
-                      <h3 className="text-2xl font-normal mb-5 lg:mb-15 dark:text-white">{slide.title}</h3>
+                      <h3 className="text-2xl font-normal mb-5 lg:mb-15 dark:text-white leading-[1.40625]">{slide.title}</h3>
                       <div className="w-full lg:w-[80%]">
-                        <motion.div variants={moveUp(0.5)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="pb-4 mb-6 border-b border-[#C2C2C2]">
-                          <p className="text-[#979797] text-base font-light uppercase  dark:text-white/64">Location</p>
-                          <p className="text-lg font-light dark:text-white">{slide.location}</p>
+                        <motion.div variants={moveUp(0.5)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="pb-4 mb-6 border-b border-[#C2C2C2] group">
+                          <p className="text-[#979797] text-base leading-[1.5625] font-light uppercase  dark:text-white/64 group-hover:text-primary transition-all duration-300">Location</p>
+                          <p className="text-lg leading-[1.842105263157895] font-light dark:text-white group-hover:translate-x-2 transition-all duration-300">{slide.location}</p>
                         </motion.div>
-                        <motion.div variants={moveUp(1)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="pb-4 mb-6 border-b border-[#C2C2C2]">
-                          <p className="text-[#979797] text-base font-light uppercase  dark:text-white/64">Client</p>
-                          <p className="text-lg font-light dark:text-white">{slide.client}</p>
+                        <motion.div variants={moveUp(1)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="pb-4 mb-6 border-b border-[#C2C2C2] group">
+                          <p className="text-[#979797] text-base leading-[1.5625] font-light uppercase  dark:text-white/64 group-hover:text-primary transition-all duration-300">Client</p>
+                          <p className="text-lg leading-[1.842105263157895] font-light dark:text-white group-hover:translate-x-2 transition-all duration-300">{slide.client}</p>
                         </motion.div>
-                        <motion.div variants={moveUp(1.5)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="pb-4 mb-6 border-b border-[#C2C2C2]">
-                          <p className="text-[#979797] text-base font-light uppercase  dark:text-white/64">Project Value</p>
-                          <p className="text-lg font-light dark:text-white">{slide.projectvalue}</p>
+                        <motion.div variants={moveUp(1.5)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="pb-4 mb-6 border-b border-[#C2C2C2] group">
+                          <p className="text-[#979797] text-base leading-[1.5625] font-light uppercase  dark:text-white/64 group-hover:text-primary transition-all duration-300">Project Value</p>
+                          <p className="text-lg leading-[1.842105263157895] font-light dark:text-white group-hover:translate-x-2 transition-all duration-300">{slide.projectvalue}</p>
                         </motion.div>
-                        <motion.div variants={moveUp(2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="pb-4  ">
-                          <p className="text-[#979797] text-base font-light uppercase  dark:text-white/64">Superficie</p>
-                          <p className="text-lg font-light dark:text-white">{slide.superficie}</p>
+                        <motion.div variants={moveUp(2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="pb-4  group">
+                          <p className="text-[#979797] text-base leading-[1.5625] font-light uppercase  dark:text-white/64 group-hover:text-primary transition-all duration-300">Superficie</p>
+                          <p className="text-lg leading-[1.842105263157895] font-light dark:text-white group-hover:translate-x-2 transition-all duration-300">{slide.superficie}</p>
                         </motion.div>
                       </div>
                       <div className="mt-0 lg:mt-16">
@@ -207,10 +206,10 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                 }}
               >
                 {data.banners.map((slide, index) => (
-                  <SwiperSlide key={index} className="h-full min-h-[250px] relative p-5 xl:p-[30px]">
-                    <Link href={slide.btnLink} className="relative z-10 bg-accent text-base font-light leading-[1.75] text-foreground uppercase px-5 xl:px-[25px] py-2 xl:py-[7px] rounded-3xl">{slide.sector}</Link>
+                  <SwiperSlide key={index} className="h-full min-h-[250px] relative p-5 xl:p-[30px] overflow-hidden group">
+                    <Link href={slide.btnLink} className="relative z-10 bg-accent text-base font-light leading-[1.75] text-foreground uppercase px-5 xl:px-[25px] py-2 xl:py-[7px] rounded-3xl group-hover:text-white group-hover:bg-primary  transition-all duration-300 ">{slide.sector}</Link>
                     <div className="h-full absolute top-0 left-0 z-0 featured-image-wrapper" >
-                      <Image src={slide.image} alt={slide.title} width={290} height={290} className="w-full h-full object-cover"  />
+                      <Image src={slide.image} alt={slide.title} width={290} height={290} className="w-full h-full object-cover hover:scale-105 transition-all duration-300"  />
                     </div>
                   </SwiperSlide>
                 ))}
