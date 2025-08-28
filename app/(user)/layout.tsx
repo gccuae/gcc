@@ -9,7 +9,7 @@ import ScrollSmootherWrapper from "../components/common/ScrollSmootherWrapper";
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["100","200","300","400", "500", "600", "700","800","900"],
 });
 export const metadata: Metadata = {
   title: "GCC",

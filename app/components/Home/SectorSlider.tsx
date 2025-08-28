@@ -34,13 +34,13 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
          className="text-5xl font-normal leading-[1.147058823529412] pb-4 xl:pb-57px ">{data.title}</motion.h2>
         <div>
           <div className="relative">
-            <div className="absolute top-1/2 right-[-5%] xl:top-4/6 xl:-right-24 z-50 w-[50px] h-[50px] xl:w-[94px] xl:h-[94px] bg-black rounded-full flex items-center justify-center gap-6">
+            <div className="absolute top-1/2 right-[-5%] xl:top-4/6 xl:-right-24 z-50 w-[40px] h-[40px] xl:w-[94px] xl:h-[94px] bg-black rounded-full flex items-center justify-center gap-2 xl:gap-6">
               {/* Custom Navigation Buttons */}
-              <button ref={prevRef} className="text-accent w-2 xl:w-[12px] h-auto"><svg width="15" height="26" viewBox="0 0 15 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <button ref={prevRef} className="text-accent w-2 xl:w-[12px] h-auto"><svg width="15" height="26" viewBox="0 0 15 26" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
                 <path d="M14 1L2 13L14 25" stroke="#7AC142" strokeWidth="2" strokeLinecap="round" />
               </svg>
               </button>
-              <button ref={nextRef} className="text-accent xl:w-[12px] h-auto"><svg width="15" height="26" viewBox="0 0 15 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <button ref={nextRef} className="text-accent w-2 xl:w-[12px] h-auto"><svg width="15" height="26" viewBox="0 0 15 26" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
                 <path d="M1 1L13 13L1 25" stroke="#7AC142" strokeWidth="2" strokeLinecap="round" />
               </svg>
               </button>
@@ -87,8 +87,8 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
                       <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-2xl leading-[1.5625] font-normal mb-4 xl:mb-[49px] group-hover:xl:mb-6 transition-all duration-300">{item.title}</motion.h3>
                       <p className="text-lg font-[300] leading-[1.526315789473684] opacity-0 h-0 group-hover:h-auto group-hover:opacity-100 transition-all ease-in-out duration-300 group-hover:xl:pb-[63px] sector-description relative z-10 dark:text-white/80">{item.description}</p>
                     </div>
-                    <div className="mt-auto overflow-hidden pr-[15px] pl-[15px] group-first:pl-0 transition-all duration-300 relative z-20">
-                      <Image src={item.image} alt={item.title} width={600} height={600} className="w-full h-full xl:h-[400px] object-cover object-top flex overflow-hidden" />
+                    <div className="mt-auto overflow-hidden  group-first:pl-0 transition-all duration-300 relative z-20">
+                      <Image src={item.image} alt={item.title} width={600} height={600} className="w-full h-full xl:h-[400px] object-cover object-top flex overflow-hidden pr-[15px] pl-[15px]" />
                     </div>
                   </motion.div>
                 </SwiperSlide>
