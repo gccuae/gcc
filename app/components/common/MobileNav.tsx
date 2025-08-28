@@ -121,9 +121,9 @@ const MobileNav = () => {
                 <Image
                   src="/assets/img/logo.svg"
                   alt="Assent"
-                  width={80}
-                  height={40}
-                  className="h-[35px] w-auto"
+                  width={180}
+                  height={140}
+                  className="h-[48px] w-auto"
                 />
               </Link>
             </div>

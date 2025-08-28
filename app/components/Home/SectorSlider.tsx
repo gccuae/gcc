@@ -34,9 +34,9 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
          className="text-5xl font-normal leading-[1.147058823529412] pb-4 xl:pb-57px ">{data.title}</motion.h2>
         <div>
           <div className="relative">
-            <div className="absolute top-4/6 -right-24 z-50 w-[50px] h-[50px] xl:w-[94px] xl:h-[94px] bg-black rounded-full flex items-center justify-center gap-6">
+            <div className="absolute top-1/2 right-[-5%] xl:top-4/6 xl:-right-24 z-50 w-[50px] h-[50px] xl:w-[94px] xl:h-[94px] bg-black rounded-full flex items-center justify-center gap-6">
               {/* Custom Navigation Buttons */}
-              <button ref={prevRef} className="text-accent xl:w-[12px] h-auto"><svg width="15" height="26" viewBox="0 0 15 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <button ref={prevRef} className="text-accent w-2 xl:w-[12px] h-auto"><svg width="15" height="26" viewBox="0 0 15 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M14 1L2 13L14 25" stroke="#7AC142" strokeWidth="2" strokeLinecap="round" />
               </svg>
               </button>
@@ -77,7 +77,7 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
               {data.items.map((item, index) => (
                 <SwiperSlide key={index} className="border-t-1 border-r-1 border-foreground relative group">
                   <div className="absolute -top-1 left-0 w-full h-0 group-hover:h-[6px] bg-accent transition-all duration-300 z-50"></div>
-                  <motion.div variants={moveUp(index * 0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="flex flex-col justify-between xl:max-h-[39em] overflow-hidden z-40 relative">
+                  <motion.div variants={moveUp(index * 0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="flex flex-col justify-between  xl:max-h-[39em] overflow-hidden z-40 relative">
                     <div
                       className="flex items-center justify-between mb-3 xl:mb-[25px] pl-4 pr-3 pt-6 xl:pt-[37px] group-hover:xl:pl-[37px] group-hover:xl:pt-[35px] group-hover:xl:pr-[35px] group-first:pl-0 transition-all duration-300">
                       <Image src={item.icon} alt={item.title} width={200} height={200} className="w-auto h-15 object-contain" />

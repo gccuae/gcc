@@ -13,6 +13,7 @@ import Image from "next/image";
 import BtnPrimary from "../common/BtnPrimary";
 import { motion } from "framer-motion";
 import { fadeIn, moveUp } from "../motionVarients";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 interface AreaOfExpertiseProps {
     data: {
         title: string;
@@ -33,66 +34,135 @@ const AreaOfExpertise = ({data}: AreaOfExpertiseProps) => {
 
  
 
+  // useEffect(() => {
+  //   // Parallax images
+  //   gsap.utils.toArray<HTMLElement>(".slide-container").forEach((container) => {
+  //     const img = container.querySelector(".slide-img");
+  //     if (!img) return;
+
+  //     gsap.fromTo(
+  //       img,
+  //       { y: "-20vh" },
+  //       {
+  //         y: "20vh",
+  //         ease: "none",
+  //         scrollTrigger: {
+  //           trigger: container,
+  //           start: "top bottom",
+  //           end: "bottom top",
+  //           scrub: true,
+  //         },
+  //       }
+  //     );
+  //   });
+
+  //   // Text fade
+  //   gsap.utils.toArray<HTMLElement>(".slide-text").forEach((text) => {
+  //     gsap.fromTo(
+  //       text,
+  //       { y: 40, opacity: 0 },
+  //       {
+  //         y: 0,
+  //         opacity: 1,
+  //         duration: 1,
+  //         ease: "power3.out",
+  //         scrollTrigger: {
+  //           trigger: text,
+  //           start: "top 80%",
+  //         },
+  //       }
+  //     );
+  //   });
+
+  //   // Button fade
+  //   gsap.utils.toArray<HTMLElement>(".slide-btn").forEach((btn) => {
+  //     gsap.fromTo(
+  //       btn,
+  //       { y: 30, opacity: 1 },
+  //       {
+  //         y: 0,
+  //         opacity: 1,
+  //         duration: 0.8,
+  //         ease: "power3.out",
+  //         scrollTrigger: {
+  //           trigger: btn,
+  //           start: "top 70%",
+  //           toggleActions: "play none none reverse",
+  //         },
+  //       }
+  //     );
+  //   });
+  // }, []);
+
   useEffect(() => {
-    // Parallax images
-    gsap.utils.toArray<HTMLElement>(".slide-container").forEach((container) => {
-      const img = container.querySelector(".slide-img");
-      if (!img) return;
+    // Setup responsive GSAP effects
+    ScrollTrigger.matchMedia({
+      // Run only on tablet and above (min-width: 768px, adjust as needed)
+      "(min-width: 768px)": function () {
+        // Parallax images
+        gsap.utils.toArray<HTMLElement>(".slide-container").forEach((container) => {
+          const img = container.querySelector(".slide-img");
+          if (!img) return;
 
-      gsap.fromTo(
-        img,
-        { y: "-20vh" },
-        {
-          y: "20vh",
-          ease: "none",
-          scrollTrigger: {
-            trigger: container,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-          },
-        }
-      );
+          gsap.fromTo(
+            img,
+            { y: "-20vh" },
+            {
+              y: "20vh",
+              ease: "none",
+              scrollTrigger: {
+                trigger: container,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+              },
+            }
+          );
+        });
+
+        // Text fade
+        gsap.utils.toArray<HTMLElement>(".slide-text").forEach((text) => {
+          gsap.fromTo(
+            text,
+            { y: 40, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 1,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: text,
+                start: "top 80%",
+              },
+            }
+          );
+        });
+
+        // Button fade
+        gsap.utils.toArray<HTMLElement>(".slide-btn").forEach((btn) => {
+          gsap.fromTo(
+            btn,
+            { y: 30, opacity: 0 }, // opacity 0 to fade in properly
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.8,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: btn,
+                start: "top 70%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        });
+      },
     });
 
-    // Text fade
-    gsap.utils.toArray<HTMLElement>(".slide-text").forEach((text) => {
-      gsap.fromTo(
-        text,
-        { y: 40, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: text,
-            start: "top 80%",
-          },
-        }
-      );
-    });
-
-    // Button fade
-    gsap.utils.toArray<HTMLElement>(".slide-btn").forEach((btn) => {
-      gsap.fromTo(
-        btn,
-        { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: btn,
-            start: "top 70%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-    });
+    return () => {
+      ScrollTrigger.getAll().forEach((st) => st.kill()); // cleanup
+    };
   }, []);
-
 
   return ( 
     <section className="wrapper pt-10 xl:pt-[88px] overflow-hidden dark:bg-black">
@@ -156,8 +226,8 @@ const AreaOfExpertise = ({data}: AreaOfExpertiseProps) => {
                     </div>
 
                     <div className="group">
-                      <h3 className="text-2xl font-normal leading-[1.5625] mb-2 xl:mb-5 dark:text-white group-hover:text-primary transition-all duration-300 "> {item.title}</h3>
-                      <p className="slide-text text-lg font-[300] leading-[1.526315789473684] text-foreground dark:text-white/80 group-hover:text-black dark:group-hover:text-white transition-all duration-300"> {item.description}</p>
+                      <h3 className="text-2xl font-normal leading-[1.5625] mb-2 xl:mb-5 dark:text-white hover:text-primary transition-all duration-300 "> {item.title}</h3>
+                      <p className="slide-text text-lg font-[200] leading-[1.526315789473684] text-foreground dark:text-white/80  transition-all duration-300"> {item.description}</p>
                       <div className="slide-btn mt-6 xl:mt-[43px] mb-4"> <BtnPrimary link={item.slug} text="Read More" bgtrans={false} /></div>
                     </div>
                   </div>

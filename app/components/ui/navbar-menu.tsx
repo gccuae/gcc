@@ -3,7 +3,7 @@ import React, { ReactNode, useRef, useState, useEffect } from "react";
 import { AnimatePresence, motion, easeOut } from "framer-motion";
 import Link, { LinkProps } from "next/link";
 import Image from "next/image";
-import arrow from "@/public/assets/img/redarrow.svg";
+// import arrow from "@/public/assets/img/redarrow.svg";
 import { slideDown } from "@/public/frameranimation/animation";
 
 import { useTheme } from "next-themes";
@@ -37,7 +37,7 @@ export const MenuItem = ({
             <span className="flex gap-3 text-base leading-[1.82] text-[13px] xl:text-[15px]  2xl:text-base hover:text-primary transition-all duration-300 font-normal">{item}</span>
           </motion.p>
         </Link>
-        {!noMenu && <Image src={arrow} alt="arrow" className="arrowst" />}
+        {/* {!noMenu && <Image src={arrow} alt="arrow" className="arrowst" />} */}
       </div>
       {active !== null && !noMenu && (
         <motion.div initial={{ opacity: 0, scale: 0.85, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }}>
