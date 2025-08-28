@@ -161,7 +161,7 @@ export const Menu = ({
           <div className="relative" style={{ marginLeft: `${rightMargin}px` }}>
             <nav onMouseLeave={() => setActive(null)} // resets the state
               className="relative z-50 flex justify-center items-stretch gap-2 xl:gap-[20px] h-full">
-              <div className="pr-[28px] xxl:pr-[28px] xxxl:pr-[50px] w-full flex items-center justify-between gap-3 py-[10px]  " >
+              <div className="pr-[28px] xxl:pr-[28px] xxxl:pr-[50px] w-full flex items-center justify-between gap-3 py-[10px]">
                 <div className="">
                   <Link href="/">
                     <div className="flex items-center ">
@@ -174,17 +174,17 @@ export const Menu = ({
 
                   <div className="flex items-center gap-4 w-fit ml-auto  mb-[19px] ">
                     <div className="flex items-center justify-end gap-2">
-                      <Link href="https://www.facebook.com" target="_blank" className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center" >
-                        <Image src="/assets/img/icons/fb.svg" alt="fb" width={8} height={14} />
+                      <Link href="https://www.facebook.com" target="_blank" className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center group" >
+                        <Image src="/assets/img/icons/fb.svg" alt="fb" width={8} height={14} className="group-hover:filter-[brightness(0)_invert(1)] transition-all duration-300" />
                       </Link>
-                      <Link href="https://www.linkedin.com" target="_blank" className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center" >
-                        <Image src="/assets/img/icons/ln.svg" alt="ln" width={12} height={11} />
+                      <Link href="https://www.linkedin.com" target="_blank" className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center group" >
+                        <Image src="/assets/img/icons/ln.svg" alt="ln" width={12} height={11} className="group-hover:filter-[brightness(0)_invert(1)] transition-all duration-300" />
                       </Link>
-                      <Link href="https://www.youtube.com" target="_blank" className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center" >
-                        <Image src="/assets/img/icons/youtube.svg" alt="youtube" width={14} height={10} className="group-hover:filter-[brightness(0)_invert(1)]" />
+                      <Link href="https://www.youtube.com" target="_blank" className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center group" >
+                        <Image src="/assets/img/icons/youtube.svg" alt="youtube" width={14} height={10} className="group-hover:filter-[brightness(0)_invert(1)] transition-all duration-300" />
                       </Link>
-                      <button onClick={openPopup} className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center" >
-                        <Image src="/assets/img/icons/search.svg" alt="youtube" width={14} height={10} className="group-hover:filter-[brightness(0)_invert(1)]" />
+                      <button onClick={openPopup} className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center group" >
+                        <Image src="/assets/img/icons/search.svg" alt="youtube" width={14} height={10} className="group-hover:filter-[brightness(0)_invert(1)] transition-all duration-300" />
                       </button>
                     </div>
                     <div>

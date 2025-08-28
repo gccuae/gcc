@@ -3,12 +3,12 @@ import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperClass } from "swiper";
 import { Autoplay, EffectFade } from "swiper/modules";
-import "swiper/css"; 
-import { Home } from "@/types/Common"; 
+import "swiper/css";
+import { Home } from "@/types/Common";
 import BtnPrimary from "../common/BtnPrimary";
 import Counter from "../common/Counter";
 import { motion } from "framer-motion";
-import { moveUp } from "../../components/motionVarients"; 
+import { moveUp } from "../../components/motionVarients";
 
 interface HeroSliderProps {
   data: Home;
@@ -31,144 +31,139 @@ const HeroSlider = ({ data }: HeroSliderProps) => {
         <div className="  ">
 
           <div className="relative w-full  slideroverlay bg-cover bg-center   " style={{ backgroundImage: `url(${data.bannerimage})` }} >
-            
-           <div className="slidermns h-full  container relative pt-10  md:pt-[50px] lg:pt-[200px]  z-[9]">
-           <Swiper
-              modules={[Autoplay, EffectFade]}
-              autoplay={{ delay: 4000 }}  
-              loop
-              effect="fade"
-              fadeEffect={{ crossFade: true }}
-              speed={1000}
-              onSwiper={(swiper) => {
-                swiperRef.current = swiper;
-              }}
-              onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-              className="w-full h-full "
-            >
-              {data.banners.map((slide, index) => (
-                <SwiperSlide key={index}>
-                  <div className="  w-full h-full  ">
-                    {/* <Image
+
+            <div className="slidermns h-full  container relative pt-10  md:pt-[50px] lg:pt-[200px]  z-[9]">
+              <Swiper
+                modules={[Autoplay, EffectFade]}
+                autoplay={{ delay: 100000 }}
+                loop
+                effect="fade"
+                fadeEffect={{ crossFade: true }}
+                speed={1000}
+                onSwiper={(swiper) => {
+                  swiperRef.current = swiper;
+                }}
+                onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+                className="w-full h-full "
+              >
+                {data.banners.map((slide, index) => (
+                  <SwiperSlide key={index}>
+                    <div className="  w-full h-full  ">
+                      {/* <Image
                   src={slide.image}
                   alt={slide.title}
                   width={290}
                   height={290}
                   className="   inset-0 w-full h-full object-cover   "
                 />  */}
-                    <motion.div key={animationKey} // this key causes remount, so animation retriggers
-                      initial="hidden"
-                      animate="show"
-                      variants={moveUp(0)}>
-                      <motion.h1 variants={moveUp(0)} initial="hidden" animate="show"  className="text-white text-6xl font-normal max-w-[20ch] leading-[1.18]">{slide.title}</motion.h1>
-                      <motion.p variants={moveUp(0.5)} initial="hidden" animate="show"  className="text-white text-xl font-light max-w-[73ch] leading-[1.4] pt-[35px] pb-[35px]">{slide.subtitle}</motion.p>
-                      <motion.div variants={moveUp(1)} initial="hidden" animate="show" >
-                      <BtnPrimary link={slide.btnLink} text={slide.btn} bgtrans={true} borderwight={true} />
+                      <motion.div key={animationKey} // this key causes remount, so animation retriggers
+                        initial="hidden"
+                        animate="show"
+                        variants={moveUp(0)}>
+                        <motion.h2 variants={moveUp(0)} initial="hidden" animate="show" className="text-white text-6xl font-normal max-w-[20ch] leading-[1.180555555555556]">{slide.title}</motion.h2>
+                        <motion.p variants={moveUp(0.5)} initial="hidden" animate="show" className="text-white text-xl font-light max-w-[73ch] leading-[1.521739130434783] pt-[35px] pb-[35px]">{slide.subtitle}</motion.p>
+                        <motion.div variants={moveUp(1)} initial="hidden" animate="show" >
+                          <BtnPrimary link={slide.btnLink} text={slide.btn} bgtrans={true} borderwight={true} />
+                        </motion.div>
                       </motion.div>
-                    </motion.div>
 
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-            {/* Custom Pagination */}
-            <div className="md:absolute bottom-[128px] z-20 w-full">
-              <div className="container">
-                <div className="flex gap-3 md:gap-5   md:flex-col  md:border-r border-[#FFFFFF80] relative right-1 justify-end" style={{alignItems:"flex-end"}}>
-                  {data.banners.map((_, index: number) => (
-                    <div key={index} className="lead">
-                      {data.banners.length > 1 ? (
-                        <button
-
-                          className={`mt-8 md:mt-0 text-[14px] leading-[1.8] font-light  relative md:right-[-4px] cursor-pointer px-3 md:px-0 md:pe-[13px]  transition-all duration-300 ${activeIndex === index
-                            ? "border-b-[3px] md:border-b-0 md:border-r-[3px] border-accent md:py-3 md:mb-20 text-accent md:text-white"
-                            : "md:border-r-[3px] border-[transparent] text-white"
-                            }`}
-                          onClick={() => swiperRef.current?.slideToLoop(index)}
-                        > 0{index + 1} </button>
-                      ) : (
-                        <div></div>
-                      )}
                     </div>
-                  ))}
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+              {/* Custom Pagination */}
+              <div className="md:absolute bottom-[128px] z-20 w-full">
+                <div className="container">
+                  <div className="flex gap-3 md:gap-5   md:flex-col  md:border-r border-[#FFFFFF80] relative right-1 justify-end" style={{ alignItems: "flex-end" }}>
+                    {data.banners.map((_, index: number) => (
+                      <div key={index} className="lead">
+                        {data.banners.length > 1 ? (
+                          <button
+                            className={`mt-8 md:mt-0 text-[14px] leading-[1.8] font-light  relative md:right-[-4px] cursor-pointer px-3 md:px-0 md:pe-[13px]  transition-all duration-300 ${activeIndex === index
+                              ? "border-b-[3px] md:border-b-0 md:border-r-[3px] border-accent md:py-3 md:mb-20 text-accent md:text-white"
+                              : "md:border-r-[3px] border-[transparent] text-white"
+                              }`}
+                            onClick={() => swiperRef.current?.slideToLoop(index)}
+                          > 0{index + 1} </button>
+                        ) : (
+                          <div></div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
-           </div>
             <div className="container">
-            <div className="grid grid-cols-2 lg:grid-cols-4 pt-8 lg:pt-[76px] relative z-10"> 
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0 }}
-        
-        className="text-white border border-[#C2C2C2] border-b-0 transition-all duration-300 group hover:bg-primary hover:translate-y-2"
-      >
-        <div className="pe-3 ps-3 xl:ps-12 py-5 xl:py-[32px]">
-          <p className="text-2xl md:text-5xl font-normal leading-[.8] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
-            <Counter from={0} to={35} duration={2} /> <span>+</span>
-          </p>
-          <p className="uppercase font-light text-base xl:text-lg">
-            Years of Expertise
-          </p>
-        </div>
-      </motion.div>
- 
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        
-        className="text-white border border-[#C2C2C2] border-b-0 pe-3 transition-all duration-300 group hover:bg-primary hover:translate-y-2"
-      >
-        <div className="ps-3 xl:ps-12 py-5 xl:py-[32px]">
-          <p className="text-2xl md:text-5xl font-normal leading-[.8] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
-            <Counter from={0} to={180} duration={2} />M
-          </p>
-          <p className="uppercase font-light text-base xl:text-lg">
-            Portfolio Value
-          </p>
-        </div>
-      </motion.div>
- 
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.4 }}
-        
-        className="text-white border border-[#C2C2C2] border-b-0 pe-3 transition-all duration-300 group hover:bg-primary hover:translate-y-2"
-      >
-        <div className="ps-3 xl:ps-12 py-5 xl:py-[32px]">
-          <p className="text-2xl md:text-5xl font-normal leading-[.8] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
-            <Counter from={0} to={750} duration={2} />+
-          </p>
-          <p className="uppercase font-light text-base xl:text-lg">
-            Projects Completed
-          </p>
-        </div>
-      </motion.div> 
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.6 }}
-        
-        className="text-white border border-[#C2C2C2] border-b-0 pe-3 transition-all duration-300 group hover:bg-primary hover:translate-y-2"
-      >
-        <div className="ps-3 xl:ps-12 py-5 xl:py-[32px]">
-          <p className="text-2xl md:text-5xl font-normal leading-[.8] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
-            <Counter from={0} to={5000} duration={2} />+
-          </p>
-          <p className="uppercase font-light text-base xl:text-lg  ">
-            Dedicated Manpower
-          </p>
-        </div>
-      </motion.div>
-    </div>
-          </div>
+              <div className="grid grid-cols-2 lg:grid-cols-4 pt-8 lg:pt-[76px] relative z-10">
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0 }}
+                  className="text-white border border-[#C2C2C2] border-b-0 transition-all duration-300 group hover:bg-primary hover:translate-y-2" >
+                  <div className="pe-3 ps-3 xl:ps-12 py-5 xl:py-[32px]">
+                    <p className="text-2xl md:text-5xl font-normal leading-[0.7352941176470588] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
+                      <Counter from={0} to={35} duration={2} /> <span>+</span>
+                    </p>
+                    <p className="uppercase font-light text-base xl:text-lg leading-[1]">
+                      Years of Expertise
+                    </p>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+
+                  className="text-white border border-[#C2C2C2] border-b-0 pe-3 transition-all duration-300 group hover:bg-primary hover:translate-y-2"
+                >
+                  <div className="ps-3 xl:ps-12 py-5 xl:py-[32px]">
+                    <p className="text-2xl md:text-5xl font-normal leading-[0.7352941176470588] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
+                      <Counter from={0} to={180} duration={2} />M
+                    </p>
+                    <p className="uppercase font-light text-base xl:text-lg leading-[1]"> Portfolio Value </p>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+
+                  className="text-white border border-[#C2C2C2] border-b-0 pe-3 transition-all duration-300 group hover:bg-primary hover:translate-y-2"
+                >
+                  <div className="ps-3 xl:ps-12 py-5 xl:py-[32px]">
+                    <p className="text-2xl md:text-5xl font-normal leading-[0.7352941176470588] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
+                      <Counter from={0} to={750} duration={2} />+
+                    </p>
+                    <p className="uppercase font-light text-base xl:text-lg leading-[1]">
+                      Projects Completed
+                    </p>
+                  </div>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.6 }}
+
+                  className="text-white border border-[#C2C2C2] border-b-0 pe-3 transition-all duration-300 group hover:bg-primary hover:translate-y-2"
+                >
+                  <div className="ps-3 xl:ps-12 py-5 xl:py-[32px]">
+                    <p className="text-2xl md:text-5xl font-normal leading-[0.7352941176470588] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
+                      <Counter from={0} to={5000} duration={2} />+
+                    </p>
+                    <p className="uppercase font-light text-base xl:text-lg  leading-[1]">
+                      Dedicated Manpower
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
           </div>
         </div>
 
