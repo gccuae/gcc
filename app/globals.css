@@ -1,9 +1,9 @@
-/* @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
+  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
   --primary-color: #EE3524;
   --secondary-color: #7AC142;
   --background: #ffffff;
@@ -23,7 +23,7 @@
 
 @theme inline {
 
-  --font-sans: "DM Sans", sans-serif;
+  --font-sans: var(--font-sans);
 
   --color-primary: var(--primary-color);
   --color-secondary: var(--secondary-color);
@@ -69,7 +69,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans);
+  font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif;;
     font-optical-sizing: auto;
 }
 
