@@ -111,7 +111,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
   return (
     <section className="wrapper pt-10 xl:pt-[88px] overflow-hidden dark:bg-black">
       <div className="container">
-        <h2 className="text-5xl font-normal leading-[1.147058823529412] text-black mb-4 xl:mb-[43px] dark:text-white">{data.title}</h2>
+        <h2 className="text-5xl font-normal leading-[1.147058823529412] text-black mb-6 xl:mb-[43px] dark:text-white">{data.title}</h2>
         <div>
           <Swiper className="!overflow-visible area-of-expertise-thumbs"
             onSwiper={setThumbsSwiper}
@@ -121,7 +121,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
             loop={true}
             breakpoints={{
               0: {
-                slidesPerView: 1.2,
+                slidesPerView: 1.4,
               },
               768: {
                 slidesPerView: 2.5,
@@ -136,19 +136,16 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
             watchSlidesProgress
           >
             {data.items.map((item, index) => (
-              <SwiperSlide
-                key={item.id}
-                className="cursor-pointer transition mb-8 xl:mb-[65px] group"
-                onMouseEnter={() => handleSlideHover(index)}
-              >
-                <div className="exp-icon-div group-hover:border-primary transition-colors duration-400 pb-4 mb-2 xl:pb-[30px] xl:mb-[15px] relative">
+              <SwiperSlide key={item.id} className="cursor-pointer transition mb-4 xl:mb-[65px] group" onMouseEnter={() => handleSlideHover(index)}>
+                <div className="exp-icon-div group-hover:border-primary transition-colors duration-400 pb-4 mb-6 xl:pb-[30px] xl:mb-[15px] relative">
                   <motion.div variants={fadeIn(index * 0.5)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="flex items-center justify-center rounded-full border-1 border-smgray dark:border-white w-[85px] h-[85px] group-hover:bg-primary transition-all duration-300 icon-wrapper dark:bg-[#0d0d0d]  ">
                     <Image src={item.icon} alt={item.title} width={200} height={200} className=" mb-2 w-10 h-10 object-contain group-hover:brightness-0 group-hover:invert-100" />
                   </motion.div>
                   <div className="absolute bottom-[-6px] left-0 w-full h-[2px] bg-smgray -z-[1]"> </div>
                 </div>
                 <motion.h3 variants={moveUp(index * 0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}
-                  className="text-xl text-foreground font-normal leading-[2.173913043478261] group-hover:text-primary dark:text-white transition-all duration-300">{item.title}</motion.h3>
+                  className="text-xl text-foreground font-normal leading-sm xl:leading-[2.173913043478261]  group-hover:text-primary dark:text-white transition-all duration-300">
+                    {item.title}</motion.h3>
               </SwiperSlide>
             ))}
           </Swiper>
