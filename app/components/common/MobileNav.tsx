@@ -118,13 +118,7 @@ const MobileNav = () => {
           <div>
             <div className="flex items-center">
               <Link href="/">
-                <Image
-                  src="/assets/img/logo.svg"
-                  alt="Assent"
-                  width={180}
-                  height={140}
-                  className="h-[48px] w-auto"
-                />
+                <Image src="/assets/img/logo.svg" alt="Assent" width={180} height={140} className="h-[48px] w-auto" />
               </Link>
             </div>
 
@@ -169,13 +163,7 @@ const MobileNav = () => {
           <div className="mb-[50px]">
             <div className="text-left ">
               <Link href="/">
-                <Image
-                  src="/assets/img/invertlogo.svg"
-                  alt="Assent"
-                  width={120}
-                  height={50}
-                  className="h-[45px] w-auto"
-                />
+                <Image src="/assets/img/invertlogo.svg" alt="Assent" width={120} height={50} className="h-[45px] w-auto" />
               </Link>
             </div>
 
@@ -185,8 +173,7 @@ const MobileNav = () => {
             {menuItems.map((item, index) =>
               item.children ? (
                 <li key={index}>
-                  <div
-                    className="pb-2 flex justify-between items-center cursor-pointer"
+                  <div className="pb-2 flex justify-between items-center cursor-pointer uppercase"
                     onClick={() =>
                       setActiveDropdown(activeDropdown === index ? null : index)
                     }>
