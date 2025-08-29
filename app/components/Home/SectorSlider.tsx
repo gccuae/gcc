@@ -75,20 +75,20 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
               }}
             >
               {data.items.map((item, index) => (
-                <SwiperSlide key={index} className="border-t-1 border-r-1 border-foreground relative group">
+                <SwiperSlide key={index} className="border-t-1 border-r-1 border-foreground relative group pr-[15px] pl-[15px] xl:pr-0 xl:pl-0">
                   <div className="absolute -top-1 left-0 w-full h-0 group-hover:h-[6px] bg-accent transition-all duration-300 z-50"></div>
                   <motion.div variants={moveUp(index * 0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="flex flex-col justify-between  xl:max-h-[39em] overflow-hidden z-40 relative">
                     <div
-                      className="flex items-center justify-between mb-3 xl:mb-[25px] pl-4 pr-3 pt-6 xl:pt-[37px] group-hover:xl:pl-[37px] group-hover:xl:pt-[35px] group-hover:xl:pr-[35px] group-first:pl-0 transition-all duration-300">
+                      className="flex items-center justify-between mb-3 xl:mb-[25px] xl:pl-4 xl:pr-3 pt-6 xl:pt-[37px] group-hover:xl:pl-[37px] group-hover:xl:pt-[35px] group-hover:xl:pr-[35px] group-first:pl-0 transition-all duration-300">
                       <Image src={item.icon} alt={item.title} width={200} height={200} className="w-auto h-15 object-contain" />
-                      <Link href={item.slug} className="bg-white dark:bg-transparent border border-smgray px-4 py-2 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-300"><Image src={assets.singleGreenArrow} alt={item.title} width={200} height={200} className="w-4 xl:w-[21.5px] h-auto object-contain" /> </Link>
+                      <Link href={item.slug} className="bg-white dark:bg-transparent border border-smgray px-4 py-2 rounded-2xl xl:opacity-0 group-hover:xl:opacity-100 transition-all duration-300"><Image src={assets.singleGreenArrow} alt={item.title} width={200} height={200} className="w-4 xl:w-[21.5px] h-auto object-contain" /> </Link>
                     </div>
-                    <div className="pl-4 pr-3 pt-6 group-hover:xl:pl-[37px] group-hover:xl:pt-[35px] group-hover:xl:pr-[35px] group-first:pl-0 transition-all duration-300">
+                    <div className="xl:pl-4 xl:pr-3 pt-6 group-hover:xl:pl-[37px] group-hover:xl:pt-[35px] group-hover:xl:pr-[35px] group-first:pl-0 transition-all duration-300">
                       <h3 className="text-2xl leading-[1.5625] font-normal mb-4 xl:mb-[49px] group-hover:xl:mb-6 transition-all duration-300">{item.title}</h3>
-                      <p className="text-lg font-[300] leading-[1.526315789473684] opacity-0 h-0 group-hover:h-auto group-hover:opacity-100 transition-all ease-in-out duration-300 group-hover:xl:pb-[63px] sector-description relative z-10 dark:text-white/80">{item.description}</p>
+                      <p className="text-lg font-[300] leading-[1.526315789473684] pb-5 xl:pb-0 xl:opacity-0 xl:h-0 group-hover:xl:h-auto group-hover:xl:opacity-100 transition-all ease-in-out duration-300 group-hover:xl:pb-[63px] sector-description relative z-10 dark:text-white/80">{item.description}</p>
                     </div>
                     <div className="mt-auto overflow-hidden  group-first:pl-0 transition-all duration-300 relative z-20">
-                      <Image src={item.image} alt={item.title} width={600} height={600} className="w-full h-full xl:h-[400px] object-cover object-top flex overflow-hidden pr-[15px] pl-[15px] group-first:pl-0" />
+                      <Image src={item.image} alt={item.title} width={600} height={600} className="w-full h-full xl:h-[400px] object-cover object-top flex overflow-hidden pl-0 pr-0 xl:pl-[15px] xl:pr-[15px]  group-first:pl-0" />
                     </div>
                   </motion.div>
                 </SwiperSlide>

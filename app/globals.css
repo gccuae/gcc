@@ -157,3 +157,8 @@ body {
 .history-slider .history-slide {
   @apply flex items-center;
 }
+/* .sector-slider .slide-active .sector-description {
+  opacity: 1 !important;
+  height: auto !important;
+} */
+
