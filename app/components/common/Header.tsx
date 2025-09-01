@@ -61,7 +61,7 @@ const Header = () => {
               ? "  left-0 bg-black  border-b-0 "
               : hasBackground
               ? "     text-white "
-              : "relative bg-transparent text-white tanspheader"
+              : " bg-transparent text-white tanspheader"
           }
         `}
       >
