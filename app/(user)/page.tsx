@@ -1,5 +1,6 @@
 import {  } from "react";
-import Index from "../components/Home/Index";
+import Index from "../components/home/Index";
+
 
 
 export default function Home() {
