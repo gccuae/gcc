@@ -8,7 +8,7 @@ import { Home } from "@/types/Common";
 import BtnPrimary from "../common/BtnPrimary";
 import Counter from "../common/Counter";
 import { motion } from "framer-motion";
-import { moveUp } from "../../components/motionVarients";
+import { moveUp } from "../motionVarients";
 
 interface HeroSliderProps {
   data: Home;
