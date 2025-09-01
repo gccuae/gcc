@@ -114,7 +114,7 @@ const AboutCompanyV = () => {
       scrollTrigger: {
         trigger: textRef.current,
         start: "top 93%",
-         markers: true,
+         markers: false,
       },
     });
 
