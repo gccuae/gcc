@@ -25,7 +25,7 @@ export const menuItems: MenuItem[] = [
   },
   {
     title: "Expertise",
-    url: "#",
+    url: "/expertise",
   },
   {
     title: "AI Technology",
