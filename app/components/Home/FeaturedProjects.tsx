@@ -209,7 +209,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                   <SwiperSlide key={index} className="h-full min-h-[250px] relative p-5 xl:p-[30px] overflow-hidden group">
                     <Link href={slide.btnLink} className="relative z-10 bg-accent text-base font-light leading-[1.75] text-foreground uppercase px-5 xl:px-[25px] py-2 xl:py-[7px] rounded-3xl group-hover:text-white group-hover:bg-primary  transition-all duration-300 ">{slide.sector}</Link>
                     <div className="h-full absolute top-0 left-0 z-0 featured-image-wrapper" >
-                      <Image src={slide.image} alt={slide.title} width={290} height={290} className="w-full h-full object-cover hover:scale-105 transition-all duration-300"  />
+                      <Image src={slide.image} alt={slide.title} width={2000} height={2000} className="w-full h-full object-cover hover:scale-105 transition-all duration-300"  />
                     </div>
                   </SwiperSlide>
                 ))}

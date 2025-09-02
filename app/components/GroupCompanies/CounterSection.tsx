@@ -8,7 +8,7 @@ const CounterSection = () => {
       <div className="container">
         <div className="mb-6 xl:mb-[47px]">
           <h2 className="text-6xl leading-lh-title font-normal mb-4 xl:mb-[27px] text-black dark:text-white">{groupCompaniesData.section1.title}</h2>
-          <p className="text-lg leading-lh-text19 text-black dark:text-white">{groupCompaniesData.section1.desc}</p>
+          <p className="text-lg leading-lh-text19 text-black dark:text-white font-light">{groupCompaniesData.section1.desc}</p>
         </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 border-t border-l border-r border-smgray">
             {groupCompaniesData.section1.items.map((item, index) => (
@@ -18,8 +18,8 @@ const CounterSection = () => {
                  <div className="mb-47px h-10 xl:h-15">
                     <Image src={item.icon} alt={item.desc} width={100} height={100} className="w-10 h-auto xl:w-15 group-hover:brightness-0 group-hover:invert-100 transition-all duration-300" />
                  </div>
-                  <h3 className="text-5xl leading-lh-text68 font-normal mb-4 xl:mb-[27px] text-black dark:text-white group-hover:text-white dark:group-hover:text-primary transition-all duration-300"><Counter from={0} to={item.count} duration={2} />+</h3>
-                  <p className="text-lg leading-lh-text19">{item.desc}</p>
+                  <h3 className="text-5xl leading-lh-text68 font-normal mb-4 xl:mb-[27px] text-black dark:text-white group-hover:text-white transition-all duration-300"><Counter from={0} to={item.count} duration={2} />+</h3>
+                  <p className="text-lg leading-lh-text19 dark:text-white">{item.desc}</p>
                 </div>
               </div>
             ))}
