@@ -1,13 +1,13 @@
-import {  } from "react";
+import { } from "react";
 import Index from "../components/Home/Index";
 
 
 
 export default function Home() {
- 
+
   return (
     <>
-     <Index /> 
+      <Index />
     </>
   );
 }
