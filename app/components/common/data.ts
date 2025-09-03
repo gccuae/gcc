@@ -7,25 +7,40 @@ export type MenuItem = {
 export const menuItems: MenuItem[] = [
   {
     title: "About",
-    url: "/about-us",
+    // url: "/about-us",
+    url: "#",
     children: [
       {
         title: "Message from leaders",
-        url: "/message-from-leaders",
+        // url: "/message-from-leaders",
+        url: "#",
       },
       {
         title: "Our Team",
-        url: "/our-team",
+        // url: "/our-team",
+        url: "#",
+      },
+      {
+        title: "Our Legacy",
+        // url: "/services",
+        url: "#",
       },
       {
         title: "Group Companies",
-        url: "/group-companies",
+        // url: "/group-companies",
+        url: "#",
+      },
+      {
+        title: "Certifications",
+        // url: "/contact-us",
+        url: "#",
       },
     ],
   },
   {
     title: "Expertise",
-    url: "/expertise",
+    // url: "/expertise",
+    url: "#",
   },
   {
     title: "AI Technology",
