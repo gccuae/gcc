@@ -1,11 +1,11 @@
-import Index from "@/app/components/service-details";
+import Index from "@/app/components/certifications";
 
 const Page = () => {
   return (
     <main>
       <Index />
     </main>
-  );
+    );
 }
- 
+
 export default Page;
