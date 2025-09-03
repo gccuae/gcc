@@ -1,4 +1,4 @@
-import IndexV2 from "@/app/components/home/IndexV2";
+import IndexV2 from "@/app/components/Home/IndexV2";
 import { } from "react";
 
 

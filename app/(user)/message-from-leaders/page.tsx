@@ -1,4 +1,4 @@
-import Index from "@/app/components/message-from-leaders";
+import Index from "@/app/components/MessageFromLeaders";
 
 const Page = () => {
   return ( 
