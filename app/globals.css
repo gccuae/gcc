@@ -162,3 +162,12 @@ body {
   height: auto !important;
 } */
 
+.key-projects-swiper .swiper-slide .swiper-slide-active {
+  @apply scale-140 transition-all duration-300;
+}
+.key-projects-swiper .swiper-slide .content-box  {
+  /* @apply opacity-0; */
+}
+.key-projects-swiper .swiper-slide .swiper-slide-active .content-box {
+  @apply opacity-100;
+}
