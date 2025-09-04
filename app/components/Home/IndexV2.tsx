@@ -16,12 +16,9 @@ import AboutCompanyV from './AboutCompanyV';
 const IndexV2 = () => {
   return (
     <>
-
       <HeroSliderV data={homeDataBanner} />
-
       <AboutCompanyV />
       <FeaturedProjects data={homeDataFeaturedProjects} />
-
       <AreaOfExpertise data={homeData.fourthSection} />
       <SectorSlider data={homeData.fifthSection} />
       <NewsBlock title={homeData.sixthSection.title} link={homeData.sixthSection.link} items={homeData.sixthSection.items} />
