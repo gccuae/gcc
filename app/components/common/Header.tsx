@@ -91,13 +91,7 @@ const Header = () => {
         <Menu setActive={setActive}>
           {menuItems.map((menuItem, index) =>
             menuItem.children ? (
-              <MenuItem
-                setActive={setActive}
-                active={active}
-                url={menuItem.url}
-                item={menuItem.title}
-                key={index}
-              >
+              <MenuItem setActive={setActive} active={active} url={menuItem.url} item={menuItem.title} key={index} >
                 <div className="grid grid-cols-1 py-4">
                   {menuItem.children.map((item, index) => (
                     <HoveredLink href={`${item.url}`} key={index}>
@@ -126,7 +120,7 @@ const Header = () => {
     };
     
     return (
-      <header>
+      <header className={``}>
         <AnimatePresence>
           {renderHeader()}
 

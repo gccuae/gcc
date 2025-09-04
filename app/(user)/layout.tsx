@@ -4,12 +4,12 @@ import "../globals.css";
 import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
 import { ThemeProvider } from "next-themes";
-import ScrollSmootherWrapper from "../components/common/ScrollSmootherWrapper";
+import { ScrollSmootherWrapper } from "../components/common/ScrollSmootherWrapper";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
-  weight: ["100","200","300","400", "500", "600", "700","800","900"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 export const metadata: Metadata = {
   title: "GCC",
@@ -25,8 +25,8 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${dmSans.variable}  antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-            <Header />
           <ScrollSmootherWrapper>
+            <Header />
             {children}
             <Footer />
           </ScrollSmootherWrapper>
