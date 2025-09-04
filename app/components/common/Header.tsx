@@ -1,5 +1,5 @@
 "use client";
-import { usePathname } from "next/navigation";
+// import { usePathname } from "next/navigation";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import MobileNav from "./MobileNav";
@@ -7,18 +7,20 @@ import Image from "next/image";
 import { menuItems } from "./data";
 
 import { HoveredLink, Menu, MenuItem } from "../ui/navbar-menu";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Header = () => {
-  const pathname = usePathname();
+  // const pathname = usePathname();
   const [active, setActive] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState<null | boolean>(null);
-  const [isScrolled, setIsScrolled] = useState(false);
+  // const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
 
-  const pagesWithBackground = ["/"]; // Add required pages
-  const hasBackground = pagesWithBackground.includes(pathname);
+  // const pagesWithBackground = ["/"]; // Add required pages
+  // const hasBackground = pagesWithBackground.includes(pathname);
 
   useEffect(() => {
-    if (typeof window === "undefined") return; // Prevents SSR errors
+    if (typeof window === "undefined") return; 
 
     // Screen size check for mobile
     const handleScreenCheck = () => {
@@ -28,43 +30,64 @@ const Header = () => {
     window.addEventListener("resize", handleScreenCheck);
 
     // Scroll event for fixing header
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
+    // const handleScroll = () => {
+    //   if (window.scrollY > 50) {
+    //     setIsScrolled(true);
+    //   } else {
+    //     setIsScrolled(false);
+    //   }
+    // };
+    // window.addEventListener("scroll", handleScroll);
 
-    return () => {
-      window.removeEventListener("resize", handleScreenCheck);
-      window.removeEventListener("scroll", handleScroll);
-    };
+    // return () => {
+    //   window.removeEventListener("resize", handleScreenCheck);
+    //   window.removeEventListener("scroll", handleScroll);
+    // };
   }, []);
 
   useEffect(() => {
-    if (window.scrollY > 50) {
-      setIsScrolled(true);
-    }
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    const updateScroll = () => {
+      const currentY = window.scrollY;
+
+      if (currentY > lastScrollY) {
+        console.log("down");
+      } else if (currentY < lastScrollY) {
+        console.log("up");
+      }
+
+      setScrollY(currentY);
+      lastScrollY = currentY;
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScroll);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // useEffect(() => {
+  //   if (window.scrollY > 50) {
+  //     setIsScrolled(true);
+  //   }
+  // }, []);
 
   if (isMobile) {
     return <MobileNav />;
   } else if (isMobile == null) {
     return null;
   } else {
-    return (
-      <header className={` w-full top-0 fixed z-[999]
-          ${
-            isScrolled
-              ? "  left-0 bg-black  border-b-0 "
-              : hasBackground
-              ? "     text-white "
-              : " bg-transparent text-white tanspheader"
-          }
-        `}
-      >
+
+    const renderHeader = () => {
+      return (
         <Menu setActive={setActive}>
           {menuItems.map((menuItem, index) =>
             menuItem.children ? (
@@ -99,6 +122,27 @@ const Header = () => {
             )
           )}
         </Menu>
+      );
+    };
+    
+    return (
+      <header>
+        <AnimatePresence>
+          {renderHeader()}
+
+          {scrollY > 550 && (
+            <motion.header
+              key="navbar"
+              initial={{ y: -100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -100, opacity: 0 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              className={`fixed top-0 left-0 w-full z-[999] bg-white text-black shadow-md`}
+            >
+              {renderHeader()}
+            </motion.header>
+          )}
+        </AnimatePresence>
       </header>
     );
   }
