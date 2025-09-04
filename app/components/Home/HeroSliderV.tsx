@@ -27,12 +27,11 @@ const HeroSliderV = ({ data }: HeroSliderProps) => {
 
   return (
     <section className="relative">
-      <div className="relative w-full overflow-hidden     ">
-        <div className="  ">
-
+      {/* <div className="relative w-full overflow-hidden">
+        <div> */}
           <div className="relative w-full  slideroverlay bg-cover bg-center" style={{ backgroundImage: `url(${data.bannerimage})` }} >
 
-            <div className="slidermns h-full  container relative pt-10  md:pt-[50px]  z-[9]">
+            <div className="slidermns h-full  container relative pt-10  md:pt-[50px] lg:pt-[80px]  z-[9]">
               <Swiper
                 modules={[Autoplay, EffectFade]}
                 autoplay={{ delay: 100000 }}
@@ -72,7 +71,7 @@ const HeroSliderV = ({ data }: HeroSliderProps) => {
                 ))}
               </Swiper>
               {/* Custom Pagination */}
-              <div className="md:absolute bottom-[128px] z-20 w-full">
+          <div className="md:absolute top-10 md:top-20 z-20 w-full">
                 <div className="container">
                   <div className="flex gap-3 md:gap-5   md:flex-col  md:border-r border-[#FFFFFF80] relative right-1 justify-end" style={{ alignItems: "flex-end" }}>
                     {data.banners.map((_, index: number) => (
@@ -139,9 +138,8 @@ const HeroSliderV = ({ data }: HeroSliderProps) => {
               </div>
             </div>
           </div>
-        </div>
-
-      </div>
+        {/* </div>
+      </div> */}
     </section>
   );
 };
