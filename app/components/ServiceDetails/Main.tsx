@@ -1,6 +1,6 @@
 const Main = () => {
   return (
-    <section className="pt-57px xl:pt-50 ">
+    <section className="pt-57px xl:pt-25">
       <div className="container">
         <div className="border-b border-smgray pb-8 xl:pb-[54px]">
           <h1 className="text-5xl leading-lh-text68 font-normal text-black dark:text-white">Civil & Structural Works</h1>
