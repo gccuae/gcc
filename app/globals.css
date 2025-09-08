@@ -44,6 +44,7 @@
   --text-base: clamp(0.9rem, 2vw, 1rem);      /* 16px */
 
   --text-21: clamp(1.25rem, 4vw, 21px); /* ~21px */
+  --text-22: clamp(1.25rem, 4vw, 22px); /* ~21px */
 
   /* line-height */
   --lh-title: var(--title-line-height);
@@ -230,3 +231,10 @@ header.modal-open {
   /* @apply right-unset left-0; */
 }
 
+.aislider .swiper-wrapper{align-items: end;}
+ .libullet li::before{
+  content: "";
+  @apply w-2 h-2 rounded-full bg-primary ;
+ }
+ .afterbgf::after{background: linear-gradient(180deg, rgba(0, 0, 0, 0.48) 0%, rgba(0, 0, 0, 0.33) 45.64%, rgba(0, 0, 0, 0.51) 89.56%); 
+ } 

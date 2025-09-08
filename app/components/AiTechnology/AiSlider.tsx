@@ -1,0 +1,111 @@
+'use client'
+import { SliderData } from "./data";  
+
+import { Swiper, SwiperSlide } from "swiper/react"; 
+import { useState } from "react";
+import "swiper/css";
+
+const AiSlider = () => {
+  
+  const [bgImage, setBgImage] = useState(SliderData.items[0]?.image);
+  const [activeImage, setActiveImage] = useState(SliderData.items[0]?.image);
+  const [touchedIndex, setTouchedIndex] = useState<number | null>(null);
+   
+  const isTouchDevice = () =>
+    typeof window !== "undefined" &&
+    ( "ontouchstart" in window || window.matchMedia("(pointer: coarse)").matches );
+    const handleTouch = (index: number, image: string) => {
+      if (!isTouchDevice()) return;  
+    
+      if (touchedIndex === index) {
+        setTouchedIndex(null);
+        setBgImage(activeImage);
+      } else {
+        setTouchedIndex(index);
+        setBgImage(image);
+      }
+    };
+    interface SliderItem {
+      title: string;
+      image: string;
+      desc?: string;
+      ul?: string[];
+    }
+  return (
+    <section
+    className=" transition-all duration-500 h-[400px] lg:h-[750px] relative after:content-[''] after:absolute after:top-0 after:left-0 after:w-full after:h-full afterbgf "
+    style={{ background: `url(${bgImage}) center/cover no-repeat` }}
+  >
+    <div className="container relative h-full w-full  ">
+      <div 
+    className="border-b border-smgray  w-full">
+    <Swiper
+    className="border-b border-smgray aislider"
+        slidesPerView={3} 
+        loop={true}
+        spaceBetween={0}
+        autoplay={{ delay: 2000, disableOnInteraction: true, pauseOnMouseEnter: true }}
+        onSlideChange={(swiper) => {
+          const currentIndex = swiper.realIndex;
+          setActiveImage(SliderData.items[currentIndex].image);
+          setBgImage(SliderData.items[currentIndex].image);
+          setTouchedIndex(null); 
+        }}
+        breakpoints={{
+          0: {
+            slidesPerView: 1,
+          }, 
+          
+          768: {
+            slidesPerView: 2,
+          },
+          1024: {
+            slidesPerView: 3,
+          },
+          1280: {
+            slidesPerView: 3,
+          },
+        }}
+       > 
+        {SliderData.items.map((item: SliderItem, index: number) => (
+            <SwiperSlide key={index}
+            onMouseEnter={() => setBgImage(item.image)}
+            onMouseLeave={() => setBgImage(activeImage)}
+            onClick={() => handleTouch(index, item.image)}>
+              <div className={`group itmmn h-[360px] lg:h-[700px] flex flex-col justify-end transition-all duration-300   ${
+                touchedIndex === index ? "bg-[#ffffff40]" : "hover:bg-[#ffffff10]"
+              }`}>
+              <div className={`transition-all duration-300 px-5 py-5 lg:pb-12 ${
+                  touchedIndex === index
+                    ? "opacity-100"
+                    : "opacity-0 group-hover:opacity-100"
+                }`}>
+                <p className="text-white text-22 mb-2 leading-[1.3]">{item.desc}</p>
+                <ul className="text-white">
+                  {item.ul?.map((li, index: number) => (
+                    <li key={index} className="mb-2 last:mb-0 flex items-center gap-2 libullet"><div className="w-[8px] h-[8px]   bg-secondary"></div>{li}</li>
+                  ))}
+                </ul>
+              </div>
+             <div>
+             <div   className={`px-2 py-5 md:p-8 lg:p-10 transition-all duration-300 cursor-pointer ${
+                    touchedIndex === index
+                      ? "bg-primary"
+                      : "group-hover:bg-primary"
+                  }`}>
+                <h3 className="text-2xl leading-[1] font-normal text-white ">
+                  {item.title}
+                </h3>
+              </div> 
+             </div>
+              </div>
+            </SwiperSlide>
+          ))}
+      </Swiper>
+      </div>
+    </div>
+    </section>
+  );
+}
+
+export default AiSlider;
