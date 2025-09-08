@@ -57,4 +57,33 @@ export const projectDetailsData = {
       },
     ],
   },
+  moreProjects: [
+    {
+      title: "Project one",
+      info: {
+        type: "Civil",
+        sector: "Residential",
+        location: "Sharjah",
+      },
+      image: "/assets/img/project-details/prj-1.jpg",
+    },
+    {
+      title: "Project two",
+      info: {
+        type: "Infrastructure",
+        sector: "Commercial",
+        location: "Abu Dhabi",
+      },
+      image: "/assets/img/project-details/prj-2.jpg",
+    },
+    {
+      title: "Project three",
+      info: {
+        type: "Fit-Out",
+        sector: "Residential",
+        location: "Sharjah",
+      },
+      image: "/assets/img/project-details/prj-3.jpg",
+    },
+  ],
 };
