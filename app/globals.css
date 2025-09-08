@@ -52,6 +52,7 @@
   --lh-text68: var(--text68-line-height);
 
   /* spacing */
+  --spacing-27px: clamp(1.6875rem, 3vw + 0.1em, 27px);
   --spacing-30px: clamp(1.5rem, 3vw + 0.1em, 30px);
   --spacing-47px: var(--spacing-47px);
   --spacing-50px: clamp(2em, 4vw + 0.5em, 50px);
