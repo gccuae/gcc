@@ -39,9 +39,11 @@
   --text-6xl: clamp(3rem, 6vw, 4.5rem);   /* ~72px */
   --text-5xl: clamp(2rem, 5.5vw + 0.2rem, 4.25rem); /* ~68px */
   --text-2xl: clamp(1.75rem, 4vw, 2rem);    /* ~32px */
-  --text-xl: clamp(1.25rem, 3vw, 1.4375rem); /* ~23px */
-  --text-lg: clamp(1.125rem, 2.5vw, 1.1875rem); /* ~19px */
-  --text-base: clamp(1rem, 2vw, 1rem);      /* 16px */
+  --text-xl: clamp(1.5rem, 3vw, 1.4375rem); /* ~23px */
+  --text-lg: clamp(1em, 2.5vw, 1.1875rem); /* ~19px */
+  --text-base: clamp(0.9rem, 2vw, 1rem);      /* 16px */
+
+  --text-21: clamp(1.25rem, 4vw, 21px); /* ~21px */
 
   /* line-height */
   --lh-title: var(--title-line-height);
