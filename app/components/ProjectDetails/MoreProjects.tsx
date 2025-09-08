@@ -1,6 +1,7 @@
 
 import BtnPrimary from "../common/BtnPrimary";
 import { projectDetailsData } from "./data";
+import Image from "next/image";
 const MoreProjects = () => {
   return ( 
     <section className="py-57px bg-light-white dark:bg-black">
@@ -13,7 +14,7 @@ const MoreProjects = () => {
           {projectDetailsData.moreProjects.map((project, index) => (
             <div key={index} className="group border-b border-smgray pb-27px">
               <div>
-                <img src={project.image} alt={project.title} className="w-full h-auto" />
+                <Image src={project.image} alt={project.title} width={1000} height={1000} className="w-full h-auto" />
               </div>
               <div className="pt-5 xl:pt-[27px]">
                 <p className="text-lg leading-lh-text19 dark:text-white/80 mb-2 xl:mb-[12px]">{project.info.type} <span className="mx-2">|</span> {project.info.sector} <span className="mx-2">|</span> {project.info.location}</p>
