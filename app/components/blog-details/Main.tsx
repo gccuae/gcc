@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { assets } from "@/public/assets/assets";
+import StandardBnr from "../common/StandardBnr";
 interface Props {
   title: string;
   category: string;
@@ -15,10 +16,8 @@ const Main = ({ title, category, date, author, mainImage, description, extraCont
   return (
     <section className="py-57px dark:bg-black">
       <div className="container">
-        <div className="border-b border-smgray pb-5 xl:pb-10">
-          <h2 className="text-5xl leading-lh-title font-normal mb-5 xl:mb-[27px] text-black dark:text-white">{title}</h2>
-        </div>
-        <div className="flex items-center justify-between pt-8 xl:pt-[47px] pb-3 xl:pb-27px">
+        <StandardBnr title={title} />
+        <div className="flex items-center justify-between pb-3 xl:pb-27px">
           <p className="dark:text-white"><span>{category}</span> <span className="mx-2">|</span> <span className="">{date}</span> <span className="mx-2">|</span> <span>{author}</span></p>
           <ul className="flex gap-3 items-center dark:text-white">
             <li className="bg-black rounded-full w-8 h-8 xl:w-[41px] xl:h-[41px] flex items-center justify-center hover:translate-y-[-2px] hover:bg-accent dark:hover:bg-accent dark:bg-primary transition-all duration-300 ease-in-out cursor-pointer active:bg-accent active:translate-y-0">

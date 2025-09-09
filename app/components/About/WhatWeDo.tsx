@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const WhatWeDo = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   return (
-    <section className="bg-light-white dark:bg-[#0d0d0d]">
+    <section className="bg-light-white dark:bg-[#0d0d0d] overflow-hidden">
       <div className="border-b border-smgray">
         <div className="container xl:py-57px">
           <h2 className="text-6xl leading-lh-title text-black dark:text-white">What We Do</h2>
