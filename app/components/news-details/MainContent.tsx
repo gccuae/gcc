@@ -3,7 +3,7 @@ const MainContent = ({ subTitle, image, sector, date, desc }: { subTitle: string
   return (
     <div>
       <h3 className="text-3xl leading-lh-subtitle font-normal mb-5 xl:mb-[27px] text-black dark:text-white">{subTitle}</h3>
-      <Image src={image} alt="" width={700} height={700} className="w-full h-auto max-h-[600px] object-cover" />
+      <Image src={image} alt="" width={1920} height={1280} className="w-full h-auto max-h-[600px] object-cover" />
       <div className="flex items-center justify-between mb-5 xl:mb-[27px] mt-3 xl:mt-[17px] gap-3">
         <span className="text-sm">{sector}</span>
         <span className="text-sm">{date}</span>
