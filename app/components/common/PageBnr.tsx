@@ -1,5 +1,6 @@
 
 import Image from "next/image";
+import Breadcrumb from "./BreadCrumb";
 interface PageBnrProps {
   pageTitle: string;
   bannerImg: string;
@@ -17,6 +18,7 @@ const PageBnr = ({pageTitle, bannerImg}: PageBnrProps) => {
         <div>
           <h2 className="text-white text-6xl">{pageTitle}</h2>
         </div>
+        <Breadcrumb />
       </div>
     </section>
    );

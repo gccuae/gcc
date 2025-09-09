@@ -1,10 +1,10 @@
+import StandardBnr from "../common/StandardBnr";
 const Main = () => {
   return (
     <section className="pt-57px xl:pt-25">
       <div className="container">
-        <div className="border-b border-smgray pb-8 xl:pb-[54px]">
-          <h1 className="text-5xl leading-lh-text68 font-normal text-black dark:text-white">Civil & Structural Works</h1>
-        </div>
+        
+        <StandardBnr title="Civil & Structural Works" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 xl:gap-10 justify-items-between py-10 xl:py-20">
           <div>
             <h2 className="text-3xl leading-lh-text48 font-normal text-black dark:text-white">Building Excellence in Every Project</h2>

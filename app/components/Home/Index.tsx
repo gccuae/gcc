@@ -1,6 +1,6 @@
 import React from 'react'
 
-import HeroSlider from "./HeroSliderV";
+import HeroSlider from "./HeroSlider";
 import { homeDataBanner } from "@/public/data/homebanner-data"
 import { homeData } from "./data"
 
