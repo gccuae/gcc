@@ -10,5 +10,6 @@ export const galleryData = {
     { id: 7, title: "Dummy name Text", gallery: ["/assets/img/gallery/album-1/img-7.jpg", "/assets/img/gallery/album-1/img-2.jpg", "/assets/img/gallery/album-1/img-3.jpg", "/assets/img/gallery/album-1/img-4.jpg", "/assets/img/gallery/album-1/img-5.jpg", "/assets/img/gallery/album-1/img-6.jpg"] },
     { id: 8, title: "Dummy name Text", gallery: ["/assets/img/gallery/album-1/img-8.jpg", "/assets/img/gallery/album-1/img-2.jpg", "/assets/img/gallery/album-1/img-3.jpg", "/assets/img/gallery/album-1/img-4.jpg", "/assets/img/gallery/album-1/img-5.jpg", "/assets/img/gallery/album-1/img-6.jpg"] },
     { id: 9, title: "Dummy name Text", gallery: ["/assets/img/gallery/album-1/img-9.jpg", "/assets/img/gallery/album-1/img-2.jpg", "/assets/img/gallery/album-1/img-3.jpg", "/assets/img/gallery/album-1/img-4.jpg"] },
+    { id: 10, title: "Dummy name Text", gallery: ["/assets/img/gallery/album-1/img-1.jpg", "/assets/img/gallery/album-1/img-2.jpg", "/assets/img/gallery/album-1/img-3.jpg", "/assets/img/gallery/album-1/img-4.jpg"] },
   ],
 };

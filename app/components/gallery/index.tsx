@@ -3,7 +3,7 @@ import Gallery from "./Gallery";
 const Index = () => {
   return (
     <>
-    <section className="py-57px">
+    <section className="pt-57px">
       <div className="container">
         <StandardBnr title="Gallery" />
       </div>
