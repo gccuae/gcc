@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { galleryData } from './data';
 import { assets } from '@/public/assets/assets';
@@ -103,8 +103,8 @@ const GalleryCard: React.FC<{ item: GalleryItem; onOpenLightbox: (images: string
       const hasMoreThan9 = item.gallery.length > 9;
 
       return (
-        <div key={index} className="relative flex">
-          <div className={`w-8 h-8 xl:w-[50px] xl:h-[50px] rounded-full overflow-hidden border-1 border-white shadow-sm ${index % 2 === 0 ? 'border-primary' : ''}`}>
+        <div key={index} className="relative flex last:-ml-2">
+          <div className={`w-8 h-8 xl:w-[50px] xl:h-[50px] rounded-full overflow-hidden border-1 border-white shadow-sm ${index % 2 === 0 ? '' : '-ml-2'}`}>
             <img src={image} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
           </div>
           {isLast && hasMoreThan9 && (
@@ -155,6 +155,8 @@ const Gallery: React.FC = () => {
   const [currentImages, setCurrentImages] = useState<string[]>([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  const sectionRef = useRef<HTMLElement | null>(null);
+
   const openLightbox = (images: string[], startIndex: number) => {
     setCurrentImages(images);
     setCurrentImageIndex(startIndex);
@@ -179,20 +181,53 @@ const Gallery: React.FC = () => {
     );
   };
 
+  const [visibleCount, setVisibleCount] = useState(8);
+  const totalAlbum = galleryData.items.length;
+
+  const handleLoadMore = () => {
+    setVisibleCount((prev) => prev ? prev + 3 : 8);
+  };
+
+  const handleShowLess = () => {
+    setVisibleCount((prev) => prev ? prev - 3 : 6);
+    // window.scrollTo({ top: sectionRef.current?.offsetTop || 0, behavior: "smooth" });
+    // sectionRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (sectionRef.current) {
+      const elementTop = sectionRef.current.offsetTop;
+      const offsetPosition = elementTop - 200; // Add 100px padding from top
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
+
   return (
-    <section className="min-h-screen py-8 px-4">
+    <section className="min-h-screen pb-57px" ref={sectionRef}>
       <div className="container">
 
         {/* Gallery Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-30px gap-y-47px">
-          {galleryData.items.map((item) => (
-            <GalleryCard
-              key={item.id}
-              item={item}
-              onOpenLightbox={openLightbox}
-            />
+          {galleryData.items.slice(0, visibleCount + 1).map((item) => (
+            <GalleryCard key={item.id} item={item} onOpenLightbox={openLightbox} />
           ))}
         </div>
+
+        <div className="flex justify-center mt-8">
+          {visibleCount < totalAlbum ? (
+            <button onClick={handleLoadMore} className="px-6 py-2 bg-light-white text-black rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition" >
+              <span>Load More</span>
+              <Image src={assets.singleGreenArrow} alt="arrow" width={20} height={20} className="inline rotate-90" />
+            </button>
+          ) : totalAlbum > 6 ? (
+            <button onClick={handleShowLess} className="px-6 py-2 bg-light-white text-black rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition" >
+              <span>Show Less</span>
+              <Image src={assets.singleGreenArrow} alt="arrow" width={20} height={20} className="inline -rotate-90" />
+            </button>
+          ) : null}
+        </div>
+
       </div>
 
       {/* Lightbox */}

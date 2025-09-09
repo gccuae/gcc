@@ -14,7 +14,7 @@ const NewsList = () => {
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
 
-  const totalNews = sortedNews.length - 1; // exclude latest item
+  const totalNews = sortedNews.length ; 
 
   const handleLoadMore = () => {
     setVisibleCount((prev) => prev + 6);
@@ -23,6 +23,7 @@ const NewsList = () => {
   const handleShowLess = () => {
     setVisibleCount(6); // reset back to first 6
     sectionRef.current?.scrollIntoView({behavior: "smooth" });
+    window.scrollTo({ top: sectionRef.current?.offsetTop || 0, behavior: "smooth" });
   };
 
   return (
