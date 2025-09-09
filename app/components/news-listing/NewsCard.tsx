@@ -79,7 +79,7 @@ const NewsCard = ({ item, index }: { item: { image: string, title: string, descr
           </Link>
         </div>
         <div className="absolute top-50 left-50 pointer-events-none z-20 opacity-0 group-hover:opacity-100 group-hover/img:opacity-0 transition-opacity duration-300 ease-out" >
-          <Link href="/" rel="noopener noreferrer" className="bg-white rounded-full w-6 h-6 flex items-center justify-center xl:w-20 xl:h-20 pointer-events-auto transition-transform duration-200 hover:scale-110 group-hover:opacity-100 ">
+          <Link href={`/news/${item.title}`} rel="noopener noreferrer" className="bg-white rounded-full w-6 h-6 flex items-center justify-center xl:w-20 xl:h-20 pointer-events-auto transition-transform duration-200 hover:scale-110 group-hover:opacity-100 ">
             <Image src={assets.linkArrowGreen} alt="arrow" width={20} height={20} className="w-6 h-6 object-contain xl:w-[19px] xl:h-[19px]" />
           </Link>
         </div>

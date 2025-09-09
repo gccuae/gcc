@@ -1,10 +1,16 @@
 import StandardBnr from "../common/StandardBnr";
+import Gallery from "./Gallery";
 const Index = () => {
-  return ( 
+  return (
     <>
-    <StandardBnr title="Gallery" />
+    <section className="py-57px">
+      <div className="container">
+        <StandardBnr title="Gallery" />
+      </div>
+    </section>
+    <Gallery />
     </>
   );
 }
- 
+
 export default Index;

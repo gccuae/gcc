@@ -29,7 +29,7 @@ const HeroSlider = ({ data }: HeroSliderProps) => {
     <section className="relative  overflow-hidden">
       {/* <div className="relative w-full overflow-hidden h-full"> */}
           <div className="relative w-full h-full slideroverlay bg-cover bg-center" style={{ backgroundImage: `url(${data.bannerimage})` }} >
-            <div className="slidermns h-full  container relative pt-10 md:pt-[100px]   z-[9]">
+            <div className="slidermns h-full  container relative pt-10 md:pt-[130px] z-[9]">
               <Swiper
                 modules={[Autoplay, EffectFade]}
                 autoplay={{ delay: 100000 }}
@@ -92,7 +92,7 @@ const HeroSlider = ({ data }: HeroSliderProps) => {
               </div>
             </div>
             <div className="container">
-              <div className="grid grid-cols-2 lg:grid-cols-4 pt-8 lg:pt-[76px] relative z-10">
+              <div className="grid grid-cols-2 lg:grid-cols-4 pt-8 xl:pt-[85px] relative z-10">
                 <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0 }}
                  className="text-white border border-[#C2C2C2] border-b-0 transition-all duration-300 group active:bg-primary hover:bg-primary hover:translate-y-2" >
                   <div className="pe-3 ps-3 xl:ps-12 py-5 xl:py-[32px]">
