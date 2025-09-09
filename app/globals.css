@@ -137,6 +137,13 @@ body {
 .area-of-expertise-thumbs .swiper-slide.swiper-slide-thumb-active .icon-wrapper img {
   @apply brightness-0 invert-100;
 }
+.area-of-expertise-thumbs.greenslide .swiper-slide.swiper-slide-thumb-active h3 {
+  @apply text-white;
+}
+.area-of-expertise-thumbs.greenslide .swiper-slide.swiper-slide-thumb-active .hoverline {
+  @apply w-full;
+}
+
 :focus-visible 
  {
     outline: none !important;
