@@ -5,7 +5,7 @@ import SidebarContent from "./SidebarContent";
 const Main = () => {
   return ( 
     <section className="py-57px">
-      <div className="container mx-auto px-3 md:px-10">
+      <div className="container">
         <div className="border-b border-smgray pb-5 xl:pb-10">
           <h2 className="text-5xl leading-lh-title font-normal mb-5 xl:mb-[27px] text-black dark:text-white">{newsDetails.title}</h2>
         </div>
