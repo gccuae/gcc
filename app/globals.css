@@ -51,6 +51,8 @@
   --lh-text19: var(--text19-line-height);
   --lh-text32: var(--text32-line-height);
   --lh-text68: var(--text68-line-height);
+  --lh-base: 1;
+  --lh-25: 1.5625;
 
   /* spacing */
   --spacing-27px: clamp(1.6875rem, 3vw + 0.1em, 27px);
@@ -76,13 +78,14 @@ body {
   color: var(--foreground);
   font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif;;
     font-optical-sizing: auto;
+  @apply dark:bg-black;
 }
 
 @media (prefers-color-scheme: dark) {
-  /* :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  } */
+  :root {
+    /* --background: #000000; */
+    /* --foreground: #ffffff; */
+  }
 }
 
 .container {
