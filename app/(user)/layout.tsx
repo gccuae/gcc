@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import "../globals.css";
 import Header from "../components/common/Header";
-import Footer from "../components/common/Footer";
 import { ThemeProvider } from "next-themes";
-import { ScrollSmootherWrapper } from "../components/common/ScrollSmootherWrapper";
+// import { ScrollSmootherWrapper } from "../components/common/ScrollSmootherWrapper";
+import FooterV from "../components/common/FooterV";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -25,11 +25,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${dmSans.variable}  antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <ScrollSmootherWrapper>
+          {/* <ScrollSmootherWrapper> */}
             <Header />
             {children}
-            <Footer />
-          </ScrollSmootherWrapper>
+            <FooterV />
+          {/* </ScrollSmootherWrapper> */}
         </ThemeProvider>
       </body>
     </html>

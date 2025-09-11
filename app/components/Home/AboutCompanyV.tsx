@@ -140,14 +140,11 @@ const AboutCompanyV = () => {
 
 
   return (
-    <section
-      ref={containerRef}
-      className="py-12 xl:py-25 dark:bg-black overflow-hidden"
-    >
+    <section ref={containerRef} className="py-12 xl:py-15 dark:bg-black overflow-hidden">
       <div className="container">
         <div className="lg:flex gap-8 xl:gap-17">
           {/* Video Block */}
-          <div className="relative w-full lg:w-[48%] mb-8 lg:mb-0 overflow-hidden">
+          <div className="relative w-full h-full lg:w-[48%] mb-8 lg:mb-0 overflow-hidden">
             <video
               ref={videoRef}
               poster="/assets/img/home/video-poster.jpg"

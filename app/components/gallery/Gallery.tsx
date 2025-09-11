@@ -105,7 +105,7 @@ const GalleryCard: React.FC<{ item: GalleryItem; onOpenLightbox: (images: string
       return (
         <div key={index} className="relative flex last:-ml-2">
           <div className={`w-8 h-8 xl:w-[50px] xl:h-[50px] rounded-full overflow-hidden border-1 border-white shadow-sm ${index % 2 === 0 ? '' : '-ml-2'}`}>
-            <img src={image} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
+            <Image width={50} height={50} src={image} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
           </div>
           {isLast && hasMoreThan9 && (
             <div className="absolute inset-0 bg-black/38 rounded-full flex items-center justify-center">
@@ -125,7 +125,7 @@ const GalleryCard: React.FC<{ item: GalleryItem; onOpenLightbox: (images: string
         onMouseLeave={() => setIsHovered(false)}
         onClick={handleCardClick}
       >
-        <img src={item.gallery[0]} alt={item.title} className="w-full h-full object-cover group-hover:blur-[2px] transition-transform" />
+        <Image width={1920} height={1280} src={item.gallery[0]} alt={item.title} className="w-full h-full object-cover group-hover:blur-[2px] transition-transform" />
 
         {/* Hover Icon */}
         {/* {isHovered && ( */}
