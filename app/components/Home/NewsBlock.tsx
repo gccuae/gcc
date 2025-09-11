@@ -47,15 +47,15 @@ const NewsBlock = ({ title, link, items }: NewsBlockProps) => {
   }, []);
 
   return (
-    <section className="pt-10 pb-12 xl:pt-[57px] xl:pb-25 bg-light-white dark:bg-black relative overflow-hidden" ref={sectionRef}>
-      <div className="reveal-overlay absolute inset-0 bg-black z-20"></div>
+    <section className="pt-47px pb-27px bg-light-white dark:bg-black relative overflow-hidden" ref={sectionRef}>
+      <div className="reveal-overlay absolute inset-0 bg-white z-20"></div>
       <div className="container">
-        <div className="flex justify-between items-center pb-8 xl:pb-[45px] mb-8 xl:mb-15 border-b border-smgray">
+        <div className="flex justify-between items-center pb-27px mb-37px border-b border-smgray">
           <motion.h2 variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-5xl font-normal leading-[1.147058823529412] text-black dark:text-white hover:text-primary transition-all duration-300">{title}</motion.h2>
           <BtnPrimary link={link} text="View All" bgtrans={true} />
         </div>
         <div>
-          <Swiper className="w-full home-news-swiper !pb-15" slidesPerView={1} spaceBetween={0} modules={[Pagination]} pagination={{ clickable: true }} >
+          <Swiper className="w-full home-news-swiper !pb-10" slidesPerView={1} spaceBetween={0} modules={[Pagination]} pagination={{ clickable: true }} >
             {items.map((item, index) => (
               <SwiperSlide key={index}>
                 <div className="flex flex-wrap xl:flex-nowrap items-center gap-4 xl:gap-[69px]">

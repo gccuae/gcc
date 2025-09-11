@@ -1,0 +1,43 @@
+import { Html, Head, Main, NextScript } from "next/document";
+
+export default function Document() {
+  return (
+    <Html lang="en">
+      <Head />
+      <body>
+        <Main />
+        <NextScript />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+      (function() {
+        let current = window.scrollY;
+        let target = window.scrollY;
+        let raf;
+
+        function lerp(a, b, n) {
+          return (1 - n) * a + n * b;
+        }
+
+        function update() {
+          current = lerp(current, target, 0.08); // lower = smoother
+          window.scrollTo(0, current);
+          if (Math.abs(target - current) > 0.5) {
+            raf = requestAnimationFrame(update);
+          }
+        }
+
+        window.addEventListener("wheel", (e) => {
+          e.preventDefault();
+          target += e.deltaY;
+          cancelAnimationFrame(raf);
+          raf = requestAnimationFrame(update);
+        }, { passive: false });
+      })();
+    `,
+          }}
+        />
+      </body>
+    </Html>
+  );
+}

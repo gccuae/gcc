@@ -4,7 +4,7 @@ import { assets } from "@/public/assets/assets";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { moveUp, fadeIn } from "../motionVarients";
-const Footer = () => {
+const FooterV = () => {
   return (
     <footer className="relative ">
       <div className="relative h-full">
@@ -12,13 +12,13 @@ const Footer = () => {
           <Image src={assets.footerbg} alt="footerbg" width={1920} height={1080} className="w-full h-full object-cover" />
         </div>
         <div className="container relative z-2">
-          <div className="pt-10 pb-6 xl:pb-37px xl:pt-[63px] border-b border-foreground">
-            <motion.h2 className="text-5xl font-normal leading-[1.147058823529412] text-white max-w-3xl" variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} >Transforming Spaces, Building Futures</motion.h2>
+          <div className="pt-27px pb-4 border-b border-foreground">
+            <motion.h2 className="text-4xl font-normal leading-[1.147058823529412] text-white max-w-3xl" variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} >Transforming Spaces, Building Futures</motion.h2>
           </div>
           <div className="grid gap-y-8 lg:grid-cols-2 xl:grid-cols-[6fr_4fr] pt-4 pb-4 xl:pt-27px xl:pb-27px border-b border-foreground">
             <div>
-              <motion.p className="text-lg font-normal text-white leading-[1.526315789473684] max-w-[472px]" variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} >Gulf Contractors Company (GCC) LLCSuite No. 023, Liberty Tower, Khalifa St., P O Box 45363 Abu Dhabi, UAE</motion.p>
-              <div className="flex flex-col gap-2 pt-3 xl:pt-[18px]">
+              
+              <div className="flex flex-col gap-2 pt-3 xl:pt-4 pb-5">
                 <motion.div className="flex items-center gap-4" variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
                   <div className="flex items-center justify-center bg-black rounded-full border border-foreground w-10 h-10">
                     <svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -34,7 +34,7 @@ const Footer = () => {
                     </svg>
 
                   </div>
-                  <Link href="mailto:info@gcc.ae" className="text-lg xl:text-2xl font-normal text-white leading-[1.3125] hover:text-accent transition-all duration-300">info@gcc.ae</Link>
+                  <Link href="mailto:info@gcc.ae" className="text-md font-normal text-white leading-[1.3125] hover:text-accent transition-all duration-300">info@gcc.ae</Link>
                 </motion.div>
                 <motion.div className="flex items-center gap-4" variants={moveUp(0.6)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
                   <div className="flex items-center justify-center bg-black rounded-full border border-foreground w-10 h-10">
@@ -51,27 +51,28 @@ const Footer = () => {
                       </defs>
                     </svg>
                   </div>
-                  <Link href="tel:+97126267510" className="text-lg xl:text-2xl font-normal text-white leading-[1.3125] hover:text-accent transition-all duration-300">+971 2 626 7510</Link>
+                  <Link href="tel:+97126267510" className="text-md font-normal text-white leading-[1.3125] hover:text-accent transition-all duration-300">+971 2 626 7510</Link>
                 </motion.div>
               </div>
+              <motion.p className="text-md font-normal text-white leading-[1.526315789473684] max-w-[472px]" variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} >Gulf Contractors Company (GCC) LLCSuite No. 023, Liberty Tower, Khalifa St., P O Box 45363 Abu Dhabi, UAE</motion.p>
             </div>
             <div>
-              <h3 className="text-2xl font-normal text-white leading-[1.3125] pb-4 xl:pb-[37px]">Quick Links</h3>
+              <h3 className="text-xl font-normal text-white leading-[1.3125] pb-4">Quick Links</h3>
               <div className="flex gap-10">
                 <div>
                   <ul className="flex flex-col gap-2">
-                    <motion.li variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white text-lg font-light leading-[1.578947368421053] hover:text-accent transition-all duration-300"><Link href="#">About GCC</Link></motion.li>
-                    <motion.li variants={moveUp(0.05)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white text-lg font-light leading-[1.578947368421053] hover:text-accent transition-all duration-300"><Link href="#">Group Companies</Link></motion.li>
-                    <motion.li variants={moveUp(0.1)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white text-lg font-light leading-[1.578947368421053] hover:text-accent transition-all duration-300"><Link href="#">Certifications</Link></motion.li>
-                    <motion.li variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white text-lg font-light leading-[1.578947368421053] hover:text-accent transition-all duration-300"><Link href="#">Projects</Link></motion.li>
+                    <motion.li variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-all duration-300"><Link href="#">About GCC</Link></motion.li>
+                    <motion.li variants={moveUp(0.05)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-all duration-300"><Link href="#">Group Companies</Link></motion.li>
+                    <motion.li variants={moveUp(0.1)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-all duration-300"><Link href="#">Certifications</Link></motion.li>
+                    <motion.li variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-all duration-300"><Link href="#">Projects</Link></motion.li>
                   </ul>
                 </div>
                 <div>
                   <ul className="flex flex-col gap-2">
-                    <motion.li variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white text-lg font-light leading-[1.578947368421053] hover:text-accent transition-all duration-300"><Link href="#">Clientele & Partnerships</Link></motion.li>
-                    <motion.li variants={moveUp(0.1)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white text-lg font-light leading-[1.578947368421053] hover:text-accent transition-all duration-300"><Link href="#">Careers</Link></motion.li>
-                    <motion.li variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white text-lg font-light leading-[1.578947368421053] hover:text-accent transition-all duration-300"><Link href="#">Health Safety & Environmental</Link></motion.li>
-                    <motion.li variants={moveUp(0.3)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white text-lg font-light leading-[1.578947368421053] hover:text-accent transition-all duration-300"><Link href="#">Blog</Link></motion.li>
+                    <motion.li variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-all duration-300"><Link href="#">Clientele & Partnerships</Link></motion.li>
+                    <motion.li variants={moveUp(0.1)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-all duration-300"><Link href="#">Careers</Link></motion.li>
+                    <motion.li variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-all duration-300"><Link href="#">Health Safety & Environmental</Link></motion.li>
+                    <motion.li variants={moveUp(0.3)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-all duration-300"><Link href="#">Blog</Link></motion.li>
                   </ul>
                 </div>
               </div>
@@ -81,25 +82,25 @@ const Footer = () => {
             <div className="flex flex-wrap gap-4 xl:gap-6">
               <motion.div className="flex items-center gap-2" variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
                 <Link href="#" className="flex items-center gap-2">
-                  <span className="text-mdgray text-lg font-light leading-[1.578947368421053] uppercase hover:text-primary transition-all duration-300">LinkedIn</span>
+                  <span className="text-mdgray text-md font-light leading-[1.578947368421053] uppercase hover:text-primary transition-all duration-300">LinkedIn</span>
                   <Image src={assets.linkArrowGreen} alt="linkArrowGreen" width={22} height={22} className="w-5 h-5 xl:w-[10.97px] xl:h-auto" /></Link>
               </motion.div>
               <motion.div className="flex items-center gap-2" variants={moveUp(0.1)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
                 <Link href="#" className="flex items-center gap-2">
-                  <span className="text-mdgray text-lg font-light leading-[1.578947368421053] uppercase hover:text-primary transition-all duration-300">Facebook</span>
+                  <span className="text-mdgray text-md font-light leading-[1.578947368421053] uppercase hover:text-primary transition-all duration-300">Facebook</span>
                   <Image src={assets.linkArrowGreen} alt="linkArrowGreen" width={22} height={22} className="w-5 h-5 xl:w-[10.97px] xl:h-auto" /></Link>
               </motion.div>
               <motion.div className="flex items-center gap-2" variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
                 <Link href="#" className="flex items-center gap-2">
-                  <span className="text-mdgray text-lg font-light leading-[1.578947368421053] uppercase hover:text-primary transition-all duration-300">Youtube</span>
+                  <span className="text-mdgray text-md font-light leading-[1.578947368421053] uppercase hover:text-primary transition-all duration-300">Youtube</span>
                   <Image src={assets.linkArrowGreen} alt="linkArrowGreen" width={22} height={22} className="w-5 h-5 xl:w-[10.97px] xl:h-auto" /></Link>
               </motion.div>
             </div>
             <motion.div variants={moveUp(0.5)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
-              <a href="#" className="bg-white text-foreground hover:bg-primary hover:text-white flex items-center justify-center rounded-4xl py-1 px-4 xl:py-[13px] gap-2 transition-all
-               duration-300 ease-in-out group max-w-fit lg:max-w-[285.33px]">
-                <span className="text-sm lg:text-base font-light uppercase leading-[1.578947368421053]">Download Brochure</span>
-                <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 xl:w-[33px] xl:h-[33px]">
+              <a href="#" className="bg-white text-foreground hover:bg-primary hover:text-white flex items-center justify-center rounded-4xl py-2 px-4 gap-2 transition-all
+               duration-300 ease-in-out group max-w-fit ">
+                <span className="text-xs font-medium uppercase leading-[1.578947368421053]">Download Brochure</span>
+                <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 ">
                   <path d="M8.49593 14.9186H4.79222C3.00365 14.9186 1.55078 16.3401 1.55078 18.0901V25.7901C1.55078 27.5401 3.00365 28.9617 4.79222 28.9617H5.02335M5.02335 28.9617C6.9385 28.9617 8.49593 27.4378 8.49593 25.564V3.07242C8.49593 2.50165 8.96921 2.03857 9.55256 2.03857H30.388C30.9713 2.03857 31.4446 2.50165 31.4446 3.07242V26.5009C31.4446 27.8578 30.322 28.9617 28.9296 28.9617H5.02335Z" stroke="#AD4545" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:stroke-white transition-all duration-300 ease-in-out" />
                   <path d="M13.7891 9.73828H23.0456" stroke="#AD4545" className="group-hover:stroke-white transition-all duration-300 ease-in-out" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   <path d="M13.7891 15.8877H25.8908" stroke="#AD4545" className="group-hover:stroke-white transition-all duration-300 ease-in-out" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -110,7 +111,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="pt-[26px] pb-[24px]  bg-forground-two dark:bg-black">
+      <div className="py-4 bg-forground-two dark:bg-black">
         <div className="container">
           <div className="flex flex-wrap justify-between items-center">
             <ul className="flex items-center gap-4 xl:gap-8">
@@ -127,4 +128,4 @@ const Footer = () => {
   );
 }
 
-export default Footer; 
+export default FooterV; 
