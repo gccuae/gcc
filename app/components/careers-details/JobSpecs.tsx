@@ -1,6 +1,6 @@
 const JobSpecs = () => {
   return ( 
-    <section>
+    <section className="dark:bg-black pt-57px">
       <div className="container">
         <div className="pb-57px">
           <h2 className="text-2xl leading-lh-text32 text-black dark:text-white">Job Specifications</h2>
