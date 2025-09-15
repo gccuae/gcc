@@ -31,8 +31,10 @@ const HealthandSafety = ({ title, description, measures }: Props) => {
                 className={`
           p-[20px] lg:p-[32px] xl:p-[35px] 2xl:p-[40px]
           hover:bg-primary hover:text-white transition-all duration-300 group
-          ${!isLastCol ? "border-r border-smgray" : ""}
-          ${!isLastRow ? "border-b border-smgray" : ""}
+          border-b lg:border-b-0 border-smgray lg:border-b-${
+            isLastRow ? "0" : "smgray"
+          } 
+          ${!isLastCol ? "lg:border-r border-smgray" : ""}
         `}
               >
                 <div>
