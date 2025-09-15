@@ -17,7 +17,7 @@ const QualityAssurance = ({
 }: Props) => {
   return (
     <section className="bg-light-white dark:bg-black py-57px">
-      <div className="container flex flex-col-reverse lg:flex-row items-center gap-[70px]">
+      <div className="container flex flex-col-reverse lg:flex-row items-center gap-[35px] xl:gap-[70px]">
         {/* Left Image */}
         <div className="w-full lg:w-[49%]">
           <Image
