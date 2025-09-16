@@ -8,10 +8,12 @@ import "swiper/css/effect-fade";
 import "swiper/css/thumbs";
 import { Swiper as SwiperType } from "swiper";
 import { StaticImageData } from "next/image";
-import Image from "next/image"; 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { fadeIn, moveUp } from "../motionVarients";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface AreaOfExpertiseProps {
   data: {
@@ -110,14 +112,14 @@ const SocialImpact = ({ data }: AreaOfExpertiseProps) => {
   }, []);
 
   return (
-    <section className="wrapper pt-10 xl:pt-[88px] overflow-hidden bg-black">
+    <section className="wrapper py-57px overflow-hidden bg-black">
       <div className="container">
         <h2 className="text-5xl font-normal leading-[1.147058823529412] text-black mb-5 xl:mb-[37px] text-white">
           {data.title}
         </h2>
         <div>
           <Swiper
-            className="!overflow-visible area-of-expertise-thumbs greenslide"
+            className="area-of-expertise-thumbs greenslide"
             onSwiper={setThumbsSwiper}
             spaceBetween={0}
             slidesPerView={3.8}
@@ -125,7 +127,7 @@ const SocialImpact = ({ data }: AreaOfExpertiseProps) => {
             loop={true}
             breakpoints={{
               0: {
-                slidesPerView: 1.4,
+                slidesPerView: 1,
               },
               768: {
                 slidesPerView: 2.5,
@@ -145,20 +147,20 @@ const SocialImpact = ({ data }: AreaOfExpertiseProps) => {
                 className="cursor-pointer transition mb-4 xl:mb-[65px] group"
                 onMouseEnter={() => handleSlideHover(index)}
               >
-                <div className="   transition-colors duration-400 pb-4 mb-6 xl:pb-[37px] mb-6 xl:mb-[42px] relative">
+                <div className="transition-colors duration-400 pb-4 mb-6 xl:pb-[37px] mb-6 xl:mb-[42px] relative">
                   <motion.div
-                    variants={fadeIn(index * 0.5)}
+                    variants={fadeIn(index * 0.3)}
                     initial="hidden"
                     whileInView="show"
-                    viewport={{ once: true, amount: 0.2 }}
-                    className="flex items-center justify-center rounded-full bg-white  w-[85px] h-[85px] group-hover:bg-primary transition-all duration-300 icon-wrapper dark:bg-[#0d0d0d]  "
+                    viewport={{ once: true, amount: 0.1 }}
+                    className="flex items-center justify-center rounded-full bg-white w-[85px] h-[85px] group-hover:bg-primary transition-all duration-300 icon-wrapper"
                   >
                     <Image
                       src={item.icon}
                       alt={item.title}
                       width={200}
                       height={200}
-                      className=" mb-2 w-10 h-10 object-contain group-hover:brightness-0 group-hover:invert-100"
+                      className="mb-2 w-10 h-10 object-contain group-hover:brightness-0 group-hover:invert-100"
                     />
                   </motion.div>
                   <div className="absolute bottom-[-6px] left-0 w-full h-[2px] bg-smgray -z-[1]">
@@ -169,10 +171,10 @@ const SocialImpact = ({ data }: AreaOfExpertiseProps) => {
                   </div>
                 </div>
                 <motion.h3
-                  variants={moveUp(index * 0.2)}
+                  variants={moveUp(index * 0.12)}
                   initial="hidden"
                   whileInView="show"
-                  viewport={{ once: true, amount: 0.2 }}
+                  viewport={{ once: true, amount: 0.1 }}
                   className="text-xl text-white/80 font-normal leading-sm xl:leading-[1]  group-hover:text-white transition-all duration-300"
                 >
                   {item.title}
@@ -197,14 +199,14 @@ const SocialImpact = ({ data }: AreaOfExpertiseProps) => {
             >
               {data.items.map((item) => (
                 <SwiperSlide key={item.id}>
-                  <div className="slide-container grid md:grid-cols-2 xl:grid-cols-[6fr_4fr] items-center gap-6 xl:gap-50px ">
-                    <div className="img-wrapper  pr-4 xl:pr-[50px] pb-0 xl:py-5 relative overflow-hidden ">
+                  {/* <div className="slide-container grid md:grid-cols-2 xl:grid-cols-[6fr_6fr] gap-[20px] md:gap-[30px] lg:gap-[50px] xl:gap-[70px] 2xl:gap-[95px] items-center">
+                    <div className="img-wrapper slide-img">
                       <Image
                         src={item.image}
                         alt={item.title}
-                        width={1000}
-                        height={1000}
-                        className="slide-img w-full h-auto rounded object-cover "
+                        width={775}
+                        height={483}
+                        className="w-full xl:w-[705px] max-w-[775px] h-[350px] lg:h-[433px] xl:h-[483px] object-cover"
                       />
                     </div>
 
@@ -213,13 +215,45 @@ const SocialImpact = ({ data }: AreaOfExpertiseProps) => {
                         {" "}
                         {item.title}
                       </h3>
-                      <p className="mb-3 slide-text text-lg font-[300] leading-[1.526315789473684] text-foreground text-white/80  transition-all duration-300 w-full">
-                        {" "}
-                        {item.description}
+                      <p className="text-lg font-[300] leading-[1.526315789473684] text-foreground text-white/80 transition-all duration-300 w-full">
+                        {item.description.split("\n").map((line, i) => (
+                          <span
+                            key={i}
+                            className="block slide-text mt-4 xl:mt-6"
+                          >
+                            {line}
+                          </span>
+                        ))}
                       </p>
-                      <p className="slide-text text-lg font-[300] leading-[1.526315789473684] text-foreground text-white/80  transition-all duration-300 w-full">
-                        {" "}
-                        {item.description}
+                    </div>
+                  </div> */}
+                  <div className="slide-container grid grid-cols-1 md:grid-cols-2 gap-[20px] md:gap-[30px] lg:gap-[50px] xl:gap-[70px] 2xl:gap-[95px] items-center">
+                    {/* Image */}
+                    <div className="img-wrapper slide-img w-full">
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        width={775}
+                        height={483}
+                        className="w-full max-w-[775px] h-[350px] lg:h-[433px] xl:h-[483px] object-cover"
+                      />
+                    </div>
+
+                    {/* Text */}
+                    <div className="w-full">
+                      <h3 className="text-2xl font-normal leading-[1.5625] mb-2 xl:mb-3 text-white transition-all duration-300">
+                        {item.title}
+                      </h3>
+
+                      <p className="text-lg font-light leading-[1.526315789473684] transition-all duration-300 w-full text-white/80">
+                        {item.description.split("\n").map((line, i) => (
+                          <span
+                            key={i}
+                            className="block slide-text mt-4 xl:mt-6"
+                          >
+                            {line}
+                          </span>
+                        ))}
                       </p>
                     </div>
                   </div>
