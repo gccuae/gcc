@@ -69,10 +69,17 @@
 
   /* --breakpoint-*: initial; */
   /* --container-max-2xl: 1520px; */
-  /* --breakpoint-xl: 1400px; */
-  --breakpoint-2xl: 90rem;
+  /* --breakpoint-xl: 40rem; */
+  /* --breakpoint-2xl: 90rem; */
   /* --breakpoint-3xl: 95rem; */
-  --breakpoint-3xl: 95.9375rem;
+  /* --breakpoint-3xl: 95.9375rem; */
+  /* --breakpoint-md: 40rem; */
+  /* --breakpoint-lg: 50rem;
+  --breakpoint-xl: 55rem;
+  --breakpoint-2xl: 95rem;
+  --breakpoint-3xl: 90rem; */
+
+  /* --container-max-2xl: 20rem; */
 
 }
 
@@ -108,6 +115,25 @@ body {
   @apply px-[15px] mx-auto;
 
 }
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1450px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1500px;
+  }
+}
+
+@media (min-width: 1700px) {
+  .container {
+    max-width: 1620px;
+  }
+
+}
+
 .section-spacing {
   @apply py-[60px] lg:py-[90px] xl:py-[100px] 2xl:py-[120px];
 }
