@@ -1,15 +1,20 @@
 "use client";
 
+import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import EnvironmentModal from "./EnvironmentModal";
+
+type Matter = {
+  title: string;
+  thumbnail: string;
+  images: string[];
+};
 
 type Props = {
   title: string;
   description: string;
-  matters: {
-    title: string;
-    thumbnail: string;
-    images: string[];
-  }[];
+  matters: Matter[];
 };
 
 const EnvironmentalResponsibility = ({
@@ -17,6 +22,7 @@ const EnvironmentalResponsibility = ({
   description,
   matters,
 }: Props) => {
+  const [selectedItem, setSelectedItem] = useState<Matter | null>(null);
   return (
     <section className="py-57px bg-white dark:bg-black">
       <div className="container">
@@ -34,6 +40,7 @@ const EnvironmentalResponsibility = ({
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-30px gap-20px">
           {matters.map((item, index) => (
             <div
+              onClick={() => setSelectedItem(item)}
               key={index}
               className="group flex flex-col overflow-hidden border-b border-gray-200 hover:border-primary transition-all duration-300 pb-27px xl:pb-[31px]"
             >
@@ -76,6 +83,14 @@ const EnvironmentalResponsibility = ({
             </div>
           ))}
         </div>
+        <AnimatePresence>
+          {selectedItem && (
+            <EnvironmentModal
+              item={selectedItem}
+              onClose={() => setSelectedItem(null)}
+            />
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
