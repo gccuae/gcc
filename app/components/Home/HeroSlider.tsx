@@ -28,11 +28,11 @@ const HeroSlider = ({ data }: HeroSliderProps) => {
   return (
     <section className="relative  overflow-hidden">
       {/* <div className="relative w-full overflow-hidden h-full"> */}
-          <div className="relative w-full h-full slideroverlay bg-cover bg-center" style={{ backgroundImage: `url(${data.bannerimage})` }} >
+          <div className="relative w-full h-full slideroverlay bg-cover bg-center"  style={{ backgroundImage: `url(${data.banners[activeIndex]?.bannerimage})` }} >
             <div className="slidermns h-full  container relative pt-10 md:pt-[130px] z-[9]">
               <Swiper
                 modules={[Autoplay, EffectFade]}
-                autoplay={{ delay: 100000 }}
+                autoplay={{ delay: 4000 }}
                 loop
                 effect="fade"
                 fadeEffect={{ crossFade: true }}
@@ -57,9 +57,9 @@ const HeroSlider = ({ data }: HeroSliderProps) => {
                         initial="hidden"
                         animate="show"
                         variants={moveUp(0)}>
-                        <motion.h2 variants={moveUp(0)} initial="hidden" animate="show" className="text-white text-6xl font-normal max-w-[20ch] leading-[1.180555555555556]">{slide.title}</motion.h2>
-                        <motion.p variants={moveUp(0.5)} initial="hidden" animate="show" className="text-white text-xl font-light max-w-[73ch] leading-[1.521739130434783] pt-[35px] pb-[35px]">{slide.subtitle}</motion.p>
-                        <motion.div variants={moveUp(1)} initial="hidden" animate="show" >
+                        <motion.h2 variants={moveUp(0.5)} initial="hidden" animate="show" className="text-white text-6xl font-normal max-w-[20ch] leading-[1.180555555555556]">{slide.title}</motion.h2>
+                        <motion.p variants={moveUp(1.25)} initial="hidden" animate="show" className="text-white text-xl font-light max-w-[73ch] leading-[1.521739130434783] pt-[35px] pb-[35px]">{slide.subtitle}</motion.p>
+                        <motion.div variants={moveUp(1.8)} initial="hidden" animate="show" >
                           <BtnPrimary link={slide.btnLink} text={slide.btn} bgtrans={true} borderwight={true} />
                         </motion.div>
                       </motion.div>

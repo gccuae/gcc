@@ -12,13 +12,13 @@ const FooterV = () => {
           <Image src={assets.footerbg} alt="footerbg" width={1920} height={1080} className="w-full h-full object-cover" />
         </div>
         <div className="container relative z-2">
-          <div className="pt-27px pb-4 border-b border-foreground">
+          <div className="pt-8 lg:pt-15 pb-4 lg:pb-6 border-b border-foreground">
             <motion.h2 className="text-4xl font-normal leading-[1.147058823529412] text-white max-w-3xl" variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} >Transforming Spaces, Building Futures</motion.h2>
           </div>
           <div className="grid gap-y-8 lg:grid-cols-2 xl:grid-cols-[6fr_4fr] pt-4 pb-4 xl:pt-27px xl:pb-27px border-b border-foreground">
             <div>
               
-              <div className="flex flex-col gap-2 pt-3 xl:pt-4 pb-5">
+              <div className="flex flex-col gap-2 lg:gap-3 pt-3 xl:pt-4 pb-5">
                 <motion.div className="flex items-center gap-4" variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
                   <div className="flex items-center justify-center bg-black rounded-full border border-foreground w-10 h-10">
                     <svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -78,7 +78,7 @@ const FooterV = () => {
               </div>
             </div>
           </div>
-          <div className="grid lg:grid-cols-2 xl:grid-cols-[6fr_4fr] pt-4 pb-4 xl:pt-27px xl:pb-27px gap-y-8">
+          <div className="grid lg:grid-cols-2 xl:grid-cols-[6fr_4fr] pt-6 pb-8 xl:pt-8 xl:pb-27px gap-y-8">
             <div className="flex flex-wrap gap-4 xl:gap-6">
               <motion.div className="flex items-center gap-2" variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
                 <Link href="#" className="flex items-center gap-2">
