@@ -32,7 +32,7 @@ const HeroSlider = ({ data }: HeroSliderProps) => {
             <div className="slidermns h-full  container relative pt-10 md:pt-[130px] z-[9]">
               <Swiper
                 modules={[Autoplay, EffectFade]}
-                autoplay={{ delay: 100000 }}
+                autoplay={{ delay: 3000 }}
                 loop
                 effect="fade"
                 fadeEffect={{ crossFade: true }}
