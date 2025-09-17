@@ -13,7 +13,7 @@ const WhyQhse = ({ title, description, matters }: Props) => {
         <h2 className="text-6xl leading-[1.147058823529412] text-black dark:text-white mb-27px">
           {title}
         </h2>
-        <p className="text-lg leading-[1.5625] text-black dark:text-foreground max-w-[80ch]">
+        <p className="text-lg leading-[1.5625] text-black dark:text-white/70 max-w-[80ch]">
           {description}
         </p>
 
@@ -38,7 +38,7 @@ const WhyQhse = ({ title, description, matters }: Props) => {
                   </h3>
                 </div>
               </div>
-              <p className="text-lg leading-lh-text19 font-light text-black dark:text-foreground">
+              <p className="text-lg leading-lh-text19 font-light text-black dark:text-white/70">
                 {item.content}
               </p>
             </div>

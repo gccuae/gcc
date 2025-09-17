@@ -28,7 +28,7 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   return (
-    <section className="wrapper pt-47px pb-0 xl:pb-47px bg-light-white dark:bg-black text-white overflow-hidden">
+    <section className="wrapper py-57px bg-light-white dark:bg-black text-white overflow-hidden">
       <div className="container">
         <motion.h2
           variants={moveUp(0)}
@@ -149,7 +149,7 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
                           {item.title}
                         </h3>
                       </div>
-                      <div className="flex items-start">
+                      <div className="flex items-start flex-shrink-0">
                         <Link
                           href={item.slug}
                           className="bg-white dark:bg-transparent border border-black/50 dark:border-smgray px-4 py-2 rounded-2xl xl:opacity-0 group-hover:xl:opacity-100 transition-all duration-300"
@@ -164,7 +164,7 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
                         </Link>
                       </div>
                     </div>
-                    <div className="xl:pl-4 xl:pr-3 pt-6 group-hover:xl:pl-[37px]  group-hover:xl:pt-[35px] group-hover:xl:pr-[35px] group-first:pl-0 transition-all duration-300">
+                    <div className="xl:pl-4 xl:pr-3 pt-6 group-hover:xl:pl-[28px]  group-hover:xl:pt-[35px] group-hover:xl:pr-[35px] group-first:pl-0 transition-all duration-300">
                       <p className="text-lg font-[300] leading-[1.526315789473684] pb-5 xl:pb-0 xl:opacity-0 xl:h-0 group-hover:xl:h-auto group-hover:xl:opacity-100 transition-all ease-in-out duration-300 group-hover:xl:pb-[23px] sector-description relative z-10 text-foreground dark:text-white">
                         {item.description}
                       </p>
