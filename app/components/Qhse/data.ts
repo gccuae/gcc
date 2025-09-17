@@ -12,11 +12,11 @@ export const secondSection = {
   Over the years, we've strengthened our commitment to excellence by adopting strong environmental and occupational health and safety standards. On 27 July 2019, Gulf Contractors earned ISO 14001:2015 and ISO 45001:2018 certifications, reinforcing our role as a responsible, forward-thinking construction partner.`,
   image: "/assets/img/qhse/QAMain.jpg",
   certifications: [
-    { name: "ISO 9001-2015", icon: "/assets/img/qhse/iso/1.jpg" },
+    { name: "ISO 9001-2015", icon: "/assets/img/qhse/iso/1.svg" },
     { name: "ISO 45001-2018", icon: "/assets/img/qhse/iso/2.svg" },
-    { name: "ISO 50001-2018", icon: "/assets/img/qhse/iso/3.jpg" },
-    { name: "ISO 9001-2015", icon: "/assets/img/qhse/iso/4.jpg" },
-    { name: "ISO 27001-2022", icon: "/assets/img/qhse/iso/5.jpg" },
+    { name: "ISO 50001-2018", icon: "/assets/img/qhse/iso/3.svg" },
+    { name: "ISO 9001-2015", icon: "/assets/img/qhse/iso/4.svg" },
+    { name: "ISO 27001-2022", icon: "/assets/img/qhse/iso/5.svg" },
   ],
 };
 
