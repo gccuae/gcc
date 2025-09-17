@@ -3,7 +3,7 @@ import type { Home } from "@/types/Common";
 export const homeDataBanner: Home = {
   metaTitle: "Welcome to Our Platform",
   metaDescription: "Discover amazing products and services",
-  bannerimage: "../assets/img/home/banner.svg",
+  
   bannerAlt: "../assets/img/home/banner.svg",
   banners: [
     {
@@ -11,18 +11,21 @@ export const homeDataBanner: Home = {
       subtitle: "Gulf Contractors Company (GCC) is a subsidiary of Abu Dhabi-based Al Sharafi Group and United Eastern (UE) Group, leading conglomerates with diverse interests across the MENA region.",
       btn: "READ MORE",
       btnLink: "/",
+      bannerimage: "../assets/img/home/banner.svg",
     },
     {
       title: "Pioneering Progress with Quality & Expertise 2",
       subtitle: "Gulf Contractors Company (GCC) is a subsidiary of Abu Dhabi-based Al Sharafi Group and United Eastern (UE) Group, leading conglomerates with diverse interests across the MENA region.",
       btn: "READ MORE",
       btnLink: "/",
+      bannerimage: "../assets/img/home/banner2.jpg",
     },
     {
       title: "Pioneering Progress with Quality & Expertise 3",
       subtitle: "Gulf Contractors Company (GCC) is a subsidiary of Abu Dhabi-based Al Sharafi Group and United Eastern (UE) Group, leading conglomerates with diverse interests across the MENA region.",
       btn: "READ MORE",
       btnLink: "/",
+      bannerimage: "../assets/img/home/banner.svg",
     },
   ],
 };
