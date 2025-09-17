@@ -28,7 +28,7 @@ const HeroSlider = ({ data }: HeroSliderProps) => {
   return (
     <section className="relative  overflow-hidden">
       {/* <div className="relative w-full overflow-hidden h-full"> */}
-          <div className="relative w-full h-full slideroverlay bg-cover bg-center" style={{ backgroundImage: `url(${data.bannerimage})` }} >
+          <div className="relative w-full h-full slideroverlay bg-cover bg-center"  style={{ backgroundImage: `url(${data.banners[activeIndex]?.bannerimage})` }} >
             <div className="slidermns h-full  container relative pt-10 md:pt-[130px] z-[9]">
               <Swiper
                 modules={[Autoplay, EffectFade]}
