@@ -42,5 +42,35 @@ export const SliderData = {
             "Accurate curing data",
           ]
         },
+        {
+          title: "Smart sensor",
+          image: "/assets/img/aitech/ai-slide3.jpg",
+          desc: "Collecting real‑time concrete data for AI‑driven analysis and smarter project decisions.",
+          ul: [
+            "Concrete temp monitoring ",
+            "Faster formwork removal",
+            "Accurate curing data",
+          ]
+        },
+        {
+          title: "Smart sensor",
+          image: "/assets/img/aitech/ai-slide3.jpg",
+          desc: "Collecting real‑time concrete data for AI‑driven analysis and smarter project decisions.",
+          ul: [
+            "Concrete temp monitoring ",
+            "Faster formwork removal",
+            "Accurate curing data",
+          ]
+        },
+        {
+          title: "Smart sensor",
+          image: "/assets/img/aitech/ai-slide3.jpg",
+          desc: "Collecting real‑time concrete data for AI‑driven analysis and smarter project decisions.",
+          ul: [
+            "Concrete temp monitoring ",
+            "Faster formwork removal",
+            "Accurate curing data",
+          ]
+        },
       ],
     };
