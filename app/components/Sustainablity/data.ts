@@ -77,53 +77,6 @@ export const socialImpactData = {
         image: "/assets/img/sustainablity/Social/imgs/4.jpg",
         slug: "",
       },
-      {
-        id: 5,
-        title: "MEP Services",
-        icon: "/assets/img/icons/mep-services.svg",
-        description:
-          "The competitive market conditions and aggressive business environment in the UAE have driven the construction industry to adopt a highly professional and systematic approach towards project execution.",
-        image: "/assets/img/home/area-of-expertise/mep-services.jpg",
-        slug: "",
-      },
-      {
-        id: 6,
-        title: "Project Management",
-        icon: "/assets/img/icons/project-management.svg",
-        description:
-          "The competitive market conditions and aggressive business environment in the UAE have driven the construction industry to adopt a highly professional and systematic approach towards project execution.",
-        image: "/assets/img/home/area-of-expertise/project-management.jpg",
-        slug: "",
-      },
-      {
-        id: 7,
-        title: "Preconstruction Planning",
-        icon: "/assets/img/icons/preconstruction-planning.svg",
-        description:
-          "The competitive market conditions and aggressive business environment in the UAE have driven the construction industry to adopt a highly professional and systematic approach towards project execution.",
-        image:
-          "/assets/img/home/area-of-expertise/preconstruction-planning.jpg",
-        slug: "",
-      },
-      {
-        id: 8,
-        title: "Facility Management",
-        icon: "/assets/img/icons/facility-management.svg",
-        description:
-          "The competitive market conditions and aggressive business environment in the UAE have driven the construction industry to adopt a highly professional and systematic approach towards project execution.",
-        image: "/assets/img/home/area-of-expertise/facility-management.jpg",
-        slug: "",
-      },
-      {
-        id: 9,
-        title: "Specialized Industrial Services",
-        icon: "/assets/img/icons/specialized-industrial-services.svg",
-        description:
-          "The competitive market conditions and aggressive business environment in the UAE have driven the construction industry to adopt a highly professional and systematic approach towards project execution.",
-        image:
-          "/assets/img/home/area-of-expertise/specialized-industrial-services.jpg",
-        slug: "",
-      },
     ],
   },
 };
