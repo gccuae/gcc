@@ -4,6 +4,8 @@ import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import EnvironmentModal from "./EnvironmentModal";
+import { motion } from "framer-motion";
+import { moveUp } from "../../motionVarients";
 
 type Matter = {
   title: string;
@@ -27,22 +29,38 @@ const EnvironmentalResponsibility = ({
     <section className="py-57px bg-white dark:bg-black">
       <div className="container">
         {/* Title */}
-        <h2 className="text-5xl md:text-6xl font-light leading-lh-title text-black dark:text-white mb-27px">
+        <motion.h2
+          variants={moveUp()}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="text-5xl md:text-6xl font-light leading-lh-title text-black dark:text-white mb-27px"
+        >
           {title}
-        </h2>
+        </motion.h2>
 
         {/* Description */}
-        <p className="text-lg leading-lh-text19 font-light text-forground dark:text-white max-w-[100ch] mb-57px">
+        <motion.p
+          variants={moveUp(0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="text-lg leading-lh-text19 font-light text-forground dark:text-white max-w-[100ch] mb-57px"
+        >
           {description}
-        </p>
+        </motion.p>
 
         {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-30px gap-20px">
           {matters.map((item, index) => (
-            <div
+            <motion.div
+              variants={moveUp(index * 0.22)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
               onClick={() => setSelectedItem(item)}
               key={index}
-              className="group flex flex-col overflow-hidden border-b border-gray-200 hover:border-primary transition-all duration-300 pb-27px xl:pb-[31px]"
+              className="group flex flex-col overflow-hidden border-b border-gray-200 hover:border-primary transition-colors duration-300 pb-27px xl:pb-[31px]"
             >
               {/* Thumbnail */}
               <div className="relative overflow-hidden">
@@ -80,7 +98,7 @@ const EnvironmentalResponsibility = ({
                   ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
         <AnimatePresence>
