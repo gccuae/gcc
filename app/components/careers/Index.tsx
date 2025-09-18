@@ -12,7 +12,7 @@ const Index = () => {
       </div>
     </section>
     <Main data={careerData} />
-    {/* <CurrentOpenings data={careerData} /> */}
+    <CurrentOpenings data={careerData} />
     <JobApplicationForm />
     </>
   );
