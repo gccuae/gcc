@@ -41,7 +41,7 @@ const JobApplicationForm = () => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl lg:text-6xl leading-tight text-gray-900 mb-14 font-light"
+          className="text-5xl leading-1h-title text-black dark:text-white mb-14 font-light"
         >
           Submit your resume and we&apos;ll keep it in our talent pool for
           future opportunities.
@@ -61,7 +61,7 @@ const JobApplicationForm = () => {
                 {...register("firstName")}
                 type="text"
                 placeholder="First Name"
-                className="w-full px-0 py-4 text-lg border-0 border-b border-smgray bg-transparent focus:border-gray-400 focus:outline-none placeholder-gray-500 transition-colors duration-200"
+                className="w-full px-0 py-4 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-gray-500 transition-colors duration-300"
               />
               {errors.firstName && (
                 <p className="text-red-500 text-sm">
@@ -75,7 +75,7 @@ const JobApplicationForm = () => {
                 {...register("lastName")}
                 type="text"
                 placeholder="Last Name"
-                className="w-full px-0 py-4 text-lg border-0 border-b border-smgray bg-transparent focus:border-gray-400 focus:outline-none placeholder-gray-500 transition-colors duration-200"
+                className="w-full px-0 py-4 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-gray-500 transition-colors duration-300"
               />
               {errors.lastName && (
                 <p className="text-red-500 text-sm">
@@ -98,7 +98,7 @@ const JobApplicationForm = () => {
                 {...register("email")}
                 type="email"
                 placeholder="Email"
-                className="w-full px-0 py-4 text-lg border-0 border-b border-smgray bg-transparent focus:border-gray-400 focus:outline-none placeholder-gray-500 transition-colors duration-200"
+                className="w-full px-0 py-4 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-gray-500 transition-colors duration-300"
               />
               {errors.email && (
                 <p className="text-red-500 text-sm">{errors.email.message}</p>
@@ -110,7 +110,7 @@ const JobApplicationForm = () => {
                 {...register("phoneNumber")}
                 type="tel"
                 placeholder="Phone Number"
-                className="w-full px-0 py-4 text-lg border-0 border-b border-smgray bg-transparent focus:border-gray-400 focus:outline-none placeholder-gray-500 transition-colors duration-200"
+                className="w-full px-0 py-4 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-gray-500 transition-colors duration-300"
               />
               {errors.phoneNumber && (
                 <p className="text-red-500 text-sm">
@@ -133,7 +133,7 @@ const JobApplicationForm = () => {
                 {...register("nationality")}
                 type="text"
                 placeholder="Nationality"
-                className="w-full px-0 py-4 text-lg border-0 border-b border-smgray bg-transparent focus:border-gray-400 focus:outline-none placeholder-gray-500 transition-colors duration-200"
+                className="w-full px-0 py-4 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-gray-500 transition-colors duration-300"
               />
               {errors.nationality && (
                 <p className="text-red-500 text-sm">
@@ -147,7 +147,7 @@ const JobApplicationForm = () => {
                 {...register("hasConstructionExperience")}
                 type="text"
                 placeholder="Current Location"
-                className="w-full px-0 py-4 text-lg border-0 border-b border-smgray bg-transparent focus:border-gray-400 focus:outline-none placeholder-gray-500 transition-colors duration-200"
+                className="w-full px-0 py-4 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-gray-500 transition-colors duration-300"
               />
               {errors.hasConstructionExperience && (
                 <p className="text-red-500 text-sm">
@@ -167,7 +167,7 @@ const JobApplicationForm = () => {
           >
             {/* Cover Letter */}
             <div className="space-y-2">
-              <div className="relative border-b border-smgray focus:border-black">
+              <div className="relative border-b border-smgray focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none transition-colors duration-300">
                 <input
                   {...register("coverLetter", {
                     required: "Cover letter is required",
@@ -233,7 +233,7 @@ const JobApplicationForm = () => {
 
             {/* Resume */}
             <div className="space-y-2">
-              <div className="relative border-b border-smgray focus:border-black">
+              <div className="relative border-b border-smgray focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none transition-colors duration-300">
                 <input
                   {...register("resume", {
                     required: "Resume is required",

@@ -124,7 +124,7 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
   const DropdownIndicator = (props: any) => {
     return (
       <components.DropdownIndicator {...props}>
-        <ChevronDown size={20} color="#000" />
+        <ChevronDown size={20} className="select-down-arrow" />
       </components.DropdownIndicator>
     );
   };
@@ -173,6 +173,7 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
                     control: (base) => ({
                       ...base,
                       border: "none",
+                      backgroundColor: "transparent",
                       borderBottom: "1px solid #BCBCBC",
                       borderRadius: 0,
                       boxShadow: "none",
@@ -193,12 +194,14 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
                     }),
                     placeholder: (base) => ({
                       ...base,
-                      color: "#000000",
+                      color: "#000",
+                      fontWeight: 300,
                       fontSize: "19px",
                     }),
                     singleValue: (base) => ({
                       ...base,
-                      color: "#000000",
+                      color: "#000",
+                      fontWeight: 300,
                       fontSize: "19px",
                     }),
                     option: (base, state) => ({
@@ -252,10 +255,10 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
                   className="pb-6 xl:pb-10 mb-6 xl:mb-10 border-b border-smgray last:border-b-0 flex md:flex-row flex-col justify-between gap-6 md:items-center"
                 >
                   <div>
-                    <h3 className="text-2xl leading-[1.5625] font-normal">
+                    <h3 className="text-2xl leading-[1.5625] font-normal text-black dark:text-white">
                       {job.title}
                     </h3>
-                    <h4 className="text-lg leading-[1.5625] font-normal">
+                    <h4 className="text-lg leading-[1.5625] font-normal text-foreground dark:text-white/50">
                       <span>{job.sector}</span> <span className="mx-2">|</span>{" "}
                       <span>{job.location}</span>{" "}
                       <span className="mx-2">|</span> <span>{job.type}</span>
@@ -274,12 +277,13 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
               viewport={{ once: true }}
               className="sticky top-0 self-start right-col"
             >
-              <div className="bg-light-white dark:bg-black p-6 xl:p-10 max-w-[575px] ml-auto mt-6 xl:mt-[67px]">
+              1
+              <div className="bg-light-white p-6 xl:p-10 max-w-[575px] ml-auto mt-6 xl:mt-[67px]">
                 <div className="border-b border-smgray pb-27px">
-                  <h3 className="text-2xl leading-[1.205882352941176] mb-4 xl:mb-6 font-normal dark:text-white">
+                  <h3 className="text-2xl leading-[1.205882352941176] mb-4 xl:mb-6 font-normal text-black dark:text-white">
                     Didn’t find a role that fits you?
                   </h3>
-                  <p className="text-xl leading-[1.46875] font-light dark:text-white">
+                  <p className="text-xl leading-[1.46875] font-light text-foreground dark:text-white/50">
                     Send your resume and we’ll get in touch with you.
                   </p>
                 </div>
@@ -309,7 +313,7 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
                         strokeLinecap="round"
                       />
                     </svg>
-                    <span className="text-lg leading-[1.526315789473684] font-normal dark:text-white">
+                    <span className="text-lg leading-[1.526315789473684] font-normal text-foreground dark:text-white/50">
                       Mail Your Resume to info@gcc.ae
                     </span>
                   </Link>
