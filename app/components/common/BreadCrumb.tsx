@@ -93,8 +93,8 @@ const Breadcrumb = ({ standard = false }: Props) => {
                   <path
                     d="M0 10H24L15 1"
                     stroke="#7AC142"
-                    stroke-width="1.5"
-                    stroke-miterlimit="10"
+                    strokeWidth="1.5"
+                    strokeMiterlimit="10"
                   />
                 </svg>
               </span>
