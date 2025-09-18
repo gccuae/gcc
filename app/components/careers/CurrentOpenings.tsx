@@ -5,7 +5,7 @@ import BtnPrimary from "../common/BtnPrimary";
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { moveUp } from "../motionVarients";
+import { moveLeft, moveUp } from "../motionVarients";
 import { components } from "react-select";
 import { ChevronDown } from "lucide-react";
 
@@ -147,7 +147,7 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-2xl leading-lh-text32 dark:text-white"
+            className="text-2xl leading-lh-text32 text-foreground dark:text-white"
           >
             We’re always on the lookout for outstanding talent
           </motion.p>
@@ -155,69 +155,86 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
         <div className="pt-6 xl:pt-10 pb-6 xl:pb-47px">
           <div className="flex flex-col gap-6 xl:flex-row md:gap-6 xl:gap-10 w-full md:w-fit">
             {dropdowns.map((options, idx) => (
-              <Select
-                components={{ DropdownIndicator }}
-                className="md:w-[280px]"
+              <motion.div
                 key={idx}
-                classNamePrefix="react-select"
-                options={options.map((label) => ({ value: label, label }))}
-                placeholder={options[0]}
-                styles={{
-                  control: (base) => ({
-                    ...base,
-                    border: "none",
-                    borderBottom: "1px solid #BCBCBC",
-                    borderRadius: 0,
-                    boxShadow: "none",
-                    padding: "2px 0",
-                    "&:hover": {
-                      borderBottom: "1px solid #000",
-                    },
-                    transition: "all 0.3s ease-in-out",
-                  }),
-                  valueContainer: (base) => ({
-                    ...base,
-                    padding: 0, // remove extra padding
-                  }),
-                  input: (base) => ({
-                    ...base,
-                    margin: 0,
-                    padding: 0,
-                  }),
-                  placeholder: (base) => ({
-                    ...base,
-                    color: "#000000",
-                    fontSize: "19px",
-                  }),
-                  singleValue: (base) => ({
-                    ...base,
-                    color: "#000000",
-                    fontSize: "19px",
-                  }),
-                  option: (base, state) => ({
-                    ...base,
-                    backgroundColor: state.isSelected ? "#EE3524" : "white",
-                    color: state.isSelected ? "white" : "black",
-                    fontSize: "19px",
-                    cursor: "pointer",
-                    "&:hover": {
-                      backgroundColor: "#f3f3f3",
-                    },
-                  }),
-                  indicatorSeparator: () => ({
-                    display: "none",
-                  }),
-                }}
-              />
+                variants={moveLeft(idx * 0.25)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+              >
+                <Select
+                  components={{ DropdownIndicator }}
+                  className="md:w-[280px]"
+                  key={idx}
+                  classNamePrefix="react-select"
+                  options={options.map((label) => ({ value: label, label }))}
+                  placeholder={options[0]}
+                  styles={{
+                    control: (base) => ({
+                      ...base,
+                      border: "none",
+                      borderBottom: "1px solid #BCBCBC",
+                      borderRadius: 0,
+                      boxShadow: "none",
+                      padding: "2px 0",
+                      "&:hover": {
+                        borderBottom: "1px solid #000",
+                      },
+                      transition: "all 0.3s ease-in-out",
+                    }),
+                    valueContainer: (base) => ({
+                      ...base,
+                      padding: 0, // remove extra padding
+                    }),
+                    input: (base) => ({
+                      ...base,
+                      margin: 0,
+                      padding: 0,
+                    }),
+                    placeholder: (base) => ({
+                      ...base,
+                      color: "#000000",
+                      fontSize: "19px",
+                    }),
+                    singleValue: (base) => ({
+                      ...base,
+                      color: "#000000",
+                      fontSize: "19px",
+                    }),
+                    option: (base, state) => ({
+                      ...base,
+                      backgroundColor: state.isSelected ? "#EE3524" : "white",
+                      color: state.isSelected ? "white" : "black",
+                      fontSize: "19px",
+                      cursor: "pointer",
+                      "&:hover": {
+                        backgroundColor: "#f3f3f3",
+                      },
+                    }),
+                    indicatorSeparator: () => ({
+                      display: "none",
+                    }),
+                  }}
+                />
+              </motion.div>
             ))}
-
-            <button className="bg-accent px-6 py-3 rounded-3xl uppercase w-full md:w-auto">
+            <motion.button
+              variants={moveLeft(0.6)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="bg-accent px-6 py-3 rounded-3xl uppercase w-full md:w-auto"
+            >
               Apply filter
-            </button>
+            </motion.button>
           </div>
         </div>
         <div className="relative">
-          <div
+          <motion.div
+            variants={moveUp()}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
             className="grid grid-cols-1 xl:grid-cols-2 gap-6 xl:gap-10 border-t border-smgray relative"
             ref={sectionRef}
           >
@@ -226,9 +243,13 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
               ref={leftRef}
             >
               {data.jobs.map((job, index) => (
-                <div
+                <motion.div
+                  variants={moveUp(index * 0.2)}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
                   key={index}
-                  className="pb-6 xl:pb-10 mb-6 xl:mb-10 border-b border-smgray last:border-b-0 flex justify-between items-center"
+                  className="pb-6 xl:pb-10 mb-6 xl:mb-10 border-b border-smgray last:border-b-0 flex md:flex-row flex-col justify-between gap-6 md:items-center"
                 >
                   <div>
                     <h3 className="text-2xl leading-[1.5625] font-normal">
@@ -240,11 +261,19 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
                       <span className="mx-2">|</span> <span>{job.type}</span>
                     </h4>
                   </div>
-                  <BtnPrimary link="#" text="Apply Now" bgtrans={true} />
-                </div>
+                  <div>
+                    <BtnPrimary link="#" text="Apply Now" bgtrans={true} />
+                  </div>
+                </motion.div>
               ))}
             </div>
-            <div className="sticky top-0 self-start z-10 right-col">
+            <motion.div
+              variants={moveUp()}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="sticky top-0 self-start right-col"
+            >
               <div className="bg-light-white dark:bg-black p-6 xl:p-10 max-w-[575px] ml-auto mt-6 xl:mt-[67px]">
                 <div className="border-b border-smgray pb-27px">
                   <h3 className="text-2xl leading-[1.205882352941176] mb-4 xl:mb-6 font-normal dark:text-white">
@@ -254,7 +283,13 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
                     Send your resume and we’ll get in touch with you.
                   </p>
                 </div>
-                <div className="pt-27px">
+                <motion.div
+                  variants={moveUp(0.2)}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
+                  className="pt-27px"
+                >
                   <Link
                     href="mailto:info@gcc.ae"
                     className="flex items-center gap-[10.28px] bg-black/5 p-4 xl:p-5"
@@ -278,10 +313,10 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
                       Mail Your Resume to info@gcc.ae
                     </span>
                   </Link>
-                </div>
+                </motion.div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>
