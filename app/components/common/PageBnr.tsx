@@ -10,7 +10,12 @@ interface PageBnrProps {
 const PageBnr = ({ pageTitle, bannerImg }: PageBnrProps) => {
   return (
     <section className="relative h-[350px] xl:h-[450px] flex flex-col justify-end pb-15 xl:pb-[83x]">
-      <div className="absolute top-0 left-0 w-full h-full z-0">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{duration: 0.4, ease: "easeInOut" }}
+        className="absolute top-0 left-0 w-full h-full z-0"
+      >
         <Image
           src={bannerImg}
           alt=""
@@ -18,7 +23,7 @@ const PageBnr = ({ pageTitle, bannerImg }: PageBnrProps) => {
           height={800}
           className="w-full h-full object-cover"
         />
-      </div>
+      </motion.div>
       <div className="absolute top-0 left-0 w-full h-full z-0 bg-gradient-to-b from-black/80 from-0% via-black/55 via-51% to-black/85 to-100%"></div>
       <div className="container relative z-10">
         <div>
