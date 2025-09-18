@@ -17,22 +17,8 @@ const ImgDesc = ({ data }: ImgDescProps) => {
     <section className="py-57px dark:bg-black">
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:flex gap-6 xl:gap-[70px] items-center">
-          <motion.div
-            variants={fadeIn(0.2)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="xl:w-[48.6%]"
-          >
-            <Image
-              src={data.img}
-              alt=""
-              width={1500}
-              height={1500}
-              className="w-full max-h-[772px] object-cover"
-            />
-          </motion.div>
-          <div className="xl:w-[51.3%] flex flex-col gap-6 justify-center">
+          {/* Text Section */}
+          <div className="xl:w-[51.3%] flex flex-col gap-6 justify-center order-1 lg:order-2">
             <div>
               <motion.h2
                 variants={moveUp(0.2)}
@@ -56,6 +42,23 @@ const ImgDesc = ({ data }: ImgDescProps) => {
               </div>
             </div>
           </div>
+
+          {/* Image Section */}
+          <motion.div
+            variants={fadeIn(0.2)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="xl:w-[48.6%] order-2 lg:order-1"
+          >
+            <Image
+              src={data.img}
+              alt=""
+              width={1500}
+              height={1500}
+              className="w-full max-h-[772px] object-cover"
+            />
+          </motion.div>
         </div>
       </div>
     </section>
