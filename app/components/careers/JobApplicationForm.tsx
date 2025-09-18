@@ -1,10 +1,13 @@
 "use client";
+
 import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { jobApplicationSchema } from "../../../lib/validations/careerSubmitForm";
 import { z } from "zod";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { moveUp } from "../../components/motionVarients";
 
 type FormData = z.infer<typeof jobApplicationSchema>;
 
@@ -33,14 +36,26 @@ const JobApplicationForm = () => {
   return (
     <section className="py-57px bg-light-white dark:bg-black">
       <div className="container">
-        <h2 className="text-4xl md:text-5xl lg:text-6xl leading-tight text-gray-900 mb-14 font-light">
+        <motion.h2
+          variants={moveUp()}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="text-4xl md:text-5xl lg:text-6xl leading-tight text-gray-900 mb-14 font-light"
+        >
           Submit your resume and we&apos;ll keep it in our talent pool for
           future opportunities.
-        </h2>
+        </motion.h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
           {/* First Row */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <motion.div
+            variants={moveUp()}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          >
             <div className="space-y-2">
               <input
                 {...register("firstName")}
@@ -68,10 +83,16 @@ const JobApplicationForm = () => {
                 </p>
               )}
             </div>
-          </div>
+          </motion.div>
 
           {/* Second Row */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <motion.div
+            variants={moveUp(0.2)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          >
             <div className="space-y-2">
               <input
                 {...register("email")}
@@ -97,10 +118,16 @@ const JobApplicationForm = () => {
                 </p>
               )}
             </div>
-          </div>
+          </motion.div>
 
           {/* Third Row */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <motion.div
+            variants={moveUp(0.4)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          >
             <div className="space-y-2">
               <input
                 {...register("nationality")}
@@ -128,10 +155,16 @@ const JobApplicationForm = () => {
                 </p>
               )}
             </div>
-          </div>
+          </motion.div>
 
           {/* File Upload */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <motion.div
+            variants={moveUp(0.6)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          >
             {/* Cover Letter */}
             <div className="space-y-2">
               <div className="relative border-b border-smgray focus:border-black">
@@ -259,10 +292,16 @@ const JobApplicationForm = () => {
                 </p>
               )}
             </div>
-          </div>
+          </motion.div>
 
           {/* Submit */}
-          <div className="flex justify-end pt-8">
+          <motion.div
+            variants={moveUp(0.6)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="flex justify-end pt-8"
+          >
             <button
               type="submit"
               className="hover:bg-accent hover:border-accent dark:hover:bg-transparent hover:text-white flex items-center justify-center py-1 xl:py-[7.39px] px-4 xl:px-[28px] gap-2 transition-all duration-300 ease-in-out group border border-foreground dark:border-white rounded-4xl w-fit hover:shadow-xl dark:bg-transparent group 2xl:min-w-[230px]"
@@ -285,7 +324,7 @@ const JobApplicationForm = () => {
                 />
               </svg>
             </button>
-          </div>
+          </motion.div>
         </form>
       </div>
     </section>
