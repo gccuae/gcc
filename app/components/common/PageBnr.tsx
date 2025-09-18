@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image";
 import Breadcrumb from "./BreadCrumb";
 import { motion } from "framer-motion";

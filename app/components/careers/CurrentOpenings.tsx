@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { moveLeft, moveUp } from "../motionVarients";
-import { components } from "react-select";
+import { components, DropdownIndicatorProps } from "react-select";
 import { ChevronDown } from "lucide-react";
 
 interface CurrentOpeningsProps {
@@ -121,7 +121,7 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
   const dropdowns = [jobTitles, departments, locations];
   const Select = dynamic(() => import("react-select"), { ssr: false });
 
-  const DropdownIndicator = (props: any) => {
+  const DropdownIndicator = (props: DropdownIndicatorProps) => {
     return (
       <components.DropdownIndicator {...props}>
         <ChevronDown size={20} className="select-down-arrow" />

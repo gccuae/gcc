@@ -1,22 +1,20 @@
-
-
 export const aboutData = {
   pageTitle: "Company Overview",
   bannerImg: "/assets/img/about/banner.jpg",
   section1: {
     img: "/assets/img/about/who-we-are.jpg",
     title: "Who We Are",
-    desc: [
-      "Gulf Contractors Company (GCC) is a subsidiary of Abu Dhabi-based Al Sharafi Group and United Eastern (UE) Group, two distinguished conglomerates with interests in diverse businesses such as healthcare, construction, manufacturing, oil & gas, agriculture, service & tourism and trading across the MENA region.",
-      "GCC, founded in the year 1988, is a name synonymous with innovation and excellence in civil engineering and construction. Our success is exemplified by the sheer breadth of projects accomplished, spanning a wide spectrum, right from infrastructure, defense and leisure to industrial, commercial and residential. We have spread our excellence from our headquarters in Abu Dhabi, UAE to become a name to be reckoned with not just in the nation, but also across several countries in the Middle East.",
-      "The company has, along the way, played a vital role in the development of the UAE’s infrastructure, while emerging as a competitive name in the region. From just a single contract of AED 3 million in the founding year, we have grown the turnover over the past three decades to a staggering AED 5.0 billion (USD 1.35 billion), thereby setting the pace for quality, progress and distinction. The phenomenal growth of GCC and the ambitious plans for the future signify our ranking as a premier contractor that is all set to scale greater heights.",
-    ],
+    description: `Gulf Contractors Company (GCC) is a subsidiary of Abu Dhabi-based Al Sharafi Group and United Eastern (UE) Group, two distinguished conglomerates with interests in diverse businesses such as healthcare, construction, manufacturing, oil & gas, agriculture, service & tourism and trading across the MENA region.
+      GCC, founded in the year 1988, is a name synonymous with innovation and excellence in civil engineering and construction. Our success is exemplified by the sheer breadth of projects accomplished, spanning a wide spectrum, right from infrastructure, defense and leisure to industrial, commercial and residential. We have spread our excellence from our headquarters in Abu Dhabi, UAE to become a name to be reckoned with not just in the nation, but also across several countries in the Middle East.
+      The company has, along the way, played a vital role in the development of the UAE’s infrastructure, while emerging as a competitive name in the region. From just a single contract of AED 3 million in the founding year, we have grown the turnover over the past three decades to a staggering AED 5.0 billion (USD 1.35 billion), thereby setting the pace for quality, progress and distinction. The phenomenal growth of GCC and the ambitious plans for the future signify our ranking as a premier contractor that is all set to scale greater heights.`,
   },
   whatWeDo: {
     title: "What We Do",
     subTitle: "Unlocking Potential Through Construction Excellence",
-    descTop: "Complementing GCC’s sturdy business background, vast local construction knowledge and rich resources is the ability to undertake construction projects of any scale and form. Currently, our construction activities span the below services",
-    descBottom: "Furthermore, we place priority on quality, transparency and innovativeness in every project, thereby ensuring that the right solutions are applied to deliver enhanced returns for our clients. The wide array of services offered by us is ever expanding to incorporate emerging needs and newer technological advancements.",
+    descTop:
+      "Complementing GCC’s sturdy business background, vast local construction knowledge and rich resources is the ability to undertake construction projects of any scale and form. Currently, our construction activities span the below services",
+    descBottom:
+      "Furthermore, we place priority on quality, transparency and innovativeness in every project, thereby ensuring that the right solutions are applied to deliver enhanced returns for our clients. The wide array of services offered by us is ever expanding to incorporate emerging needs and newer technological advancements.",
     arrowIcon: "/assets/img/icons/arrow-tr-green.svg",
     items: [
       {
@@ -92,31 +90,36 @@ export const aboutData = {
       {
         year: 1988,
         title: "GULF CONTRACTORS CO LLC, Was Established",
-        description: "Gulf Contractors Co. LLC was established in 1988. With decades of industry experience, the company has built a strong reputation for quality and reliability. Today, it stands as a trusted name in delivering innovative construction solutions.",
+        description:
+          "Gulf Contractors Co. LLC was established in 1988. With decades of industry experience, the company has built a strong reputation for quality and reliability. Today, it stands as a trusted name in delivering innovative construction solutions.",
         backgroundImage: "/assets/img/about/legacy-slider/bg-1.jpg",
       },
       {
         year: 1999,
         title: "Expansion into New Markets",
-        description: "Expanded operations into new regional markets, establishing key partnerships and growing our client base significantly. This period marked substantial growth in our construction capabilities.",
+        description:
+          "Expanded operations into new regional markets, establishing key partnerships and growing our client base significantly. This period marked substantial growth in our construction capabilities.",
         backgroundImage: "/assets/img/about/legacy-slider/bg-2.jpg",
       },
       {
         year: 2000,
         title: "Technology Integration",
-        description: "Implemented cutting-edge construction technologies and project management systems, revolutionizing our approach to large-scale projects and improving efficiency across all operations.",
+        description:
+          "Implemented cutting-edge construction technologies and project management systems, revolutionizing our approach to large-scale projects and improving efficiency across all operations.",
         backgroundImage: "/assets/img/about/legacy-slider/bg-3.jpg",
       },
       {
         year: 2005,
         title: "Quality Certifications",
-        description: "Achieved major industry certifications and quality standards, reinforcing our commitment to excellence and positioning us as a leader in sustainable construction practices.",
+        description:
+          "Achieved major industry certifications and quality standards, reinforcing our commitment to excellence and positioning us as a leader in sustainable construction practices.",
         backgroundImage: "/assets/img/about/legacy-slider/bg-1.jpg",
       },
       {
         year: 2010,
         title: "International Recognition",
-        description: "Received international recognition for outstanding construction projects and innovation in engineering solutions, establishing our reputation on a global scale.",
+        description:
+          "Received international recognition for outstanding construction projects and innovation in engineering solutions, establishing our reputation on a global scale.",
         backgroundImage: "/assets/img/about/legacy-slider/bg-2.jpg",
       },
     ],

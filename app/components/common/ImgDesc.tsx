@@ -30,15 +30,18 @@ const ImgDesc = ({ data }: ImgDescProps) => {
                 {data.title}
               </motion.h2>
               <div>
-                <motion.p
-                  variants={moveUp(0.35)}
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={{ once: true }}
-                  className="dark:text-white text-lg font-light leading-[1.526315789473684] mb-6 last:mb-0"
-                >
-                  {data.description}
-                </motion.p>
+                {data.description.split("\n").map((line, idx) => (
+                  <motion.p
+                    key={idx}
+                    variants={moveUp(0.35 + idx * 0.1)} // small stagger for each para
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true }}
+                    className="dark:text-white text-lg font-light leading-[1.526315789473684] mb-6 last:mb-0"
+                  >
+                    {line}
+                  </motion.p>
+                ))}
               </div>
             </div>
           </div>
