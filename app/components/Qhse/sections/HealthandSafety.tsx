@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { moveUp } from "../../motionVarients";
 
 type Props = {
   title: string;
@@ -13,24 +15,47 @@ const HealthandSafety = ({ title, description, measures }: Props) => {
     <section className="py-57px bg-black">
       <div className="container">
         <div className="mb-6 xl:mb-[47px]">
-          <h2 className="text-6xl leading-lh-title font-normal mb-4 xl:mb-[27px] text-white">
+          <motion.h2
+            variants={moveUp()}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="text-6xl leading-lh-title font-normal mb-4 xl:mb-[27px] text-white"
+          >
             {title}
-          </h2>
-          <p className="text-lg leading-lh-text19 text-white font-light max-w-[100ch]">
+          </motion.h2>
+          <motion.p
+            variants={moveUp(0.2)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="text-lg leading-lh-text19 text-white font-light max-w-[100ch]"
+          >
             {description}
-          </p>
+          </motion.p>
         </div>
-        <div className="grid lg:grid-cols-4 border border-smgray">
+
+        <motion.div
+          variants={moveUp()}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid lg:grid-cols-4 border border-smgray overflow-hidden"
+        >
           {measures.map((item, index) => {
             const isLastCol = (index + 1) % 4 === 0; // last col in lg grid
             const isLastRow = index >= measures.length - 4; // last row in lg grid
 
             return (
-              <div
+              <motion.div
                 key={index}
+                variants={moveUp(index * 0.15)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
                 className={`
           p-[20px] lg:p-[32px] xl:p-[35px] 2xl:p-[40px]
-          hover:bg-primary hover:text-white transition-all duration-300 group
+          hover:bg-primary hover:text-white transition-colors duration-300 group
           border-b lg:border-b-0 border-smgray lg:border-b-${
             isLastRow ? "0" : "smgray"
           } 
@@ -51,10 +76,10 @@ const HealthandSafety = ({ title, description, measures }: Props) => {
                     {item.name}
                   </h3>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
