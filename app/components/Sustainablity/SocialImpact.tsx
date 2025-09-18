@@ -93,7 +93,7 @@ const SocialImpact = ({ data }: AreaOfExpertiseProps) => {
             {
               y: 0,
               opacity: 1,
-              duration: 0.8,
+              duration: 0.4,
               ease: "power3.out",
               scrollTrigger: {
                 trigger: btn,
@@ -114,9 +114,15 @@ const SocialImpact = ({ data }: AreaOfExpertiseProps) => {
   return (
     <section className="wrapper py-57px overflow-hidden bg-black">
       <div className="container">
-        <h2 className="text-5xl font-normal leading-[1.147058823529412] text-black mb-5 xl:mb-[37px] text-white">
+        <motion.h2
+          variants={moveUp(0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="text-5xl font-normal leading-[1.147058823529412] text-black mb-5 xl:mb-[37px] text-white"
+        >
           {data.title}
-        </h2>
+        </motion.h2>
         <div>
           <Swiper
             className="area-of-expertise-thumbs greenslide"
@@ -149,7 +155,7 @@ const SocialImpact = ({ data }: AreaOfExpertiseProps) => {
               >
                 <div className="transition-colors duration-400 pb-4 mb-6 xl:pb-[37px] mb-6 xl:mb-[42px] relative">
                   <motion.div
-                    variants={fadeIn(index * 0.3)}
+                    variants={fadeIn(index * 0.25)}
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, amount: 0.1 }}
