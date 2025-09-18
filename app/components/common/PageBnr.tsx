@@ -28,7 +28,7 @@ const PageBnr = ({ pageTitle, bannerImg }: PageBnrProps) => {
       <div className="container relative z-10">
         <div>
           <motion.h2
-            initial={{ opacity: 0, x: -50, clipPath: "inset(0 100% 0 0)" }}
+            initial={{ opacity: 0, x: -30, clipPath: "inset(0 100% 0 0)" }}
             animate={{ opacity: 1, x: 0, clipPath: "inset(0 0% 0 0)" }}
             transition={{ duration: 1.3, ease: "easeOut" }}
             className="text-white text-6xl"
