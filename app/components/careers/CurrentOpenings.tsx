@@ -244,7 +244,7 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
             >
               {data.jobs.map((job, index) => (
                 <motion.div
-                  variants={moveUp(index * 0.2)}
+                  variants={moveUp(index * 0.15)}
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true }}
