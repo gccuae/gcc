@@ -6,7 +6,7 @@ const Index = () => {
     <>
     <section className="pt-57px dark:bg-black">
         <div className="container">
-          <StandardBnr title="Contact Us" />
+          <StandardBnr title="Let’s Connect with GCC" />
         </div>
     </section>
     <Main />

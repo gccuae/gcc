@@ -89,13 +89,14 @@ const KeyProjects = () => {
         loop={true}
         // centeredSlides={true}
         slidesPerView="auto"
-        spaceBetween={40}
+        spaceBetween={15}
         grabCursor
         // loopAdditionalSlides={1} 
         breakpoints={{
           425: { slidesPerView: 1.2 },
           768: { slidesPerView: 2 },
-          1024: { slidesPerView: 2.5 },
+          1024: { slidesPerView: 2.5,
+            spaceBetween:40 },
         }}
       >
         {serviceDetailsData.keyProjects.items.map((item, index) => (

@@ -4,7 +4,7 @@ const Main = () => {
     <section className="pt-57px xl:pt-25">
       <div className="container">
         <StandardBnr title="Civil & Structural Works" />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 xl:gap-10 justify-items-between py-10 xl:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 xl:gap-10 justify-items-between  lg:pt-[23px] pb-7 lg:pb-10 xl:pb-20">
           <div>
             <h2 className="text-3xl leading-lh-text48 font-normal text-black dark:text-white">
               Building Excellence in Every Project

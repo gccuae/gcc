@@ -12,7 +12,7 @@ const CounterSection = () => {
         </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 border-t border-l border-r border-smgray">
             {groupCompaniesData.section1.items.map((item, index) => (
-              <div key={index} className="border-r border-smgray last:border-r-0 px-10 xl:px-18 pt-4 xl:pt-[22px] pb-4 xl:pb-[21px]
+              <div key={index} className="border-r border-smgray last:border-r-0 px-5 md:px-10 xl:px-18 pt-4 xl:pt-[22px] pb-4 xl:pb-[21px]
                hover:bg-primary hover:text-white transition-all duration-300 group">
                 <div className="">
                  <div className="mb-47px h-10 xl:h-15">

@@ -60,7 +60,7 @@ export const BlogItem = ({ item, index }: { item: { id: number; title: string; i
   };
 
   return (
-    <div className="relative group border-b border-smgray hover:border-primary pb-27px transition-all duration-300">
+    <div className="relative group border-b border-smgray hover:border-primary pb-2 md:pb-27px transition-all duration-300">
       <div className={`${index % 2 === 0 ? "h-[300px] xl:h-[415px]" : "h-[200px] xl:h-[280px]"} p-3 xl:p-5 overflow-hidden group/img relative`}
         ref={containerRef} onMouseMove={handleMouseMove} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
         <Image src={item.image} alt={item.title} width={1000} height={1000} className="w-full h-full object-cover absolute top-0 left-0 group-hover:blur-[4px] group-hover:backdrop-blur-xl transition-all duration-300" />

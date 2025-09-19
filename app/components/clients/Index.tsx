@@ -5,7 +5,7 @@ const Index = () => {
   return ( 
     <>
     <PageBnr pageTitle={clientsData.title} bannerImg={clientsData.bannerImg} />
-    <section className="py-57px">
+    <section className="pb-4 md:pb-57px py-57px">
       <div className="container">
         <p className="text-lg leading-lh-text19 dark:text-white/80">{clientsData.desc}</p>
       </div>

@@ -299,7 +299,14 @@ header.modal-open {
 .project-slider .swiper-button-next {
   /* @apply right-unset left-0; */
 }
-
+@media (max-width: 768px) {
+  .project-slider .swiper-button-next {
+    @apply left-22 ;
+  }
+  .project-slider .swiper-button-prev,.project-slider .swiper-button-next {
+    @apply top-7 ;
+  }
+} 
 .aislider .swiper-wrapper{align-items: end;}
  .libullet li::before{
   content: "";

@@ -33,7 +33,7 @@ const PageBnr = ({ pageTitle, bannerImg }: PageBnrProps) => {
             initial={{ opacity: 0, x: -30, clipPath: "inset(0 100% 0 0)" }}
             animate={{ opacity: 1, x: 0, clipPath: "inset(0 0% 0 0)" }}
             transition={{ duration: 1.3, ease: "easeOut" }}
-            className="text-white text-5xl md:text-6xl"
+            className="text-white text-5xl md:text-6xl leading-[1.2]"
           >
             {pageTitle}
           </motion.h2>
