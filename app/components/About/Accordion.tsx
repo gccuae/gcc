@@ -17,8 +17,10 @@ export const Accordion: React.FC<{ items: AccordionItem[] }> = ({ items }) => {
   const measureRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   // Calculate title positions using useLayoutEffect to avoid flashing
+
   useLayoutEffect(() => {
     const calculateOffsets = () => {
+      if(window.innerWidth > 768){
       const offsets = titleRefs.current.map(titleRef => {
         if (titleRef) {
           const containerRect = titleRef.closest('.accordion-item')?.getBoundingClientRect();
@@ -30,6 +32,7 @@ export const Accordion: React.FC<{ items: AccordionItem[] }> = ({ items }) => {
         return 0;
       });
       setTitleOffsets(offsets);
+    }
     };
 
     calculateOffsets();
@@ -67,19 +70,19 @@ export const Accordion: React.FC<{ items: AccordionItem[] }> = ({ items }) => {
         ))}
       </div>
 
-      <div className="space-y-2">
+      <div >
         {items.map((item, index) => (
           <div className="border-b border-smgray accordion-item" key={index}>
             <div className="flex flex-col w-full">
               <button
                 onClick={() => setOpenIndex(prev => (prev === index ? null : index))}
-                className="w-full flex justify-between items-start py-4 xl:py-[27px] text-left"
+                className="w-full flex justify-between   py-2 md:py-4 xl:py-[27px] text-left"
               >
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col  ">
                   <div className="flex items-center gap-4 md:gap-6 xl:gap-[183px]">
-                    <Image src={item.icon} alt={item.title} width={50} height={50} />
+                    <Image src={item.icon} alt={item.title} width={50} height={50}  className="w-6 h-6 md:w-11 md:h-11 lg:w-15 lg:h-15"/>
                     <div ref={el => { titleRefs.current[index] = el; }}>
-                      <span className="text-2xl leading-[1.5625] font-medium">{item.title}</span>
+                      <span className="text-xl leading-[1] md:text-2xl xl:leading-[1.5625] font-medium">{item.title}</span>
                     </div>
                   </div>
 
@@ -94,10 +97,10 @@ export const Accordion: React.FC<{ items: AccordionItem[] }> = ({ items }) => {
                       ease: "easeOut",
                       opacity: { duration: 0.2 }
                     }}
-                    className="overflow-hidden"
+                    className="overflow-hidden  "
                     style={{ paddingLeft: `${titleOffsets[index] || 0}px` }}
                   >
-                    <div className="pb-2 max-w-[85%]">
+                    <div className="pb-2 max-w-full lg:max-w-[85%] pt-3 md:pt-5">
                       <ul className="square-list pl-[1em]">
                         {item.content.map((content, index) => (
                           <li key={index} className="text-lg leading-lh-text19 mb-3 xl:mb-5 font-extralight">{content}</li>
@@ -107,10 +110,12 @@ export const Accordion: React.FC<{ items: AccordionItem[] }> = ({ items }) => {
                   </motion.div>
                 </div>
 
+                <div className="w-[36px] h-fit lg:w-[21px] lg:h-[21px] relative md:top-4 xl:top-3">
                 <ArrowDown strokeWidth={1}
-                  className={`w-10 h-10 xl:w-12 xl:h-12 transform transition-transform duration-250 mt-1 ${openIndex === index ? "rotate-180 text-green-600" : "text-black"
+                  className={` transform transition-transform duration-250 mt-1 ${openIndex === index ? "rotate-180 text-green-600" : "text-black"
                     }`}
                 />
+                </div>
               </button>
             </div>
           </div>
