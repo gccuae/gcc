@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import Breadcrumb from "./BreadCrumb";
@@ -15,7 +15,7 @@ const PageBnr = ({ pageTitle, bannerImg }: PageBnrProps) => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{duration: 0.4, ease: "easeInOut" }}
+        transition={{ duration: 0.4, ease: "easeInOut" }}
         className="absolute top-0 left-0 w-full h-full z-0"
       >
         <Image

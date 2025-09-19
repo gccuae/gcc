@@ -1,11 +1,67 @@
 "use client";
 
 import BtnPrimary from "../common/BtnPrimary";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { moveUp } from "../../components/motionVarients";
 import { jobDetails } from "./data";
+import { useState } from "react";
+import Image from "next/image";
+import JobApplicationModal from "./JobApplicationModal";
+
+const Modal = ({
+  isOpen,
+  onClose,
+  children,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+}) => {
+  if (!isOpen) return null;
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4"
+        >
+          {/* Modal box animation */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: 50 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 50 }}
+            transition={{
+              duration: 0.4,
+              ease: [0.25, 0.8, 0.25, 1], // smooth easing
+            }}
+            className="relative w-full max-w-7xl max-h-[90vh] overflow-y-auto rounded-xl bg-light-white dark:bg-[#0d0d0d] shadow-lg p-6 sm:p-10 md:p-[57px] 2xl:p-[77px]"
+          >
+            <button
+              onClick={onClose}
+              className="absolute top-3 right-3 text-gray-500 hover:text-black dark:hover:text-white"
+            >
+              <Image
+                src="/assets/img/careers/close-popup.svg"
+                alt="Close"
+                width={20}
+                height={20}
+              />
+            </button>
+
+            {children}
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
 
 const JobDetails = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <section className="dark:bg-[#0d0d0d]">
       <div className="container">
@@ -85,15 +141,19 @@ const JobDetails = () => {
             variants={moveUp(0.4)}
             initial="hidden"
             whileInView="show"
+            onClick={() => setIsModalOpen(true)}
           >
             <BtnPrimary
-              link={jobDetails.apply.button.link}
+              onClick={() => setIsModalOpen(true)}
               text={jobDetails.apply.button.text}
               bgtrans={true}
             />
           </motion.div>
         </div>
       </div>
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <JobApplicationModal onSuccess={() => setIsModalOpen(false)} />
+      </Modal>
     </section>
   );
 };

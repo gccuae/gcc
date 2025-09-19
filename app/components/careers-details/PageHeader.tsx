@@ -86,9 +86,11 @@ const PageHeader = ({ title }: PageHeaderProps) => {
               whileInView="show"
               viewport={{ amount: 0.2, once: true }}
             >
-              <div onClick={() => setIsOpen(true)}>
-                <BtnPrimary link="#" text="Apply Now" bgtrans={false} />
-              </div>
+              <BtnPrimary
+                onClick={() => setIsOpen(true)}
+                text="Apply Now"
+                bgtrans={false}
+              />
             </motion.div>
           </div>
           <Breadcrumb standard={true} />
