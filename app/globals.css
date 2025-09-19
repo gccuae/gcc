@@ -115,9 +115,25 @@ body {
   @apply px-[15px] mx-auto;
 
 }
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 940px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1180px;
+  }
+}
+@media (min-width: 1300px) {
+  .container {
+    max-width: 1280px;
+  }
+}
 @media (min-width: 1400px) {
   .container {
-    max-width: 1450px;
+    max-width: 1380px;
   }
 }
 
@@ -129,7 +145,7 @@ body {
 
 @media (min-width: 1700px) {
   .container {
-    max-width: 1620px;
+    max-width: 1550px;
   }
 
 }

@@ -2,7 +2,7 @@ export const leadersData = {
   chairman: {
     name: "Mr. Kassim Al Sharafi",
     position: "Chairman",
-    title: "Chairman & Managing Director",
+    title: "Message From Chairman",
     image: "/assets/img/leaders/chairman.png",
     desc: [
       "At Gulf Contractors Company (GCC), we are proud to have been the flag bearers of this attribute for over three decades. It is what has led us to be the preferred partner for prestigious clients in the construction sector in the UAE and beyond.",

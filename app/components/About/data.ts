@@ -120,14 +120,17 @@ export const aboutData = {
         backgroundImage: "/assets/img/about/legacy-slider/bg-2.jpg",
       },
     ],
-  },
-  whyChoose: {
+  }, 
+};
+
+export const Whychoosedata = {
+  data: {
     title: "Why Choose Us",
-    subTitle: "Experience Illuminates the Possibilities",
+    desc: "Experience Illuminates the Possibilities",
     items: [
       {
         title: "Certified Quality & Safety",
-        desc: "GCC, established in 1988, is known for innovation and excellence in construction, with projects",
+        desc: "GCC, established in 1988, is known for innovation and excellence in construction, with projects..",
         icon: "/assets/img/icons/why-choose-1.svg",
       },
       {

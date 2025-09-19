@@ -19,7 +19,7 @@ const ImgDesc = ({ data }: ImgDescProps) => {
               alt=""
               width={1500}
               height={1500}
-              className="w-full max-h-[772px] object-cover"
+              className="w-full h-[350px] md:h-[400px] lg:h-[500px] xl:max-h-[772px] object-cover "
             />
           </div>
           <div className="xl:w-[51.3%] flex flex-col gap-6 justify-center">
@@ -31,7 +31,7 @@ const ImgDesc = ({ data }: ImgDescProps) => {
                 {data.desc.map((item, index) => (
                   <p
                     key={index}
-                    className="dark:text-white text-lg font-light leading-[1.526315789473684] mb-6 last:mb-0"
+                    className="dark:text-white text-lg font-light leading-[1.526315789473684] mb-3 lg:mb-6 last:mb-0"
                   >
                     {item}
                   </p>

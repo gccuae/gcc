@@ -8,7 +8,7 @@ interface PageBnrProps {
 
 const PageBnr = ({pageTitle, bannerImg}: PageBnrProps) => {
   return ( 
-    <section className="relative h-[350px] xl:h-[450px] flex flex-col justify-end pb-15 xl:pb-[83x]">
+    <section className="relative h-[300px] md:h-[350px]  xl:h-[450px] flex flex-col justify-end pb-6 md:pb-15 xl:pb-[83x]">
       <div className="absolute top-0 left-0 w-full h-full z-0">
         <Image src={bannerImg} alt="" width={1920} height={800} className="w-full h-full object-cover" />
       </div>
@@ -16,7 +16,7 @@ const PageBnr = ({pageTitle, bannerImg}: PageBnrProps) => {
       </div>
       <div className="container relative z-10">
         <div>
-          <h2 className="text-white text-6xl">{pageTitle}</h2>
+          <h2 className="text-white text-5xl md:text-6xl">{pageTitle}</h2>
         </div>
         <Breadcrumb />
       </div>

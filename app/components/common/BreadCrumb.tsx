@@ -18,8 +18,8 @@ const Breadcrumb = ({ standard = false }: Props) => {
     '/' + pathParts.slice(0, index + 1).join('/');
 
   return (
-    <ul className={`flex items-center gap-4 text-16 font-medium uppercase  ${standard ? 'text-black dark:text-white pt-4 xl:pt-[17px]' : 'text-white pt-6 xl:pt-[25px]'}`}>
-      <li className="flex items-center gap-4 text-15 leading-[1.2] font-normal group">
+    <ul className={`flex items-center gap-4 text-16 font-medium uppercase  ${standard ? 'text-black dark:text-white pt-4 xl:pt-[17px]' : 'text-white pt-5 md:pt-6 xl:pt-[25px]'}`}>
+      <li className="flex items-center gap-4 text-[14px] md:text-15 leading-[1.2] font-normal group">
         <Link href="/" className={`${standard ? 'text-mdgray dark:text-white' : 'text-light-white'} hover:underline`}>Home</Link>
         {pathParts.length > 0 && (
           <span className="group-last:hidden">

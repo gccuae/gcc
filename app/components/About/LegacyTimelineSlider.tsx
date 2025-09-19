@@ -77,7 +77,7 @@ const LegacyTimelineSlider = ({ data, title }: { data: TimelineItem[], title: st
             </div>
 
             {/* Timeline Years Navigation Slider */}
-            <div className="absolute top-16 right-0 flex items-center z-10 h-full">
+            <div className="absolute top-19 right-0 flex items-center z-10 h-full">
               {/* Year Slider Container */}
               <div className="overflow-hidden h-full">
                 <Swiper
@@ -110,17 +110,17 @@ const LegacyTimelineSlider = ({ data, title }: { data: TimelineItem[], title: st
               </div>
 
               {/* Navigation Arrows - Control Both Sliders */}
-              <div className="flex items-center space-x-[1px] absolute top-0 right-0 z-10">
+              <div className="flex items-center space-x-[1px] absolute -top-2 right-0 z-10">
                 <button
                   onClick={() => handleNavigation('prev')}
-                  className="py-2 px-4 rounded-l-2xl bg-white hover:bg-white/20 transition-colors duration-300 backdrop-blur-sm"
+                  className="cursor-pointer py-2 px-4 rounded-l-2xl bg-white hover:bg-white/20 transition-colors duration-300 backdrop-blur-sm"
                   aria-label="Previous slide"
                 >
                   <ChevronLeft className="w-5 h-5 text-accent" />
                 </button>
                 <button
                   onClick={() => handleNavigation('next')}
-                  className="py-2 px-4 rounded-r-2xl bg-white hover:bg-white/20 transition-colors duration-300 backdrop-blur-sm"
+                  className="cursor-pointer py-2 px-4 rounded-r-2xl bg-white hover:bg-white/20 transition-colors duration-300 backdrop-blur-sm"
                   aria-label="Next slide"
                 >
                   <ChevronRight className="w-5 h-5 text-accent" />
