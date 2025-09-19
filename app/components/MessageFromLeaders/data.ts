@@ -15,7 +15,7 @@ export const leadersData = {
   gm: {
     name: "Dr. Ahmed Alsharafi",
     position: "General Manager",
-    title: "Message From <br /> GM",
+    title: "Message From  GM",
     image: "/assets/img/leaders/gm.png",
     desc: [
       "Throughout our history, Gulf Contractors Company (GCC) has helped each client get more out of their construction investments by working closely with them. We have listened to their needs and brought forth suggestions based on our experience to ensure every project is cost and time efficient.",

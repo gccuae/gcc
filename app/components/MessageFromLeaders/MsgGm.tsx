@@ -7,7 +7,7 @@ const MsgChairman = () => {
       <SpecialContainer className="" side="right" >
         <div className="flex flex-col-reverse lg:grid grid-cols-1 lg:grid-cols-2 items-center gap-10 xl:gap-15">
           <div className="">
-            <h2 className="text-6xl leading-lh-title text-black dark:text-white mb-[17px] mb-5 xl:mb-[34px]" dangerouslySetInnerHTML={{ __html: leadersData.gm.title }}></h2>
+            <h2 className="text-5xl lg:text-6xl leading-[1.2] xl:leading-lh-title text-black dark:text-white mb-[17px] mb-5 xl:mb-[34px] lg:max-w-[10ch]" dangerouslySetInnerHTML={{ __html: leadersData.gm.title }}></h2>
             <div className="max-w-[61ch]">
               {leadersData.gm.desc.map((item, index) => (
                 <p key={index} className="mb-4 xl:mb-[17px]">{item}</p>

@@ -17,7 +17,7 @@ const MsgChairman = () => {
             </div>
           </div>
           <div className="">
-            <h2 className="text-6xl leading-lh-title text-black dark:text-white mb-5 xl:mb-[34px] max-w-[16ch]">{leadersData.chairman.title}</h2>
+            <h2 className="text-5xl lg:text-6xl leading-lh-title text-black dark:text-white mb-5 xl:mb-[34px] lg:max-w-[16ch]">{leadersData.chairman.title}</h2>
             <div className="max-w-[62ch]">
               {leadersData.chairman.desc.map((item, index) => (
                 <p key={index} className="mb-4 xl:mb-[17px]">{item}</p>

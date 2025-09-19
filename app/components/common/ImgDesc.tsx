@@ -60,25 +60,26 @@ const ImgDesc = ({ data }: ImgDescProps) => {
               width={1500}
               height={1500}
               className="w-full h-[350px] md:h-[400px] lg:h-[500px] xl:max-h-[772px] object-cover "
-            />
-          </div>
+            /> 
+          </motion.div>
           <div className="xl:w-[51.3%] flex flex-col gap-6 justify-center">
             <div>
               <h2 className="text-5xl leading-[1.147058823529412] text-black dark:text-white pb-3 xl:pb-[27px] xl:tracking-[-2.1px]">
                 {data.title}
               </h2>
               <div>
-                {data.desc.map((item, index) => (
+                {data.description.split("\n").map((line, idx) => (
                   <p
-                    key={index}
+                    key={idx}
                     className="dark:text-white text-lg font-light leading-[1.526315789473684] mb-3 lg:mb-6 last:mb-0"
                   >
-                    {item}
+                    {line}
                   </p>
                 ))}
               </div>
             </div>
           </div>
+  
         </div>
       </div>
     </section>
