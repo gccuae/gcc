@@ -1,4 +1,8 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { moveUp } from "../../motionVarients";
 
 type Props = {
   title: string;
@@ -10,16 +14,32 @@ const WhyQhse = ({ title, description, matters }: Props) => {
   return (
     <section className="py-57px bg-light-white dark:bg-black">
       <div className="container">
-        <h2 className="text-6xl leading-[1.147058823529412] text-black dark:text-white mb-27px">
+        <motion.h2
+          variants={moveUp()}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="text-6xl leading-[1.147058823529412] text-black dark:text-white mb-27px"
+        >
           {title}
-        </h2>
-        <p className="text-lg leading-[1.5625] text-black dark:text-white/70 max-w-[80ch]">
+        </motion.h2>
+        <motion.p
+          variants={moveUp(0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="text-lg leading-[1.5625] text-black dark:text-white/70 max-w-[80ch]"
+        >
           {description}
-        </p>
+        </motion.p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-[79px] mt-47px">
           {matters.map((item, index) => (
-            <div
+            <motion.div
+              variants={moveUp(index * 0.24)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
               key={index}
               className="group grid gap-27px grid-rows-[auto_1fr]"
             >
@@ -41,7 +61,7 @@ const WhyQhse = ({ title, description, matters }: Props) => {
               <p className="text-lg leading-lh-text19 font-light text-black dark:text-white/70">
                 {item.content}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

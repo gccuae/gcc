@@ -1,6 +1,6 @@
 export const careerData = {
   title: "Join Our Team",
-  desc: "At <span class='!text-primary font-normal'>Gulf Contractors Company (GCC)</span>  we seek passionate professionals who thrive on excellence. As an industry leader, we offer a dynamic workplace where innovation and expertise drive success. Whether you're an experienced engineer, a skilled project manager, or an ambitious newcomer, you’ll find exciting opportunities to grow and contribute to landmark projects. Explore our openings today and join us and help shape the future of construction.",
+  desc: "At <span class='!text-primary font-normal !text-2xl'>Gulf Contractors Company (GCC)</span>  we seek passionate professionals who thrive on excellence. As an industry leader, we offer a dynamic workplace where innovation and expertise drive success. Whether you're an experienced engineer, a skilled project manager, or an ambitious newcomer, you’ll find exciting opportunities to grow and contribute to landmark projects. Explore our openings today and join us and help shape the future of construction.",
   mainImg: "/assets/img/careers/main.jpg",
   mainImgAlt: "Gulf Contractors Company (GCC) LLC",
   jobs:[
