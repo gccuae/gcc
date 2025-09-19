@@ -230,7 +230,7 @@ const JobApplicationModalForm = ({ onSuccess }: Props) => {
 
         {/* Submit */}
         <motion.div
-          variants={moveUp(0.6)}
+          variants={moveUp(0.2)}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}

@@ -2,7 +2,7 @@
 
 import Breadcrumb from "../common/BreadCrumb";
 import BtnPrimary from "../common/BtnPrimary";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { moveLeft } from "../motionVarients";
 import { useState } from "react";
 import JobApplicationModal from "./JobApplicationModal";
@@ -20,25 +20,43 @@ const Modal = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/75 z-9999 flex items-center justify-center">
-      {/* Wrapper for scrolling */}
-      <div className="relative w-full max-w-7xl max-h-[90vh] overflow-y-auto bg-light-white dark:bg-[#0d0d0d] p-6 sm:p-10 md:p-[57px] 2xl:p-[77px]">
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="absolute 2xl:top-[42px] 2xl:right-[42px] xl:top-[35px] xl:right-[35px] top-[20px] right-[20px] hover:scale-110 transition-transform duration-300 cursor-pointer"
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4"
         >
-          <Image
-            src="/assets/img/careers/close-popup.svg"
-            alt="Close"
-            width={20}
-            height={20}
-          />
-        </button>
+          {/* Modal box animation */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: 50 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 50 }}
+            transition={{
+              duration: 0.4,
+              ease: [0.25, 0.8, 0.25, 1], // smooth easing
+            }}
+            className="relative w-full max-w-7xl max-h-[90vh] overflow-y-auto rounded-xl bg-light-white dark:bg-[#0d0d0d] shadow-lg p-6 sm:p-10 md:p-[57px] 2xl:p-[77px]"
+          >
+            <button
+              onClick={onClose}
+              className="absolute top-3 right-3 text-gray-500 hover:text-black dark:hover:text-white"
+            >
+              <Image
+                src="/assets/img/careers/close-popup.svg"
+                alt="Close"
+                width={20}
+                height={20}
+              />
+            </button>
 
-        {children}
-      </div>
-    </div>
+            {children}
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 
