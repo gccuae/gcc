@@ -93,22 +93,22 @@ const Main = () => {
 
   return (
     <>
-      <section className="py-20 xl:py-25">
+      <section className="py-10 lg:py-20 xl:py-25">
         <div className="container mx-auto px-4">
           <h2 className="text-5xl leading-[1.205882352941176] text-black dark:text-white pb-6 xl:pb-[57px] ">
             {certificationsData.title}
           </h2>
         </div>
 
-        <div className="bg-light-white dark:bg-gray-900 pt-57px">
+        <div className="bg-light-white dark:bg-gray-900 pb-6 lg:pb-0 pt-57px">
           <div className="container">
             {/* Tab Navigation */}
-            <div className="flex border-y border-smgray dark:border-gray-700 ">
+            <div className="flex lg:flex-row flex-col border-y border-smgray dark:border-gray-700 ">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`px-4 py-3 font-medium text-xl leading-[2.173913043478261] transition-all duration-300 border-t-4 whitespace-nowrap ${activeTab === tab.id
+                  className={`px-2 lg:px-4 py-3 font-medium text-xl leading-[1.2]  xl:leading-[2.173913043478261] transition-all duration-300 border-t-4 whitespace-nowrap ${activeTab === tab.id
                     ? 'text-black dark:text-green-400 border-accent dark:border-green-400'
                     : ' dark:text-gray-400 border-transparent hover:text-black '
                     }`}
@@ -120,7 +120,7 @@ const Main = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-[3fr_1.9fr]">
 
               {/* Left Column - Tabs and List */}
-              <div className="border-r border-smgray dark:border-gray-700 pr-6 xl:pr-[67px] pt-6 xl:pt-[47px]">
+              <div className="lg:border-r border-smgray dark:border-gray-700 pr-6 xl:pr-[67px] pt-6 xl:pt-[47px]">
                 {/* Items List */}
                 <div className="space-y-1">
                   {filteredItems.map((item, index) => (
@@ -153,7 +153,7 @@ const Main = () => {
               </div>
 
               {/* Right Column - Document Preview */}
-              <div className="pl-12 pt-6 xl:pl-[67px] xl:pt-[47px]">
+              <div className="lg:pl-12 lg:pt-6 xl:pl-[67px] xl:pt-[47px]">
                 {selectedItem ? (
                   <div className="overflow-hidden">
                     {/* Document Image */}

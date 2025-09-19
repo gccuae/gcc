@@ -139,7 +139,7 @@ const GalleryCard: React.FC<{ item: GalleryItem; onOpenLightbox: (images: string
 
       {/* Card Content */}
       <div className="flex items-center justify-between py-5 xl:py-8">
-        <h3 className="text-2xl leading-[1] font-normal text-black dark:text-white">{item.title}</h3>
+        <h3 className="text-xl lg:text-2xl leading-[1] font-normal text-black dark:text-white">{item.title}</h3>
 
         {/* Circular Images */}
         <div className="flex">

@@ -15,11 +15,11 @@ const Main = ({ title, link, items }: { title: string; link: string; items: { id
           <BtnPrimary link={link} text="View All" bgtrans={true} />
         </div>
         <div>
-          <div className="w-full home-news-swiper !pb-15" >
+          <div className="w-full home-news-swiper xl:!pb-15" >
             {items.map((item, index) => (
               <div key={index}>
                 <div className="flex flex-wrap xl:flex-nowrap items-center gap-4 xl:gap-[69px]">
-                  <div className="xl:w-1/2 overflow-hidden">
+                  <div className="w-full xl:w-1/2 overflow-hidden">
                     <Image src={item.image} alt="newsBlockImage" width={2000} height={2000} className="w-full h-full object-cover hover:scale-110 transition-all duration-400" />
                   </div>
                   <div className="xl:w-1/2 group">

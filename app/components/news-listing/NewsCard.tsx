@@ -90,7 +90,7 @@ const NewsCard = ({ item, index }: { item: { image: string, title: string, descr
           <p className="text-lg leading-lh-text19 font-light dark:text-white">{item.category}</p>
           <p className="text-lg leading-lh-text19 font-light dark:text-white">{item.date}</p>
         </div>
-        <h3 className="text-2xl leading-normal font-normal mb-3 xl:mb-[12px] text-black dark:text-white">{item.title}</h3>
+        <h3 className="text-xl md:text-2xl leading-normal font-normal mb-1 md:mb-3 xl:mb-[12px] text-black dark:text-white">{item.title}</h3>
         <h4 className="text-lg leading-normal font-normal mb-0 dark:text-white line-clamp-4 !overflow-hidden !text-ellipsis">{item.description}</h4>
       </div>
     </div>

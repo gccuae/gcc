@@ -17,9 +17,9 @@ const Main = ({ title, category, date, author, mainImage, description, extraCont
     <section className="py-57px dark:bg-black">
       <div className="container">
         <StandardBnr title={title} />
-        <div className="flex items-center justify-between pb-3 xl:pb-27px">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between pb-4 xl:pb-27px gap-3">
           <p className="dark:text-white"><span>{category}</span> <span className="mx-2">|</span> <span className="">{date}</span> <span className="mx-2">|</span> <span>{author}</span></p>
-          <ul className="flex gap-3 items-center dark:text-white">
+          <ul className="flex gap-3 items-center dark:text-white ml-auto">
             <li className="bg-black rounded-full w-8 h-8 xl:w-[41px] xl:h-[41px] flex items-center justify-center hover:translate-y-[-2px] hover:bg-accent dark:hover:bg-accent dark:bg-primary transition-all duration-300 ease-in-out cursor-pointer active:bg-accent active:translate-y-0">
               <Link href="#">
                 <svg width="19" height="22" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -67,7 +67,7 @@ const Main = ({ title, category, date, author, mainImage, description, extraCont
           </ul>
         </div>
         <div>
-          <div className="bg-[#1c1c1c] border-l-6 border-primary dark:border-accent max-w-[938px] pl-14 pr-14 xl:pl-[71px] xl:pr-[72px] py-15 xl:py-[81px] relative">
+          <div className="bg-[#1c1c1c] border-l-6 border-primary dark:border-accent max-w-[938px] pl-6 pr-6 py-6 md:pl-14 md:pr-14 xl:pl-[71px] xl:pr-[72px]  md:py-15 xl:py-[81px] relative">
             <h3 className="text-xl leading-lh-text32 font-light mb-2 xl:mb-3 text-white">{quote.text}</h3>
             <div className="flex items-center justify-between">
               <p className="text-lg leading-lh-text19 font-medium text-white w-fit">{quote.author}</p>

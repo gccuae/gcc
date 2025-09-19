@@ -70,14 +70,14 @@ const LegacyTimelineSlider = ({ data, title }: { data: TimelineItem[], title: st
         <div className="bg-black border-b-2 border-white overflow-hidden">
           <div className="container relative h-full">
             {/* Header */}
-            <div className="pt-10 xl:pt-20 h-full">
+            <div className="pt-10 xl:pt-20 h-full pb-12 lg:pb-0">
               <h2 className="text-5xl leading-lh-title font-light text-white mb-8 xl:mb-10 tracking-wide">
                 {title}
               </h2>
             </div>
 
             {/* Timeline Years Navigation Slider */}
-            <div className="absolute top-19 right-0 flex items-center z-10 h-full">
+            <div className="absolute bottom-0 lg:bottom-auto lg:top-19 right-0 flex items-center z-10 lg:h-full">
               {/* Year Slider Container */}
               <div className="overflow-hidden h-full">
                 <Swiper
