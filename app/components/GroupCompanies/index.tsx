@@ -3,13 +3,16 @@ import { groupCompaniesData } from "./data";
 import CounterSection from "./CounterSection";
 import BusinessNetworks from "./BusinessNetworks";
 const index = () => {
-  return ( 
+  return (
     <>
-      <PageBnr pageTitle={groupCompaniesData.title} bannerImg={groupCompaniesData.bannerImg} />
+      <PageBnr
+        pageTitle={groupCompaniesData.title}
+        bannerImg={groupCompaniesData.bannerImg}
+      />
       <CounterSection />
       <BusinessNetworks />
     </>
-   );
-}
- 
+  );
+};
+
 export default index;
