@@ -93,7 +93,7 @@ const BusinessNetworkCard = ({ item, index }: { item: { logo: string, image: str
 
       </div>
       <div className="mt-5 xl:mt-[27px] relative">
-        <h3 className="text-2xl leading-normal font-normal group-hover:text-black dark:text-white mb-[7px]">{item.title}</h3>
+        <h3 className="text-2xl leading-normal font-normal group-hover:text-black group-hover:dark:text-white dark:text-white mb-[7px]">{item.title}</h3>
         <h4 className="text-xl leading-normal font-normal mb-0 dark:text-white">{item.desc}</h4>
       </div>
     </div>
