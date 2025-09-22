@@ -56,7 +56,7 @@ const KeyProjects = () => {
   };
 
   return (
-    <section className="py-57px xl:pb-25 bg-light-white dark:bg-black">
+    <section className="py-57px xl:pb-25 bg-light-white dark:bg-[#191919]">
       <div className="container">
         <div className="mb-57px flex items-center justify-between">
           <motion.h2
@@ -178,8 +178,8 @@ const KeyProjects = () => {
                     {item.info}
                   </p>
                 </div>
-                <div className="bg-light-white dark:bg-[#0d0d0d] w-fit p-4 min-w-[60%] flex items-center justify-between gap-4 group">
-                  <h3 className="text-2xl leading-normal font-normal text-black dark:text-white">
+                <div className="bg-light-white  w-fit p-4 min-w-[60%] flex items-center justify-between gap-4 group">
+                  <h3 className="text-2xl leading-normal font-normal text-black ">
                     {item.title}
                   </h3>
                   <Link

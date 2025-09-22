@@ -8,13 +8,13 @@ const DetailsTab = () => {
   const { projectDetails } = projectDetailsData;
   const [activeTab, setActiveTab] = useState(0);
   return (
-    <section className="py-57px bg-light-white">
+    <section className="py-57px bg-light-white dark:bg-[#191919]">
       <div className="container">
         <div className="">
           {/* Tab buttons */}
-          <div className="relative border-y border-gray-200 flex flex-col md:flex-row flex-wrap space-x-8 items-baseline">
+          <div className="relative border-y border-gray-200 dark:border-[#454545] flex flex-col md:flex-row flex-wrap space-x-8 items-baseline">
             {projectDetails.map((tab, idx) => (
-              <button key={tab.title} onClick={() => setActiveTab(idx)} className={`py-2 md:py-4 xl:py-[27px] text-xl leading-normal font-medium relative ${activeTab === idx ? "text-black" : "text-gray-500 hover:text-black"}`}>
+              <button key={tab.title} onClick={() => setActiveTab(idx)} className={`py-2 md:py-4 xl:py-[27px] text-xl leading-normal font-medium relative ${activeTab === idx ? "text-black dark:text-white" : "text-gray-500 dark:text-white/70 hover:text-black dark:hover:text-white"}`}>
                 {tab.title}
                 {activeTab === idx && <motion.div layoutId="underline" className="absolute top-[-2px] left-0 right-0 h-[4px] bg-green-600" transition={{ type: "spring", duration: 0.5 }} />}
               </button>
@@ -27,7 +27,7 @@ const DetailsTab = () => {
             {/* Text */}
             <div className="space-y-4">
               {projectDetails[activeTab].description.map((para, i) => (
-                <p key={i} className="text-21 leading-[1.380952380952381]">{para}</p>
+                <p key={i} className="text-21 leading-[1.380952380952381] dark:text-white/70">{para}</p>
               ))}
             </div>
 
