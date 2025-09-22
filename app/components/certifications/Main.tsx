@@ -176,7 +176,7 @@ const Main = () => {
         <DetailsBlock
           selectedItem={selectedItem}
           handleOpenModal={handleOpenModal}
-          assets={assets}
+          assets={assets.expandPlusIcon}
         /> 
     )}
                       </div>
@@ -190,7 +190,7 @@ const Main = () => {
               <DetailsBlock
     selectedItem={selectedItem}
     handleOpenModal={handleOpenModal}
-    assets={assets}
+    assets={assets.expandPlusIcon}
   />
               </div>
             </div>

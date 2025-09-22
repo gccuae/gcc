@@ -1,9 +1,17 @@
 import Image from "next/image";
 
-interface DetailsBlockProps {
-  selectedItem: any; // you can type it properly if you have item type
+interface DetailsBlockProps { 
+    selectedItem: {
+    title: string;
+    info: string;
+    thumbnail: string;
+    document: string;
+    documentTitle: string;
+    documentInfo: string;
+    category: string;
+  } | null;
   handleOpenModal: () => void;
-  assets: any;
+  assets: string;
 }
 
 const DetailsBlock: React.FC<DetailsBlockProps> = ({
@@ -45,7 +53,7 @@ const DetailsBlock: React.FC<DetailsBlockProps> = ({
             className="rounded-full bg-white w-15 h-15 xl:w-[91.73px] xl:h-[91.73px] flex items-center justify-center cursor-pointer transition-all duration-300"
           >
             <Image
-              src={assets.expandPlusIcon}
+              src={assets}
               alt={selectedItem.title}
               width={50}
               height={50}
