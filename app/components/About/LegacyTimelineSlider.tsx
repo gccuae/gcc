@@ -62,14 +62,19 @@ const handleNavigation = (direction: 'next' | 'prev') => {
   setNavLocked(true);
  
   if (mainSwiperRef.current) {
-    direction === 'next'
-      ? mainSwiperRef.current.slideNext()
-      : mainSwiperRef.current.slidePrev();
+    if (direction === 'next') {
+      mainSwiperRef.current.slideNext();
+    } else {
+      mainSwiperRef.current.slidePrev();
+    }
   }
+  
   if (yearSwiperRef.current) {
-    direction === 'next'
-      ? yearSwiperRef.current.slideNext()
-      : yearSwiperRef.current.slidePrev();
+    if (direction === 'next') {
+      yearSwiperRef.current.slideNext();
+    } else {
+      yearSwiperRef.current.slidePrev();
+    }
   }
  
   setTimeout(() => setNavLocked(false), 600);  
