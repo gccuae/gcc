@@ -223,7 +223,7 @@ const LegacyTimelineSlider = ({
                       variants={moveUp()}
                       initial="hidden"
                       whileInView="show"
-                      viewport={{ once: true }}
+                      viewport={{ once: false }}
                       className="text-5xl text-white mb-3 opacity-90"
                     >
                       {item.year}
@@ -234,7 +234,7 @@ const LegacyTimelineSlider = ({
                       variants={moveUp(0.2)}
                       initial="hidden"
                       whileInView="show"
-                      viewport={{ once: true }}
+                      viewport={{ once: false }}
                       className="text-xl  font-medium text-white mb-3 leading-tight"
                     >
                       {item.title}
@@ -245,7 +245,7 @@ const LegacyTimelineSlider = ({
                       variants={moveUp(0.4)}
                       initial="hidden"
                       whileInView="show"
-                      viewport={{ once: true }}
+                      viewport={{ once: false }}
                       className="text-lg text-gray-200 leading-relaxed max-w-2xl font-light"
                     >
                       {item.description}
