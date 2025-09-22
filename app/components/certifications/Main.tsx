@@ -133,13 +133,13 @@ const Main = () => {
                         }`}
                     >
                       <div>
-                        <h3 className={`font-medium text-xl leading-normal mb-1 group-hover:text-black ${selectedItem === item
+                        <h3 className={`font-medium text-xl leading-normal mb-1 group-hover:text-black group-hover:dark:text-white/70 ${selectedItem === item
                           ? 'text-black dark:text-white'
                           : 'dark:text-white'
                           }`}>
                           {item.title}
                         </h3>
-                        <p className="text-lg leading-lh-text19 text-gray-600 dark:text-gray-400 group-hover:text-black">
+                        <p className="text-lg leading-lh-text19 text-gray-600 dark:text-gray-400 group-hover:text-black group-hover:dark:text-white/60">
                           {item.info}
                         </p>
                       </div>
