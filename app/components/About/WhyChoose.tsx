@@ -1,5 +1,8 @@
 "use client";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { moveUp } from "../motionVarients";
+
 interface EngProps {
   data: {
     title: string;
@@ -15,15 +18,37 @@ const WhyChoose = ({ data }: EngProps) => {
   return (
     <section className="py-57px bg-light-white dark:bg-black">
       <div className="container">
-        <h2 className="text-5xl leading-[1.147058823529412] text-black dark:text-white mb-3  tracking-[-1.9px]">
+        <motion.h2
+          variants={moveUp()}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="text-5xl leading-[1.147058823529412] text-black dark:text-white mb-3  tracking-[-1.9px]"
+        >
           {data.title}
-        </h2>
-        <p className="text-lg max-w-[96ch] leading-[1.526315789473684] font-light text-forground dark:text-white/80 hover:text-black dark:hover:text-white transition-all duration-300">
+        </motion.h2>
+        <motion.p
+          variants={moveUp(0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="text-xl max-w-[96ch] leading-[1.526315789473684] text-forground dark:text-white/70 hover:text-black dark:hover:text-white"
+        >
           {data.desc}
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 mt-5 md:mt-57px gap-5 xl:gap-0 ">
+        </motion.p>
+        <motion.div
+          variants={moveUp()}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 mt-5 md:mt-57px gap-5 xl:gap-0 "
+        >
           {data.items.map((item, index) => (
-            <div
+            <motion.div
+              variants={moveUp(index * 0.2)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
               key={index}
               className="flex flex-col border xl:border-r-0 xl:last:border-r-1 border-smgray second:border-r-0   group"
             >
@@ -46,9 +71,9 @@ const WhyChoose = ({ data }: EngProps) => {
                   {item.desc}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
