@@ -29,7 +29,7 @@ const ProjectSlider = () => {
           >
             {projectDetailsData.projectData.gallery.map((image, index) => (
               <SwiperSlide key={index} className="relative max-h-[715px]">
-                <Image src={image} width={1000} height={1000} alt="" className="w-full h-[400px] xl:h-full object-cover" />
+                <Image src={image} width={1000} height={1000} alt="" className="w-full h-[400px] xl:h-[550px] 2xl:h-[700px] object-cover" />
                 <div className="absolute bottom-0 md:bottom-30px right-0 lg:right-30px z-40 p-5 xl:p-30px max-w-fit xl:max-w-[515px] border border-smgray/36">
                   <div className="absolute top-0 left-0 w-full h-full bg-white/12 z-20 backdrop-blur-xs"></div>
                   <div className="absolute top-0 left-0 w-full h-full bg-[#0F0D0D] opacity-[39%] z-20"></div>

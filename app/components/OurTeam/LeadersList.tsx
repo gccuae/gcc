@@ -7,7 +7,7 @@ import Image from "next/image";
 
 const LeadersList = () => {
   return (
-    <section className="pt-15 xl:pt-25px ">
+    <section className="pt-15 xl:pt-25px dark:pb-1 dark:bg-[#191919] ">
       <div className="container">
         <motion.h2
           variants={moveUp()}
@@ -18,7 +18,7 @@ const LeadersList = () => {
         >
           {teamData.leadersTitle}
         </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-6 xl:gap-y-0 pb-6 xl:pb-[37px] border-b border-smgray mb-12 xl:mb-57px">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-y-6 xl:gap-y-0 pb-6 xl:pb-[37px] md:border-b border-smgray mb-5 md:mb-12 xl:mb-57px">
           {teamData.leaders.map((leader, index) => (
             <motion.div
               variants={moveUp(index * 0.23)}
