@@ -28,11 +28,11 @@ const HIghlights = () => {
               className="group grid gap-30px grid-rows-[auto_1fr]"
             >
               <div className="border-b border-smgray group-hover:border-b-primary pb-30px transition-all duration-300">
-                <h3 className="text-2xl leading-[1.5625] text-white">
+                <h3 className="text-2xl leading-[1.5625] text-white dark:text-black">
                   {item.title}
                 </h3>
               </div>
-              <p className="text-lg leading-[1.5625] text-white/80">
+              <p className="text-lg leading-[1.5625] text-white/80 dark:text-foreground">
                 {item.desc}
               </p>
             </motion.div>

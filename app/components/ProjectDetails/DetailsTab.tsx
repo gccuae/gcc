@@ -10,7 +10,7 @@ const DetailsTab = () => {
   const { projectDetails } = projectDetailsData;
   const [activeTab, setActiveTab] = useState(0);
   return (
-    <section className="py-57px bg-light-white">
+    <section className="py-57px bg-light-white dark:bg-[#0d0d0d]">
       <div className="container">
         <div className="">
           {/* Tab buttons */}
@@ -31,8 +31,8 @@ const DetailsTab = () => {
                 onClick={() => setActiveTab(idx)}
                 className={`py-2 md:py-4 xl:py-[27px] text-xl leading-normal font-medium relative ${
                   activeTab === idx
-                    ? "text-black"
-                    : "text-gray-500 hover:text-black"
+                    ? "text-black dark:text-white"
+                    : "text-gray-500 hover:text-black dark:hover:text-white/70"
                 }`}
               >
                 {tab.title}
@@ -65,7 +65,7 @@ const DetailsTab = () => {
                   whileInView="show"
                   viewport={{ once: true }}
                   key={i}
-                  className="text-21 leading-[1.380952380952381]"
+                  className="text-21 leading-[1.380952380952381] text-foreground dark:text-white/70"
                 >
                   {para}
                 </motion.p>
