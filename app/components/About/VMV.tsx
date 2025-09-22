@@ -9,7 +9,7 @@ const VMV = () => {
     icon: item.icon,
   }));
   return ( 
-    <section className="py-57px dark:bg-black">
+    <section className="pb-10 pt-57px md:py-57px dark:bg-black">
       <div className="container">
        <div className="border-b border-smgray pb-8 xl:pb-57px">
           <h2 className="text-6xl leading-lh-title text-black dark:text-white mb-[17px]">Vision, Mission & Values</h2>

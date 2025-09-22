@@ -337,3 +337,36 @@ header.modal-open {
 .dark .select-down-arrow {
   color: white;
 }
+
+
+.year-navigation-slider {
+  overflow: visible !important;
+}
+
+.year-navigation-slider .swiper-wrapper {
+  transition-timing-function: ease-in-out !important;
+}
+
+.year-navigation-slider .swiper-slide {
+  transition: all 0.3s ease;
+}
+
+.history-slider .swiper-slide {
+  transition: opacity 0.5s ease-in-out;
+}
+
+.history-slider .swiper-wrapper {
+  transition-timing-function: ease-in-out !important;
+}
+
+@media (max-width: 768px) {
+  .year-navigation-slider {
+    max-width: 630px;
+  }
+}
+
+@media (max-width: 640px) {
+  .year-navigation-slider {
+    max-width:400px;
+  }
+}
