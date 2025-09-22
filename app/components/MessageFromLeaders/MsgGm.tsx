@@ -29,7 +29,7 @@ const MsgGm = () => {
                   initial="hidden"
                   whileInView="show"
                   key={index}
-                  className="mb-4 xl:mb-[17px] text-lg leading-lh-text19 text-foreground dark:text-white font-light"
+                  className="mb-3 lg:mb-[17px] text-lg leading-lh-text19 text-foreground dark:text-white font-light"
                 >
                   {item}
                 </motion.p>
