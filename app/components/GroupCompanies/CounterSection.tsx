@@ -1,28 +1,52 @@
-"use client"
+"use client";
 
 import Counter from "../common/Counter";
 import { groupCompaniesData } from "./data";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { moveUp } from "../../components/motionVarients";
 
 const CounterSection = () => {
   return (
     <section className="pt-57px bg-light-white dark:bg-[#0d0d0d]">
       <div className="container">
         <div className="mb-6 xl:mb-[47px]">
-          <h2 className="text-6xl leading-lh-title font-normal mb-4 xl:mb-[27px] text-black dark:text-white">
+          <motion.h2
+            variants={moveUp()}
+            viewport={{ once: true }}
+            initial="hidden"
+            whileInView="show"
+            className="text-6xl leading-lh-title font-normal mb-4 xl:mb-[27px] text-black dark:text-white"
+          >
             {groupCompaniesData.section1.title}
-          </h2>
-          <p className="text-lg leading-lh-text19 text-black dark:text-white font-light">
+          </motion.h2>
+          <motion.p
+            variants={moveUp(0.2)}
+            viewport={{ once: true }}
+            initial="hidden"
+            whileInView="show"
+            className="text-lg leading-lh-text19 text-black dark:text-white font-light"
+          >
             {groupCompaniesData.section1.desc}
-          </p>
+          </motion.p>
         </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 border-t border-l border-r border-smgray dark:border-[#3f3f3f]">
+        <motion.div
+          variants={moveUp(0.32)}
+          viewport={{ once: true }}
+          initial="hidden"
+          whileInView="show"
+          className="grid grid-cols-2 lg:grid-cols-4 border-t border-l border-r border-smgray dark:border-[#3f3f3f]"
+        >
           {groupCompaniesData.section1.items.map((item, index) => (
-            <div
+            <motion.div
               key={index}
+              variants={moveUp(index * 0.22)}
+              viewport={{ once: true }}
+              initial="hidden"
+              whileInView="show"
               className="border-r dark:border-[#3f3f3f] border-smgray last:border-r-0 [&:nth-child(2)]:border-r-0 [&:nth-child(4)]:border-r-0 lg:[&:nth-child(2)]:border-r-1
             px-5 md:px-10 xl:px-18 pt-4 xl:pt-[22px] pb-4 xl:pb-[21px]
-               hover:bg-primary hover:text-white transition-all duration-300 group"
+               hover:bg-primary hover:text-white transition-colors duration-300 group"
             >
               <div className="">
                 <div className="mb-47px h-10 xl:h-15">
@@ -41,9 +65,9 @@ const CounterSection = () => {
                   {item.desc}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
