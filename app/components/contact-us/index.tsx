@@ -2,17 +2,17 @@ import StandardBnr from "@/app/components/common/StandardBnr";
 import Main from "./Main";
 import ContactInfo from "./ContactInfo";
 const Index = () => {
-  return ( 
+  return (
     <>
-    <section className="pt-57px dark:bg-black">
+      <section className="pt-57px dark:bg-black">
         <div className="container">
           <StandardBnr title="Contact Us" />
         </div>
-    </section>
-    <Main />
-    <ContactInfo />
+      </section>
+      <Main />
+      <ContactInfo />
     </>
-   );
-}
- 
+  );
+};
+
 export default Index;
