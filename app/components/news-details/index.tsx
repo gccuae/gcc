@@ -6,6 +6,6 @@ const Index = () => {
       <Main />
     </>
   );
-}
- 
+};
+
 export default Index;

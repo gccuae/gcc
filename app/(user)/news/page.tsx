@@ -1,11 +1,11 @@
 import Index from "@/app/components/news-listing";
 
 const Page = () => {
-  return ( 
+  return (
     <>
       <Index />
     </>
   );
-}
- 
+};
+
 export default Page;
