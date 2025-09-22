@@ -14,7 +14,7 @@ const BusinessNetworks = () => {
             viewport={{ once: true }}
             initial="hidden"
             whileInView="show"
-            className="text-6xl leading-lh-title text-black mb-5 xl:mb-[27px]"
+            className="text-6xl leading-lh-title text-black dark:text-white mb-5 xl:mb-[27px]"
           >
             Business Networks
           </motion.h2>
@@ -23,7 +23,7 @@ const BusinessNetworks = () => {
             viewport={{ once: true }}
             initial="hidden"
             whileInView="show"
-            className="text-lg leading-lh-text19 text-black font-light mb-0"
+            className="text-lg leading-lh-text19 text-black dark:text-white/70 font-light mb-0"
           >
             GCC emerged from the strategic partnership between two distinguished
             conglomerates Al Sharafi Group and United Eastern (UE) Group. This
