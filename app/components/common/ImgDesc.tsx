@@ -48,7 +48,7 @@ const ImgDesc = ({ data }: ImgDescProps) => {
 
           {/* Image Section */}
           <motion.div
-            variants={fadeIn(0.2)}
+            variants={fadeIn(0.3)}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
