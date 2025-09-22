@@ -173,13 +173,13 @@ const KeyProjects = () => {
                 height={500}
                 className="w-full h-full object-cover absolute inset-0 z-0"
               />
-              <div className="relative z-10 opacity-0 group-hover:opacity-100 content-box  transition-all duration-300">
+              <div className="relative z-10 opacity-0 group-hover:opacity-100 content-box transition-all duration-300">
                 <div className="bg-black w-fit px-5 py-3">
                   <p className="text-lg leading-lh-text19 font-normal text-white">
                     {item.info}
                   </p>
                 </div>
-                <div className="bg-light-white dark:bg-black w-fit p-4 min-w-[60%] flex items-center justify-between gap-4 group">
+                <div className="bg-light-white dark:bg-[#0d0d0d] w-fit p-4 min-w-[60%] flex items-center justify-between gap-4 group">
                   <h3 className="text-2xl leading-normal font-normal text-black dark:text-white">
                     {item.title}
                   </h3>

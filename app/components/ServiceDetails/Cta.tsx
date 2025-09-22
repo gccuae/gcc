@@ -49,7 +49,7 @@ const Cta = () => {
             <Link
               href={serviceDetailsData.cta.btnLink}
               className="flex items-center justify-between gap-4 bg-light-white dark:bg-white rounded-3xl w-fit py-15px px-30px xl:py-20px xl:px-40px 
-            transition-all duration-300 hover:bg-primary hover:text-white text-black dark:text-white px-5 py-2 mt-12 xl:mt-[67px] text-base leading-[1.75] group"
+            transition-all duration-300 hover:bg-primary hover:text-white text-black px-5 py-2 mt-12 xl:mt-[67px] text-base leading-[1.75] group"
             >
               {serviceDetailsData.cta.btnText}
               <Image
