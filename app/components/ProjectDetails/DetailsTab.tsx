@@ -10,7 +10,7 @@ const DetailsTab = () => {
   const { projectDetails } = projectDetailsData;
   const [activeTab, setActiveTab] = useState(0);
   return (
-    <section className="py-57px bg-light-white dark:bg-[#0d0d0d]">
+    <section className="py-57px bg-light-white dark:bg-[#191919]">
       <div className="container">
         <div className="">
           {/* Tab buttons */}
@@ -19,7 +19,7 @@ const DetailsTab = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="relative border-y border-gray-200 flex flex-col md:flex-row flex-wrap space-x-8 items-baseline"
+            className="relative border-y border-gray-200 dark:border-[#454545] flex flex-col md:flex-row flex-wrap space-x-8 items-baseline"
           >
             {projectDetails.map((tab, idx) => (
               <motion.button
@@ -31,8 +31,8 @@ const DetailsTab = () => {
                 onClick={() => setActiveTab(idx)}
                 className={`py-2 md:py-4 xl:py-[27px] text-xl leading-normal font-medium relative ${
                   activeTab === idx
-                    ? "text-black dark:text-white"
-                    : "text-gray-500 hover:text-black dark:hover:text-white/70"
+                    ? "text-black dark:text-white dark:text-white"
+                    : "text-gray-500 dark:text-white/70 hover:text-black dark:hover:text-white dark:hover:text-white/70"
                 }`}
               >
                 {tab.title}

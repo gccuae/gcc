@@ -5,15 +5,15 @@ import { projectDetailsData } from "./data";
 import { moveUp } from "../motionVarients";
 
 const HIghlights = () => {
-  return (
-    <section className="py-57px bg-black dark:bg-white">
+  return ( 
+    <section className="py-57px bg-black ">
       <div className="container">
         <motion.h2
           variants={moveUp()}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="text-6xl leading-[1.147058823529412] text-white dark:text-black mb-57px"
+          className="text-6xl leading-[1.147058823529412] text-white   mb-57px"
         >
           {projectDetailsData.Highlights.title}
         </motion.h2>
@@ -28,11 +28,9 @@ const HIghlights = () => {
               className="group grid gap-30px grid-rows-[auto_1fr]"
             >
               <div className="border-b border-smgray group-hover:border-b-primary pb-30px transition-all duration-300">
-                <h3 className="text-2xl leading-[1.5625] text-white dark:text-black">
-                  {item.title}
-                </h3>
+                <h3 className="text-2xl leading-[1.5625] text-white ">{item.title}</h3>
               </div>
-              <p className="text-lg leading-[1.5625] text-white/80 dark:text-foreground">
+              <p className="text-lg leading-[1.5625] text-white/80  dark:text-foreground">
                 {item.desc}
               </p>
             </motion.div>

@@ -7,14 +7,14 @@ import { motion } from "framer-motion";
 
 const Services = () => {
   return (
-    <section className="py-57px bg-light-white dark:bg-black">
+    <section className="py-57px bg-light-white dark:bg-[#191919]">
       <div className="container">
         <motion.h2
-          variants={moveUp()}
-          initial="initial"
-          animate="show"
+          variants={moveUp(0.2)}
+          initial="hidden"
+          whileInView="show"
           viewport={{ once: true }}
-          className="text-5xl leading-[1.147058823529412] text-black dark:text-white pb-6 xl:pb-57px"
+          className="text-5xl leading-[1.147058823529412] text-black dark:text-white pb-6 xl:pb-[47px]"
         >
           Services for Any Project
         </motion.h2>
@@ -26,7 +26,7 @@ const Services = () => {
               whileInView="show"
               viewport={{ once: true }}
               key={index}
-            >F
+            > 
               <ExpertiseCard item={item} index={index} />
             </motion.div>
           ))}

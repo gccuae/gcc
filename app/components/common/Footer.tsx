@@ -56,7 +56,7 @@ const Footer = () => {
               </div>
             </div>
             <div>
-              <h3 className="text-2xl font-normal text-white leading-[1.3125] pb-4 xl:pb-[37px]">Quick Links</h3>
+              <motion.h3 variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}  className="text-2xl font-normal text-white leading-[1.3125] pb-4 xl:pb-[37px]">Quick Links</motion.h3>
               <div className="flex gap-10">
                 <div>
                   <ul className="flex flex-col gap-2">

@@ -57,7 +57,7 @@ const FooterV = () => {
               <motion.p className="text-md font-normal text-white leading-[1.526315789473684] max-w-[472px]" variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} >Gulf Contractors Company (GCC) LLCSuite No. 023, Liberty Tower, Khalifa St., P O Box 45363 Abu Dhabi, UAE</motion.p>
             </div>
             <div>
-              <h3 className="text-xl font-normal text-white leading-[1.3125] pb-4">Quick Links</h3>
+              <motion.h3 variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-xl font-normal text-white leading-[1.3125] pb-4">Quick Links</motion.h3>
               <div className="flex gap-10">
                 <div>
                   <ul className="flex flex-col gap-2">

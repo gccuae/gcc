@@ -74,7 +74,7 @@ const StaffList = () => {
         {/* MOBILE ACCORDION */}
         <div className="xl:hidden space-y-4">
           {categories.map((category) => (
-            <div key={category} className="border border-smgray rounded-lg">
+            <div key={category} className="border border-[#555555] rounded-lg">
               <button
                 onClick={() =>
                   setOpenAccordion(openAccordion === category ? null : category)

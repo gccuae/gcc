@@ -8,7 +8,7 @@ import { moveUp } from "../../components/motionVarients";
 
 const CounterSection = () => {
   return (
-    <section className="pt-57px bg-light-white dark:bg-[#0d0d0d]">
+    <section className="pt-57px bg-light-white dark:bg-[#191919]">
       <div className="container">
         <div className="mb-6 xl:mb-[47px]">
           <motion.h2

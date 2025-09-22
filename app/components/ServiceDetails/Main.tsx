@@ -6,7 +6,7 @@ import { moveUp } from "../../components/motionVarients";
 
 const Main = () => {
   return (
-    <section className="pt-57px xl:pt-25">
+    <section className="pt-57px xl:pt-25   dark:bg-[#191919]">
       <div className="container">
         <StandardBnr title="Civil & Structural Works" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 xl:gap-10 justify-items-between  lg:pt-[23px] pb-7 lg:pb-10 xl:pb-20">
