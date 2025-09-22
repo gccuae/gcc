@@ -1,6 +1,6 @@
 import ImgDesc from "../common/ImgDesc";
 import PageBnr from "../common/PageBnr";
-import { aboutData } from "./data";
+import { aboutData,Whychoosedata } from "./data";
 import WhatWeDo from "./WhatWeDo";
 import VMV from "./VMV";
 import LegacyTimelineSlider from "./LegacyTimelineSlider";
@@ -13,7 +13,7 @@ const Index = () => {
     <WhatWeDo />
     <VMV />
     <LegacyTimelineSlider title={aboutData.timelineData.title} data={aboutData.timelineData.items} />
-    <WhyChoose data={aboutData.whyChoose.items} secTitle={aboutData.whyChoose.title} subTitle={aboutData.whyChoose.subTitle} />
+    <WhyChoose data={Whychoosedata.data}/>
     </>
    );
 }

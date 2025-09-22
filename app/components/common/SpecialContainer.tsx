@@ -30,18 +30,27 @@ export default function SpecialContainer({
       const rect = container.getBoundingClientRect();
       const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
-      if (side === 'right') {
-        // start where container starts, extend to viewport right
-        const leftGap = rect.left;
-        const targetWidth = vw - leftGap;
-        el.style.marginLeft = `${leftGap}px`;
-        el.style.width = `${targetWidth}px`;
-      } else {
-        // extend from viewport left to container right
-        const rightGap = vw - rect.right;
-        const targetWidth = vw - rightGap;
-        el.style.marginLeft = '0px';
-        el.style.width = `${targetWidth}px`;
+      if(window.innerWidth > 1023){
+        if (side === 'right') {
+          // start where container starts, extend to viewport right
+          const leftGap = rect.left;
+          const targetWidth = vw - leftGap;
+          el.style.marginLeft = `${leftGap}px`;
+          el.style.width = `${targetWidth}px`;
+        } else {
+          // extend from viewport left to container right
+          const rightGap = vw - rect.right;
+          const targetWidth = vw - rightGap;
+          el.style.marginLeft = '0px';
+          el.style.width = `${targetWidth}px`;
+        }
+      }
+      else{
+        el.classList.add('container');
+        el.style.margin = 'auto'; 
+        el.style.paddingRight = '15px';
+        el.style.width = '100%';
+
       }
     };
 
@@ -68,7 +77,7 @@ export default function SpecialContainer({
   }, [containerSelector, side]);
 
   return (
-    <div ref={ref} className={`box-border ${className}`}>
+    <div ref={ref} className={`lg:border-b border-[#C2C2C2] box-border ${className}`} >
       {children}
     </div>
   );

@@ -12,9 +12,9 @@ const DetailsTab = () => {
       <div className="container">
         <div className="">
           {/* Tab buttons */}
-          <div className="relative border-y border-gray-200 flex space-x-8">
+          <div className="relative border-y border-gray-200 flex flex-col md:flex-row flex-wrap space-x-8 items-baseline">
             {projectDetails.map((tab, idx) => (
-              <button key={tab.title} onClick={() => setActiveTab(idx)} className={`py-4 xl:py-[27px] text-xl leading-normal font-medium relative ${activeTab === idx ? "text-black" : "text-gray-500 hover:text-black"}`}>
+              <button key={tab.title} onClick={() => setActiveTab(idx)} className={`py-2 md:py-4 xl:py-[27px] text-xl leading-normal font-medium relative ${activeTab === idx ? "text-black" : "text-gray-500 hover:text-black"}`}>
                 {tab.title}
                 {activeTab === idx && <motion.div layoutId="underline" className="absolute top-[-2px] left-0 right-0 h-[4px] bg-green-600" transition={{ type: "spring", duration: 0.5 }} />}
               </button>

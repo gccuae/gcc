@@ -37,7 +37,7 @@ const ImgDesc = ({ data }: ImgDescProps) => {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true }}
-                    className="dark:text-white text-lg font-light leading-[1.526315789473684] mb-6 last:mb-0"
+                    className="dark:text-white text-lg font-light leading-[1.526315789473684] mb-3 lg:mb-6 last:mb-0"
                   >
                     {line}
                   </motion.p>
@@ -59,9 +59,11 @@ const ImgDesc = ({ data }: ImgDescProps) => {
               alt=""
               width={1500}
               height={1500}
-              className="w-full max-h-[772px] object-cover"
-            />
+              className="w-full h-[350px] md:h-[400px] lg:h-[500px] xl:max-h-[772px] object-cover "
+            /> 
           </motion.div>
+           
+  
         </div>
       </div>
     </section>

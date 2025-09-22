@@ -10,7 +10,7 @@ const Cta = () => {
       <div className="container">
         <div className="relative z-10">
           <h2 className="text-5xl leading-lh-text68 font-normal text-white mb-15 xl:mb-[87px]">{serviceDetailsData.cta.title}</h2>
-          <div className="w-2/4 ml-auto ">
+          <div className="lg:w-2/4 ml-auto ">
             <p className="text-lg leading-lh-text24 text-white font-light">{serviceDetailsData.cta.desc}</p>
           <Link href={serviceDetailsData.cta.btnLink} className="flex items-center justify-between gap-4 bg-light-white dark:bg-white rounded-3xl w-fit py-15px px-30px xl:py-20px xl:px-40px 
             transition-all duration-300 hover:bg-primary hover:text-white text-black dark:text-white px-5 py-2 mt-12 xl:mt-[67px] text-base leading-[1.75] group">

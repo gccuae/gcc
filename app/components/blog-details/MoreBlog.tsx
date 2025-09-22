@@ -13,7 +13,7 @@ const MoreBlog = ({category}: {category: string}) => {
   return ( 
     <section className="py-57px bg-light-white dark:bg-black">
       <div className="container">
-        <div className="flex justify-between items-center pb-8 xl:pb-[45px] mb-8 xl:mb-15 border-b border-smgray">
+        <div className="flex justify-between items-center pb-5 md:pb-8 xl:pb-[45px] mb-8 xl:mb-15 border-b border-smgray">
           <h2 className="text-5xl leading-[1.147058823529412] text-black dark:text-white">More Blog</h2>
           <BtnPrimary link={`/blog`} text="View All" bgtrans={true} />
         </div>
