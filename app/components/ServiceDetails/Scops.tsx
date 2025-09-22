@@ -5,39 +5,80 @@ import "swiper/css";
 import "swiper/css/pagination";
 import Image from "next/image";
 import { serviceDetailsData } from "./data";
+import { motion } from "framer-motion";
+import { moveUp } from "../motionVarients";
+
 const Scops = () => {
-  return ( 
+  return (
     <section className="py-57px bg-black">
       <div className="container">
         <div className="mb-57px">
-          <h2 className="text-5xl leading-lh-text68 font-normal text-white">Scopes of Works</h2>
+          <motion.h2
+            variants={moveUp()}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="text-5xl leading-lh-text68 font-normal text-white"
+          >
+            Scopes of Works
+          </motion.h2>
         </div>
       </div>
-      <Swiper pagination={{ clickable: true }} spaceBetween={40} slidesPerView={"auto"} centeredSlides={true} loop={true} grabCursor={true} autoplay={{ delay: 2000, disableOnInteraction: true, pauseOnMouseEnter: true }} speed={1500} modules={[Autoplay]}  breakpoints={{
-        425: {
-          slidesPerView: 1.2,
-        },
-        768: {
-          slidesPerView: 3,
-        },
-        1024: {
-          slidesPerView: 3.5,
-        },
-        1280: {
-          slidesPerView: 4.5,
-        },
-      }} className="scope-swiper w-full">
+      <Swiper
+        pagination={{ clickable: true }}
+        spaceBetween={40}
+        slidesPerView={"auto"}
+        centeredSlides={true}
+        loop={true}
+        grabCursor={true}
+        autoplay={{
+          delay: 2000,
+          disableOnInteraction: true,
+          pauseOnMouseEnter: true,
+        }}
+        speed={1500}
+        modules={[Autoplay]}
+        breakpoints={{
+          425: {
+            slidesPerView: 1.2,
+          },
+          768: {
+            slidesPerView: 3,
+          },
+          1024: {
+            slidesPerView: 3.5,
+          },
+          1280: {
+            slidesPerView: 4.5,
+          },
+        }}
+        className="scope-swiper w-full"
+      >
         {serviceDetailsData.scopes.items.map((item, index) => (
           <SwiperSlide key={index}>
-            <div className="">
-              <Image src={item.img} alt={item.title} width={500} height={500} className="w-full h-full object-cover" />
-              <h3 className="text-xl leading-normal font-normal text-white mt-4 xl:mt-[27px]">{item.title}</h3>
-            </div>
+            <motion.div
+              variants={moveUp(index * 0.02)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className=""
+            >
+              <Image
+                src={item.img}
+                alt={item.title}
+                width={500}
+                height={500}
+                className="w-full h-full object-cover"
+              />
+              <h3 className="text-xl leading-normal font-normal text-white mt-4 xl:mt-[27px]">
+                {item.title}
+              </h3>
+            </motion.div>
           </SwiperSlide>
         ))}
       </Swiper>
     </section>
-   );
-}
- 
+  );
+};
+
 export default Scops;
