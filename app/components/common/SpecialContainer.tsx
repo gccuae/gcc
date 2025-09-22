@@ -77,7 +77,7 @@ export default function SpecialContainer({
   }, [containerSelector, side]);
 
   return (
-    <div ref={ref} className={`lg:border-b border-[#C2C2C2] box-border ${className}`} >
+    <div ref={ref} className={` box-border ${className}`} >
       {children}
     </div>
   );

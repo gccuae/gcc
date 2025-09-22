@@ -76,7 +76,7 @@ export const Accordion: React.FC<{ items: AccordionItem[] }> = ({ items }) => {
             <div className="flex flex-col w-full">
               <button
                 onClick={() => setOpenIndex(prev => (prev === index ? null : index))}
-                className="w-full flex justify-between   py-2 md:py-4 xl:py-[27px] text-left"
+                className="w-full flex justify-between   py-4 md:py-4 xl:py-[27px] text-left"
               >
                 <div className="flex flex-col  ">
                   <div className="flex items-center gap-4 md:gap-6 xl:gap-[183px]">
