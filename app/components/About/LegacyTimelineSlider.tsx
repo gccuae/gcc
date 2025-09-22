@@ -103,7 +103,7 @@ const handleNavigation = (direction: 'next' | 'prev') => {
             {/* Timeline Years Navigation Slider */}
             <div className="absolute bottom-0 lg:bottom-auto mb-2 md:mb-0  lg:top-12 xl:top-19 right-3 md:right-0 flex items-center z-10 lg:h-full">
               {/* Year Slider Container */}
-              <div className="overflow-hidden h-full relative right-9 top-1 md:top-0">
+              <div className="overflow-hidden h-full relative right-3 md:right-9 top-1 md:top-0">
                 <Swiper
                   onSwiper={(swiper) => {
                     yearSwiperRef.current = swiper;

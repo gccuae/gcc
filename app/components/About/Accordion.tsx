@@ -82,7 +82,7 @@ export const Accordion: React.FC<{ items: AccordionItem[] }> = ({ items }) => {
                   <div className="flex items-center gap-4 md:gap-6 xl:gap-[183px]">
                     <Image src={item.icon} alt={item.title} width={50} height={50}  className="w-6 h-6 md:w-11 md:h-11 lg:w-15 lg:h-15"/>
                     <div ref={el => { titleRefs.current[index] = el; }}>
-                      <span className="text-xl leading-[1] md:text-2xl xl:leading-[1.5625] font-medium">{item.title}</span>
+                      <span className="text-xl leading-[1] md:text-2xl xl:leading-[1.5625] font-medium dark:text-white">{item.title}</span>
                     </div>
                   </div>
 
@@ -103,7 +103,7 @@ export const Accordion: React.FC<{ items: AccordionItem[] }> = ({ items }) => {
                     <div className="pb-2 max-w-full lg:max-w-[85%] pt-3 md:pt-5">
                       <ul className="square-list pl-[1em]">
                         {item.content.map((content, index) => (
-                          <li key={index} className="text-lg leading-lh-text19 mb-3 xl:mb-5 font-extralight">{content}</li>
+                          <li key={index} className="text-lg dark:text-white leading-lh-text19 mb-3 xl:mb-5 font-extralight">{content}</li>
                         ))}
                       </ul>
                     </div>
