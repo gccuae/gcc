@@ -16,7 +16,6 @@ import Link from "next/link";
 import { assets } from "@/public/assets/assets";
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
-import index from "../GroupCompanies";
 
 const KeyProjects = () => {
   const swiperRef = useRef<SwiperType | null>(null);
