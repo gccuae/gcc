@@ -13,7 +13,7 @@ const HIghlights = () => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="text-6xl leading-[1.147058823529412] text-white dark:text-black mb-57px"
+          className="text-6xl leading-[1.147058823529412] text-white   mb-57px"
         >
           {projectDetailsData.Highlights.title}
         </motion.h2>
