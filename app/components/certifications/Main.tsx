@@ -95,7 +95,7 @@ const Main = () => {
     <>
       <section className="py-10 lg:py-20 xl:py-25">
         <div className="container mx-auto px-4">
-          <h2 className="text-5xl leading-[1.205882352941176] text-black dark:text-white pb-6 xl:pb-[57px] ">
+          <h2 className="text-5xl leading-[1.205882352941176] text-black dark:text-white pb-6 xl:pb-[47px] ">
             {certificationsData.title}
           </h2>
         </div>
@@ -103,12 +103,12 @@ const Main = () => {
         <div className="bg-light-white dark:bg-gray-900 pb-6 lg:pb-0 pt-57px">
           <div className="container">
             {/* Tab Navigation */}
-            <div className="flex lg:flex-row flex-col border-y border-smgray dark:border-gray-700 ">
+            <div className="flex md:flex-row flex-col border-y border-smgray dark:border-gray-700 gap-2 md:gap-0 xl:gap-12 ">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`px-2 lg:px-4 py-3 font-medium text-xl leading-[1.2]  xl:leading-[2.173913043478261] transition-all duration-300 border-t-4 whitespace-nowrap ${activeTab === tab.id
+                  className={`bg-white dark:bg-gray-900 md:bg-transparent px-2 lg:px-4 py-3 font-medium text-xl leading-[1.2]  xl:leading-[2.173913043478261] transition-all duration-300 border-t-4 whitespace-nowrap ${activeTab === tab.id
                     ? 'text-black dark:text-green-400 border-accent dark:border-green-400'
                     : ' dark:text-gray-400 border-transparent hover:text-black '
                     }`}
@@ -133,13 +133,13 @@ const Main = () => {
                         }`}
                     >
                       <div>
-                        <h3 className={`font-medium text-xl leading-normal mb-1 group-hover:text-black ${selectedItem === item
+                        <h3 className={`font-medium text-xl leading-normal mb-1 group-hover:text-black group-hover:dark:text-white/70 ${selectedItem === item
                           ? 'text-black dark:text-white'
                           : 'dark:text-white'
                           }`}>
                           {item.title}
                         </h3>
-                        <p className="text-lg leading-lh-text19 text-gray-600 dark:text-gray-400 group-hover:text-black">
+                        <p className="text-lg leading-lh-text19 text-gray-600 dark:text-gray-400 group-hover:text-black group-hover:dark:text-white/60">
                           {item.info}
                         </p>
                       </div>

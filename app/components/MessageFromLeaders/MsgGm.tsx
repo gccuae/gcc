@@ -8,9 +8,9 @@ import { moveLeft, moveUp } from "../../components/motionVarients";
 
 const MsgGm = () => {
   return (
-    <section className="pb-57px dark:bg-black overflow-hidden">
+    <section className="pb-57px lg:pb-[101px] dark:bg-black overflow-hidden">
       <SpecialContainer className="" side="right">
-        <div className="flex flex-col-reverse lg:grid grid-cols-1 lg:grid-cols-2 items-center gap-10 xl:gap-15">
+        <div className="flex flex-col-reverse lg:grid grid-cols-1 lg:grid-cols-2 items-center gap-10 xl:gap-15 2xl:border-b 2xl:border-light-white dark:border-[#797979]">
           <div className="">
             <motion.h2
               variants={moveUp()}
@@ -43,7 +43,7 @@ const MsgGm = () => {
             whileInView="show"
             className="relative pt-10"
           >
-            <div className="absolute top-0 right-0 w-[85%] h-full bg-light-white dark:bg-[#0d0d0d] z-0"></div>
+            <div className="absolute top-0 right-0 w-[85%] h-full bg-light-white dark:bg-[#0d0d0d] z-0 dark:bg-[#797979]"></div>
             <motion.div
               variants={moveLeft(0.3)}
               viewport={{ once: true }}
