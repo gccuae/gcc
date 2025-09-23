@@ -141,7 +141,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
             watchSlidesProgress
           >
             {data.items.map((item, index) => (
-              <SwiperSlide key={item.id} className="cursor-pointer transition mb-4 xl:mb-5 group" onClick={() => handleSlideHover(index)}>
+              <SwiperSlide key={item.id} className="sliderexp cursor-pointer transition mb-4 xl:mb-5 group" onClick={() => handleSlideHover(index)}>
                 <div className="exp-icon-div group-hover:border-primary transition-colors duration-400 pb-4 mb-6 xl:pb-[30px] xl:mb-[15px] relative flex items-center gap-5">
                   <motion.div variants={fadeIn(index * 0.5)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="flex items-center justify-center rounded-full border-1 border-smgray dark:border-white w-[85px] h-[85px] group-hover:bg-primary transition-all duration-300 icon-wrapper dark:bg-[#0d0d0d]  ">
                     <Image src={item.icon} alt={item.title} width={200} height={200} className="mb-2 w-10 h-10 object-contain group-hover:brightness-0 group-hover:invert-100" />
