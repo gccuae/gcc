@@ -132,10 +132,10 @@ export const BlogItem = ({
       </div>
       <div className="mt-5 xl:mt-[27px] relative">
         <div className="flex justify-between items-center mb-2 xl:mb-[12px]">
-          <p className="text-base uppercase leading-lh-text19 font-light text-foreground dark:text-white">
+          <p className="text-[15px] 3xl:text-base uppercase leading-lh-text19 font-light text-foreground dark:text-white/70">
             {item.category}
           </p>
-          <p className="text-base leading-lh-text19 font-light text-foreground dark:text-white">
+          <p className="text-[15px] 3xl:text-base leading-lh-text19 font-light text-foreground dark:text-white/70">
             {item.date}
           </p>
         </div>
