@@ -5,7 +5,7 @@ import Image from "next/image";
 import { assets } from "@/public/assets/assets";
 import StandardBnr from "../common/StandardBnr";
 import { motion } from "framer-motion";
-import { moveUp } from "../motionVarients";
+import { moveLeft, moveUp } from "../motionVarients";
 
 interface Props {
   title: string;
@@ -32,13 +32,23 @@ const Main = ({
       <div className="container">
         <StandardBnr title={title} />
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between pb-4 xl:pb-27px gap-3">
-          <p className="dark:text-white">
+          <motion.p
+            variants={moveUp()}
+            initial="hidden"
+            whileInView="show"
+            className="dark:text-white"
+          >
             <span>{category}</span> <span className="mx-2">|</span>{" "}
             <span className="">{date}</span> <span className="mx-2">|</span>{" "}
             <span>{author}</span>
-          </p>
+          </motion.p>
           <ul className="flex gap-3 items-center dark:text-white ml-auto">
-            <li className="bg-black rounded-full w-8 h-8 xl:w-[41px] xl:h-[41px] flex items-center justify-center hover:translate-y-[-2px] hover:bg-accent dark:hover:bg-accent dark:bg-primary transition-all duration-300 ease-in-out cursor-pointer active:bg-accent active:translate-y-0">
+            <motion.li
+              variants={moveLeft()}
+              initial="hidden"
+              whileInView="show"
+              className="bg-black rounded-full w-8 h-8 xl:w-[41px] xl:h-[41px] flex items-center justify-center hover:translate-y-[-2px] hover:bg-accent dark:hover:bg-accent dark:bg-primary transition-colors duration-300 ease-in-out cursor-pointer active:bg-accent active:translate-y-0"
+            >
               <Link href="#">
                 <svg
                   width="19"
@@ -53,8 +63,13 @@ const Main = ({
                   />
                 </svg>
               </Link>
-            </li>
-            <li className="bg-black rounded-full w-8 h-8 xl:w-[41px] xl:h-[41px] flex items-center justify-center hover:translate-y-[-2px] hover:bg-accent dark:hover:bg-accent dark:bg-primary transition-all duration-300 ease-in-out cursor-pointer active:bg-accent active:translate-y-0">
+            </motion.li>
+            <motion.li
+              variants={moveLeft(0.15)}
+              initial="hidden"
+              whileInView="show"
+              className="bg-black rounded-full w-8 h-8 xl:w-[41px] xl:h-[41px] flex items-center justify-center hover:translate-y-[-2px] hover:bg-accent dark:hover:bg-accent dark:bg-primary transition-colors duration-300 ease-in-out cursor-pointer active:bg-accent active:translate-y-0"
+            >
               <Link href="#">
                 <svg
                   width="16"
@@ -69,8 +84,13 @@ const Main = ({
                   />
                 </svg>
               </Link>
-            </li>
-            <li className="bg-black rounded-full w-8 h-8 xl:w-[41px] xl:h-[41px] flex items-center justify-center hover:translate-y-[-2px] hover:bg-accent dark:hover:bg-accent dark:bg-primary transition-all duration-300 ease-in-out cursor-pointer active:bg-accent active:translate-y-0">
+            </motion.li>
+            <motion.li
+              variants={moveLeft(0.3)}
+              initial="hidden"
+              whileInView="show"
+              className="bg-black rounded-full w-8 h-8 xl:w-[41px] xl:h-[41px] flex items-center justify-center hover:translate-y-[-2px] hover:bg-accent dark:hover:bg-accent dark:bg-primary transition-colors duration-300 ease-in-out cursor-pointer active:bg-accent active:translate-y-0"
+            >
               <Link href="#">
                 <svg
                   width="8"
@@ -85,8 +105,13 @@ const Main = ({
                   />
                 </svg>
               </Link>
-            </li>
-            <li className="bg-black rounded-full w-8 h-8 xl:w-[41px] xl:h-[41px] flex items-center justify-center hover:translate-y-[-2px] hover:bg-accent dark:hover:bg-accent dark:bg-primary transition-all duration-300 ease-in-out cursor-pointer active:bg-accent active:translate-y-0">
+            </motion.li>
+            <motion.li
+              variants={moveLeft(0.45)}
+              initial="hidden"
+              whileInView="show"
+              className="bg-black rounded-full w-8 h-8 xl:w-[41px] xl:h-[41px] flex items-center justify-center hover:translate-y-[-2px] hover:bg-accent dark:hover:bg-accent dark:bg-primary transition-colors duration-300 ease-in-out cursor-pointer active:bg-accent active:translate-y-0"
+            >
               <Link href="#">
                 <svg
                   width="14"
@@ -101,10 +126,15 @@ const Main = ({
                   />
                 </svg>
               </Link>
-            </li>
+            </motion.li>
           </ul>
         </div>
-        <div className="mb-27px">
+        <motion.div
+          variants={moveUp(0.2)}
+          initial="hidden"
+          whileInView="show"
+          className="mb-27px"
+        >
           <Image
             src={mainImage}
             alt="blog-details"
@@ -112,48 +142,80 @@ const Main = ({
             height={1280}
             className="w-full"
           />
-        </div>
+        </motion.div>
         <div className="mb-47px">
           {description.map((para, index) => (
-            <p
+            <motion.p
+              variants={moveUp(index * 0.12)}
+              initial="hidden"
+              whileInView="show"
               key={index}
-              className="mb-5 xl:mb-5 text-lg leading-lh-text19 font-normal dark:text-white"
+              className="mb-5 xl:mb-5 text-lg leading-lh-text19 font-normal text-foreground dark:text-white/70"
             >
               {para}
-            </p>
+            </motion.p>
           ))}
         </div>
         <div className="mb-47px">
-          <h3 className="text-2xl leading-lh-text32 font-normal mb-5 xl:mb-[27px] dark:text-white">
+          <motion.h3
+            variants={moveUp()}
+            initial="hidden"
+            whileInView="show"
+            className="text-2xl leading-lh-text32 font-normal mb-5 xl:mb-[27px] dark:text-white"
+          >
             {extraContent.title}
-          </h3>
+          </motion.h3>
           <ul className="square-list list-inside space-y-3 xl:space-y-4 dark:text-white">
             {extraContent.description.map((item, index) => (
-              <li
+              <motion.li
+                variants={moveUp(index * 0.12)}
+                initial="hidden"
+                whileInView="show"
                 key={index}
                 className="text-lg leading-lh-text19 font-normal fong-light"
               >
                 {item}
-              </li>
+              </motion.li>
             ))}
           </ul>
         </div>
-        <div>
+        <motion.div
+          variants={moveUp()}
+          initial="hidden"
+          whileInView="show"
+          className="mb-47px"
+        >
           <div className="bg-[#1c1c1c] border-l-6 border-primary dark:border-accent max-w-[938px] pl-6 pr-6 py-6 md:pl-14 md:pr-14 xl:pl-[71px] xl:pr-[72px]  md:py-15 xl:py-[81px] relative">
-            <h3 className="text-xl leading-lh-text32 font-light mb-2 xl:mb-3 text-white">
+            <motion.h3
+              variants={moveUp(0.15)}
+              initial="hidden"
+              whileInView="show"
+              className="text-xl leading-lh-text32 font-light mb-2 xl:mb-3 text-white"
+            >
               {quote.text}
-            </h3>
+            </motion.h3>
             <div className="flex items-center justify-between">
-              <p className="text-lg leading-lh-text19 font-medium text-white w-fit">
+              <motion.p
+                variants={moveUp(0.2)}
+                initial="hidden"
+                whileInView="show"
+                className="text-lg leading-lh-text19 font-medium text-white w-fit"
+              >
                 {quote.author}
-              </p>
-              <Image
-                src={assets.quote}
-                alt="quote"
-                width={50}
-                height={50}
-                className="w-10 h-10"
-              />
+              </motion.p>
+              <motion.div
+                variants={moveLeft(0.2)}
+                initial="hidden"
+                whileInView="show"
+              >
+                <Image
+                  src={assets.quote}
+                  alt="quote"
+                  width={50}
+                  height={50}
+                  className="w-10 h-10"
+                />
+              </motion.div>
             </div>
             <div className="absolute bottom-0 left-0 w-full h-[25px]">
               <Image
@@ -165,7 +227,7 @@ const Main = ({
               />
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
