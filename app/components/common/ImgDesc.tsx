@@ -16,9 +16,9 @@ const ImgDesc = ({ data }: ImgDescProps) => {
   return (
     <section className="py-57px dark:bg-black">
       <div className="container">
-        <div className="grid grid-cols-1 xl:grid-cols-2 xl:flex gap-6 xl:gap-[70px] items-center">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 xl:gap-[70px] items-stretch">
           {/* Text Section */}
-          <div className="xl:w-[51.3%] flex flex-col gap-6 justify-center order-1 lg:order-2">
+          <div className="flex flex-col gap-6 justify-center order-1 lg:order-2">
             <div>
               <motion.h2
                 variants={moveUp(0.2)}
@@ -33,7 +33,7 @@ const ImgDesc = ({ data }: ImgDescProps) => {
                 {data.description.split("\n").map((line, idx) => (
                   <motion.p
                     key={idx}
-                    variants={moveUp(0.35 + idx * 0.1)} // small stagger for each para
+                    variants={moveUp(0.35 + idx * 0.1)}
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true }}
@@ -52,15 +52,12 @@ const ImgDesc = ({ data }: ImgDescProps) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="xl:w-[48.6%] order-2 xl:order-1"
+            className="
+              relative order-2 xl:order-1
+              h-[350px] md:h-[400px] lg:h-[500px] xl:h-full
+            "
           >
-            <Image
-              src={data.img}
-              alt=""
-              width={1500}
-              height={1500}
-              className="w-full h-[350px] md:h-[400px] lg:h-[500px] 2xl:h-[772px] max-h-[772px] object-cover"
-            />
+            <Image src={data.img} alt="" fill className="object-cover" />
           </motion.div>
         </div>
       </div>
