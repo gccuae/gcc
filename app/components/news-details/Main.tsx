@@ -8,7 +8,7 @@ const Main = () => {
     <section className="py-57px">
       <div className="container">
         <StandardBnr title={newsDetails.title} />
-        <div className="grid grid-cols-1 xl:grid-cols-[75%_25%] gap-5 xl:gap-70px mt-5 xl:mt-12">
+        <div className="grid grid-cols-1 xl:grid-cols-[75%_25%] gap-3 md:gap-5 xl:gap-70px mt-5 xl:mt-12">
           <MainContent
             subTitle={newsDetails.subTitle}
             image={newsDetails.image}

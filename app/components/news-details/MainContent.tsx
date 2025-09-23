@@ -47,7 +47,7 @@ const MainContent = ({
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="flex items-center justify-between mb-5 xl:mb-[27px] mt-3 xl:mt-[17px] gap-3 text-foreground dark:text-white/70"
+        className="flex items-center justify-between mb-3 md:mb-5 xl:mb-[27px] mt-3 xl:mt-[17px] gap-3 text-foreground dark:text-white/70"
       >
         <span className="text-[16px] uppercase">{sector}</span>
         <span className="text-[16px]">{date}</span>
