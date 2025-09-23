@@ -36,7 +36,7 @@ const Main = ({
             variants={moveUp()}
             initial="hidden"
             whileInView="show"
-            className="dark:text-white"
+            className="dark:text-white/70 text-foreground"
           >
             <span>{category}</span> <span className="mx-2">|</span>{" "}
             <span className="">{date}</span> <span className="mx-2">|</span>{" "}
@@ -161,7 +161,7 @@ const Main = ({
             variants={moveUp()}
             initial="hidden"
             whileInView="show"
-            className="text-2xl leading-lh-text32 font-normal mb-5 xl:mb-[27px] dark:text-white"
+            className="text-2xl leading-lh-text32 font-normal mb-5 xl:mb-[27px] text-foreground dark:text-white"
           >
             {extraContent.title}
           </motion.h3>
@@ -172,7 +172,7 @@ const Main = ({
                 initial="hidden"
                 whileInView="show"
                 key={index}
-                className="text-lg leading-lh-text19 font-normal fong-light"
+                className="text-lg leading-lh-text19 font-normal font-light text-foreground dark:text-white/70"
               >
                 {item}
               </motion.li>
