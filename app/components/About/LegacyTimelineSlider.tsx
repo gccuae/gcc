@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { EffectFade, Navigation } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { Swiper as SwiperType } from "swiper/types";
 import { motion } from "framer-motion";
@@ -206,9 +206,11 @@ const LegacyTimelineSlider = ({
             onSwiper={(swiper) => {
               mainSwiperRef.current = swiper;
             }}
-            modules={[Navigation]}
+            modules={[Navigation,EffectFade]}
             spaceBetween={0}
-            slidesPerView={1}
+            slidesPerView={1}        
+            effect="fade"
+            fadeEffect={{ crossFade: true }}
             loop={true}
             speed={500}
             onSlideChange={handleMainSlideChange}
@@ -216,14 +218,13 @@ const LegacyTimelineSlider = ({
           >
             {data.map((item) => (
               <SwiperSlide key={item.year} className="history-slide">
+                 {({ isActive }) => (
                 <div className="  w-full">
                   <div className="container relative z-10">
                     {/* Year Display */}
                     <motion.div
-                      variants={moveUp()}
-                      initial="hidden"
-                      whileInView="show"
-                      viewport={{ once: false }}
+                    animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                    transition={{ duration: 0.8 }}
                       className="text-5xl text-white mb-3 opacity-90"
                     >
                       {item.year}
@@ -231,10 +232,8 @@ const LegacyTimelineSlider = ({
 
                     {/* Title */}
                     <motion.h2
-                      variants={moveUp(0.2)}
-                      initial="hidden"
-                      whileInView="show"
-                      viewport={{ once: false }}
+                    animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                    transition={{ duration: 0.8 }}
                       className="text-xl  font-medium text-white mb-3 leading-tight"
                     >
                       {item.title}
@@ -242,16 +241,15 @@ const LegacyTimelineSlider = ({
 
                     {/* Description */}
                     <motion.p
-                      variants={moveUp(0.4)}
-                      initial="hidden"
-                      whileInView="show"
-                      viewport={{ once: false }}
+                     animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                     transition={{ duration: 0.8 }}
                       className="text-lg text-gray-200 leading-relaxed max-w-2xl font-light"
                     >
                       {item.description}
                     </motion.p>
                   </div>
                 </div>
+                 )}
               </SwiperSlide>
             ))}
           </Swiper>

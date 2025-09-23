@@ -28,14 +28,15 @@ const ClientList = () => {
           className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 border-l border-t border-smgray/56"
         >
           {clientsData.clients.map((client, index) => (
-            <motion.div
-              variants={moveUp(index * 0.13)}
+            <div
+              key={index}
+              className="p-4 xl:p-6 flex items-center justify-center border-r border-b border-smgray/56 group h-30 xl:h-[380px] dark:bg-white"
+            >
+              <motion.div
+              variants={moveUp(index * 0.05)}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true }}
-              key={index}
-              className="p-4 xl:p-6 flex items-center justify-center border-r border-b border-smgray/56 group h-30 xl:h-[380px]"
-            >
+              viewport={{ once: true }} >
               <Image
                 src={client}
                 alt={`client-${index + 1}`}
@@ -43,7 +44,8 @@ const ClientList = () => {
                 height={300}
                 className="max-w-full h-full object-contain group-hover:scale-110 transition-all duration-300"
               />
-            </motion.div>
+              </motion.div>
+            </div>
           ))}
         </motion.div>
       </div>
