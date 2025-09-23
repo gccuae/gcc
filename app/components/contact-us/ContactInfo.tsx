@@ -104,7 +104,7 @@ const ContactInfo = () => {
                   </svg>
 
                   <div>
-                    <h4 className="text-base leading-lh-25 uppercase">
+                    <h4 className="text-base leading-lh-25 uppercase dark:text-white/40">
                       Telephone
                     </h4>
                     <a

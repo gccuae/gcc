@@ -273,7 +273,10 @@ const ContactForm: React.FC = () => {
                 required: "You must accept the privacy policy and terms",
               })}
             />
-            <label htmlFor="acceptPrivacy" className="text-base font-light">
+            <label
+              htmlFor="acceptPrivacy"
+              className="text-base font-light dark:text-white/40"
+            >
               I ACCEPT THE PRIVACY AND TERMS
             </label>
           </motion.div>
@@ -294,7 +297,7 @@ const ContactForm: React.FC = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="hover:bg-primary dark:hover:bg-transparent hover:text-white flex items-center justify-center py-1 xl:py-[7.39px] px-4 xl:px-[28px] gap-2 transition-all
+              className="cursor-pointer hover:bg-primary dark:hover:bg-transparent hover:text-white flex items-center justify-center py-1 xl:py-[7.39px] px-4 xl:px-[28px] gap-2 transition-all
      duration-300 ease-in-out group border border-foreground dark:border-white rounded-4xl w-fit hover:shadow-xl dark:bg-transparent"
             >
               {isSubmitting ? (
