@@ -1,6 +1,7 @@
 import Main from "./Main";
 import { blogDetailsData } from "./data";
 import MoreBlog from "./MoreBlog";
+
 const Index = () => {
   return (
     <>
