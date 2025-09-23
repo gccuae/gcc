@@ -4,7 +4,7 @@ import { blogData } from "./data";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useMemo } from "react";
 import { BlogItem } from "./BlogItem";
-import { moveLeft } from "../motionVarients";
+import { moveUp, moveLeft } from "../motionVarients";
 
 const BlogList = () => {
   const { items } = blogData;
@@ -56,7 +56,13 @@ const BlogList = () => {
         </div>
 
         {/* ----------- Mobile Accordion Tabs ----------- */}
-        <div className="md:hidden border-t border-gray-200 divide-y divide-gray-200">
+        <motion.div
+          variants={moveUp(0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="md:hidden border-t border-gray-200 divide-y divide-gray-200"
+        >
           {categories.map((cat, idx) => (
             <div key={cat} className="w-full">
               <button
@@ -106,22 +112,23 @@ const BlogList = () => {
               </AnimatePresence>
             </div>
           ))}
-        </div>
+        </motion.div>
 
         {/* ----------- Desktop Content ----------- */}
         <motion.div
-          initial={{ opacity: 1 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.4 }}
+          variants={moveUp(0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
           className="hidden md:grid mt-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 xl:gap-30px items-start"
         >
           {filteredItems.map((item, i) => (
             <motion.div
               key={`${item.id || item.title}-${i}`}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3, delay: i * 0.05 }}
+              variants={moveUp(i * 0.12)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
             >
               <BlogItem
                 item={item}
