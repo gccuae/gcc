@@ -265,7 +265,7 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
                     </h4>
                   </div>
                   <div>
-                    <BtnPrimary link="#" text="Apply Now" bgtrans={true} />
+                    <BtnPrimary link={`careers/${job.title}`} text="Apply Now" bgtrans={true} />
                   </div>
                 </motion.div>
               ))}
