@@ -43,10 +43,10 @@ const BlogList = () => {
               viewport={{ once: true }}
               key={cat}
               onClick={() => setActiveTab(idx)}
-              className={`py-4 xl:py-[27px] text-md lg:text-xl leading-normal font-medium relative ${
+              className={`cursor-pointer py-4 xl:py-[27px] text-md lg:text-xl leading-normal font-medium relative ${
                 activeTab === idx
                   ? "text-black dark:text-white"
-                  : "text-white/70 hover:text-black dark:hover:text-white"
+                  : "text-black/70 hover:text-black dark:hover:text-white font-normal"
               }`}
             >
               {cat}
