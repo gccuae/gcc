@@ -9,6 +9,6 @@ const Index = () => {
       <BlogList />
     </>
   );
-}
- 
+};
+
 export default Index;
