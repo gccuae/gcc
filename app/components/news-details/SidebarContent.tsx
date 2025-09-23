@@ -140,7 +140,7 @@ const SidebarContent = () => {
               whileInView="show"
               viewport={{ once: true }}
               key={index}
-              className="mb-5 xl:mb-[17px] border-b border-smgray pb-5 xl:pb-[17px]"
+              className="mb-8 md:mb-5 xl:mb-[17px] border-b border-smgray pb-5 xl:pb-[17px]"
             >
               <Link href={`/news/${item.slug}`}>
                 <Image
@@ -170,7 +170,7 @@ const SidebarContent = () => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="group px-6 py-2 text-black rounded-3xl bg-light-white border border-mdgray uppercase flex items-center gap-2 hover:bg-primary hover:text-white transition-colors duration-300 ease-in-out"
+          className="group cursor-pointer px-6 py-2 text-black rounded-3xl bg-light-white border border-mdgray uppercase flex items-center gap-2 hover:bg-primary hover:text-white transition-colors duration-300 ease-in-out"
         >
           <span>View All</span>
           <Image
