@@ -214,7 +214,7 @@ export const Menu = ({
 
               <div className="rghtsc flex flex-col justify-center ml-[2px] bg-primary px-6 xl:px-10 ">
                 <div className="rounded-full px-6 py-[7px] border border-white hover:bg-white transition-all duration-300 hover:scale-110 group">
-                  <Link href="/" className="flex flex-1 justify-center items-center transition h-full w-full gap-2 ">
+                  <Link href="/contact-us" className="flex flex-1 justify-center items-center transition h-full w-full gap-2 ">
                     <span className="text-white text-base leading-[1.82] group-hover:text-primary transition-all duration-200">CONTACT</span>
                   </Link>
                 </div>

@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import { assets } from "@/public/assets/assets";
-
+import Link from "next/link";
 const ExpertiseCard = ({ item, index }: { item: { image: string; title: string; icon: string }; index: number }) => {
   return (
     <div key={index} className="relative border-b border-smgray pb-3 lg:pb-4 xl:pb-[25px] group">
+      <Link href={`/expertise/${item.title}`}>
       <div className="mb-4 xl:mb-[17px] overflow-hidden relative h-[300px] xl:h-[486px] p-4 xl:p-[27px] flex justify-end items-end">
         <Image src={item.image} alt={item.title} width={1500} height={1500} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-all duration-300" />
         <div className="bg-white rounded-full border border-accent w-12 h-12 xl:w-20 xl:h-20 relative z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
@@ -19,6 +20,7 @@ const ExpertiseCard = ({ item, index }: { item: { image: string; title: string; 
         </div>
         <h3 className="text-xl lg:text-2xl leading-lh-text32 dark:text-white dark:group-hover:text-primary group-hover:text-black transition-all duration-300 ">{item.title}</h3>
       </div>
+      </Link>
     </div>
   );
 }
