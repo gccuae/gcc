@@ -8,7 +8,7 @@ import { moveUp } from "../../components/motionVarients";
 
 const CounterSection = () => {
   return (
-    <section className="pt-57px bg-light-white dark:bg-[#191919]">
+    <section className="py-57px lg:pb-0 bg-light-white dark:bg-[#191919]">
       <div className="container">
         <div className="mb-6 xl:mb-[47px]">
           <motion.h2
@@ -44,8 +44,8 @@ const CounterSection = () => {
               viewport={{ once: true }}
               initial="hidden"
               whileInView="show"
-              className="border-r dark:border-[#3f3f3f] border-smgray last:border-r-0 [&:nth-child(2)]:border-r-0 [&:nth-child(4)]:border-r-0 lg:[&:nth-child(2)]:border-r-1
-            px-5 md:px-10 xl:px-18 pt-4 xl:pt-[22px] pb-4 xl:pb-[21px]
+              className="border-b lg:border-b-0 border-r dark:border-[#3f3f3f] border-smgray last:border-r-0 [&:nth-child(2)]:border-r-0 [&:nth-child(4)]:border-r-0 lg:[&:nth-child(2)]:border-r-1
+            px-5 md:px-10 xl:px-14 2xl:px-18 pt-4 xl:pt-[22px] pb-4 xl:pb-[21px]
                hover:bg-primary hover:text-white transition-colors duration-300 group"
             >
               <div className="">
@@ -61,7 +61,7 @@ const CounterSection = () => {
                 <h3 className="text-5xl leading-lh-text68 font-normal mb-4 xl:mb-[27px] text-black dark:text-white group-hover:text-white transition-all duration-300">
                   <Counter from={0} to={item.count} duration={2} />+
                 </h3>
-                <p className="text-lg leading-lh-text19 dark:text-white">
+                <p className="text-lg leading-lh-text19 dark:text-white uppercase">
                   {item.desc}
                 </p>
               </div>

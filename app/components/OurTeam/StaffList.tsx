@@ -5,10 +5,10 @@ import Image from "next/image";
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { moveUp, moveLeft } from "../motionVarients";
+import Select from "react-select";
 
 const StaffList = () => {
-  const [activeCategory, setActiveCategory] = useState<string>("All");
-  const [openAccordion, setOpenAccordion] = useState<string | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string>("All"); 
 
   // Get unique categories from staff data
   const categories = useMemo(() => {
@@ -18,6 +18,11 @@ const StaffList = () => {
     return ["All", ...uniqueCategories];
   }, []);
 
+  // Convert categories to react-select format
+  const categoryOptions = categories.map((cat) => ({
+    value: cat,
+    label: cat,
+  }));
   // Filter staff based on active category
   const filteredStaff = useMemo(() => {
     if (activeCategory === "All") {
@@ -70,63 +75,67 @@ const StaffList = () => {
             ))}
           </div>
         </div>
+        <div className="xl:hidden mb-8">
+          <Select
+            options={categoryOptions}
+            value={categoryOptions.find((opt) => opt.value === activeCategory)}
+            onChange={(selected) => setActiveCategory(selected?.value || "All")}
+            className="text-black "
+            styles={{
+              control: (base) => ({
+                ...base,
+                backgroundColor: "#000",
+                borderColor: "#555",
+                color: "#fff",
+                padding: "4px",
+              }),
+              singleValue: (base) => ({
+                ...base,
+                color: "#fff",
+              }),
+              menu: (base) => ({
+                ...base,
+                backgroundColor: "#111",
+              }),
+              option: (base, state) => ({
+                ...base,
+                backgroundColor: state.isFocused ? "#7AC142" : "#111",
+                color: "#fff",
+              }),
+            }}
+          />
+        </div>
 
-        {/* MOBILE ACCORDION */}
-        <div className="xl:hidden space-y-4">
-          {categories.map((category) => (
-            <div key={category} className="border border-[#555555] rounded-lg">
-              <button
-                onClick={() =>
-                  setOpenAccordion(openAccordion === category ? null : category)
-                }
-                className="w-full flex justify-between items-center px-4 py-3 text-lg text-white"
+        {/* MOBILE GRID */}
+        <div className="xl:hidden grid grid-cols-1 sm:grid-cols-2 gap-y-8">
+          {filteredStaff.map((staff, index) => (
+            <motion.div
+              key={`${staff.name}-${activeCategory}`}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="group"
+            >
+              <div
+                className={`${
+                  index % 2 === 0 ? "bg-[#ebebeb]" : "bg-[#dfdfdf]"
+                } group-hover:bg-gray-100 transition-all duration-300 flex flex-col mb-6 overflow-hidden relative`}
               >
-                {category}
-                <span>{openAccordion === category ? "−" : "+"}</span>
-              </button>
-
-              {openAccordion === category && (
-                <div className="p-4 border-t border-smgray">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-8">
-                    {(category === "All"
-                      ? teamData.staffs
-                      : teamData.staffs.filter(
-                          (staff) => staff.category === category
-                        )
-                    ).map((staff, index) => (
-                      <motion.div
-                        key={`${staff.name}-${category}`}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                        viewport={{ once: true }}
-                        className="group"
-                      >
-                        <div
-                          className={`${
-                            index % 2 === 0 ? "bg-[#ebebeb]" : "bg-[#dfdfdf]"
-                          } group-hover:bg-gray-100 transition-all duration-300 flex flex-col mb-6 overflow-hidden relative`}
-                        >
-                          <Image
-                            src={staff.image}
-                            alt={staff.name}
-                            width={1000}
-                            height={1000}
-                            className="w-full h-[280px] object-contain mx-auto grayscale-100 group-hover:grayscale-0 transition-all duration-300"
-                          />
-                        </div>
-                        <h3 className="text-2xl text-white/80">{staff.name}</h3>
-                        <p className="text-lg text-white/70">
-                          {staff.position}
-                        </p>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
+                <Image
+                  src={staff.image}
+                  alt={staff.name}
+                  width={1000}
+                  height={1000}
+                  className="w-full h-[280px] object-contain mx-auto grayscale-100 group-hover:grayscale-0 transition-all duration-300"
+                />
+              </div>
+              <h3 className="text-2xl text-white/80">{staff.name}</h3>
+              <p className="text-lg text-white/70">{staff.position}</p>
+            </motion.div>
           ))}
         </div>
+        
 
         {/* DESKTOP GRID */}
         <div className="hidden xl:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-10 xl:gap-y-14">
