@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { fadeIn, moveUp } from "../motionVarients";
+import {  moveUp } from "../motionVarients";
 
 interface ImgDescProps {
   data: {
@@ -48,10 +48,10 @@ const ImgDesc = ({ data }: ImgDescProps) => {
 
           {/* Image Section */}
           <motion.div
-            variants={fadeIn(0.3)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
+           variants={moveUp(0.2)}
+           initial="hidden"
+           whileInView="show"
+           viewport={{ once: true }}
             className="xl:w-[48.6%] order-2 lg:order-1"
           >
             <Image

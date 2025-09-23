@@ -182,8 +182,7 @@ const Main = ({
         <motion.div
           variants={moveUp()}
           initial="hidden"
-          whileInView="show"
-          className="mb-47px"
+          whileInView="show" 
         >
           <div className="bg-[#1c1c1c] border-l-6 border-primary dark:border-accent max-w-[938px] pl-6 pr-6 py-6 md:pl-14 md:pr-14 xl:pl-[71px] xl:pr-[72px]  md:py-15 xl:py-[81px] relative">
             <motion.h3

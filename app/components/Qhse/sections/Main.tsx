@@ -12,10 +12,10 @@ type Props = {
 
 const Main = ({ title, subtitle, description }: Props) => {
   return (
-    <section className="pt-57px xl:pt-25">
+    <section className="pt-57px xl:pt-25 dark:bg-[#191919]">
       <div className="container">
         <StandardBnr title={title} />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 xl:gap-10 justify-items-between py-[40px] xl:py-[80px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 xl:gap-10 justify-items-between lg:pt-10 pb-[40px] xl:pb-[80px]">
           <div>
             <motion.h2
               variants={moveUp()}

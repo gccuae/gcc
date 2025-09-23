@@ -4,6 +4,8 @@ import { SliderData } from "./data";
 import { Swiper, SwiperSlide } from "swiper/react"; 
 import { useState } from "react";
 import "swiper/css";
+import { moveUp } from "../motionVarients";
+import { motion } from "framer-motion";
 
 const AiSlider = () => {
   
@@ -32,14 +34,21 @@ const AiSlider = () => {
       ul?: string[];
     }
   return (
+    <motion.div   variants={moveUp(0.2)}
+    initial="hidden"
+    whileInView="show"
+    viewport={{ once: true }}>
     <section
     className=" transition-all duration-500 h-[400px] lg:h-[750px] relative after:content-[''] after:absolute after:top-0 after:left-0 after:w-full after:h-full afterbgf "
     style={{ background: `url(${bgImage}) center/cover no-repeat` }}
   >
     <div className="container relative h-full w-full  ">
-      <div 
+      <motion.div   variants={moveUp(0.2)}
+               initial="hidden"
+               whileInView="show"
+               viewport={{ once: true }}
     className="border-b border-smgray  w-full">
-    <Swiper
+    <Swiper 
     className="border-b border-smgray aislider"
         slidesPerView={3} 
         loop={true}
@@ -72,6 +81,10 @@ const AiSlider = () => {
             onMouseEnter={() => setBgImage(item.image)}
             onMouseLeave={() => setBgImage(activeImage)}
             onClick={() => handleTouch(index, item.image)}>
+              <motion.div variants={moveUp(0.4)}
+               initial="hidden"
+               whileInView="show"
+               viewport={{ once: true }}>
               <div className={`group itmmn h-[360px] lg:h-[700px] flex flex-col justify-end transition-all duration-300   ${
                 touchedIndex === index ? "bg-[#ffffff40]" : "hover:bg-[#ffffff10]"
               }`}>
@@ -99,12 +112,14 @@ const AiSlider = () => {
               </div> 
              </div>
               </div>
+              </motion.div>
             </SwiperSlide>
           ))}
       </Swiper>
-      </div>
+      </motion.div>
     </div>
     </section>
+    </motion.div>
   );
 }
 

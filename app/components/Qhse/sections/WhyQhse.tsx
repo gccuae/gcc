@@ -12,7 +12,7 @@ type Props = {
 
 const WhyQhse = ({ title, description, matters }: Props) => {
   return (
-    <section className="py-57px bg-light-white dark:bg-black">
+    <section className="py-57px bg-light-white dark:bg-[#191919]">
       <div className="container">
         <motion.h2
           variants={moveUp()}
@@ -50,7 +50,7 @@ const WhyQhse = ({ title, description, matters }: Props) => {
                     alt={item.title}
                     width={100}
                     height={100}
-                    className="w-15 h-15 transition duration-300 filter brightness-0 group-hover:brightness-100"
+                    className="w-15 h-15 transition duration-300 filter brightness-0 dark:brightness-100 group-hover:brightness-100"
                   />
 
                   <h3 className="text-2xl leading-lh-text32 text-black dark:text-white group-hover:text-primary transition-colors duration-300">

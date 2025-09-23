@@ -34,7 +34,7 @@ const EnvironmentalResponsibility = ({
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="text-5xl md:text-6xl font-light leading-lh-title text-black dark:text-white mb-27px"
+          className="text-5xl md:text-6xl font-light leading-lh-title text-black dark:text-white mb-4 md:mb-27px"
         >
           {title}
         </motion.h2>
@@ -69,7 +69,7 @@ const EnvironmentalResponsibility = ({
                   alt={item.title}
                   width={486}
                   height={475}
-                  className="object-cover max-w-[486px] max-h-[475px] group-hover:scale-[1.02] transition-all duration-300 group-hover:blur-[2px]"
+                  className="object-cover max-w-[486px] max-h-[300px] lg:max-h-[475px] group-hover:scale-[1.02] transition-all duration-300 group-hover:blur-[2px]"
                 />
                 {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>

@@ -72,7 +72,7 @@ const Breadcrumb = ({ standard = false }: Props) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="flex items-center gap-4 text-15 leading-[1.2] font-normal group uppercase"
+            className="flex items-center gap-4 text-15 leading-[1.2] font-normal group  uppercase"
           >
             {!isLast ? (
               <Link href={href} className="text-mdgray dark:text-white hover:underline">
