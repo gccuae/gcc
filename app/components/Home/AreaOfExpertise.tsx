@@ -135,7 +135,8 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
       thumbsSwiper &&
       prevRef.current &&
       nextRef.current &&
-      thumbsSwiper.params.navigation
+      thumbsSwiper.params.navigation &&
+      thumbsSwiper.params.navigation !== true
     ) {
       thumbsSwiper.params.navigation.prevEl = prevRef.current;
       thumbsSwiper.params.navigation.nextEl = nextRef.current;
