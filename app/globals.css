@@ -398,3 +398,8 @@ header.modal-open {
     max-width:400px;
   }
 }
+
+.sliderexp.swiper-slide-visible.swiper-slide-active .exp-icon-div{
+  border-bottom: 6px solid var(--color-primary);
+} 
+ 

@@ -157,7 +157,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
           <h2 className="text-5xl font-normal leading-[1.147058823529412] text-black dark:text-white">
             {data.title}
           </h2>
-          <div className="flex items-center gap-2">
+          {/* <div className="flex items-center gap-2">
             <motion.div
               variants={moveUp(0.5)}
               initial="hidden"
@@ -169,8 +169,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                 ref={prevRef}
                 className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] border-r border-foreground dark:border-white rounded-tl-full rounded-bl-full group  cursor-pointer hover:bg-accent  transition-all duration-300"
               >
-                {/* <Image src="/assets/img/icons/greenrightarrow.svg" alt="image" className="rotate-180 group-hover:brightness-0 group-hover:invert transition-all duration-300 min-w-[6px] min-h-[13px]" width={6} height={13} /> */}
-                <svg
+                 <svg
                   width="10"
                   height="16"
                   viewBox="0 0 10 16"
@@ -191,8 +190,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                 ref={nextRef}
                 className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] rounded-tr-full rounded-br-full cursor-pointer group hover:bg-accent dark:hover:bg-white transition-all duration-300"
               >
-                {/* <Image src="/assets/img/icons/greenrightarrow.svg" alt="image" className="group-hover:brightness-0 group-hover:invert transition-all duration-300 min-w-[6px] min-h-[13px]" width={6} height={13} /> */}
-                <svg
+                 <svg
                   width="10"
                   height="16"
                   viewBox="0 0 10 16"
@@ -210,7 +208,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                 </svg>
               </div>
             </motion.div>
-          </div>
+          </div> */}
         </div>
         <div>
           <motion.div
@@ -252,7 +250,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
               {data.items.map((item, index) => (
                 <SwiperSlide
                   key={item.id}
-                  className="cursor-pointer transition mb-4 xl:mb-5 group"
+                  className="sliderexp cursor-pointer transition mb-4 xl:mb-5 group"
                   onClick={() => handleSlideHover(index)}
                 >
                   <div className="exp-icon-div group-hover:border-primary transition-colors duration-400 pb-4 mb-6 xl:pb-[30px] xl:mb-[15px] relative flex items-center gap-5">
