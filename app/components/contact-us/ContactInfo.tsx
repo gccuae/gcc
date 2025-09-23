@@ -35,7 +35,7 @@ const ContactInfo = () => {
                     />
                   </svg>
                   <div>
-                    <h4 className="text-base leading-lh-25 uppercase">
+                    <h4 className="text-base leading-lh-25 uppercase dark:text-white/40">
                       Location
                     </h4>
                     <p className="text-lg leading-lh-text19 text-black dark:text-white">
@@ -64,7 +64,7 @@ const ContactInfo = () => {
                   </svg>
 
                   <div>
-                    <h4 className="text-base leading-lh-25 uppercase">
+                    <h4 className="text-base leading-lh-25 uppercase dark:text-white/40">
                       Telephone
                     </h4>
                     <a
@@ -93,7 +93,7 @@ const ContactInfo = () => {
                   </svg>
 
                   <div>
-                    <h4 className="text-base leading-lh-25 uppercase">Email</h4>
+                    <h4 className="text-base leading-lh-25 uppercase dark:text-white/40">Email</h4>
                     <a
                       href="mailto:info@gcc.ae"
                       className="text-lg leading-lh-text19 text-black dark:text-white"
@@ -118,7 +118,7 @@ const ContactInfo = () => {
                   </svg>
 
                   <div>
-                    <h4 className="text-base leading-lh-25 uppercase">fax</h4>
+                    <h4 className="text-base leading-lh-25 uppercase dark:text-white/40">fax</h4>
                     <a
                       href="fax:+97126267510"
                       className="text-lg leading-lh-text19 text-black dark:text-white"

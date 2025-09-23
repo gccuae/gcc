@@ -12,7 +12,7 @@ type Props = {
 
 const HealthandSafety = ({ title, description, measures }: Props) => {
   return (
-    <section className="py-57px bg-black">
+    <section className="py-57px bg-black dark:bg-[#191919]">
       <div className="container">
         <div className="mb-6 xl:mb-[47px]">
           <motion.h2

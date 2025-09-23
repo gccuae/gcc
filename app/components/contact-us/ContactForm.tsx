@@ -44,7 +44,7 @@ const ContactForm: React.FC = () => {
         {/* First Name and Last Name Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 xl:gap-10">
           <div>
-            <label htmlFor="firstName" className="block text-base font-normal leading-lh-base text-gray-700 mb-4 xl:mb-9"> First Name </label>
+            <label htmlFor="firstName" className="block text-base font-normal leading-lh-base text-gray-700 dark:text-white/40 mb-4 xl:mb-9"> First Name </label>
             <input type="text" id="firstName" placeholder="Enter First Name"
               className={`w-full pb-3 border-b-2 transition-colors duration-200 focus:outline-none  placeholder:text-lg placeholder:text-[#979797] placeholder:font-normal placeholder:leading-lh-base ${errors.firstName
                 ? 'border-red-500 bg-red-50'
@@ -68,7 +68,7 @@ const ContactForm: React.FC = () => {
           </div>
 
           <div>
-            <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-4 xl:mb-9">
+            <label htmlFor="lastName" className="block dark:text-white/40 text-sm font-medium text-gray-700 mb-4 xl:mb-9">
               Last Name
             </label>
             <input
@@ -100,7 +100,7 @@ const ContactForm: React.FC = () => {
         {/* Email and Contact Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 xl:gap-10">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-4 xl:mb-9">
+            <label htmlFor="email" className="dark:text-white/40 block text-sm font-medium text-gray-700 mb-4 xl:mb-9">
               Email
             </label>
             <input
@@ -125,7 +125,7 @@ const ContactForm: React.FC = () => {
           </div>
 
           <div>
-            <label htmlFor="contact" className="block text-sm font-medium text-gray-700 mb-4 xl:mb-9">
+            <label htmlFor="contact" className="dark:text-white/40 block text-sm font-medium text-gray-700 mb-4 xl:mb-9">
               Contact
             </label>
             <input
@@ -156,7 +156,7 @@ const ContactForm: React.FC = () => {
 
         {/* Message Field */}
         <div>
-          <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-4 xl:mb-9">
+          <label htmlFor="message" className="dark:text-white/40 block text-sm font-medium text-gray-700 mb-4 xl:mb-9">
             Message
           </label>
           <textarea
@@ -198,7 +198,7 @@ const ContactForm: React.FC = () => {
                 required: 'You must accept the privacy policy and terms',
               })}
             />
-            <label htmlFor="acceptPrivacy" className="text-base font-light">
+            <label htmlFor="acceptPrivacy" className="text-base font-light dark:text-white/40">
               I ACCEPT THE PRIVACY AND TERMS
             </label>
           </div>
@@ -211,7 +211,7 @@ const ContactForm: React.FC = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="hover:bg-primary dark:hover:bg-transparent hover:text-white flex items-center justify-center py-1 xl:py-[7.39px] px-4 xl:px-[28px] gap-2 transition-all
+              className="cursor-pointer hover:bg-primary dark:hover:bg-transparent hover:text-white flex items-center justify-center py-1 xl:py-[7.39px] px-4 xl:px-[28px] gap-2 transition-all
      duration-300 ease-in-out group border border-foreground dark:border-white rounded-4xl w-fit hover:shadow-xl dark:bg-transparent"
             >
               {isSubmitting ? (
