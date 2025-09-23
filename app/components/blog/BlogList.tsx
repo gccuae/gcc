@@ -24,10 +24,16 @@ const BlogList = () => {
       : items.filter((item) => item.category === categories[activeTab]);
 
   return (
-    <section className="py-57px bg-light-white dark:bg-dark-black">
+    <section className="py-57px bg-light-white dark:bg-black">
       <div className="container">
         {/* ----------- Desktop Tabs ----------- */}
-        <div className="hidden md:flex relative border-t border-gray-200 space-x-8 xl:space-x-20 overflow-x-auto">
+        <motion.div
+          variants={moveUp()}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="hidden md:flex relative border-t border-gray-200 space-x-8 xl:space-x-20 overflow-x-auto"
+        >
           {categories.map((cat, idx) => (
             <motion.button
               variants={moveLeft(idx * 0.2)}
@@ -39,8 +45,8 @@ const BlogList = () => {
               onClick={() => setActiveTab(idx)}
               className={`py-4 xl:py-[27px] text-md lg:text-xl leading-normal font-medium relative ${
                 activeTab === idx
-                  ? "text-black"
-                  : "text-gray-500 hover:text-black"
+                  ? "text-black dark:text-white"
+                  : "text-white/70 hover:text-black dark:hover:text-white"
               }`}
             >
               {cat}
@@ -53,7 +59,7 @@ const BlogList = () => {
               )}
             </motion.button>
           ))}
-        </div>
+        </motion.div>
 
         {/* ----------- Mobile Accordion Tabs ----------- */}
         <motion.div
