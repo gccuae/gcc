@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { fadeIn, moveUp } from "../motionVarients";
+import {  moveUp } from "../motionVarients";
 
 interface ImgDescProps {
   data: {
