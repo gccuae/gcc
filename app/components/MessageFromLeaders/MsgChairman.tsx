@@ -9,8 +9,8 @@ import { moveRight, moveUp } from "../motionVarients";
 const MsgChairman = () => {
   return (
     <section className="pt-57px xl:pt-[105px] mb-57px xl:mb-[101px]  dark:bg-[#191919]">
-      <SpecialContainer className="" side="left">
-        <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-10 xl:gap-15 2xl:border-b 2xl:border-light-white dark:border-[#191919]">
+      <SpecialContainer className="lg:ps-0" side="left">
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-end gap-6 md:gap-10 xl:gap-15 lg:border-b lg:border-[#c2c2c2] dark:border-[#191919]">
           <motion.div
             variants={moveRight()}
             viewport={{ once: true }}
@@ -40,7 +40,7 @@ const MsgChairman = () => {
                 initial="hidden"
                 whileInView="show"
               >
-                <h3 className="text-2xl leading-lh-title text-white dark:text-white">
+                <h3 className="text-2xl leading-[1.147] md:leading-lh-title text-white dark:text-white">
                   {leadersData.chairman.name}
                 </h3>
                 <p className="text-lg leading-lh-text19 text-white dark:text-white">
@@ -55,7 +55,7 @@ const MsgChairman = () => {
               viewport={{ once: true }}
               initial="hidden"
               whileInView="show"
-              className="text-5xl lg:text-6xl leading-lh-title text-black dark:text-white mb-5 xl:mb-[34px] lg:max-w-[16ch]"
+              className="text-2xl lg:text-6xl leading-lh-title text-black dark:text-white mb-2 md:mb-5 xl:mb-[34px] lg:max-w-[16ch]"
             >
               {leadersData.chairman.title}
             </motion.h2>
@@ -67,7 +67,7 @@ const MsgChairman = () => {
                   initial="hidden"
                   whileInView="show"
                   key={index}
-                  className="mb-3 lg:mb-[17px] text-lg leading-lh-text19 text-foreground dark:text-white font-light"
+                  className="mb-3 last:mb-0 lg:last:mb-[17px] lg:mb-[17px] text-lg leading-lh-text19 text-foreground dark:text-white font-light"
                 >
                   {item}
                 </motion.p>
