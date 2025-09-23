@@ -1,21 +1,50 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { moveLeft, moveUp } from "../motionVarients";
+
 const ContactInfo = () => {
   return (
     <section className="py-57px bg-light-white dark:bg-black overflow-hidden">
       <div className="container">
         <div className="grid grid-cols-1 xl:grid-cols-[387px_auto] gap-6 xl:gap-12">
           <div className="">
-            <h3 className="text-3xl leading-[1.5625] text-black dark:text-white">
+            <motion.h3
+              variants={moveUp()}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="text-3xl leading-[1.5625] text-black dark:text-white"
+            >
               Reach Out Us
-            </h3>
-            <p className="text-lg leading-[1.5625] dark:text-white">
+            </motion.h3>
+            <motion.p
+              variants={moveUp(0.2)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="text-lg leading-[1.5625] dark:text-white"
+            >
               Get in touch with us for any enquiries.
-            </p>
+            </motion.p>
           </div>
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 xl:gap-30px">
-            <div className="bg-white dark:bg-[#0d0d0d] p-4 xl:p-5">
-              <h3 className="text-2xl leading-lh-text32 text-black dark:text-white border-b border-smgray pb-4 xl:pb-27px">
+            <motion.div
+              variants={moveLeft()}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="bg-white dark:bg-[#0d0d0d] p-4 xl:p-5"
+            >
+              <motion.h3
+                variants={moveUp()}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                className="text-2xl leading-lh-text32 text-black dark:text-white border-b border-smgray pb-4 xl:pb-27px"
+              >
                 Our Head Office
-              </h3>
+              </motion.h3>
               <div className="pt-27px flex flex-col gap-27px">
                 <div className="flex gap-4">
                   <svg
@@ -34,8 +63,13 @@ const ContactInfo = () => {
                       strokeLinecap="round"
                     />
                   </svg>
-                  <div>
-                    <h4 className="text-base leading-lh-25 uppercase dark:text-white/40">
+                  <motion.div
+                    variants={moveUp(0.1)}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true }}
+                  >
+                    <h4 className="text-base leading-lh-25 uppercase">
                       Location
                     </h4>
                     <p className="text-lg leading-lh-text19 text-black dark:text-white">
@@ -44,9 +78,15 @@ const ContactInfo = () => {
                       Suite No. 023, Liberty Tower, Khalifa St.,
                       <br />P O Box 45363, Abu Dhabi, UAE
                     </p>
-                  </div>
+                  </motion.div>
                 </div>
-                <div className="flex gap-4">
+                <motion.div
+                  variants={moveUp(0.2)}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
+                  className="flex gap-4"
+                >
                   <svg
                     width="20"
                     height="20"
@@ -74,7 +114,7 @@ const ContactInfo = () => {
                       +971 2 626 7510
                     </a>
                   </div>
-                </div>
+                </motion.div>
                 <div className="flex gap-4">
                   <svg
                     width="22"
@@ -92,15 +132,20 @@ const ContactInfo = () => {
                     />
                   </svg>
 
-                  <div>
-                    <h4 className="text-base leading-lh-25 uppercase dark:text-white/40">Email</h4>
+                  <motion.div
+                    variants={moveUp(0.3)}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true }}
+                  >
+                    <h4 className="text-base leading-lh-25 uppercase">Email</h4>
                     <a
                       href="mailto:info@gcc.ae"
                       className="text-lg leading-lh-text19 text-black dark:text-white"
                     >
                       info@gcc.ae
                     </a>
-                  </div>
+                  </motion.div>
                 </div>
                 <div className="flex gap-4">
                   <svg
@@ -117,26 +162,43 @@ const ContactInfo = () => {
                     />
                   </svg>
 
-                  <div>
-                    <h4 className="text-base leading-lh-25 uppercase dark:text-white/40">fax</h4>
+                  <motion.div
+                    variants={moveUp(0.35)}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true }}
+                  >
+                    <h4 className="text-base leading-lh-25 uppercase">fax</h4>
                     <a
                       href="fax:+97126267510"
                       className="text-lg leading-lh-text19 text-black dark:text-white"
                     >
                       +971 2 626 7510
                     </a>
-                  </div>
+                  </motion.div>
                 </div>
 
-                <div className="bg-black/5 dark:bg-white/5 p-3 xl:p-5">
+                <motion.div
+                  variants={moveUp(0.4)}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
+                  className="bg-black/5 dark:bg-white/5 p-3 xl:p-5"
+                >
                   <p className="text-lg leading-lh-text19 text-black dark:text-white">
                     We provide year-round support, Mon–Thu, 8:00 AM–5:30 PM GST,
                     or project coordination and client assistance.
                   </p>
-                </div>
+                </motion.div>
               </div>
-            </div>
-            <div className="overflow-hidden">
+            </motion.div>
+            <motion.div
+              variants={moveLeft(0.4)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="overflow-hidden"
+            >
               <div className="aspect-square overflow-hidden h-full">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d116196.90210075915!2d54.425299660706216!3d24.480144790595407!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sGulf%20Contractors%20Company%20(GCC)%20LLC%20Suite%20No.%20023%2C%20Liberty%20Tower%2C%20Khalifa%20St.%2C%20P%20O%20Box%2045363%2C%20Abu%20Dhabi%2C%20UAE!5e0!3m2!1sen!2sin!4v1757499548397!5m2!1sen!2sin"
@@ -149,7 +211,7 @@ const ContactInfo = () => {
                   className="w-full h-full"
                 ></iframe>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

@@ -150,6 +150,34 @@ body {
 
 }
 
+
+/* tailwind.config.css or global.css */
+.left-container {
+  @apply relative mx-auto !pr-0; /* no right padding, center horizontally */
+  padding-left: 15px; /* match base container padding */
+
+
+  @media (min-width: 992px) {
+    max-width: 940px;
+  }
+  @media (min-width: 1200px) {
+    max-width: 1180px;
+  }
+  @media (min-width: 1300px) {
+    max-width: 1280px;
+  }
+  @media (min-width: 1400px) {
+    max-width: 1380px;
+  }
+  @media (min-width: 1600px) {
+    max-width: 1500px;
+  }
+  @media (min-width: 1700px) {
+    max-width: 1550px;
+  }
+}
+
+
 .section-spacing {
   @apply py-[60px] lg:py-[90px] xl:py-[100px] 2xl:py-[120px];
 }

@@ -13,6 +13,7 @@ const StandardBnr = ({ title }: Props) => {
       variants={moveUp()}
       initial="hidden"
       whileInView="show"
+      viewport={{ once: true }}
       className="border-b border-smgray pb-5 xl:pb-10 mb-8 xl:mb-57px"
     >
       <motion.h2
