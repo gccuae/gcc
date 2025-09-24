@@ -320,9 +320,9 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true }}
-                  className="container slide-container grid md:grid-cols-2 xl:grid-cols-[6fr_4fr] items-start gap-6 xl:gap-50px bg-white dark:bg-black group"
+                  className="container h-full slide-container grid md:grid-cols-2 xl:grid-cols-[6fr_4fr] items-start gap-6 xl:gap-50px bg-white dark:bg-black group"
                 >
-                  <div className="img-wrapper border-r-1 border-r-smgray pr-4 xl:pr-[50px] pb-0 xl:py-5 relative overflow-hidden">
+                  <div className="img-wrapper md:border-r-1 border-r-smgray pr-4 xl:pr-[50px] pb-0 xl:py-5 relative">
                     <Image
                       src={item.image}
                       alt={item.title}
