@@ -211,12 +211,12 @@ body {
 
 }
 .area-of-expertise-thumbs .swiper-slide.swiper-slide-thumb-active .icon-wrapper{
-  @apply bg-primary border-black;
+  @apply bg-primary border-none
 }
-.area-of-expertise-thumbs .swiper-slide .exp-icon-div{
-  /* @apply border-b-2 border-b-smgray ; */
+/* .area-of-expertise-thumbs .swiper-slide .exp-icon-div{
+  @apply border-b-2 border-b-smgray ;
   
-}
+} */
 .area-of-expertise-thumbs .swiper-slide.swiper-slide-thumb-active .exp-icon-div > div{
   @apply border-transparent ;
 }
@@ -242,6 +242,7 @@ body {
 :focus-visible 
  {
     outline: none !important;
+    border: none !important;
 }
 .sector-slider .swiper-slide-active .sector-description {
   /* @apply h-auto opacity-100 pb-4 xl:pb-[63px]; */
