@@ -28,7 +28,7 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   return (
-    <section className="wrapper py-57px bg-light-white dark:bg-black text-white overflow-hidden">
+    <section className="wrapper py-57px bg-light-white dark:bg-light-dark text-white overflow-hidden">
       <div className="container">
         <motion.h2
           variants={moveUp(0)}
