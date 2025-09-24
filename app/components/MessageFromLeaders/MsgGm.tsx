@@ -10,7 +10,7 @@ const MsgGm = () => {
   return (
     <section className="pb-57px lg:pb-[101px] dark:bg-black overflow-hidden">
       <SpecialContainer className="" side="right">
-        <div className="flex flex-col-reverse lg:grid grid-cols-1 lg:grid-cols-2 items-end gap-6 md:gap-10 xl:gap-15 lg:border-b lg:border-[#c2c2c2] dark:border-[#797979]">
+        <div className="flex flex-col-reverse lg:grid grid-cols-1 lg:grid-cols-2 lg:items-end gap-6 md:gap-10 xl:gap-15 lg:border-b lg:border-[#c2c2c2] dark:border-[#797979]">
           <div className="">
             <motion.h2
               variants={moveUp()}
@@ -21,7 +21,7 @@ const MsgGm = () => {
             >
               {leadersData.gm.title}
             </motion.h2>
-            <div className="max-w-[61ch]">
+            <div className="lg:max-w-[61ch] pb-0 lg:pb-6">
               {leadersData.gm.desc.map((item, index) => (
                 <motion.p
                   variants={moveUp(index * 0.2)}
