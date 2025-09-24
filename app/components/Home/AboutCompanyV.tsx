@@ -207,7 +207,7 @@ const AboutCompanyV = () => {
           <div className="w-full lg:w-[52%]">
             <p
               ref={textRef}
-              className="text-lg xl:text-[30px] font-light text-foreground mb-6 lg:mb-20 xl:mb-29 dark:text-white leading-[1.3]"
+              className="text-lg xl:text-[30px] font-light text-foreground mb-5 md:mb-8 xl:mb-20 xl:mb-29 dark:text-white leading-[1.3]"
             >
               {splitTextToSpans(
                 `GCC,<span class="font-semibold text-primary">established in 1988</span>, is known for innovation and excellence in construction, with projects ranging from infrastructure and defense to industrial, commercial, and residential developments.`

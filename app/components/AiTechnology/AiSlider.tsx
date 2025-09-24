@@ -4,7 +4,7 @@ import { SliderData } from "./data";
 import { Swiper, SwiperSlide } from "swiper/react"; 
 import { useState } from "react";
 
-import { Autoplay, EffectFade, Navigation } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import { moveUp } from "../motionVarients";
 import { motion } from "framer-motion";
