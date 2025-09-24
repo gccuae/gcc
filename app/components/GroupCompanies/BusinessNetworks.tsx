@@ -14,9 +14,9 @@ const BusinessNetworks = () => {
             viewport={{ once: true }}
             initial="hidden"
             whileInView="show"
-            className="text-6xl leading-lh-title text-black dark:text-white mb-5 xl:mb-[27px]"
+            className="text-5xl leading-[1.147058823529412] text-black dark:text-white mb-5 xl:mb-[27px]"
           >
-            Business Networks
+            Our Business Networks
           </motion.h2>
           <motion.p
             variants={moveUp(0.2)}
