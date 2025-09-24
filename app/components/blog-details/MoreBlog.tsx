@@ -14,7 +14,7 @@ const MoreBlog = ({ category }: { category: string }) => {
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 4); // latest 4
   return (
-    <section className="py-57px bg-light-white dark:bg-[#191919]">
+    <section className="py-57px bg-light-white dark:bg-light-dark">
       <div className="container">
         <motion.div
           variants={moveUp()}

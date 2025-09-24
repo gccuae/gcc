@@ -1,18 +1,15 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Navigation } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { Swiper as SwiperType } from "swiper/types";
-import { motion } from "framer-motion";
-import { fadeIn, moveUp, moveLeft } from "../motionVarients";
-// Import Swiper styles
+import gsap from "gsap"; // 👈 GSAP import
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import Image from "next/image";
-import { StaticImageData } from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 interface TimelineItem {
   year: number;
@@ -31,6 +28,7 @@ const LegacyTimelineSlider = ({
   const [activeSlide, setActiveSlide] = useState(0);
   const mainSwiperRef = useRef<SwiperType>(null);
   const yearSwiperRef = useRef<SwiperType>(null);
+  const [navLocked, setNavLocked] = useState(false);
 
   const handleYearClick = (index: number) => {
     setActiveSlide(index);
@@ -45,28 +43,46 @@ const LegacyTimelineSlider = ({
     if (yearSwiperRef.current) {
       yearSwiperRef.current.slideToLoop(realIndex);
     }
+
+    // 🔥 Animate active slide text
+    const activeEl = swiper.slides[swiper.activeIndex];
+    const year = activeEl.querySelector(".history-year");
+    const title = activeEl.querySelector(".history-title");
+    const desc = activeEl.querySelector(".history-desc");
+
+    gsap.set([year, title, desc], { opacity: 0, y: 50 }); // reset first
+    gsap.to(year, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      delay: 0.1,
+      ease: "power3.out",
+    });
+    gsap.to(title, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      delay: 0.3,
+      ease: "power3.out",
+    });
+    gsap.to(desc, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      delay: 0.5,
+      ease: "power3.out",
+    });
   };
 
-  // const handleNavigation = (direction: 'next' | 'prev') => {
-  //   if (mainSwiperRef.current) {
-  //     if (direction === 'next') {
-  //       mainSwiperRef.current.slideNext();
-  //     } else {
-  //       mainSwiperRef.current.slidePrev();
-  //     }
-  //   }
-  //   if (yearSwiperRef.current) {
-  //     if (direction === 'next') {
-  //       yearSwiperRef.current.slideNext();
-  //     } else {
-  //       yearSwiperRef.current.slidePrev();
-  //     }
-  //   }
-  // };
-  const [navLocked, setNavLocked] = useState(false);
+  // Run animation on first render
+  useEffect(() => {
+    if (mainSwiperRef.current) {
+      handleMainSlideChange(mainSwiperRef.current);
+    }
+  }, []);
 
   const handleNavigation = (direction: "next" | "prev") => {
-    if (navLocked) return; // ignore if still cooling down
+    if (navLocked) return;
     setNavLocked(true);
 
     if (mainSwiperRef.current) {
@@ -76,7 +92,6 @@ const LegacyTimelineSlider = ({
         mainSwiperRef.current.slidePrev();
       }
     }
-
     if (yearSwiperRef.current) {
       if (direction === "next") {
         yearSwiperRef.current.slideNext();
@@ -89,58 +104,37 @@ const LegacyTimelineSlider = ({
   };
 
   return (
-    <div className="relative w-full  bg-black overflow-hidden">
-      {/* Background Image with Overlay */}
+    <div className="relative w-full bg-black overflow-hidden">
+      {/* Background Image */}
       <div className="absolute inset-0">
-        <motion.div
-          variants={fadeIn(0.2)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="w-full h-full bg-cover bg-center transition-all duration-700 ease-in-out"
-        >
-          <Image
-            src={data[activeSlide].backgroundImage}
-            alt=""
-            width={1920}
-            height={1280}
-            className="w-full h-full object-cover"
-          />
-        </motion.div>
+        <Image
+          src={data[activeSlide].backgroundImage}
+          alt=""
+          width={1920}
+          height={1280}
+          className="w-full h-full object-cover"
+        />
       </div>
 
-      {/* Main Content */}
-      <div className="relative z-10 h-full flex flex-col ">
-        <div className="bg-black   overflow-hidden">
+      {/* Content */}
+      <div className="relative z-10 h-full flex flex-col">
+        <div className="bg-black overflow-hidden">
           <div className="container relative h-full">
             {/* Header */}
             <div className="pt-10 xl:pt-20 h-full pb-12 lg:pb-0">
-              <motion.h2
-                variants={moveUp()}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-                className="text-5xl leading-lh-title font-light text-white mb-4 md:mb-8 xl:mb-10 tracking-wide"
-              >
+              <h2 className="text-5xl leading-lh-title font-light text-white mb-4 md:mb-8 xl:mb-10 tracking-wide">
                 {title}
-              </motion.h2>
+              </h2>
             </div>
 
             {/* Timeline Years Navigation Slider */}
-            <motion.div
-              variants={moveLeft()}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="absolute bottom-0 lg:bottom-auto mb-2 md:mb-0  lg:top-12 xl:top-19 right-3 md:right-0 flex items-center z-10 lg:h-full"
-            >
-              {/* Year Slider Container */}
+            <div className="absolute bottom-0 lg:bottom-auto mb-2 md:mb-0 lg:top-12 xl:top-19 right-3 md:right-0 flex items-center z-10 lg:h-full">
               <div className="overflow-hidden h-full relative right-3 md:right-9 top-1 md:top-0">
                 <Swiper
                   onSwiper={(swiper) => {
                     yearSwiperRef.current = swiper;
                   }}
-                  modules={[Navigation,Autoplay]}
+                  modules={[Navigation, Autoplay]}
                   spaceBetween={22}
                   slidesPerView="auto"
                   autoplay={{
@@ -164,10 +158,10 @@ const LegacyTimelineSlider = ({
                     >
                       <button
                         onClick={() => handleYearClick(index)}
-                        className={`font-light transition-all duration-300 hover:text-white whitespace-nowrap ${
+                        className={`font-normal  duration-500 text-lg leading-[1] pb-5 hover:text-white whitespace-nowrap ${
                           activeSlide === index
-                            ? "text-white font-semibold text-lg md:text-2xl leading-[1] pb-5"
-                            : "text-gray-400 hover:text-gray-200 text-lg leading-[1]"
+                            ? "text-white font-semibold  md:text-2xl "
+                            : "text-gray-400 hover:text-gray-200   "
                         }`}
                       >
                         {item.year}
@@ -182,7 +176,7 @@ const LegacyTimelineSlider = ({
                 </Swiper>
               </div>
 
-              {/* Navigation Arrows - Control Both Sliders */}
+              {/* Navigation Arrows */}
               <div className="flex items-center space-x-[1px] absolute -top-2 right-0 z-10">
                 <button
                   onClick={() => handleNavigation("prev")}
@@ -199,20 +193,22 @@ const LegacyTimelineSlider = ({
                   <ChevronRight className="w-5 h-5 text-accent" />
                 </button>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
+
         <div className="w-full h-[1px] bg-[#716c6c]"></div>
-        {/* Swiper Container */}
+
+        {/* History Slider */}
         <div className="flex-1 flex items-center relative z-50 pb-[40px] py-[30px] md:py-[95px] lg:py-[128px]">
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black from-0% to-black/0 to-100% z-0"></div>
           <Swiper
             onSwiper={(swiper) => {
               mainSwiperRef.current = swiper;
             }}
-            modules={[Navigation,EffectFade,Autoplay]}
+            modules={[Navigation, EffectFade, Autoplay]}
             spaceBetween={0}
-            slidesPerView={1}        
+            slidesPerView={1}
             autoplay={{
               delay: 3000,
               disableOnInteraction: true,
@@ -220,44 +216,30 @@ const LegacyTimelineSlider = ({
             effect="fade"
             fadeEffect={{ crossFade: true }}
             loop={true}
-            speed={500}
+            speed={50}
             onSlideChange={handleMainSlideChange}
             className="w-full h-full history-slider relative z-50"
           >
             {data.map((item) => (
               <SwiperSlide key={item.year} className="history-slide">
-                 {({ isActive }) => (
-                <div className="  w-full">
+                <div className="w-full">
                   <div className="container relative z-10">
-                    {/* Year Display */}
-                    <motion.div
-                    animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                    transition={{ duration: 0.8 }}
-                      className="text-5xl text-white mb-3 opacity-90 "
-                    >
+                    {/* Year */}
+                    <div className="history-year text-5xl text-white mb-3 opacity-0">
                       {item.year}
-                    </motion.div>
+                    </div>
 
                     {/* Title */}
-                    <motion.h2
-                    animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                    transition={{ duration: 0.8 }}
-                      className="text-xl  font-medium text-white mb-3 leading-tight"
-                    >
+                    <h2 className="history-title text-xl font-medium text-white mb-3 leading-tight opacity-0">
                       {item.title}
-                    </motion.h2>
+                    </h2>
 
                     {/* Description */}
-                    <motion.p
-                     animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                     transition={{ duration: 0.8 }}
-                      className="text-lg text-gray-200 leading-relaxed max-w-2xl font-light"
-                    >
+                    <p className="history-desc text-lg text-gray-200 leading-relaxed max-w-2xl font-light opacity-0">
                       {item.description}
-                    </motion.p>
+                    </p>
                   </div>
                 </div>
-                 )}
               </SwiperSlide>
             ))}
           </Swiper>

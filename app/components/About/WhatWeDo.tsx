@@ -8,8 +8,8 @@ import { moveUp } from "../motionVarients";
 const WhatWeDo = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   return (
-    <section className="bg-light-white dark:bg-[#0d0d0d] overflow-hidden">
-      <div className="border-b border-smgray">
+    <section className="bg-light-white dark:bg-light-dark overflow-hidden">
+      <div className="border-b border-smgray ">
         <div className="container pt-57px pb-5 xl:py-57px">
           <motion.h2
             variants={moveUp()}
@@ -39,7 +39,7 @@ const WhatWeDo = () => {
           viewport={{ once: true }}
           className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-[52%_48%]"
         >
-          <div className="md:pr-3 xl:pr-70px lg:border-r border-smgray py-5 lg:py-4 xl:pt-[86px] xl:pb-[90px] flex flex-col justify-between">
+          <div className="md:pr-3 xl:pr-70px lg:border-r border-smgray  py-5 lg:py-4 xl:pt-[86px] xl:pb-[90px] flex flex-col justify-between">
             <motion.p
               variants={moveUp(0.2)}
               initial="hidden"
@@ -58,7 +58,7 @@ const WhatWeDo = () => {
                   viewport={{ once: true }}
                   key={index}
                   onClick={() => setActiveIndex(index)}
-                  className={`flex items-center gap-2 w-full justify-between border-b border-smgray group cursor-pointer dark:text-white ${
+                  className={`flex items-center gap-2 w-full justify-between border-b border-smgray  group cursor-pointer dark:text-white ${
                     index === activeIndex ? "text-black dark:text-primary" : ""
                   }`}
                 >

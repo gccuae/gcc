@@ -78,7 +78,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
 
 
   return (
-    <section className="bg-light-white dark:bg-[#191919] overflow-hidden">
+    <section className="bg-light-white dark:bg-light-dark overflow-hidden">
       <div >
         <div className="container" ref={containerRef}>
           <div className="md:flex justify-between items-center pt-37px pb-27px border-b border-[#C2C2C2]">

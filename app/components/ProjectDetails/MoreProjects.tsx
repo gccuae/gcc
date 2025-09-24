@@ -8,7 +8,7 @@ import { moveUp } from "../motionVarients";
 
 const MoreProjects = () => {
   return ( 
-    <section className="py-57px bg-light-white dark:bg-[#191919]">
+    <section className="py-57px bg-light-white dark:bg-light-dark">
       <div className="container">
         <div className="flex justify-between items-center pb-8 xl:pb-[45px] mb-8 xl:mb-15 border-b border-smgray">
           <motion.h2

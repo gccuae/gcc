@@ -17,7 +17,7 @@ interface EngProps {
 }
 const EnergyResource = ({ data }: EngProps) => {
   return (
-    <section className="py-57px bg-light-white dark:bg-[#191919]">
+    <section className="py-57px bg-light-white dark:bg-light-dark">
       <div className="container">
         <motion.h2
           variants={moveUp(0.2)}

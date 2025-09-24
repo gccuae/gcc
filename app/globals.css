@@ -9,6 +9,7 @@
   --background: #ffffff;
   --foreground: #515151;
   --forground-two: #151515;
+  --light-dark: #191919;
   --md-gray: #787878;
   --sm-gray: #c2c2c2;
   --light-white:#F5F3F0;
@@ -37,6 +38,7 @@
   --color-smgray: var(--sm-gray);
   --color-forground-two: var(--forground-two);
   --color-light-white: var(--light-white);
+  --color-light-dark: var(--light-dark);
 
   --breakpoint-3xl: 96.875rem;
 
