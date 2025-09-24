@@ -142,13 +142,16 @@ export const Accordion: React.FC<{ items: AccordionItem[] }> = ({ items }) => {
                   </motion.div>
                 </div>
 
-                <div className="w-[36px] h-fit lg:w-[21px] lg:h-[21px] relative md:top-4 xl:top-3">
-                  <ArrowDown
-                    strokeWidth={1}
-                    className={` transform transition-transform duration-250 mt-1 ${
+                <div className="w-[35px] h-[35px]">
+                  <Image
+                    src="/assets/img/accordian-arrow.svg"
+                    alt="Arrow"
+                    width={35}
+                    height={35}
+                    className={`transform transition-transform duration-250 mt-5 ${
                       openIndex === index
-                        ? "rotate-180 text-green-600"
-                        : "text-black"
+                        ? "rotate-0 "
+                        : "rotate-180 filter invert-[35%] sepia-[100%] saturate-[700%] hue-rotate-[100deg] brightness-[0.6]"
                     }`}
                   />
                 </div>
