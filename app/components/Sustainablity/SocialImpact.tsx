@@ -233,7 +233,7 @@ const SocialImpact = ({ data }: AreaOfExpertiseProps) => {
                       </p>
                     </div>
                   </div> */}
-                  <div className="slide-container grid grid-cols-1 md:grid-cols-2 gap-[20px] md:gap-[30px] lg:gap-[50px] xl:gap-[70px] 2xl:gap-[95px] items-center">
+                  <div className="slide-container grid grid-cols-1 lg:grid-cols-2 gap-[20px] md:gap-[30px] lg:gap-[50px] xl:gap-[70px] 2xl:gap-[95px] items-center">
                     {/* Image */}
                     <div className="img-wrapper slide-img w-full">
                       <Image
