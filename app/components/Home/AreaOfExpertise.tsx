@@ -250,8 +250,8 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
             allowTouchMove={false}
             loop={true}
             breakpoints={{
-              0: { slidesPerView: 1.4 },
-              768: { slidesPerView: 2.5 },
+              0: { slidesPerView: 1 },
+              768: { slidesPerView: 2 },
               1024: { slidesPerView: 3 },
               1280: { slidesPerView: 4 },
             }}
