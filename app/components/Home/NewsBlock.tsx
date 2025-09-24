@@ -74,14 +74,14 @@ const NewsBlock = ({ title, link, items }: NewsBlockProps) => {
           >
             {items.map((item, index) => (
               <SwiperSlide key={index}>
-                <div className="flex flex-wrap xl:flex-nowrap items-center gap-4 xl:gap-[69px]">
-                  <div className="xl:w-1/2 overflow-hidden">
+                <div className="flex flex-wrap lg:flex-nowrap items-stretch gap-4 lg:gap-[69px] ">
+                  <div className="xl:w-1/2 overflow-hidden flex items-stretch w-full">
                     <Image
                       src={item.image}
                       alt="newsBlockImage"
                       width={2000}
                       height={2000}
-                      className="w-full h-full object-cover hover:scale-110 transition-all duration-400"
+                      className="w-full h-[350px] md:h-full object-cover hover:scale-110 transition-all duration-400"
                     />
                   </div>
                   <div className="xl:w-1/2 group">
