@@ -47,7 +47,7 @@ const NewsBlock = ({ title, link, items }: NewsBlockProps) => {
 
   return (
     <section
-      className="pt-47px pb-27px bg-light-white dark:bg-black relative overflow-hidden"
+      className="py-37px bg-light-white dark:bg-black relative overflow-hidden"
       ref={sectionRef}
     >
       <div className="reveal-overlay absolute inset-0 bg-white z-20"></div>

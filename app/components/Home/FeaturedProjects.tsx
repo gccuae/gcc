@@ -76,7 +76,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
     <section className="bg-light-white dark:bg-[#191919] overflow-hidden">
       <div>
         <div className="container" ref={containerRef}>
-          <div className="md:flex justify-between items-center pt-37px pb-27px border-b border-[#C2C2C2]">
+          <div className="md:flex justify-between items-center py-37px border-b border-[#C2C2C2]">
             <motion.h2
               className="text-5xl font-normal text-black dark:text-white mb-8 md:mb-0 leading-[1.147058823529412]"
               variants={moveUp(0)}
