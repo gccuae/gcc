@@ -7,7 +7,7 @@ import Image from "next/image";
 
 const LeadersList = () => {
   return (
-    <section className="pt-15 xl:pt-25px dark:pb-1 dark:bg-[#191919] ">
+    <section className="pt-15 xl:pt-25px dark:pb-1 dark:bg-light-dark ">
       <div className="container">
         <motion.h2
           variants={moveUp()}

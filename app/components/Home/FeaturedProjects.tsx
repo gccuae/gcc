@@ -73,8 +73,8 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
   }, []);
 
   return (
-    <section className="bg-light-white dark:bg-[#191919] overflow-hidden">
-      <div>
+    <section className="bg-light-white dark:bg-light-dark overflow-hidden">
+      <div >
         <div className="container" ref={containerRef}>
           <div className="md:flex justify-between items-center py-37px border-b border-[#C2C2C2]">
             <motion.h2

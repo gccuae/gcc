@@ -10,7 +10,7 @@ const DetailsTab = () => {
   const { projectDetails } = projectDetailsData;
   const [activeTab, setActiveTab] = useState(0);
   return (
-    <section className="py-57px bg-light-white dark:bg-[#191919]">
+    <section className="py-57px bg-light-white dark:bg-light-dark">
       <div className="container">
         <div className="">
           {/* Tab buttons */}

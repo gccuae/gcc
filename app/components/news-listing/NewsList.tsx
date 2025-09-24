@@ -33,7 +33,7 @@ const NewsList = () => {
   };
 
   return (
-    <section className="py-57px dark:bg-[#191919]" ref={sectionRef}>
+    <section className="py-57px dark:bg-light-dark" ref={sectionRef}>
       <div className="container">
         <motion.h2
           variants={moveUp()}
