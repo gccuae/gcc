@@ -1,7 +1,7 @@
 import Image from "next/image";
 
-interface DetailsBlockProps { 
-    selectedItem: {
+interface DetailsBlockProps {
+  selectedItem: {
     title: string;
     info: string;
     thumbnail: string;
@@ -27,7 +27,8 @@ const DetailsBlock: React.FC<DetailsBlockProps> = ({
           Select an item to view details
         </h3>
         <p className="text-gray-600 dark:text-gray-400">
-          Choose an award or certification from the list to see the document preview.
+          Choose an award or certification from the list to see the document
+          preview.
         </p>
       </div>
     );
@@ -36,7 +37,7 @@ const DetailsBlock: React.FC<DetailsBlockProps> = ({
   return (
     <div className="overflow-hidden">
       {/* Document Image */}
-      <div className="bg-[#ebebeb] dark:bg-gray-700 py-2 xl:py-[13.74px] flex justify-center relative group">
+      <div className="bg-[#ebebeb] dark:bg-[#0d0d0d] py-2 xl:py-[13.74px] flex justify-center relative group">
         <Image
           src={selectedItem.thumbnail}
           alt={selectedItem.title}
@@ -67,15 +68,15 @@ const DetailsBlock: React.FC<DetailsBlockProps> = ({
       <div className="pt-4 xl:pt-[19.74px]">
         <div className="flex align-items-end justify-between mb-4 pb-3 xl:pb-[22.9px] group border-b border-smgray hover:border-primary transition-colors duration-300">
           <div>
-            <h3 className="text-xl leading-normal font-normal text-gray-900 dark:text-white mb-2 xl:mb-[11.22px]">
+            <h3 className="text-xl leading-normal font-normal text-black dark:text-white mb-2 xl:mb-[11.22px]">
               {selectedItem.documentTitle}
             </h3>
-            <p className="text-gray-600 dark:text-gray-300">
+            <p className="text-black dark:text-white/70 font-light text-19">
               {selectedItem.documentInfo}
             </p>
           </div>
           <button
-            className="h-fit mt-auto align-self-end text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+            className="h-fit mt-auto align-self-end"
             onClick={() => window.open(selectedItem.document, "_blank")}
           >
             <svg
@@ -90,7 +91,7 @@ const DetailsBlock: React.FC<DetailsBlockProps> = ({
                 stroke="black"
                 strokeWidth="2"
                 strokeLinecap="round"
-                className="group-hover:stroke-primary dark:stroke-gray-400 dark:group-hover:stroke-gray-200"
+                className="group-hover:stroke-primary dark:stroke-gray-400 dark:group-hover:stroke-gray-300"
               />
             </svg>
           </button>
