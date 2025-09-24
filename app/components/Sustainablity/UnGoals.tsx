@@ -4,9 +4,7 @@ import { Swiper } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import Image from "next/image";
-import Link from "next/link";
-import { assets } from "@/public/assets/assets";
+import Image from "next/image"; 
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
 import { useRef } from "react";
@@ -44,7 +42,7 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
-          className="text-xl font-light leading-[1.391304347826087] pb-4 xl:pb-47px text-foreground dark:text-white max-w-[80ch]"
+          className="text-xl font-light leading-[1.391304347826087] pb-6 xl:pb-47px text-foreground dark:text-white max-w-[80ch]"
         >
           {data.description}
         </motion.h2>
@@ -145,26 +143,13 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
                           height={100}
                           className="w-[98px] h-[100px] object-contain mb-[17px]"
                         />
-                        <h3 className="text-2xl leading-[1.5625] font-normal transition-all duration-300 text-black dark:text-white">
+                        <h3 className="text-xl xl:text-2xl leading-[1.5625] font-normal transition-all duration-300 text-black dark:text-white">
                           {item.title}
                         </h3>
                       </div>
-                      <div className="flex items-start flex-shrink-0">
-                        <Link
-                          href={item.slug}
-                          className="bg-white dark:bg-transparent border border-black/50 dark:border-smgray px-4 py-2 rounded-2xl xl:opacity-0 group-hover:xl:opacity-100 transition-all duration-300"
-                        >
-                          <Image
-                            src={assets.singleGreenArrow}
-                            alt={item.title}
-                            width={200}
-                            height={200}
-                            className="w-4 xl:w-[21.5px] h-auto object-contain"
-                          />{" "}
-                        </Link>
-                      </div>
+                      
                     </div>
-                    <div className="xl:pl-4 xl:pr-3 pt-6 group-hover:xl:pl-[28px]  group-hover:xl:pt-[35px] group-hover:xl:pr-[35px] group-first:pl-0 transition-all duration-300">
+                    <div className="xl:pl-4 xl:pr-3 pt-2 md:pt-4 lg:pt-6 group-hover:xl:pl-[28px]  group-hover:xl:pt-[35px] group-hover:xl:pr-[35px] group-first:pl-0 transition-all duration-300">
                       <p className="text-lg font-[300] leading-[1.526315789473684] pb-5 xl:pb-0 xl:opacity-0 xl:h-0 group-hover:xl:h-auto group-hover:xl:opacity-100 transition-all ease-in-out duration-300 group-hover:xl:pb-[23px] sector-description relative z-10 text-foreground dark:text-white">
                         {item.description}
                       </p>

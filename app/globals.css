@@ -345,6 +345,7 @@ header.modal-open {
   }
 } 
 .aislider .swiper-wrapper{align-items: end;}
+ 
  .libullet li::before{
   content: "";
   @apply w-2 h-2 rounded-full bg-primary ;
