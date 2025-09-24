@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { moveUp } from "../motionVarients";
+
 const WhatWeDo = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   return (
@@ -102,7 +103,7 @@ const WhatWeDo = () => {
                   alt={aboutData.whatWeDo.items[activeIndex].title}
                   width={1500}
                   height={1500}
-                  className="w-full   h-[350px] md:max-h-[700px] object-cover "
+                  className="w-full h-full object-cover"
                 />
               </motion.div>
             </AnimatePresence>
