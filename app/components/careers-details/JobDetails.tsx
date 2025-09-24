@@ -151,9 +151,9 @@ const JobDetails = () => {
           </motion.div>
         </div>
       </div>
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <JobApplicationModal onSuccess={() => setIsModalOpen(false)} />
-      </Modal>
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+          <JobApplicationModal onSuccess={() => setIsModalOpen(false)} />
+        </Modal>
     </section>
   );
 };
