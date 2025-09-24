@@ -3,12 +3,15 @@ import { SliderData } from "./data";
 
 import { Swiper, SwiperSlide } from "swiper/react"; 
 import { useState } from "react";
+
+import { Autoplay, EffectFade, Navigation } from "swiper/modules";
 import "swiper/css";
 import { moveUp } from "../motionVarients";
 import { motion } from "framer-motion";
 
 const AiSlider = () => {
   
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(1);
   const [bgImage, setBgImage] = useState(SliderData.items[0]?.image);
   const [activeImage, setActiveImage] = useState(SliderData.items[0]?.image);
   const [touchedIndex, setTouchedIndex] = useState<number | null>(null);
@@ -39,7 +42,7 @@ const AiSlider = () => {
     whileInView="show"
     viewport={{ once: true }}>
     <section
-    className=" transition-all duration-500 h-[400px] lg:h-[750px] relative after:content-[''] after:absolute after:top-0 after:left-0 after:w-full after:h-full afterbgf "
+    className=" transition-all duration-500 h-[400px]  lg:h-[500px] xl:h-[750px] relative after:content-[''] after:absolute after:top-0 after:left-0 after:w-full after:h-full afterbgf "
     style={{ background: `url(${bgImage}) center/cover no-repeat` }}
   >
     <div className="container relative h-full w-full  ">
@@ -47,13 +50,14 @@ const AiSlider = () => {
                initial="hidden"
                whileInView="show"
                viewport={{ once: true }}
-    className="border-b border-smgray  w-full">
+    className="border-b border-smgray  w-full pt-5 md:pt-0">
     <Swiper 
-    className="border-b border-smgray aislider"
+    className="md:border-b border-smgray aislider"
         slidesPerView={3} 
         loop={true}
         spaceBetween={0}
-        autoplay={{ delay: 2000, disableOnInteraction: true, pauseOnMouseEnter: true }}
+         modules={[Navigation, Autoplay]}
+        autoplay={{ delay: 3000, disableOnInteraction: true, }}
         onSlideChange={(swiper) => {
           const currentIndex = swiper.realIndex;
           setActiveImage(SliderData.items[currentIndex].image);
@@ -78,20 +82,21 @@ const AiSlider = () => {
        > 
         {SliderData.items.map((item: SliderItem, index: number) => (
             <SwiperSlide key={index}
-            onMouseEnter={() => setBgImage(item.image)}
-            onMouseLeave={() => setBgImage(activeImage)}
+            onMouseEnter={() => setHoveredIndex(index)}
+            onMouseLeave={() => setHoveredIndex(index)}
             onClick={() => handleTouch(index, item.image)}>
               <motion.div variants={moveUp(0.4)}
                initial="hidden"
                whileInView="show"
                viewport={{ once: true }}>
-              <div className={`group itmmn h-[360px] lg:h-[700px] flex flex-col justify-end transition-all duration-300   ${
-                touchedIndex === index ? "bg-[#ffffff40]" : "hover:bg-[#ffffff10]"
-              }`}>
+              <div className={`group itmmn h-[360px]  lg:h-[450px] xl:h-[700px] flex flex-col justify-end transition-all duration-300   
+             ${
+              hoveredIndex === index ? "bg-[#ffffff40]" : "bg-[#ffffff10] md:bg-transparent hover:bg-[#ffffff10]"
+            } `}>
               <div className={`transition-all duration-300 px-5 py-5 lg:pb-12 ${
-                  touchedIndex === index
+                  hoveredIndex === index
                     ? "opacity-100"
-                    : "opacity-0 group-hover:opacity-100"
+                    : "md:opacity-0 group-hover:opacity-100"
                 }`}>
                 <p className="text-white text-22 mb-2 leading-[1.3]">{item.desc}</p>
                 <ul className="text-white">
@@ -101,12 +106,12 @@ const AiSlider = () => {
                 </ul>
               </div>
              <div>
-             <div   className={`px-2 py-5 md:p-8 lg:p-10 transition-all duration-300 cursor-pointer ${
-                    touchedIndex === index
+             <div   className={`bgsre px-2 py-3 md:py-5 md:p-8 lg:p-10 transition-all duration-300 cursor-pointer ${
+                    hoveredIndex === index
                       ? "bg-primary"
-                      : "group-hover:bg-primary"
+                      : "bg-primary md:bg-transparent group-hover:bg-primary"
                   }`}>
-                <h3 className="text-2xl leading-[1] font-normal text-white ">
+                <h3 className="text-xl xl:text-2xl leading-[1] font-normal text-white ">
                   {item.title}
                 </h3>
               </div> 
