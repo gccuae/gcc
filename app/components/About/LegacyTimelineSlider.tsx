@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectFade, Navigation } from "swiper/modules";
+import { Autoplay, EffectFade, Navigation } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { Swiper as SwiperType } from "swiper/types";
 import { motion } from "framer-motion";
@@ -140,9 +140,13 @@ const LegacyTimelineSlider = ({
                   onSwiper={(swiper) => {
                     yearSwiperRef.current = swiper;
                   }}
-                  modules={[Navigation]}
+                  modules={[Navigation,Autoplay]}
                   spaceBetween={22}
                   slidesPerView="auto"
+                  autoplay={{
+                    delay: 3000,
+                    disableOnInteraction: true,
+                  }}
                   loop={true}
                   speed={500}
                   allowTouchMove={false}
@@ -206,9 +210,13 @@ const LegacyTimelineSlider = ({
             onSwiper={(swiper) => {
               mainSwiperRef.current = swiper;
             }}
-            modules={[Navigation,EffectFade]}
+            modules={[Navigation,EffectFade,Autoplay]}
             spaceBetween={0}
             slidesPerView={1}        
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: true,
+            }}
             effect="fade"
             fadeEffect={{ crossFade: true }}
             loop={true}
@@ -225,7 +233,7 @@ const LegacyTimelineSlider = ({
                     <motion.div
                     animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                     transition={{ duration: 0.8 }}
-                      className="text-5xl text-white mb-3 opacity-90"
+                      className="text-5xl text-white mb-3 opacity-90 "
                     >
                       {item.year}
                     </motion.div>
