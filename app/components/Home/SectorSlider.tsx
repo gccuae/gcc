@@ -28,7 +28,7 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   return (
-    <section className="wrapper pt-47px pb-0 xl:pb-47px bg-black dark:bg-[#191919] text-white overflow-hidden">
+    <section className="wrapper py-57px bg-black dark:bg-[#191919] text-white overflow-hidden">
       <div className="container">
         <motion.h2
           variants={moveUp(0)}
@@ -121,7 +121,7 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
               {data.items.map((item, index) => (
                 <SwiperSlide
                   key={index}
-                  className="border-t-1 border-r-1 border-foreground relative group pr-[15px] pl-[15px] xl:pr-0 xl:pl-0"
+                  className="border-t-1 md:border-r-1 border-foreground relative group pr-[15px] pl-[15px] xl:pr-0 xl:pl-0"
                 >
                   <div className="absolute -top-1 left-0 w-full h-0 group-hover:h-[6px] bg-accent transition-all duration-300 z-50"></div>
                   <motion.div
@@ -140,7 +140,7 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
                           height={200}
                           className="w-auto h-15 object-contain"
                         />
-                        <h3 className="text-2xl leading-[1.5625] font-normal transition-all duration-300">
+                        <h3 className="xl:text-2xl text-xl leading-[1.5625] font-normal transition-all duration-300">
                           {item.title}
                         </h3>
                       </div>
