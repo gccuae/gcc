@@ -8,9 +8,9 @@ import { moveRight, moveUp } from "../motionVarients";
 
 const MsgChairman = () => {
   return (
-    <section className="pt-57px xl:pt-[105px] mb-57px xl:mb-[101px]  dark:bg-[#191919]">
+    <section className="pt-57px xl:pt-[105px] mb-57px xl:mb-[101px]  dark:bg-light-dark">
       <SpecialContainer className="lg:ps-0" side="left">
-        <div className="grid grid-cols-1 lg:grid-cols-2 items-end gap-6 md:gap-10 xl:gap-15 lg:border-b lg:border-[#c2c2c2] dark:border-[#191919]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-end gap-6 md:gap-10 xl:gap-15 lg:border-b lg:border-[#c2c2c2] dark:border-light-dark">
           <motion.div
             variants={moveRight()}
             viewport={{ once: true }}

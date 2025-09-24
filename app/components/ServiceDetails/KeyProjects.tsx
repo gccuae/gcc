@@ -56,7 +56,7 @@ const KeyProjects = () => {
   };
 
   return (
-    <section className="py-57px xl:pb-25 bg-light-white dark:bg-[#191919]">
+    <section className="py-57px xl:pb-25 bg-light-white dark:bg-light-dark">
       <div className="container">
         <div className="mb-57px flex items-center justify-between">
           <motion.h2

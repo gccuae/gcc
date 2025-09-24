@@ -31,6 +31,10 @@ export const menuItems: MenuItem[] = [
         url: "/group-companies",
       }, 
       {
+        title: "Clients",
+        url: "/clients",
+      }, 
+      {
         title: "Certifications",
         url: "/certifications",
       },

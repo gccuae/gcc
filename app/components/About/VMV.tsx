@@ -14,7 +14,7 @@ const VMV = () => {
   return (
     <section className="pb-10 pt-57px md:py-57px dark:bg-black">
       <div className="container">
-        <div className="border-b border-smgray pb-8 xl:pb-57px">
+        <div className="border-b border-smgray  pb-8 xl:pb-57px">
           <motion.h2
             variants={moveUp()}
             initial="hidden"
