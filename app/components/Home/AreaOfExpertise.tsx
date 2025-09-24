@@ -250,8 +250,8 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
             allowTouchMove={false}
             loop={true}
             breakpoints={{
-              0: { slidesPerView: 1.4 },
-              768: { slidesPerView: 2.5 },
+              0: { slidesPerView: 1 },
+              768: { slidesPerView: 2 },
               1024: { slidesPerView: 3 },
               1280: { slidesPerView: 4 },
             }}
@@ -263,13 +263,13 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                 className="sliderexp cursor-pointer transition mb-4 xl:mb-5 group"
                 onClick={() => handleSlideHover(index)}
               >
-                <div className="exp-icon-div group-hover:border-primary transition-colors duration-400 pb-4 mb-6 xl:pb-[30px] xl:mb-[15px] relative flex items-center gap-5">
+                <div className="exp-icon-div pb-4 mb-6 xl:pb-[30px] xl:mb-[15px] relative flex items-center gap-5">
                   <motion.div
                     variants={fadeIn(index * 0.15)}
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true }}
-                    className="flex items-center justify-center rounded-full border-1 border-smgray dark:border-white w-[85px] h-[85px] group-hover:bg-primary transition-all duration-300 icon-wrapper dark:bg-[#0d0d0d]"
+                    className="flex items-center justify-center flex-shrink-0 rounded-full border-1 border-smgray dark:border-white w-[85px] h-[85px] group-hover:bg-primary transition-colors duration-300 icon-wrapper dark:bg-[#0d0d0d]"
                   >
                     <Image
                       src={item.icon}
@@ -291,7 +291,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                 </div>
               </SwiperSlide>
             ))}
-            <div className="absolute bottom-[39px] lg:bottom-[39px] xl:bottom-[35px] left-0 w-full h-[2px] bg-smgray -z-[1]" />
+            <div className="absolute bottom-[39px] lg:bottom-[39px] xl:bottom-[35px] left-0 w-full h-[1px] bg-smgray -z-[1]" />
           </Swiper>
         </motion.div>
 
@@ -320,9 +320,9 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true }}
-                  className="container slide-container grid md:grid-cols-2 xl:grid-cols-[6fr_4fr] items-start gap-6 xl:gap-50px bg-white dark:bg-black group"
+                  className="container h-full slide-container grid md:grid-cols-2 xl:grid-cols-[6fr_4fr] items-start gap-6 xl:gap-50px bg-white dark:bg-black group"
                 >
-                  <div className="img-wrapper border-r-1 border-r-smgray pr-4 xl:pr-[50px] pb-0 xl:py-5 relative overflow-hidden">
+                  <div className="img-wrapper md:border-r-1 border-r-smgray pr-4 xl:pr-[50px] pb-0 xl:py-5 relative">
                     <Image
                       src={item.image}
                       alt={item.title}

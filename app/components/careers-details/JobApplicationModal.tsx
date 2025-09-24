@@ -55,7 +55,7 @@ const JobApplicationModalForm = ({ onSuccess }: Props) => {
               {...register("firstName")}
               type="text"
               placeholder="First Name"
-              className="w-full px-0 py-3 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none"
+              className="w-full px-0 py-3 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-foreground dark:placeholder-white"
             />
             {errors.firstName && (
               <p className="text-primary text-sm">{errors.firstName.message}</p>
@@ -67,7 +67,7 @@ const JobApplicationModalForm = ({ onSuccess }: Props) => {
               {...register("lastName")}
               type="text"
               placeholder="Last Name"
-              className="w-full px-0 py-3 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none"
+              className="w-full px-0 py-3 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-foreground dark:placeholder-white"
             />
             {errors.lastName && (
               <p className="text-primary text-sm">{errors.lastName.message}</p>
@@ -82,7 +82,7 @@ const JobApplicationModalForm = ({ onSuccess }: Props) => {
               {...register("email")}
               type="email"
               placeholder="Email"
-              className="w-full px-0 py-3 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none"
+              className="w-full px-0 py-3 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-foreground dark:placeholder-white"
             />
             {errors.email && (
               <p className="text-primary text-sm">{errors.email.message}</p>
@@ -94,7 +94,7 @@ const JobApplicationModalForm = ({ onSuccess }: Props) => {
               {...register("phoneNumber")}
               type="tel"
               placeholder="Phone Number"
-              className="w-full px-0 py-3 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none"
+              className="w-full px-0 py-3 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-foreground dark:placeholder-white"
             />
             {errors.phoneNumber && (
               <p className="text-primary text-sm">
@@ -111,7 +111,7 @@ const JobApplicationModalForm = ({ onSuccess }: Props) => {
               {...register("nationality")}
               type="text"
               placeholder="Nationality"
-              className="w-full px-0 py-3 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none"
+              className="w-full px-0 py-3 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-foreground dark:placeholder-white"
             />
             {errors.nationality && (
               <p className="text-primary text-sm">
@@ -125,7 +125,7 @@ const JobApplicationModalForm = ({ onSuccess }: Props) => {
               {...register("hasConstructionExperience")}
               type="text"
               placeholder="Current Location"
-              className="w-full px-0 py-3 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none"
+              className="w-full px-0 py-3 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-foreground dark:placeholder-white"
             />
             {errors.hasConstructionExperience && (
               <p className="text-primary text-sm">
@@ -154,7 +154,7 @@ const JobApplicationModalForm = ({ onSuccess }: Props) => {
               />
               <label
                 htmlFor="coverLetter"
-                className="flex items-center gap-3 py-4 cursor-pointer"
+                className="flex items-center gap-3 py-4 cursor-pointer text-foreground dark:text-white"
               >
                 <Image
                   src="/assets/img/careers/upload-icon.svg"
@@ -198,7 +198,7 @@ const JobApplicationModalForm = ({ onSuccess }: Props) => {
               />
               <label
                 htmlFor="resume"
-                className="flex items-center gap-3 py-4 cursor-pointer"
+                className="flex items-center gap-3 py-4 cursor-pointer text-foreground dark:text-white"
               >
                 <Image
                   src="/assets/img/careers/upload-icon.svg"

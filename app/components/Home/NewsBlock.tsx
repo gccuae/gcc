@@ -47,7 +47,7 @@ const NewsBlock = ({ title, link, items }: NewsBlockProps) => {
 
   return (
     <section
-      className="pt-47px pb-27px bg-light-white dark:bg-black relative overflow-hidden"
+      className="py-37px bg-light-white dark:bg-black relative overflow-hidden"
       ref={sectionRef}
     >
       <div className="reveal-overlay absolute inset-0 bg-white z-20"></div>
@@ -68,20 +68,20 @@ const NewsBlock = ({ title, link, items }: NewsBlockProps) => {
           <Swiper
             className="w-full home-news-swiper !pb-10"
             slidesPerView={1}
-            spaceBetween={0}
+            spaceBetween={20}
             modules={[Pagination]}
             pagination={{ clickable: true }}
           >
             {items.map((item, index) => (
               <SwiperSlide key={index}>
-                <div className="flex flex-wrap xl:flex-nowrap items-center gap-4 xl:gap-[69px]">
-                  <div className="xl:w-1/2 overflow-hidden">
+                <div className="flex flex-wrap lg:flex-nowrap items-stretch gap-4 lg:gap-[69px] ">
+                  <div className="xl:w-1/2 overflow-hidden flex items-stretch w-full">
                     <Image
                       src={item.image}
                       alt="newsBlockImage"
                       width={2000}
                       height={2000}
-                      className="w-full h-full object-cover hover:scale-110 transition-all duration-400"
+                      className="w-full h-[350px] md:h-full object-cover hover:scale-110 transition-all duration-400"
                     />
                   </div>
                   <div className="xl:w-1/2 group">

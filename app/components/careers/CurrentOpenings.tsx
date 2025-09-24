@@ -265,7 +265,11 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
                     </h4>
                   </div>
                   <div>
-                    <BtnPrimary link={`careers/${job.title}`} text="Apply Now" bgtrans={true} />
+                    <BtnPrimary
+                      link={`careers/${job.title}`}
+                      text="Apply Now"
+                      bgtrans={true}
+                    />
                   </div>
                 </motion.div>
               ))}
@@ -278,7 +282,7 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
               className="sticky top-0 self-start right-col"
             >
               1
-              <div className="bg-light-white p-6 xl:p-10 max-w-[575px] ml-auto mt-6 xl:mt-[67px]">
+              <div className="bg-light-white dark:bg-[#0d0d0d] p-6 xl:p-10 max-w-[575px] ml-auto mt-6 xl:mt-[67px]">
                 <div className="border-b border-smgray pb-27px">
                   <h3 className="text-2xl leading-[1.205882352941176] mb-4 xl:mb-6 font-normal text-black dark:text-white">
                     Didn’t find a role that fits you?
@@ -296,7 +300,7 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
                 >
                   <Link
                     href="mailto:info@gcc.ae"
-                    className="flex items-center gap-[10.28px] bg-black/5 p-4 xl:p-5"
+                    className="flex items-center gap-[10.28px] bg-black/5 p-4 xl:p-5 dark:bg-black"
                   >
                     <svg
                       width="27"

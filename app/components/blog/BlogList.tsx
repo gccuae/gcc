@@ -45,8 +45,8 @@ const BlogList = () => {
               onClick={() => setActiveTab(idx)}
               className={`cursor-pointer py-4 xl:py-[27px] text-md lg:text-xl leading-normal font-medium relative ${
                 activeTab === idx
-                  ? "text-black dark:text-white"
-                  : "text-black/70 hover:text-black dark:hover:text-white font-normal"
+                  ? "text-foreground dark:text-white"
+                  : "text-foreground hover:text-black dark:hover:text-white font-normal transition-colors duration-300"
               }`}
             >
               {cat}
