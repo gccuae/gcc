@@ -17,7 +17,7 @@ const WhatWeDo = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-6xl leading-lh-title text-black dark:text-white mb-4 lg:mb-2"
+            className="text-5xl leading-lh-title text-black dark:text-white mb-4 lg:mb-2"
           >
             What We Do
           </motion.h2>
@@ -26,7 +26,7 @@ const WhatWeDo = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-2xl leading-[1.2]  lg:leading-[1.5625] dark:text-white"
+            className="text-xl xl:text-2xl leading-[1.2]  xl:leading-[1.5625] dark:text-white"
           >
             Unlocking Potential Through Construction Excellence
           </motion.h3>

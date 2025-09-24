@@ -12,7 +12,7 @@ const VMV = () => {
     icon: item.icon,
   }));
   return (
-    <section className="pb-10 pt-57px md:py-57px dark:bg-black">
+    <section className="pt-57px xl:py-57px dark:bg-black">
       <div className="container">
         <div className="border-b border-smgray  pb-8 xl:pb-57px">
           <motion.h2
@@ -20,7 +20,7 @@ const VMV = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-6xl leading-lh-title text-black dark:text-white mb-[17px]"
+            className="text-5xl leading-lh-title text-black dark:text-white mb-[17px]"
           >
             Vision, Mission & Values
           </motion.h2>
@@ -29,7 +29,7 @@ const VMV = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-2xl leading-[1.2] lg:leading-[1.5625] dark:text-white"
+            className="text-xl xl:text-2xl lg:text-2xl leading-[1.2] xl:leading-[1.5625] dark:text-white"
           >
             Guided by Purpose, Powered by Principles
           </motion.h3>

@@ -200,7 +200,7 @@ const LegacyTimelineSlider = ({
         <div className="w-full h-[1px] bg-[#716c6c]"></div>
 
         {/* History Slider */}
-        <div className="flex-1 flex items-center relative z-50 pb-[40px] py-[30px] md:py-[95px] lg:py-[128px]">
+        <div className="flex-1 flex items-center relative z-50 pb-[40px] pt-[90px] md:py-[95px] lg:py-[128px]">
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black from-0% to-black/0 to-100% z-0"></div>
           <Swiper
             onSwiper={(swiper) => {

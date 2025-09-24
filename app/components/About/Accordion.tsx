@@ -106,7 +106,7 @@ export const Accordion: React.FC<{ items: AccordionItem[] }> = ({ items }) => {
                         titleRefs.current[index] = el;
                       }}
                     >
-                      <span className="text-xl leading-[1] md:text-2xl xl:leading-[1.5625] font-medium dark:text-white">
+                      <span className="text-xl leading-[1] lg:text-2xl xl:leading-[1.5625] font-medium dark:text-white">
                         {item.title}
                       </span>
                     </div>
@@ -141,13 +141,13 @@ export const Accordion: React.FC<{ items: AccordionItem[] }> = ({ items }) => {
                   </motion.div>
                 </div>
 
-                <div className="w-[35px] h-[35px]">
+                <div className="w-[17px] h-[17px] lg:w-[25px] lg:h-[25px] flex-shrink-0">
                   <Image
                     src="/assets/img/accordian-arrow.svg"
                     alt="Arrow"
-                    width={35}
-                    height={53}
-                    className={`transform transition-transform duration-250 mt-5 ${
+                    width={25}
+                    height={25}
+                    className={`transform transition-transform duration-250 lg:mt-4 ${
                       openIndex === index
                         ? "rotate-0" // clicked → normal
                         : "rotate-180" // initial → rotated
