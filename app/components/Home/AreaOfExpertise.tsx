@@ -15,7 +15,6 @@ import { fadeIn, moveUp } from "../motionVarients";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Thumbs, Autoplay, Navigation } from "swiper/modules";
 import "swiper/css/navigation";
-import type { Swiper as SwiperClass } from "swiper";
 
 interface AreaOfExpertiseProps {
   data: {
