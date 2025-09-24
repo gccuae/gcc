@@ -32,7 +32,7 @@ const WhyChoose = ({ data }: EngProps) => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="text-xl max-w-[96ch] leading-[1.526315789473684] text-forground dark:text-white/70 hover:text-black dark:hover:text-white"
+          className="text-xl max-w-[96ch] leading-[1.526315789473684] text-forground dark:text-white/70"
         >
           {data.desc}
         </motion.p>
