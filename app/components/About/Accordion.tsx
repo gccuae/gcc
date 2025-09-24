@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef, useLayoutEffect } from "react";
-import { ArrowDown } from "lucide-react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
