@@ -124,16 +124,10 @@ export const Accordion: React.FC<{ items: AccordionItem[] }> = ({ items }) => {
                       opacity: { duration: 0.2 },
                     }}
                     className="overflow-hidden  "
-                    style={{
-                      paddingLeft:
-                        typeof window !== "undefined" &&
-                        window.innerWidth >= 768
-                          ? `${titleOffsets[index] || 0}px`
-                          : "0px",
-                    }}
+                    style={{ paddingLeft: `${titleOffsets[index] || 0}px` }}
                   >
                     <div className="pb-2 max-w-full lg:max-w-[85%] pt-3 md:pt-5">
-                      <ul className="square-list pl-[58px] md:pl-[22px]">
+                      <ul className="square-list pl-[1rem]">
                         {item.content.map((content, index) => (
                           <li
                             key={index}
