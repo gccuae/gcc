@@ -68,7 +68,7 @@ const NewsBlock = ({ title, link, items }: NewsBlockProps) => {
           <Swiper
             className="w-full home-news-swiper !pb-10"
             slidesPerView={1}
-            spaceBetween={0}
+            spaceBetween={20}
             modules={[Pagination]}
             pagination={{ clickable: true }}
           >
