@@ -81,7 +81,7 @@ const JobDetails = () => {
               variants={moveUp(idx * 0.2)}
               initial="hidden"
               whileInView="show"
-              className="text-lg leading-lh-text19 mb-2 font-light"
+              className="text-lg leading-lh-text19 mb-2 font-light text-foreground dark:text-white/70"
             >
               {para}
             </motion.p>
@@ -108,7 +108,7 @@ const JobDetails = () => {
                   {section.items.map((item, i) => (
                     <li
                       key={i}
-                      className="text-lg leading-lh-text19 font-light"
+                      className="text-lg leading-lh-text19 font-light text-foreground dark:text-white/70"
                     >
                       {item}
                     </li>
@@ -133,7 +133,7 @@ const JobDetails = () => {
             variants={moveUp(0.2)}
             initial="hidden"
             whileInView="show"
-            className="text-lg leading-lh-text19 font-light dark:text-white mb-27px"
+            className="text-lg leading-lh-text19 font-light mb-27px text-foreground dark:text-white/70"
           >
             {jobDetails.apply.description}
           </motion.p>
