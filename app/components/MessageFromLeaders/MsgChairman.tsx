@@ -8,7 +8,7 @@ import { moveRight, moveUp } from "../motionVarients";
 
 const MsgChairman = () => {
   return (
-    <section className="pt-57px xl:pt-[105px] mb-57px xl:mb-[101px]  dark:bg-light-dark">
+    <section className="pt-57px xl:pt-[105px] mb-57px xl:mb-[101px]  dark:bg-light-dark pb-57px lg:pb-0">
       <SpecialContainer className="lg:ps-0" side="left">
         <div className="grid grid-cols-1 lg:grid-cols-2 items-end gap-6 md:gap-10 xl:gap-15 lg:border-b lg:border-[#c2c2c2] dark:border-light-dark">
           <motion.div
@@ -49,7 +49,7 @@ const MsgChairman = () => {
               </motion.div>
             </div>
           </motion.div>
-          <div className="">
+          <div className="pb-0 lg:pb-6">
             <motion.h2
               variants={moveUp()}
               viewport={{ once: true }}
@@ -59,7 +59,7 @@ const MsgChairman = () => {
             >
               {leadersData.chairman.title}
             </motion.h2>
-            <div className="max-w-[62ch]">
+            <div className="lg:max-w-[62ch]">
               {leadersData.chairman.desc.map((item, index) => (
                 <motion.p
                   variants={moveUp(index * 0.2)}
