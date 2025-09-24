@@ -55,6 +55,8 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
   const handleSlideHover = (index: number) => {
     if (mainSwiper) {
       mainSwiper.slideTo(index);
+      mainSwiper.autoplay?.stop();
+      mainSwiper.autoplay?.start(); // restart timer
     }
   };
 
@@ -112,7 +114,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
             {
               y: 0,
               opacity: 1,
-              duration: 0.8,
+              duration: 0.6,
               ease: "power3.out",
               scrollTrigger: {
                 trigger: btn,
@@ -146,6 +148,24 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
       thumbsSwiper.navigation.update();
     }
   }, [thumbsSwiper]);
+
+  // Pause main swiper autoplay when hovering over thumbs swiper
+  useEffect(() => {
+    if (!thumbsSwiper || !mainSwiper) return;
+
+    const el = thumbsSwiper.el as HTMLElement;
+
+    const handleEnter = () => mainSwiper.autoplay?.stop();
+    const handleLeave = () => mainSwiper.autoplay?.start();
+
+    el.addEventListener("mouseenter", handleEnter);
+    el.addEventListener("mouseleave", handleLeave);
+
+    return () => {
+      el.removeEventListener("mouseenter", handleEnter);
+      el.removeEventListener("mouseleave", handleLeave);
+    };
+  }, [thumbsSwiper, mainSwiper]);
 
   return (
     <section className="wrapper pt-37px overflow-hidden dark:bg-black">
@@ -226,11 +246,6 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
               slidesPerView={4}
               modules={[Thumbs, Autoplay, Navigation]}
               loop={true}
-              speed={800}
-              autoplay={{
-                delay: 6000,
-                disableOnInteraction: true,
-              }}
               breakpoints={{
                 0: {
                   slidesPerView: 1.4,
@@ -255,7 +270,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                 >
                   <div className="exp-icon-div group-hover:border-primary transition-colors duration-400 pb-4 mb-6 xl:pb-[30px] xl:mb-[15px] relative flex items-center gap-5">
                     <motion.div
-                      variants={fadeIn(index * 0.3)}
+                      variants={fadeIn(index * 0.15)}
                       initial="hidden"
                       whileInView="show"
                       viewport={{ once: true }}
@@ -270,7 +285,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                       />
                     </motion.div>
                     <motion.h3
-                      variants={moveUp(index * 0.2)}
+                      variants={moveUp(index * 0.13)}
                       initial="hidden"
                       whileInView="show"
                       viewport={{ once: true }}
@@ -303,12 +318,16 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                 delay: 6000,
                 disableOnInteraction: false,
               }}
+              onSlideChange={() => {
+                mainSwiper?.autoplay?.stop();
+                mainSwiper?.autoplay?.start();
+              }}
               className="px-6"
             >
               {data.items.map((item) => (
                 <SwiperSlide key={item.id}>
                   <motion.div
-                    variants={moveUp(0.2)}
+                    variants={moveUp(0.17)}
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true }}
