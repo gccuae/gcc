@@ -71,7 +71,7 @@ const JobDetails = () => {
             variants={moveUp()}
             initial="hidden"
             whileInView="show"
-            className="text-2xl leading-lh-text32 text-black dark:text-white mb-27px"
+            className="text-2xl leading-lh-text32 text-black dark:text-white mb-2 lg:mb-27px"
           >
             About the Role
           </motion.h2>
@@ -90,10 +90,10 @@ const JobDetails = () => {
 
         {/* Key Responsibilities */}
         <div className="pt-47px pb-57px border-b border-smgray">
-          <h2 className="text-2xl leading-lh-text32 text-black dark:text-white mb-27px">
+          <h2 className="text-2xl leading-lh-text32 text-black dark:text-white mb-3 lg:mb-27px">
             Key Responsibilities
           </h2>
-          <div className="flex flex-col gap-37px">
+          <div className="flex flex-col gap-4 lg:gap-37px">
             {jobDetails.responsibilities.map((section, idx) => (
               <motion.div
                 variants={moveUp(idx * 0.2)}
@@ -125,7 +125,7 @@ const JobDetails = () => {
             variants={moveUp()}
             initial="hidden"
             whileInView="show"
-            className="text-2xl leading-lh-text32 text-black dark:text-white mb-27px"
+            className="text-2xl leading-lh-text32 text-black dark:text-white mb-3 lg:mb-27px"
           >
             {jobDetails.apply.heading}
           </motion.h3>

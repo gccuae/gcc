@@ -41,20 +41,20 @@ const JobApplicationForm = () => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="text-5xl leading-1h-title text-black dark:text-white mb-14 font-light"
+          className="text-3xl lg:text-5xl leading-1h-title text-black dark:text-white mb-3 lg:mb-14 font-light"
         >
           Submit your resume and we&apos;ll keep it in our talent pool for
           future opportunities.
         </motion.h2>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-0 lg:space-y-8">
           {/* First Row */}
           <motion.div
             variants={moveUp()}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:gap-8"
           >
             <div className="space-y-2">
               <input
@@ -91,7 +91,7 @@ const JobApplicationForm = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg-gap-8"
           >
             <div className="space-y-2">
               <input
@@ -126,7 +126,7 @@ const JobApplicationForm = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg-gap-8"
           >
             <div className="space-y-2">
               <input
@@ -163,7 +163,7 @@ const JobApplicationForm = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg-gap-8"
           >
             {/* Cover Letter */}
             <div className="space-y-2">
@@ -208,7 +208,7 @@ const JobApplicationForm = () => {
                       height={30}
                     />
                   </div>
-                  <div className="text-foreground dark:text-white transition-colors flex flex-col md:flex-row md:items-center justify-between gap-2">
+                  <div className="text-foreground dark:text-white transition-colors flex flex-col xl:flex-row xl:items-center justify-between xl:gap-2 ">
                     <span className="text-lg">
                       {coverLetterFile
                         ? coverLetterFile.name
@@ -272,7 +272,7 @@ const JobApplicationForm = () => {
                       height={30}
                     />
                   </div>
-                  <div className="text-foreground dark:text-white transition-colors flex flex-col md:flex-row md:items-center justify-between gap-2">
+                  <div className="text-foreground dark:text-white transition-colors flex flex-col xl:flex-row xl:items-center justify-between xl:gap-2">
                     <span className="text-lg">
                       {resumeFile ? resumeFile.name : "Upload Your Resume"}
                     </span>
@@ -300,7 +300,7 @@ const JobApplicationForm = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="flex justify-end pt-8"
+            className="flex justify-end pt-4 lg:pt-8"
           >
             <button
               type="submit"

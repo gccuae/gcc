@@ -132,13 +132,13 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
   return (
     <section className="pt-57px">
       <div className="container">
-        <div className="mb-6 xl:mb-27px">
+        <div className="lg:mb-6 xl:mb-27px">
           <motion.h2
             variants={moveUp()}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-5xl leading-[1.205882352941176] font-normal text-black dark:text-white mb-4 xl:mb-[17px]"
+            className="text-4xl lg:text-5xl leading-[1.205882352941176] font-normal text-black dark:text-white mb-4 xl:mb-[17px]"
           >
             Current Openings
           </motion.h2>
@@ -147,13 +147,13 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-2xl leading-lh-text32 text-foreground dark:text-white"
+            className="text-xl lg:text-2xl leading-lh-text32 text-foreground dark:text-white"
           >
             We’re always on the lookout for outstanding talent
           </motion.p>
         </div>
         <div className="pt-6 xl:pt-10 pb-6 xl:pb-47px">
-          <div className="flex flex-col gap-6 xl:flex-row md:gap-6 xl:gap-10 w-full md:w-fit">
+          <div className="flex flex-col gap-6 xl:flex-row md:gap-6 xl:gap-10 w-full xl:w-fit">
             {dropdowns.map((options, idx) => (
               <motion.div
                 key={idx}
@@ -164,7 +164,7 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
               >
                 <Select
                   components={{ DropdownIndicator }}
-                  className="md:w-[280px]"
+                  className="xl:w-[280px]"
                   key={idx}
                   classNamePrefix="react-select"
                   options={options.map((label) => ({ value: label, label }))}
@@ -238,11 +238,11 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid grid-cols-1 xl:grid-cols-2 gap-6 xl:gap-10 border-t border-smgray relative"
+            className="grid grid-cols-1 md:grid-cols-[55%_40%] 2xl:grid-cols-[55%_45%] justify-between gap-0 md:gap-0 xl:gap-0 border-t border-smgray relative"
             ref={sectionRef}
           >
             <div
-              className="border-r border-smgray pr-6 xl:pr-[67px] pt-6 xl:pt-[67px] max-h-[842px] overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden left-col"
+              className="md:border-r border-smgray pr-6 xl:pr-[67px] pt-6 xl:pt-[67px] max-h-[842px] overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden left-col"
               ref={leftRef}
             >
               {data.jobs.map((job, index) => (
@@ -252,10 +252,10 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
                   whileInView="show"
                   viewport={{ once: true }}
                   key={index}
-                  className="pb-6 xl:pb-10 mb-6 xl:mb-10 border-b border-smgray last:border-b-0 flex md:flex-row flex-col justify-between gap-6 md:items-center"
+                  className=" pb-6 xl:pb-10 mb-6 xl:mb-10 border-b border-smgray last:border-b-0 flex md:flex-row flex-col justify-between gap-6 md:items-center"
                 >
                   <div>
-                    <h3 className="text-2xl leading-[1.5625] font-normal text-black dark:text-white">
+                    <h3 className="text-xl lg:text-2xl leading-[1.3] lg:leading-[1.5625] font-normal text-black dark:text-white">
                       {job.title}
                     </h3>
                     <h4 className="text-lg leading-[1.5625] font-normal text-foreground dark:text-white/50">
@@ -281,8 +281,8 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
               viewport={{ once: true }}
               className="sticky top-0 self-start right-col"
             >
-              1
-              <div className="bg-light-white dark:bg-[#0d0d0d] p-6 xl:p-10 max-w-[575px] ml-auto mt-6 xl:mt-[67px]">
+      
+              <div className="bg-light-white dark:bg-[#0d0d0d] p-6 xl:p-10 mb-57px   md:max-w-[575px] m-auto md:mr-0 ml-auto md:mt-6 xl:mt-[67px]">
                 <div className="border-b border-smgray pb-27px">
                   <h3 className="text-2xl leading-[1.205882352941176] mb-4 xl:mb-6 font-normal text-black dark:text-white">
                     Didn’t find a role that fits you?

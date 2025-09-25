@@ -31,7 +31,7 @@ const Main = ({ data }: { data: typeof careerData }) => {
             viewport={{ once: true }}
           >
             <p
-              className="text-2xl leading-[1.46875] font-light dark:text-white"
+              className="text-lg lg:text-xl xl:text-2xl leading-[1.46875] font-light dark:text-white"
               dangerouslySetInnerHTML={{ __html: data.desc }}
             />
           </motion.div>

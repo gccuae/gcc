@@ -31,7 +31,7 @@ const JobSpecs = () => {
           variants={moveUp()}
           initial="hidden"
           whileInView="show"
-          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3 xl:gap-[63px] pb-57px border-b border-smgray"
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3 xl:gap-[63px] md:pb-57px md:border-b border-smgray"
         >
           {jobSpecs.map((spec, index) => (
             <motion.div
@@ -39,7 +39,7 @@ const JobSpecs = () => {
               variants={moveUp(index * 0.25)}
               initial="hidden"
               whileInView="show"
-              className="pt-27px border-t border-smgray"
+              className="pt-3 md:pt-27px border-t border-smgray"
             >
               <h3 className="leading-[1.5625] font-light text-base uppercase text-black dark:text-white">
                 {spec.label}

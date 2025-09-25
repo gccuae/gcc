@@ -31,7 +31,7 @@ const Main = ({ title, subtitle, description }: Props) => {
               variants={moveUp(0.2)}
               initial="hidden"
               animate="show"
-              className="text-xl leading-[1.608695652173913] text-black dark:text-white"
+              className="text-lg lg:text-xl leading-[1.4] lg:leading-[1.608695652173913] text-black dark:text-white"
             >
               <span className="text-red-500">{description.split(",")[0]},</span>
               {description.substring(description.indexOf(",") + 1)}
