@@ -18,7 +18,7 @@ const MsgChairman = () => {
             whileInView="show"
             className="relative pt-10"
           >
-            <div className="absolute top-0 left-0 w-[80%] h-full bg-light-white dark:bg-[#797979] z-0"></div>
+            <div className="absolute top-0 left-0 w-[80%] h-[100%] bg-light-white dark:bg-[#797979] z-0"></div>
             <motion.div
               variants={moveRight(0.3)}
               viewport={{ once: true }}

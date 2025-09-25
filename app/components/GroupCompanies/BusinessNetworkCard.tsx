@@ -134,10 +134,10 @@ const BusinessNetworkCard = ({
         </div>
       </div>
       <div className="mt-5 xl:mt-[27px] relative">
-        <h3 className="text-2xl leading-normal font-normal group-hover:text-black dark:text-white mb-[7px]">
+        <h3 className="text-2xl leading-1h-text32 font-normal group-hover:text-black dark:text-white mb-[2px] lg:mb-[7px]">
           {item.title}
         </h3>
-        <h4 className="text-xl leading-normal font-normal mb-0 text-foreground dark:text-white/70">
+        <h4 className="text-xl leading-normal font-light mb-0 text-foreground dark:text-white/70">
           {item.desc}
         </h4>
       </div>

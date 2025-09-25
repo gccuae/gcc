@@ -92,7 +92,7 @@ export const Accordion: React.FC<{ items: AccordionItem[] }> = ({ items }) => {
                 }
                 className="w-full flex justify-between   py-4 md:py-4 xl:py-[27px] text-left"
               >
-                <div className="flex flex-col  ">
+                <div className="flex flex-col">
                   <div className="flex items-center gap-4 md:gap-6 xl:gap-[183px]">
                     <Image
                       src={item.icon}
@@ -106,7 +106,7 @@ export const Accordion: React.FC<{ items: AccordionItem[] }> = ({ items }) => {
                         titleRefs.current[index] = el;
                       }}
                     >
-                      <span className="text-xl leading-[1] md:text-2xl xl:leading-[1.5625] font-medium dark:text-white">
+                      <span className="text-xl leading-[1] lg:text-2xl xl:leading-[1.5625] font-medium dark:text-white">
                         {item.title}
                       </span>
                     </div>
@@ -127,11 +127,11 @@ export const Accordion: React.FC<{ items: AccordionItem[] }> = ({ items }) => {
                     style={{ paddingLeft: `${titleOffsets[index] || 0}px` }}
                   >
                     <div className="pb-2 max-w-full lg:max-w-[85%] pt-3 md:pt-5">
-                      <ul className="square-list pl-[1em]">
+                      <ul className="square-list pl-[1rem]">
                         {item.content.map((content, index) => (
                           <li
                             key={index}
-                            className="text-lg dark:text-white leading-lh-text19 mb-3 xl:mb-5 font-extralight"
+                            className="text-lg pl-[7px] dark:text-white/70 text-foreground leading-lh-text19 mb-3 xl:mb-6 font-light"
                           >
                             {content}
                           </li>
@@ -141,17 +141,23 @@ export const Accordion: React.FC<{ items: AccordionItem[] }> = ({ items }) => {
                   </motion.div>
                 </div>
 
-                <div className="w-[35px] h-[35px]">
+                <div className="w-[17px] h-[17px] lg:w-[25px] lg:h-[25px] flex-shrink-0">
                   <Image
                     src="/assets/img/accordian-arrow.svg"
                     alt="Arrow"
-                    width={35}
-                    height={35}
-                    className={`transform transition-transform duration-250 mt-5 ${
+                    width={25}
+                    height={25}
+                    className={`transform transition-transform duration-250 lg:mt-4 ${
                       openIndex === index
-                        ? "rotate-0 "
-                        : "rotate-180 filter invert-[35%] sepia-[100%] saturate-[700%] hue-rotate-[100deg] brightness-[0.6]"
+                        ? "rotate-0" // clicked → normal
+                        : "rotate-180" // initial → rotated
                     }`}
+                    style={{
+                      filter:
+                        openIndex === index
+                          ? "invert(0)"
+                          : "brightness(0) saturate(100%) invert(32%) sepia(1%) saturate(10%) hue-rotate(337deg)", // #515151
+                    }}
                   />
                 </div>
               </button>

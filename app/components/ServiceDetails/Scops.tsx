@@ -61,7 +61,7 @@ const Scops = () => {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className=""
+              className="px-[15px] md:px-0"
             >
               <Image
                 src={item.img}
@@ -70,7 +70,7 @@ const Scops = () => {
                 height={500}
                 className="w-full h-full object-cover"
               />
-              <h3 className="text-xl leading-normal font-normal text-white mt-4 xl:mt-[27px]">
+              <h3 className="text-[21px] xl:text-xl leading-normal font-normal text-white mt-4 xl:mt-[27px]">
                 {item.title}
               </h3>
             </motion.div>

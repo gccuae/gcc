@@ -56,7 +56,7 @@ const KeyProjects = () => {
   };
 
   return (
-    <section className="py-57px xl:pb-25 bg-light-white dark:bg-light-dark">
+    <section className="py-57px pb-14 xl:pb-25 bg-light-white dark:bg-light-dark">
       <div className="container">
         <div className="mb-57px flex items-center justify-between">
           <motion.h2
@@ -157,7 +157,7 @@ const KeyProjects = () => {
         }}
       >
         {serviceDetailsData.keyProjects.items.map((item, index) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={index} className="!p-[15px]">
             <motion.div
               variants={moveUp(index * 0.15)}
               initial="hidden"

@@ -8,7 +8,7 @@ import { moveUp, moveLeft } from "../motionVarients";
 import Select from "react-select";
 
 const StaffList = () => {
-  const [activeCategory, setActiveCategory] = useState<string>("All"); 
+  const [activeCategory, setActiveCategory] = useState<string>("All");
 
   // Get unique categories from staff data
   const categories = useMemo(() => {
@@ -39,7 +39,7 @@ const StaffList = () => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="text-6xl leading-lh-title text-white mb-6 lg:mb-14"
+          className="text-5xl leading-[1.205882352941176] text-white mb-6 lg:mb-14"
         >
           {teamData.staffTitle}
         </motion.h2>
@@ -77,6 +77,7 @@ const StaffList = () => {
         </div>
         <div className="xl:hidden mb-8">
           <Select
+            instanceId="staff-category-select"
             options={categoryOptions}
             value={categoryOptions.find((opt) => opt.value === activeCategory)}
             onChange={(selected) => setActiveCategory(selected?.value || "All")}
@@ -135,7 +136,6 @@ const StaffList = () => {
             </motion.div>
           ))}
         </div>
-        
 
         {/* DESKTOP GRID */}
         <div className="hidden xl:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-10 xl:gap-y-14">

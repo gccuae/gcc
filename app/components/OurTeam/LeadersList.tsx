@@ -13,8 +13,8 @@ const LeadersList = () => {
           variants={moveUp()}
           initial="hidden"
           whileInView="show"
-          viewport={{once: true }}
-          className="text-6xl leading-lh-title text-black dark:text-white mb-57px"
+          viewport={{ once: true }}
+          className="text-5xl leading-[1.205882352941176] text-black dark:text-white mb-57px"
         >
           {teamData.leadersTitle}
         </motion.h2>
@@ -24,7 +24,7 @@ const LeadersList = () => {
               variants={moveUp(index * 0.23)}
               initial="hidden"
               whileInView="show"
-              viewport={{once: true }}
+              viewport={{ once: true }}
               key={index}
               className="group"
             >
