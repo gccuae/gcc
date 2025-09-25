@@ -26,7 +26,7 @@ const EnvironmentalResponsibility = ({
 }: Props) => {
   const [selectedItem, setSelectedItem] = useState<Matter | null>(null);
   return (
-    <section className="py-57px bg-white dark:bg-black">
+    <section className="pb-2 md:pb-57px py-57px bg-white dark:bg-black">
       <div className="container">
         {/* Title */}
         <motion.h2
@@ -60,7 +60,7 @@ const EnvironmentalResponsibility = ({
               viewport={{ once: true }}
               onClick={() => setSelectedItem(item)}
               key={index}
-              className="group flex flex-col overflow-hidden border-b border-gray-200 hover:border-primary transition-colors duration-300 pb-27px xl:pb-[31px]"
+              className="group flex flex-col overflow-hidden md:border-b border-gray-200 hover:border-primary transition-colors duration-300 pb-27px xl:pb-[31px]"
             >
               {/* Thumbnail */}
               <div className="relative overflow-hidden">
@@ -69,7 +69,7 @@ const EnvironmentalResponsibility = ({
                   alt={item.title}
                   width={486}
                   height={475}
-                  className="object-cover max-w-[486px] max-h-[300px] lg:max-h-[475px] group-hover:scale-[1.02] transition-all duration-300 group-hover:blur-[2px]"
+                  className="object-cover w-full max-w-full max-h-[300px] lg:max-h-[475px] group-hover:scale-[1.02] transition-all duration-300 group-hover:blur-[2px]"
                 />
                 {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>

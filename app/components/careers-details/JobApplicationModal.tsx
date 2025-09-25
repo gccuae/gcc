@@ -162,7 +162,7 @@ const JobApplicationModalForm = ({ onSuccess }: Props) => {
                   width={24}
                   height={30}
                 />
-                <div className="flex flex-col md:flex-row gap-1 md:items-center">
+                <div className="flex flex-col lg:flex-row gap-1 lg:items-center">
                   <span className="text-lg">
                     {coverLetterFile
                       ? coverLetterFile.name
@@ -206,7 +206,7 @@ const JobApplicationModalForm = ({ onSuccess }: Props) => {
                   width={24}
                   height={30}
                 />
-                <div className="flex flex-col md:flex-row gap-1 md:items-center">
+                <div className="flex flex-col lg:flex-row gap-1 lg:items-center">
                   <span className="text-lg">
                     {resumeFile ? resumeFile.name : "Upload Your Resume"}
                   </span>
