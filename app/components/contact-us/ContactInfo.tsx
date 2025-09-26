@@ -23,7 +23,7 @@ const ContactInfo = () => {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="text-lg leading-[1.5625] dark:text-white"
+              className="text-lg leading-[1.5625] dark:text-white/70"
             >
               Get in touch with us for any enquiries.
             </motion.p>
@@ -69,7 +69,7 @@ const ContactInfo = () => {
                     whileInView="show"
                     viewport={{ once: true }}
                   >
-                    <h4 className="text-base leading-lh-25 uppercase">
+                    <h4 className="text-base leading-lh-25 uppercase text-foreground dark:text-white/70">
                       Location
                     </h4>
                     <p className="text-lg leading-lh-text19 text-black dark:text-white">
@@ -104,7 +104,7 @@ const ContactInfo = () => {
                   </svg>
 
                   <div>
-                    <h4 className="text-base leading-lh-25 uppercase dark:text-white/40">
+                    <h4 className="text-base leading-lh-25 uppercase text-foreground dark:text-white/70">
                       Telephone
                     </h4>
                     <a
@@ -138,7 +138,9 @@ const ContactInfo = () => {
                     whileInView="show"
                     viewport={{ once: true }}
                   >
-                    <h4 className="text-base leading-lh-25 uppercase">Email</h4>
+                    <h4 className="text-base leading-lh-25 uppercase text-foreground dark:text-white/70">
+                      Email
+                    </h4>
                     <a
                       href="mailto:info@gcc.ae"
                       className="text-lg leading-lh-text19 text-black dark:text-white"
@@ -168,7 +170,9 @@ const ContactInfo = () => {
                     whileInView="show"
                     viewport={{ once: true }}
                   >
-                    <h4 className="text-base leading-lh-25 uppercase">fax</h4>
+                    <h4 className="text-base leading-lh-25 uppercase text-foreground dark:text-white/70">
+                      fax
+                    </h4>
                     <a
                       href="fax:+97126267510"
                       className="text-lg leading-lh-text19 text-black dark:text-white"
@@ -185,7 +189,7 @@ const ContactInfo = () => {
                   viewport={{ once: true }}
                   className="bg-black/5 dark:bg-white/5 p-3 xl:p-5"
                 >
-                  <p className="text-lg leading-lh-text19 text-black dark:text-white">
+                  <p className="text-lg leading-lh-text19 text-foreground dark:text-white/70">
                     We provide year-round support, Mon–Thu, 8:00 AM–5:30 PM GST,
                     or project coordination and client assistance.
                   </p>

@@ -4,7 +4,7 @@ import { Swiper } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import Image from "next/image"; 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
 import { useRef } from "react";
@@ -25,8 +25,9 @@ interface SectorSliderProps {
 const SectorSlider = ({ data }: SectorSliderProps) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+
   return (
-    <section className="wrapper py-57px bg-light-white dark:bg-light-dark text-white overflow-hidden">
+    <section className="wrapper md:py-57px pt-57px bg-light-white dark:bg-light-dark text-white overflow-hidden">
       <div className="container">
         <motion.h2
           variants={moveUp(0)}
@@ -48,11 +49,11 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
         </motion.h2>
         <div>
           <div className="relative">
-            <div className="absolute top-2/4  right-[-10px] xl:top-4/6 xl:-right-12 z-50 w-[50px] h-[50px] xl:w-[94px] xl:h-[94px] bg-black rounded-full flex items-center justify-center gap-4 xl:gap-4">
+            <div className="absolute top-2/4 right-[-10px] xl:top-4/6 xl:-right-12 z-50 w-[50px] h-[50px] xl:w-[94px] xl:h-[94px] bg-black rounded-full flex items-center justify-center gap-4 xl:gap-4">
               {/* Custom Navigation Buttons */}
               <button
                 ref={prevRef}
-                className="text-accent  flex items-center justify-center h-auto w-6 cursor-pointer"
+                className="text-accent flex items-center justify-center h-auto w-6 cursor-pointer"
               >
                 <svg
                   width="15"
@@ -124,44 +125,49 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
               {data.items.map((item, index) => (
                 <SwiperSlide
                   key={index}
-                  className="border-t-1 border-r-1 border-smgray relative group pr-[15px] pl-[15px] xl:pr-0 xl:pl-0"
+                  className="xl:pr-0 xl:pl-0" // keep layout padding here
                 >
-                  <div className="absolute -top-1 left-0 w-full h-0 group-hover:h-[6px] bg-accent transition-all duration-300 z-50"></div>
+                  {/* Animate border + content inside */}
                   <motion.div
-                    variants={moveUp(index * 0.2)}
-                    initial="hidden"
-                    whileInView="show"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.2 }}
-                    className="flex flex-col justify-between xl:max-h-[35em] overflow-hidden z-40 relative group"
+                    transition={{ delay: index * 0.2, duration: 0.6 }}
+                    className="h-full border-t-1 border-r-1 border-smgray relative group md:pl-[15px] pr-[15px] xl:pr-0"
                   >
-                    <div className="flex xl:pl-4 xl:pr-3 pt-6 xl:pt-[37px] group-hover:xl:pl-[27px] group-hover:xl:pt-[27px] group-hover:xl:pr-[27px] group-first:pl-0 transition-all duration-300">
-                      <div className="flex flex-col items-start">
-                        <Image
-                          src={item.icon}
-                          alt={item.title}
-                          width={100}
-                          height={100}
-                          className="w-[98px] h-[100px] object-contain mb-[17px]"
-                        />
-                        <h3 className="text-xl xl:text-2xl leading-[1.5625] font-normal transition-all duration-300 text-black dark:text-white">
-                          {item.title}
-                        </h3>
+                    <div className="absolute -top-1 left-0 w-full h-[6px] bg-transparent  group-hover:bg-accent transition-all duration-300 z-50"></div>
+
+                    <div className="flex flex-col justify-between xl:max-h-[35em] overflow-hidden z-40 relative group">
+                      <div className="flex xl:pl-4 xl:pr-3 pt-6 xl:pt-[37px] group-first:pl-0 transition-all duration-300">
+                        <div className="flex flex-col items-start">
+                          <Image
+                            src={item.icon}
+                            alt={item.title}
+                            width={100}
+                            height={100}
+                            className="w-[98px] h-[100px] object-contain mb-[17px]"
+                          />
+                          <h3 className="text-xl xl:text-2xl leading-[1.5625] font-normal transition-all duration-300 text-black dark:text-white">
+                            {item.title}
+                          </h3>
+                        </div>
                       </div>
-                      
-                    </div>
-                    <div className="xl:pl-4 xl:pr-3 pt-2 md:pt-4 lg:pt-6 group-hover:xl:pl-[28px]  group-hover:xl:pt-[35px] group-hover:xl:pr-[35px] group-first:pl-0 transition-all duration-300">
-                      <p className="text-lg font-[300] leading-[1.526315789473684] pb-5 xl:pb-0 xl:opacity-0 xl:h-0 group-hover:xl:h-auto group-hover:xl:opacity-100 transition-all ease-in-out duration-300 group-hover:xl:pb-[23px] sector-description relative z-10 text-foreground dark:text-white">
-                        {item.description}
-                      </p>
-                    </div>
-                    <div className="mt-auto overflow-hidden  group-first:pl-0 transition-all duration-300 relative z-20">
-                      <Image
-                        src={item.image}
-                        alt={item.title}
-                        width={487}
-                        height={403}
-                        className="w-full h-full xl:h-[403px] object-cover object-top flex overflow-hidden pl-0 pr-0 xl:pl-[15px] xl:pr-[15px] group-first:pl-0"
-                      />
+
+                      <div className="xl:pl-4 xl:pr-3 group-first:pl-0  xl:opacity-0 xl:h-0 group-hover:xl:h-auto group-hover:xl:opacity-100 transition-all ease-in-out duration-300  ">
+                        <p className="text-lg pt-2 font-[300] leading-[1.526315789473684] sector-description relative z-10 text-foreground dark:text-white">
+                          {item.description}
+                        </p>
+                      </div>
+
+                      <div className="mt-auto overflow-hidden group-first:pl-0 transition-all duration-300 relative z-20 xl:pt-27px pt-3">
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          width={487}
+                          height={403}
+                          className="w-full h-full xl:h-[403px] object-cover object-top flex overflow-hidden pl-0 pr-0 xl:pl-[15px] xl:pr-[15px] group-first:pl-0"
+                        />
+                      </div>
                     </div>
                   </motion.div>
                 </SwiperSlide>
