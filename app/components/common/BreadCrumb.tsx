@@ -12,12 +12,13 @@ interface Props {
 const Breadcrumb = ({ standard = false }: Props) => {
   const pathname = usePathname();
 
-  // Split and clean path parts
   const pathParts = pathname.split("/").filter((part) => part);
 
-  // Accumulate paths for links
   const buildHref = (index: number) =>
     "/" + pathParts.slice(0, index + 1).join("/");
+
+  const truncateLabel = (label: string) =>
+    label.length > 8 ? label.slice(0, 8) + "…" : label;
 
   return (
     <ul
@@ -63,7 +64,8 @@ const Breadcrumb = ({ standard = false }: Props) => {
 
       {pathParts.map((part, index) => {
         const isLast = index === pathParts.length - 1;
-        const label = decodeURIComponent(part.replace(/-/g, " "));
+        const fullLabel = decodeURIComponent(part.replace(/-/g, " "));
+        const truncatedLabel = truncateLabel(fullLabel);
         const href = buildHref(index);
 
         return (
@@ -72,14 +74,22 @@ const Breadcrumb = ({ standard = false }: Props) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="flex items-center gap-4 text-15 leading-[1.2] font-normal group  uppercase"
+            className="flex items-center gap-4 text-15 leading-[1.2] font-normal group uppercase"
           >
             {!isLast ? (
-              <Link href={href} className="text-mdgray dark:text-white hover:underline">
-                {label}
+              <Link
+                href={href}
+                className="text-mdgray dark:text-white hover:underline"
+              >
+                {/* Show truncated on mobile, full on larger screens */}
+                <span className="block sm:hidden">{truncatedLabel}</span>
+                <span className="hidden sm:block">{fullLabel}</span>
               </Link>
             ) : (
-              <span className="uppercase">{label}</span>
+              <span className="uppercase">
+                <span className="block sm:hidden">{truncatedLabel}</span>
+                <span className="hidden sm:block">{fullLabel}</span>
+              </span>
             )}
 
             {!isLast && (
