@@ -24,7 +24,7 @@ const Main = () => {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="text-lg leading-[1.5625] dark:text-white"
+              className="text-lg leading-[1.5625] text-foreground dark:text-white/70"
             >
               Fill out the form to send us a message.
             </motion.p>
