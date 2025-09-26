@@ -47,14 +47,17 @@ const JobApplicationForm = () => {
           future opportunities.
         </motion.h2>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-0 lg:space-y-8">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="space-y-0 lg:space-y-8"
+        >
           {/* First Row */}
           <motion.div
             variants={moveUp()}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:gap-8 text-black dark:text-white"
           >
             <div className="space-y-2">
               <input
@@ -91,7 +94,7 @@ const JobApplicationForm = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg-gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:gap-8 text-black dark:text-white"
           >
             <div className="space-y-2">
               <input
@@ -126,7 +129,7 @@ const JobApplicationForm = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg-gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:gap-8 text-black dark:text-white"
           >
             <div className="space-y-2">
               <input
@@ -163,7 +166,7 @@ const JobApplicationForm = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg-gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:gap-8 text-black dark:text-white"
           >
             {/* Cover Letter */}
             <div className="space-y-2">
@@ -264,7 +267,7 @@ const JobApplicationForm = () => {
                   htmlFor="resume"
                   className="flex items-center space-x-3 py-6 cursor-pointer group"
                 >
-                  <div className="w-8 h-8 flex items-center justify-center">
+                  <div className="flex items-center justify-center">
                     <Image
                       src="/assets/img/careers/upload-icon.svg"
                       alt="Upload Icon"
