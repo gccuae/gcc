@@ -131,7 +131,7 @@ export const Accordion: React.FC<{ items: AccordionItem[] }> = ({ items }) => {
                         {item.content.map((content, index) => (
                           <li
                             key={index}
-                            className="text-lg pl-[7px] dark:text-white/70 text-foreground leading-lh-text19 mb-3 xl:mb-6 font-light"
+                            className="text-lg pl-[7px] dark:text-white/70 text-foreground leading-lh-text19 mb-3 xl:mb-6 last:mb-0 font-light"
                           >
                             {content}
                           </li>

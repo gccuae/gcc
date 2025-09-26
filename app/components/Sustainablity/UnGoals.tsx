@@ -48,11 +48,11 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
         </motion.h2>
         <div>
           <div className="relative">
-            <div className="absolute top-2/4  right-[-10px] xl:top-4/6 xl:-right-12 z-50 w-[50px] h-[50px] xl:w-[94px] xl:h-[94px] bg-black rounded-full flex items-center justify-center gap-4 xl:gap-6">
+            <div className="absolute top-2/4  right-[-10px] xl:top-4/6 xl:-right-12 z-50 w-[50px] h-[50px] xl:w-[94px] xl:h-[94px] bg-black rounded-full flex items-center justify-center gap-4 xl:gap-4">
               {/* Custom Navigation Buttons */}
               <button
                 ref={prevRef}
-                className="text-accent w-2 xl:w-[12px] h-auto"
+                className="text-accent  flex items-center justify-center h-auto w-6 cursor-pointer"
               >
                 <svg
                   width="15"
@@ -60,7 +60,7 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
                   viewBox="0 0 15 26"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-full h-full"
+                  className="w-3 h-full"
                 >
                   <path
                     d="M14 1L2 13L14 25"
@@ -72,7 +72,7 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
               </button>
               <button
                 ref={nextRef}
-                className="text-accent w-2 xl:w-[12px] h-auto"
+                className="text-accent flex items-center justify-center h-auto w-6 cursor-pointer"
               >
                 <svg
                   width="15"
@@ -80,7 +80,7 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
                   viewBox="0 0 15 26"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-full h-full"
+                  className="w-3 h-full"
                 >
                   <path
                     d="M1 1L13 13L1 25"
