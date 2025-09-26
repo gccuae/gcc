@@ -61,18 +61,18 @@ const FooterV = () => {
               <div className="flex gap-10">
                 <div>
                   <ul className="flex flex-col gap-2">
-                    <motion.li variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-all duration-300"><Link href="/about-us">About GCC</Link></motion.li>
-                    <motion.li variants={moveUp(0.05)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-all duration-300"><Link href="/group-companies">Group Companies</Link></motion.li>
-                    <motion.li variants={moveUp(0.1)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-all duration-300"><Link href="/certifications">Certifications</Link></motion.li>
-                    <motion.li variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-all duration-300"><Link href="#">Projects</Link></motion.li>
+                    <motion.li variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white font-light leading-[1.578947368421053] hover:text-accent  "><Link href="/about-us">About GCC</Link></motion.li>
+                    <motion.li variants={moveUp(0.05)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white font-light leading-[1.578947368421053] hover:text-accent  "><Link href="/group-companies">Group Companies</Link></motion.li>
+                    <motion.li variants={moveUp(0.1)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white font-light leading-[1.578947368421053] hover:text-accent  "><Link href="/certifications">Certifications</Link></motion.li>
+                    <motion.li variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white font-light leading-[1.578947368421053] hover:text-accent  "><Link href="#">Projects</Link></motion.li>
                   </ul>
                 </div>
                 <div>
                   <ul className="flex flex-col gap-2">
-                    <motion.li variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-all duration-300"><Link href="/clients">Clientele & Partnerships</Link></motion.li>
-                    <motion.li variants={moveUp(0.1)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-all duration-300"><Link href="/careers">Careers</Link></motion.li>
-                    <motion.li variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-all duration-300"><Link href="/qhse">Health Safety & Environmental</Link></motion.li>
-                    <motion.li variants={moveUp(0.3)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-all duration-300"><Link href="/blog">Blog</Link></motion.li>
+                    <motion.li variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white font-light leading-[1.578947368421053] hover:text-accent  "><Link href="/clients">Clientele & Partnerships</Link></motion.li>
+                    <motion.li variants={moveUp(0.1)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white font-light leading-[1.578947368421053] hover:text-accent  "><Link href="/careers">Careers</Link></motion.li>
+                    <motion.li variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white font-light leading-[1.578947368421053] hover:text-accent  "><Link href="/qhse">Health Safety & Environmental</Link></motion.li>
+                    <motion.li variants={moveUp(0.3)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="text-white font-light leading-[1.578947368421053] hover:text-accent  "><Link href="/blog">Blog</Link></motion.li>
                   </ul>
                 </div>
               </div>
