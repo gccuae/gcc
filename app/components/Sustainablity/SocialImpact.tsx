@@ -266,7 +266,13 @@ const SocialImpact = ({ data }: AreaOfExpertiseProps) => {
                 className="cursor-pointer transition mb-4 xl:mb-[65px] group"
                 onClick={() => handleSlideHover(index)}
               >
-                <div className="transition-colors duration-400 pb-4 mb-6 xl:pb-[37px] mb-6 xl:mb-[42px] relative">
+                <motion.div
+                  variants={moveUp()}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
+                  className="transition-colors duration-400 pb-4 mb-6 xl:pb-[37px] mb-6 xl:mb-[42px] relative"
+                >
                   <motion.div
                     variants={fadeIn(index * 0.25)}
                     initial="hidden"
@@ -288,13 +294,13 @@ const SocialImpact = ({ data }: AreaOfExpertiseProps) => {
                   <div className="hoverline absolute bottom-[-8px] left-0 w-0 h-[6px] bg-secondary -z-[1] transition-all duration-300 rounded-sm">
                     {" "}
                   </div>
-                </div>
+                </motion.div>
                 <motion.h3
                   variants={moveUp(index * 0.12)}
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true, amount: 0.1 }}
-                  className="text-xl text-white/80 font-normal leading-sm xl:leading-[1]  group-hover:text-white transition-all duration-300"
+                  className="text-xl text-white/80 font-normal leading-sm xl:leading-[1] group-hover:text-white transition-colors duration-300"
                 >
                   {item.title}
                 </motion.h3>
@@ -325,7 +331,13 @@ const SocialImpact = ({ data }: AreaOfExpertiseProps) => {
                 <SwiperSlide key={item.id}>
                   <div className="slide-container grid grid-cols-1 lg:grid-cols-2 gap-[20px] md:gap-[30px] lg:gap-[50px] xl:gap-[70px] 2xl:gap-[95px] items-center">
                     {/* Image */}
-                    <div className="img-wrapper slide-img w-full">
+                    <motion.div
+                      variants={fadeIn()}
+                      initial="hidden"
+                      whileInView="show"
+                      viewport={{ once: true }}
+                      className="img-wrapper slide-img w-full"
+                    >
                       <Image
                         src={item.image}
                         alt={item.title}
@@ -333,15 +345,27 @@ const SocialImpact = ({ data }: AreaOfExpertiseProps) => {
                         height={483}
                         className="w-full max-w-[775px] h-[350px] lg:h-[433px] xl:h-[483px] object-cover"
                       />
-                    </div>
+                    </motion.div>
 
                     {/* Text */}
                     <div className="w-full">
-                      <h3 className="text-2xl font-normal leading-[1.3] mb-2 xl:mb-3 text-white transition-all duration-300">
+                      <motion.h3
+                        variants={moveUp()}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true }}
+                        className="text-2xl font-normal leading-[1.3] mb-2 xl:mb-3 text-white transition-colors duration-300"
+                      >
                         {item.title}
-                      </h3>
+                      </motion.h3>
 
-                      <p className="text-lg font-light leading-[1.526315789473684] transition-all duration-300 w-full text-white/80">
+                      <motion.p
+                        variants={moveUp()}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true }}
+                        className="text-lg font-light leading-[1.526315789473684] transition-colors duration-300 w-full text-white/80"
+                      >
                         {item.description.split("\n").map((line, i) => (
                           <span
                             key={i}
@@ -350,7 +374,7 @@ const SocialImpact = ({ data }: AreaOfExpertiseProps) => {
                             {line}
                           </span>
                         ))}
-                      </p>
+                      </motion.p>
                     </div>
                   </div>
                 </SwiperSlide>
