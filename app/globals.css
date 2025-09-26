@@ -243,8 +243,7 @@ body {
 
 :focus-visible 
  {
-    outline: none !important;
-    border: none !important;
+    outline: none !important; 
 }
 .sector-slider .swiper-slide-active .sector-description {
   /* @apply h-auto opacity-100 pb-4 xl:pb-[63px]; */

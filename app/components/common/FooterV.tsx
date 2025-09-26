@@ -171,7 +171,7 @@ const FooterV = () => {
                       initial="hidden"
                       whileInView="show"
                       viewport={{ once: true, amount: 0.2 }}
-                      className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300"
+                      className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300 "
                     >
                       <Link href="/about-us">About GCC</Link>
                     </motion.li>
@@ -180,7 +180,7 @@ const FooterV = () => {
                       initial="hidden"
                       whileInView="show"
                       viewport={{ once: true, amount: 0.2 }}
-                      className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300"
+                      className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300 "
                     >
                       <Link href="/group-companies">Group Companies</Link>
                     </motion.li>
@@ -189,7 +189,7 @@ const FooterV = () => {
                       initial="hidden"
                       whileInView="show"
                       viewport={{ once: true, amount: 0.2 }}
-                      className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300"
+                      className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300 "
                     >
                       <Link href="/certifications">Certifications</Link>
                     </motion.li>
@@ -198,7 +198,7 @@ const FooterV = () => {
                       initial="hidden"
                       whileInView="show"
                       viewport={{ once: true, amount: 0.2 }}
-                      className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300"
+                      className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300 "
                     >
                       <Link href="#">Projects</Link>
                     </motion.li>
@@ -211,7 +211,7 @@ const FooterV = () => {
                       initial="hidden"
                       whileInView="show"
                       viewport={{ once: true, amount: 0.2 }}
-                      className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300"
+                      className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300 "
                     >
                       <Link href="/clients">Clientele & Partnerships</Link>
                     </motion.li>
@@ -220,7 +220,7 @@ const FooterV = () => {
                       initial="hidden"
                       whileInView="show"
                       viewport={{ once: true, amount: 0.2 }}
-                      className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300"
+                      className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300 "
                     >
                       <Link href="/careers">Careers</Link>
                     </motion.li>
@@ -229,7 +229,7 @@ const FooterV = () => {
                       initial="hidden"
                       whileInView="show"
                       viewport={{ once: true, amount: 0.2 }}
-                      className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300"
+                      className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300 "
                     >
                       <Link href="/qhse">Health Safety & Environmental</Link>
                     </motion.li>
@@ -238,7 +238,7 @@ const FooterV = () => {
                       initial="hidden"
                       whileInView="show"
                       viewport={{ once: true, amount: 0.2 }}
-                      className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300"
+                      className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300 "
                     >
                       <Link href="/blog">Blog</Link>
                     </motion.li>

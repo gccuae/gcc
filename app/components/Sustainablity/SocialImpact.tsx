@@ -337,7 +337,7 @@ const SocialImpact = ({ data }: AreaOfExpertiseProps) => {
 
                     {/* Text */}
                     <div className="w-full">
-                      <h3 className="text-2xl font-normal leading-[1.5625] mb-2 xl:mb-3 text-white transition-all duration-300">
+                      <h3 className="text-2xl font-normal leading-[1.3] mb-2 xl:mb-3 text-white transition-all duration-300">
                         {item.title}
                       </h3>
 
@@ -345,7 +345,7 @@ const SocialImpact = ({ data }: AreaOfExpertiseProps) => {
                         {item.description.split("\n").map((line, i) => (
                           <span
                             key={i}
-                            className="block slide-text mt-4 xl:mt-6"
+                            className="block slide-text mt-4 xl:mt-[17px]"
                           >
                             {line}
                           </span>
