@@ -3,7 +3,7 @@
 import Breadcrumb from "../common/BreadCrumb";
 import BtnPrimary from "../common/BtnPrimary";
 import { AnimatePresence, motion } from "framer-motion";
-import { moveLeft } from "../motionVarients";
+import { moveLeft, moveUp } from "../motionVarients";
 import { useState } from "react";
 import JobApplicationModal from "./JobApplicationModal";
 import Image from "next/image";
@@ -70,7 +70,13 @@ const PageHeader = ({ title }: PageHeaderProps) => {
   return (
     <section className="pt-57px dark:bg-[#0d0d0d]">
       <div className="container">
-        <div className="border-b border-smgray pb-5 xl:pb-10 pb-8 xl:pb-57px">
+        <motion.div
+          variants={moveUp()}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="border-b border-smgray pb-5 xl:pb-10 pb-8 xl:pb-57px"
+        >
           <div className="flex justify-between items-center">
             <motion.h1
               initial={{ opacity: 0, x: -30, clipPath: "inset(0 100% 0 0)" }}
@@ -94,7 +100,7 @@ const PageHeader = ({ title }: PageHeaderProps) => {
             </motion.div>
           </div>
           <Breadcrumb standard={true} />
-        </div>
+        </motion.div>
       </div>
 
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
