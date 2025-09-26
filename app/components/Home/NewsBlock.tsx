@@ -7,7 +7,7 @@ import Image from "next/image";
 import { StaticImageData } from "next/image";
 import BtnPrimary from "../common/BtnPrimary";
 import { motion } from "framer-motion";
-import { moveUp } from "../motionVarients";
+import { fadeIn, moveUp } from "../motionVarients";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 // import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -75,7 +75,13 @@ const NewsBlock = ({ title, link, items }: NewsBlockProps) => {
             {items.map((item, index) => (
               <SwiperSlide key={index}>
                 <div className="flex flex-wrap lg:flex-nowrap items-stretch gap-4 lg:gap-[69px] ">
-                  <div className="xl:w-1/2 overflow-hidden flex items-stretch w-full">
+                  <motion.div
+                    variants={fadeIn(0.1)}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.2 }}
+                    className="xl:w-1/2 overflow-hidden flex items-stretch w-full"
+                  >
                     <Image
                       src={item.image}
                       alt="newsBlockImage"
@@ -83,9 +89,15 @@ const NewsBlock = ({ title, link, items }: NewsBlockProps) => {
                       height={2000}
                       className="w-full h-[350px] md:h-full object-cover hover:scale-110 transition-all duration-400"
                     />
-                  </div>
+                  </motion.div>
                   <div className="xl:w-1/2 group">
-                    <div className="flex items-center justify-between mb-3 xl:mb-[28px]">
+                    <motion.div
+                      variants={moveUp(0.2)}
+                      initial="hidden"
+                      whileInView="show"
+                      viewport={{ once: true, amount: 0.2 }}
+                      className="flex items-center justify-between mb-3 xl:mb-[28px]"
+                    >
                       <button className="bg-accent px-5 py-2 transition-all duration-300 uppercase ">
                         <span className="text-foreground group-hover:text-white transition-all duration-300">
                           {item.category}
@@ -94,13 +106,13 @@ const NewsBlock = ({ title, link, items }: NewsBlockProps) => {
                       <p className="text-base font-light text-forground underline underline-offset-10 dark:text-white hover:text-black dark:hover:text-white transition-all duration-300">
                         {item.date}
                       </p>
-                    </div>
+                    </motion.div>
                     <motion.h3
                       variants={moveUp(0.2)}
                       initial="hidden"
                       whileInView="show"
                       viewport={{ once: true, amount: 0.2 }}
-                      className="text-2xl font-normal leading-[1.40625] text-forground mb-3 xl:mb-[22px] dark:text-white hover:text-primary transition-all duration-300"
+                      className="text-2xl font-normal leading-[1.40625] text-forground mb-3 xl:mb-[22px] dark:text-white hover:text-primary transition-colors duration-300"
                     >
                       {item.title}
                     </motion.h3>
@@ -109,7 +121,7 @@ const NewsBlock = ({ title, link, items }: NewsBlockProps) => {
                       initial="hidden"
                       whileInView="show"
                       viewport={{ once: true, amount: 0.2 }}
-                      className="text-lg leading-[1.526315789473684] font-light text-forground dark:text-white/80 hover:text-black dark:hover:text-white transition-all duration-300"
+                      className="text-lg leading-[1.526315789473684] font-light text-forground dark:text-white/80 hover:text-black dark:hover:text-white transition-colors duration-300"
                     >
                       {item.description}
                     </motion.p>
