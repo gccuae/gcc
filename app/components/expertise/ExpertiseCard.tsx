@@ -33,7 +33,7 @@ const ExpertiseCard = ({
           </div>
         </div>
         <div className="grid grid-cols-[auto_1fr] items-center gap-3 xl:gap-[25.29px]">
-          <div className="rounded-full flex items-center justify-center group-hover:bg-primary transition-all duration-300 overflow-hidden p-2 xl:p-[19px] transition-colors w-12 h-12 xl:w-20 xl:h-20 ">
+          <div className="rounded-full flex items-center justify-center group-hover:bg-primary transition-all duration-300 overflow-hidden p-[12px] xl:p-[19px] transition-colors w-12 h-12 xl:w-20 xl:h-20 ">
             <Image
               src={item.icon}
               alt={item.title}

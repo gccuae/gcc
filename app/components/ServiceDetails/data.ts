@@ -62,6 +62,21 @@ export const serviceDetailsData = {
         info: "CIVIL, INFRASTRUCTURE, Dubai",
         title: "Ruwais Mall",
       },
+      {
+        img: "/assets/img/service-details/key-projects/prj-1.jpg",
+        info: "ROAD EXPANSION, INFRASTRUCTURE,  Abu Dhabi",
+        title: "CORNICHE ABU DHABI",
+      },
+      {
+        img: "/assets/img/service-details/key-projects/prj-2.jpg",
+        info: "CIVIL, INFRASTRUCTURE, Dubai",
+        title: "Ruwais Mall",
+      },
+      {
+        img: "/assets/img/service-details/key-projects/prj-3.jpg",
+        info: "CIVIL, INFRASTRUCTURE, Dubai",
+        title: "Ruwais Mall",
+      },
       // {
       //   img: "/assets/img/service-details/key-projects/prj-2.jpg",
       //   info: "CIVIL, INFRASTRUCTURE, Dubai",
