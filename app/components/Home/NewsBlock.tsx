@@ -133,7 +133,7 @@ const NewsBlock = ({ title, items }: NewsBlockProps) => {
                       className="mt-4 xl:mt-[53px]"
                     >
                       <BtnPrimary
-                        link={item.link}
+                        link={"/news/1"}
                         text="Read More"
                         bgtrans={true}
                       />

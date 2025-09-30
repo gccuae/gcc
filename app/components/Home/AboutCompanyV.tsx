@@ -8,6 +8,8 @@ import BtnPrimary from "../common/BtnPrimary";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import parse, { domToReact, DOMNode, Element } from "html-react-parser";
+import { motion } from "framer-motion";
+import { moveRight } from "../motionVarients";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -86,22 +88,6 @@ const AboutCompanyV = () => {
   useEffect(() => {
     if (!containerRef.current || !videoRef.current || !textRef.current) return;
 
-    // Video parallax
-    gsap.fromTo(
-      videoRef.current,
-      { y: "-20vh" },
-      {
-        y: "20vh",
-        ease: "none",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
-      }
-    );
-
     // Animate split text
     gsap.to(textRef.current.querySelectorAll("span > span"), {
       y: 0,
@@ -145,12 +131,18 @@ const AboutCompanyV = () => {
       <div className="container">
         <div className="lg:flex gap-8 xl:gap-17">
           {/* Video Block */}
-          <div className="relative w-full h-full lg:w-[48%] mb-8 lg:mb-0 overflow-hidden">
+          <motion.div
+            variants={moveRight(0.12)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="relative w-full h-full lg:w-[48%] mb-8 lg:mb-0 overflow-hidden"
+          >
             <video
               ref={videoRef}
               poster="/assets/img/home/video-poster.jpg"
               controls={false}
-              className="h-full w-full object-cover will-change-transform hover:scale-110"
+              className="h-full w-full object-cover hover:scale-110"
               width={1080}
               height={740}
               playsInline
@@ -201,7 +193,7 @@ const AboutCompanyV = () => {
                 </div>
               </div>
             )}
-          </div>
+          </motion.div>
 
           {/* Text Block with Split Animation */}
           <div className="w-full lg:w-[52%]">
