@@ -243,7 +243,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                         </div>
                         <div className="mt-0 lg:mt-16">
                           <BtnPrimary
-                            link={"#"}
+                            link={"/projects/corniche"}
                             text={slide.btn}
                             bgtrans={false}
                           />

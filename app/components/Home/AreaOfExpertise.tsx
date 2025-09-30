@@ -340,7 +340,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                     </p>
                     <div className="slide-btn mt-6 xl:mt-[43px] mb-4">
                       <BtnPrimary
-                        link={item.slug}
+                        link={"/expertise/civil"}
                         text="Read More"
                         bgtrans={false}
                       />
