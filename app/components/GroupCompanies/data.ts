@@ -1,5 +1,5 @@
 export const groupCompaniesData = {
-  title: "Group Companies",
+  title: "Our Group of Companies",
   bannerImg: "/assets/img/group-companies/bnr.jpg",
   section1: {
     title: "Unified Power, Measurable Impact",
