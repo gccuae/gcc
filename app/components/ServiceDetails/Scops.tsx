@@ -61,18 +61,25 @@ const Scops = () => {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="px-[15px] md:px-0"
+              className="px-[15px] md:px-0 border-b border-sm-gray hover:border-primary transition-colors duration-300 flex flex-col h-full justify-between"
             >
-              <Image
-                src={item.img}
-                alt={item.title}
-                width={500}
-                height={500}
-                className="w-full h-full object-cover"
-              />
-              <h3 className="text-[21px] xl:text-xl leading-normal font-normal text-white mt-4 xl:mt-[27px]">
-                {item.title}
-              </h3>
+              {/* Top: Image */}
+              <div>
+                <Image
+                  src={item.img}
+                  alt={item.title}
+                  width={500}
+                  height={500}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Bottom: Title */}
+              <div className="mt-4 xl:mt-[27px] h-[75px]">
+                <h3 className="text-[21px] leading-normal text-white">
+                  {item.title}
+                </h3>
+              </div>
             </motion.div>
           </SwiperSlide>
         ))}

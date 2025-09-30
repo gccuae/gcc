@@ -56,7 +56,7 @@ const KeyProjects = () => {
   };
 
   return (
-    <section className="py-57px pb-14 xl:pb-25 bg-light-white dark:bg-light-dark">
+    <section className="py-57px pb-14 xl:pb-25 bg-light-white dark:bg-light-dark max-w-[1920px] mx-auto">
       <div className="container">
         <div className="mb-57px flex items-center justify-between">
           <motion.h2
@@ -141,44 +141,50 @@ const KeyProjects = () => {
         }}
         direction="horizontal"
         resistance
-        resistanceRatio={0.5}
+        // resistanceRatio={0.5}
         slidesPerGroup={1}
         speed={1500}
         loop={true}
-        // centeredSlides={true}
-        slidesPerView="auto"
+        centeredSlides={true}
+        // slidesPerView="auto"
         spaceBetween={15}
         grabCursor
-        // loopAdditionalSlides={1}
         breakpoints={{
           425: { slidesPerView: 1.2 },
           768: { slidesPerView: 2 },
-          1024: { slidesPerView: 2.5, spaceBetween: 40 },
+          1024: { slidesPerView: 2.1, spaceBetween: 40 },
         }}
       >
         {serviceDetailsData.keyProjects.items.map((item, index) => (
-          <SwiperSlide key={index} className="!p-[15px]">
+          <SwiperSlide
+            key={index}
+            className="!overflow-hidden !p-[15px] md:!p-[0px]"
+            // onMouseEnter={() => {
+            //   swiperRef.current?.slideToLoop(index); // move hovered slide to center
+            // }}
+          >
             <motion.div
               variants={moveUp(index * 0.15)}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="relative h-[300px] xl:h-[633px] flex flex-col justify-end px-[30px] py-6 xl:py-[35px] group"
+              className="relative h-full xl:h-[450px] 2xl:h-[533px] 3xl:h-[633px] w-full lg:w-[700px] 2xl:w-[1003px] flex flex-col justify-end px-6 py-6 xl:py-8 group"
             >
               <Image
                 src={item.img}
                 alt={item.title}
-                width={500}
-                height={500}
+                width={600} // only reference, actual size controlled by w-full h-full
+                height={400}
                 className="w-full h-full object-cover absolute inset-0 z-0"
               />
+
               <div className="relative z-10 opacity-0 group-hover:opacity-100 content-box transition-all duration-300">
                 <div className="bg-black w-fit px-5 py-3">
                   <p className="text-lg leading-lh-text19 font-normal text-white">
                     {item.info}
                   </p>
                 </div>
-                <div className="bg-light-white  w-fit p-4 min-w-[60%] flex items-center justify-between gap-4 group">
+                <div className="bg-light-white w-fit p-4 min-w-[50%] flex items-center justify-between gap-4 group">
                   <h3 className="text-2xl leading-normal font-normal text-black ">
                     {item.title}
                   </h3>

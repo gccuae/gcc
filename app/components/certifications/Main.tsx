@@ -98,7 +98,7 @@ const Main = () => {
 
   return (
     <>
-      <section className="">
+      <section className="pt-15 xl:pt-25px">
         <div className="container mx-auto px-4">
           <h2 className="text-5xl leading-[1.205882352941176] text-black dark:text-white pb-6 xl:pb-[47px] ">
             {certificationsData.title}
