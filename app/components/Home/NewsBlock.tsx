@@ -62,7 +62,7 @@ const NewsBlock = ({ title, link, items }: NewsBlockProps) => {
           >
             {title}
           </motion.h2>
-          <BtnPrimary link={link} text="View All" bgtrans={true} />
+          <BtnPrimary link={"/news"} text="View All" bgtrans={true} />
         </div>
         <div>
           <Swiper

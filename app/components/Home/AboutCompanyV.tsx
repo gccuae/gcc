@@ -215,7 +215,11 @@ const AboutCompanyV = () => {
             </p>
 
             <div ref={btnRef}>
-              <BtnPrimary link={"#"} text="About Company" bgtrans={false} />
+              <BtnPrimary
+                link={"/about-us"}
+                text="About Company"
+                bgtrans={false}
+              />
             </div>
           </div>
         </div>
