@@ -281,7 +281,6 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
               viewport={{ once: true }}
               className="sticky top-0 self-start right-col"
             >
-      
               <div className="bg-light-white dark:bg-[#0d0d0d] p-6 xl:p-10 mb-57px   md:max-w-[575px] m-auto md:mr-0 ml-auto md:mt-6 xl:mt-[67px]">
                 <div className="border-b border-smgray pb-27px">
                   <h3 className="text-2xl leading-[1.205882352941176] mb-4 xl:mb-6 font-normal text-black dark:text-white">
