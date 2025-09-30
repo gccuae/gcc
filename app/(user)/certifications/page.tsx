@@ -5,7 +5,7 @@ const Page = () => {
     <main>
       <Index />
     </main>
-    );
-}
+  );
+};
 
 export default Page;
