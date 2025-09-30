@@ -27,7 +27,7 @@ const Cta = () => {
       <div
         style={{
           background:
-            "linear-gradient(131deg,rgba(0, 0, 0, 0.7) 100%, rgba(0, 0, 0, 0.55) 25%)",
+            "linear-gradient(131deg,rgba(0, 0, 0, 0.8) 100%, rgba(0, 0, 0, 0.55) 25%)",
         }}
         className="absolute inset-0 w-full h-full z-10"
       />

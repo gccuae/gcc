@@ -61,7 +61,7 @@ const Scops = () => {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="px-[15px] md:px-0 border-b border-sm-gray hover:border-primary transition-color duration-300 flex flex-col h-full justify-between"
+              className="px-[15px] md:px-0 border-b border-sm-gray hover:border-primary transition-colors duration-300 flex flex-col h-full justify-between"
             >
               {/* Top: Image */}
               <div>
