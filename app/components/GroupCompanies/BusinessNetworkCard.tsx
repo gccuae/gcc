@@ -155,7 +155,7 @@ const BusinessNetworkCard = ({
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <div className="bg-white rounded w-fit h-fit px-3 py-[5px]">
+          <div className="bg-white rounded-[5px] w-[175px] max-h-[45px] flex items-center justify-center px-3 py-5">
             <Image
               src={item.logo}
               alt={item.title}
