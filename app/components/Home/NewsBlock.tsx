@@ -24,7 +24,7 @@ interface NewsBlockProps {
     category: string;
   }[];
 }
-const NewsBlock = ({ title, link, items }: NewsBlockProps) => {
+const NewsBlock = ({ title, items }: NewsBlockProps) => {
   const sectionRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
