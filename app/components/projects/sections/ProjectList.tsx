@@ -9,7 +9,7 @@ import {
 } from "react-select";
 import { StylesConfig } from "react-select";
 import { motion } from "framer-motion";
-import { moveUp } from "../../motionVarients";
+import { moveLeft, moveUp } from "../../motionVarients";
 import Image from "next/image";
 type Option = { value: string; label: string };
 import { MapPin } from "lucide-react";
@@ -65,17 +65,17 @@ export default function FeaturedProjects({
   const [leftOffset, setLeftOffset] = useState(0);
   const [activeProject, setActiveProject] = useState<Project>(projects[0]);
   const [filters, setFilters] = useState<Record<FilterKey, string>>({
-    type: "All",
-    sector: "All",
-    status: "All",
+    type: "Project Type",
+    sector: "Sector",
+    status: "Status",
   });
   const [mobileMapOpen, setMobileMapOpen] = useState<number | null>(null);
 
   const filteredProjects = projects.filter((project) => {
     return (
-      (filters.type === "All" || project.type === filters.type) &&
-      (filters.sector === "All" || project.sector === filters.sector) &&
-      (filters.status === "All" || project.status === filters.status)
+      (filters.type === "Project Type" || project.type === filters.type) &&
+      (filters.sector === "Sector" || project.sector === filters.sector) &&
+      (filters.status === "Status" || project.status === filters.status)
     );
   });
 
@@ -155,36 +155,54 @@ export default function FeaturedProjects({
         Featured Projects
       </motion.h2>
       <div style={{ paddingLeft: `${leftOffset}px`, paddingRight: 0 }}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 border-t border-smgray pr-[15px] lg:pr-0">
+        <motion.div
+          variants={moveUp(0.05)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 lg:grid-cols-2 border-t border-smgray pr-[15px] lg:pr-0"
+        >
           {/* Left Column */}
-          <div className="lg:border-r border-smgray">
+          <div className="lg:border-r border-smgray overflow-y-auto lg:h-[1280px] overscroll-auto scroll-smooth">
             {/* Filters */}
             <div className="flex flex-col lg:flex-row gap-37px 2xl:gap-47px my-37px 2xl:my-47px lg:pr-37px w-full">
-              {filterConfigs.map(({ key, placeholder }) => (
-                <Select
+              {filterConfigs.map(({ key, placeholder }, index) => (
+                <motion.div
                   key={key}
-                  components={{ DropdownIndicator }}
+                  variants={moveUp(index * 0.15)}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
                   className="xl:w-[220px] h-[40px]"
-                  classNamePrefix="react-select"
-                  options={getOptions(key).map((label) => ({
-                    value: label,
-                    label,
-                  }))}
-                  placeholder={placeholder}
-                  value={{ value: filters[key], label: filters[key] }}
-                  onChange={(option) =>
-                    setFilters({ ...filters, [key]: option?.value || "All" })
-                  }
-                  styles={selectStyles}
-                />
+                >
+                  <Select
+                    components={{ DropdownIndicator }}
+                    className="w-full h-full"
+                    classNamePrefix="react-select"
+                    options={getOptions(key).map((label) => ({
+                      value: label,
+                      label,
+                    }))}
+                    placeholder={placeholder}
+                    value={{ value: filters[key], label: filters[key] }}
+                    onChange={(option) =>
+                      setFilters({ ...filters, [key]: option?.value || "All" })
+                    }
+                    styles={selectStyles}
+                  />
+                </motion.div>
               ))}
             </div>
 
             {/* Projects List */}
             <div className="space-y-37px 2xl:space-y-47px">
-              {filteredProjects.map((project) => (
-                <div
+              {filteredProjects.map((project, index) => (
+                <motion.div
                   key={project.id}
+                  variants={moveUp(index * 0.15)}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
                   className="cursor-pointer relative group"
                   onMouseEnter={() => {
                     // Hover only on desktop (lg and above)
@@ -232,17 +250,35 @@ export default function FeaturedProjects({
                   </div>
 
                   {/* Project Info */}
-                  <div className="mt-[17px] gap-x-5 gap-y-2 font-light text-lg leading-1h-text19 flex flex-wrap text-foreground dark:text-white/70">
+                  <motion.div
+                    variants={moveLeft(index * 0.15)}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true }}
+                    className="mt-[17px] gap-x-5 gap-y-2 font-light text-lg leading-1h-text19 flex flex-wrap text-foreground dark:text-white/70"
+                  >
                     <span>{project.type}</span>|<span>{project.sector}</span>|
                     <span>{project.location}</span>|
                     <span>{project.status}</span>
-                  </div>
-                  <h3 className="text-2xl leading-1h-text32 text-primary mt-[17px] pb-[15px] border-b border-smgray lg:mr-[47px]">
+                  </motion.div>
+                  <motion.h3
+                    variants={moveUp(0.15)}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true }}
+                    className="text-2xl leading-1h-text32 text-primary mt-[17px] pb-[15px] border-b border-smgray lg:mr-[47px]"
+                  >
                     {project.name}
-                  </h3>
+                  </motion.h3>
 
                   {/* Mobile Map */}
-                  <div className="block lg:hidden mt-4">
+                  <motion.div
+                    variants={moveUp(0.15)}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true }}
+                    className="block lg:hidden mt-4"
+                  >
                     {mobileMapOpen === project.id && (
                       <iframe
                         src={project.mapUrl}
@@ -252,14 +288,20 @@ export default function FeaturedProjects({
                         className="border-0"
                       />
                     )}
-                  </div>
-                </div>
+                  </motion.div>
+                </motion.div>
               ))}
             </div>
           </div>
 
           {/* Right Column Map for Desktop */}
-          <div className="hidden lg:block w-full h-[350px] lg:h-[500px] xl:h-[800px] 2xl:h-[1200px] max-h-[1200px] lg:pl-37px 2xl:pl-47px pt-37px 2xl:pt-47px">
+          <motion.div
+            variants={moveLeft(0.15)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="hidden lg:block w-full h-[350px] lg:h-[500px] xl:h-[800px] 2xl:h-[700px] 3xl:h-[1200px] max-h-[1200px] lg:pl-37px 2xl:pl-47px pt-37px 2xl:pt-47px"
+          >
             <iframe
               src={activeProject.mapUrl}
               width="100%"
@@ -267,8 +309,8 @@ export default function FeaturedProjects({
               loading="lazy"
               className="border-0"
             ></iframe>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
