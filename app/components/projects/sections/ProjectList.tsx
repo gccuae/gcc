@@ -274,15 +274,6 @@ export default function FeaturedProjects({
                     <span>{project.location}</span>|
                     <span>{project.status}</span>
                   </motion.div>
-                  <motion.h3
-                    variants={moveUp(0.15)}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true }}
-                    className="text-2xl leading-1h-text32 text-primary mt-[17px] pb-[15px] border-b border-smgray lg:mr-[47px]"
-                  >
-                    {project.name}
-                  </motion.h3>
 
                   {/* Mobile Map */}
                   <motion.div
@@ -302,6 +293,15 @@ export default function FeaturedProjects({
                       />
                     )}
                   </motion.div>
+                  <motion.h3
+                    variants={moveUp(0.15)}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true }}
+                    className="text-2xl leading-1h-text32 text-primary mt-[17px] pb-[15px] border-b border-smgray lg:mr-[47px]"
+                  >
+                    {project.name}
+                  </motion.h3>
                 </motion.div>
               ))}
             </div>
