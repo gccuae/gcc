@@ -412,7 +412,3 @@ header.modal-open {
   border-bottom: 6px solid var(--color-primary);
 } 
   */
-
-  .scroll-smooth {
-    scroll-behavior: smooth;
-  }

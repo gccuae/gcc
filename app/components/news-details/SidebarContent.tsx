@@ -155,10 +155,10 @@ const SidebarContent = () => {
                 </h4>
               </Link>
               <div className="flex mt-3 items-center justify-between">
-                <span className="font-light text-base text-black dark:text-white/70">
+                <span className="font-light text-base text-foreground dark:text-white/70">
                   {item.sector}
                 </span>
-                <span className="font-light text-base text-black dark:text-white/70">
+                <span className="font-light text-base text-foreground dark:text-white/70">
                   {item.date}
                 </span>
               </div>

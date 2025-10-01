@@ -69,16 +69,22 @@ export default function FeaturedProjects({
     sector: "Sector",
     status: "Status",
   });
+
   const [mobileMapOpen, setMobileMapOpen] = useState<number | null>(null);
 
   const filteredProjects = projects.filter((project) => {
     return (
-      (filters.type === "Project Type" || project.type === filters.type) &&
-      (filters.sector === "Sector" || project.sector === filters.sector) &&
-      (filters.status === "Status" || project.status === filters.status)
+      (filters.type === "All" ||
+        filters.type === "Project Type" ||
+        project.type === filters.type) &&
+      (filters.sector === "All" ||
+        filters.sector === "Sector" ||
+        project.sector === filters.sector) &&
+      (filters.status === "All" ||
+        filters.status === "Status" ||
+        project.status === filters.status)
     );
   });
-
   // Config for mapping filters
   const filterConfigs: { key: FilterKey; placeholder: string }[] = [
     { key: "type", placeholder: "Project Type" },
@@ -88,8 +94,11 @@ export default function FeaturedProjects({
 
   // Get unique options for each filter
   const getOptions = (field: FilterKey) => [
-    "All",
-    ...Array.from(new Set(projects.map((p) => p[field]))),
+    { value: "All", label: "All" },
+    ...Array.from(new Set(projects.map((p) => p[field]))).map((v) => ({
+      value: v,
+      label: v,
+    })),
   ];
 
   // Styles for react-select
@@ -163,7 +172,7 @@ export default function FeaturedProjects({
           className="grid grid-cols-1 lg:grid-cols-2 border-t border-smgray pr-[15px] lg:pr-0"
         >
           {/* Left Column */}
-          <div className="lg:border-r border-smgray overflow-y-auto lg:h-[1280px] overscroll-auto scroll-smooth">
+          <div className="lg:border-r border-smgray">
             {/* Filters */}
             <div className="flex flex-col lg:flex-row gap-37px 2xl:gap-47px my-37px 2xl:my-47px lg:pr-37px w-full">
               {filterConfigs.map(({ key, placeholder }, index) => (
@@ -179,14 +188,18 @@ export default function FeaturedProjects({
                     components={{ DropdownIndicator }}
                     className="w-full h-full"
                     classNamePrefix="react-select"
-                    options={getOptions(key).map((label) => ({
-                      value: label,
-                      label,
-                    }))}
+                    options={getOptions(key)}
                     placeholder={placeholder}
-                    value={{ value: filters[key], label: filters[key] }}
+                    value={
+                      filters[key] === placeholder
+                        ? null
+                        : { value: filters[key], label: filters[key] }
+                    }
                     onChange={(option) =>
-                      setFilters({ ...filters, [key]: option?.value || "All" })
+                      setFilters({
+                        ...filters,
+                        [key]: option?.value ?? placeholder,
+                      })
                     }
                     styles={selectStyles}
                   />
@@ -261,15 +274,6 @@ export default function FeaturedProjects({
                     <span>{project.location}</span>|
                     <span>{project.status}</span>
                   </motion.div>
-                  <motion.h3
-                    variants={moveUp(0.15)}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true }}
-                    className="text-2xl leading-1h-text32 text-primary mt-[17px] pb-[15px] border-b border-smgray lg:mr-[47px]"
-                  >
-                    {project.name}
-                  </motion.h3>
 
                   {/* Mobile Map */}
                   <motion.div
@@ -289,6 +293,15 @@ export default function FeaturedProjects({
                       />
                     )}
                   </motion.div>
+                  <motion.h3
+                    variants={moveUp(0.15)}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true }}
+                    className="text-2xl leading-1h-text32 text-primary mt-[17px] pb-[15px] border-b border-smgray lg:mr-[47px]"
+                  >
+                    {project.name}
+                  </motion.h3>
                 </motion.div>
               ))}
             </div>
@@ -300,7 +313,8 @@ export default function FeaturedProjects({
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="hidden lg:block w-full h-[350px] lg:h-[500px] xl:h-[800px] 2xl:h-[700px] 3xl:h-[1200px] max-h-[1200px] lg:pl-37px 2xl:pl-47px pt-37px 2xl:pt-47px"
+            className="hidden lg:block lg:pl-37px 2xl:pl-47px pt-37px 2xl:pt-47px 
+            sticky top-[60px] h-[calc(100vh-70px)]"
           >
             <iframe
               src={activeProject.mapUrl}
