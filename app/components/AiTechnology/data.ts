@@ -40,6 +40,15 @@ export const SliderData = {
         "Accurate curing data",
       ],
     },
-    
+    {
+      title: "Augmented Reality",
+      image: "/assets/img/aitech/ai-slide1.jpg",
+      desc: "Bringing construction plans to life with interactive augmented reality overlays.",
+      ul: [
+        "Enhanced project clarity  ",
+        "Faster decision-making",
+        "Lowered on-site errors",
+      ],
+    },
   ],
 };
