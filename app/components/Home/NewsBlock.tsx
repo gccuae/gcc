@@ -24,7 +24,7 @@ interface NewsBlockProps {
     category: string;
   }[];
 }
-const NewsBlock = ({ title, link, items }: NewsBlockProps) => {
+const NewsBlock = ({ title, items }: NewsBlockProps) => {
   const sectionRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -62,7 +62,7 @@ const NewsBlock = ({ title, link, items }: NewsBlockProps) => {
           >
             {title}
           </motion.h2>
-          <BtnPrimary link={link} text="View All" bgtrans={true} />
+          <BtnPrimary link={"/news"} text="View All" bgtrans={true} />
         </div>
         <div>
           <Swiper
@@ -133,7 +133,7 @@ const NewsBlock = ({ title, link, items }: NewsBlockProps) => {
                       className="mt-4 xl:mt-[53px]"
                     >
                       <BtnPrimary
-                        link={item.link}
+                        link={"/news/1"}
                         text="Read More"
                         bgtrans={true}
                       />

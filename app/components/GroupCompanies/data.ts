@@ -1,5 +1,5 @@
 export const groupCompaniesData = {
-  title: "Group Companies",
+  title: "Our Group of Companies",
   bannerImg: "/assets/img/group-companies/bnr.jpg",
   section1: {
     title: "Unified Power, Measurable Impact",
@@ -86,7 +86,7 @@ export const groupCompaniesData = {
         desc: "Trading & Establishments",
       },
       {
-        logo: "/assets/img/group-companies/business-networks/b10-logo.svg",
+        logo: "/assets/img/group-companies/business-networks/b10-logo.png",
         image: "/assets/img/group-companies/business-networks/b10.jpg",
         title: "Kelvin Catering Services",
         desc: "Hospitality & Catering",

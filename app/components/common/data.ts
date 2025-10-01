@@ -52,7 +52,7 @@ export const menuItems: MenuItem[] = [
 
 {
     title: "Projects",
-    url: "#",
+    url: "/projects",
   },
 {
     title: "How we work",

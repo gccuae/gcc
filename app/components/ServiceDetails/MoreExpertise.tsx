@@ -27,7 +27,7 @@ const MoreExpertise = () => {
             viewport={{ once: true }}
             className="flex items-center gap-6"
           >
-            <BtnPrimary link={"#"} text="View All" bgtrans={true} />
+            <BtnPrimary link={"/expertise"} text="View All" bgtrans={true} />
           </motion.div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 xl:gap-10">

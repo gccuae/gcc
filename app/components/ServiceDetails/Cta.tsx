@@ -24,7 +24,13 @@ const Cta = () => {
           className="absolute inset-0 w-full h-full object-cover"
         />
       </motion.div>
-      <div className="absolute inset-0 w-full h-full z-10 bg-gradient-to-r from-black from-0% to-black/25 to-100%"></div>
+      <div
+        style={{
+          background:
+            "linear-gradient(131deg,rgba(0, 0, 0, 0.8) 100%, rgba(0, 0, 0, 0.55) 25%)",
+        }}
+        className="absolute inset-0 w-full h-full z-10"
+      />
       <div className="container">
         <div className="relative z-10">
           <motion.h2

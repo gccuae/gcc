@@ -48,17 +48,17 @@ const CounterSection = () => {
             px-5 md:px-10 xl:px-14 2xl:px-18 pt-4 xl:pt-[22px] pb-4 xl:pb-[21px]
                hover:bg-primary hover:text-white transition-colors duration-300 group"
             >
-              <div className="">
-                <div className="mb-47px h-10 xl:h-15">
+              <div>
+                <div className="mb-47px h-10 xl:h-[60px] xl:w-[62px] flex items-center">
                   <Image
                     src={item.icon}
                     alt={item.desc}
-                    width={100}
-                    height={100}
-                    className="w-10 h-auto xl:w-15 group-hover:brightness-0 group-hover:invert-100 transition-all duration-300"
+                    width={62}
+                    height={60}
+                    className="w-10 h-auto xl:w-[62px] group-hover:brightness-0 group-hover:invert-100 transition-all duration-300"
                   />
                 </div>
-                <h3 className="text-5xl leading-lh-text68 font-normal mb-4 xl:mb-[27px] text-black dark:text-white group-hover:text-white transition-all duration-300">
+                <h3 className="text-5xl leading-lh-text68 font-normal mb-4 xl:mb-[16px] text-black dark:text-white group-hover:text-white transition-all duration-300">
                   <Counter from={0} to={item.count} duration={2} />+
                 </h3>
                 <p className="text-lg leading-lh-text19 dark:text-white uppercase">

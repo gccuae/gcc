@@ -1,10 +1,10 @@
-import Index from "@/app/components/certifications";
+import Index from "@/app/components/projects/index";
 
 const Page = () => {
   return (
-    <main>
+    <>
       <Index />
-    </main>
+    </>
   );
 };
 

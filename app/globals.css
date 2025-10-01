@@ -514,3 +514,19 @@ header.modal-open {
     @apply bg-background text-foreground;
   }
 }
+
+  /* Global styles for active slide */
+.slide-active-class {
+  opacity: 1;
+}
+
+/* Initially hide content inside slides */
+.itmmn .slide-content {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* When slide is active, show content */
+.slide-active-class .slide-content {
+  opacity: 1;
+}

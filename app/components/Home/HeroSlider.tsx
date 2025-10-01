@@ -86,7 +86,7 @@ const HeroSlider = ({ data }: HeroSliderProps) => {
                       animate="show"
                     >
                       <BtnPrimary
-                        link={slide.btnLink}
+                        link="/expertise/civil"
                         text={slide.btn}
                         bgtrans={true}
                         borderwight={true}

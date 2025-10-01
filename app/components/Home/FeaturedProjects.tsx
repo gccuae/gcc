@@ -74,7 +74,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
 
   return (
     <section className="bg-light-white dark:bg-light-dark overflow-hidden">
-      <div >
+      <div>
         <div className="container" ref={containerRef}>
           <div className="md:flex justify-between items-center py-37px border-b border-[#C2C2C2]">
             <motion.h2
@@ -145,7 +145,11 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                 whileInView="show"
                 viewport={{ once: true, amount: 0.2 }}
               >
-                <BtnPrimary link={"#"} text="Explore Projects" bgtrans={true} />
+                <BtnPrimary
+                  link={"/projects"}
+                  text="Explore Projects"
+                  bgtrans={true}
+                />
               </motion.div>
             </div>
           </div>
@@ -239,7 +243,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                         </div>
                         <div className="mt-0 lg:mt-16">
                           <BtnPrimary
-                            link={"#"}
+                            link={"/projects/corniche"}
                             text={slide.btn}
                             bgtrans={false}
                           />
