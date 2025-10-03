@@ -18,10 +18,7 @@ export const menuItems: MenuItem[] = [
         title: "Message from leaders",
         url: "/message-from-leaders", 
       }, 
-      {
-        title: "Sustainability",
-        url: "/sustainability", 
-      },
+     
       {
         title: "Our Team",
         url: "/our-team",
@@ -56,7 +53,17 @@ export const menuItems: MenuItem[] = [
   },
 {
     title: "How we work",
-    url: "/qhse",
+    url: "#",
+    children: [
+      {
+        title: "QHSE",
+        url: "/qhse", 
+      },
+      {
+        title: "Sustainability",
+        url: "/sustainability", 
+      },
+    ]
   }, 
   {
     title: "News & Media",
