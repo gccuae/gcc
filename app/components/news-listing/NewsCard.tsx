@@ -62,7 +62,7 @@ const NewsCard = ({ item, index }: { item: { image: string, title: string, descr
     <div key={index} className="relative border-b border-smgray hover:border-primary pb-27px group transition-all duration-300">
       <div className="relative p-3 xl:p-5 h-[300px] xl:h-[486px] overflow-hidden group/img"
         ref={containerRef} onMouseMove={handleMouseMove} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
-        <Image src={item.image} alt={item.title} width={1000} height={1000} className="w-full h-full object-cover absolute top-0 left-0 -z-10 group-hover:blur-[4px] group-hover:backdrop-blur-xl transition-all duration-300" />
+        <Image src={item.image} alt={item.title} width={1000} height={1000} className="w-full h-full object-cover absolute top-0 left-0   group-hover:blur-[4px] group-hover:backdrop-blur-xl transition-all duration-300" />
         <div className="absolute bottom-0 left-0 w-full h-0 bg-black opacity-25 group-hover:h-full transition-all duration-300"></div>
         <div
           className="absolute pointer-events-none z-20 transition-opacity duration-300 ease-out"
@@ -90,7 +90,7 @@ const NewsCard = ({ item, index }: { item: { image: string, title: string, descr
           <p className="text-lg leading-lh-text19 font-light dark:text-white">{item.category}</p>
           <p className="text-lg leading-lh-text19 font-light dark:text-white">{item.date}</p>
         </div>
-        <h3 className="text-2xl leading-normal font-normal mb-3 xl:mb-[12px] text-black dark:text-white">{item.title}</h3>
+        <h3 className="text-xl md:text-2xl leading-normal font-normal mb-1 md:mb-3 xl:mb-[12px] text-black dark:text-white">{item.title}</h3>
         <h4 className="text-lg leading-normal font-normal mb-0 dark:text-white line-clamp-4 !overflow-hidden !text-ellipsis">{item.description}</h4>
       </div>
     </div>

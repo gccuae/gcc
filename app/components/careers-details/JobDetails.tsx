@@ -1,61 +1,161 @@
-import BtnPrimary from "../common/BtnPrimary";
+"use client";
 
+import BtnPrimary from "../common/BtnPrimary";
+import { AnimatePresence, motion } from "framer-motion";
+import { moveUp } from "../../components/motionVarients";
+import { jobDetails } from "./data";
+import { useState } from "react";
+import Image from "next/image";
+import JobApplicationModal from "./JobApplicationModal";
+
+const Modal = ({
+  isOpen,
+  onClose,
+  children,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+}) => {
+  if (!isOpen) return null;
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4"
+        >
+          {/* Modal box animation */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: 50 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 50 }}
+            transition={{
+              duration: 0.4,
+              ease: [0.25, 0.8, 0.25, 1], // smooth easing
+            }}
+            className="relative w-full max-w-7xl max-h-[90vh] overflow-y-auto rounded-xl bg-light-white dark:bg-[#0d0d0d] shadow-lg p-6 sm:p-10 md:p-[57px] 2xl:p-[77px]"
+          >
+            <button
+              onClick={onClose}
+              className="absolute top-3 right-3 text-gray-500 hover:text-black dark:hover:text-white"
+            >
+              <Image
+                src="/assets/img/careers/close-popup.svg"
+                alt="Close"
+                width={20}
+                height={20}
+              />
+            </button>
+
+            {children}
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
 
 const JobDetails = () => {
-  return ( 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  return (
     <section className="dark:bg-[#0d0d0d]">
       <div className="container">
+        {/* About the Role */}
         <div className="pt-47px pb-57px border-b border-smgray">
-          <h2 className="text-2xl leading-lh-text32 text-black dark:text-white mb-27px">About the Role</h2>
-          <p className="text-lg leading-lh-text19 mb-2 font-light">We’re seeking a skilled and proactive Site Engineer to join our dynamic Construction team based in Abu Dhabi. This role is ideal for someone with a solid foundation in engineering principles, a passion for hands-on construction execution, and a commitment to maintaining high standards of safety, quality, and efficiency.  </p>
-          <p className="text-lg leading-lh-text19 mb-2 font-light">As a Site Engineer, you will play a pivotal role in overseeing daily site operations, managing on-ground technical activities, and ensuring that all work aligns with project specifications, timelines, and regulatory standards. You’ll collaborate closely with contractors, consultants, project managers, and site workers to streamline workflows, resolve technical challenges, and drive progress on site. Your ability to multitask, adapt to evolving conditions, and lead with precision will be key in successfully delivering high-quality construction projects.</p>
-          <p className="text-lg leading-lh-text19 mb-2 font-light">This is a full-time, on-site opportunity designed for professionals who thrive in fast-paced environments and are eager to contribute meaningfully to landmark construction projects in the UAE.</p>
-        </div>
-        <div className="pt-47px pb-57px border-b border-smgray">
-          <h2 className="text-2xl leading-lh-text32 text-black dark:text-white mb-27px">Key Responsibilities</h2>
-        <div className="flex flex-col gap-37px">
-            <div>
-              <h3 className="text-lg leading-lh-text19 font-medium text-forground dark:text-white mb-3 xl:mb-5">Site Supervision & Execution</h3>
-              <ul className="square-list list-inside ">
-                <li className="text-lg leading-lh-text19 font-light ">Oversee construction activities including planning, scheduling, and execution of tasks</li>
-                <li className="text-lg leading-lh-text19 font-light">Ensure work aligns with design specifications, blueprints, and quality standardsOversee construction activities including planning, scheduling, and execution of tasks</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg leading-lh-text19 font-medium text-forground dark:text-white mb-3 xl:mb-5">Quality Assurance & Control</h3>
-              <ul className="square-list list-inside">
-                <li className="text-lg leading-lh-text19 font-light">Monitor workmanship and materials to meet project quality requirements</li>
-                <li className="text-lg leading-lh-text19 font-light">Conduct inspections and tests; document results and resolve issues proactively</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg leading-lh-text19 font-medium text-forground dark:text-white mb-3 xl:mb-5">Safety Management</h3>
-              <ul className="square-list list-inside">
-                <li className="text-lg leading-lh-text19 font-light">Enforce HSE policies and site safety regulations</li>
-                <li className="text-lg leading-lh-text19 font-light">Conduct safety briefings, site audits, and ensure proper use of PPE</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg leading-lh-text19 font-medium text-forground dark:text-white mb-3 xl:mb-5">Required Qualifications</h3>
-              <ul className="square-list list-inside">
-                <li className="text-lg leading-lh-text19 font-light">Minimum of 5 years of experience in site engineering</li>
-                <li className="text-lg leading-lh-text19 font-light">3–5 years of experience in a similar role within commercial or infrastructure projects</li>
-                <li className="text-lg leading-lh-text19 font-light">Proficiency reading and interpreting construction drawings and specifications</li>
-                <li className="text-lg leading-lh-text19 font-light">Familiarity with construction software (e.g., MS Project, AutoCAD, Primavera)</li>
-                <li className="text-lg leading-lh-text19 font-light">Willingness to work on-site for extended periods</li>
-              </ul>
-            </div>
-        </div>
-        </div>
-        <div className="pt-47px pb-57px border-b border-smgray">
-          <h3 className="text-2xl leading-lh-text32 text-black dark:text-white mb-27px">Apply Now and Join Our Team</h3>
-          <p className="text-lg leading-lh-text19 font-light dark:text-white mb-27px">Thank you for your interest in becoming a part of Gulf Contractors Company. We’re excited to learn more about your qualifications and look forward to exploring how you can contribute to our ongoing success.</p>
-          <BtnPrimary link="#" text="Apply Now" bgtrans={true} />
+          <motion.h2
+            variants={moveUp()}
+            initial="hidden"
+            whileInView="show"
+            className="text-2xl leading-lh-text32 text-black dark:text-white mb-2 lg:mb-27px"
+          >
+            About the Role
+          </motion.h2>
+          {jobDetails.about.map((para, idx) => (
+            <motion.p
+              key={idx}
+              variants={moveUp(idx * 0.2)}
+              initial="hidden"
+              whileInView="show"
+              className="text-lg leading-lh-text19 mb-2 font-light text-foreground dark:text-white/70"
+            >
+              {para}
+            </motion.p>
+          ))}
         </div>
 
+        {/* Key Responsibilities */}
+        <div className="pt-47px pb-57px border-b border-smgray">
+          <h2 className="text-2xl leading-lh-text32 text-black dark:text-white mb-3 lg:mb-27px">
+            Key Responsibilities
+          </h2>
+          <div className="flex flex-col gap-4 lg:gap-37px">
+            {jobDetails.responsibilities.map((section, idx) => (
+              <motion.div
+                variants={moveUp(idx * 0.2)}
+                initial="hidden"
+                whileInView="show"
+                key={idx}
+              >
+                <h3 className="text-lg leading-lh-text19 font-medium text-forground dark:text-white mb-3 xl:mb-5">
+                  {section.title}
+                </h3>
+                <ul className="square-list list-inside">
+                  {section.items.map((item, i) => (
+                    <li
+                      key={i}
+                      className="text-lg leading-lh-text19 font-light text-foreground dark:text-white/70"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Apply Now */}
+        <div className="pt-47px pb-57px border-b border-smgray">
+          <motion.h3
+            variants={moveUp()}
+            initial="hidden"
+            whileInView="show"
+            className="text-2xl leading-lh-text32 text-black dark:text-white mb-3 lg:mb-27px"
+          >
+            {jobDetails.apply.heading}
+          </motion.h3>
+          <motion.p
+            variants={moveUp(0.2)}
+            initial="hidden"
+            whileInView="show"
+            className="text-lg leading-lh-text19 font-light mb-27px text-foreground dark:text-white/70"
+          >
+            {jobDetails.apply.description}
+          </motion.p>
+          <motion.div
+            variants={moveUp(0.4)}
+            initial="hidden"
+            whileInView="show"
+            onClick={() => setIsModalOpen(true)}
+          >
+            <BtnPrimary
+              onClick={() => setIsModalOpen(true)}
+              text={jobDetails.apply.button.text}
+              bgtrans={true}
+            />
+          </motion.div>
+        </div>
       </div>
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+          <JobApplicationModal onSuccess={() => setIsModalOpen(false)} />
+        </Modal>
     </section>
-   );
-}
- 
+  );
+};
+
 export default JobDetails;

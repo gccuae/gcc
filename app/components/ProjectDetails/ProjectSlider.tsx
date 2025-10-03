@@ -29,12 +29,12 @@ const ProjectSlider = () => {
           >
             {projectDetailsData.projectData.gallery.map((image, index) => (
               <SwiperSlide key={index} className="relative max-h-[715px]">
-                <Image src={image} width={1000} height={1000} alt="" className="w-full h-full object-cover" />
-                <div className="absolute bottom-30px right-30px z-40 p-5 xl:p-30px max-w-fit xl:max-w-[515px] border border-smgray/36">
+                <Image src={image} width={1000} height={1000} alt="" className="w-full h-[400px] xl:h-[550px] 2xl:h-[700px] object-cover" />
+                <div className="absolute bottom-0 md:bottom-30px right-0 lg:right-30px z-40 p-5 xl:p-30px max-w-fit xl:max-w-[515px] border border-smgray/36">
                   <div className="absolute top-0 left-0 w-full h-full bg-white/12 z-20 backdrop-blur-xs"></div>
                   <div className="absolute top-0 left-0 w-full h-full bg-[#0F0D0D] opacity-[39%] z-20"></div>
                   <div className="relative z-50">
-                    <h3 className="text-2xl leading-lh-text32 font-normal text-white mb-12">Project Specifications</h3>
+                    <h3 className="text-lg xl:text-2xl leading-lh-text32 font-normal text-white mb-6 xl:mb-12">Project Specifications</h3>
                     {/* Main Range Component */}
                     <div className="relative mb-5">
                       {/* Progress Bar Container */}
@@ -66,11 +66,11 @@ const ProjectSlider = () => {
                     </div>
                   </div>
                   <div className="relative z-50">
-                    <div className="grid grid-cols-[auto_1fr] gap-y-7">
+                    <div className="grid grid-cols-[auto_1fr] gap-3 lg:gap-y-5 xl:gap-y-7">
                       {Object.entries(projectDetailsData.projectData.specifications).map(([key, value]) => (
                         <div key={key} className="border-b border-white/65 pb-3 xl:even:pl-4">
                           <h3 className="text-base leading-lh-[1.5625] font-light text-white uppercase">{key}</h3>
-                          <h4 className="text-lg leading-lh-text19 text-white font-medium">
+                          <h4 className="text-base lg:text-lg leading-lh-text19 text-white font-medium">
                             {Array.isArray(value) ? value.join(", ") : value}
                           </h4>
                         </div>

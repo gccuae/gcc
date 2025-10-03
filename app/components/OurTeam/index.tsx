@@ -1,14 +1,13 @@
-
 import LeadersList from "./LeadersList";
 import StaffList from "./StaffList";
 
 const Index = () => {
-  return ( 
+  return (
     <>
-    <LeadersList />
-    <StaffList />
+      <LeadersList />
+      <StaffList />
     </>
-   );
-}
- 
+  );
+};
+
 export default Index;

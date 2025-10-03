@@ -11,58 +11,82 @@ export const menuItems: MenuItem[] = [
     url: "#",
     children: [
       {
-        title: "Message from leaders",
-        // url: "/message-from-leaders",
-        url: "#",
+        title: "About Us",
+        url: "/about-us", 
       },
+      {
+        title: "Message from leaders",
+        url: "/message-from-leaders", 
+      }, 
+     
       {
         title: "Our Team",
-        // url: "/our-team",
-        url: "#",
-      },
-      {
-        title: "Our Legacy",
-        // url: "/services",
-        url: "#",
-      },
+        url: "/our-team",
+      }, 
       {
         title: "Group Companies",
-        // url: "/group-companies",
-        url: "#",
-      },
+        url: "/group-companies",
+      }, 
+      {
+        title: "Clients",
+        url: "/clients",
+      }, 
       {
         title: "Certifications",
-        // url: "/contact-us",
-        url: "#",
+        url: "/certifications",
       },
     ],
   },
   {
     title: "Expertise",
-    // url: "/expertise",
-    url: "#",
+    url: "/expertise", 
   },
   {
     title: "AI Technology",
-    url: "#",
+    url: "/ai-technology",
    
   },
 
 {
     title: "Projects",
-    url: "#",
+    url: "/projects",
   },
 {
     title: "How we work",
     url: "#",
-  },
-{
-    title: "News & Media  ",
+    children: [
+      {
+        title: "QHSE",
+        url: "/qhse", 
+      },
+      {
+        title: "Sustainability",
+        url: "/sustainability", 
+      },
+    ]
+  }, 
+  {
+    title: "News & Media",
+    // url: "/about-us",
     url: "#",
+    children: [ 
+      {
+        title: "News",
+        url: "/news",
+      }, 
+      {
+        title: "Blog",
+        url: "/blog",
+      },  
+      {
+        title: "Gallery",
+        url: "/gallery",
+      },  
+    ],
   },
 {
     title: "Careers",
-    url: "#",
+    url: "/careers",
   },
 
 

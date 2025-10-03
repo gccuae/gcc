@@ -52,7 +52,6 @@ const AboutCompany = () => {
 
   // 🔹 GSAP animations
 
-
   const splitNode = (text: string) => {
     return text.split(" ").map((word, i) => (
       <span key={i} className="inline-block overflow-hidden mr-2">
@@ -136,7 +135,6 @@ const AboutCompany = () => {
     }
   }, []);
 
-
   return (
     <section
       ref={containerRef}
@@ -162,8 +160,16 @@ const AboutCompany = () => {
             {/* Play Button */}
             <div className="absolute inset-0 flex items-center justify-center">
               {!isPlaying && (
-                <button className="cursor-pointer transition-transform duration-300 hover:scale-110" onClick={togglePlay}>
-                  <Image src={"/assets/img/icons/play.svg"} alt="Play" width={52} height={52} />
+                <button
+                  className="cursor-pointer transition-transform duration-300 hover:scale-110"
+                  onClick={togglePlay}
+                >
+                  <Image
+                    src={"/assets/img/icons/play.svg"}
+                    alt="Play"
+                    width={52}
+                    height={52}
+                  />
                 </button>
               )}
             </div>
@@ -175,7 +181,8 @@ const AboutCompany = () => {
                   {/* Close Button */}
                   <button
                     className="absolute z-10 right-5 top-5 cursor-pointer bg-white bg-opacity-50 p-2 rounded-full hover:bg-opacity-100 transition size-10"
-                    onClick={() => setIsPopupOpen(false)} >
+                    onClick={() => setIsPopupOpen(false)}
+                  >
                     ✖
                   </button>
 
@@ -196,7 +203,10 @@ const AboutCompany = () => {
 
           {/* Text Block with Split Animation */}
           <div className="w-full lg:w-[52%]">
-            <p ref={textRef} className="text-lg xl:text-2xl font-light text-foreground mb-6 lg:mb-20 xl:mb-29 dark:text-white leading-[1.46875]" >
+            <p
+              ref={textRef}
+              className="text-lg xl:text-2xl font-light text-foreground mb-6 lg:mb-20 xl:mb-29 dark:text-white leading-[1.46875]"
+            >
               {splitTextToSpans(
                 `GCC,<span class="font-semibold text-primary">established in 1988</span>, is known for innovation and excellence in construction, with projects ranging from infrastructure and defense to industrial, commercial, and residential developments.`
               )}

@@ -1,13 +1,13 @@
 export interface Home {
   metaTitle: string;
-  metaDescription: string;
-  bannerimage: string;
+  metaDescription: string; 
   bannerAlt: string;
   banners: { 
     title: string; 
     subtitle: string;
     btn: string;
     btnLink: string;
+    bannerimage: string;
   }[];
 }
 export interface TypeFeaturedProjects {

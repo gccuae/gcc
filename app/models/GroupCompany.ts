@@ -1,0 +1,76 @@
+import mongoose from "mongoose";
+
+const groupCompanySchema = new mongoose.Schema({
+    metaTitle:{
+        type:String,
+    },
+    metaDescription:{
+        type:String,
+    },
+    banner:{
+        type:String,
+    },
+    bannerAlt:{
+        type:String,
+    },
+    pageTitle:{
+        type:String,
+    },
+    firstSection:{
+        title:{
+            type:String,
+        },
+        description:{
+            type:String,
+        },
+        items:[{
+            logo:{
+                type:String,
+            },
+            logoAlt:{
+                type:String,
+            },
+            number:{
+                type:String,
+            },
+            value:{
+                type:String,
+            }
+        }]
+    },
+    categories:[{
+        category: {
+            type: String,
+        },
+    }],
+    secondSection:{
+        title:{
+            type:String,
+        },
+        description:{
+            type:String,
+        },
+        items:[{
+            image:{
+                type:String,
+            },
+            imageAlt:{
+                type:String,
+            },
+            logo:{
+                type:String,
+            },
+            logoAlt:{
+                type:String,
+            },
+            title:{
+                type:String,
+            },
+            category:{
+                type:String,
+            }
+        }]
+    },
+})
+
+export default mongoose.models.GroupCompany || mongoose.model("GroupCompany", groupCompanySchema);
