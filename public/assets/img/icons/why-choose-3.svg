@@ -1,13 +1,5 @@
-<svg width="38" height="60" viewBox="0 0 38 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_84_2509)">
-<path d="M19.0092 1.16406C19.0092 1.16406 -2.5151 19.9089 1.35668 38.3243C5.85219 52.2564 19.0092 51.7975 19.0092 51.7975C19.0092 51.7975 32.1662 52.2564 36.6617 38.3243C40.5335 19.9089 19.0092 1.16406 19.0092 1.16406Z" stroke="#EE3524" stroke-width="1.5" stroke-miterlimit="10"/>
-<path d="M19.0078 1.16406V59.9991" stroke="#EE3524" stroke-width="1.5" stroke-miterlimit="10"/>
-<path d="M7.0625 15.3359L19.0544 27.3265L30.9876 15.3948" stroke="#EE3524" stroke-width="1.5" stroke-miterlimit="10"/>
-<path d="M1.58594 27.8281L19.0737 45.3139L36.4909 27.9105" stroke="#EE3524" stroke-width="1.5" stroke-miterlimit="10"/>
-</g>
-<defs>
-<clipPath id="clip0_84_2509">
-<rect width="38" height="60" fill="white"/>
-</clipPath>
-</defs>
-</svg>
+<svg id="eAnjFq4lHvN1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 38 60" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" project-id="ac781eb35f404b7bb04f672304a3621d" export-id="3f4feade2e444217bd58f5f97c51bd60" cached="false">
+<style><![CDATA[
+#eAnjFq4lHvN4 {animation: eAnjFq4lHvN4_c_o 3750ms linear infinite normal forwards}@keyframes eAnjFq4lHvN4_c_o { 0% {opacity: 0} 16.666667% {opacity: 0} 33.333333% {opacity: 1} 100% {opacity: 1}} #eAnjFq4lHvN5 {animation: eAnjFq4lHvN5_s_do 3750ms linear infinite normal forwards}@keyframes eAnjFq4lHvN5_s_do { 0% {stroke-dashoffset: 58.84} 16.666667% {stroke-dashoffset: 117.68} 100% {stroke-dashoffset: 117.68}} #eAnjFq4lHvN6 {animation: eAnjFq4lHvN6_s_do 3750ms linear infinite normal forwards}@keyframes eAnjFq4lHvN6_s_do { 0% {stroke-dashoffset: 33.84} 33.333333% {stroke-dashoffset: 0} 100% {stroke-dashoffset: 0}} #eAnjFq4lHvN7 {animation: eAnjFq4lHvN7_s_do 3750ms linear infinite normal forwards}@keyframes eAnjFq4lHvN7_s_do { 0% {stroke-dashoffset: 49.36} 33.333333% {stroke-dashoffset: 0} 100% {stroke-dashoffset: 0}}
+]]></style>
+<g clip-path="url(#eAnjFq4lHvN8)"><g><path id="eAnjFq4lHvN4" d="M19.0092,1.16406c0,0-21.5243,18.74484-17.65252,37.16024C5.85219,52.2564,19.0092,51.7975,19.0092,51.7975s13.157.4589,17.6525-13.4732C40.5335,19.9089,19.0092,1.16406,19.0092,1.16406Z" opacity="0" fill="none" stroke="#ee3524" stroke-width="1.5" stroke-miterlimit="10"/><path id="eAnjFq4lHvN5" d="M19.0078,1.16406v58.83504" fill="none" stroke="#ee3524" stroke-width="1.5" stroke-miterlimit="10" stroke-dashoffset="58.84" stroke-dasharray="58.84"/><path id="eAnjFq4lHvN6" d="M7.0625,15.3359L19.0544,27.3265L30.9876,15.3948" fill="none" stroke="#ee3524" stroke-width="1.5" stroke-miterlimit="10" stroke-dashoffset="33.84" stroke-dasharray="33.84"/><path id="eAnjFq4lHvN7" d="M1.58594,27.8281L19.0737,45.3139L36.4909,27.9105" fill="none" stroke="#ee3524" stroke-width="1.5" stroke-miterlimit="10" stroke-dashoffset="49.36" stroke-dasharray="49.36"/></g><clipPath id="eAnjFq4lHvN8"><rect width="38" height="60" rx="0" ry="0" fill="#fff"/></clipPath></g></svg>

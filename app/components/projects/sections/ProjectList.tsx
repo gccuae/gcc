@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { ComponentType, useState, useRef, useEffect } from "react";
+import Link from "next/link";
 import {
   components,
   DropdownIndicatorProps,
@@ -236,7 +237,7 @@ export default function FeaturedProjects({
                       <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-sm backdrop-blur-[4px]"></div>
 
                       {/* Centered Arrow */}
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      <Link href={`/projects/${project.name}`} className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
                         <div className="bg-white rounded-full border border-accent w-12 h-12 xl:w-20 xl:h-20 flex items-center justify-center">
                           <Image
                             src={assets.linkArrowGreen}
@@ -246,7 +247,7 @@ export default function FeaturedProjects({
                             className="w-7 h-7 xl:w-[19px] xl:h-[19.05px] transition-transform duration-300 group-hover:translate-x-0 group-hover:translate-y-0 -translate-x-2 translate-y-2"
                           />
                         </div>
-                      </div>
+                      </Link>
                     </div>
 
                     {/* Map Button on Mobile */}
@@ -293,6 +294,7 @@ export default function FeaturedProjects({
                       />
                     )}
                   </motion.div>
+                  <Link href={`/projects/${project.name}`}>
                   <motion.h3
                     variants={moveUp(0.15)}
                     initial="hidden"
@@ -302,6 +304,7 @@ export default function FeaturedProjects({
                   >
                     {project.name}
                   </motion.h3>
+                  </Link>
                 </motion.div>
               ))}
             </div>
@@ -313,15 +316,13 @@ export default function FeaturedProjects({
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="hidden lg:block lg:pl-37px 2xl:pl-47px pt-37px 2xl:pt-47px 
-            sticky top-[60px] h-[calc(100vh-70px)]"
-          >
+            className="hidden lg:block lg:pl-37px 2xl:pl-47px pt-37px 2xl:pt-47px sticky top-[60px] h-[calc(100vh-70px)]" >
             <iframe
               src={activeProject.mapUrl}
               width="100%"
               height="100%"
               loading="lazy"
-              className="border-0"
+              className="border-5 border-white"
             ></iframe>
           </motion.div>
         </motion.div>
