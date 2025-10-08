@@ -116,12 +116,12 @@ const LegacyTimelineSlider = ({
         <div className="bg-black overflow-hidden">
           <div className="container relative h-full">
             {/* Header */}
-            <div className="pt-10 xl:pt-20 h-full pb-12 lg:pb-0 flex items-start">
-              <h2 className="text-5xl leading-[1] font-light text-white pb-4 tracking-wide">
+            <div className="pt-10 xl:pt-20 h-full  lg:pb-0 flex items-start flex-wrap ">
+              <h2 className="text-5xl leading-[1] font-light text-white pb-4 tracking-wide ">
                 {title}
               </h2>
               {/* Timeline Years Navigation Slider */}
-              <div className="ml-auto mb-2 md:mb-0 lg:top-12 xl:top-19 right-3 md:right-0 flex items-center z-10 lg:h-full">
+              <div className="xl:ml-auto md:mb-0 lg:top-12 xl:top-19 right-3 md:right-0 flex items-center z-10 lg:h-full order-3 xl:order-2">
                 <div className="max-w-[300px] sm:max-w-[400px] md:max-w-[700px] lg:max-w-[500px] overflow-hidden h-full relative ">
                   <Swiper
                     onSwiper={(swiper) => {
@@ -155,15 +155,15 @@ const LegacyTimelineSlider = ({
                       >
                         <button
                           // onClick={() => handleYearClick(index)}
-                          className={`font-normal  duration-500 text-lg leading-[32px] pb-5 hover:text-white whitespace-nowrap ${activeSlide === index
+                          className={`font-normal  duration-500 text-lg leading-[32px] xl:pb-5 hover:text-white whitespace-nowrap ${activeSlide === index
                             ? "text-white font-semibold  md:text-2xl "
                             : "text-gray-400 hover:text-gray-200   "
                             }`}
                         >
                           {item.year}
                         </button>
-                        <div className="!w-[60px] md:!w-[85px] h-full !flex items-center flex-col justify-center">
-                          <div className={`w-[1px] h-14 bg-accent ${activeSlide === index ? "opacity-100" : "opacity-0"}`} ></div>
+                        <div className="!w-[60px] md:!w-[85px] h-full !flex ml-5 xl:ml-0 xl:items-center flex-col justify-center">
+                          <div className={`w-[1px] h-8 xl:h-14 bg-accent ${activeSlide === index ? "opacity-100" : "opacity-0"}`} ></div>
                         </div>
                       </SwiperSlide>
                     ))}
@@ -189,7 +189,7 @@ const LegacyTimelineSlider = ({
                 </button>
               </div> */}
               </div>
-              <div className="flex items-center space-x-[1px]">
+              <div className="flex items-center space-x-[1px] order-2 xl:order-3 ml-auto xl:ml-0">
                 <button
                   onClick={() => handleNavigation("prev")}
                   className="cursor-pointer py-2 px-4 rounded-l-2xl bg-white hover:bg-white/20 transition-colors duration-300 backdrop-blur-sm"

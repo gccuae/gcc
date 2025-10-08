@@ -11,7 +11,7 @@ const ViMiVa = () => {
     icon: item.icon,
   }));
   return (
-    <section className="pt-57px xl:py-57px dark:bg-black">
+    <section className="py-57px xl:py-57px dark:bg-black">
       <div className="container">
         {/* <div className="border-b border-smgray  pb-8 xl:pb-57px"> */}
         <div className="pb-8 xl:pb-57px">
@@ -34,7 +34,7 @@ const ViMiVa = () => {
             Guided by Purpose, Powered by Principles
           </motion.h3>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 mt-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 mt-5 gap-y-10">
           {vmvItems.map((item, index) => (
             <motion.div
               variants={moveUp(index * 0.2)}
