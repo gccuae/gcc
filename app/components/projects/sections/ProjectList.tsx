@@ -12,8 +12,8 @@ import { motion } from "framer-motion";
 import { moveLeft, moveUp } from "../../motionVarients";
 import Image from "next/image";
 type Option = { value: string; label: string };
-import { MapPin } from "lucide-react";
 import { assets } from "@/public/assets/assets";
+import { Map, MapCameraChangedEvent, Marker, useMap } from '@vis.gl/react-google-maps';
 
 const Select = dynamic<ReactSelectProps<Option, false>>(
   () => import("react-select"),
@@ -21,14 +21,45 @@ const Select = dynamic<ReactSelectProps<Option, false>>(
 ) as ComponentType<ReactSelectProps<Option, false>>;
 
 export interface Project {
-  id: number;
+  projects: {
+    _id: string;
+    name: string;
+    type: string;
+    sector: string;
+    location: string;
+    status: string;
+    image: string;
+    mapUrl: string;
+    latitude: string;
+    longitude: string;
+    title: string;
+    slug: string;
+    thumbnail: string;
+    thumbnailAlt: string;
+    secondSection: {
+      sector: {
+        name: string;
+        _id: string;
+      }
+      location: {
+        name: string;
+        _id: string;
+      }
+      projectType: {
+        name: string;
+        _id: string;
+      }
+      status: string;
+    }
+  }[]
+}
+
+interface Sector {
   name: string;
-  type: string;
-  sector: string;
-  location: string;
-  status: string;
-  image: string;
-  mapUrl: string;
+}
+
+interface ProjectType {
+  name: string;
 }
 
 // Custom dropdown indicator
@@ -58,31 +89,36 @@ type FilterKey = "type" | "sector" | "status";
 
 export default function FeaturedProjects({
   projects,
+  sectors,
+  projectTypes,
 }: {
-  projects: Project[];
+  projects: Project;
+  sectors: Sector[];
+  projectTypes: ProjectType[];
 }) {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const [leftOffset, setLeftOffset] = useState(0);
-  const [activeProject, setActiveProject] = useState<Project>(projects[0]);
+  const [activeProject, setActiveProject] = useState<string>(projects.projects[0]._id);
   const [filters, setFilters] = useState<Record<FilterKey, string>>({
     type: "Project Type",
     sector: "Sector",
     status: "Status",
   });
 
-  const [mobileMapOpen, setMobileMapOpen] = useState<number | null>(null);
 
-  const filteredProjects = projects.filter((project) => {
+  const [visibleProjects, setVisibleProjects] = useState<Project['projects']>([]);
+
+  const filteredProjects = projects.projects.filter((project) => {
     return (
       (filters.type === "All" ||
         filters.type === "Project Type" ||
-        project.type === filters.type) &&
+        project.secondSection.projectType.name === filters.type) &&
       (filters.sector === "All" ||
         filters.sector === "Sector" ||
-        project.sector === filters.sector) &&
+        project.secondSection.sector.name === filters.sector) &&
       (filters.status === "All" ||
         filters.status === "Status" ||
-        project.status === filters.status)
+        project.secondSection.status === filters.status)
     );
   });
   // Config for mapping filters
@@ -93,13 +129,40 @@ export default function FeaturedProjects({
   ];
 
   // Get unique options for each filter
-  const getOptions = (field: FilterKey) => [
-    { value: "All", label: "All" },
-    ...Array.from(new Set(projects.map((p) => p[field]))).map((v) => ({
-      value: v,
-      label: v,
-    })),
-  ];
+  const getOptions = (field: FilterKey): Option[] => {
+    const baseOption = [{ value: "All", label: "All" }];
+
+    switch (field) {
+      case "type":
+        return [
+          ...baseOption,
+          ...projectTypes.map((p) => ({
+            value: p.name,
+            label: p.name,
+          })),
+        ];
+
+      case "sector":
+        return [
+          ...baseOption,
+          ...sectors.map((s) => ({
+            value: s.name,
+            label: s.name,
+          })),
+        ];
+
+      case "status":
+        return [
+          ...baseOption,
+          { value: "Completed", label: "Completed" },
+          { value: "Ongoing", label: "Ongoing" },
+        ];
+
+      default:
+        return baseOption;
+    }
+  };
+
 
   // Styles for react-select
   const selectStyles: StylesConfig<Option, false> = {
@@ -151,6 +214,66 @@ export default function FeaturedProjects({
     return () => window.removeEventListener("resize", updateOffset);
   }, []);
 
+
+
+  const [highlighted, setHighlighted] = useState<string[]>([]);
+  const map = useMap();
+
+  const handleCameraChanged = (event: MapCameraChangedEvent) => {
+    const { bounds } = event.detail || {};
+    if (!bounds) return;
+
+    // Filter only from already filtered projects
+    const visibleProjectsInBounds = filteredProjects.filter(
+      (p) =>
+        parseFloat(p.latitude) >= bounds.south &&
+        parseFloat(p.latitude) <= bounds.north &&
+        parseFloat(p.longitude) >= bounds.west &&
+        parseFloat(p.longitude) <= bounds.east
+    );
+
+    const visibleIds = visibleProjectsInBounds.map((p) => p._id);
+
+    setVisibleProjects(visibleProjectsInBounds);
+    setHighlighted(visibleIds);
+
+    if (visibleProjectsInBounds.length > 0) {
+      if (!visibleIds.includes(activeProject)) {
+        setActiveProject(visibleProjectsInBounds[0]._id);
+      }
+    } else {
+      setActiveProject("");
+    }
+  };
+
+  useEffect(() => {
+    if (!map || filteredProjects.length === 0) return;
+
+    const firstProject = filteredProjects[0];
+    const newCenter = {
+      lat: parseFloat(firstProject.latitude),
+      lng: parseFloat(firstProject.longitude),
+    };
+
+    const currentCenter = map.getCenter();
+    if (
+      !currentCenter ||
+      currentCenter.lat() !== newCenter.lat ||
+      currentCenter.lng() !== newCenter.lng
+    ) {
+      // Smooth pan (Google handles the animation)
+      map.panTo(newCenter);
+    }
+
+    // Only reset zoom if it’s not already correct
+    if (map.getZoom() !== 11) {
+      map.setZoom(11);
+    }
+  }, [filters]);
+
+
+
+
   return (
     <section className="pt-15 xl:pt-25px bg-light-white">
       <motion.h2
@@ -163,16 +286,17 @@ export default function FeaturedProjects({
       >
         Featured Projects
       </motion.h2>
+
       <div style={{ paddingLeft: `${leftOffset}px`, paddingRight: 0 }}>
         <motion.div
           variants={moveUp(0.05)}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid grid-cols-1 lg:grid-cols-2 border-t border-smgray pr-[15px] lg:pr-0"
+          className="flex flex-col-reverse lg:grid lg:grid-cols-2 border-t border-smgray pr-[15px] lg:pr-0"
         >
           {/* Left Column */}
-          <div className="lg:border-r border-smgray">
+          <div className="lg:border-r border-smgray max-md:z-20 relative bg-light-white">
             {/* Filters */}
             <div className="flex flex-col lg:flex-row gap-37px 2xl:gap-47px my-37px 2xl:my-47px lg:pr-37px w-full">
               {filterConfigs.map(({ key, placeholder }, index) => (
@@ -195,11 +319,14 @@ export default function FeaturedProjects({
                         ? null
                         : { value: filters[key], label: filters[key] }
                     }
-                    onChange={(option) =>
+                    onChange={async (option) => {
                       setFilters({
                         ...filters,
                         [key]: option?.value ?? placeholder,
                       })
+
+
+                    }
                     }
                     styles={selectStyles}
                   />
@@ -208,25 +335,25 @@ export default function FeaturedProjects({
             </div>
 
             {/* Projects List */}
-            <div className="space-y-37px 2xl:space-y-47px">
-              {filteredProjects.map((project, index) => (
+            <div className="space-y-37px 2xl:space-y-47px relative bg-light-white">
+              {visibleProjects?.map((project, index) => (
                 <motion.div
-                  key={project.id}
-                  variants={moveUp(index * 0.15)}
+                  key={project._id}
+
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true }}
                   className="cursor-pointer relative group"
                   onMouseEnter={() => {
                     // Hover only on desktop (lg and above)
-                    if (window.innerWidth >= 1024) setActiveProject(project);
+                    if (window.innerWidth >= 1024) setActiveProject(project._id);
                   }}
                 >
                   <div className="relative lg:pr-[47px]">
                     <div className="relative">
                       <Image
-                        src={project.image}
-                        alt={project.name}
+                        src={project.thumbnail}
+                        alt={project.thumbnailAlt}
                         width={742}
                         height={475}
                         className="w-full object-cover"
@@ -250,16 +377,16 @@ export default function FeaturedProjects({
                     </div>
 
                     {/* Map Button on Mobile */}
-                    <button
+                    {/* <button
                       className="absolute top-2 right-2 lg:hidden bg-white text-black px-1 py-1"
                       onClick={() =>
                         setMobileMapOpen(
-                          mobileMapOpen === project.id ? null : project.id
+                          mobileMapOpen === project._id ? null : project._id
                         )
                       }
                     >
                       <MapPin className="w-4 h-4 text-primary" />
-                    </button>
+                    </button> */}
                   </div>
 
                   {/* Project Info */}
@@ -270,20 +397,22 @@ export default function FeaturedProjects({
                     viewport={{ once: true }}
                     className="mt-[17px] gap-x-5 gap-y-2 font-light text-lg leading-1h-text19 flex flex-wrap text-foreground dark:text-white/70"
                   >
-                    <span>{project.type}</span>|<span>{project.sector}</span>|
-                    <span>{project.location}</span>|
-                    <span>{project.status}</span>
+                    <span>{project.secondSection.projectType.name}</span>|<span>{project.secondSection.sector.name}</span>|
+                    <span>{project.secondSection.location.name}</span>|
+                    <span>{project.secondSection.status}</span>
                   </motion.div>
 
+
+
                   {/* Mobile Map */}
-                  <motion.div
+                  {/* <motion.div
                     variants={moveUp(0.15)}
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true }}
                     className="block lg:hidden mt-4"
                   >
-                    {mobileMapOpen === project.id && (
+                    {mobileMapOpen === project._id && (
                       <iframe
                         src={project.mapUrl}
                         width="100%"
@@ -292,7 +421,9 @@ export default function FeaturedProjects({
                         className="border-0"
                       />
                     )}
-                  </motion.div>
+                  </motion.div> */}
+
+
                   <motion.h3
                     variants={moveUp(0.15)}
                     initial="hidden"
@@ -300,7 +431,7 @@ export default function FeaturedProjects({
                     viewport={{ once: true }}
                     className="text-2xl leading-1h-text32 text-primary mt-[17px] pb-[15px] border-b border-smgray lg:mr-[47px]"
                   >
-                    {project.name}
+                    {project.title}
                   </motion.h3>
                 </motion.div>
               ))}
@@ -313,16 +444,66 @@ export default function FeaturedProjects({
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="hidden lg:block lg:pl-37px 2xl:pl-47px pt-37px 2xl:pt-47px 
-            sticky top-[60px] h-[calc(100vh-70px)]"
+            className=" lg:block lg:pl-37px 2xl:pl-47px pt-37px 2xl:pt-47px 
+            sticky top-[60px] h-[calc(100vh-70px)] max-md:h-[300px] z-10"
           >
-            <iframe
+            {/* <iframe
               src={activeProject.mapUrl}
               width="100%"
               height="100%"
               loading="lazy"
               className="border-0"
-            ></iframe>
+            ></iframe> */}
+            <Map
+              defaultCenter={{
+                lat: parseFloat(projects.projects[0].latitude),
+                lng: parseFloat(projects.projects[0].longitude),
+              }}
+              defaultZoom={16}
+              mapId="2567b86b459988d06657407f"
+              className="w-full h-full"
+              gestureHandling="greedy"
+              onCameraChanged={handleCameraChanged}
+              disableDefaultUI={true}
+            >
+              {projects?.projects?.map((project) => {
+                // Only show markers that are either hovered or inside bounds
+                const isHovered = activeProject === project._id;
+                const isHighlighted = highlighted.includes(project._id);
+
+                console.log(isHovered)
+
+                if (!isHovered && !isHighlighted) return null; // Don't render
+
+                return (
+                  <Marker
+                    key={project._id}
+                    position={{
+                      lat: parseFloat(project.latitude),
+                      lng: parseFloat(project.longitude),
+                    }}
+                    title={project.title}
+                    icon={{
+                      url: isHovered
+                        ? "/active-icon.svg"       // Hovered project
+                        : "/inactive-icon.svg",   // Project in bounds
+                    }}
+                    onClick={() => {
+                      // Move clicked project to the start of visibleProjects
+                      setVisibleProjects((prev) => {
+                        const newArr = prev.filter((p) => p._id !== project._id); // remove clicked project
+                        return [project, ...newArr]; // add it to the start
+                      });
+
+                      setActiveProject(project._id); // set as active
+                      window.scrollTo({ top: 100, behavior: "smooth" }); // scroll to top
+                    }}
+                  />
+                );
+              })}
+
+            </Map>
+
           </motion.div>
         </motion.div>
       </div>
