@@ -56,10 +56,12 @@ const AdminNavbar = () => {
         { name: "News", href: "/admin/news", icon: NewspaperIcon },
         { name: "Blogs", href: "/admin/blogs", icon: NewspaperIcon },
         { name: "Gallery", href: "/admin/gallery", icon: GalleryThumbnails },
-        { name: "Team", href: "/admin/team", icon:UserGroupIcon },
-        { name: "Careers", href: "####", icon:BriefcaseIcon,hasChild:true,children: [
-          { name: "Main Page", href: "/admin/careers" },
-          {name:"Enquiries",href:"/admin/careers/enquiries"}
+        { name: "QHSE", href: "/admin/qhse", icon: GalleryThumbnails },
+        { name: "Sustainability", href: "/admin/sustainability", icon: LeafIcon },
+        { name: "AI Technology", href: "/admin/ai-technology", icon: LeafIcon },
+        { name: "Current Openings", href: "####", icon:BriefcaseIcon,hasChild:true,children: [
+          { name: "Main Page", href: "/admin/current-openings" },
+          {name:"Enquiries",href:"/admin/current-openings/enquiries"}
         ] },
         { name: "Contact", href: "###", icon: EnvelopeIcon,hasChild:true,children: [
           { name: "Main Page", href: "/admin/contact" },
@@ -67,7 +69,7 @@ const AdminNavbar = () => {
         ] },
         { name: "Quality", href: "/admin/quality", icon: ThumbsUp },
         { name: "HSE", href: "/admin/hse", icon: HeartHandshake },
-        { name: "Sustainability", href: "/admin/sustainability", icon: LeafIcon },
+        // { name: "Sustainability", href: "/admin/sustainability", icon: LeafIcon },
         { name: "Settings", href: "/admin/settings", icon: Settings},
       ];
 
