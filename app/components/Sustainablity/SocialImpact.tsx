@@ -170,7 +170,6 @@ const SocialImpact = ({ data }: AreaOfExpertiseProps) => {
     };
   }, [thumbsSwiper, mainSwiper]);
 
-  const [currentHoveredIcon,setcurrentHoveredIcon] = useState<boolean>(false);
 
   return (
     <section className="wrapper py-57px overflow-hidden bg-black">
