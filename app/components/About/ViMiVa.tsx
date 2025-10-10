@@ -4,12 +4,21 @@ import { aboutData } from "./data";
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
 import Image from "next/image";
+import { useState } from "react";
 const ViMiVa = () => {
   const vmvItems = Object.values(aboutData.vmv).map((item) => ({
     title: item.title,
     content: item.desc,
     icon: item.icon,
+    id: item._id,
   }));
+
+  const [activeTestimonialReadMore, setActiveTestimonialReadMore] = useState<string | null>(null);
+
+  const toggleReadMore = (id: string) => {
+    setActiveTestimonialReadMore(prev => (prev === id ? null : id));
+  };
+
   return (
     <section className="py-57px xl:py-57px dark:bg-black">
       <div className="container">
@@ -50,8 +59,21 @@ const ViMiVa = () => {
               <h3 className="text-2xl leading-lh-title text-black dark:text-white ">
                 {item.title}
               </h3>
-              <p className="text-base leading-[1.5] dark:text-white">
-                {item.content}
+              <p className="text-lg leading-[1.5] dark:text-white flex flex-col">
+                {item.content[0].split(" ").length > 30 && activeTestimonialReadMore !== item.id
+                      ? item.content[0].split(" ").slice(0, 30).join(" ") + `...`
+                      : item.content[0]}
+
+{item.content[0].split(" ").length > 30 && (
+                      <span
+                        className="dark:text-white cursor-pointer text-base text-primary"
+                        onClick={() =>
+                          toggleReadMore(item.id)
+                        }
+                      >
+                        {activeTestimonialReadMore === item.id ? " Read Less" : " Read More"}
+                      </span>
+                    )}
               </p>
             </motion.div>
           ))}

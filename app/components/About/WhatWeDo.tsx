@@ -58,6 +58,7 @@ const WhatWeDo = () => {
                   whileInView="show"
                   viewport={{ once: true }}
                   key={index}
+                  onMouseEnter={() => setActiveIndex(index)}
                   onClick={() => setActiveIndex(index)}
                   className={`flex items-center gap-2 w-full justify-between border-b border-smgray  group cursor-pointer dark:text-white ${
                     index === activeIndex ? "text-black dark:text-primary" : ""
@@ -66,15 +67,15 @@ const WhatWeDo = () => {
                   <p className="text-xl leading-[1.2] py-4 md:py-5 text-left group-hover:text-primary group-hover:scale-[1.03] transition-all duration-400 dark:group-hover:text-primary ">
                     {item.title}
                   </p>
-                  <Image
+                  {index === activeIndex && <Image
                     src={aboutData.whatWeDo.arrowIcon}
                     alt="what we do"
                     width={19.05}
                     height={19.05}
                     className={`opacity-0 translate-x-[-4px] translate-y-[4px] group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-300 ${
-                      index === activeIndex ? "opacity-100" : ""
+                      index === activeIndex ? "opacity-100" : "opacity-0"
                     }`}
-                  />
+                  />}
                 </motion.button>
               ))}
             </div>
