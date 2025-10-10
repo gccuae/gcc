@@ -2,7 +2,7 @@ import ImgDesc from "../common/ImgDesc";
 import PageBnr from "../common/PageBnr";
 import { aboutData, Whychoosedata } from "./data";
 import WhatWeDo from "./WhatWeDo";
-import VMV from "./VMV";
+import ViMiVa from "./ViMiVa";
 import LegacyTimelineSlider from "./LegacyTimelineSlider";
 import WhyChoose from "./WhyChoose";
 const Index = () => {
@@ -14,7 +14,7 @@ const Index = () => {
       />
       <ImgDesc data={aboutData.section1} />
       <WhatWeDo />
-      <VMV />
+      <ViMiVa />
       <LegacyTimelineSlider
         title={aboutData.timelineData.title}
         data={aboutData.timelineData.items}

@@ -63,7 +63,7 @@ const WhatWeDo = () => {
                     index === activeIndex ? "text-black dark:text-primary" : ""
                   }`}
                 >
-                  <p className="text-xl leading-[1.2] py-4 md:py-5 text-left group-hover:text-black transition-all duration-300 dark:group-hover:text-primary ">
+                  <p className="text-xl leading-[1.2] py-4 md:py-5 text-left group-hover:text-primary group-hover:scale-[1.03] transition-all duration-400 dark:group-hover:text-primary ">
                     {item.title}
                   </p>
                   <Image
@@ -71,7 +71,7 @@ const WhatWeDo = () => {
                     alt="what we do"
                     width={19.05}
                     height={19.05}
-                    className={`opacity-0 group-hover:opacity-100 translate-x-[-4px] translate-y-[4px]  group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-300 ${
+                    className={`opacity-0 translate-x-[-4px] translate-y-[4px] group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-300 ${
                       index === activeIndex ? "opacity-100" : ""
                     }`}
                   />
@@ -101,9 +101,9 @@ const WhatWeDo = () => {
                 <Image
                   src={aboutData.whatWeDo.items[activeIndex].image}
                   alt={aboutData.whatWeDo.items[activeIndex].title}
-                  width={1500}
-                  height={1500}
-                  className="w-full h-full object-cover"
+                  width={1840}
+                  height={1700}
+                  className="w-full h-full object-cover  border-8 border-white"
                 />
               </motion.div>
             </AnimatePresence>

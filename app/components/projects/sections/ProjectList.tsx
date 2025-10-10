@@ -424,6 +424,7 @@ export default function FeaturedProjects({
                   </motion.div> */}
 
 
+                  
                   <motion.h3
                     variants={moveUp(0.15)}
                     initial="hidden"
@@ -433,6 +434,7 @@ export default function FeaturedProjects({
                   >
                     {project.title}
                   </motion.h3>
+                  
                 </motion.div>
               ))}
             </div>

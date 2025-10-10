@@ -184,33 +184,12 @@ const SocialImpact = ({ data }: AreaOfExpertiseProps) => {
             {data.title}
           </motion.h2>
           <div className="flex items-center gap-2">
-            <motion.div
-              variants={moveUp(0.5)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="flex border border-foreground dark:border-white rounded-full"
-            >
-              <div
-                ref={prevRef}
-                onClick={handlePrev}
+            <motion.div variants={moveUp(0.5)} initial="hidden" whileInView="show" viewport={{ once: true }} className="flex border border-foreground dark:border-white rounded-full" >
+              <div ref={prevRef} onClick={handlePrev}
                 className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] rounded-tl-full rounded-bl-full group  cursor-pointer hover:bg-accent  transition-all duration-300"
               >
-                <svg
-                  width="10"
-                  height="16"
-                  viewBox="0 0 10 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]"
-                >
-                  <path
-                    d="M8.33594 1.33154L1.66731 8.00017L8.33594 14.6688"
-                    stroke="#7AC142"
-                    className="group-hover:stroke-white transition-all duration-300"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
+                <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]" >
+                  <path d="M8.33594 1.33154L1.66731 8.00017L8.33594 14.6688" stroke="#7AC142" className="group-hover:stroke-white transition-all duration-300" strokeWidth="2" strokeLinecap="round" />
                 </svg>
               </div>
               <div
@@ -278,14 +257,14 @@ const SocialImpact = ({ data }: AreaOfExpertiseProps) => {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, amount: 0.1 }}
-                    className="flex items-center justify-center rounded-full bg-white w-[85px] h-[85px] group-hover:bg-primary transition-all duration-300 icon-wrapper"
+                    className="flex items-center justify-center rounded-full bg-white w-[85px] h-[85px] border-3 border-white group-hover:border-accent transition-all duration-300 icon-wrapper"
                   >
                     <Image
                       src={item.icon}
                       alt={item.title}
                       width={200}
                       height={200}
-                      className="mb-2 w-10 h-10 object-contain group-hover:brightness-0 group-hover:invert-100"
+                      className="mb-2 w-10 h-10 object-contain "
                     />
                   </motion.div>
                   <div className="absolute bottom-[-6px] left-0 w-full h-[2px] bg-smgray -z-[1]">
