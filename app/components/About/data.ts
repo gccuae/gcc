@@ -57,30 +57,27 @@ export const aboutData = {
   },
   vmv: {
     vision: {
+      _id: "1",
       icon: "/assets/img/icons/vision.svg",
       title: "Vision",
       desc: [
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit.  Lorem ipsum dolor sit amet  Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet",
       ],
     },
     mission: {
+      _id: "2",
       icon: "/assets/img/icons/mission.svg",
       title: "Mission",
       desc: [
-        "Our mission is to create a vibrant environment for all members of society. As a company, we will be a good corporate citizen, providing high quality service at reasonable prices.",
-        "We will pioneer the creation of new value, meet our clients’ needs, respect a diversity of views and ideas, and honour the relationship of humanity in the natural environment.",
-        "We will encourage open communication that promotes project success and facilitates an honest exchange of information between our clients and our Project Teams, allowing us to best achieve each owner’s particular project objectives. ",
+        "Our mission is to create a vibrant environment for all members of society. As a company, we will be a good corporate citizen, providing high quality service at reasonable prices. We will pioneer the creation of new value, meet our clients’ needs, respect a diversity of views and ideas, and honour the relationship of humanity in the natural environment. We will encourage open communication that promotes project success and facilitates an honest exchange of information between our clients and our Project Teams, allowing us to best achieve each owner’s particular project objectives. ",
       ],
     },
     values: {
+      _id: "3",
       icon: "/assets/img/icons/values.svg",
       title: "Values",
       desc: [
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit.  Lorem ipsum dolor sit amet  Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet",
       ],
     },
   },

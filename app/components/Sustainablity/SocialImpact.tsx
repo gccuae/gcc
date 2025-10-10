@@ -170,6 +170,7 @@ const SocialImpact = ({ data }: AreaOfExpertiseProps) => {
     };
   }, [thumbsSwiper, mainSwiper]);
 
+
   return (
     <section className="wrapper py-57px overflow-hidden bg-black">
       <div className="container">
@@ -243,7 +244,7 @@ const SocialImpact = ({ data }: AreaOfExpertiseProps) => {
               <SwiperSlide
                 key={item.id}
                 className="cursor-pointer transition mb-4 xl:mb-[65px] group"
-                onClick={() => handleSlideHover(index)}
+                onMouseOver={() => handleSlideHover(index)}
               >
                 <motion.div
                   variants={moveUp()}
@@ -257,14 +258,14 @@ const SocialImpact = ({ data }: AreaOfExpertiseProps) => {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, amount: 0.1 }}
-                    className="flex items-center justify-center rounded-full bg-white w-[85px] h-[85px] border-3 border-white group-hover:border-accent transition-all duration-300 icon-wrapper"
+                    className={`flex items-center justify-center rounded-full bg-white w-[85px] h-[85px] border-3 border-white group-hover:border-accent transition-all duration-300 icon-wrapper`}
                   >
                     <Image
                       src={item.icon}
                       alt={item.title}
                       width={200}
                       height={200}
-                      className="mb-2 w-10 h-10 object-contain "
+                      className="mb-2 w-10 h-10 object-contain"
                     />
                   </motion.div>
                   <div className="absolute bottom-[-6px] left-0 w-full h-[2px] bg-smgray -z-[1]">
