@@ -23,6 +23,8 @@ const projectSchema = new mongoose.Schema({
         title:{type:String},
         latitude:{type:String},
         longitude:{type:String},
+        featuredProject:{type:Boolean},
+        relatedService:{type:mongoose.Schema.Types.ObjectId,ref:"Expertise"},
         firstSection:{
             images:[String]
         },    

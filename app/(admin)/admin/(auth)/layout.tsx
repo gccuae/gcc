@@ -16,7 +16,7 @@ import Image from "next/image";
         <aside className="w-64 bg-white shadow-md flex flex-col h-screen overflow-y-auto">
           
           <div className="flex-1 px-3 py-4">
-            <div className="mb-6 px-4 flex flex-col gap-2">
+            <div className="mb-6 px-4 flex flex-col gap-2 bg-black py-2">
             <div className="flex items-center">
         <Image src="/assets/img/logo.svg" alt="Logo" width={150} height={150} />
           </div>

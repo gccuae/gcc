@@ -10,18 +10,23 @@ import {
     BriefcaseIcon,
     GlobeAltIcon,
   } from "@heroicons/react/24/outline";
-import { AwardIcon, GalleryThumbnails, HeartHandshake, LeafIcon, Settings, ThumbsUp, Workflow } from 'lucide-react';
+import { AwardIcon, GalleryThumbnails, GroupIcon, HeartHandshake, InfoIcon, LeafIcon, PhoneIcon, Settings, Share2Icon, ThumbsUp, Workflow } from 'lucide-react';
 import { useEffect } from 'react';
+import { useRefetchServices } from '@/app/contexts/refetchServices';
+import {RiShakeHandsLine } from 'react-icons/ri';
+import { GiHealthNormal } from 'react-icons/gi';
+import { FaRobot } from 'react-icons/fa';
 
 
 
 const AdminNavbar = () => {
 
     const [openLink, setOpenLink] = useState<string | null>(null);
+    const {refetchServices} = useRefetchServices();
     
     useEffect(() => {
       fetchServices()
-  },[])
+  },[refetchServices])
   
   const [services, setServices] = useState([])
   const fetchServices = async () => {
@@ -32,10 +37,10 @@ const AdminNavbar = () => {
 
     const navItems = [
         { name: "Home", href: "/admin/home", icon: HomeIcon },
-        { name: "About", href: "/admin/about", icon: UserGroupIcon },
+        { name: "About", href: "/admin/about", icon: InfoIcon },
         { name: "Message", href: "/admin/message", icon: EnvelopeIcon },
         { name: "Our Team", href: "/admin/team", icon: UserGroupIcon },
-        { name: "Group Company", href: "/admin/group-company", icon: UserGroupIcon },
+        { name: "Group Company", href: "/admin/group-company", icon: GroupIcon },
         { name: "Awards", href: "/admin/awards", icon: AwardIcon },
         // { name: "Clients", href: "/admin/clients", icon: PresentationChartBarIcon },
         // { name: "Services", href: "#", icon: EnvelopeIcon,hasChild:true,children: [
@@ -52,18 +57,18 @@ const AdminNavbar = () => {
           )),
         ] },
         { name: "Projects", href: "/admin/projects", icon: Workflow },
-        { name: "Clients", href: "/admin/clients", icon: NewspaperIcon },
+        { name: "Clients", href: "/admin/clients", icon: RiShakeHandsLine },
         { name: "News", href: "/admin/news", icon: NewspaperIcon },
-        { name: "Blogs", href: "/admin/blogs", icon: NewspaperIcon },
+        { name: "Blogs", href: "/admin/blogs", icon: Share2Icon },
         { name: "Gallery", href: "/admin/gallery", icon: GalleryThumbnails },
-        { name: "QHSE", href: "/admin/qhse", icon: GalleryThumbnails },
+        { name: "QHSE", href: "/admin/qhse", icon: GiHealthNormal },
         { name: "Sustainability", href: "/admin/sustainability", icon: LeafIcon },
-        { name: "AI Technology", href: "/admin/ai-technology", icon: LeafIcon },
+        { name: "AI Technology", href: "/admin/ai-technology", icon: FaRobot },
         { name: "Current Openings", href: "####", icon:BriefcaseIcon,hasChild:true,children: [
           { name: "Main Page", href: "/admin/current-openings" },
           {name:"Enquiries",href:"/admin/current-openings/enquiries"}
         ] },
-        { name: "Contact", href: "###", icon: EnvelopeIcon,hasChild:true,children: [
+        { name: "Contact", href: "###", icon: PhoneIcon,hasChild:true,children: [
           { name: "Main Page", href: "/admin/contact" },
           {name:"Enquiries",href:"/admin/contact/enquiries"}
         ] },

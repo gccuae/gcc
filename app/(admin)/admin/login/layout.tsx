@@ -1,6 +1,6 @@
 export const metadata = {
-    title: "Assent | Backend Console",
-    description: "Assent",
+    title: "GCC | Backend Console",
+    description: "GCC",
   };
   
   import "../../../globals.css";
