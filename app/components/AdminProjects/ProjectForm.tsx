@@ -70,6 +70,8 @@ interface ProjectFormProps {
             description: string;
         }[];
     };
+    featuredProject:string;
+    relatedService:string;
 }
 
 const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
@@ -158,6 +160,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
             const response = await fetch(`/api/admin/projects?id=${id}`);
             if (response.ok) {
                 const data = await response.json();
+                console.log(data.data);
                 setValue("banner", data.data.banner);
                 setValue("bannerAlt", data.data.bannerAlt);
                 setValue("thumbnail", data.data.thumbnail);
@@ -166,6 +169,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 setValue("slug", data.data.slug);
                 setValue("latitude", data.data.latitude);
                 setValue("longitude", data.data.longitude);
+                setValue("featuredProject", data.data.featuredProject);
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
                 setValue("firstSection.images", data.data.firstSection.images);
@@ -176,9 +180,10 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                     location: data.data.secondSection.location?._id || "",
                     projectType: data.data.secondSection.projectType?._id || "",
                   });
-                setValue("thirdSection.items", data.data.thirdSection.items);
-                setValue("forthSection", data.data.forthSection);
-                setValue("forthSection.items", data.data.forthSection.items);
+                  setValue("thirdSection.items", data.data.thirdSection.items);
+                  setValue("forthSection", data.data.forthSection);
+                  setValue("forthSection.items", data.data.forthSection.items);
+                  setValue("relatedService", data.data.relatedService._id);
             } else {
                 const data = await response.json();
                 alert(data.message);
@@ -238,9 +243,15 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
 
     };
 
-
+  const [services, setServices] = useState([])
+  const fetchServices = async () => {
+      const response = await fetch("/api/admin/expertise");
+      const data = await response.json();
+      setServices(data.data.secondSection.items)
+  }
 
     useEffect(() => {
+        fetchServices()
         if (editMode) {
             handleFetchLocation().then(() => handleFetchSector()).then(() => handleFetchProjectType()).then(() => fetchProjectData());
         } else {
@@ -690,6 +701,63 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
 
 
                     </div>
+                </AdminItemContainer>
+
+<AdminItemContainer>
+                <div className='flex flex-col gap-2 p-5'>
+                    <Label className=''>Featured Project</Label>
+                    <Controller
+                        name={`featuredProject`}
+                        control={control}
+                        rules={{ required: "Featured Project is required" }}
+                        render={({ field }) => (
+                            <Select
+                                onValueChange={field.onChange}
+                                value={field.value}
+                                defaultValue=""
+                            >
+                                <SelectTrigger className="w-full">
+                                    <SelectValue placeholder="Select Option" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                        <SelectItem value="true">Yes</SelectItem>
+                                        <SelectItem value="false">No</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        )}
+                    />
+                    {errors.featuredProject && <p className="text-red-500">{errors.featuredProject.message}</p>}
+
+                </div>
+
+                <div className='flex flex-col gap-2 p-5'>
+                    <Label className=''>Related Service</Label>
+                    <Controller
+                        name={`relatedService`}
+                        control={control}
+                        rules={{ required: "Related Service is required" }}
+                        render={({ field }) => (
+                            <Select
+                                onValueChange={field.onChange}
+                                value={field.value}
+                                defaultValue=""
+                            >
+                                <SelectTrigger className="w-full">
+                                    <SelectValue placeholder="Select Service" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {services.map((service: { _id: string,title:string }) => (
+                                        <SelectItem key={service._id} value={service._id}>{service.title}</SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                        )}
+                    />
+                    {errors.relatedService && <p className="text-red-500">{errors.relatedService.message}</p>}
+
+                </div>
+
+
                 </AdminItemContainer>
 
 

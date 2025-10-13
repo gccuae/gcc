@@ -5,6 +5,7 @@ import { verifyAdmin } from "@/lib/verifyAdmin";
 import "@/app/models/Sector";
 import "@/app/models/Location";
 import "@/app/models/ProjectType";
+import Expertise from "@/app/models/Expertise";
 
 
 export async function GET(request: NextRequest) {
@@ -12,22 +13,28 @@ export async function GET(request: NextRequest) {
         await connectDB();
         const id = request.nextUrl.searchParams.get("id");
         const slug = request.nextUrl.searchParams.get("slug");
+        const expertise = await Expertise.findOne({});
         if (id) {
-            const project = await Project.findOne({}).populate("projects.secondSection.sector", "name _id").populate("projects.secondSection.location", "name _id").populate("projects.secondSection.projectType", "name _id");
+            const project = await Project.findOne({}).populate("projects.secondSection.sector", "name _id").populate("projects.secondSection.location", "name _id").populate("projects.secondSection.projectType", "name _id")
             const foundProject = project.projects.find((project: { _id: string }) => project._id.toString() === id);
+            const relatedService = expertise.secondSection.items.find((item: { _id: string }) => item._id.toString() === foundProject?.relatedService.toString());
             if (!foundProject) {
                 return NextResponse.json({ message: "Project not found" }, { status: 404 });
             }
-            return NextResponse.json({ data: foundProject, message: "Project fetched successfully" }, { status: 200 });
+            return NextResponse.json(
+                { data: { ...foundProject.toObject?.() ?? foundProject, relatedService }, message: "Project fetched successfully" },
+                { status: 200 }
+              );
         } else if (slug) {
-            const project = await Project.findOne({}).populate("projects.secondSection.sector", "name _id").populate("projects.secondSection.location", "name _id").populate("projects.secondSection.projectType", "name _id");
+            const project = await Project.findOne({}).populate("projects.secondSection.sector", "name _id").populate("projects.secondSection.location", "name _id").populate("projects.secondSection.projectType", "name _id")
             const foundProject = project.projects.find((project: { slug: string }) => project.slug === slug);
+            const relatedService = expertise.secondSection.items.find((item: { _id: string }) => item._id.toString() === foundProject?.relatedService);
             if (!foundProject) {
                 return NextResponse.json({ message: "Project not found" }, { status: 404 });
             }
-            return NextResponse.json({ data: foundProject, message: "Project fetched successfully" }, { status: 200 });
+            return NextResponse.json({ data: { ...foundProject, relatedService }, message: "Project fetched successfully" }, { status: 200 });
         } else {
-            const project = await Project.findOne({}).populate("projects.secondSection.sector", "name _id").populate("projects.secondSection.location", "name _id").populate("projects.secondSection.projectType", "name _id");
+            const project = await Project.findOne({}).populate("projects.secondSection.sector", "name _id").populate("projects.secondSection.location", "name _id").populate("projects.secondSection.projectType", "name _id")
             if (!project) {
                 return NextResponse.json({ message: "Project not found" }, { status: 404 });
             }
@@ -52,10 +59,34 @@ export async function PATCH(request: NextRequest) {
 
         const project = await Project.findOne({})
         if (id) {
+            const expertise = await Expertise.findOne({});
+            expertise.secondSection.items.forEach((item: { projects: string[] }) => {
+                const index = item.projects.findIndex(
+                  (projId: string) => projId.toString() === id
+                );
+                if (index !== -1) {
+                  item.projects.splice(index, 1);
+                }
+              });
+              
+              // 2️⃣ Add project ID only to the correct service
+              const targetService = expertise.secondSection.items.find(
+                (item: { _id: string }) => item._id.toString() === body.relatedService
+              );
+              
+              if (targetService) {
+                if (!targetService.projects.some((projId: string) => projId.toString() === id)) {
+                  targetService.projects.push(id);
+                }
+              }
+              
+              // 3️⃣ Save the updated expertise document
+              await expertise.save();
             const foundProject = project.projects.find((project: { _id: string }) => project._id.toString() === id);
             if (!foundProject) {
                 return NextResponse.json({ message: "Project not found" }, { status: 404 });
             }
+            console.log(body);
             foundProject.firstSection.images = body.firstSection.images;
             foundProject.secondSection = body.secondSection;
             foundProject.thirdSection = body.thirdSection;
@@ -70,6 +101,8 @@ export async function PATCH(request: NextRequest) {
             foundProject.longitude = body.longitude;
             foundProject.metaTitle = body.metaTitle;
             foundProject.metaDescription = body.metaDescription;
+            foundProject.featuredProject = body.featuredProject;
+            foundProject.relatedService = body.relatedService;
             await project.save();
             return NextResponse.json({ data: project, message: "Project updated successfully" }, { status: 200 });
         }
@@ -95,6 +128,14 @@ export async function POST(request: NextRequest) {
         }
         await connectDB();
         const project = await Project.findOne({});
+        const expertise = await Expertise.findOne({});
+        const toUpdate = expertise.secondSection.items.find((item: { _id: string }) => item._id.toString() === body.relatedService);
+        if(toUpdate){
+            if(!toUpdate.projects.includes(project._id.toString())){
+                toUpdate.projects.push(project._id.toString());
+            }
+        }
+        await expertise.save();
         project.projects.push(body);
         await project.save();
         return NextResponse.json({ data: project, message: "Project created successfully" }, { status: 200 });

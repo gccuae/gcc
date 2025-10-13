@@ -41,6 +41,10 @@ const expertiseSchema = new mongoose.Schema({
             required:true
         },
         items:[{
+            projects:[{
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Project"
+            }],
             image:{
                 type:String,
                 required:true

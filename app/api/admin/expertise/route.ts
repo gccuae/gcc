@@ -38,7 +38,7 @@ export async function PATCH(request: NextRequest) {
         if(id){
             const expertise = await Expertise.findOne({});
             if(expertise){
-                const itemToUpdate = expertise.secondSection.items.find((item: {id:string}) => item.id == id);
+                const itemToUpdate = expertise.secondSection.items.find((item: {_id:string}) => item._id.toString() == id);
                 if(itemToUpdate){
                     console.log(itemToUpdate.secondSection.items)
                     itemToUpdate.firstSection = body.firstSection;
@@ -50,7 +50,7 @@ export async function PATCH(request: NextRequest) {
             }
             return NextResponse.json({message:"Expertise updating failed"}, { status: 400 });
         }else{
-            const expertise = await Expertise.findOneAndUpdate({id}, body,{upsert:true,new:true});
+            const expertise = await Expertise.findOneAndUpdate({}, body,{upsert:true,new:true});
             if (!expertise) {
                 return NextResponse.json({ message: "Expertise not found" }, { status: 404 });
             }

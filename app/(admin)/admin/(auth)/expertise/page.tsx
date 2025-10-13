@@ -11,6 +11,7 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import { Textarea } from '@/components/ui/textarea'
 import AdminItemContainer from '@/app/components/common/AdminItemContainer';
 import { RiAiGenerateText } from 'react-icons/ri'
+import { useRefetchServices } from '@/app/contexts/refetchServices';
 
 interface ExpertiseFormProps {
     metaTitle: string;
@@ -42,6 +43,8 @@ const ExpertisePage = () => {
 
     const { register, handleSubmit, setValue, control, formState: { errors },watch } = useForm<ExpertiseFormProps>();
 
+    const {refetchServices,setRefetchServices} = useRefetchServices();
+
 
     const { fields: secondSectionItems, append: secondSectionAppend, remove: secondSectionRemove } = useFieldArray({
         control,
@@ -58,6 +61,7 @@ const ExpertisePage = () => {
             if (response.ok) {
                 const data = await response.json();
                 alert(data.message);
+                setRefetchServices(!refetchServices);
                 // router.push("/admin/commitment");
             }
         } catch (error) {
