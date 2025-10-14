@@ -48,6 +48,7 @@ interface AboutFormProps {
         }[];
     };
     historySection: {
+        title:string;
         items: {
             image: string;
             imageAlt: string;
@@ -436,6 +437,13 @@ const AboutPage = () => {
                 <AdminItemContainer>
                 <Label main>History Section</Label>
                 <div className='p-5 rounded-md flex flex-col gap-2'>
+                <div className='flex flex-col gap-2'>
+                                    <Label className='font-bold'>Title</Label>
+                                    <Input type='text' placeholder='Title' {...register(`historySection.title`, {
+                                        required: "Value is required"
+                                    })} />
+                                    {errors?.historySection?.title && <p className='text-red-500'>{errors.historySection.title.message}</p>}
+                                </div>
                     <div>
                     <Label className='font-bold'>Items</Label>
                 <div className='border p-2 rounded-md flex flex-col gap-5'>
