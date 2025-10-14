@@ -5,20 +5,22 @@ import WhatWeDo from "./WhatWeDo";
 import ViMiVa from "./ViMiVa";
 import LegacyTimelineSlider from "./LegacyTimelineSlider";
 import WhyChoose from "./WhyChoose";
-const Index = () => {
+
+const Index = ({ data }: any) => {
+  console.log(data, "hisha");
+
   return (
     <>
       <PageBnr
-        pageTitle={aboutData.pageTitle}
-        bannerImg={aboutData.bannerImg}
+        pageTitle={data.pageTitle}
+        bannerImg={data.banner}
+        bannerAlt={data.bannerAlt}
       />
-      <ImgDesc data={aboutData.section1} />
-      <WhatWeDo />
-      <ViMiVa />
-      <LegacyTimelineSlider
-        title={aboutData.timelineData.title}
-        data={aboutData.timelineData.items}
-      />
+      <ImgDesc data={data.firstSection} />
+      <WhatWeDo data={data.secondSection} />
+      <ViMiVa data={data.thirdSection} />
+
+      <LegacyTimelineSlider data={data.historySection} />
       <WhyChoose data={Whychoosedata.data} />
     </>
   );

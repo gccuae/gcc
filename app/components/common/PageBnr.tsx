@@ -7,9 +7,10 @@ import { motion } from "framer-motion";
 interface PageBnrProps {
   pageTitle: string;
   bannerImg: string;
+  bannerAlt: string;
 }
 
-const PageBnr = ({ pageTitle, bannerImg }: PageBnrProps) => {
+const PageBnr = ({ pageTitle, bannerImg, bannerAlt }: PageBnrProps) => {
   return (
     <section className="relative h-[300px] md:h-[350px]  xl:h-[450px] flex flex-col justify-end pb-6 md:pb-15 xl:pb-[83x]">
       <motion.div
@@ -20,7 +21,7 @@ const PageBnr = ({ pageTitle, bannerImg }: PageBnrProps) => {
       >
         <Image
           src={bannerImg}
-          alt=""
+          alt={bannerAlt}
           width={1920}
           height={800}
           className="w-full h-full object-cover"

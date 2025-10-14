@@ -6,7 +6,8 @@ import { moveUp } from "../motionVarients";
 
 interface ImgDescProps {
   data: {
-    img: string;
+    image: string;
+    imageAlt: string;
     title: string;
     description: string;
   };
@@ -57,7 +58,12 @@ const ImgDesc = ({ data }: ImgDescProps) => {
               h-[350px] md:h-[400px] lg:h-[500px] xl:h-full
             "
           >
-            <Image src={data.img} alt="" fill className="object-cover" />
+            <Image
+              src={data.image}
+              alt={data.imageAlt}
+              fill
+              className="object-cover"
+            />
           </motion.div>
         </div>
       </div>
