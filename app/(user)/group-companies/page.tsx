@@ -5,8 +5,6 @@ const Page = async () => {
     next: { revalidate: 60 },
   }).then((res) => res.json());
 
-  console.log(data);
-
   return (
     <>
       <Index data={data.data} />
