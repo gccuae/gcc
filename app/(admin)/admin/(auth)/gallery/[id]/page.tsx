@@ -6,7 +6,6 @@ import { useForm,useFieldArray, Controller } from "react-hook-form";
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { FileUploader } from '@/components/ui/file-uploader';
 import { useRouter,useParams } from 'next/navigation'
 import { ImageUploader } from '@/components/ui/image-uploader';
 
@@ -21,7 +20,7 @@ const IndiGallery = () => {
     const router = useRouter();
             const { id } = useParams();
 
-    const { control, register, handleSubmit, formState: { errors }, setValue, getValues,watch } = useForm<Gallery>();
+    const { control, register, handleSubmit, formState: { errors }, setValue, getValues } = useForm<Gallery>();
     const { fields, append, remove } = useFieldArray({
         control,
         name: "images"
