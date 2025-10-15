@@ -5,24 +5,7 @@ import { moveUp } from "../motionVarients";
 import Image from "next/image";
 import { useState } from "react";
 import parse from "html-react-parser";
-
-interface VmvItem {
-  _id: string;
-  logo: string;
-  logoAlt: string;
-  title: string;
-  description: string;
-}
-
-interface ThirdSection {
-  mainTitle: string;
-  subTitle: string;
-  items: VmvItem[];
-}
-
-interface ViMiVaProps {
-  data: ThirdSection;
-}
+import { ViMiVaProps } from "./type";
 
 const ViMiVa = ({ data }: ViMiVaProps) => {
   const [activeReadMore, setActiveReadMore] = useState<string | null>(null);

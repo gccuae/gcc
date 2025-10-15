@@ -3,15 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
-
-interface ImgDescProps {
-  data: {
-    image: string;
-    imageAlt: string;
-    title: string;
-    description: string;
-  };
-}
+import { ImgDescProps } from "../About/type";
 
 const ImgDesc = ({ data }: ImgDescProps) => {
   return (
@@ -60,7 +52,7 @@ const ImgDesc = ({ data }: ImgDescProps) => {
           >
             <Image
               src={data.image}
-              alt={data.imageAlt}
+              alt={data.imageAlt || ""}
               fill
               className="object-cover"
             />

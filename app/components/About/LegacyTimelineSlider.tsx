@@ -11,21 +11,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-
-interface LegacyItem {
-  _id: string;
-  year: string;
-  mainTitle: string;
-  subTitle: string;
-  description: string;
-  image: string;
-  imageAlt: string;
-}
-
-interface LegacySection {
-  title?: string;
-  items: LegacyItem[];
-}
+import { LegacySection } from "./type";
 
 const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
   const doubledTimelineData = {
@@ -134,7 +120,7 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
             {/* Header */}
             <div className="pt-10 xl:pt-20 h-full  lg:pb-0 flex items-start flex-wrap ">
               <h2 className="text-5xl leading-[1] font-light text-white pb-4 tracking-wide ">
-                Our Legacy
+                {data.title}
               </h2>
               {/* Timeline Years Navigation Slider */}
               <div className="xl:ml-auto md:mb-0 lg:top-12 xl:top-19 right-3 md:right-0 flex items-center z-10 lg:h-full order-3 xl:order-2">

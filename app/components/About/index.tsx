@@ -1,14 +1,16 @@
 import ImgDesc from "../common/ImgDesc";
 import PageBnr from "../common/PageBnr";
-import { aboutData, Whychoosedata } from "./data";
 import WhatWeDo from "./WhatWeDo";
 import ViMiVa from "./ViMiVa";
 import LegacyTimelineSlider from "./LegacyTimelineSlider";
 import WhyChoose from "./WhyChoose";
+import { HomePageData } from "./type";
 
-const Index = ({ data }: any) => {
-  console.log(data, "hisha");
+interface HomeIndexProps {
+  data: HomePageData;
+}
 
+const Index = ({ data }: HomeIndexProps) => {
   return (
     <>
       <PageBnr
@@ -19,9 +21,8 @@ const Index = ({ data }: any) => {
       <ImgDesc data={data.firstSection} />
       <WhatWeDo data={data.secondSection} />
       <ViMiVa data={data.thirdSection} />
-
       <LegacyTimelineSlider data={data.historySection} />
-      <WhyChoose data={Whychoosedata.data} />
+      <WhyChoose data={data.fifthSection} />
     </>
   );
 };

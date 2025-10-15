@@ -3,6 +3,7 @@ import { expertiseData } from "./data";
 import ImgDesc from "../common/ImgDesc";
 import AiSlider from "./AiSlider";
 import Cta from "./Cta";
+
 const Index = () => {
   return (
     <>

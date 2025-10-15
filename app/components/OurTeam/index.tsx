@@ -1,11 +1,12 @@
 import LeadersList from "./LeadersList";
 import StaffList from "./StaffList";
+import { OurTeamProps } from "./type";
 
-const Index = () => {
+const Index = ({ data }: OurTeamProps) => {
   return (
     <>
-      <LeadersList />
-      <StaffList />
+      <LeadersList data={data} />
+      <StaffList data={data} />
     </>
   );
 };

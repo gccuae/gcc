@@ -4,20 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { moveUp } from "../motionVarients";
-
-interface WhatWeDoProps {
-  data: {
-    mainTitle: string;
-    subTitle: string;
-    firstDescription: string;
-    items: {
-      image: string;
-      imageAlt: string;
-      title: string;
-    }[];
-    secondDescription: string;
-  };
-}
+import { WhatWeDoProps } from "./type";
 
 const WhatWeDo = ({ data }: WhatWeDoProps) => {
   const [activeIndex, setActiveIndex] = useState(0);

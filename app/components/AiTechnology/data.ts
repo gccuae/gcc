@@ -4,7 +4,7 @@ export const expertiseData = {
   firstSection: {
     title: "Intelligent Construction For A Better Tomorrow",
     description: `Gulf Contractors Company is redefining the future of construction by integrating Artificial Intelligence into every stage of project delivery. From design to execution, our AI‑driven systems enable smarter planning, faster decision‑making, and highly efficient workflows. We leverage advanced data analytics, real‑time monitoring, and innovative tools to minimize risks, reduce costs, and elevate quality standards. With a strong commitment to sustainability, safety, and technological excellence, we ensure every project contributes to a greener environment, improved infrastructure, and a lasting impact for generations to come.`,
-    img: "/assets/img/aitech/ai-main.jpg",
+    image: "/assets/img/aitech/ai-main.jpg",
   },
 };
 
