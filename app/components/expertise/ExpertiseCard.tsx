@@ -1,20 +1,20 @@
 import Image from "next/image";
 import { assets } from "@/public/assets/assets";
 import Link from "next/link";
+import { SecondSectionItem } from "./type";
 
-const ExpertiseCard = ({
-  item,
-  index,
-}: {
-  item: { image: string; title: string; icon: string };
+interface ExpertiseCardProps {
+  item: SecondSectionItem;
   index: number;
-}) => {
+}
+
+const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
   return (
     <div
       key={index}
       className="flex flex-col justify-between border-b border-smgray pb-3 lg:pb-4 xl:pb-[25px] group transition-all duration-300"
     >
-      <Link href={`/expertise/${item.title}`} className="flex flex-col h-full">
+      <Link href={`/expertise/${item.slug}`} className="flex flex-col h-full">
         <div className="mb-4 xl:mb-[17px] overflow-hidden relative h-[300px] xl:h-[486px] p-4 xl:p-[27px] flex justify-end items-end">
           <Image
             src={item.image}
@@ -37,7 +37,7 @@ const ExpertiseCard = ({
         <div className="grid grid-cols-[auto_1fr] items-center gap-3 xl:gap-[25.29px] mt-auto">
           <div className="rounded-full flex items-center justify-center group-hover:bg-primary transition-all duration-300 overflow-hidden p-[12px] xl:p-[19px] w-12 h-12 xl:w-20 xl:h-20">
             <Image
-              src={item.icon}
+              src={item.logo}
               alt={item.title}
               width={15}
               height={15}

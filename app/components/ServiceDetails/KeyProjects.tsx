@@ -5,21 +5,27 @@ import { Swiper as SwiperType } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
 import { serviceDetailsData } from "./data";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 // Import required Swiper styles
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/pagination";
-import { useState } from "react";
 import Link from "next/link";
 import { assets } from "@/public/assets/assets";
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
+import { SingleProject } from "../expertise/type";
 
-const KeyProjects = () => {
+interface KeyProjectsProps {
+  projects: SingleProject[];
+}
+
+const KeyProjects = ({ projects }: KeyProjectsProps) => {
   const swiperRef = useRef<SwiperType | null>(null);
-  const [activeIndex, setActiveIndex] = useState(0); // <- track active slide
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeOverlay, setActiveOverlay] = useState<string | null>(null);
+
   const handlePrevClick = () => {
     console.log("activeIndex", activeIndex);
     console.log("Prev clicked, swiper ref:", swiperRef.current);
@@ -155,7 +161,7 @@ const KeyProjects = () => {
           1024: { slidesPerView: 2.1, spaceBetween: 40 },
         }}
       >
-        {serviceDetailsData.keyProjects.items.map((item, index) => (
+        {projects.map((item, index) => (
           <SwiperSlide
             key={index}
             className="!overflow-hidden !p-[15px] md:!p-[0px]"
@@ -168,24 +174,35 @@ const KeyProjects = () => {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="relative h-full xl:h-[450px] 2xl:h-[533px] 3xl:h-[633px] w-full lg:w-[700px] 2xl:w-[1003px] flex flex-col justify-end px-6 py-6 xl:py-8 group"
+              className="relative h-[250px] lg:h-[350px] xl:h-[450px] 2xl:h-[533px] 3xl:h-[633px] w-full lg:w-[700px] 2xl:w-[1003px] flex flex-col justify-end px-6 py-6 xl:py-8 group"
+              onClick={() =>
+                setActiveOverlay(activeOverlay === item._id ? null : item._id)
+              }
             >
               <Image
-                src={item.img}
+                src={item.thumbnail}
                 alt={item.title}
-                width={600} // only reference, actual size controlled by w-full h-full
+                width={600}
                 height={400}
                 className="w-full h-full object-cover absolute inset-0 z-0"
               />
 
-              <div className="relative z-10 opacity-0 group-hover:opacity-100 content-box transition-all duration-300">
-                <div className="bg-black w-fit px-5 py-3">
+              <div
+                className={`
+      relative z-10 transition-all duration-300 content-box
+      ${activeOverlay === item._id ? "opacity-100" : "opacity-0"}
+      lg:group-hover:opacity-100
+    `}
+              >
+                <div className="bg-black w-fit p-2 lg:px-5 lg:py-3">
                   <p className="text-lg leading-lh-text19 font-normal text-white">
-                    {item.info}
+                    {item.secondSection.projectType.name},{" "}
+                    {item.secondSection.sector.name},{" "}
+                    {item.secondSection.location.name}
                   </p>
                 </div>
-                <div className="bg-light-white w-fit p-4 min-w-[50%] flex items-center justify-between gap-4 group">
-                  <h3 className="text-2xl leading-normal font-normal text-black ">
+                <div className="bg-light-white w-fit p-2 lg:p-4 min-w-[50%] flex items-center justify-between gap-4 group">
+                  <h3 className="text-xl lg:text-2xl leading-normal font-normal text-black">
                     {item.title}
                   </h3>
                   <Link
@@ -197,7 +214,7 @@ const KeyProjects = () => {
                       alt="arrow-right"
                       width={20}
                       height={20}
-                      className="w-5 h-5 xl:w-[19px] xl:h-[19.05px] -translate-x-2 translate-y-2 transition-all duration-300 group-hover:translate-y-0 group-hover:-translate-x-0"
+                      className="w-5 h-5 xl:w-[19px] xl:h-[19.05px] lg:-translate-x-2 lg:translate-y-2 transition-all duration-300 group-hover:translate-y-0 group-hover:-translate-x-0"
                     />
                   </Link>
                 </div>

@@ -1,13 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import { serviceDetailsData } from "./data";
 import Link from "next/link";
 import { assets } from "@/public/assets/assets";
 import { fadeIn, moveLeft, moveUp } from "../motionVarients";
 import { motion } from "framer-motion";
+import { SecondSectionThirdSection } from "../expertise/type";
 
-const Cta = () => {
+interface CtaProps {
+  data: SecondSectionThirdSection;
+}
+
+const Cta = ({ data }: CtaProps) => {
   return (
     <section className="py-57px xl:py-[90.05px] bg-light-white dark:bg-black relative overflow-hidden">
       <motion.div
@@ -17,8 +21,8 @@ const Cta = () => {
         viewport={{ once: true }}
       >
         <Image
-          src={serviceDetailsData.cta.img}
-          alt="cta"
+          src={data.image}
+          alt={data.imageAlt}
           width={500}
           height={500}
           className="absolute inset-0 w-full h-full object-cover"
@@ -40,7 +44,7 @@ const Cta = () => {
             viewport={{ once: true }}
             className="text-5xl leading-lh-text68 font-normal text-white mb-15 xl:mb-[87px]"
           >
-            {serviceDetailsData.cta.title}
+            {data.title}
           </motion.h2>
           <motion.div
             variants={moveLeft(0.2)}
@@ -50,14 +54,14 @@ const Cta = () => {
             className="lg:w-2/4 ml-auto"
           >
             <p className="text-lg leading-lh-text24 text-white font-light">
-              {serviceDetailsData.cta.desc}
+              {data.description}
             </p>
             <Link
-              href={serviceDetailsData.cta.btnLink}
+              href={data.slug}
               className="flex items-center justify-between gap-4 bg-light-white dark:bg-white rounded-3xl w-fit py-15px px-30px xl:py-20px xl:px-40px 
             transition-all duration-300 hover:bg-primary hover:text-white text-black px-5 py-2 mt-12 xl:mt-[67px] text-base leading-[1.75] group"
             >
-              {serviceDetailsData.cta.btnText}
+              {data.buttonText}
               <Image
                 src={assets.singleGreenArrow}
                 alt="arrow-right"
