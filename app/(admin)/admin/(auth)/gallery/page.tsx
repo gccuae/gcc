@@ -20,6 +20,7 @@ import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { FilesIcon } from 'lucide-react';
 import Link from 'next/link';
+import { ImageUploader } from '@/components/ui/image-uploader';
 
 interface GalleryFormProps {
     metaTitle: string;
@@ -34,16 +35,17 @@ const GalleryPage = () => {
 
 
     const [item, setItem] = useState<string>("")
+    const [image, setImage] = useState<string>("")
+    const [imageAlt, setImageAlt] = useState<string>("")
 
-    const [itemList, setItemList] = useState<{ _id: string, item: string }[]>([]);
+    const [itemList, setItemList] = useState<{ _id: string, item: string, thumbnail: string, thumbnailAlt: string }[]>([]);
 
     const handleFetchItem = async() => {
         try {
             const response = await fetch("/api/admin/gallery");
             if(response.ok) {
                 const data = await response.json();
-                console.log(data)
-                setItemList(data.data);
+                setItemList(data.data.items);
             }
         } catch (error) {
             console.log("Error fetching category", error);
@@ -76,11 +78,13 @@ const GalleryPage = () => {
         try {
             const response = await fetch("/api/admin/gallery",{
                 method: "POST",
-                body: JSON.stringify({ name: item }),
+                body: JSON.stringify({ name: item, image: image, imageAlt: imageAlt }),
             });
             if(response.ok) {
                 const data = await response.json();
                 setItem("");
+                setImage("");
+                setImageAlt("");
                 alert(data.message);
                 handleFetchItem();
             }else{
@@ -96,11 +100,14 @@ const GalleryPage = () => {
         try {
             const response = await fetch(`/api/admin/gallery?id=${id}`,{
                 method: "PATCH",
-                body: JSON.stringify({ name: item }),
+                body: JSON.stringify({ name: item, image: image, imageAlt: imageAlt }),
             });
             if(response.ok) {
                 const data = await response.json();
                 alert(data.message);
+                setItem("");
+                setImage("");
+                setImageAlt("");
                 handleFetchItem();
             }else{
                 const data = await response.json();
@@ -171,8 +178,16 @@ const GalleryPage = () => {
                             <DialogContent>
                                 <DialogHeader>
                                     <DialogTitle>Add Item</DialogTitle>
-                                    <DialogDescription>
-                                        <Input type="text" placeholder="Category Name" value={item} onChange={(e) => setItem(e.target.value)} />
+                                    <DialogDescription className='flex flex-col gap-2'>
+                                    <Label className='font-bold'>Title</Label>
+                                        <Input type="text" placeholder="Title" value={item} onChange={(e) => setItem(e.target.value)} />
+                                        <Label className='font-bold'>Thumbnail</Label>
+                                        <ImageUploader
+                                                            value={image}
+                                                            onChange={(url) => setImage(url)}
+                                                        />
+                                        <Label className='font-bold'>Thumbnail Alt</Label>
+                                        <Input type="text" placeholder="Thumbnail Alt" value={imageAlt} onChange={(e) => setImageAlt(e.target.value)} />
                                     </DialogDescription>
                                 </DialogHeader>
                                 <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={handleAddItem}>Save</DialogClose>
@@ -181,20 +196,28 @@ const GalleryPage = () => {
                         </Dialog>
                     </div>
                     <div className='px-5 flex flex-col gap-4 py-3'>
-                        {itemList.map((item) => (
+                        {itemList?.map((item) => (
                             <div className='flex justify-between items-center border rounded-md p-4 hover:bg-gray-100  hover:shadow-md transform  transition-all' key={item._id}>
                                 <div>
                                     <p>{item.item}</p>
                                 </div>
                                 <div className='flex gap-8 items-center'>
                                     <Dialog>
-                                        <DialogTrigger onClick={() => setItem(item.item)}><FaEdit className='text-lg cursor-pointer' /></DialogTrigger>
+                                        <DialogTrigger onClick={() => {setItem(item.item);setImage(item.thumbnail);setImageAlt(item.thumbnailAlt)}}><FaEdit className='text-lg cursor-pointer' /></DialogTrigger>
                                         <DialogContent>
                                             <DialogHeader>
                                                 <DialogTitle>Edit Item</DialogTitle>
-                                                <DialogDescription>
-                                                    <Input type="text" placeholder="Item Name" value={item.item} onChange={(e) => setItem(e.target.value)} />
-                                                </DialogDescription>
+                                                <DialogDescription className='flex flex-col gap-2'>
+                                    <Label className='font-bold'>Title</Label>
+                                        <Input type="text" placeholder="Title" defaultValue={item.item} onChange={(e) => setItem(e.target.value)} />
+                                        <Label className='font-bold'>Thumbnail</Label>
+                                        <ImageUploader
+                                                            value={image}
+                                                            onChange={(url) => setImage(url)}
+                                                        />
+                                        <Label className='font-bold'>Thumbnail Alt</Label>
+                                        <Input type="text" placeholder="Thumbnail Alt" value={imageAlt} onChange={(e) => setImageAlt(e.target.value)} />
+                                    </DialogDescription>
                                             </DialogHeader>
                                             <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={() => handleEditItem(item._id)}>Save</DialogClose>
                                         </DialogContent>
