@@ -5,12 +5,14 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
 import { Project } from "@/types/Projects";
+import { useRouter } from "next/navigation";
 
 interface Props {
   projects: Project["projects"];
 }
 
 const MoreProjects = ({ projects }: Props) => {
+  const router = useRouter();
   return (
     <section className="py-57px bg-light-white dark:bg-light-dark">
       <div className="container">
@@ -36,6 +38,7 @@ const MoreProjects = ({ projects }: Props) => {
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 xl:gap-10">
           {projects?.slice(0, 3).map((project, index) => (
             <motion.div
+              onClick={() => router.push(`/projects/${project.slug}`)}
               key={index}
               className="group border-b border-smgray pb-27px"
               variants={moveUp(index * 0.24)}

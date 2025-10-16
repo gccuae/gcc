@@ -278,7 +278,6 @@ export default function FeaturedProjects({
   }, [filters]);
 
   const navigate = useRouter();
-
   return (
     <section className="pt-15 xl:pt-25px bg-light-white">
       <motion.h2

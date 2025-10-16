@@ -38,7 +38,7 @@ export interface ThirdSection {
   items: ThirdSectionItem[];
 }
 
-export interface ThirdSectionItem {
+export interface  ThirdSectionItem {
   _id: string;
   title: string;
   image: string;

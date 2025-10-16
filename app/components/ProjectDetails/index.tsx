@@ -24,7 +24,9 @@ const Index = ({ data, projects }: Props) => {
         bannerAlt={data?.bannerAlt || ""}
       />
       <ProjectSlider data={data} />
-      {data.thirdSection && <DetailsTab data={data.thirdSection} />}
+      {data.thirdSection?.items && data.thirdSection.items.length > 0 && (
+        <DetailsTab data={data.thirdSection} />
+      )}
       {data.forthSection && <HIghlights data={data.forthSection} />}
       <MoreProjects projects={filteredProjects} />
     </>
