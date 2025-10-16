@@ -23,8 +23,7 @@ const GalleryCard: React.FC<{
       const isLast = index === maxCircles - 1;
       const hasMoreThan9 = item.images.length > 9;
 
-      if(item.images.length === 0) return null;
-      
+
       return (
         <div key={index} className="relative flex last:-ml-2">
           <div
@@ -59,7 +58,7 @@ const GalleryCard: React.FC<{
         className="relative h-48 xl:h-[475px] overflow-hidden cursor-pointer"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        onClick={() => onOpenModal(item)}
+        onClick={() => item.images.length > 0 && onOpenModal(item)}
       >
         <Image
           width={1920}
