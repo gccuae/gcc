@@ -36,7 +36,7 @@ const MoreExpertise = ({ allServices }: MoreExpertiseProps) => {
           </motion.div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 xl:gap-10">
-          {allServices.map((item, index) => (
+          {allServices.slice(0, 3).map((item, index) => (
             <motion.div
               key={index}
               variants={moveUp(index * 0.2)}

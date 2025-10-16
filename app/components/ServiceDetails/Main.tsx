@@ -33,8 +33,37 @@ const Main = ({ data }: { data: SecondSectionFirstSection }) => {
               className="text-lg leading-lh-text19 text-black dark:text-white"
               dangerouslySetInnerHTML={{
                 __html: (data.description || "").replace(
-                  /class="text-\[#EE3524\]"/g,
-                  'style="color:#EE3524"'
+                  /class="([^"]*)"/g, // match each class=""
+                  (match, classNames) => {
+                    // Split classes by space
+                    const classes = classNames.split(" ");
+                    const inlineStyles: string[] = [];
+                    const remainingClasses: string[] = [];
+
+                    classes.forEach((cls: string) => {
+                      // Match Tailwind arbitrary color class: text-[#xxxxxx]
+                      const colorMatch = cls.match(
+                        /^text-\[(#[0-9A-Fa-f]{3,6})\]$/
+                      );
+                      if (colorMatch) {
+                        inlineStyles.push(`color:${colorMatch[1]}`);
+                      } else {
+                        remainingClasses.push(cls);
+                      }
+                    });
+
+                    // Construct the new class + style string
+                    const classAttr =
+                      remainingClasses.length > 0
+                        ? `class="${remainingClasses.join(" ")}"`
+                        : "";
+                    const styleAttr =
+                      inlineStyles.length > 0
+                        ? ` style="${inlineStyles.join(";")}"`
+                        : "";
+
+                    return `${classAttr}${styleAttr}`;
+                  }
                 ),
               }}
             ></div>
