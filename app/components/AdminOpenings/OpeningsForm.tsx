@@ -19,6 +19,7 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { useParams,useRouter } from 'next/navigation';
+import { RiAiGenerateText } from 'react-icons/ri'
 
 interface OpeningFormProps {
     metaTitle: string;
@@ -29,6 +30,7 @@ interface OpeningFormProps {
         department: string;
         location: string;
         employmentType:string;
+        slug:string;
     };
     secondSection: {
         title: string;
@@ -48,7 +50,7 @@ const OpeningsForm = ({editMode}:{editMode?:boolean}) => {
 
     const {id} = useParams();
     const router = useRouter();
-    const { register, handleSubmit, setValue, control, formState: { errors } } = useForm<OpeningFormProps>();
+    const { register, handleSubmit, setValue, control, formState: { errors },watch } = useForm<OpeningFormProps>();
 
         const [departmentList, setDepartmentList] = useState<{ _id: string, name: string }[]>([]);
         const [locationList, setLocationList] = useState<{ _id: string, name: string }[]>([]);
@@ -125,6 +127,23 @@ const OpeningsForm = ({editMode}:{editMode?:boolean}) => {
         }
     }, []);
 
+        useEffect(() => {
+            if (watch("firstSection.slug") === undefined) return;
+            const slug = watch("firstSection.slug").replace(/\s+/g, '-');
+            setValue("firstSection.slug", slug);
+        }, [watch("firstSection.slug")])
+    
+        const handleAutoGenerate = () => {
+            const name = watch("firstSection.jobTitle");
+            if (!name) return;
+            const slug = name
+              .toLowerCase()
+              .trim()
+              .replace(/[^a-z0-9]+/g, '-')
+              .replace(/^-+|-+$/g, ''); // remove leading/trailing dashes
+            setValue("firstSection.slug", slug);
+          };
+
 
     return (
         <div className='flex flex-col gap-5'>
@@ -149,6 +168,22 @@ const OpeningsForm = ({editMode}:{editMode?:boolean}) => {
                             })} />
                             {errors.firstSection?.jobTitle && <p className='text-red-500'>{errors.firstSection?.jobTitle.message}</p>}
                         </div>
+                        <div>
+                                        <Label className='flex gap-2 items-center mb-1'>
+                                                                        Slug
+                                                                        <div className='flex gap-2 items-center bg-green-600 text-white p-1 rounded-md cursor-pointer w-fit' onClick={handleAutoGenerate}>
+                                                                            <p>Auto Generate</p>
+                                                                            <RiAiGenerateText />
+                                                                        </div>
+                                                                        </Label>
+                                            <Input type='text' placeholder='Slug' {...register("firstSection.slug", {
+                                                required: "Slug is required", pattern: {
+                                                    value: /^[a-z0-9]+(-[a-z0-9]+)*$/,
+                                                    message: "Slug must contain only lowercase letters, numbers, and hyphens (no spaces)"
+                                                }
+                                            })} />
+                                            {errors.firstSection?.slug && <p className='text-red-500'>{errors.firstSection?.slug.message}</p>}
+                                        </div>
                         <div className='flex flex-col gap-2'>
                     <Label className=''>Department</Label>
                     <Controller

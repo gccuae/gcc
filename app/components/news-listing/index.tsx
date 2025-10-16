@@ -1,16 +1,19 @@
 import PageBnr from "../common/PageBnr";
 import Main from "./Main";
-import { newsData } from "./data";
+import { NewsData } from "./type";
 import NewsList from "./NewsList";
-const Index = () => {
-  const sortedNews = [...newsData.items].sort(
+
+const Index = ({data}: {data: NewsData}) => {
+  console.log(data)
+  const items = data.categories.flatMap((item: { news: NewsData['categories'][number]['news'] }) => item.news);
+  const sortedNews = [...items].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   )[0];
   return (
     <>
-      <PageBnr pageTitle="News" bannerImg="/assets/img/news/bnr.jpg" />
-      <Main title={newsData.title} link={newsData.link} items={[sortedNews]} />
-      <NewsList />
+      <PageBnr pageTitle={data.pageTitle} bannerImg={data.banner} bannerAlt={data.bannerAlt} />
+      <Main title={"Latest Highlights"} items={[sortedNews]} />
+      <NewsList data={data}/>
     </>
   );
 };

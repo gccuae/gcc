@@ -10,7 +10,7 @@ import {
     BriefcaseIcon,
     GlobeAltIcon,
   } from "@heroicons/react/24/outline";
-import { AwardIcon, GalleryThumbnails, GroupIcon, HeartHandshake, InfoIcon, LeafIcon, PhoneIcon, Settings, Share2Icon, ThumbsUp, Workflow } from 'lucide-react';
+import { AwardIcon, GalleryThumbnails, GroupIcon, InfoIcon, LeafIcon, PhoneIcon, Settings, Share2Icon, Workflow } from 'lucide-react';
 import { useEffect } from 'react';
 import { useRefetchServices } from '@/app/contexts/refetchServices';
 import {RiShakeHandsLine } from 'react-icons/ri';
@@ -72,8 +72,6 @@ const AdminNavbar = () => {
           { name: "Main Page", href: "/admin/contact" },
           {name:"Enquiries",href:"/admin/contact/enquiries"}
         ] },
-        { name: "Quality", href: "/admin/quality", icon: ThumbsUp },
-        { name: "HSE", href: "/admin/hse", icon: HeartHandshake },
         // { name: "Sustainability", href: "/admin/sustainability", icon: LeafIcon },
         { name: "Settings", href: "/admin/settings", icon: Settings},
       ];

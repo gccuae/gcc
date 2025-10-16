@@ -1,19 +1,19 @@
 import StandardBnr from "../common/StandardBnr";
-import { careerData } from "./data";
+import { careerData } from "./type";
 import Main from "./Main";
 import CurrentOpenings from "./CurrentOpenings";
 import JobApplicationForm from "./JobApplicationForm";
-const Index = () => {
+const Index = ({data}: {data: careerData}) => {
   return (
     <>
       <section className="pt-57px dark:bg-black overflow-hidden">
         <div className="container">
-          <StandardBnr title={careerData.title} />
+          <StandardBnr title={data.firstSection.pageTitle} />
         </div>
       </section>
-      <Main data={careerData} />
-      <CurrentOpenings data={careerData} />
-      <JobApplicationForm />
+      <Main data={data.firstSection} />
+      <CurrentOpenings data={data.secondSection} jobs={data.openings} departments={data.departments} locations={data.locations}/>
+      <JobApplicationForm title={data.thirdSection.title}/>
     </>
   );
 };

@@ -3,12 +3,13 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { fadeIn, moveUp, moveLeft } from "../../motionVarients";
+import { QhseType } from "../type";
 
 type Props = {
   title: string;
   description: string;
   image: string;
-  certifications: { name: string; icon: string }[];
+  certifications: QhseType['secondSection']['items'];
 };
 
 const QualityAssurance = ({
@@ -82,9 +83,9 @@ const QualityAssurance = ({
         }        // remove top border except first row
       `}
           >
-            <Image src={cert.icon} alt={cert.name} width={120} height={120} />
+            <Image src={cert.image} alt={cert.imageAlt} width={120} height={120} />
             <p className="mt-[12px] font-light text-sm text-foreground dark:text-white">
-              {cert.name}
+              {cert.title}
             </p>
           </motion.div>
         ))}

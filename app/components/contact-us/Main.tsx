@@ -3,8 +3,9 @@
 import { moveUp } from "../motionVarients";
 import ContactForm from "./ContactForm";
 import { motion } from "framer-motion";
+import { contactType } from "./type";
 
-const Main = () => {
+const Main = ({data}: {data: contactType["firstSection"]}) => {
   return (
     <section className="pb-57px dark:bg-black">
       <div className="container">
@@ -17,7 +18,7 @@ const Main = () => {
               viewport={{ once: true }}
               className="text-3xl leading-[1.5625] text-black dark:text-white"
             >
-              Message Us
+              {data.mainTitle}
             </motion.h3>
             <motion.p
               variants={moveUp(0.2)}
@@ -26,7 +27,7 @@ const Main = () => {
               viewport={{ once: true }}
               className="text-lg leading-[1.5625] text-foreground dark:text-white/70"
             >
-              Fill out the form to send us a message.
+              {data.subTitle}
             </motion.p>
           </div>
           <div>

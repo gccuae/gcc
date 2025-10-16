@@ -5,12 +5,10 @@ import Image from "next/image";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { QhseType } from "../type";
 
 interface EnvironmentModalProps {
-  item: {
-    title: string;
-    images: string[];
-  };
+  item: QhseType['forthSection']['items'][number]
   onClose: () => void;
 }
 
@@ -90,7 +88,7 @@ const EnvironmentModal: React.FC<EnvironmentModalProps> = ({
             <div className="relative mt-10 lg:mt-0 w-full lg:w-[800px] rounded-[12px] xl:w-[1000px] 2xl:w-[1264px] h-[450px] max-h-[640px] flex items-center justify-center overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={item.images[currentIndex]}
+                  key={item.images[currentIndex].image}
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
@@ -98,7 +96,7 @@ const EnvironmentModal: React.FC<EnvironmentModalProps> = ({
                   className="absolute inset-0"
                 >
                   <Image
-                    src={item.images[currentIndex]}
+                    src={item.images[currentIndex].image}
                     alt={`slide-${currentIndex}`}
                     fill
                     className="object-cover rounded-[12px]"
@@ -138,7 +136,7 @@ const EnvironmentModal: React.FC<EnvironmentModalProps> = ({
                     }}
                   >
                     <Image
-                      src={img}
+                      src={img.image}
                       alt={`thumb-${idx}`}
                       width={isActive ? 110 : 80}
                       height={isActive ? 73 : 54}

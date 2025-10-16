@@ -1,44 +1,39 @@
-import {
-  firstSection,
-  secondSection,
-  thirdSection,
-  fourthSection,
-  fifthSection,
-} from "./data";
 import Main from "./sections/Main";
 import QualityAssurance from "./sections/QualityAssurance";
 import HealthandSafety from "./sections/HealthandSafety";
 import WhyQhse from "./sections/WhyQhse";
 import EnvironmentResponsibility from "./sections/EnvironmentResponsibility";
+import { QhseType } from "./type";
 
-const Index = () => {
+const Index = ({data}: {data:QhseType}) => {
   return (
     <>
       <Main
-        title={firstSection.title}
-        subtitle={firstSection.subtitle}
-        description={firstSection.description}
+        title={data.firstSection.mainTitle}
+        subtitle={data.firstSection.subTitle}
+        description={data.firstSection.description}
+        primaryColorText={data.firstSection.primaryColorText}
       />
       <QualityAssurance
-        title={secondSection.title}
-        description={secondSection.description}
-        image={secondSection.image}
-        certifications={secondSection.certifications}
+        title={data.secondSection.title}
+        description={data.secondSection.description}
+        image={data.secondSection.image}
+        certifications={data.secondSection.items}
       />
       <HealthandSafety
-        title={thirdSection.title}
-        description={thirdSection.description}
-        measures={thirdSection.measures}
+        title={data.thirdSection.title}
+        description={data.thirdSection.description}
+        measures={data.thirdSection.items}
       />
       <EnvironmentResponsibility
-        title={fourthSection.title}
-        description={fourthSection.description}
-        matters={fourthSection.matters}
+        title={data.forthSection.title}
+        description={data.forthSection.description}
+        matters={data.forthSection.items}
       />
       <WhyQhse
-        title={fifthSection.title}
-        description={fifthSection.description}
-        matters={fifthSection.matters}
+        title={data.fifthSection.title}
+        description={data.fifthSection.description}
+        matters={data.fifthSection.items}
       />
     </>
   );

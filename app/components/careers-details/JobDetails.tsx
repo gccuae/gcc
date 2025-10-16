@@ -7,6 +7,7 @@ import { jobDetails } from "./data";
 import { useState } from "react";
 import Image from "next/image";
 import JobApplicationModal from "./JobApplicationModal";
+import { careerData } from "../careers/type";
 
 const Modal = ({
   isOpen,
@@ -60,7 +61,7 @@ const Modal = ({
   );
 };
 
-const JobDetails = () => {
+const JobDetails = ({secondSection,thirdSection,forthSection}: {secondSection: careerData['openings'][number]['secondSection'],thirdSection: careerData['openings'][number]['thirdSection'],forthSection: careerData['openings'][number]['forthSection']}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <section className="dark:bg-[#0d0d0d]">
@@ -73,9 +74,9 @@ const JobDetails = () => {
             whileInView="show"
             className="text-2xl leading-lh-text32 text-black dark:text-white mb-2 lg:mb-27px"
           >
-            About the Role
+            {secondSection.title}
           </motion.h2>
-          {jobDetails.about.map((para, idx) => (
+          {secondSection.description.split("\n").map((para: string, idx: number) => (
             <motion.p
               key={idx}
               variants={moveUp(idx * 0.2)}
@@ -89,35 +90,18 @@ const JobDetails = () => {
         </div>
 
         {/* Key Responsibilities */}
-        <div className="pt-47px pb-57px border-b border-smgray">
+        <motion.div className="pt-47px pb-57px border-b border-smgray" variants={moveUp()} initial="hidden" whileInView="show">
           <h2 className="text-2xl leading-lh-text32 text-black dark:text-white mb-3 lg:mb-27px">
-            Key Responsibilities
+            {thirdSection.title}
           </h2>
-          <div className="flex flex-col gap-4 lg:gap-37px">
-            {jobDetails.responsibilities.map((section, idx) => (
-              <motion.div
-                variants={moveUp(idx * 0.2)}
-                initial="hidden"
-                whileInView="show"
-                key={idx}
-              >
-                <h3 className="text-lg leading-lh-text19 font-medium text-forground dark:text-white mb-3 xl:mb-5">
-                  {section.title}
-                </h3>
-                <ul className="square-list list-inside">
-                  {section.items.map((item, i) => (
-                    <li
-                      key={i}
-                      className="text-lg leading-lh-text19 font-light text-foreground dark:text-white/70"
-                    >
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+          <motion.div
+            variants={moveUp()}
+            initial="hidden"
+            whileInView="show"
+            className="flex flex-col gap-4 lg:gap-[20px] job-detail-responsibility"
+            dangerouslySetInnerHTML={{ __html: thirdSection.description }}
+          />
+        </motion.div>
 
         {/* Apply Now */}
         <div className="pt-47px pb-57px border-b border-smgray">
@@ -127,7 +111,7 @@ const JobDetails = () => {
             whileInView="show"
             className="text-2xl leading-lh-text32 text-black dark:text-white mb-3 lg:mb-27px"
           >
-            {jobDetails.apply.heading}
+            {forthSection.title}
           </motion.h3>
           <motion.p
             variants={moveUp(0.2)}
@@ -135,7 +119,7 @@ const JobDetails = () => {
             whileInView="show"
             className="text-lg leading-lh-text19 font-light mb-27px text-foreground dark:text-white/70"
           >
-            {jobDetails.apply.description}
+            {forthSection.description}
           </motion.p>
           <motion.div
             variants={moveUp(0.4)}

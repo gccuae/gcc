@@ -8,21 +8,10 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
 import { useRef } from "react";
-interface SectorSliderProps {
-  data: {
-    title: string;
-    description: string;
-    items: {
-      id: number;
-      icon: string;
-      title: string;
-      description: string;
-      image: string;
-      slug: string;
-    }[];
-  };
-}
-const SectorSlider = ({ data }: SectorSliderProps) => {
+import { SustainabilityType } from "./type";
+
+
+const SectorSlider = ({ data }: {data:SustainabilityType['forthSection']}) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
@@ -141,8 +130,8 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
                       <div className="flex xl:pl-4 xl:pr-3 pt-6 xl:pt-[37px] group-first:pl-0 transition-all duration-300">
                         <div className="flex flex-col items-start">
                           <Image
-                            src={item.icon}
-                            alt={item.title}
+                            src={item.logo}
+                            alt={item.logoAlt}
                             width={100}
                             height={100}
                             className="w-[98px] h-[100px] object-contain mb-[17px]"
@@ -162,7 +151,7 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
                       <div className="mt-auto overflow-hidden group-first:pl-0 transition-all duration-300 relative z-20 xl:pt-27px pt-3">
                         <Image
                           src={item.image}
-                          alt={item.title}
+                          alt={item.imageAlt}
                           width={487}
                           height={403}
                           className="w-full h-full xl:h-[403px] object-cover object-top flex overflow-hidden pl-0 pr-0 xl:pl-[15px] xl:pr-[15px] group-first:pl-0"

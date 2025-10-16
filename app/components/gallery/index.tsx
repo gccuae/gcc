@@ -1,14 +1,17 @@
 import StandardBnr from "../common/StandardBnr";
 import Gallery from "./Gallery";
-const Index = () => {
+import { GalleryType } from "./type";
+
+const Index = ({data}: {data: GalleryType}) => {
+  console.log(data)
   return (
     <>
     <section className="pt-57px">
       <div className="container">
-        <StandardBnr title="Gallery" />
+        <StandardBnr title={data.pageTitle} />
       </div>
     </section>
-    <Gallery />
+    <Gallery data={data}/>
     </>
   );
 }

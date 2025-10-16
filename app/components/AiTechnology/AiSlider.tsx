@@ -1,5 +1,5 @@
 "use client";
-import { SliderData } from "./data";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { SwiperRef } from "swiper/react";
 import { useState, useRef, useEffect } from "react";
@@ -7,13 +7,14 @@ import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import { moveUp } from "../motionVarients";
 import { motion } from "framer-motion";
+import { AiTechnologyType } from "./type";
 
-const AiSlider = () => {
-  const totalSlides = SliderData.items.length;
+const AiSlider = ({data}: {data: AiTechnologyType['secondSection']['items']}) => {
+  const totalSlides = data.length;
   const visibleSlides = 3;
 
   const [activeIndex, setActiveIndex] = useState(0);
-  const [bgImage, setBgImage] = useState(SliderData.items[0]?.image);
+  const [bgImage, setBgImage] = useState(data[0]?.image);
   const swiperRef = useRef<SwiperRef>(null);
 
   // Auto slide
@@ -38,7 +39,7 @@ const AiSlider = () => {
       }
     }
     setActiveIndex(nextIndex);
-    setBgImage(SliderData.items[nextIndex].image);
+    setBgImage(data[nextIndex].image);
   };
 
   const goPrev = () => {
@@ -54,15 +55,9 @@ const AiSlider = () => {
       }
     }
     setActiveIndex(prevIndex);
-    setBgImage(SliderData.items[prevIndex].image);
+    setBgImage(data[prevIndex].image);
   };
 
-  interface SliderItem {
-    title: string;
-    image: string;
-    desc?: string;
-    ul?: string[];
-  }
 
   return (
     <motion.div
@@ -98,7 +93,7 @@ const AiSlider = () => {
                 1024: { slidesPerView: visibleSlides, spaceBetween: 20 },
               }}
             >
-              {SliderData.items.map((item: SliderItem, index: number) => (
+              {data.map((item,index: number) => (
                 <SwiperSlide key={index}>
                   <motion.div
                     variants={moveUp(0.2)}
@@ -120,19 +115,11 @@ const AiSlider = () => {
                         }`}
                       >
                         <p className="text-white text-22 mb-[18px] xl:mb-[23px] leading-[1.3]">
-                          {item.desc}
+                          {item.subTitle}
                         </p>
-                        <ul className="text-white">
-                          {item.ul?.map((li, i) => (
-                            <li
-                              key={i}
-                              className="mb-2 last:mb-0 flex items-center gap-2 libullet text-base capitalize"
-                            >
-                              <div className="w-[8px] h-[8px] bg-secondary"></div>
-                              {li}
-                            </li>
-                          ))}
-                        </ul>
+                        <div className="ai-technology-items" dangerouslySetInnerHTML={{__html: item.description}}>
+                        
+                        </div>
                       </div>
                       <div>
                         <div
@@ -143,7 +130,7 @@ const AiSlider = () => {
                           }`}
                         >
                           <h3 className="text-xl xl:text-2xl leading-[1] font-normal text-white">
-                            {item.title}
+                            {item.mainTitle}
                           </h3>
                         </div>
                       </div>

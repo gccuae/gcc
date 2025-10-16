@@ -1,5 +1,11 @@
 import Index from "@/app/components/gallery";
 
-const Page = () => <Index />;
-
-export default Page;
+const Page = async () => {
+      const response = await fetch(`${process.env.BASE_URL}/api/admin/gallery`, {
+    next: { revalidate: 60 },
+  });
+  const data = await response.json();
+    
+    return <Index data={data.data}/>
+}
+export default Page

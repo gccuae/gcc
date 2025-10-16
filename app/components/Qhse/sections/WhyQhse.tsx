@@ -3,11 +3,12 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { moveUp } from "../../motionVarients";
+import { QhseType } from "../type";
 
 type Props = {
   title: string;
   description: string;
-  matters: { title: string; icon: string; content: string }[];
+  matters: QhseType['fifthSection']['items'];
 };
 
 const WhyQhse = ({ title, description, matters }: Props) => {
@@ -46,8 +47,8 @@ const WhyQhse = ({ title, description, matters }: Props) => {
               <div className="border-b border-smgray group-hover:border-b-primary group-hover:border-b-[2px] pb-4 md:pb-27px transition-colors duration-300">
                 <div className="flex items-center gap-[17px]">
                   <Image
-                    src={item.icon}
-                    alt={item.title}
+                    src={item.image}
+                    alt={item.imageAlt}
                     width={100}
                     height={100}
                     className="w-10 h-10 md:w-15 md:h-15 transition duration-300 filter brightness-0 dark:brightness-100 group-hover:brightness-100"
@@ -59,7 +60,7 @@ const WhyQhse = ({ title, description, matters }: Props) => {
                 </div>
               </div>
               <p className="text-lg leading-lh-text19 font-light text-black dark:text-white/70">
-                {item.content}
+                {item.description}
               </p>
             </motion.div>
           ))}

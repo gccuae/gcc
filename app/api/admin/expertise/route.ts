@@ -8,11 +8,17 @@ export async function GET(request: NextRequest) {
     try {
         await connectDB();
         const id = request.nextUrl.searchParams.get("id");
+        const slug = request.nextUrl.searchParams.get("slug");
         const expertise = await Expertise.findOne({});
         if(id){
             const itemToUpdate = expertise.secondSection.items.find((item: {id:string}) => item.id == id);
             if(itemToUpdate){
                 return NextResponse.json({data:itemToUpdate,message:"Expertise fetched successfully"}, { status: 200 });
+            }else if(slug){
+                const itemToUpdate = expertise.secondSection.items.find((item: {slug:string}) => item.slug == slug);
+                if(itemToUpdate){
+                    return NextResponse.json({data:itemToUpdate,message:"Expertise fetched successfully"}, { status: 200 });
+                }
             }
         }else{
             if (!expertise) {
