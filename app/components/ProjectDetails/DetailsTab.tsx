@@ -62,7 +62,7 @@ const DetailsTab = ({ data }: { data: ThirdSection }) => {
                 viewport={{ once: true }}
                 key={tab.title}
                 onClick={() => handleTabClick(idx)}
-                className={`py-2 md:py-4 xl:py-[27px] text-xl leading-normal font-medium relative transition-all duration-300  hover:bg-white/50 hover:px-2 cursor-pointer ${
+                className={`py-2 md:py-4 xl:py-[27px] text-xl leading-normal font-medium relative transition-colors duration-300  hover:bg-white/50 hover:px-2 cursor-pointer ${
                   activeTab === idx
                     ? "text-black dark:text-white dark:text-white"
                     : "text-gray-500 dark:text-white/70 hover:text-black dark:hover:text-white dark:hover:text-white/70"
