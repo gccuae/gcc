@@ -16,19 +16,10 @@ import { fadeIn, moveUp } from "../motionVarients";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Thumbs, Autoplay, Navigation } from "swiper/modules";
 import "swiper/css/navigation";
+import { ThirdSection } from "../Home/type";
 
 interface AreaOfExpertiseProps {
-  data: {
-    title: string;
-    items: {
-      id: number;
-      title: string;
-      description: string;
-      image: string | StaticImageData;
-      slug: string;
-      icon: string | StaticImageData;
-    }[];
-  };
+  data: ThirdSection;
 }
 
 const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
@@ -259,7 +250,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
           >
             {data.items.map((item, index) => (
               <SwiperSlide
-                key={item.id}
+                key={item._id}
                 className="sliderexp cursor-pointer transition mb-4 xl:mb-5 group"
                 onClick={() => handleSlideHover(index)}
               >
@@ -272,8 +263,8 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                     className="flex items-center justify-center flex-shrink-0 rounded-full border-1 border-smgray dark:border-white w-[85px] h-[85px] group-hover:bg-primary transition-colors duration-300 icon-wrapper dark:bg-[#0d0d0d]"
                   >
                     <Image
-                      src={item.icon}
-                      alt={item.title}
+                      src={item.logo}
+                      alt={item.logoAlt}
                       width={200}
                       height={200}
                       className="mb-2 w-10 h-10 object-contain group-hover:brightness-0 group-hover:invert-100"
@@ -314,7 +305,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
             className="px-6"
           >
             {data.items.map((item) => (
-              <SwiperSlide key={item.id}>
+              <SwiperSlide key={item._id}>
                 <motion.div
                   variants={moveUp(0.17)}
                   initial="hidden"
@@ -325,7 +316,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                   <div className="img-wrapper md:border-r-1 border-r-smgray pr-4 xl:pr-[50px] pb-0 xl:py-5 relative">
                     <Image
                       src={item.image}
-                      alt={item.title}
+                      alt={item.imageAlt}
                       width={1000}
                       height={1000}
                       className="slide-img w-full h-auto rounded object-cover"
@@ -340,7 +331,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                     </p>
                     <div className="slide-btn mt-6 xl:mt-[43px] mb-4">
                       <BtnPrimary
-                        link={"/expertise/civil"}
+                        link={"/expertise/" + item.title}
                         text="Read More"
                         bgtrans={false}
                       />

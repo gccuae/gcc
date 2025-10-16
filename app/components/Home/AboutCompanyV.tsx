@@ -10,19 +10,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import parse, { domToReact, DOMNode, Element } from "html-react-parser";
 import { motion } from "framer-motion";
 import { moveRight } from "../motionVarients";
+import { FirstSection } from "./type";
 
+interface Props {
+  data: FirstSection;
+}
 gsap.registerPlugin(ScrollTrigger);
 
-// 🔹 Utility: split text into words for stagger animation
-// function splitTextToSpans(text: string) {
-//   return text.split(" ").map((word, i) => (
-//     <span key={i} className="inline-block overflow-hidden mr-2">
-//       <span className="inline-block translate-y-full opacity-0">{word}</span>
-//     </span>
-//   ));
-// }
-
-const AboutCompanyV = () => {
+const AboutCompanyV = ({ data }: Props) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const textRef = useRef<HTMLParagraphElement | null>(null);
@@ -68,10 +63,37 @@ const AboutCompanyV = () => {
         if (domNode.type === "text") {
           return <>{splitNode(domNode.data || "")}</>;
         }
+
         if (domNode.type === "tag") {
           const el = domNode as Element;
+
+          // Process class for inline color
+          let inlineStyle = "";
+          let remainingClasses = "";
+
+          if (el.attribs?.class) {
+            const classes = el.attribs.class.split(" ");
+            const newClasses: string[] = [];
+
+            classes.forEach((cls) => {
+              const colorMatch = cls.match(/^text-\[(#[0-9A-Fa-f]{3,6})\]$/);
+              if (colorMatch) {
+                inlineStyle = `color:${colorMatch[1]}`;
+              } else {
+                newClasses.push(cls);
+              }
+            });
+
+            remainingClasses = newClasses.join(" ");
+          }
+
           return (
-            <span className={el.attribs?.class || ""}>
+            <span
+              className={remainingClasses}
+              style={
+                inlineStyle ? { color: inlineStyle.split(":")[1] } : undefined
+              }
+            >
               {domToReact(el.children as DOMNode[], {
                 replace: (child) =>
                   child.type === "text" ? (
@@ -140,7 +162,7 @@ const AboutCompanyV = () => {
           >
             <video
               ref={videoRef}
-              poster="/assets/img/home/video-poster.jpg"
+              poster={data.poster}
               controls={false}
               className="h-full w-full object-cover hover:scale-110"
               width={1080}
@@ -183,8 +205,8 @@ const AboutCompanyV = () => {
                   {/* Video Player */}
                   <video
                     className="w-full h-full rounded-lg object-cover"
-                    src="/assets/img/abt_bnr.mp4"
-                    poster="/assets/img/home/video-poster.jpg"
+                    src={data.video}
+                    poster={data.poster}
                     width={1080}
                     height={740}
                     controls
@@ -201,15 +223,13 @@ const AboutCompanyV = () => {
               ref={textRef}
               className="text-lg xl:text-[30px] font-light text-foreground mb-5 md:mb-8 xl:mb-20 xl:mb-29 dark:text-white leading-[1.3]"
             >
-              {splitTextToSpans(
-                `GCC,<span class="font-semibold text-primary">established in 1988</span>, is known for innovation and excellence in construction, with projects ranging from infrastructure and defense to industrial, commercial, and residential developments.`
-              )}
+              {splitTextToSpans(data.description)}
             </p>
 
             <div ref={btnRef}>
               <BtnPrimary
                 link={"/about-us"}
-                text="About Company"
+                text={data.buttonText}
                 bgtrans={false}
               />
             </div>

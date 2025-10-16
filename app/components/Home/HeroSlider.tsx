@@ -4,17 +4,18 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperClass } from "swiper";
 import { Autoplay, EffectFade } from "swiper/modules";
 import "swiper/css";
-import { Home } from "@/types/Common";
 import BtnPrimary from "../common/BtnPrimary";
 import Counter from "../common/Counter";
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
+import { BannerItem, NumberItem } from "./type";
 
 interface HeroSliderProps {
-  data: Home;
+  data: BannerItem[];
+  counterData: NumberItem[];
 }
 
-const HeroSlider = ({ data }: HeroSliderProps) => {
+const HeroSlider = ({ data, counterData }: HeroSliderProps) => {
   const swiperRef = useRef<SwiperClass | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -31,7 +32,7 @@ const HeroSlider = ({ data }: HeroSliderProps) => {
       <div
         className="relative w-full h-full slideroverlay bg-cover bg-center"
         style={{
-          backgroundImage: `url(${data.banners[activeIndex]?.bannerimage})`,
+          backgroundImage: `url(${data[activeIndex]?.image})`,
         }}
       >
         <div className="slidermns h-full  container relative pt-10 md:pt-[130px] z-[9]">
@@ -48,7 +49,7 @@ const HeroSlider = ({ data }: HeroSliderProps) => {
             onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
             className="w-full h-full "
           >
-            {data.banners.map((slide, index) => (
+            {data.map((slide, index) => (
               <SwiperSlide key={index}>
                 <div className="  w-full h-full  ">
                   {/* <Image
@@ -78,7 +79,7 @@ const HeroSlider = ({ data }: HeroSliderProps) => {
                       animate="show"
                       className="text-white text-xl font-light max-w-[73ch] leading-[1.521739130434783] pt-[35px] pb-[35px]"
                     >
-                      {slide.subtitle}
+                      {slide.description}
                     </motion.p>
                     <motion.div
                       variants={moveUp(1.8)}
@@ -87,7 +88,7 @@ const HeroSlider = ({ data }: HeroSliderProps) => {
                     >
                       <BtnPrimary
                         link="/expertise/civil"
-                        text={slide.btn}
+                        text="Readmore"
                         bgtrans={true}
                         borderwight={true}
                       />
@@ -104,9 +105,9 @@ const HeroSlider = ({ data }: HeroSliderProps) => {
                 className="flex gap-3 md:gap-5   md:flex-col  md:border-r border-[#FFFFFF80] relative right-1 justify-end"
                 style={{ alignItems: "flex-end" }}
               >
-                {data.banners.map((_, index: number) => (
+                {data.map((_, index: number) => (
                   <div key={index} className="lead">
-                    {data.banners.length > 1 ? (
+                    {data.length > 1 ? (
                       <button
                         className={`mt-8 md:mt-0 text-[14px] leading-[1.8] font-light  relative md:right-[-4px] cursor-pointer px-3 md:px-0 md:pe-[13px]  transition-all duration-300 ${
                           activeIndex === index
@@ -138,7 +139,12 @@ const HeroSlider = ({ data }: HeroSliderProps) => {
               <div className="text-white border border-[#C2C2C2] border-b-0 transition-all duration-300 group active:bg-primary hover:bg-primary hover:translate-y-2">
                 <div className="pe-3 ps-3 xl:ps-12 py-5 xl:py-[32px]">
                   <p className="text-2xl md:text-5xl font-normal leading-[0.7352941176470588] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
-                    <Counter from={0} to={35} duration={2} /> <span>+</span>
+                    <Counter
+                      from={0}
+                      to={Number(counterData[0].number.replace(/\D/g, ""))}
+                      duration={2}
+                    />
+                    <span>+</span>
                   </p>
                   <p className="uppercase font-light text-base xl:text-lg leading-[1]">
                     Years of Expertise
@@ -156,7 +162,12 @@ const HeroSlider = ({ data }: HeroSliderProps) => {
               <div className="text-white border border-[#C2C2C2] border-b-0 pe-3 transition-all duration-300 group active:bg-primary hover:bg-primary hover:translate-y-2">
                 <div className="ps-3 xl:ps-12 py-5 xl:py-[32px]">
                   <p className="text-2xl md:text-5xl font-normal leading-[0.7352941176470588] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
-                    <Counter from={0} to={180} duration={2} />M
+                    <Counter
+                      from={0}
+                      to={Number(counterData[1].number.replace(/\D/g, ""))}
+                      duration={2}
+                    />
+                    M
                   </p>
                   <p className="uppercase font-light text-base xl:text-lg leading-[1]">
                     {" "}
@@ -175,7 +186,12 @@ const HeroSlider = ({ data }: HeroSliderProps) => {
               <div className="text-white border border-[#C2C2C2] border-b-0 pe-3 transition-all duration-300 group active:bg-primary hover:bg-primary hover:translate-y-2">
                 <div className="ps-3 xl:ps-12 py-5 xl:py-[32px]">
                   <p className="text-2xl md:text-5xl font-normal leading-[0.7352941176470588] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
-                    <Counter from={0} to={750} duration={2} />+
+                    <Counter
+                      from={0}
+                      to={Number(counterData[2].number.replace(/\D/g, ""))}
+                      duration={2}
+                    />
+                    +
                   </p>
                   <p className="uppercase font-light text-base xl:text-lg leading-[1]">
                     Projects Completed
@@ -193,7 +209,12 @@ const HeroSlider = ({ data }: HeroSliderProps) => {
               <div className="text-white border border-[#C2C2C2] border-b-0 pe-3 transition-all duration-300 group active:bg-primary hover:bg-primary hover:translate-y-2">
                 <div className="ps-3 xl:ps-12 py-5 xl:py-[32px]">
                   <p className="text-2xl md:text-5xl font-normal leading-[0.7352941176470588] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
-                    <Counter from={0} to={5000} duration={2} />+
+                    <Counter
+                      from={0}
+                      to={Number(counterData[3].number.replace(/\D/g, ""))}
+                      duration={2}
+                    />
+                    +
                   </p>
                   <p className="uppercase font-light text-base xl:text-lg  leading-[1]">
                     Dedicated Manpower

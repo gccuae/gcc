@@ -14,6 +14,7 @@ export interface Project {
     slug: string;
     thumbnail: string;
     thumbnailAlt: string;
+    featuredProject: boolean;
     secondSection: {
       sector: {
         name: string;
@@ -28,6 +29,9 @@ export interface Project {
         _id: string;
       };
       status: string;
+      client: string;
+      projectValue: string;
+      
     };
   }[];
 }
@@ -36,5 +40,5 @@ export interface ProjectsPage {
   pageTitle: string;
   banner: string;
   bannerAlt: string;
-  projects: Project["projects"]; 
+  projects: Project["projects"];
 }
