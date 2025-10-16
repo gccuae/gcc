@@ -23,6 +23,8 @@ const GalleryCard: React.FC<{
       const isLast = index === maxCircles - 1;
       const hasMoreThan9 = item.images.length > 9;
 
+      if(item.images.length === 0) return null;
+      
       return (
         <div key={index} className="relative flex last:-ml-2">
           <div
