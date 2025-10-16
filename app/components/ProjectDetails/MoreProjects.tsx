@@ -30,11 +30,11 @@ const MoreProjects = ({ projects }: Props) => {
             whileInView="show"
             viewport={{ once: true }}
           >
-            <BtnPrimary link={"#"} text="View All" bgtrans={true} />
+            <BtnPrimary link={"/projects"} text="View All" bgtrans={true} />
           </motion.div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 xl:gap-10">
-          {projects?.map((project, index) => (
+          {projects?.slice(0, 3).map((project, index) => (
             <motion.div
               key={index}
               className="group border-b border-smgray pb-27px"

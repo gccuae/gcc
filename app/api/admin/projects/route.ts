@@ -142,11 +142,11 @@ export async function PATCH(request: NextRequest) {
           { status: 404 }
         );
       }
-      console.log(body);
+      console.log(foundProject);
       foundProject.firstSection.images = body.firstSection.images;
       foundProject.secondSection = body.secondSection;
       foundProject.thirdSection = body.thirdSection;
-      foundProject.fourthSection = body.fourthSection;
+      foundProject.forthSection = body.forthSection;
       foundProject.banner = body.banner;
       foundProject.bannerAlt = body.bannerAlt;
       foundProject.thumbnail = body.thumbnail;

@@ -156,11 +156,11 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
     }
 
     const fetchProjectData = async () => {
+        console.log(id, "niv");
         try {
             const response = await fetch(`/api/admin/projects?id=${id}`);
             if (response.ok) {
                 const data = await response.json();
-                console.log(data.data);
                 setValue("banner", data.data.banner);
                 setValue("bannerAlt", data.data.bannerAlt);
                 setValue("thumbnail", data.data.thumbnail);
