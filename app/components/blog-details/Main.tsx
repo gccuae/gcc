@@ -170,7 +170,7 @@ const Main = ({
           </ul> */}
           {}
         </div>
-        <motion.div
+        {quote && <motion.div
           variants={moveUp()}
           initial="hidden"
           whileInView="show" 
@@ -191,7 +191,7 @@ const Main = ({
                 whileInView="show"
                 className="text-lg leading-lh-text19 font-medium text-white w-fit"
               >
-                {quoteAuthor}
+                {quoteAuthor ?? ""}
               </motion.p>
               <motion.div
                 variants={moveLeft(0.2)}
@@ -217,7 +217,7 @@ const Main = ({
               />
             </div>
           </div>
-        </motion.div>
+        </motion.div>}
       </div>
     </section>
   );

@@ -15,7 +15,7 @@ const Page = async({params}: {params: Promise<{slug: string}>}) => {
 
     const allBlogData = await allBlogResponse.json();
     const data = await response.json();
-    return <Index data={data.data[0]} allBlogData={allBlogData.data}/>;
+    return <Index data={data.data} allBlogData={allBlogData.data}/>;
 }
 
 export default Page;
