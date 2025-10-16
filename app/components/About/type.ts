@@ -7,12 +7,10 @@ export interface PageBnrProps {
 
 // ---------- Image Description Section ----------
 export interface ImgDescProps {
-  data: {
-    image: string;
-    imageAlt?: string;
-    title: string;
-    description: string;
-  };
+  image: string;
+  imageAlt?: string;
+  title: string;
+  description: string;
 }
 
 // ---------- What We Do Section ----------
@@ -83,7 +81,7 @@ export interface HomePageData {
   pageTitle: string;
   banner: string;
   bannerAlt: string;
-  firstSection: ImgDescProps["data"];
+  firstSection: ImgDescProps;
   secondSection: WhatWeDoProps["data"];
   thirdSection: ViMiVaProps["data"];
   historySection: LegacySection;
