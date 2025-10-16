@@ -31,3 +31,10 @@ export interface Project {
     };
   }[];
 }
+
+export interface ProjectsPage {
+  pageTitle: string;
+  banner: string;
+  bannerAlt: string;
+  projects: Project["projects"]; 
+}
