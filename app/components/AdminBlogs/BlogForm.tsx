@@ -72,20 +72,20 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
             if (response.ok) {
                 const data = await response.json();
                 console.log(data.data)
-                setValue("title", data.data[0].title);
-                setValue("slug", data.data[0].slug);
-                setValue("content", data.data[0].content);
-                setValue("author", data.data[0].author);
-                setValue("category", data.data[0].category);
-                setValue("thumbnail", data.data[0].thumbnail);
-                setValue("thumbnailAlt", data.data[0].thumbnailAlt);
-                setValue("coverPhoto", data.data[0].coverPhoto);
-                setValue("coverPhotoAlt", data.data[0].coverPhotoAlt);
-                setValue("quote", data.data[0].quote);
-                setValue("quoteAuthor", data.data[0].quoteAuthor);
-                setValue("metaTitle", data.data[0].metaTitle);
-                setValue("metaDescription", data.data[0].metaDescription);
-                const isoDate = new Date(data.data[0].date).toISOString().split("T")[0];
+                setValue("title", data.data.title);
+                setValue("slug", data.data.slug);
+                setValue("content", data.data.content);
+                setValue("author", data.data.author);
+                setValue("category", data.data.category);
+                setValue("thumbnail", data.data.thumbnail);
+                setValue("thumbnailAlt", data.data.thumbnailAlt);
+                setValue("coverPhoto", data.data.coverPhoto);
+                setValue("coverPhotoAlt", data.data.coverPhotoAlt);
+                setValue("quote", data.data.quote);
+                setValue("quoteAuthor", data.data.quoteAuthor);
+                setValue("metaTitle", data.data.metaTitle);
+                setValue("metaDescription", data.data.metaDescription);
+                const isoDate = new Date(data.data.date).toISOString().split("T")[0];
                 setValue("date", isoDate);
             } else {
                 const data = await response.json();
