@@ -14,20 +14,25 @@ export async function GET(req: NextRequest) {
         if (!blogs) {
             return NextResponse.json({ message: "Blogs not found" }, { status: 404 });
         }
-        if(id){
-            const blogsCategory = await blogs.categories.flatMap((category:  { blogs: { _id: string }[] }) => category.blogs.find((blogs: { _id: string }) => blogs._id == id));
+        if (id) {
+            const blogsCategory = blogs.categories
+                .flatMap((category: { blogs: { _id: string } }) => category.blogs)
+                .find((blog: { _id: string }) => blog._id.toString() === id);
             if (!blogsCategory) {
                 return NextResponse.json({ message: "Blogs Category not found" }, { status: 404 });
             }
-            return NextResponse.json({data:blogsCategory,message:"Blogs fetched successfully"}, { status: 200 });
-        }else if(slug){
-            const blogsCategory = await blogs.categories.flatMap((category:  { blogs: { slug: string }[] }) => category.blogs.find((blogs: { slug: string }) => blogs.slug == slug));
+            return NextResponse.json({ data: blogsCategory, message: "Blogs fetched successfully" }, { status: 200 });
+        } else if (slug) {
+            const blogsCategory = blogs.categories
+                .flatMap((category: { blogs: { slug: string } }) => category.blogs)
+                .find((blog: { slug: string }) => blog.slug === slug);
+            console.log(blogsCategory);
             if (!blogsCategory) {
                 return NextResponse.json({ message: "Blogs Category not found" }, { status: 404 });
             }
-            return NextResponse.json({data:blogsCategory,message:"Blogs fetched successfully"}, { status: 200 });
+            return NextResponse.json({ data: blogsCategory, message: "Blogs fetched successfully" }, { status: 200 });
         }
-        return NextResponse.json({data:blogs,message:"Blogs fetched successfully"}, { status: 200 });
+        return NextResponse.json({ data: blogs, message: "Blogs fetched successfully" }, { status: 200 });
     } catch (error) {
         console.log(error);
         return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
@@ -70,11 +75,11 @@ export async function PATCH(request: NextRequest) {
             await blogs.save();
             return NextResponse.json({ data: blogs, message: "Blogs updated successfully" }, { status: 200 });
         }
-        const blogs = await Blogs.findOneAndUpdate({}, body,{upsert:true,new:true});
+        const blogs = await Blogs.findOneAndUpdate({}, body, { upsert: true, new: true });
         if (!blogs) {
             return NextResponse.json({ message: "Blogs not found" }, { status: 404 });
         }
-        return NextResponse.json({data:blogs,message:"Blogs updated successfully"}, { status: 200 });
+        return NextResponse.json({ data: blogs, message: "Blogs updated successfully" }, { status: 200 });
     } catch (error) {
         console.log(error);
         return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
@@ -99,7 +104,7 @@ export async function POST(request: NextRequest) {
         }
         blogsCategory.blogs.push(body);
         await blogs.save();
-        return NextResponse.json({message:"Blogs created successfully"}, { status: 200 });
+        return NextResponse.json({ message: "Blogs created successfully" }, { status: 200 });
     } catch (error) {
         console.log(error);
         return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
