@@ -1,16 +1,19 @@
 import StandardBnr from "@/app/components/common/StandardBnr";
 import Main from "./Main";
 import ContactInfo from "./ContactInfo";
-const Index = () => {
+import { contactType } from "./type";
+
+const Index = ({data}: {data: contactType}) => {
+  console.log(data)
   return (
     <>
       <section className="pt-57px dark:bg-black">
         <div className="container">
-          <StandardBnr title="Let’s Connect with GCC" />
+          <StandardBnr title={data.firstSection.pageTitle} />
         </div>
       </section>
-      <Main />
-      <ContactInfo />
+      <Main data={data.firstSection}/>
+      <ContactInfo data={data.secondSection}/>
     </>
   );
 };

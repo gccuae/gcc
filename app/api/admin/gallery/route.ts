@@ -54,7 +54,7 @@ export async function PATCH(request: NextRequest) {
             await gallery.save();
             return NextResponse.json({message:"Item updated successfully"}, { status: 200 });
         }
-        const gallery = await Gallery.findOneAndUpdate({id}, body,{upsert:true,new:true});
+        const gallery = await Gallery.findOneAndUpdate({}, body,{upsert:true,new:true});
         if (!gallery) {
             return NextResponse.json({ message: "Gallery not found" }, { status: 404 });
         }

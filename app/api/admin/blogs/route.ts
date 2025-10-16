@@ -9,12 +9,19 @@ export async function GET(req: NextRequest) {
         await connectDB();
         const searchParams = req.nextUrl.searchParams;
         const id = searchParams.get("id");
+        const slug = searchParams.get("slug");
         const blogs = await Blogs.findOne({});
         if (!blogs) {
             return NextResponse.json({ message: "Blogs not found" }, { status: 404 });
         }
         if(id){
             const blogsCategory = await blogs.categories.flatMap((category:  { blogs: { _id: string }[] }) => category.blogs.find((blogs: { _id: string }) => blogs._id == id));
+            if (!blogsCategory) {
+                return NextResponse.json({ message: "Blogs Category not found" }, { status: 404 });
+            }
+            return NextResponse.json({data:blogsCategory,message:"Blogs fetched successfully"}, { status: 200 });
+        }else if(slug){
+            const blogsCategory = await blogs.categories.flatMap((category:  { blogs: { slug: string }[] }) => category.blogs.find((blogs: { slug: string }) => blogs.slug == slug));
             if (!blogsCategory) {
                 return NextResponse.json({ message: "Blogs Category not found" }, { status: 404 });
             }

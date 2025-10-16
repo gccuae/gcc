@@ -8,29 +8,16 @@ import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/thumbs";
 import { Swiper as SwiperType } from "swiper";
-import { StaticImageData } from "next/image";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { fadeIn, moveUp } from "../motionVarients";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SustainabilityType } from "./type";
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface AreaOfExpertiseProps {
-  data: {
-    title: string;
-    items: {
-      id: number;
-      title: string;
-      description: string;
-      image: string | StaticImageData;
-      slug: string;
-      icon: string | StaticImageData;
-    }[];
-  };
-}
 
-const SocialImpact = ({ data }: AreaOfExpertiseProps) => {
+const SocialImpact = ({ data }: {data:SustainabilityType['thirdSection']}) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
   const [mainSwiper, setMainSwiper] = useState<SwiperType | null>(null);
   const prevRef = useRef<HTMLDivElement>(null);
@@ -242,7 +229,7 @@ const SocialImpact = ({ data }: AreaOfExpertiseProps) => {
           >
             {data.items.map((item, index) => (
               <SwiperSlide
-                key={item.id}
+                key={index}
                 className="cursor-pointer transition mb-4 xl:mb-[65px] group"
                 onMouseOver={() => handleSlideHover(index)}
               >
@@ -261,8 +248,8 @@ const SocialImpact = ({ data }: AreaOfExpertiseProps) => {
                     className={`flex items-center justify-center rounded-full bg-white w-[85px] h-[85px] border-3 border-white group-hover:border-accent transition-all duration-300 icon-wrapper`}
                   >
                     <Image
-                      src={item.icon}
-                      alt={item.title}
+                      src={item.logo}
+                      alt={item.logoAlt}
                       width={200}
                       height={200}
                       className="mb-2 w-10 h-10 object-contain"
@@ -307,8 +294,8 @@ const SocialImpact = ({ data }: AreaOfExpertiseProps) => {
               }}
               className="px-6"
             >
-              {data.items.map((item) => (
-                <SwiperSlide key={item.id}>
+              {data.items.map((item,index) => (
+                <SwiperSlide key={index}>
                   <div className="slide-container grid grid-cols-1 lg:grid-cols-2 gap-[20px] md:gap-[30px] lg:gap-[50px] xl:gap-[70px] 2xl:gap-[95px] items-center">
                     {/* Image */}
                     <motion.div

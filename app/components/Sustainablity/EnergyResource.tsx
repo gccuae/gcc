@@ -3,19 +3,10 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
+import { SustainabilityType } from "./type";
 
-interface EngProps {
-  data: {
-    title: string;
-    desc: string;
-    items: {
-      title: string;
-      desc: string;
-      icon: string;
-    }[];
-  };
-}
-const EnergyResource = ({ data }: EngProps) => {
+
+const EnergyResource = ({ data }: {data:SustainabilityType['secondSection']}) => {
   return (
     <section className="py-57px bg-light-white dark:bg-light-dark">
       <div className="container">
@@ -35,7 +26,7 @@ const EnergyResource = ({ data }: EngProps) => {
           viewport={{ once: true }}
           className="text-lg max-w-[96ch] leading-[1.526315789473684] font-light text-forground dark:text-white/80 hover:text-black dark:hover:text-white transition-colors duration-300"
         >
-          {data.desc}
+          {data.description}
         </motion.p>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 border border-smgray mt-57px">
           {data.items.map((item, index) => (
@@ -52,8 +43,8 @@ const EnergyResource = ({ data }: EngProps) => {
                   className="group-hover:bg-primary w-[80px] h-[80px] rounded-full transition-colors duration-300 flex items-center justify-center mb-2 lg:mb-4"
                 >
                   <Image
-                    src={item.icon}
-                    alt={item.title}
+                    src={item.image}
+                    alt={item.imageAlt}
                     width={100}
                     height={100}
                     className="w-[70px] h-[70px] group-hover:brightness-0 group-hover:invert-100 transition-all duration-300"
@@ -77,7 +68,7 @@ const EnergyResource = ({ data }: EngProps) => {
                   viewport={{ once: true }}
                   className="text-lg leading-[1.5625] dark:text-white"
                 >
-                  {item.desc}
+                  {item.description}
                 </motion.p>
               </div>
             </div>

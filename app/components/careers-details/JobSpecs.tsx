@@ -2,15 +2,19 @@
 
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
+import { careerData } from "../careers/type";
 
-const jobSpecs = [
-  { label: "Job Title", value: "Site Engineer" },
-  { label: "Department", value: "Site Engineer" },
-  { label: "Location", value: "Site Engineer" },
-  { label: "Employment Type", value: "Site Engineer" },
+
+
+const JobSpecs = ({data}: {data: careerData['openings'][number]['firstSection']}) => {
+
+  const jobSpecs = [
+  { label: "Job Title", value: data.jobTitle },
+  { label: "Department", value: data.department },
+  { label: "Location", value: data.location },
+  { label: "Employment Type", value: data.employmentType },
 ];
 
-const JobSpecs = () => {
   return (
     <section className="dark:bg-black pt-57px">
       <motion.div
@@ -22,7 +26,7 @@ const JobSpecs = () => {
         {/* Section Heading */}
         <div className="pb-57px">
           <h2 className="text-2xl leading-lh-text32 font-normal text-black dark:text-white">
-            Job Specifications
+            {data.title}
           </h2>
         </div>
 

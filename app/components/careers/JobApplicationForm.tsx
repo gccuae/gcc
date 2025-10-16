@@ -11,7 +11,7 @@ import { moveUp } from "../../components/motionVarients";
 
 type FormData = z.infer<typeof jobApplicationSchema>;
 
-const JobApplicationForm = () => {
+const JobApplicationForm = ({title}: {title: string}) => {
   const {
     register,
     handleSubmit,
@@ -43,8 +43,7 @@ const JobApplicationForm = () => {
           viewport={{ once: true }}
           className="text-3xl lg:text-5xl leading-1h-title text-black dark:text-white mb-3 lg:mb-14 font-light"
         >
-          Submit your resume and we&apos;ll keep it in our talent pool for
-          future opportunities.
+          {title}
         </motion.h2>
 
         <form

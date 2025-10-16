@@ -3,22 +3,13 @@ import { motion } from "framer-motion";
 import BtnPrimary from "../common/BtnPrimary";
 import Image from "next/image";
 import { moveRight, moveUp } from "../motionVarients";
+import { NewsData } from "./type";
 const Main = ({
   title,
-  link,
   items,
 }: {
   title: string;
-  link: string;
-  items: {
-    id: number;
-    category: string;
-    title: string;
-    description: string;
-    image: string;
-    link: string;
-    date: string;
-  }[];
+  items: NewsData['categories'][number]['news']
 }) => {
   return (
     <section className="pt-10 xl:pt-[57px] pb-57px bg-light-white dark:bg-black relative overflow-hidden">
@@ -40,7 +31,7 @@ const Main = ({
             whileInView="show"
             viewport={{ once: true }}
           >
-            <BtnPrimary link={link} text="View All" bgtrans={true} />
+            {/* <BtnPrimary link={link} text="View All" bgtrans={true} /> */}
           </motion.div>
         </div>
         <div>
@@ -56,7 +47,7 @@ const Main = ({
                     className="w-full xl:w-1/2 overflow-hidden"
                   >
                     <Image
-                      src={item.image}
+                      src={item.thumbnail}
                       alt="newsBlockImage"
                       width={2000}
                       height={2000}
@@ -77,7 +68,7 @@ const Main = ({
                         </span>
                       </button>
                       <p className="text-base font-light text-forground underline underline-offset-10 dark:text-white hover:text-black dark:hover:text-white transition-colors duration-300">
-                        {item.date}
+                        {item.date ? new Date(item.date).toLocaleDateString("en-GB").replace(/\//g, "-") : new Date(item.createdAt).toLocaleDateString("en-GB").replace(/\//g, "-")}
                       </p>
                     </motion.div>
                     <motion.h3
@@ -106,7 +97,7 @@ const Main = ({
                       className="mt-4 xl:mt-[53px]"
                     >
                       <BtnPrimary
-                        link={item.link}
+                        link={`news/${item.slug}`}
                         text="Read More"
                         bgtrans={true}
                       />

@@ -12,8 +12,15 @@ export async function GET(request:NextRequest) {
             return NextResponse.json({ message: "Openings not found" }, { status: 404 });
         }
         const id = request.nextUrl.searchParams.get("id");
+        const slug = request.nextUrl.searchParams.get("slug");
         if(id){
             const opening = openings.openings.find((opening:{_id:string})=>opening._id.toString() === id);
+            if(!opening){
+                return NextResponse.json({ message: "Opening not found" }, { status: 404 });
+            }
+            return NextResponse.json({data:opening,message:"Opening fetched successfully"}, { status: 200 });
+        }else if (slug){
+            const opening = openings.openings.find((opening:{firstSection:{slug:string}})=>opening.firstSection.slug === slug);
             if(!opening){
                 return NextResponse.json({ message: "Opening not found" }, { status: 404 });
             }

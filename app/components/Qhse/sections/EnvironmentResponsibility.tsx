@@ -6,17 +6,14 @@ import Image from "next/image";
 import EnvironmentModal from "./EnvironmentModal";
 import { motion } from "framer-motion";
 import { moveUp } from "../../motionVarients";
+import { QhseType } from "../type";
 
-type Matter = {
-  title: string;
-  thumbnail: string;
-  images: string[];
-};
+type Matter = QhseType['forthSection']['items'][number]
 
 type Props = {
   title: string;
   description: string;
-  matters: Matter[];
+  matters: QhseType['forthSection']['items'];
 };
 
 const EnvironmentalResponsibility = ({
@@ -66,7 +63,7 @@ const EnvironmentalResponsibility = ({
               <div className="relative overflow-hidden">
                 <Image
                   src={item.thumbnail}
-                  alt={item.title}
+                  alt={item.thumbnailAlt}
                   width={486}
                   height={475}
                   className="object-cover w-full max-w-full max-h-[300px] lg:max-h-[475px] group-hover:scale-[1.02] transition-all duration-300 group-hover:blur-[2px]"
@@ -88,7 +85,7 @@ const EnvironmentalResponsibility = ({
                       className="w-[50px] h-[50px] rounded-full overflow-hidden border border-gray-200 -ml-4"
                     >
                       <Image
-                        src={img}
+                        src={img.image}
                         alt={`${item.title} ${i + 1}`}
                         width={50}
                         height={50}

@@ -1,15 +1,16 @@
 "use client";
 
 import BtnPrimary from "../common/BtnPrimary";
-import { blogData } from "../blog/data";
 import { BlogItem } from "../blog/BlogItem";
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
+import { BlogData } from "../blog/type";
 
-const MoreBlog = ({ category }: { category: string }) => {
-  const { items } = blogData;
+const MoreBlog = ({ category, items }: { category: string, items: BlogData }) => {
   // filter blogs by category
-  const filtered = items
+
+  const allItems = items.categories.flatMap((item: { blogs: BlogData['categories'][number]['blogs'] }) => item.blogs);
+  const filtered = allItems
     .filter((item) => item.category === category)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 4); // latest 4
@@ -35,7 +36,7 @@ const MoreBlog = ({ category }: { category: string }) => {
               whileInView="show"
               key={index}
             >
-              <BlogItem key={item.id} item={item} index={index} />
+              <BlogItem key={item.slug} item={item} index={index} />
             </motion.div>
           ))}
         </div>

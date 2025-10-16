@@ -1,26 +1,22 @@
 import PageBnr from "../common/PageBnr";
-import {
-  expertiseData,
-  energyResourceData,
-  socialImpactData,
-  fifthSection,
-} from "./data";
 import ImgDesc from "../common/ImgDesc";
 import EnergyResource from "./EnergyResource";
 import SocialImpact from "./SocialImpact";
 import UnGoals from "./UnGoals";
+import { SustainabilityType } from "./type";
 
-const Index = () => {
+const Index = ({data}: {data: SustainabilityType}) => {
   return (
     <>
       <PageBnr
-        pageTitle={expertiseData.title}
-        bannerImg={expertiseData.bannerImg}
+        pageTitle={data.pageTitle}
+        bannerImg={data.banner}
+        bannerAlt={data.bannerAlt}
       />
-      <ImgDesc data={expertiseData.firstSection} />
-      <EnergyResource data={energyResourceData.data} />
-      <SocialImpact data={socialImpactData.data} />
-      <UnGoals data={fifthSection} />
+      <ImgDesc data={data.firstSection} />
+      <EnergyResource data={data.secondSection} />
+      <SocialImpact data={data.thirdSection} />
+      <UnGoals data={data.forthSection} />
     </>
   );
 };

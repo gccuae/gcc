@@ -1,19 +1,21 @@
 "use client";
 
-import { blogData } from "./data";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useMemo } from "react";
 import { BlogItem } from "./BlogItem";
 import { moveUp, moveLeft } from "../motionVarients";
+import { BlogData } from "./type";
 
-const BlogList = () => {
-  const { items } = blogData;
+const BlogList = ({data}: {data: BlogData}) => {
+  const items = data.categories.flatMap((item: { blogs: BlogData['categories'][number]['blogs'] }) => item.blogs);
+  console.log(items);
 
   // Extract unique categories
   const categories = useMemo(() => {
-    const unique = Array.from(new Set(items.map((item) => item.category)));
+    const unique = Array.from(new Set(data.categories.map((item: { category: string }) => item.category)));
+    console.log(unique);
     return ["All", ...unique];
-  }, [items]);
+  }, [data]);
 
   const [activeTab, setActiveTab] = useState(0);
 
@@ -99,7 +101,7 @@ const BlogList = () => {
                     <div className="mt-4 grid grid-cols-1 gap-5">
                       {filteredItems.map((item, i) => (
                         <motion.div
-                          key={`${item.id || item.title}-${i}`}
+                          key={`${item.title}-${i}`}
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -10 }}
@@ -107,7 +109,7 @@ const BlogList = () => {
                         >
                           <BlogItem
                             item={item}
-                            key={`${item.id || item.title}-${i}`}
+                            key={`${item.title}-${i}`}
                             index={i}
                           />
                         </motion.div>
@@ -130,7 +132,7 @@ const BlogList = () => {
         >
           {filteredItems.map((item, i) => (
             <motion.div
-              key={`${item.id || item.title}-${i}`}
+              key={`${item.title}-${i}`}
               variants={moveUp(i * 0.12)}
               initial="hidden"
               whileInView="show"
@@ -138,7 +140,7 @@ const BlogList = () => {
             >
               <BlogItem
                 item={item}
-                key={`${item.id || item.title}-${i}`}
+                key={`${item.title}-${i}`}
                 index={i}
               />
             </motion.div>

@@ -6,7 +6,8 @@ export const expertiseData = {
     description: 
       `At GCC, teamwork, quality control, service delivery and unwavering creativity are the true cornerstones to success. We have mobilized substantial resources to achieve our standing and continue to expand at a rapid pace. At present, our equipment and machinery are worth well over AED 200 million (USD 55 million), while our personnel number over 2,400 in total.
       Building green: Our commitment to ecology comes from the long-standing mission to protect the environment, preserve historic landscapes as well as create attractive public and private spaces that present a vibrant environment for all members of the community. To this effect, we have initiated an international joint venture partnership with European companies, which has taken the lead in the construction of numerous LEED® Certified Projects in Europe.`,
-    img: "/assets/img/expertise/main.jpg",
+    image: "/assets/img/expertise/main.jpg",
+    imageAlt:""
   },
   services: {
     title: "Commercial",

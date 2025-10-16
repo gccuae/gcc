@@ -1,32 +1,27 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import { galleryData } from "./data";
 import { assets } from "@/public/assets/assets";
 import Image from "next/image";
 import GalleryModal from "./GalleryModal";
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
+import { GalleryType } from "./type";
 
-interface GalleryItem {
-  id: number;
-  title: string;
-  gallery: string[];
-}
 
 const GalleryCard: React.FC<{
-  item: GalleryItem;
-  onOpenModal: (item: GalleryItem) => void;
+  item: GalleryType['items'][number];
+  onOpenModal: (item: GalleryType['items'][number]) => void;
 }> = ({ item, onOpenModal }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const getCircularImages = () => {
     const maxCircles = 3;
-    const displayImages = item.gallery.slice(0, maxCircles);
+    const displayImages = item.images.slice(0, maxCircles);
 
     return displayImages.map((image, index) => {
       const isLast = index === maxCircles - 1;
-      const hasMoreThan9 = item.gallery.length > 9;
+      const hasMoreThan9 = item.images.length > 9;
 
       return (
         <div key={index} className="relative flex last:-ml-2">
@@ -38,7 +33,7 @@ const GalleryCard: React.FC<{
             <Image
               width={50}
               height={50}
-              src={image}
+              src={image.image}
               alt={`Thumbnail ${index + 1}`}
               className="w-full h-full object-cover"
             />
@@ -67,8 +62,8 @@ const GalleryCard: React.FC<{
         <Image
           width={1920}
           height={1280}
-          src={item.gallery[0]}
-          alt={item.title}
+          src={item.thumbnail}
+          alt={item.thumbnailAlt}
           className="w-full h-full object-cover group-hover:blur-[2px] transition-transform"
         />
 
@@ -91,7 +86,7 @@ const GalleryCard: React.FC<{
       {/* Card Content */}
       <div className="flex items-center justify-between py-5 xl:py-8">
         <h3 className="text-xl lg:text-2xl leading-[1] font-normal text-black dark:text-white">
-          {item.title}
+          {item.item}
         </h3>
 
         {/* Circular Images */}
@@ -101,12 +96,12 @@ const GalleryCard: React.FC<{
   );
 };
 
-const Gallery: React.FC = () => {
-  const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
+const Gallery: React.FC<{data: GalleryType}> = ({data}) => {
+  const [selectedItem, setSelectedItem] = useState<GalleryType['items'][number] | null>(null);
   const [visibleCount, setVisibleCount] = useState(8);
   const sectionRef = useRef<HTMLElement | null>(null);
 
-  const totalAlbum = galleryData.items.length;
+  const totalAlbum = data.items.length;
 
   const handleLoadMore = () => {
     setVisibleCount((prev) => (prev ? prev + 3 : 8));
@@ -130,16 +125,16 @@ const Gallery: React.FC = () => {
       <div className="container">
         {/* Gallery Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-30px gap-y-47px">
-          {galleryData.items.slice(0, visibleCount + 1).map((item, index) => (
+          {data.items.slice(0, visibleCount + 1).map((item, index) => (
             <motion.div
-              key={item.id}
+              key={index}
               variants={moveUp(index * 0.13)}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
             >
               <GalleryCard
-                key={item.id}
+                key={index}
                 item={item}
                 onOpenModal={setSelectedItem}
               />

@@ -8,9 +8,10 @@ type Props = {
   title: string;
   subtitle: string;
   description: string;
+  primaryColorText?:string;
 };
 
-const Main = ({ title, subtitle, description }: Props) => {
+const Main = ({ title, subtitle, description,primaryColorText }: Props) => {
   return (
     <section className="pt-57px xl:pt-25 dark:bg-light-dark">
       <div className="container">
@@ -33,8 +34,8 @@ const Main = ({ title, subtitle, description }: Props) => {
               animate="show"
               className="text-lg lg:text-xl leading-[1.4] lg:leading-[1.608695652173913] text-black dark:text-white"
             >
-              <span className="text-red-500">{description.split(",")[0]},</span>
-              {description.substring(description.indexOf(",") + 1)}
+              <span className="text-red-500">{primaryColorText}, </span>
+              {description}
             </motion.p>
           </div>
         </div>

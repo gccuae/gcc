@@ -5,15 +5,10 @@ import Image from "next/image";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-
-interface GalleryItem {
-  id: number;
-  title: string;
-  gallery: string[];
-}
+import { GalleryType } from "./type";
 
 interface GalleryModalProps {
-  item: GalleryItem; // single album item
+  item: GalleryType['items'][number]; // single album item
   onClose: () => void;
 }
 
@@ -30,11 +25,11 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
   }, []);
 
   const goPrev = () => {
-    setCurrentIndex((prev) => (prev === 0 ? item.gallery.length - 1 : prev - 1));
+    setCurrentIndex((prev) => (prev === 0 ? item.images.length - 1 : prev - 1));
   };
 
   const goNext = () => {
-    setCurrentIndex((prev) => (prev === item.gallery.length - 1 ? 0 : prev + 1));
+    setCurrentIndex((prev) => (prev === item.images.length - 1 ? 0 : prev + 1));
   };
 
   const selectImage = (index: number) => {
@@ -63,7 +58,7 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
           {/* Header */}
           <div className="relative flex items-center justify-center mb-[15px]">
             <div className="absolute left-1/2 transform -translate-x-1/2 text-white text-25 leading-[40px] md:text-center w-full">
-              {item.title}
+              {item.item}
             </div>
 
             <button
@@ -88,7 +83,7 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
             <div className="relative mt-10 lg:mt-0 w-full lg:w-[800px] rounded-[12px] xl:w-[1000px] 2xl:w-[1264px] h-[450px] max-h-[640px] flex items-center justify-center overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={item.gallery[currentIndex]}
+                  key={item.images[currentIndex].image}
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
@@ -96,7 +91,7 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
                   className="absolute inset-0"
                 >
                   <Image
-                    src={item.gallery[currentIndex]}
+                    src={item.images[currentIndex].image}
                     alt={`slide-${currentIndex}`}
                     fill
                     className="object-cover rounded-[12px]"
@@ -117,7 +112,7 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
 
           {/* Thumbnails */}
           <div className="flex flex-wrap justify-center items-center mt-[15px] lg:mt-[30px] gap-[10px]">
-            {item.gallery.map((img, idx) => {
+            {item.images.map((img, idx) => {
               const isActive = currentIndex === idx;
 
               return (
@@ -137,7 +132,7 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
                     }}
                   >
                     <Image
-                      src={img}
+                      src={img.image}
                       alt={`thumb-${idx}`}
                       width={isActive ? 110 : 80}
                       height={isActive ? 73 : 54}

@@ -3,16 +3,11 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
+import { AiTechnologyType } from "../AiTechnology/type";
 
-interface ImgDescProps {
-  data: {
-    img: string;
-    title: string;
-    description: string;
-  };
-}
 
-const ImgDesc = ({ data }: ImgDescProps) => {
+
+const ImgDesc = ({ data }: {data:AiTechnologyType['firstSection']}) => {
   return (
     <section className="py-57px dark:bg-black">
       <div className="container">
@@ -30,7 +25,7 @@ const ImgDesc = ({ data }: ImgDescProps) => {
                 {data.title}
               </motion.h2>
               <div>
-                {data.description.split("\n").map((line, idx) => (
+                {data.description.split("\n").map((line: string, idx: number) => (
                   <motion.p
                     key={idx}
                     variants={moveUp(0.35 + idx * 0.1)}
@@ -57,7 +52,7 @@ const ImgDesc = ({ data }: ImgDescProps) => {
               h-[350px] md:h-[400px] lg:h-[500px] xl:h-full
             "
           >
-            <Image src={data.img} alt="" fill className="object-cover" />
+            <Image src={data.image} alt="" fill className="object-cover" />
           </motion.div>
         </div>
       </div>
