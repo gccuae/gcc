@@ -63,7 +63,17 @@ const CounterSection = ({ data }: FirstSectionProps) => {
                   />
                 </div>
                 <h3 className="text-5xl leading-lh-text68 font-normal mb-4 xl:mb-[16px] text-black dark:text-white group-hover:text-white transition-all duration-300">
-                  <Counter from={0} to={Number(item.number)} duration={2} />+
+                  {/* <Counter from={0} to={Number(item.number)} duration={2} />+ */}
+                  <Counter
+                    from={0}
+                    to={
+                      Number(
+                        item.number.toString().replace(/[^0-9.eE-]/g, "")
+                      ) || 0
+                    }
+                    duration={2}
+                  />
+                  +
                 </h3>
                 <p className="text-lg leading-lh-text19 dark:text-white uppercase">
                   {item.value}

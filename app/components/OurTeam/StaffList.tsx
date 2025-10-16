@@ -113,7 +113,8 @@ const StaffList = ({ data }: OurTeamProps) => {
         <div className="xl:hidden grid grid-cols-1 sm:grid-cols-2 gap-y-8">
           {filteredStaff.map((category, index) => (
             <motion.div
-              key={`${category.category}-${activeCategory}`}
+              // key={`${category.category}-${activeCategory}`}
+              key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
@@ -143,7 +144,8 @@ const StaffList = ({ data }: OurTeamProps) => {
         <div className="hidden xl:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-10 xl:gap-y-14">
           {filteredStaff.map((category, index) => (
             <motion.div
-              key={`${category.category}-${activeCategory}`}
+              // key={`${category.category}-${activeCategory}`}
+              key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
