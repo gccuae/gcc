@@ -3,7 +3,12 @@
 import Image from "next/image";
 import Breadcrumb from "./BreadCrumb";
 import { motion } from "framer-motion";
-import { PageBnrProps } from "../About/type";
+
+interface PageBnrProps {
+  pageTitle: string;
+  bannerImg: string;
+  bannerAlt?: string;
+}
 
 const PageBnr = ({ pageTitle, bannerImg, bannerAlt }: PageBnrProps) => {
   return (

@@ -1,21 +1,25 @@
 import Main from "./Main";
-import { blogDetailsData } from "./data";
 import MoreBlog from "./MoreBlog";
+import { BlogData } from "../blog/type";
 
-const Index = () => {
+const Index = ({data, allBlogData}: {data: BlogData['categories'][number]['blogs'][number], allBlogData: BlogData}) => {
+  console.log(data);
+
+  console.log(allBlogData);
   return (
     <>
       <Main
-        title={blogDetailsData.title}
-        category={blogDetailsData.category}
-        date={blogDetailsData.date}
-        author={blogDetailsData.author}
-        mainImage={blogDetailsData.mainImage}
-        description={blogDetailsData.description}
-        extraContent={blogDetailsData.extraContent}
-        quote={blogDetailsData.quote}
+        title={data.title}
+        category={data.category}
+        date={data.date}
+        author={data.author}
+        mainImage={data.coverPhoto}
+        content={data.content}
+        quote={data.quote}
+        quoteAuthor={data.quoteAuthor}
+        createdAt={data.createdAt}
       />
-      <MoreBlog category={blogDetailsData.category} />
+      <MoreBlog category={data.category} items={allBlogData}/>
     </>
   );
 };

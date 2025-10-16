@@ -4,17 +4,13 @@ import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { assets } from "@/public/assets/assets";
+import { BlogData } from "./type";
+
 export const BlogItem = ({
   item,
   index,
 }: {
-  item: {
-    id: number;
-    title: string;
-    image: string;
-    date: string;
-    category: string;
-  };
+  item: BlogData['categories'][number]['blogs'][number];
   index: number;
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -83,8 +79,8 @@ export const BlogItem = ({
         onMouseLeave={handleMouseLeave}
       >
         <Image
-          src={item.image}
-          alt={item.title}
+          src={item.thumbnail}
+          alt={item.thumbnailAlt}
           width={1000}
           height={1000}
           className="w-full h-full object-cover absolute top-0 left-0 group-hover:blur-[4px] group-hover:backdrop-blur-xl transition-all duration-300"
@@ -101,7 +97,7 @@ export const BlogItem = ({
           }}
         >
           <Link
-            href={`/blog/${item.title}`}
+            href={`/blog/${item.slug}`}
             rel="noopener noreferrer"
             className="bg-white rounded-full w-6 h-6 flex items-center justify-center xl:w-20 xl:h-20 pointer-events-auto transition-transform duration-200 hover:scale-110 group-hover:opacity-100 "
           >
@@ -116,7 +112,7 @@ export const BlogItem = ({
         </div>
         <div className="absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 pointer-events-none z-20 opacity-0 group-hover:opacity-100 group-hover/img:opacity-0 transition-opacity duration-300 ease-out">
           <Link
-            href={`/blog/${item.title}`}
+            href={`/blog/${item.slug}`}
             rel="noopener noreferrer"
             className="bg-white rounded-full w-6 h-6 flex items-center justify-center xl:w-20 xl:h-20 pointer-events-auto transition-transform duration-200 hover:scale-110 group-hover:opacity-100 "
           >
@@ -136,7 +132,7 @@ export const BlogItem = ({
             {item.category}
           </p>
           <p className="text-[15px] 3xl:text-base leading-lh-text19 font-light text-foreground dark:text-white/70">
-            {item.date}
+            {item.date ? new Date(item.date).toLocaleDateString("en-GB").replace(/\//g, "-") : new Date(item.createdAt).toLocaleDateString("en-GB").replace(/\//g, "-")}
           </p>
         </div>
         <h3 className="text-xl leading-normal font-normal mb-3 xl:mb-[12px] text-black dark:text-white">

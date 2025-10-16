@@ -104,87 +104,66 @@ export async function PATCH(request: NextRequest) {
     }
     await connectDB();
 
-    const project = await Project.findOne({});
-    if (id) {
-      const expertise = await Expertise.findOne({});
-      expertise.secondSection.items.forEach((item: { projects: string[] }) => {
-        const index = item.projects.findIndex(
-          (projId: string) => projId.toString() === id
-        );
-        if (index !== -1) {
-          item.projects.splice(index, 1);
+        const project = await Project.findOne({})
+        if (id) {
+            const expertise = await Expertise.findOne({});
+            expertise.secondSection.items.forEach((item: { projects: string[] }) => {
+                const index = item.projects.findIndex(
+                  (projId: string) => projId.toString() === id
+                );
+                if (index !== -1) {
+                  item.projects.splice(index, 1);
+                }
+              });
+              
+              // 2️⃣ Add project ID only to the correct service
+              const targetService = expertise.secondSection.items.find(
+                (item: { _id: string }) => item._id.toString() === body.relatedService
+              );
+              
+              if (targetService) {
+                if (!targetService.projects.some((projId: string) => projId.toString() === id)) {
+                  targetService.projects.push(id);
+                }
+              }
+              
+              // 3️⃣ Save the updated expertise document
+              await expertise.save();
+            const foundProject = project.projects.find((project: { _id: string }) => project._id.toString() === id);
+            if (!foundProject) {
+                return NextResponse.json({ message: "Project not found" }, { status: 404 });
+            }
+            console.log(body);
+            foundProject.firstSection.images = body.firstSection.images;
+            foundProject.secondSection = body.secondSection;
+            foundProject.thirdSection = body.thirdSection;
+            foundProject.fourthSection = body.forthSection;
+            foundProject.banner = body.banner;
+            foundProject.bannerAlt = body.bannerAlt;
+            foundProject.thumbnail = body.thumbnail;
+            foundProject.thumbnailAlt = body.thumbnailAlt;
+            foundProject.title = body.title;
+            foundProject.slug = body.slug;
+            foundProject.latitude = body.latitude;
+            foundProject.longitude = body.longitude;
+            foundProject.metaTitle = body.metaTitle;
+            foundProject.metaDescription = body.metaDescription;
+            foundProject.featuredProject = body.featuredProject;
+            foundProject.relatedService = body.relatedService;
+            await project.save();
+            return NextResponse.json({ data: project, message: "Project updated successfully" }, { status: 200 });
         }
-      });
-
-      // 2️⃣ Add project ID only to the correct service
-      const targetService = expertise.secondSection.items.find(
-        (item: { _id: string }) => item._id.toString() === body.relatedService
-      );
-
-      if (targetService) {
-        if (
-          !targetService.projects.some(
-            (projId: string) => projId.toString() === id
-          )
-        ) {
-          targetService.projects.push(id);
+        if (!project) {
+            await Project.create({ ...body });
+            return NextResponse.json({ data: project, message: "Project created successfully" }, { status: 200 });
+        } else {
+            await Project.findOneAndUpdate({}, body, { upsert: true, new: true });
+            return NextResponse.json({ data: project, message: "Project updated successfully" }, { status: 200 });
         }
-      }
-
-      // 3️⃣ Save the updated expertise document
-      await expertise.save();
-      const foundProject = project.projects.find(
-        (project: { _id: string }) => project._id.toString() === id
-      );
-      if (!foundProject) {
-        return NextResponse.json(
-          { message: "Project not found" },
-          { status: 404 }
-        );
-      }
-      console.log(foundProject);
-      foundProject.firstSection.images = body.firstSection.images;
-      foundProject.secondSection = body.secondSection;
-      foundProject.thirdSection = body.thirdSection;
-      foundProject.forthSection = body.forthSection;
-      foundProject.banner = body.banner;
-      foundProject.bannerAlt = body.bannerAlt;
-      foundProject.thumbnail = body.thumbnail;
-      foundProject.thumbnailAlt = body.thumbnailAlt;
-      foundProject.title = body.title;
-      foundProject.slug = body.slug;
-      foundProject.latitude = body.latitude;
-      foundProject.longitude = body.longitude;
-      foundProject.metaTitle = body.metaTitle;
-      foundProject.metaDescription = body.metaDescription;
-      foundProject.featuredProject = body.featuredProject;
-      foundProject.relatedService = body.relatedService;
-      await project.save();
-      return NextResponse.json(
-        { data: project, message: "Project updated successfully" },
-        { status: 200 }
-      );
+    } catch (error) {
+        console.log(error);
+        return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
     }
-    if (!project) {
-      await Project.create({ ...body });
-      return NextResponse.json(
-        { data: project, message: "Project created successfully" },
-        { status: 200 }
-      );
-    } else {
-      await Project.findOneAndUpdate({}, body, { upsert: true, new: true });
-      return NextResponse.json(
-        { data: project, message: "Project updated successfully" },
-        { status: 200 }
-      );
-    }
-  } catch (error) {
-    console.log(error);
-    return NextResponse.json(
-      { message: "Internal Server Error" },
-      { status: 500 }
-    );
-  }
 }
 
 export async function POST(request: NextRequest) {

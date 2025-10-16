@@ -13,9 +13,10 @@ interface Props {
   date: string;
   author: string;
   mainImage: string;
-  description: string[];
-  extraContent: { title: string; description: string[] };
-  quote: { text: string; author: string };
+  content: string;
+  quote: string;
+  quoteAuthor: string;
+  createdAt: string;
 }
 const Main = ({
   title,
@@ -23,9 +24,10 @@ const Main = ({
   date,
   author,
   mainImage,
-  description,
-  extraContent,
+  content,
   quote,
+  quoteAuthor,
+  createdAt,
 }: Props) => {
   return (
     <section className="py-57px dark:bg-black">
@@ -39,7 +41,7 @@ const Main = ({
             className="dark:text-white/70 text-foreground"
           >
             <span>{category}</span> <span className="mx-2">|</span>{" "}
-            <span className="">{date}</span> <span className="mx-2">|</span>{" "}
+            <span className="">{date ? new Date(date).toLocaleDateString("en-GB").replace(/\//g, "-") : new Date(createdAt).toLocaleDateString("en-GB").replace(/\//g, "-")}</span> <span className="mx-2">|</span>{" "}
             <span>{author}</span>
           </motion.p>
           <ul className="flex gap-3 items-center dark:text-white ml-auto">
@@ -143,29 +145,17 @@ const Main = ({
             className="w-full"
           />
         </motion.div>
+        <div className="mb-47px blog-details" dangerouslySetInnerHTML={{ __html: content }} />
         <div className="mb-47px">
-          {description.map((para, index) => (
-            <motion.p
-              variants={moveUp(index * 0.12)}
-              initial="hidden"
-              whileInView="show"
-              key={index}
-              className="mb-5 xl:mb-5 text-lg leading-lh-text19 font-normal text-foreground dark:text-white/70"
-            >
-              {para}
-            </motion.p>
-          ))}
-        </div>
-        <div className="mb-47px">
-          <motion.h3
+          {/* <motion.h3
             variants={moveUp()}
             initial="hidden"
             whileInView="show"
             className="text-2xl leading-lh-text32 font-normal mb-5 xl:mb-[27px] text-foreground dark:text-white"
           >
             {extraContent.title}
-          </motion.h3>
-          <ul className="square-list list-inside space-y-3 xl:space-y-4 dark:text-white">
+          </motion.h3> */}
+          {/* <ul className="square-list list-inside space-y-3 xl:space-y-4 dark:text-white">
             {extraContent.description.map((item, index) => (
               <motion.li
                 variants={moveUp(index * 0.12)}
@@ -177,7 +167,8 @@ const Main = ({
                 {item}
               </motion.li>
             ))}
-          </ul>
+          </ul> */}
+          {}
         </div>
         <motion.div
           variants={moveUp()}
@@ -191,7 +182,7 @@ const Main = ({
               whileInView="show"
               className="text-xl leading-lh-text32 font-light mb-2 xl:mb-3 text-white"
             >
-              {quote.text}
+              {quote}
             </motion.h3>
             <div className="flex items-center justify-between">
               <motion.p
@@ -200,7 +191,7 @@ const Main = ({
                 whileInView="show"
                 className="text-lg leading-lh-text19 font-medium text-white w-fit"
               >
-                {quote.author}
+                {quoteAuthor}
               </motion.p>
               <motion.div
                 variants={moveLeft(0.2)}

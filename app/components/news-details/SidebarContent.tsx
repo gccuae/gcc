@@ -1,13 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import { newsDetails } from "./data";
 import Image from "next/image";
 import { assets } from "@/public/assets/assets";
 import { motion } from "framer-motion";
 import { moveUp, moveLeft } from "../motionVarients";
+import { NewsData } from "../news-listing/type";
 
-const SidebarContent = () => {
+const SidebarContent = ({allNewsData,category}: {allNewsData: NewsData,category: string}) => {
+  const allItems = allNewsData.categories.flatMap((item: { news: NewsData['categories'][number]['news'] }) => item.news);
+    const filtered = allItems
+      .filter((item: { category: string }) => item.category === category)
+      .sort((a: { date: string }, b: { date: string }) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .slice(0, 4);
+  
   return (
     <aside>
       <motion.div
@@ -133,7 +139,7 @@ const SidebarContent = () => {
           Related News
         </motion.h3>
         <div>
-          {newsDetails.relatedNews.map((item, index) => (
+          {filtered.map((item, index) => (
             <motion.div
               variants={moveUp(index * 0.1)}
               initial="hidden"
@@ -144,8 +150,8 @@ const SidebarContent = () => {
             >
               <Link href={`/news/${item.slug}`}>
                 <Image
-                  src={item.image}
-                  alt={item.title}
+                  src={item.thumbnail}
+                  alt={item.thumbnailAlt}
                   width={700}
                   height={700}
                   className="w-full h-50 object-cover"
@@ -156,15 +162,16 @@ const SidebarContent = () => {
               </Link>
               <div className="flex mt-3 items-center justify-between">
                 <span className="font-light text-base text-foreground dark:text-white/70">
-                  {item.sector}
+                  {item.category}
                 </span>
                 <span className="font-light text-base text-foreground dark:text-white/70">
-                  {item.date}
+                  {item.date ? new Date(item.date).toLocaleDateString("en-GB").replace(/\//g, "-") : new Date(item.createdAt).toLocaleDateString("en-GB").replace(/\//g, "-")}
                 </span>
               </div>
             </motion.div>
           ))}
         </div>
+        <Link href={`/news`}>
         <motion.button
           variants={moveUp(0.4)}
           initial="hidden"
@@ -181,6 +188,7 @@ const SidebarContent = () => {
             className="inline group-hover:translate-x-2 transition-all duration-300 ease-in-out"
           />
         </motion.button>
+        </Link>
       </div>
     </aside>
   );

@@ -1,16 +1,16 @@
 import PageBnr from "../common/PageBnr";
-import { expertiseData } from "./data";
 import ImgDesc from "../common/ImgDesc";
 import AiSlider from "./AiSlider";
 import Cta from "./Cta";
+import { AiTechnologyType } from "./type";
 
-const Index = () => {
+const Index = ({data}: {data: AiTechnologyType}) => {
   return (
     <>
-      <PageBnr pageTitle={expertiseData.title} bannerImg={expertiseData.bannerImg} />
-      <ImgDesc data={expertiseData.firstSection} />
-      <AiSlider />
-      <Cta />
+      <PageBnr pageTitle={data.pageTitle} bannerImg={data.banner} bannerAlt={data.bannerAlt}/>
+      <ImgDesc data={data.firstSection} />
+      <AiSlider data={data.secondSection.items}/>
+      <Cta data={data.thirdSection}/>
     </>
    );
 }

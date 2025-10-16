@@ -8,14 +8,10 @@ import { motion } from "framer-motion";
 import { moveLeft, moveUp } from "../motionVarients";
 import { components, DropdownIndicatorProps } from "react-select";
 import { ChevronDown } from "lucide-react";
+import { careerData } from "./type";
 
-interface CurrentOpeningsProps {
-  data: {
-    jobs: { title: string; sector: string; location: string; type: string }[];
-  };
-}
 
-const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
+const CurrentOpenings = ({ data,jobs,departments,locations }: {data:careerData['secondSection'],jobs:careerData['openings'],departments:careerData['departments'],locations:careerData['locations']}) => {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const leftRef = useRef<HTMLDivElement | null>(null);
   const lastTouchY = useRef<number | null>(null);
@@ -91,34 +87,23 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
   const jobTitles = [
     "Job Title",
     "All Jobs",
-    "Software Engineer",
-    "Senior Software Engineer",
-    "Team Lead",
-    "Project Manager",
-    "QA Engineer",
+    "Full Time",
+    "Part Time"
   ];
 
-  const departments = [
+  const jobDepartments = [
     "Department",
     "All Departments",
-    "IT",
-    "Civil",
-    "Mechanical",
-    "Electrical",
-    "QA Engineer",
+    ...new Set(departments.map((department: { name: string; }) => department.name)),
   ];
 
-  const locations = [
+  const jobLocations = [
     "Location",
     "All Locations",
-    "Dubai",
-    "Abu Dhabi",
-    "Sharjah",
-    "Ajman",
-    "Umm Al Quwain",
+    ...new Set(locations.map((location: { name: string; }) => location.name)),
   ];
 
-  const dropdowns = [jobTitles, departments, locations];
+  const dropdowns = [jobTitles, jobDepartments, jobLocations];
   const Select = dynamic(() => import("react-select"), { ssr: false });
 
   const DropdownIndicator = (props: DropdownIndicatorProps) => {
@@ -140,7 +125,7 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
             viewport={{ once: true }}
             className="text-4xl lg:text-5xl leading-[1.205882352941176] font-normal text-black dark:text-white mb-4 xl:mb-[17px]"
           >
-            Current Openings
+            {data.mainTitle}
           </motion.h2>
           <motion.p
             variants={moveUp(0.2)}
@@ -149,7 +134,7 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
             viewport={{ once: true }}
             className="text-xl lg:text-2xl leading-lh-text32 text-foreground dark:text-white"
           >
-            We’re always on the lookout for outstanding talent
+            {data.subTitle}
           </motion.p>
         </div>
         <div className="pt-6 xl:pt-10 pb-6 xl:pb-47px">
@@ -245,7 +230,7 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
               className="md:border-r border-smgray pr-6 xl:pr-[67px] pt-6 xl:pt-[67px] max-h-[842px] overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden left-col"
               ref={leftRef}
             >
-              {data.jobs.map((job, index) => (
+              {jobs.map((job, index) => (
                 <motion.div
                   variants={moveUp(index * 0.15)}
                   initial="hidden"
@@ -256,17 +241,17 @@ const CurrentOpenings = ({ data }: CurrentOpeningsProps) => {
                 >
                   <div>
                     <h3 className="text-xl lg:text-2xl leading-[1.3] lg:leading-[1.5625] font-normal text-black dark:text-white">
-                      {job.title}
+                      {job.firstSection.jobTitle}
                     </h3>
                     <h4 className="text-lg leading-[1.5625] font-normal text-foreground dark:text-white/50">
-                      <span>{job.sector}</span> <span className="mx-2">|</span>{" "}
-                      <span>{job.location}</span>{" "}
-                      <span className="mx-2">|</span> <span>{job.type}</span>
+                      <span>{job.firstSection.department}</span> <span className="mx-2">|</span>{" "}
+                      <span>{job.firstSection.location}</span>{" "}
+                      <span className="mx-2">|</span> <span>{job.firstSection.employmentType}</span>
                     </h4>
                   </div>
                   <div>
                     <BtnPrimary
-                      link={`careers/${job.title}`}
+                      link={`careers/${job.firstSection.slug}`}
                       text="Apply Now"
                       bgtrans={true}
                     />

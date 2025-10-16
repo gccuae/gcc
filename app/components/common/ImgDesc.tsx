@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
 import { ImgDescProps } from "../About/type";
 
-const ImgDesc = ({ data }: ImgDescProps) => {
+const ImgDesc = ({ data }: {data:ImgDescProps}) => {
   return (
     <section className="py-57px dark:bg-black">
       <div className="container">
@@ -23,7 +23,7 @@ const ImgDesc = ({ data }: ImgDescProps) => {
                 {data.title}
               </motion.h2>
               <div>
-                {data.description.split("\n").map((line, idx) => (
+                {data.description.split("\n").map((line: string, idx: number) => (
                   <motion.p
                     key={idx}
                     variants={moveUp(0.35 + idx * 0.1)}

@@ -1,11 +1,11 @@
 "use client";
 
-import { careerData } from "./data";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { moveUp, fadeIn } from "../motionVarients";
+import { careerData } from "./type";
 
-const Main = ({ data }: { data: typeof careerData }) => {
+const Main = ({ data }: { data: careerData['firstSection'] }) => {
   return (
     <section className="py-57px bg-light-white dark:bg-black overflow-hidden">
       <div className="container">
@@ -17,8 +17,8 @@ const Main = ({ data }: { data: typeof careerData }) => {
             viewport={{ once: true }}
           >
             <Image
-              src={data.mainImg}
-              alt={data.mainImgAlt}
+              src={data.image}
+              alt={data.imageAlt}
               width={1500}
               height={500}
               className="w-full h-full object-cover"
@@ -32,7 +32,7 @@ const Main = ({ data }: { data: typeof careerData }) => {
           >
             <p
               className="text-lg lg:text-xl xl:text-2xl leading-[1.46875] font-light dark:text-white"
-              dangerouslySetInnerHTML={{ __html: data.desc }}
+              dangerouslySetInnerHTML={{ __html: data.description }}
             />
           </motion.div>
         </div>

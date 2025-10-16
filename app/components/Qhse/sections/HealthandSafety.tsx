@@ -3,11 +3,12 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { moveUp } from "../../motionVarients";
+import { QhseType } from "../type";
 
 type Props = {
   title: string;
   description: string;
-  measures: { name: string; icon: string }[];
+  measures: QhseType['thirdSection']['items'];
 };
 
 const HealthandSafety = ({ title, description, measures }: Props) => {
@@ -65,15 +66,15 @@ const HealthandSafety = ({ title, description, measures }: Props) => {
                 <div>
                   <div className="mb-[60px] md:mb-[80px] xl:mb-[123px]">
                     <Image
-                      src={item.icon}
-                      alt={item.name}
+                      src={item.image}
+                      alt={item.imageAlt}
                       width={50}
                       height={50}
                       className="w-[50px] h-[50px] xl:w-15 group-hover:brightness-0 group-hover:invert-100 transition-all duration-300"
                     />
                   </div>
                   <h3 className="text-2xl leading-lh-text32 text-white group-hover:text-white transition-all duration-300">
-                    {item.name}
+                    {item.title}
                   </h3>
                 </div>
               </motion.div>

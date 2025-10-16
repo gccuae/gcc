@@ -9,12 +9,20 @@ export async function GET(req: NextRequest) {
         await connectDB();
         const searchParams = req.nextUrl.searchParams;
         const id = searchParams.get("id");
+        const slug = searchParams.get("slug");
         const news = await News.findOne({});
         if (!news) {
             return NextResponse.json({ message: "News not found" }, { status: 404 });
         }
         if(id){
             const newsCategory = await news.categories.flatMap((category:  { news: { _id: string }[] }) => category.news.find((news: { _id: string }) => news._id == id));
+            if (!newsCategory) {
+                return NextResponse.json({ message: "News Category not found" }, { status: 404 });
+            }
+            return NextResponse.json({data:newsCategory,message:"News fetched successfully"}, { status: 200 });
+        }
+        else if(slug){
+            const newsCategory = await news.categories.flatMap((category:  { news: { slug: string }[] }) => category.news.find((news: { slug: string }) => news.slug == slug));
             if (!newsCategory) {
                 return NextResponse.json({ message: "News Category not found" }, { status: 404 });
             }

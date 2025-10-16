@@ -1,23 +1,24 @@
 import StandardBnr from "../common/StandardBnr";
-import { newsDetails } from "./data";
 import MainContent from "./MainContent";
 import SidebarContent from "./SidebarContent";
+import { NewsData } from "../news-listing/type";
 
-const Main = () => {
+
+const Main = ({data,allNewsData}: {data: NewsData['categories'][number]['news'][number],allNewsData: NewsData}) => {
   return (
     <section className="py-57px dark:bg-light-dark">
       <div className="container">
-        <StandardBnr title={newsDetails.title} />
+        <StandardBnr title={data.title} />
         <div className="grid grid-cols-1 xl:grid-cols-[75%_25%] gap-3 md:gap-5 xl:gap-70px mt-5 xl:mt-12">
           <MainContent
-            subTitle={newsDetails.subTitle}
-            image={newsDetails.image}
-            sector={newsDetails.sector}
-            date={newsDetails.date}
-            desc={newsDetails.desc}
+            subTitle={data.subTitle}
+            images={data.images}
+            sector={data.category}
+            date={data.date ? new Date(data.date).toLocaleDateString("en-GB").replace(/\//g, "-") : new Date(data.createdAt).toLocaleDateString("en-GB").replace(/\//g, "-")}
+            content={data.content}
           />
 
-          <SidebarContent />
+          <SidebarContent allNewsData={allNewsData} category={data.category}/>
         </div>
       </div>
     </section>

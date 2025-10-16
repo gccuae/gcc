@@ -75,6 +75,9 @@ const openingsSchema = new mongoose.Schema({
                 },
                 employmentType:{
                     type:String,
+                },
+                slug:{
+                    type:String,
                 }
             },
             secondSection:{
