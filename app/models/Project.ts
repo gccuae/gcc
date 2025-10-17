@@ -35,7 +35,7 @@ const projectSchema = new mongoose.Schema({
             scopeOfWork:{type:String,required:true},
             completionDate:{type:String,required:true},
             projectValue:{type:String,required:true},
-            superficie:{type:String,required:true},
+            superficie:{type:String},
             status:{type:String,required:true},
             projectType:{type:mongoose.Schema.Types.ObjectId,required:true,ref:"ProjectType"},
             sector:{type:mongoose.Schema.Types.ObjectId,required:true,ref:"Sector"},
