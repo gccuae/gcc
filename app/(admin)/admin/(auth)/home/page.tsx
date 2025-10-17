@@ -75,10 +75,10 @@ const HomePage = () => {
         name: "numberSection.items"
     });
 
-    const { fields: thirdSectionItems, append: thirdSectionAppend, remove: thirdSectionRemove } = useFieldArray({
-        control,
-        name: "thirdSection.items"
-    });
+    // const { fields: thirdSectionItems, append: thirdSectionAppend, remove: thirdSectionRemove } = useFieldArray({
+    //     control,
+    //     name: "thirdSection.items"
+    // });
 
     const { fields: fourthSectionItems, append: fourthSectionAppend, remove: fourthSectionRemove } = useFieldArray({
         control,
