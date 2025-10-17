@@ -9,26 +9,14 @@ import gsap from "gsap"; // 👈 GSAP import
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
+import { LegacySection } from "./type";
 
-interface TimelineItem {
-  year: number;
-  title: string;
-  description: string;
-  backgroundImage: string | StaticImageData;
-}
-
-const LegacyTimelineSlider = ({
-  data,
-  title,
-}: {
-  data: TimelineItem[];
-  title: string;
-}) => {
+const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
   const doubledTimelineData = {
     ...data,
-    items: [...data, ...data],
+    items: [...data.items, ...data.items],
   };
 
   const [activeSlide, setActiveSlide] = useState(0);
@@ -36,15 +24,6 @@ const LegacyTimelineSlider = ({
   const yearSwiperRef = useRef<SwiperType>(null);
   const [navLocked, setNavLocked] = useState(false);
 
-  // const handleYearClick = (index: number) => {
-  //   setActiveSlide(index);
-  //   if (mainSwiperRef.current) {
-  //     mainSwiperRef.current.slideToLoop(index);
-  //   }
-  //   if (yearSwiperRef.current) {
-  //     yearSwiperRef.current.slideToLoop(index, 0);  
-  //   }
-  // };
   const handleMainSlideChange = (swiper: SwiperType) => {
     const realIndex = swiper.realIndex;
     setActiveSlide(realIndex);
@@ -59,9 +38,27 @@ const LegacyTimelineSlider = ({
     const desc = activeEl.querySelector(".history-desc");
 
     gsap.set([year, title, desc], { opacity: 0, y: 50 });
-    gsap.to(year, { opacity: 1, y: 0, duration: 0.6, delay: 0.1, ease: "power3.out" });
-    gsap.to(title, { opacity: 1, y: 0, duration: 0.6, delay: 0.3, ease: "power3.out" });
-    gsap.to(desc, { opacity: 1, y: 0, duration: 0.6, delay: 0.5, ease: "power3.out" });
+    gsap.to(year, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      delay: 0.1,
+      ease: "power3.out",
+    });
+    gsap.to(title, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      delay: 0.3,
+      ease: "power3.out",
+    });
+    gsap.to(desc, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      delay: 0.5,
+      ease: "power3.out",
+    });
   };
 
   // Run animation on first render
@@ -106,7 +103,12 @@ const LegacyTimelineSlider = ({
             transition={{ duration: 0.8, ease: "easeInOut" }}
             className="absolute inset-0 w-full h-full"
           >
-            <Image src={doubledTimelineData.items[activeSlide].backgroundImage} alt="" fill className="object-cover w-full h-full" />
+            <Image
+              src={doubledTimelineData.items[activeSlide].image}
+              alt={doubledTimelineData.items[activeSlide].imageAlt}
+              fill
+              className="object-cover w-full h-full"
+            />
           </motion.div>
         </AnimatePresence>
       </div>
@@ -118,7 +120,7 @@ const LegacyTimelineSlider = ({
             {/* Header */}
             <div className="pt-10 xl:pt-20 h-full  lg:pb-0 flex items-start flex-wrap ">
               <h2 className="text-5xl leading-[1] font-light text-white pb-4 tracking-wide ">
-                {title}
+                {data.title}
               </h2>
               {/* Timeline Years Navigation Slider */}
               <div className="xl:ml-auto md:mb-0 lg:top-12 xl:top-19 right-3 md:right-0 flex items-center z-10 lg:h-full order-3 xl:order-2">
@@ -155,15 +157,22 @@ const LegacyTimelineSlider = ({
                       >
                         <button
                           // onClick={() => handleYearClick(index)}
-                          className={`font-normal  duration-500 text-lg leading-[32px] xl:pb-5 hover:text-white whitespace-nowrap ${activeSlide === index
-                            ? "text-white font-semibold  md:text-2xl "
-                            : "text-gray-400 hover:text-gray-200   "
-                            }`}
+                          className={`font-normal  duration-500 text-lg leading-[32px] xl:pb-5 hover:text-white whitespace-nowrap ${
+                            activeSlide === index
+                              ? "text-white font-semibold  md:text-2xl "
+                              : "text-gray-400 hover:text-gray-200   "
+                          }`}
                         >
                           {item.year}
                         </button>
                         <div className="!w-[60px] md:!w-[85px] h-full !flex ml-5 xl:ml-0 xl:items-center flex-col justify-center">
-                          <div className={`w-[1px] h-8 xl:h-14 bg-accent ${activeSlide === index ? "opacity-100" : "opacity-0"}`} ></div>
+                          <div
+                            className={`w-[1px] h-8 xl:h-14 bg-accent ${
+                              activeSlide === index
+                                ? "opacity-100"
+                                : "opacity-0"
+                            }`}
+                          ></div>
                         </div>
                       </SwiperSlide>
                     ))}
@@ -206,8 +215,6 @@ const LegacyTimelineSlider = ({
                 </button>
               </div>
             </div>
-
-          
           </div>
         </div>
 
@@ -249,7 +256,7 @@ const LegacyTimelineSlider = ({
 
                     {/* Title */}
                     <h2 className="history-title text-xl font-medium text-white mb-3 leading-tight opacity-0">
-                      {item.title}
+                      {item.subTitle}
                     </h2>
 
                     {/* Description */}

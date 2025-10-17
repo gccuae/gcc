@@ -2,10 +2,10 @@
 
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
-import { teamData } from "./data";
 import Image from "next/image";
+import { OurTeamProps } from "./type";
 
-const LeadersList = () => {
+const LeadersList = ({ data }: OurTeamProps) => {
   return (
     <section className="pt-15 xl:pt-25px dark:pb-1 dark:bg-light-dark ">
       <div className="container">
@@ -16,10 +16,10 @@ const LeadersList = () => {
           viewport={{ once: true }}
           className="text-5xl leading-[1.205882352941176] text-black dark:text-white mb-57px"
         >
-          {teamData.leadersTitle}
+          {data.firstSection.title}
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-6 md:gap-y-6 xl:gap-y-0 pb-6 xl:pb-[37px] md:border-b border-smgray mb-5 md:mb-12 xl:mb-57px">
-          {teamData.leaders.map((leader, index) => (
+          {data.firstSection.items.map((leader, index) => (
             <motion.div
               variants={moveUp(index * 0.23)}
               initial="hidden"
@@ -45,7 +45,7 @@ const LeadersList = () => {
                 {leader.name}
               </h3>
               <p className="text-lg leading-lh-text19 text-foreground dark:text-white/70 font-light">
-                {leader.position}
+                {leader.designation}
               </p>
             </motion.div>
           ))}

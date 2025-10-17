@@ -1,10 +1,12 @@
 import Main from "./Main";
-const Index = () => {
-  return ( 
+import { AwardsProps } from "./type";
+
+const Index = ({ data }: AwardsProps) => {
+  return (
     <>
-      <Main />
+      <Main data={data} />
     </>
   );
-}
- 
+};
+
 export default Index;

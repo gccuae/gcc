@@ -1,15 +1,16 @@
 import PageBnr from "../common/PageBnr";
-import { clientsData } from "./data";
 import ClientList from "./client-list";
+import { ClientsData } from "./type";
 
-const Index = () => {
+const Index = ({ data }: { data: ClientsData }) => {
   return (
     <>
       <PageBnr
-        pageTitle={clientsData.title}
-        bannerImg={clientsData.bannerImg}
+        pageTitle={data.pageTitle}
+        bannerImg={data.banner}
+        bannerAlt={data.bannerAlt}
       />
-      <ClientList />
+      <ClientList data={data.firstSection} />
     </>
   );
 };

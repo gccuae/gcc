@@ -3,8 +3,9 @@
 import StandardBnr from "../common/StandardBnr";
 import { motion } from "framer-motion";
 import { moveUp } from "../../components/motionVarients";
+import { SecondSectionFirstSection } from "../expertise/type";
 
-const Main = () => {
+const Main = ({ data }: { data: SecondSectionFirstSection }) => {
   return (
     <section className="pt-57px xl:pt-25   dark:bg-light-dark">
       <div className="container">
@@ -18,7 +19,7 @@ const Main = () => {
               viewport={{ once: true }}
               className="text-3xl leading-lh-text48 font-normal text-black dark:text-white"
             >
-              Building Excellence in Every Project
+              {data.title}
             </motion.h2>
           </div>
           <motion.div
@@ -28,16 +29,44 @@ const Main = () => {
             viewport={{ once: true }}
             className=""
           >
-            <p className="text-lg leading-lh-text19 text-black dark:text-white">
-              <span className="text-primary">
-                Gulf Contractors Company (GCC)
-              </span>{" "}
-              is a trusted name in delivering high-quality civil construction
-              solutions across the UAE. With decades of experience and a team of
-              skilled professionals, we bring innovation, precision, and safety
-              to every project from large-scale commercial developments to
-              complex infrastructure works.
-            </p>
+            <div
+              className="text-lg leading-lh-text19 text-black dark:text-white"
+              dangerouslySetInnerHTML={{
+                __html: (data.description || "").replace(
+                  /class="([^"]*)"/g, // match each class=""
+                  (match, classNames) => {
+                    // Split classes by space
+                    const classes = classNames.split(" ");
+                    const inlineStyles: string[] = [];
+                    const remainingClasses: string[] = [];
+
+                    classes.forEach((cls: string) => {
+                      // Match Tailwind arbitrary color class: text-[#xxxxxx]
+                      const colorMatch = cls.match(
+                        /^text-\[(#[0-9A-Fa-f]{3,6})\]$/
+                      );
+                      if (colorMatch) {
+                        inlineStyles.push(`color:${colorMatch[1]}`);
+                      } else {
+                        remainingClasses.push(cls);
+                      }
+                    });
+
+                    // Construct the new class + style string
+                    const classAttr =
+                      remainingClasses.length > 0
+                        ? `class="${remainingClasses.join(" ")}"`
+                        : "";
+                    const styleAttr =
+                      inlineStyles.length > 0
+                        ? ` style="${inlineStyles.join(";")}"`
+                        : "";
+
+                    return `${classAttr}${styleAttr}`;
+                  }
+                ),
+              }}
+            ></div>
           </motion.div>
         </div>
       </div>

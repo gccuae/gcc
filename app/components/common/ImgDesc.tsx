@@ -3,11 +3,9 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
-import { AiTechnologyType } from "../AiTechnology/type";
+import { ImgDescProps } from "../About/type";
 
-
-
-const ImgDesc = ({ data }: {data:AiTechnologyType['firstSection']}) => {
+const ImgDesc = ({ data }: {data:ImgDescProps}) => {
   return (
     <section className="py-57px dark:bg-black">
       <div className="container">
@@ -52,7 +50,12 @@ const ImgDesc = ({ data }: {data:AiTechnologyType['firstSection']}) => {
               h-[350px] md:h-[400px] lg:h-[500px] xl:h-full
             "
           >
-            <Image src={data.image} alt="" fill className="object-cover" />
+            <Image
+              src={data.image}
+              alt={data.imageAlt || ""}
+              fill
+              className="object-cover"
+            />
           </motion.div>
         </div>
       </div>

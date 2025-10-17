@@ -1,22 +1,22 @@
 "use client";
 
-import { teamData } from "./data";
 import Image from "next/image";
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { moveUp, moveLeft } from "../motionVarients";
 import Select from "react-select";
+import { OurTeamProps } from "./type";
 
-const StaffList = () => {
+const StaffList = ({ data }: OurTeamProps) => {
   const [activeCategory, setActiveCategory] = useState<string>("All");
 
   // Get unique categories from staff data
   const categories = useMemo(() => {
     const uniqueCategories = Array.from(
-      new Set(teamData.staffs.map((staff) => staff.category))
+      new Set(data.categories.map((category) => category.category))
     );
     return ["All", ...uniqueCategories];
-  }, []);
+  }, [data]);
 
   // Convert categories to react-select format
   const categoryOptions = categories.map((cat) => ({
@@ -26,9 +26,11 @@ const StaffList = () => {
   // Filter staff based on active category
   const filteredStaff = useMemo(() => {
     if (activeCategory === "All") {
-      return teamData.staffs;
+      return data.secondSection.items;
     }
-    return teamData.staffs.filter((staff) => staff.category === activeCategory);
+    return data.secondSection.items.filter(
+      (category) => category.category === activeCategory
+    );
   }, [activeCategory]);
 
   return (
@@ -41,7 +43,7 @@ const StaffList = () => {
           viewport={{ once: true }}
           className="text-5xl leading-[1.205882352941176] text-white mb-6 lg:mb-14"
         >
-          {teamData.staffTitle}
+          {data.secondSection.title}
         </motion.h2>
 
         {/* DESKTOP TABS */}
@@ -109,9 +111,10 @@ const StaffList = () => {
 
         {/* MOBILE GRID */}
         <div className="xl:hidden grid grid-cols-1 sm:grid-cols-2 gap-y-8">
-          {filteredStaff.map((staff, index) => (
+          {filteredStaff.map((category, index) => (
             <motion.div
-              key={`${staff.name}-${activeCategory}`}
+              // key={`${category.category}-${activeCategory}`}
+              key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
@@ -124,24 +127,25 @@ const StaffList = () => {
                 } group-hover:bg-gray-100 transition-all duration-300 flex flex-col mb-6 overflow-hidden relative`}
               >
                 <Image
-                  src={staff.image}
-                  alt={staff.name}
+                  src={category.image}
+                  alt={category.name}
                   width={1000}
                   height={1000}
                   className="w-full h-[280px] object-contain mx-auto grayscale-100 group-hover:grayscale-0 transition-all duration-300"
                 />
               </div>
-              <h3 className="text-2xl text-white/80">{staff.name}</h3>
-              <p className="text-lg text-white/70">{staff.position}</p>
+              <h3 className="text-2xl text-white/80">{category.name}</h3>
+              <p className="text-lg text-white/70">{category.designation}</p>
             </motion.div>
           ))}
         </div>
 
         {/* DESKTOP GRID */}
         <div className="hidden xl:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-10 xl:gap-y-14">
-          {filteredStaff.map((staff, index) => (
+          {filteredStaff.map((category, index) => (
             <motion.div
-              key={`${staff.name}-${activeCategory}`}
+              // key={`${category.category}-${activeCategory}`}
+              key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
@@ -154,15 +158,15 @@ const StaffList = () => {
                 } group-hover:bg-gray-100 transition-all duration-300 flex flex-col mb-6   overflow-hidden relative`}
               >
                 <Image
-                  src={staff.image}
-                  alt={staff.name}
+                  src={category.image}
+                  alt={category.name}
                   width={1000}
                   height={1000}
                   className="w-full h-[300px] xl:h-[398px] object-contain mx-auto grayscale-100 hover:grayscale-0 transition-all duration-300"
                 />
               </div>
-              <h3 className="text-2xl text-white/80">{staff.name}</h3>
-              <p className="text-lg text-white/70">{staff.position}</p>
+              <h3 className="text-2xl text-white/80">{category.name}</h3>
+              <p className="text-lg text-white/70">{category.designation}</p>
             </motion.div>
           ))}
         </div>

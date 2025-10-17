@@ -2,11 +2,13 @@
 
 import { motion } from "framer-motion";
 import SpecialContainer from "../common/SpecialContainer";
-import { leadersData } from "./data";
 import Image from "next/image";
 import { moveLeft, moveUp } from "../../components/motionVarients";
+import { MessageSection } from "./type";
 
-const MsgGm = () => {
+const MsgGm = ({ items }: MessageSection) => {
+  const gmData = items[1];
+
   return (
     <section className="pb-57px lg:pb-[101px] dark:bg-black overflow-hidden">
       <SpecialContainer className="" side="right">
@@ -19,21 +21,23 @@ const MsgGm = () => {
               whileInView="show"
               className="text-2xl lg:text-6xl leading-[1.2] xl:leading-lh-title text-black dark:text-white   mb-2 md:mb-5 xl:mb-[34px] lg:max-w-[10ch]"
             >
-              {leadersData.gm.title}
+              {gmData?.title}
             </motion.h2>
             <div className="lg:max-w-[61ch] pb-0 lg:pb-6">
-              {leadersData.gm.desc.map((item, index) => (
-                <motion.p
-                  variants={moveUp(index * 0.2)}
-                  viewport={{ once: true }}
-                  initial="hidden"
-                  whileInView="show"
-                  key={index}
-                  className="mb-3 last:mb-0 lg:last:mb-[17px]  lg:mb-[17px] text-lg leading-lh-text19 text-foreground dark:text-white font-light"
-                >
-                  {item}
-                </motion.p>
-              ))}
+              {gmData?.message
+                .split(/\r?\n/)
+                .map((line: string, index: number) => (
+                  <motion.p
+                    variants={moveUp(index * 0.2)}
+                    viewport={{ once: true }}
+                    initial="hidden"
+                    whileInView="show"
+                    key={index}
+                    className="mb-3 last:mb-0 lg:last:mb-[17px]  lg:mb-[17px] text-lg leading-lh-text19 text-foreground dark:text-white font-light"
+                  >
+                    {line}
+                  </motion.p>
+                ))}
             </div>
           </div>
           <motion.div
@@ -51,8 +55,8 @@ const MsgGm = () => {
               whileInView="show"
             >
               <Image
-                src={leadersData.gm.image}
-                alt="msg chairman"
+                src={gmData?.image}
+                alt={gmData?.imageAlt}
                 width={1500}
                 height={1500}
                 className="img-fluid   h-[400px] lg:h-[60%] max-h-[980px] object-contain relative right-0 md:right-14 z-10"
@@ -66,10 +70,10 @@ const MsgGm = () => {
                 whileInView="show"
               >
                 <h3 className="text-2xl leading-lh-title text-white dark:text-white ">
-                  {leadersData.gm.name}
+                  {gmData?.name}
                 </h3>
                 <p className="text-lg leading-[1.147] md:leading-lh-text19 text-white dark:text-white">
-                  {leadersData.gm.position}
+                  {gmData?.designation}
                 </p>
               </motion.div>
             </div>

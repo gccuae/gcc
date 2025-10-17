@@ -1,13 +1,19 @@
 "use client";
 
 import BtnPrimary from "../common/BtnPrimary";
-import { projectDetailsData } from "./data";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
+import { Project } from "@/types/Projects";
+import { useRouter } from "next/navigation";
 
-const MoreProjects = () => {
-  return ( 
+interface Props {
+  projects: Project["projects"];
+}
+
+const MoreProjects = ({ projects }: Props) => {
+  const router = useRouter();
+  return (
     <section className="py-57px bg-light-white dark:bg-light-dark">
       <div className="container">
         <div className="flex justify-between items-center pb-8 xl:pb-[45px] mb-8 xl:mb-15 border-b border-smgray">
@@ -26,12 +32,13 @@ const MoreProjects = () => {
             whileInView="show"
             viewport={{ once: true }}
           >
-            <BtnPrimary link={"#"} text="View All" bgtrans={true} />
+            <BtnPrimary link={"/projects"} text="View All" bgtrans={true} />
           </motion.div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 xl:gap-10">
-          {projectDetailsData.moreProjects.map((project, index) => (
+          {projects?.slice(0, 3).map((project, index) => (
             <motion.div
+              onClick={() => router.push(`/projects/${project.slug}`)}
               key={index}
               className="group border-b border-smgray pb-27px"
               variants={moveUp(index * 0.24)}
@@ -41,18 +48,20 @@ const MoreProjects = () => {
             >
               <div>
                 <Image
-                  src={project.image}
-                  alt={project.title}
+                  src={project.thumbnail || ""}
+                  alt={project.thumbnailAlt || ""}
                   width={1000}
                   height={1000}
-                  className="object-cover w-full h-[300px] md:h-400px] lg:h-auto"
+                  className="object-cover w-full h-[300px] md:h-[400px] xl:h-[430px] 2xl:h-[475px]"
                 />
               </div>
               <div className="pt-5 xl:pt-[27px]">
                 <p className="text-lg leading-lh-text19 dark:text-white/80 mb-2 xl:mb-[12px]">
-                  {project.info.type} <span className="mx-2">|</span>{" "}
-                  {project.info.sector} <span className="mx-2">|</span>{" "}
-                  {project.info.location}
+                  {project.secondSection?.projectType?.name}{" "}
+                  <span className="mx-2">|</span>{" "}
+                  {project.secondSection?.sector?.name}{" "}
+                  <span className="mx-2">|</span>{" "}
+                  {project.secondSection?.location?.name}
                 </p>
                 <h3 className="text-2xl leading-normal text-black dark:text-white ">
                   {project.title}

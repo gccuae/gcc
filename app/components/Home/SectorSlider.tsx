@@ -11,18 +11,10 @@ import { assets } from "@/public/assets/assets";
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
 import { useRef } from "react";
+import { FourthSection } from "./type";
+
 interface SectorSliderProps {
-  data: {
-    title: string;
-    items: {
-      id: number;
-      icon: string;
-      title: string;
-      description: string;
-      image: string;
-      slug: string;
-    }[];
-  };
+  data: FourthSection;
 }
 const SectorSlider = ({ data }: SectorSliderProps) => {
   const prevRef = useRef(null);
@@ -134,8 +126,8 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
                     <div className="flex items-center justify-between mb-3 xl:mb-[25px] xl:pl-4 xl:pr-3 pt-6 xl:pt-[37px] group-hover:xl:pl-[37px]  group-hover:xl:pt-[35px] group-hover:xl:pr-[35px] group-first:pl-0 transition-all duration-300">
                       <div className="flex items-center gap-2 xl:gap-4">
                         <Image
-                          src={item.icon}
-                          alt={item.title}
+                          src={item.logo}
+                          alt={item.logoAlt}
                           width={200}
                           height={200}
                           className="w-auto h-15 object-contain"
@@ -145,7 +137,7 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
                         </h3>
                       </div>
                       <Link
-                        href={item.slug}
+                        href="#"
                         className="bg-white dark:bg-transparent border border-smgray px-4 py-2 rounded-2xl xl:opacity-0 group-hover:xl:opacity-100 transition-all duration-300"
                       >
                         <Image

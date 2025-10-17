@@ -1,11 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { projectDetailsData } from "./data";
 import { moveUp } from "../motionVarients";
+import { ForthSection } from "./type";
 
-const HIghlights = () => {
-  return ( 
+const HIghlights = ({ data }: { data: ForthSection }) => {
+  return (
     <section className="py-57px bg-black ">
       <div className="container">
         <motion.h2
@@ -15,10 +15,10 @@ const HIghlights = () => {
           viewport={{ once: true }}
           className="text-6xl leading-[1.147058823529412] text-white   mb-57px"
         >
-          {projectDetailsData.Highlights.title}
+          {data.title}
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-20">
-          {projectDetailsData.Highlights.items.map((item, index) => (
+          {data.items.map((item, index) => (
             <motion.div
               variants={moveUp(index * 0.2)}
               initial="hidden"
@@ -28,10 +28,12 @@ const HIghlights = () => {
               className="group grid gap-30px grid-rows-[auto_1fr]"
             >
               <div className="border-b border-smgray group-hover:border-b-primary pb-30px transition-all duration-300">
-                <h3 className="text-2xl leading-[1.5625] text-white ">{item.title}</h3>
+                <h3 className="text-2xl leading-[1.5625] text-white ">
+                  {item.title}
+                </h3>
               </div>
               <p className="text-lg leading-[1.5625] text-white/80  dark:text-foreground">
-                {item.desc}
+                {item.description}
               </p>
             </motion.div>
           ))}

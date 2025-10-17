@@ -1,16 +1,18 @@
 import PageBnr from "../common/PageBnr";
-import { groupCompaniesData } from "./data";
 import CounterSection from "./CounterSection";
 import BusinessNetworks from "./BusinessNetworks";
-const index = () => {
+import { GroupCompaniesProps } from "./type";
+
+const index = ({ data }: GroupCompaniesProps) => {
   return (
     <>
       <PageBnr
-        pageTitle={groupCompaniesData.title}
-        bannerImg={groupCompaniesData.bannerImg}
+        pageTitle={data.pageTitle}
+        bannerImg={data.banner}
+        bannerAlt={data.bannerAlt}
       />
-      <CounterSection />
-      <BusinessNetworks />
+      <CounterSection data={data.firstSection} />
+      <BusinessNetworks data={data.secondSection} />
     </>
   );
 };

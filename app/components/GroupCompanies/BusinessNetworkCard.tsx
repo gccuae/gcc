@@ -3,13 +3,14 @@ import { assets } from "@/public/assets/assets";
 import Image from "next/image";
 import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
-const BusinessNetworkCard = ({
-  item,
-  index,
-}: {
-  item: { logo: string; image: string; title: string; desc: string };
+import { SecondSectionItem } from "./type";
+
+interface BusinessNetworkCardProps {
+  item: SecondSectionItem;
   index: number;
-}) => {
+}
+
+const BusinessNetworkCard = ({ item, index }: BusinessNetworkCardProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [targetPosition, setTargetPosition] = useState({ x: 0, y: 0 });
   const [currentPosition, setCurrentPosition] = useState({ x: 0, y: 0 });
@@ -25,7 +26,7 @@ const BusinessNetworkCard = ({
   useEffect(() => {
     const animate = () => {
       setCurrentPosition((prev) => ({
-        x: lerp(prev.x, targetPosition.x, 0.1), // 0.1 is the smoothness factor (lower = smoother but slower)
+        x: lerp(prev.x, targetPosition.x, 0.1),
         y: lerp(prev.y, targetPosition.y, 0.1),
       }));
 
@@ -158,7 +159,7 @@ const BusinessNetworkCard = ({
           <div className="bg-white rounded-[5px] w-[175px] max-h-[45px] flex items-center justify-center px-3 py-5">
             <Image
               src={item.logo}
-              alt={item.title}
+              alt={item.logoAlt}
               width={400}
               height={400}
               className="w-auto h-10 xl:h-[38px] object-contain"
@@ -166,7 +167,7 @@ const BusinessNetworkCard = ({
           </div>
           <Image
             src={item.image}
-            alt={item.title}
+            alt={item.imageAlt}
             width={1000}
             height={1000}
             className="w-full h-full object-cover absolute top-0 left-0 -z-10"
@@ -223,7 +224,7 @@ const BusinessNetworkCard = ({
         {/* Bottom: Description */}
         <div>
           <h4 className="text-lg xl:text-xl leading-normal font-light mb-0 text-foreground dark:text-white/70">
-            {item.desc}
+            {item.category}
           </h4>
         </div>
       </div>

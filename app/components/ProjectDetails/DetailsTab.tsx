@@ -1,13 +1,14 @@
 "use client";
 
-import { projectDetailsData } from "./data";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { moveLeft, moveUp } from "../motionVarients";
+import { ThirdSection } from "./type";
+import parse from "html-react-parser";
 
-const DetailsTab = () => {
-  const { projectDetails } = projectDetailsData;
+const DetailsTab = ({ data }: { data: ThirdSection }) => {
+  const projectDetails = data.items;
   const [activeTab, setActiveTab] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -18,7 +19,7 @@ const DetailsTab = () => {
   useEffect(() => {
     if (!isPaused) {
       intervalRef.current = setInterval(() => {
-        setActiveTab((prev) => (prev + 1) % projectDetails.length);
+        setActiveTab((prev) => (prev + 1) % data.items.length);
       }, AUTOPLAY_INTERVAL);
     }
 
@@ -61,10 +62,11 @@ const DetailsTab = () => {
                 viewport={{ once: true }}
                 key={tab.title}
                 onClick={() => handleTabClick(idx)}
-                className={`py-2 md:py-4 xl:py-[27px] text-xl leading-normal font-medium relative transition-all duration-300  hover:bg-white/50 hover:px-2 cursor-pointer ${activeTab === idx
+                className={`py-2 md:py-4 xl:py-[27px] text-xl leading-normal font-medium relative transition-colors duration-300 hover:bg-white/50 cursor-pointer ${
+                  activeTab === idx
                     ? "text-black dark:text-white dark:text-white"
                     : "text-gray-500 dark:text-white/70 hover:text-black dark:hover:text-white dark:hover:text-white/70"
-                  }`}
+                }`}
               >
                 {tab.title}
                 {activeTab === idx && (
@@ -87,18 +89,15 @@ const DetailsTab = () => {
             className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 xl:gap-[70px] xl:grid-cols-[934px_auto] items-start"
           >
             {/* Text */}
-            <div className="space-y-4">
-              {projectDetails[activeTab].description.map((para, i) => (
-                <motion.p
-                  variants={moveUp(i * 0.2)}
-                  initial="hidden"
-                  animate="show"
-                  key={i}
-                  className="text-21 leading-[1.380952380952381] text-foreground dark:text-white/70"
-                >
-                  {para}
-                </motion.p>
-              ))}
+            <div>
+              <motion.div
+                variants={moveUp(0.2)}
+                initial="hidden"
+                animate="show"
+                className="text-21 leading-[1.380952380952381] text-[#515151] dark:text-white/70 [&_p]:-mb-[5px] [&_p:last-child]:mb-0"
+              >
+                {parse(projectDetails[activeTab]?.description || "")}
+              </motion.div>
             </div>
 
             {/* Image */}
@@ -109,8 +108,8 @@ const DetailsTab = () => {
               className="relative w-full h-64 md:h-96"
             >
               <Image
-                src={projectDetails[activeTab].image}
-                alt={projectDetails[activeTab].title}
+                src={projectDetails[activeTab]?.image || ""}
+                alt={projectDetails[activeTab]?.title || ""}
                 fill
                 className="object-cover"
               />

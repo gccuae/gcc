@@ -1,10 +1,15 @@
 "use client";
-import { groupCompaniesData } from "./data";
+
 import BusinessNetworkCard from "./BusinessNetworkCard";
 import { motion } from "framer-motion";
 import { moveUp } from "../../components/motionVarients";
+import { SecondSection } from "./type";
 
-const BusinessNetworks = () => {
+export interface SecondSectionProps {
+  data: SecondSection;
+}
+
+const BusinessNetworks = ({ data }: SecondSectionProps) => {
   return (
     <section className="py-57px">
       <div className="container">
@@ -16,7 +21,7 @@ const BusinessNetworks = () => {
             whileInView="show"
             className="text-5xl leading-[1.147058823529412] text-black dark:text-white mb-5 xl:mb-[27px]"
           >
-            Our Business Networks
+            {data.title}
           </motion.h2>
           <motion.p
             variants={moveUp(0.2)}
@@ -25,16 +30,11 @@ const BusinessNetworks = () => {
             whileInView="show"
             className="text-lg max-w-[88ch] leading-lh-text19 text-black dark:text-white/70 font-light mb-0"
           >
-            GCC emerged from the strategic partnership between two distinguished
-            conglomerates Al Sharafi Group and United Eastern (UE) Group. This
-            collaboration has laid the foundation for a strong and diversified
-            organization with extensive capabilities across the construction,
-            infrastructure, and industrial sectors. Our associated and sister
-            companies include the following.
+            {data.description}
           </motion.p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 xl:gap-8 ">
-          {groupCompaniesData.section2.items.map((item, index) => (
+          {data.items.map((item, index) => (
             <motion.div
               key={index}
               variants={moveUp(index * 0.12)}

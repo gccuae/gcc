@@ -6,6 +6,11 @@ import { assets } from "@/public/assets/assets";
 import StandardBnr from "../common/StandardBnr";
 import { motion } from "framer-motion";
 import { moveLeft, moveUp } from "../motionVarients";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef, useEffect } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface Props {
   title: string;
@@ -29,6 +34,31 @@ const Main = ({
   quoteAuthor,
   createdAt,
 }: Props) => {
+  const divRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        divRef.current,
+        { opacity: 0, y: 100 },
+        {
+          opacity: 1,
+          y: 0,
+          delay: 0.1, // same as moveUp(0.1)
+          duration: 0.6,
+          ease: "power1.out", // cubic-bezier(0.25, 0.1, 0.25, 1)
+          scrollTrigger: {
+            trigger: divRef.current,
+            start: "top 90%",
+            once: true,
+          },
+        }
+      );
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section className="py-57px dark:bg-black">
       <div className="container">
@@ -41,8 +71,14 @@ const Main = ({
             className="dark:text-white/70 text-foreground"
           >
             <span>{category}</span> <span className="mx-2">|</span>{" "}
-            <span className="">{date ? new Date(date).toLocaleDateString("en-GB").replace(/\//g, "-") : new Date(createdAt).toLocaleDateString("en-GB").replace(/\//g, "-")}</span> <span className="mx-2">|</span>{" "}
-            <span>{author}</span>
+            <span className="">
+              {date
+                ? new Date(date).toLocaleDateString("en-GB").replace(/\//g, "-")
+                : new Date(createdAt)
+                    .toLocaleDateString("en-GB")
+                    .replace(/\//g, "-")}
+            </span>{" "}
+            <span className="mx-2">|</span> <span>{author}</span>
           </motion.p>
           <ul className="flex gap-3 items-center dark:text-white ml-auto">
             <motion.li
@@ -131,21 +167,20 @@ const Main = ({
             </motion.li>
           </ul>
         </div>
-        <motion.div
-          variants={moveUp(0.2)}
-          initial="hidden"
-          whileInView="show"
-          className="mb-27px"
-        >
+        <div ref={divRef} className="mb-27px overflow-hidden">
           <Image
             src={mainImage}
             alt="blog-details"
             width={1920}
             height={1280}
-            className="w-full"
+            className="w-full object-cover h-[320px] md:h-[400px] lg:h-[500px] 2xl:h-[600px] "
           />
-        </motion.div>
-        <div className="mb-47px blog-details" dangerouslySetInnerHTML={{ __html: content }} />
+        </div>
+        <div
+          ref={divRef}
+          className="mb-47px blog-details overflow-hidden"
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
         <div className="mb-47px">
           {/* <motion.h3
             variants={moveUp()}
@@ -170,54 +205,52 @@ const Main = ({
           </ul> */}
           {}
         </div>
-        {quote && <motion.div
-          variants={moveUp()}
-          initial="hidden"
-          whileInView="show" 
-        >
-          <div className="bg-[#1c1c1c] border-l-6 border-primary dark:border-accent max-w-[938px] pl-6 pr-6 py-6 md:pl-14 md:pr-14 xl:pl-[71px] xl:pr-[72px]  md:py-15 xl:py-[81px] relative">
-            <motion.h3
-              variants={moveUp(0.15)}
-              initial="hidden"
-              whileInView="show"
-              className="text-xl leading-lh-text32 font-light mb-2 xl:mb-3 text-white"
-            >
-              {quote}
-            </motion.h3>
-            <div className="flex items-center justify-between">
-              <motion.p
-                variants={moveUp(0.2)}
+        {quote && (
+          <motion.div variants={moveUp()} initial="hidden" whileInView="show">
+            <div className="bg-[#1c1c1c] border-l-6 border-primary dark:border-accent max-w-[938px] pl-6 pr-6 py-6 md:pl-14 md:pr-14 xl:pl-[71px] xl:pr-[72px]  md:py-15 xl:py-[81px] relative">
+              <motion.h3
+                variants={moveUp(0.15)}
                 initial="hidden"
                 whileInView="show"
-                className="text-lg leading-lh-text19 font-medium text-white w-fit"
+                className="text-xl leading-lh-text32 font-light mb-2 xl:mb-3 text-white"
               >
-                {quoteAuthor ?? ""}
-              </motion.p>
-              <motion.div
-                variants={moveLeft(0.2)}
-                initial="hidden"
-                whileInView="show"
-              >
+                {quote}
+              </motion.h3>
+              <div className="flex items-center justify-between">
+                <motion.p
+                  variants={moveUp(0.2)}
+                  initial="hidden"
+                  whileInView="show"
+                  className="text-lg leading-lh-text19 font-medium text-white w-fit"
+                >
+                  {quoteAuthor ?? ""}
+                </motion.p>
+                <motion.div
+                  variants={moveLeft(0.2)}
+                  initial="hidden"
+                  whileInView="show"
+                >
+                  <Image
+                    src={assets.quote}
+                    alt="quote"
+                    width={50}
+                    height={50}
+                    className="w-10 h-10"
+                  />
+                </motion.div>
+              </div>
+              <div className="absolute bottom-0 left-0 w-full h-[25px]">
                 <Image
-                  src={assets.quote}
-                  alt="quote"
-                  width={50}
-                  height={50}
-                  className="w-10 h-10"
+                  src={assets.scale}
+                  alt="scale"
+                  width={1920}
+                  height={25}
+                  className="w-full object-fill"
                 />
-              </motion.div>
+              </div>
             </div>
-            <div className="absolute bottom-0 left-0 w-full h-[25px]">
-              <Image
-                src={assets.scale}
-                alt="scale"
-                width={1920}
-                height={25}
-                className="w-full object-fill"
-              />
-            </div>
-          </div>
-        </motion.div>}
+          </motion.div>
+        )}
       </div>
     </section>
   );

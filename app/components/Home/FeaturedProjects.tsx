@@ -9,39 +9,26 @@ import BtnPrimary from "../common/BtnPrimary";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { moveUp, moveLeft } from "../motionVarients";
-import { TypeFeaturedProjects } from "@/types/Common";
+import { Project } from "@/types/Projects";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-// import parse, { domToReact, DOMNode, Element } from "html-react-parser";
 
 gsap.registerPlugin(ScrollTrigger);
 
 import Link from "next/link";
 interface FeaturedProjectsProps {
-  data: TypeFeaturedProjects;
+  data: Project;
 }
 
 const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
+  const featuredProjects = data.projects.filter(
+    (project) => project.featuredProject === true
+  );
+
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
   const containerRef = useRef<HTMLDivElement>(null);
-  // const [rightMargin, setRightMargin] = useState(0);
-
-  // useEffect(() => {
-  //   const updateMargin = () => {
-  //     if (containerRef.current) {
-  //       const containerWidth = containerRef.current.offsetWidth;
-  //       const windowWidth = window.innerWidth;
-  //       const margin = (windowWidth - containerWidth) / 2;
-  //       setRightMargin(margin);
-  //     }
-  //   };
-
-  //   updateMargin();
-  //   window.addEventListener("resize", updateMargin);
-  //   return () => window.removeEventListener("resize", updateMargin);
-  // }, []);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -84,7 +71,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
               whileInView="show"
               viewport={{ once: true, amount: 0.2 }}
             >
-              {data.title}
+              Featured Projects
             </motion.h2>
             <div className="flex gap-3 md:gap-5 items-center  ">
               <motion.div
@@ -98,7 +85,6 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                   ref={prevRef}
                   className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] border-r border-foreground dark:border-white rounded-tl-full rounded-bl-full group  cursor-pointer hover:bg-accent  transition-all duration-300"
                 >
-                  {/* <Image src="/assets/img/icons/greenrightarrow.svg" alt="image" className="rotate-180 group-hover:brightness-0 group-hover:invert transition-all duration-300 min-w-[6px] min-h-[13px]" width={6} height={13} /> */}
                   <svg
                     width="10"
                     height="16"
@@ -120,7 +106,6 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                   ref={nextRef}
                   className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] rounded-tr-full rounded-br-full cursor-pointer group hover:bg-accent dark:hover:bg-white transition-all duration-300"
                 >
-                  {/* <Image src="/assets/img/icons/greenrightarrow.svg" alt="image" className="group-hover:brightness-0 group-hover:invert transition-all duration-300 min-w-[6px] min-h-[13px]" width={6} height={13} /> */}
                   <svg
                     width="10"
                     height="16"
@@ -177,7 +162,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                   loop
                   className="w-full h-full "
                 >
-                  {data.banners.map((slide, index) => (
+                  {featuredProjects.map((slide, index) => (
                     <SwiperSlide key={index}>
                       <div className="">
                         <h3 className="text-2xl font-normal mb-5 lg:mb-15 dark:text-white leading-[1.40625] pr-5">
@@ -195,7 +180,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                               Location
                             </p>
                             <p className="text-lg leading-[1.842105263157895] font-light dark:text-white group-hover:translate-x-2 transition-all duration-300">
-                              {slide.location}
+                              {slide.secondSection.location.name}
                             </p>
                           </motion.div>
                           <motion.div
@@ -209,7 +194,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                               Client
                             </p>
                             <p className="text-lg leading-[1.842105263157895] font-light dark:text-white group-hover:translate-x-2 transition-all duration-300">
-                              {slide.client}
+                              {slide.secondSection.client}
                             </p>
                           </motion.div>
                           <motion.div
@@ -223,7 +208,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                               Project Value
                             </p>
                             <p className="text-lg leading-[1.842105263157895] font-light dark:text-white group-hover:translate-x-2 transition-all duration-300">
-                              {slide.projectvalue}
+                              {slide.secondSection.projectValue}
                             </p>
                           </motion.div>
                           <motion.div
@@ -237,14 +222,14 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                               Superficie
                             </p>
                             <p className="text-lg leading-[1.842105263157895] font-light dark:text-white group-hover:translate-x-2 transition-all duration-300">
-                              {slide.superficie}
+                              {slide.secondSection.projectValue}
                             </p>
                           </motion.div>
                         </div>
                         <div className="mt-0 lg:mt-16">
                           <BtnPrimary
-                            link={"/projects/corniche"}
-                            text={slide.btn}
+                            link={"/projects/" + slide.slug}
+                            text="READ MORE"
                             bgtrans={false}
                           />
                         </div>
@@ -281,21 +266,21 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                   spaceBetween={20}
                   slidesPerView={1}
                 >
-                  {data.banners.map((slide, index) => (
+                  {data.projects.map((slide, index) => (
                     <SwiperSlide
                       key={index}
                       className="h-full min-h-[250px] relative p-5 xl:p-[30px] overflow-hidden group"
                     >
                       <Link
-                        href={slide.btnLink}
+                        href={"/projects/" + slide.slug}
                         className="relative z-10 bg-accent text-base font-light leading-[1.75] text-foreground uppercase px-5 xl:px-[25px] py-2 xl:py-[7px] rounded-3xl group-hover:text-white group-hover:bg-primary  transition-all duration-300 "
                       >
-                        {slide.sector}
+                        {slide.secondSection.sector.name}
                       </Link>
                       <div className="h-full absolute top-0 left-0 z-0 featured-image-wrapper">
                         <Image
-                          src={slide.image}
-                          alt={slide.title}
+                          src={slide.thumbnail}
+                          alt={slide.thumbnailAlt}
                           width={2000}
                           height={2000}
                           className="w-full h-full object-cover hover:scale-105 transition-all duration-300"

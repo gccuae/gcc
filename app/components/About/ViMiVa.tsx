@@ -1,22 +1,17 @@
 "use client";
 
-import { aboutData } from "./data";
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
 import Image from "next/image";
 import { useState } from "react";
-const ViMiVa = () => {
-  const vmvItems = Object.values(aboutData.vmv).map((item) => ({
-    title: item.title,
-    content: item.desc,
-    icon: item.icon,
-    id: item._id,
-  }));
+import parse from "html-react-parser";
+import { ViMiVaProps } from "./type";
 
-  const [activeTestimonialReadMore, setActiveTestimonialReadMore] = useState<string | null>(null);
+const ViMiVa = ({ data }: ViMiVaProps) => {
+  const [activeReadMore, setActiveReadMore] = useState<string | null>(null);
 
   const toggleReadMore = (id: string) => {
-    setActiveTestimonialReadMore(prev => (prev === id ? null : id));
+    setActiveReadMore((prev) => (prev === id ? null : id));
   };
 
   return (
@@ -31,7 +26,7 @@ const ViMiVa = () => {
             viewport={{ once: true }}
             className="text-5xl leading-lh-title text-black dark:text-white mb-[17px]"
           >
-            Vision, Mission & Values
+            {data.mainTitle}
           </motion.h2>
           <motion.h3
             variants={moveUp(0.2)}
@@ -40,11 +35,11 @@ const ViMiVa = () => {
             viewport={{ once: true }}
             className="text-xl xl:text-2xl lg:text-2xl leading-[1.2] xl:leading-[1.5625] dark:text-white"
           >
-            Guided by Purpose, Powered by Principles
+            {data.subTitle}
           </motion.h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 mt-5 gap-y-10">
-          {vmvItems.map((item, index) => (
+          {data.items.map((item, index) => (
             <motion.div
               variants={moveUp(index * 0.2)}
               initial="hidden"
@@ -54,27 +49,35 @@ const ViMiVa = () => {
               className="bg-white dark:bg-black  flex flex-col gap-5 xl:border-r border-smgray xl:last:border-r-0 xl:px-8"
             >
               <div>
-                <Image src={item.icon} alt={item.title} width={50} height={50} className="w-auto h-10 xl:h-13" />
+                <Image
+                  src={item.logo}
+                  alt={item.logoAlt}
+                  width={50}
+                  height={50}
+                  className="w-auto h-10 xl:h-13"
+                />
               </div>
               <h3 className="text-2xl leading-lh-title text-black dark:text-white ">
                 {item.title}
               </h3>
-              <p className="text-lg leading-[1.5] dark:text-white flex flex-col">
-                {item.content[0].split(" ").length > 30 && activeTestimonialReadMore !== item.id
-                      ? item.content[0].split(" ").slice(0, 30).join(" ") + `...`
-                      : item.content[0]}
 
-{item.content[0].split(" ").length > 30 && (
-                      <span
-                        className="dark:text-white cursor-pointer text-base text-primary"
-                        onClick={() =>
-                          toggleReadMore(item.id)
-                        }
-                      >
-                        {activeTestimonialReadMore === item.id ? " Read Less" : " Read More"}
-                      </span>
-                    )}
-              </p>
+              <div className="text-lg leading-[1.5] dark:text-white flex flex-col">
+                {item.description.split(" ").length > 30 &&
+                activeReadMore !== item._id
+                  ? parse(
+                      item.description.split(" ").slice(0, 30).join(" ") + "..."
+                    )
+                  : parse(item.description)}
+
+                {item.description.split(" ").length > 30 && (
+                  <span
+                    className="dark:text-white cursor-pointer text-base text-primary"
+                    onClick={() => toggleReadMore(item._id)}
+                  >
+                    {activeReadMore === item._id ? " Read Less" : " Read More"}
+                  </span>
+                )}
+              </div>
             </motion.div>
           ))}
         </div>

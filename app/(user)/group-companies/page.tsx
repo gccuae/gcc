@@ -1,11 +1,15 @@
 import Index from "@/app/components/GroupCompanies";
 
-const Page = () => {  
-  return ( 
+const Page = async () => {
+  const data = await fetch(`${process.env.BASE_URL}/api/admin/group-company`, {
+    next: { revalidate: 60 },
+  }).then((res) => res.json());
+
+  return (
     <>
-    <Index />
+      <Index data={data.data} />
     </>
-   );
-}
- 
+  );
+};
+
 export default Page;

@@ -1,17 +1,18 @@
 import PageBnr from "../common/PageBnr";
-import { expertiseData } from "./data";
 import ImgDesc from "../common/ImgDesc";
 import Services from "./Services";
+import { ExpertiseProps } from "./type";
 
-const Index = () => {
+const Index = ({ data }: ExpertiseProps) => {
   return (
     <>
       <PageBnr
-        pageTitle={expertiseData.title}
-        bannerImg={expertiseData.bannerImg}
+        pageTitle={data.pageTitle}
+        bannerImg={data.banner}
+        bannerAlt={data.bannerAlt}
       />
-      <ImgDesc data={expertiseData.firstSection} />
-      <Services />
+      <ImgDesc data={data.firstSection} />
+      <Services data={data.secondSection} />
     </>
   );
 };

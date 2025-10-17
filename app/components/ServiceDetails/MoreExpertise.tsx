@@ -5,8 +5,13 @@ import ExpertiseCard from "../expertise/ExpertiseCard";
 import BtnPrimary from "../common/BtnPrimary";
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
+import { SecondSectionItem } from "../expertise/type";
 
-const MoreExpertise = () => {
+interface MoreExpertiseProps {
+  allServices: SecondSectionItem[];
+}
+
+const MoreExpertise = ({ allServices }: MoreExpertiseProps) => {
   return (
     <section className="py-57px bg-light-white dark:bg-black">
       <div className="container">
@@ -31,7 +36,7 @@ const MoreExpertise = () => {
           </motion.div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 xl:gap-10">
-          {serviceDetailsData.moreExperiences.items.map((item, index) => (
+          {allServices.slice(0, 3).map((item, index) => (
             <motion.div
               key={index}
               variants={moveUp(index * 0.2)}

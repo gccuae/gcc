@@ -4,11 +4,15 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import Image from "next/image";
-import { serviceDetailsData } from "./data";
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
+import { SecondSectionSecondSection } from "../expertise/type";
 
-const Scops = () => {
+interface ScopsProps {
+  data: SecondSectionSecondSection;
+}
+
+const Scops = ({ data }: ScopsProps) => {
   return (
     <section className="py-57px bg-black">
       <div className="container">
@@ -20,7 +24,7 @@ const Scops = () => {
             viewport={{ once: true }}
             className="text-5xl leading-lh-text68 font-normal text-white"
           >
-            Scopes of Works
+            {data.title}
           </motion.h2>
         </div>
       </div>
@@ -54,7 +58,7 @@ const Scops = () => {
         }}
         className="scope-swiper w-full"
       >
-        {serviceDetailsData.scopes.items.map((item, index) => (
+        {data.items.map((item, index) => (
           <SwiperSlide key={index}>
             <motion.div
               variants={moveUp(index * 0.02)}
@@ -66,8 +70,8 @@ const Scops = () => {
               {/* Top: Image */}
               <div>
                 <Image
-                  src={item.img}
-                  alt={item.title}
+                  src={item.image}
+                  alt={item.imageAlt}
                   width={500}
                   height={500}
                   className="w-full h-full object-cover"

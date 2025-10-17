@@ -21,7 +21,7 @@ const DetailsBlock: React.FC<DetailsBlockProps> = ({
 }) => {
   if (!selectedItem) {
     return (
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 text-center">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mb-12 text-center">
         <div className="text-gray-400 text-6xl mb-4">📋</div>
         <h3 className="text-xl font-medium text-gray-900 dark:text-white mb-2">
           Select an item to view details

@@ -13,7 +13,13 @@ import { moveLeft, moveUp } from "../../motionVarients";
 import Image from "next/image";
 type Option = { value: string; label: string };
 import { assets } from "@/public/assets/assets";
-import { Map, MapCameraChangedEvent, Marker, useMap } from '@vis.gl/react-google-maps';
+import {
+  Map,
+  MapCameraChangedEvent,
+  Marker,
+  useMap,
+} from "@vis.gl/react-google-maps";
+import { useRouter } from "next/navigation";
 
 const Select = dynamic<ReactSelectProps<Option, false>>(
   () => import("react-select"),
@@ -40,18 +46,18 @@ export interface Project {
       sector: {
         name: string;
         _id: string;
-      }
+      };
       location: {
         name: string;
         _id: string;
-      }
+      };
       projectType: {
         name: string;
         _id: string;
-      }
+      };
       status: string;
-    }
-  }[]
+    };
+  }[];
 }
 
 interface Sector {
@@ -98,15 +104,18 @@ export default function FeaturedProjects({
 }) {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const [leftOffset, setLeftOffset] = useState(0);
-  const [activeProject, setActiveProject] = useState<string>(projects.projects[0]._id);
+  const [activeProject, setActiveProject] = useState<string>(
+    projects.projects[0]._id
+  );
   const [filters, setFilters] = useState<Record<FilterKey, string>>({
     type: "Project Type",
     sector: "Sector",
     status: "Status",
   });
 
-
-  const [visibleProjects, setVisibleProjects] = useState<Project['projects']>([]);
+  const [visibleProjects, setVisibleProjects] = useState<Project["projects"]>(
+    []
+  );
 
   const filteredProjects = projects.projects.filter((project) => {
     return (
@@ -163,7 +172,6 @@ export default function FeaturedProjects({
     }
   };
 
-
   // Styles for react-select
   const selectStyles: StylesConfig<Option, false> = {
     control: (base) => ({
@@ -213,8 +221,6 @@ export default function FeaturedProjects({
     window.addEventListener("resize", updateOffset);
     return () => window.removeEventListener("resize", updateOffset);
   }, []);
-
-
 
   const [highlighted, setHighlighted] = useState<string[]>([]);
   const map = useMap();
@@ -271,9 +277,7 @@ export default function FeaturedProjects({
     }
   }, [filters]);
 
-
-
-
+  const navigate = useRouter();
   return (
     <section className="pt-15 xl:pt-25px bg-light-white">
       <motion.h2
@@ -323,11 +327,8 @@ export default function FeaturedProjects({
                       setFilters({
                         ...filters,
                         [key]: option?.value ?? placeholder,
-                      })
-
-
-                    }
-                    }
+                      });
+                    }}
                     styles={selectStyles}
                   />
                 </motion.div>
@@ -338,15 +339,16 @@ export default function FeaturedProjects({
             <div className="space-y-37px 2xl:space-y-47px relative bg-light-white">
               {visibleProjects?.map((project, index) => (
                 <motion.div
+                  onClick={() => navigate.push(`/projects/${project.slug}`)}
                   key={project._id}
-
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true }}
                   className="cursor-pointer relative group"
                   onMouseEnter={() => {
                     // Hover only on desktop (lg and above)
-                    if (window.innerWidth >= 1024) setActiveProject(project._id);
+                    if (window.innerWidth >= 1024)
+                      setActiveProject(project._id);
                   }}
                 >
                   <div className="relative lg:pr-[47px]">
@@ -397,12 +399,11 @@ export default function FeaturedProjects({
                     viewport={{ once: true }}
                     className="mt-[17px] gap-x-5 gap-y-2 font-light text-lg leading-1h-text19 flex flex-wrap text-foreground dark:text-white/70"
                   >
-                    <span>{project.secondSection.projectType.name}</span>|<span>{project.secondSection.sector.name}</span>|
+                    <span>{project.secondSection.projectType.name}</span>|
+                    <span>{project.secondSection.sector.name}</span>|
                     <span>{project.secondSection.location.name}</span>|
                     <span>{project.secondSection.status}</span>
                   </motion.div>
-
-
 
                   {/* Mobile Map */}
                   {/* <motion.div
@@ -423,8 +424,6 @@ export default function FeaturedProjects({
                     )}
                   </motion.div> */}
 
-
-                  
                   <motion.h3
                     variants={moveUp(0.15)}
                     initial="hidden"
@@ -434,7 +433,6 @@ export default function FeaturedProjects({
                   >
                     {project.title}
                   </motion.h3>
-                  
                 </motion.div>
               ))}
             </div>
@@ -473,7 +471,7 @@ export default function FeaturedProjects({
                 const isHovered = activeProject === project._id;
                 const isHighlighted = highlighted.includes(project._id);
 
-                console.log(isHovered)
+                console.log(isHovered);
 
                 if (!isHovered && !isHighlighted) return null; // Don't render
 
@@ -487,13 +485,15 @@ export default function FeaturedProjects({
                     title={project.title}
                     icon={{
                       url: isHovered
-                        ? "/active-icon.svg"       // Hovered project
-                        : "/inactive-icon.svg",   // Project in bounds
+                        ? "/active-icon.svg" // Hovered project
+                        : "/inactive-icon.svg", // Project in bounds
                     }}
                     onClick={() => {
                       // Move clicked project to the start of visibleProjects
                       setVisibleProjects((prev) => {
-                        const newArr = prev.filter((p) => p._id !== project._id); // remove clicked project
+                        const newArr = prev.filter(
+                          (p) => p._id !== project._id
+                        ); // remove clicked project
                         return [project, ...newArr]; // add it to the start
                       });
 
@@ -503,9 +503,7 @@ export default function FeaturedProjects({
                   />
                 );
               })}
-
             </Map>
-
           </motion.div>
         </motion.div>
       </div>

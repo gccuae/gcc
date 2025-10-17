@@ -1,12 +1,12 @@
 "use client";
 import SpecialContainer from "../common/SpecialContainer";
-import { aboutData } from "./data";
 import Image from "next/image";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { moveUp } from "../motionVarients";
+import { WhatWeDoProps } from "./type";
 
-const WhatWeDo = () => {
+const WhatWeDo = ({ data }: WhatWeDoProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
   return (
     <section className="bg-light-white dark:bg-light-dark overflow-hidden">
@@ -19,7 +19,7 @@ const WhatWeDo = () => {
             viewport={{ once: true }}
             className="text-5xl leading-lh-title text-black dark:text-white mb-4 lg:mb-2"
           >
-            What We Do
+            {data.mainTitle}
           </motion.h2>
           <motion.h3
             variants={moveUp(0.2)}
@@ -28,7 +28,7 @@ const WhatWeDo = () => {
             viewport={{ once: true }}
             className="text-xl xl:text-2xl leading-[1.2]  xl:leading-[1.5625] dark:text-white"
           >
-            Unlocking Potential Through Construction Excellence
+            {data.subTitle}
           </motion.h3>
         </div>
       </div>
@@ -48,10 +48,10 @@ const WhatWeDo = () => {
               viewport={{ once: true }}
               className="text-lg leading-lh-text19 dark:text-white mb-4 xl:mb-10"
             >
-              {aboutData.whatWeDo.descTop}
+              {data.firstDescription}
             </motion.p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-2 xl:gap-x-50px mb-7 xl:mb-10 ">
-              {aboutData.whatWeDo.items.map((item, index) => (
+              {data.items.map((item, index) => (
                 <motion.button
                   variants={moveUp(index * 0.17)}
                   initial="hidden"
@@ -67,15 +67,17 @@ const WhatWeDo = () => {
                   <p className="text-xl leading-[1.2] py-4 md:py-5 text-left group-hover:text-primary group-hover:scale-[1.03] transition-all duration-400 dark:group-hover:text-primary ">
                     {item.title}
                   </p>
-                  {index === activeIndex && <Image
-                    src={aboutData.whatWeDo.arrowIcon}
-                    alt="what we do"
-                    width={19.05}
-                    height={19.05}
-                    className={`opacity-0 translate-x-[-4px] translate-y-[4px] group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-300 ${
-                      index === activeIndex ? "opacity-100" : "opacity-0"
-                    }`}
-                  />}
+                  {index === activeIndex && (
+                    <Image
+                      src="/assets/img/icons/arrow-tr-green.svg"
+                      alt="what we do"
+                      width={19.05}
+                      height={19.05}
+                      className={`opacity-0 translate-x-[-4px] translate-y-[4px] group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-300 ${
+                        index === activeIndex ? "opacity-100" : "opacity-0"
+                      }`}
+                    />
+                  )}
                 </motion.button>
               ))}
             </div>
@@ -86,7 +88,7 @@ const WhatWeDo = () => {
               viewport={{ once: true }}
               className="text-lg leading-lh-text19 dark:text-white "
             >
-              {aboutData.whatWeDo.descBottom}
+              {data.secondDescription}
             </motion.p>
           </div>
           <div className="pt-2 pb-10 md:py-5 lg:pl-5 xl:py-10 xl:pl-10 relative overflow-hidden lg:min-h-[800px]">
@@ -100,8 +102,8 @@ const WhatWeDo = () => {
                 className="w-full h-full flex flex-col justify-center"
               >
                 <Image
-                  src={aboutData.whatWeDo.items[activeIndex].image}
-                  alt={aboutData.whatWeDo.items[activeIndex].title}
+                  src={data.items[activeIndex].image}
+                  alt={data.items[activeIndex].title}
                   width={1840}
                   height={1700}
                   className="w-full h-full object-cover  border-8 border-white"

@@ -1,14 +1,14 @@
 import MsgGm from "./MsgGm";
 import MsgChairman from "./MsgChairman";
+import { MessageProps } from "./type";
 
-
-const Index = () => {
-  return ( 
+const Index = ({ data }: MessageProps) => {
+  return (
     <>
-    <MsgChairman />
-    <MsgGm /> 
+      <MsgChairman items={data.messageSection.items} />
+      <MsgGm items={data.messageSection.items} />
     </>
-   );
-}
- 
+  );
+};
+
 export default Index;

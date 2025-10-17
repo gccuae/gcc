@@ -1,12 +1,14 @@
 "use client";
 
 import SpecialContainer from "../common/SpecialContainer";
-import { leadersData } from "./data";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { moveRight, moveUp } from "../motionVarients";
+import { MessageSection } from "./type";
 
-const MsgChairman = () => {
+const MsgChairman = ({ items }: MessageSection) => {
+  const chairmanData = items[0];
+
   return (
     <section className="pt-57px xl:pt-[105px] mb-57px xl:mb-[101px]  dark:bg-light-dark pb-57px lg:pb-0">
       <SpecialContainer className="lg:ps-0" side="left">
@@ -26,7 +28,7 @@ const MsgChairman = () => {
               whileInView="show"
             >
               <Image
-                src={leadersData.chairman.image}
+                src={chairmanData?.image}
                 alt="msg chairman"
                 width={1500}
                 height={1500}
@@ -41,10 +43,10 @@ const MsgChairman = () => {
                 whileInView="show"
               >
                 <h3 className="text-2xl leading-[1.147] md:leading-lh-title text-white dark:text-white">
-                  {leadersData.chairman.name}
+                  {chairmanData?.name}
                 </h3>
                 <p className="text-lg leading-lh-text19 text-white dark:text-white">
-                  {leadersData.chairman.position}
+                  {chairmanData?.designation}
                 </p>
               </motion.div>
             </div>
@@ -57,21 +59,23 @@ const MsgChairman = () => {
               whileInView="show"
               className="text-2xl lg:text-6xl leading-lh-title text-black dark:text-white mb-2 md:mb-5 xl:mb-[34px] lg:max-w-[16ch]"
             >
-              {leadersData.chairman.title}
+              {chairmanData.title}
             </motion.h2>
             <div className="lg:max-w-[62ch]">
-              {leadersData.chairman.desc.map((item, index) => (
-                <motion.p
-                  variants={moveUp(index * 0.2)}
-                  viewport={{ once: true }}
-                  initial="hidden"
-                  whileInView="show"
-                  key={index}
-                  className="mb-3 last:mb-0 lg:last:mb-[17px] lg:mb-[17px] text-lg leading-lh-text19 text-foreground dark:text-white font-light"
-                >
-                  {item}
-                </motion.p>
-              ))}
+              {chairmanData?.message
+                .split(/\r?\n/)
+                .map((line: string, index: number) => (
+                  <motion.p
+                    variants={moveUp(index * 0.2)}
+                    viewport={{ once: true }}
+                    initial="hidden"
+                    whileInView="show"
+                    key={index}
+                    className="mb-3 last:mb-0 lg:last:mb-[17px] lg:mb-[17px] text-lg leading-lh-text19 text-foreground dark:text-white font-light"
+                  >
+                    {line}
+                  </motion.p>
+                ))}
             </div>
           </div>
         </div>
