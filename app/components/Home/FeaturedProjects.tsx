@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -30,34 +30,34 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
 
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (!containerRef.current) return;
+  // useEffect(() => {
+  //   if (!containerRef.current) return;
 
-    const wrappers = gsap.utils.toArray<HTMLDivElement>(
-      ".featured-image-wrapper"
-    );
+  //   const wrappers = gsap.utils.toArray<HTMLDivElement>(
+  //     ".featured-image-wrapper"
+  //   );
 
-    wrappers.forEach((wrapper) => {
-      gsap.fromTo(
-        wrapper,
-        { y: "-10vh" },
-        {
-          y: "10vh",
-          ease: "none",
-          scrollTrigger: {
-            trigger: wrapper,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-          },
-        }
-      );
-    });
+  //   wrappers.forEach((wrapper) => {
+  //     gsap.fromTo(
+  //       wrapper,
+  //       { y: "-10vh" },
+  //       {
+  //         y: "10vh",
+  //         ease: "none",
+  //         scrollTrigger: {
+  //           trigger: wrapper,
+  //           start: "top bottom",
+  //           end: "bottom top",
+  //           scrub: true,
+  //         },
+  //       }
+  //     );
+  //   });
 
-    return () => {
-      ScrollTrigger.getAll().forEach((st) => st.kill());
-    };
-  }, []);
+  //   return () => {
+  //     ScrollTrigger.getAll().forEach((st) => st.kill());
+  //   };
+  // }, []);
 
   return (
     <section className="bg-light-white dark:bg-light-dark overflow-hidden">
@@ -222,7 +222,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                               Superficie
                             </p>
                             <p className="text-lg leading-[1.842105263157895] font-light dark:text-white group-hover:translate-x-2 transition-all duration-300">
-                              {slide.secondSection.projectValue}
+                              {slide.secondSection.superficie}
                             </p>
                           </motion.div>
                         </div>
@@ -230,7 +230,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                           <BtnPrimary
                             link={"/projects/" + slide.slug}
                             text="READ MORE"
-                            bgtrans={false}
+                            bgtrans={true}
                           />
                         </div>
                       </div>
@@ -269,15 +269,9 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                   {data.projects.map((slide, index) => (
                     <SwiperSlide
                       key={index}
-                      className="h-full min-h-[250px] relative p-5 xl:p-[30px] overflow-hidden group"
+                      className="h-full min-h-[250px] relative overflow-hidden group"
                     >
-                      <Link
-                        href={"/projects/" + slide.slug}
-                        className="relative z-10 bg-accent text-base font-light leading-[1.75] text-foreground uppercase px-5 xl:px-[25px] py-2 xl:py-[7px] rounded-3xl group-hover:text-white group-hover:bg-primary  transition-all duration-300 "
-                      >
-                        {slide.secondSection.sector.name}
-                      </Link>
-                      <div className="h-full absolute top-0 left-0 z-0 featured-image-wrapper">
+                      <div className="absolute inset-0">
                         <Image
                           src={slide.thumbnail}
                           alt={slide.thumbnailAlt}
@@ -285,6 +279,16 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                           height={2000}
                           className="w-full h-full object-cover hover:scale-105 transition-all duration-300"
                         />
+                      </div>
+
+                      {/* Padding wrapper to create 30px gap */}
+                      <div className="absolute top-[25px] left-[15px] 2xl:top-[40px] 2xl:left-[30px] z-10">
+                        <Link
+                          href={"/projects/" + slide.slug}
+                          className="bg-accent text-base font-light leading-[1.75] text-foreground uppercase px-5 xl:px-[25px] py-3 xl:py-[15px] rounded-[75px] group-hover:text-white group-hover:bg-primary transition-all duration-300"
+                        >
+                          {slide.secondSection.sector.name}
+                        </Link>
                       </div>
                     </SwiperSlide>
                   ))}

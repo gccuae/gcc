@@ -22,7 +22,6 @@ const NewsBlock = ({ data }: NewsBlockProps) => {
       category: cat.category, // ensure category is attached
     }))
   );
-  console.log(allNews, "data nw");
 
   const sectionRef = useRef<HTMLElement | null>(null);
 

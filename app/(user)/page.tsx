@@ -16,12 +16,18 @@ export default async function Home() {
   });
   const newsData = await news.json();
 
+  const expertise = await fetch(`${process.env.BASE_URL}/api/admin/expertise`, {
+    next: { revalidate: 60 },
+  });
+  const expertiseData = await expertise.json();
+
   return (
     <>
       <Index
         data={HomeData.data}
         projects={projectsData.data}
         news={newsData.data}
+        expertise={expertiseData.data}
       />
     </>
   );

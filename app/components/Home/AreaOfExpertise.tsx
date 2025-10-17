@@ -15,10 +15,10 @@ import { fadeIn, moveUp } from "../motionVarients";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Thumbs, Autoplay, Navigation } from "swiper/modules";
 import "swiper/css/navigation";
-import { ThirdSection } from "../Home/type";
+import { SecondSection } from "../expertise/type";
 
 interface AreaOfExpertiseProps {
-  data: ThirdSection;
+  data: SecondSection;
 }
 
 const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
@@ -163,7 +163,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
             viewport={{ once: true }}
             className="text-5xl font-normal leading-[1.147058823529412] text-black dark:text-white"
           >
-            {data.title}
+            Area of Expertise
           </motion.h2>
           <div className="flex items-center gap-2">
             <motion.div
@@ -314,11 +314,11 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                 >
                   <div className="img-wrapper md:border-r-1 border-r-smgray pr-4 xl:pr-[50px] pb-0 xl:py-5 relative">
                     <Image
-                      src={item.image}
-                      alt={item.imageAlt}
+                      src={item.homeThumbnail}
+                      alt={item.homeThumbnailAlt}
                       width={1000}
                       height={1000}
-                      className="slide-img w-full h-auto rounded object-cover"
+                      className="slide-img w-full h-[300px] md:h-[400px] 2xl:h-[500px] rounded object-cover"
                     />
                   </div>
                   <div className="group">
@@ -330,7 +330,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                     </p>
                     <div className="slide-btn mt-6 xl:mt-[43px] mb-4">
                       <BtnPrimary
-                        link={"/expertise/" + item.title}
+                        link={"/expertise/" + item.slug}
                         text="Read More"
                         bgtrans={false}
                       />

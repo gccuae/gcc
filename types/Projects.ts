@@ -31,7 +31,7 @@ export interface Project {
       status: string;
       client: string;
       projectValue: string;
-      
+      superficie: string;
     };
   }[];
 }
