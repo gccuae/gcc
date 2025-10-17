@@ -68,7 +68,7 @@ const Main = ({
             variants={moveUp()}
             initial="hidden"
             whileInView="show"
-            className="dark:text-white/70 text-foreground"
+            className="dark:text-white/70 text-para-color"
           >
             <span>{category}</span> <span className="mx-2">|</span>{" "}
             <span className="">

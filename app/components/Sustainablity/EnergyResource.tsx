@@ -5,8 +5,11 @@ import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
 import { SustainabilityType } from "./type";
 
-
-const EnergyResource = ({ data }: {data:SustainabilityType['secondSection']}) => {
+const EnergyResource = ({
+  data,
+}: {
+  data: SustainabilityType["secondSection"];
+}) => {
   return (
     <section className="py-57px bg-light-white dark:bg-light-dark">
       <div className="container">
@@ -24,7 +27,7 @@ const EnergyResource = ({ data }: {data:SustainabilityType['secondSection']}) =>
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="text-lg max-w-[96ch] leading-[1.526315789473684] font-light text-forground dark:text-white/80 hover:text-black dark:hover:text-white transition-colors duration-300"
+          className="text-lg max-w-[96ch] leading-[1.526315789473684] font-light text-para-color dark:text-white/80 hover:text-black dark:hover:text-white transition-colors duration-300"
         >
           {data.description}
         </motion.p>
@@ -34,7 +37,7 @@ const EnergyResource = ({ data }: {data:SustainabilityType['secondSection']}) =>
               key={index}
               className="flex flex-col border-r border-smgray last:border-r-0 group"
             >
-              <div className="border-b border-smgray xl:pt-5 2xl:pr-1 p-5 pb-2 2xl:pb-0  2xl:p-8 xl:pb-0 group-hover:border-b-primary group-hover:border-b-[4px] transition-colors duration-300">
+              <div className="border-b border-smgray xl:pt-5 2xl:pr-1 p-5 pb-2 2xl:pb-0  2xl:p-8 xl:pb-0 group-hover:border-b-primary group-hover:border-b-[2px] transition-colors duration-300">
                 <motion.div
                   variants={moveUp(0.2)}
                   initial="hidden"
@@ -66,7 +69,7 @@ const EnergyResource = ({ data }: {data:SustainabilityType['secondSection']}) =>
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true }}
-                  className="text-lg leading-[1.5625] dark:text-white"
+                  className="text-lg leading-[1.5625] dark:text-white text-para-color"
                 >
                   {item.description}
                 </motion.p>

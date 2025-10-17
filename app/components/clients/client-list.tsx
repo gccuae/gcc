@@ -15,7 +15,7 @@ const ClientList = ({ data }: { data: ClientsFirstSection }) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-xl leading-lh-text23 text-foreground dark:text-white/80"
+            className="text-xl leading-[1.608695652173913] text-para-color dark:text-white/80"
           >
             {data.description}
           </motion.p>

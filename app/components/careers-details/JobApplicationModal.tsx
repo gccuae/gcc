@@ -154,7 +154,7 @@ const JobApplicationModalForm = ({ onSuccess }: Props) => {
               />
               <label
                 htmlFor="coverLetter"
-                className="flex items-center gap-3 py-4 cursor-pointer text-foreground dark:text-white"
+                className="flex items-center gap-3 py-4 cursor-pointer text-para-color dark:text-white"
               >
                 <Image
                   src="/assets/img/careers/upload-icon.svg"
@@ -198,7 +198,7 @@ const JobApplicationModalForm = ({ onSuccess }: Props) => {
               />
               <label
                 htmlFor="resume"
-                className="flex items-center gap-3 py-4 cursor-pointer text-foreground dark:text-white"
+                className="flex items-center gap-3 py-4 cursor-pointer text-para-color dark:text-white"
               >
                 <Image
                   src="/assets/img/careers/upload-icon.svg"

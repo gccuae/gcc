@@ -221,7 +221,7 @@ const AboutCompanyV = ({ data }: Props) => {
           <div className="w-full lg:w-[52%]">
             <p
               ref={textRef}
-              className="text-lg xl:text-[30px] font-light text-foreground mb-5 md:mb-8 lg:mb-12 2xl:mb-20 3xl:mb-24 dark:text-white leading-[1.3]"
+              className="text-lg xl:text-[30px] font-light text-para-color mb-5 md:mb-8 lg:mb-12 2xl:mb-20 3xl:mb-24 dark:text-white leading-[1.3]"
             >
               {splitTextToSpans(data.description)}
             </p>

@@ -274,7 +274,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true }}
-                    className="text-lg text-foreground font-normal leading-sm xl:leading-[1.2] group-hover:text-primary dark:text-white transition-colors duration-300 pr-2"
+                    className="text-lg text-para-color font-normal leading-sm xl:leading-[1.2] group-hover:text-primary dark:text-white transition-colors duration-300 pr-2"
                   >
                     {item.title}
                   </motion.h3>
@@ -325,7 +325,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                     <h3 className="text-2xl font-normal leading-[1.5625] mb-2 xl:mb-5 dark:text-white hover:text-primary transition-all duration-300">
                       {item.title}
                     </h3>
-                    <p className="slide-text text-lg font-[300] leading-[1.526315789473684] text-foreground dark:text-white/80 transition-all duration-300 w-full">
+                    <p className="slide-text text-lg font-[300] leading-[1.526315789473684] text-para-color dark:text-white/80 transition-all duration-300 w-full">
                       {item.description}
                     </p>
                     <div className="slide-btn mt-6 xl:mt-[43px] mb-4">

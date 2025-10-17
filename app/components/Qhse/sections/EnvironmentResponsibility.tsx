@@ -8,12 +8,12 @@ import { motion } from "framer-motion";
 import { moveUp } from "../../motionVarients";
 import { QhseType } from "../type";
 
-type Matter = QhseType['forthSection']['items'][number]
+type Matter = QhseType["forthSection"]["items"][number];
 
 type Props = {
   title: string;
   description: string;
-  matters: QhseType['forthSection']['items'];
+  matters: QhseType["forthSection"]["items"];
 };
 
 const EnvironmentalResponsibility = ({
@@ -42,7 +42,7 @@ const EnvironmentalResponsibility = ({
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="text-lg leading-lh-text19 font-light text-forground dark:text-white max-w-[100ch] mb-57px"
+          className="text-lg leading-lh-text19 font-light text-para-color dark:text-white max-w-[100ch] mb-57px"
         >
           {description}
         </motion.p>

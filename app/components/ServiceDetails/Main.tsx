@@ -30,7 +30,7 @@ const Main = ({ data }: { data: SecondSectionFirstSection }) => {
             className=""
           >
             <div
-              className="text-lg leading-lh-text19 text-black dark:text-white"
+              className="text-lg leading-lh-text19 text-[#515151] dark:text-white lg:w-[96%]"
               dangerouslySetInnerHTML={{
                 __html: (data.description || "").replace(
                   /class="([^"]*)"/g, // match each class=""

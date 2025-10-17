@@ -26,7 +26,7 @@ const WhatWeDo = ({ data }: WhatWeDoProps) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-xl xl:text-2xl leading-[1.2]  xl:leading-[1.5625] dark:text-white"
+            className="text-xl xl:text-2xl leading-[1.2]  xl:leading-[1.5625] dark:text-white text-para-color"
           >
             {data.subTitle}
           </motion.h3>
@@ -46,7 +46,7 @@ const WhatWeDo = ({ data }: WhatWeDoProps) => {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="text-lg leading-lh-text19 dark:text-white mb-4 xl:mb-10"
+              className="text-lg leading-lh-text19 dark:text-white mb-4 xl:mb-10 text-para-color"
             >
               {data.firstDescription}
             </motion.p>
@@ -86,7 +86,7 @@ const WhatWeDo = ({ data }: WhatWeDoProps) => {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="text-lg leading-lh-text19 dark:text-white "
+              className="text-lg leading-lh-text19 dark:text-white text-para-color"
             >
               {data.secondDescription}
             </motion.p>

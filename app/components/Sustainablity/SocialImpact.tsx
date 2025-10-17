@@ -16,8 +16,11 @@ import { SustainabilityType } from "./type";
 
 gsap.registerPlugin(ScrollTrigger);
 
-
-const SocialImpact = ({ data }: {data:SustainabilityType['thirdSection']}) => {
+const SocialImpact = ({
+  data,
+}: {
+  data: SustainabilityType["thirdSection"];
+}) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
   const [mainSwiper, setMainSwiper] = useState<SwiperType | null>(null);
   const prevRef = useRef<HTMLDivElement>(null);
@@ -157,7 +160,6 @@ const SocialImpact = ({ data }: {data:SustainabilityType['thirdSection']}) => {
     };
   }, [thumbsSwiper, mainSwiper]);
 
-
   return (
     <section className="wrapper py-57px overflow-hidden bg-black">
       <div className="container">
@@ -172,12 +174,33 @@ const SocialImpact = ({ data }: {data:SustainabilityType['thirdSection']}) => {
             {data.title}
           </motion.h2>
           <div className="flex items-center gap-2">
-            <motion.div variants={moveUp(0.5)} initial="hidden" whileInView="show" viewport={{ once: true }} className="flex border border-foreground dark:border-white rounded-full" >
-              <div ref={prevRef} onClick={handlePrev}
+            <motion.div
+              variants={moveUp(0.5)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="flex border border-foreground dark:border-white rounded-full"
+            >
+              <div
+                ref={prevRef}
+                onClick={handlePrev}
                 className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] rounded-tl-full rounded-bl-full group  cursor-pointer hover:bg-accent  transition-all duration-300"
               >
-                <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]" >
-                  <path d="M8.33594 1.33154L1.66731 8.00017L8.33594 14.6688" stroke="#7AC142" className="group-hover:stroke-white transition-all duration-300" strokeWidth="2" strokeLinecap="round" />
+                <svg
+                  width="10"
+                  height="16"
+                  viewBox="0 0 10 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]"
+                >
+                  <path
+                    d="M8.33594 1.33154L1.66731 8.00017L8.33594 14.6688"
+                    stroke="#7AC142"
+                    className="group-hover:stroke-white transition-all duration-300"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
                 </svg>
               </div>
               <div
@@ -294,7 +317,7 @@ const SocialImpact = ({ data }: {data:SustainabilityType['thirdSection']}) => {
               }}
               className="px-6"
             >
-              {data.items.map((item,index) => (
+              {data.items.map((item, index) => (
                 <SwiperSlide key={index}>
                   <div className="slide-container grid grid-cols-1 lg:grid-cols-2 gap-[20px] md:gap-[30px] lg:gap-[50px] xl:gap-[70px] 2xl:gap-[95px] items-center">
                     {/* Image */}
@@ -331,7 +354,7 @@ const SocialImpact = ({ data }: {data:SustainabilityType['thirdSection']}) => {
                         initial="hidden"
                         whileInView="show"
                         viewport={{ once: true }}
-                        className="text-lg font-light leading-[1.526315789473684] transition-colors duration-300 w-full text-white/80"
+                        className="text-lg font-light leading-[1.526315789473684]  transition-colors duration-300 w-full text-white/80"
                       >
                         {item.description.split("\n").map((line, i) => (
                           <span

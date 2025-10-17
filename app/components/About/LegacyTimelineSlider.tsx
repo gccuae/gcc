@@ -134,7 +134,6 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
                     slidesPerView={5}
                     autoplay={{
                       delay: 5000,
-                      
                     }}
                     allowTouchMove={false}
                     slideToClickedSlide={false}
@@ -167,7 +166,7 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
                         </button>
                         <div className="!w-[60px] md:!w-[85px] h-full !flex ml-5 xl:ml-0 xl:items-center flex-col justify-center">
                           <div
-                            className={`w-[1px] h-8 xl:h-14 bg-accent ${
+                            className={`w-[2px] h-8 xl:h-14 bg-accent ${
                               activeSlide === index
                                 ? "opacity-100"
                                 : "opacity-0"
@@ -236,7 +235,6 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
             preventClicksPropagation={true}
             autoplay={{
               delay: 5000,
-              
             }}
             effect="fade"
             fadeEffect={{ crossFade: true }}

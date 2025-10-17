@@ -6,13 +6,19 @@ import { BlogItem } from "./BlogItem";
 import { moveUp, moveLeft } from "../motionVarients";
 import { BlogData } from "./type";
 
-const BlogList = ({data}: {data: BlogData}) => {
-  const items = data.categories.flatMap((item: { blogs: BlogData['categories'][number]['blogs'] }) => item.blogs);
+const BlogList = ({ data }: { data: BlogData }) => {
+  const items = data.categories.flatMap(
+    (item: { blogs: BlogData["categories"][number]["blogs"] }) => item.blogs
+  );
   console.log(items);
 
   // Extract unique categories
   const categories = useMemo(() => {
-    const unique = Array.from(new Set(data.categories.map((item: { category: string }) => item.category)));
+    const unique = Array.from(
+      new Set(
+        data.categories.map((item: { category: string }) => item.category)
+      )
+    );
     console.log(unique);
     return ["All", ...unique];
   }, [data]);
@@ -47,15 +53,15 @@ const BlogList = ({data}: {data: BlogData}) => {
               onClick={() => setActiveTab(idx)}
               className={`cursor-pointer py-4 xl:py-[27px] text-md lg:text-xl leading-normal font-medium relative ${
                 activeTab === idx
-                  ? "text-foreground dark:text-white"
-                  : "text-foreground hover:text-black dark:hover:text-white font-normal transition-colors duration-300"
+                  ? "text-para-color dark:text-white"
+                  : "text-para-color hover:text-black dark:hover:text-white font-normal transition-colors duration-300"
               }`}
             >
               {cat}
               {activeTab === idx && (
                 <motion.div
                   layoutId="underline"
-                  className="absolute top-[-2px] left-0 right-0 h-[4px] bg-green-600"
+                  className="absolute top-[-2px] left-0 right-0 h-[6px] bg-accent"
                   transition={{ type: "spring", duration: 0.5 }}
                 />
               )}
@@ -138,11 +144,7 @@ const BlogList = ({data}: {data: BlogData}) => {
               whileInView="show"
               viewport={{ once: true }}
             >
-              <BlogItem
-                item={item}
-                key={`${item.title}-${i}`}
-                index={i}
-              />
+              <BlogItem item={item} key={`${item.title}-${i}`} index={i} />
             </motion.div>
           ))}
         </motion.div>

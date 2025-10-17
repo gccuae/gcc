@@ -100,7 +100,7 @@ const Main = ({ data }: AwardsProps) => {
                   className={`py-3 w-fit cursor-pointer text-xl leading-[1.2] xl:leading-[2.173913043478261] transition-all duration-300 border-t-6 whitespace-nowrap ${
                     activeTab === cat.category
                       ? "text-black dark:text-white border-secondary"
-                      : "border-transparent text-forground dark:text-white/70"
+                      : "border-transparent text-para-color dark:text-white/70"
                   }`}
                 >
                   {cat.category}
@@ -142,15 +142,24 @@ const Main = ({ data }: AwardsProps) => {
                             >
                               <div>
                                 <h3
-                                  className={`text-xl leading-normal mb-1 group-hover:text-black group-hover:dark:text-white/70 ${
-                                    selectedItem === file
-                                      ? "text-black dark:text-white"
-                                      : "dark:text-white"
-                                  }`}
+                                  className={`text-xl leading-normal mb-1 transition-all duration-300 
+    ${
+      selectedItem === file
+        ? "text-black dark:text-white"
+        : "text-para-color dark:text-white/70 group-hover:text-black group-hover:dark:text-white/70"
+    }`}
                                 >
                                   {file.mainTitle}
                                 </h3>
-                                <p className="text-lg font-light leading-lh-text19 text-gray-600 dark:text-gray-400 group-hover:text-black group-hover:dark:text-white/60">
+
+                                <p
+                                  className={`text-lg font-light leading-lh-text19 transition-all duration-300 
+    ${
+      selectedItem === file
+        ? "text-black dark:text-white/80"
+        : "text-gray-600 dark:text-gray-400 group-hover:text-black group-hover:dark:text-white/60"
+    }`}
+                                >
                                   {file.subTitle}
                                 </p>
                               </div>

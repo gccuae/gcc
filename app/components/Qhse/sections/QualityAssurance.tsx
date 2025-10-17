@@ -9,7 +9,7 @@ type Props = {
   title: string;
   description: string;
   image: string;
-  certifications: QhseType['secondSection']['items'];
+  certifications: QhseType["secondSection"]["items"];
 };
 
 const QualityAssurance = ({
@@ -56,7 +56,7 @@ const QualityAssurance = ({
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="text-lg text-foreground dark:text-white font-light leading-lh-text19 mt-3 md:mt-6"
+              className="text-lg text-para-color dark:text-white font-light leading-lh-text19 mt-3 md:mt-6"
             >
               {para}
             </motion.p>
@@ -83,8 +83,13 @@ const QualityAssurance = ({
         }        // remove top border except first row
       `}
           >
-            <Image src={cert.image} alt={cert.imageAlt} width={120} height={120} />
-            <p className="mt-[12px] font-light text-sm text-foreground dark:text-white">
+            <Image
+              src={cert.image}
+              alt={cert.imageAlt}
+              width={140}
+              height={140}
+            />
+            <p className="mt-[12px] font-light text-sm text-para-color dark:text-white">
               {cert.title}
             </p>
           </motion.div>

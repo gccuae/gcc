@@ -12,7 +12,7 @@ const MsgGm = ({ items }: MessageSection) => {
   return (
     <section className="pb-57px lg:pb-[101px] dark:bg-black overflow-hidden">
       <SpecialContainer className="" side="right">
-        <div className="flex flex-col-reverse lg:grid grid-cols-1 lg:grid-cols-2 lg:items-end gap-6 md:gap-10 xl:gap-15 lg:border-b lg:border-[#c2c2c2] dark:border-[#797979]">
+        <div className="flex flex-col-reverse lg:grid grid-cols-1 lg:grid-cols-2 lg:items-end gap-6 md:gap-8 lg:border-b lg:border-[#c2c2c2] dark:border-[#797979]">
           <div className="">
             <motion.h2
               variants={moveUp()}
@@ -23,7 +23,7 @@ const MsgGm = ({ items }: MessageSection) => {
             >
               {gmData?.title}
             </motion.h2>
-            <div className="lg:max-w-[61ch] pb-0 lg:pb-6">
+            <div className="lg:max-w-[72ch] pb-0 lg:pb-6">
               {gmData?.message
                 .split(/\r?\n/)
                 .map((line: string, index: number) => (
@@ -33,7 +33,7 @@ const MsgGm = ({ items }: MessageSection) => {
                     initial="hidden"
                     whileInView="show"
                     key={index}
-                    className="mb-3 last:mb-0 lg:last:mb-[17px]  lg:mb-[17px] text-lg leading-lh-text19 text-foreground dark:text-white font-light"
+                    className="mb-3 last:mb-0 lg:last:mb-[17px]  lg:mb-[17px] text-lg leading-lh-text19 text-para-color dark:text-white font-light"
                   >
                     {line}
                   </motion.p>

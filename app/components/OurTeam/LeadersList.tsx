@@ -18,7 +18,7 @@ const LeadersList = ({ data }: OurTeamProps) => {
         >
           {data.firstSection.title}
         </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-6 md:gap-y-6 xl:gap-y-0 pb-6 xl:pb-[37px] md:border-b border-smgray mb-5 md:mb-12 xl:mb-57px">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-6 md:gap-y-6 xl:gap-y-0 pb-6 xl:pb-[37px] mb-5 md:mb-12 xl:mb-57px border-b border-smgray">
           {data.firstSection.items.map((leader, index) => (
             <motion.div
               variants={moveUp(index * 0.23)}
@@ -31,25 +31,23 @@ const LeadersList = ({ data }: OurTeamProps) => {
               <div
                 className={`${
                   index % 2 === 0 ? "bg-[#ebebeb]" : "bg-[#dfdfdf]"
-                } group-hover:bg-gray-100 transition-all duration-300 flex flex-col mb-5 xl:mb-10 overflow-hidden relative`}
+                } group-hover:bg-gray-100 transition-all duration-300 h-[380px] xl:h-[468px] flex flex-col mb-5 xl:mb-10 overflow-hidden relative`}
               >
                 <Image
                   src={leader.image}
                   alt={leader.name}
-                  width={1000}
-                  height={1000}
-                  className="w-full h-[370px] xl:h-[400px] xl:h-[340px]  2xl:h-[398px] object-contain mx-auto flex mt-auto group-hover:scale-105 transition-all duration-300"
+                  fill
+                  className="w-full h-[370px] xl:h-[400px] 2xl:h-[398px] object-contain mx-auto flex mt-auto group-hover:scale-105 transition-all duration-300"
                 />
-              </div>
-              <h3 className="text-2xl leading-[1.2] text-black dark:text-white mb-2">
+              </div>{" "}
+              <h3 className="text-2xl leading-[1.2] text-black dark:text-white xl:mb-3">
                 {leader.name}
               </h3>
-              <p className="text-lg leading-lh-text19 text-foreground dark:text-white/70 font-light">
+              <p className="text-lg leading-lh-text19 text-para-color dark:text-white/70 font-light">
                 {leader.designation}
               </p>
             </motion.div>
           ))}
-          <div></div>
         </div>
       </div>
     </section>

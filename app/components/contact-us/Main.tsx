@@ -25,7 +25,7 @@ const Main = ({data}: {data: contactType["firstSection"]}) => {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="text-lg leading-[1.5625] text-foreground dark:text-white/70"
+              className="text-lg leading-[1.5625] text-para-color dark:text-white/70"
             >
               {data.subTitle}
             </motion.p>

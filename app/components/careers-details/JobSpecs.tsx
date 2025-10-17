@@ -48,7 +48,7 @@ const JobSpecs = ({data}: {data: careerData['openings'][number]['firstSection']}
               <h3 className="leading-[1.5625] font-light text-base uppercase text-black dark:text-white">
                 {spec.label}
               </h3>
-              <p className="text-lg leading-lh-text19 font-medium text-lg text-foreground dark:text-white">
+              <p className="text-lg leading-lh-text19 font-medium text-lg text-para-color dark:text-white">
                 {spec.value}
               </p>
             </motion.div>
