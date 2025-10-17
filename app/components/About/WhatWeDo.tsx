@@ -91,13 +91,13 @@ const WhatWeDo = ({ data }: WhatWeDoProps) => {
               {data.secondDescription}
             </motion.p>
           </div>
-          <div className="pt-2 pb-10 md:py-5 lg:pl-5 xl:py-10 xl:pl-10 relative overflow-hidden lg:min-h-[800px]">
+          <div className="pt-2 pb-10 md:py-5  xl:py-10  relative overflow-hidden lg:min-h-[800px] p-6">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
                 initial={{ opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                exit={{ x: -200, opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
                 transition={{ duration: 0.6 }}
                 className="w-full h-full flex flex-col justify-center"
               >
