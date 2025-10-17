@@ -163,7 +163,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
             viewport={{ once: true }}
             className="text-5xl font-normal leading-[1.147058823529412] text-black dark:text-white"
           >
-            {data.title}
+            Area of Expertise
           </motion.h2>
           <div className="flex items-center gap-2">
             <motion.div
