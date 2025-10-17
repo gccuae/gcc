@@ -75,10 +75,10 @@ const HomePage = () => {
         name: "numberSection.items"
     });
 
-    const { fields: thirdSectionItems, append: thirdSectionAppend, remove: thirdSectionRemove } = useFieldArray({
-        control,
-        name: "thirdSection.items"
-    });
+    // const { fields: thirdSectionItems, append: thirdSectionAppend, remove: thirdSectionRemove } = useFieldArray({
+    //     control,
+    //     name: "thirdSection.items"
+    // });
 
     const { fields: fourthSectionItems, append: fourthSectionAppend, remove: fourthSectionRemove } = useFieldArray({
         control,
@@ -331,7 +331,7 @@ const HomePage = () => {
                 </AdminItemContainer>
 
 
-                <AdminItemContainer>
+                {/* <AdminItemContainer>
                 <Label main>Third Section</Label>
                 <div className='p-5 rounded-md flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
@@ -448,7 +448,7 @@ const HomePage = () => {
                     </div>
 
                 </div>
-                </AdminItemContainer>
+                </AdminItemContainer> */}
 
 
                 <AdminItemContainer>
