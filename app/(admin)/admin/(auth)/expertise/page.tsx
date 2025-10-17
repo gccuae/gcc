@@ -34,6 +34,7 @@ interface ExpertiseFormProps {
             logoAlt: string;
             title: string;
             slug: string;
+            description: string;
         }[];
     };
 }
@@ -306,6 +307,12 @@ const ExpertisePage = () => {
                                     })} />
                                     {errors.secondSection?.items?.[index]?.slug && <p className='text-red-500'>{errors.secondSection?.items?.[index]?.slug.message}</p>}
                                 </div>
+                                <div>
+                            <Label className="text-sm font-bold">Description</Label>
+                            <Controller name={`secondSection.items.${index}.description`} control={control} rules={{ required: "Description is required" }} render={({ field }) => {
+                                return <Textarea value={field.value} onChange={field.onChange} />
+                            }} />
+                        </div>
                             </div>
                             </div>
 
@@ -316,7 +323,7 @@ const ExpertisePage = () => {
 
                 </div>
                 <div className='flex justify-end mt-2'>
-                        <Button type='button' addItem onClick={() => secondSectionAppend({ title: "", image: "", imageAlt: "", logo: "", logoAlt: "", slug: "" })}>Add Item</Button>
+                        <Button type='button' addItem onClick={() => secondSectionAppend({ title: "", image: "", imageAlt: "", logo: "", logoAlt: "", slug: "", description: "" })}>Add Item</Button>
                     </div>
                 </div>
 

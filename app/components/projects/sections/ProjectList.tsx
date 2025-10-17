@@ -459,7 +459,7 @@ export default function FeaturedProjects({
                 lat: parseFloat(projects.projects[0].latitude),
                 lng: parseFloat(projects.projects[0].longitude),
               }}
-              defaultZoom={16}
+              defaultZoom={15}
               mapId="2567b86b459988d06657407f"
               className="w-full h-full"
               gestureHandling="greedy"
@@ -498,7 +498,7 @@ export default function FeaturedProjects({
                       });
 
                       setActiveProject(project._id); // set as active
-                      window.scrollTo({ top: 100, behavior: "smooth" }); // scroll to top
+                      window.scrollTo({ top: 700, behavior: "smooth" }); // scroll to top
                     }}
                   />
                 );

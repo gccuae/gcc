@@ -54,6 +54,7 @@ interface ProjectFormProps {
         projectType:string;
         sector:string;
         location:string;
+        superficie:string;
     };
     thirdSection: {
         items: {
@@ -448,6 +449,13 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                                     required: "Project Value is required"
                                 })} />
                                 {errors.secondSection?.projectValue && <p className='text-red-500'>{errors.secondSection?.projectValue.message}</p>}
+                            </div>
+                            <div className='flex flex-col gap-1'>
+                                <Label className='font-bold'>Superficie</Label>
+                                <Input type='text' placeholder='Superficie' {...register("secondSection.superficie", {
+                                    required: "Superficie is required"
+                                })} />
+                                {errors.secondSection?.superficie && <p className='text-red-500'>{errors.secondSection?.superficie.message}</p>}
                             </div>
                             <div className='flex flex-col gap-2'>
                     <Label className=''>Status</Label>

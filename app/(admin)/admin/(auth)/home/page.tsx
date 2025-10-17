@@ -331,7 +331,7 @@ const HomePage = () => {
                 </AdminItemContainer>
 
 
-                <AdminItemContainer>
+                {/* <AdminItemContainer>
                 <Label main>Third Section</Label>
                 <div className='p-5 rounded-md flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
@@ -448,7 +448,7 @@ const HomePage = () => {
                     </div>
 
                 </div>
-                </AdminItemContainer>
+                </AdminItemContainer> */}
 
 
                 <AdminItemContainer>
