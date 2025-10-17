@@ -40,7 +40,7 @@ const EnergyResource = ({ data }: {data:SustainabilityType['secondSection']}) =>
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true }}
-                  className="group-hover:bg-primary w-[80px] h-[80px] rounded-full transition-colors duration-300 flex items-center justify-center mb-2 lg:mb-4"
+                  className="group-hover:bg-primary w-[80px] h-[80px] rounded-full transition-colors duration-300 flex items-center justify-center mb-2 lg:mb-4 p-3"
                 >
                   <Image
                     src={item.image}

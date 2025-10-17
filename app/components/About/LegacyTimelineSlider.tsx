@@ -133,8 +133,8 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
                     spaceBetween={22}
                     slidesPerView={5}
                     autoplay={{
-                      delay: 300000,
-                      disableOnInteraction: true,
+                      delay: 5000,
+                      
                     }}
                     allowTouchMove={false}
                     slideToClickedSlide={false}
@@ -235,8 +235,8 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
             preventClicks={true}
             preventClicksPropagation={true}
             autoplay={{
-              delay: 3000000,
-              disableOnInteraction: true,
+              delay: 5000,
+              
             }}
             effect="fade"
             fadeEffect={{ crossFade: true }}
