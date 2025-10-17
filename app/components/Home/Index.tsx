@@ -1,8 +1,5 @@
 import React from "react";
-
 import HeroSlider from "./HeroSlider";
-import { homeData } from "./data";
-
 import AboutCompany from "./AboutCompanyV";
 import FeaturedProjects from "./FeaturedProjects";
 import AreaOfExpertise from "./AreaOfExpertise";
@@ -18,8 +15,7 @@ interface Props {
   news: NewsData;
 }
 
-const Index = ({ data, projects }: Props) => {
-  console.log(data, "data");
+const Index = ({ data, projects, news }: Props) => {
   return (
     <>
       <HeroSlider
@@ -31,12 +27,7 @@ const Index = ({ data, projects }: Props) => {
 
       <AreaOfExpertise data={data.thirdSection} />
       <SectorSlider data={data.fourthSection} />
-
-      <NewsBlock
-        title={homeData.sixthSection.title}
-        link={homeData.sixthSection.link}
-        items={homeData.sixthSection.items}
-      />
+      <NewsBlock data={news} />
     </>
   );
 };

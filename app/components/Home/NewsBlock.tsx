@@ -4,27 +4,26 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import Image from "next/image";
-import { StaticImageData } from "next/image";
 import BtnPrimary from "../common/BtnPrimary";
 import { motion } from "framer-motion";
 import { fadeIn, moveUp } from "../motionVarients";
 import { useEffect, useRef } from "react";
+import { NewsData } from "../news-listing/type";
 import gsap from "gsap";
 // import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 interface NewsBlockProps {
-  title: string;
-  link: string;
-  items: {
-    title: string;
-    description: string;
-    image: string | StaticImageData;
-    link: string;
-    date: string;
-    category: string;
-  }[];
+  data: NewsData;
 }
-const NewsBlock = ({ title, items }: NewsBlockProps) => {
+const NewsBlock = ({ data }: NewsBlockProps) => {
+  const allNews = data.categories.flatMap((cat) =>
+    cat.news.slice(0, 3).map((news) => ({
+      ...news,
+      category: cat.category, // ensure category is attached
+    }))
+  );
+  console.log(allNews, "data nw");
+
   const sectionRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -60,7 +59,7 @@ const NewsBlock = ({ title, items }: NewsBlockProps) => {
             viewport={{ once: true, amount: 0.2 }}
             className="text-5xl font-normal leading-[1.147058823529412] text-black dark:text-white hover:text-primary transition-colors duration-300"
           >
-            {title}
+            News
           </motion.h2>
           <BtnPrimary link={"/news"} text="View All" bgtrans={true} />
         </div>
@@ -72,7 +71,7 @@ const NewsBlock = ({ title, items }: NewsBlockProps) => {
             modules={[Pagination]}
             pagination={{ clickable: true }}
           >
-            {items.map((item, index) => (
+            {allNews.map((item, index) => (
               <SwiperSlide key={index}>
                 <div className="flex flex-wrap lg:flex-nowrap items-stretch gap-4 lg:gap-[69px] ">
                   <motion.div
@@ -83,11 +82,11 @@ const NewsBlock = ({ title, items }: NewsBlockProps) => {
                     className="xl:w-1/2 overflow-hidden flex items-stretch w-full"
                   >
                     <Image
-                      src={item.image}
-                      alt="newsBlockImage"
+                      src={item.thumbnail}
+                      alt={item.thumbnailAlt}
                       width={2000}
                       height={2000}
-                      className="w-full h-[350px] md:h-full object-cover hover:scale-110 transition-all duration-400"
+                      className="w-full h-[330px] md:[431px] 2xl:h-[450px] object-cover hover:scale-110 transition-all duration-400"
                     />
                   </motion.div>
                   <div className="xl:w-1/2 group">
@@ -104,7 +103,7 @@ const NewsBlock = ({ title, items }: NewsBlockProps) => {
                         </span>
                       </button>
                       <p className="text-base font-light text-forground underline underline-offset-10 dark:text-white hover:text-black dark:hover:text-white transition-all duration-300">
-                        {item.date}
+                        {item.date.split("T")[0].split("-").reverse().join("-")}
                       </p>
                     </motion.div>
                     <motion.h3

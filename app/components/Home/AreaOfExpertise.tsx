@@ -8,7 +8,6 @@ import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/thumbs";
 import { Swiper as SwiperType } from "swiper";
-import { StaticImageData } from "next/image";
 import Image from "next/image";
 import BtnPrimary from "../common/BtnPrimary";
 import { motion } from "framer-motion";
