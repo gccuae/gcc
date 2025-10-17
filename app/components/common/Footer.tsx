@@ -318,7 +318,7 @@ const Footer = () => {
             >
               <a
                 href="#"
-                className="bg-white text-foreground hover:bg-primary hover:text-white flex items-center justify-center rounded-4xl py-1 px-4 xl:py-[13px] gap-2 transition-colors
+                className="bg-white text-para-color hover:bg-primary hover:text-white flex items-center justify-center rounded-4xl py-1 px-4 xl:py-[13px] gap-2 transition-colors
                duration-300 ease-in-out group max-w-fit lg:max-w-[285.33px]"
               >
                 <span className="text-sm lg:text-base font-light uppercase leading-[1.578947368421053]">

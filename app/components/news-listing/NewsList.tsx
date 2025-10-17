@@ -7,13 +7,15 @@ import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
 import { NewsData } from "./type";
 
-const NewsList = ({data}: {data: NewsData}) => {
+const NewsList = ({ data }: { data: NewsData }) => {
   const [visibleCount, setVisibleCount] = useState(6); // show 6 initially
 
   const sectionRef = useRef<HTMLElement | null>(null);
 
   // sort news by date (latest first)
-  const items = data.categories.flatMap((item: { news: NewsData['categories'][number]['news'] }) => item.news);
+  const items = data.categories.flatMap(
+    (item: { news: NewsData["categories"][number]["news"] }) => item.news
+  );
   console.log(items);
   const sortedNews = [...items].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()

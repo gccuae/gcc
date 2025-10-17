@@ -10,8 +10,11 @@ import { moveUp } from "../motionVarients";
 import { useRef } from "react";
 import { SustainabilityType } from "./type";
 
-
-const SectorSlider = ({ data }: {data:SustainabilityType['forthSection']}) => {
+const SectorSlider = ({
+  data,
+}: {
+  data: SustainabilityType["forthSection"];
+}) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
@@ -32,7 +35,7 @@ const SectorSlider = ({ data }: {data:SustainabilityType['forthSection']}) => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
-          className="text-xl font-light leading-[1.391304347826087] pb-6 xl:pb-47px text-foreground dark:text-white max-w-[80ch]"
+          className="text-xl font-light leading-[1.391304347826087] pb-6 xl:pb-47px text-para-color dark:text-white max-w-[80ch]"
         >
           {data.description}
         </motion.h2>
@@ -124,7 +127,7 @@ const SectorSlider = ({ data }: {data:SustainabilityType['forthSection']}) => {
                     transition={{ delay: index * 0.2, duration: 0.6 }}
                     className="h-full border-t-1 border-r-1 border-smgray relative group md:pl-[15px] pr-[15px] xl:pr-0"
                   >
-                    <div className="absolute -top-1 left-0 w-full h-[6px] bg-transparent  group-hover:bg-accent transition-all duration-300 z-50"></div>
+                    <div className="absolute -top-1 left-0 w-full h-[6px] bg-transparent  group-hover:bg-primary transition-all duration-300 z-50"></div>
 
                     <div className="flex flex-col justify-between xl:max-h-[35em] overflow-hidden z-40 relative group">
                       <div className="flex xl:pl-4 xl:pr-3 pt-6 xl:pt-[37px] group-first:pl-0 transition-all duration-300">
@@ -143,7 +146,7 @@ const SectorSlider = ({ data }: {data:SustainabilityType['forthSection']}) => {
                       </div>
 
                       <div className="xl:pl-4 xl:pr-3 group-first:pl-0  xl:opacity-0 xl:h-0 group-hover:xl:h-auto group-hover:xl:opacity-100 transition-all ease-in-out duration-300  ">
-                        <p className="text-lg pt-2 font-[300] leading-[1.526315789473684] sector-description relative z-10 text-foreground dark:text-white">
+                        <p className="text-lg pt-2 font-[300] leading-[1.526315789473684] sector-description relative z-10 text-para-color dark:text-white">
                           {item.description}
                         </p>
                       </div>

@@ -132,7 +132,7 @@ const CurrentOpenings = ({ data,jobs,departments,locations }: {data:careerData['
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-xl lg:text-2xl leading-lh-text32 text-foreground dark:text-white"
+            className="text-xl lg:text-2xl leading-lh-text32 text-para-color dark:text-white"
           >
             {data.subTitle}
           </motion.p>
@@ -243,7 +243,7 @@ const CurrentOpenings = ({ data,jobs,departments,locations }: {data:careerData['
                     <h3 className="text-xl lg:text-2xl leading-[1.3] lg:leading-[1.5625] font-normal text-black dark:text-white">
                       {job.firstSection.jobTitle}
                     </h3>
-                    <h4 className="text-lg leading-[1.5625] font-normal text-foreground dark:text-white/50">
+                    <h4 className="text-lg leading-[1.5625] font-normal text-para-color dark:text-white/50">
                       <span>{job.firstSection.department}</span> <span className="mx-2">|</span>{" "}
                       <span>{job.firstSection.location}</span>{" "}
                       <span className="mx-2">|</span> <span>{job.firstSection.employmentType}</span>
@@ -271,7 +271,7 @@ const CurrentOpenings = ({ data,jobs,departments,locations }: {data:careerData['
                   <h3 className="text-2xl leading-[1.205882352941176] mb-4 xl:mb-6 font-normal text-black dark:text-white">
                     Didn’t find a role that fits you?
                   </h3>
-                  <p className="text-xl leading-[1.46875] font-light text-foreground dark:text-white/50">
+                  <p className="text-xl leading-[1.46875] font-light text-para-color dark:text-white/50">
                     Send your resume and we’ll get in touch with you.
                   </p>
                 </div>
@@ -301,7 +301,7 @@ const CurrentOpenings = ({ data,jobs,departments,locations }: {data:careerData['
                         strokeLinecap="round"
                       />
                     </svg>
-                    <span className="text-lg leading-[1.526315789473684] font-normal text-foreground dark:text-white/50">
+                    <span className="text-lg leading-[1.526315789473684] font-normal text-para-color dark:text-white/50">
                       Mail Your Resume to info@gcc.ae
                     </span>
                   </Link>

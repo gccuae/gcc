@@ -24,7 +24,7 @@ const ViMiVa = ({ data }: ViMiVaProps) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-5xl leading-lh-title text-black dark:text-white mb-[17px]"
+            className="text-5xl leading-lh-title text-black dark:text-white mb-[17px] letterSp-3"
           >
             {data.mainTitle}
           </motion.h2>
@@ -33,7 +33,7 @@ const ViMiVa = ({ data }: ViMiVaProps) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-xl xl:text-2xl lg:text-2xl leading-[1.2] xl:leading-[1.5625] dark:text-white"
+            className="text-xl xl:text-2xl lg:text-2xl leading-[1.2] xl:leading-[1.5625] dark:text-white text-para-color"
           >
             {data.subTitle}
           </motion.h3>
@@ -57,11 +57,11 @@ const ViMiVa = ({ data }: ViMiVaProps) => {
                   className="w-auto h-10 xl:h-13"
                 />
               </div>
-              <h3 className="text-2xl leading-lh-title text-black dark:text-white ">
+              <h3 className="text-2xl leading-lh-title text-black dark:text-white text-para-color">
                 {item.title}
               </h3>
 
-              <div className="text-lg leading-[1.5] dark:text-white flex flex-col">
+              <div className="text-lg leading-[1.5] dark:text-white text-para-color flex flex-col">
                 {item.description.split(" ").length > 30 &&
                 activeReadMore !== item._id
                   ? parse(

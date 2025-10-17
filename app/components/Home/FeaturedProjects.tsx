@@ -285,7 +285,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                       <div className="absolute top-[25px] left-[15px] 2xl:top-[40px] 2xl:left-[30px] z-10">
                         <Link
                           href={"/projects/" + slide.slug}
-                          className="bg-accent text-base font-light leading-[1.75] text-foreground uppercase px-5 xl:px-[25px] py-3 xl:py-[15px] rounded-[75px] group-hover:text-white group-hover:bg-primary transition-all duration-300"
+                          className="bg-accent text-base font-light leading-[1.75] text-para-color uppercase px-5 xl:px-[25px] py-3 xl:py-[15px] rounded-[75px] group-hover:text-white group-hover:bg-primary transition-all duration-300"
                         >
                           {slide.secondSection.sector.name}
                         </Link>

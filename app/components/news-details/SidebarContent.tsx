@@ -161,10 +161,10 @@ const SidebarContent = ({allNewsData,category}: {allNewsData: NewsData,category:
                 </h4>
               </Link>
               <div className="flex mt-3 items-center justify-between">
-                <span className="font-light text-base text-foreground dark:text-white/70">
+                <span className="font-light text-base text-para-color dark:text-white/70">
                   {item.category}
                 </span>
-                <span className="font-light text-base text-foreground dark:text-white/70">
+                <span className="font-light text-base text-para-color dark:text-white/70">
                   {item.date ? new Date(item.date).toLocaleDateString("en-GB").replace(/\//g, "-") : new Date(item.createdAt).toLocaleDateString("en-GB").replace(/\//g, "-")}
                 </span>
               </div>

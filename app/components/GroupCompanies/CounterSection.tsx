@@ -20,7 +20,7 @@ const CounterSection = ({ data }: FirstSectionProps) => {
             viewport={{ once: true }}
             initial="hidden"
             whileInView="show"
-            className="text-5xl leading-[1.147058823529412] font-normal mb-4 xl:mb-[27px] text-black dark:text-white"
+            className="text-5xl leading-[1.147058823529412] font-normal mb-4 xl:mb-[27px] text-black dark:text-white letterSp-3"
           >
             {data.title}
           </motion.h2>
@@ -29,7 +29,7 @@ const CounterSection = ({ data }: FirstSectionProps) => {
             viewport={{ once: true }}
             initial="hidden"
             whileInView="show"
-            className="text-lg leading-lh-text19 text-black dark:text-white font-light"
+            className="text-lg leading-lh-text19 text-black dark:text-white font-light text-para-color max-w-[85ch]"
           >
             {data.description}
           </motion.p>

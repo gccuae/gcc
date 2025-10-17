@@ -9,7 +9,7 @@ import {
 } from "react-select";
 import { StylesConfig } from "react-select";
 import { motion } from "framer-motion";
-import { moveLeft, moveUp } from "../../motionVarients";
+import { fadeIn, moveLeft, moveUp } from "../../motionVarients";
 import Image from "next/image";
 type Option = { value: string; label: string };
 import { assets } from "@/public/assets/assets";
@@ -337,49 +337,50 @@ export default function FeaturedProjects({
 
             {/* Projects List */}
             <div className="space-y-37px 2xl:space-y-47px relative bg-light-white">
-              {visibleProjects.length > 0 ? visibleProjects?.map((project, index) => (
-                <motion.div
-                  onClick={() => navigate.push(`/projects/${project.slug}`)}
-                  key={project._id}
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={{ once: true }}
-                  className="cursor-pointer relative group"
-                  onMouseEnter={() => {
-                    // Hover only on desktop (lg and above)
-                    if (window.innerWidth >= 1024)
-                      setActiveProject(project._id);
-                  }}
-                >
-                  <div className="relative lg:pr-[47px]">
-                    <div className="relative">
-                      <Image
-                        src={project.thumbnail}
-                        alt={project.thumbnailAlt}
-                        width={742}
-                        height={475}
-                        className="w-full object-cover"
-                      />
+              {visibleProjects.length > 0 ? (
+                visibleProjects?.map((project, index) => (
+                  <motion.div
+                    onClick={() => navigate.push(`/projects/${project.slug}`)}
+                    key={project._id}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true }}
+                    className="cursor-pointer relative group"
+                    onMouseEnter={() => {
+                      // Hover only on desktop (lg and above)
+                      if (window.innerWidth >= 1024)
+                        setActiveProject(project._id);
+                    }}
+                  >
+                    <div className="relative lg:pr-[47px]">
+                      <div className="relative">
+                        <Image
+                          src={project.thumbnail}
+                          alt={project.thumbnailAlt}
+                          width={742}
+                          height={475}
+                          className="w-full object-cover"
+                        />
 
-                      {/* Overlay + Blur */}
-                      <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-sm backdrop-blur-[4px]"></div>
+                        {/* Overlay + Blur */}
+                        <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-sm backdrop-blur-[4px]"></div>
 
-                      {/* Centered Arrow */}
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
-                        <div className="bg-white rounded-full border border-accent w-12 h-12 xl:w-20 xl:h-20 flex items-center justify-center">
-                          <Image
-                            src={assets.linkArrowGreen}
-                            alt="Arrow"
-                            width={19}
-                            height={19}
-                            className="w-7 h-7 xl:w-[19px] xl:h-[19.05px] transition-transform duration-300 group-hover:translate-x-0 group-hover:translate-y-0 -translate-x-2 translate-y-2"
-                          />
+                        {/* Centered Arrow */}
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                          <div className="bg-white rounded-full border border-accent w-12 h-12 xl:w-20 xl:h-20 flex items-center justify-center">
+                            <Image
+                              src={assets.linkArrowGreen}
+                              alt="Arrow"
+                              width={19}
+                              height={19}
+                              className="w-7 h-7 xl:w-[19px] xl:h-[19.05px] transition-transform duration-300 group-hover:translate-x-0 group-hover:translate-y-0 -translate-x-2 translate-y-2"
+                            />
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    {/* Map Button on Mobile */}
-                    {/* <button
+                      {/* Map Button on Mobile */}
+                      {/* <button
                       className="absolute top-2 right-2 lg:hidden bg-white text-black px-1 py-1"
                       onClick={() =>
                         setMobileMapOpen(
@@ -389,24 +390,24 @@ export default function FeaturedProjects({
                     >
                       <MapPin className="w-4 h-4 text-primary" />
                     </button> */}
-                  </div>
+                    </div>
 
-                  {/* Project Info */}
-                  <motion.div
-                    variants={moveLeft(index * 0.15)}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true }}
-                    className="mt-[17px] gap-x-5 gap-y-2 font-light text-lg leading-1h-text19 flex flex-wrap text-foreground dark:text-white/70"
-                  >
-                    <span>{project.secondSection.projectType.name}</span>|
-                    <span>{project.secondSection.sector.name}</span>|
-                    <span>{project.secondSection.location.name}</span>|
-                    <span>{project.secondSection.status}</span>
-                  </motion.div>
+                    {/* Project Info */}
+                    <motion.div
+                      variants={moveLeft(index * 0.15)}
+                      initial="hidden"
+                      whileInView="show"
+                      viewport={{ once: true }}
+                      className="mt-[17px] gap-x-5 gap-y-2 font-light text-lg leading-1h-text19 flex flex-wrap text-para-color dark:text-white/70"
+                    >
+                      <span>{project.secondSection.projectType.name}</span>|
+                      <span>{project.secondSection.sector.name}</span>|
+                      <span>{project.secondSection.location.name}</span>|
+                      <span>{project.secondSection.status}</span>
+                    </motion.div>
 
-                  {/* Mobile Map */}
-                  {/* <motion.div
+                    {/* Mobile Map */}
+                    {/* <motion.div
                     variants={moveUp(0.15)}
                     initial="hidden"
                     whileInView="show"
@@ -424,18 +425,44 @@ export default function FeaturedProjects({
                     )}
                   </motion.div> */}
 
-                  <motion.h3
-                    variants={moveUp(0.15)}
+                    <motion.h3
+                      variants={moveUp(0.15)}
+                      initial="hidden"
+                      whileInView="show"
+                      viewport={{ once: true }}
+                      className="text-2xl leading-1h-text32 text-primary mt-[17px] pb-[15px] border-b border-smgray lg:mr-[47px]"
+                    >
+                      {project.title}
+                    </motion.h3>
+                  </motion.div>
+                ))
+              ) : (
+                <motion.div
+                  variants={fadeIn()}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
+                  className="mb-10 lg:mb-0"
+                >
+                  <motion.p
+                    variants={moveUp(0.1)}
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true }}
-                    className="text-2xl leading-1h-text32 text-primary mt-[17px] pb-[15px] border-b border-smgray lg:mr-[47px]"
+                    className="text-2xl"
                   >
-                    {project.title}
-                  </motion.h3>
+                    No results in this area
+                  </motion.p>
+                  <motion.p
+                    variants={moveUp(0.2)}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true }}
+                  >
+                    Try zooming out, moving the map, or changing your filters.
+                  </motion.p>
                 </motion.div>
-              )) : <div className="mb-10 lg:mb-0"><p className="text-2xl">No results in this area</p>
-<p>Try zooming out, moving the map, or changing your filters.</p></div>}
+              )}
             </div>
           </div>
 

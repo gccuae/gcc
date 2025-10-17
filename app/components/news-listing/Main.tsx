@@ -9,13 +9,13 @@ const Main = ({
   items,
 }: {
   title: string;
-  items: NewsData['categories'][number]['news']
+  items: NewsData["categories"][number]["news"];
 }) => {
   return (
-    <section className="pt-10 xl:pt-[57px] pb-57px bg-light-white dark:bg-black relative overflow-hidden">
+    <section className="pt-10 xl:pt-57px bg-light-white dark:bg-black relative overflow-hidden">
       {/* <div className="reveal-overlay absolute inset-0 bg-black z-20"></div> */}
       <div className="container">
-        <div className="flex justify-between items-center pb-8 xl:pb-[45px] mb-8 xl:mb-15 border-b border-smgray">
+        <div className="flex justify-between items-center pb-8 xl:pb-[47px]">
           <motion.h2
             variants={moveUp(0)}
             initial="hidden"
@@ -38,7 +38,7 @@ const Main = ({
           <div className="w-full home-news-swiper xl:!pb-15">
             {items.map((item, index) => (
               <div key={index}>
-                <div className="flex flex-wrap xl:flex-nowrap items-center gap-4 xl:gap-[69px]">
+                <div className="flex flex-wrap xl:flex-nowrap items-center xl:items-stretch gap-4 xl:gap-[69px]">
                   <motion.div
                     variants={moveRight(0.2)}
                     initial="hidden"
@@ -54,21 +54,27 @@ const Main = ({
                       className="w-full h-full object-cover hover:scale-110 transition-all duration-400"
                     />
                   </motion.div>
-                  <div className="xl:w-1/2 group">
+                  <div className="xl:w-1/2 group xl:py-3">
                     <motion.div
                       variants={moveUp(0.2)}
                       initial="hidden"
                       whileInView="show"
                       viewport={{ once: true }}
-                      className="flex items-center justify-between mb-3 xl:mb-[28px]"
+                      className="flex items-center justify-between mb-4 xl:mb-[47px]"
                     >
                       <button className="bg-accent px-5 py-2 transition-all duration-300 uppercase ">
-                        <span className="text-foreground group-hover:text-white transition-all duration-300">
+                        <span className="text-para-color group-hover:text-white transition-all duration-300">
                           {item.category}
                         </span>
                       </button>
                       <p className="text-base font-light text-forground underline underline-offset-10 dark:text-white hover:text-black dark:hover:text-white transition-colors duration-300">
-                        {item.date ? new Date(item.date).toLocaleDateString("en-GB").replace(/\//g, "-") : new Date(item.createdAt).toLocaleDateString("en-GB").replace(/\//g, "-")}
+                        {item.date
+                          ? new Date(item.date)
+                              .toLocaleDateString("en-GB")
+                              .replace(/\//g, "-")
+                          : new Date(item.createdAt)
+                              .toLocaleDateString("en-GB")
+                              .replace(/\//g, "-")}
                       </p>
                     </motion.div>
                     <motion.h3
@@ -76,7 +82,7 @@ const Main = ({
                       initial="hidden"
                       whileInView="show"
                       viewport={{ once: true }}
-                      className="text-2xl font-normal leading-[1.40625] text-forground mb-3 xl:mb-[22px] dark:text-white hover:text-primary transition-colors duration-300"
+                      className="text-2xl font-normal leading-[1.40625] text-para-color mb-3 xl:mb-[22px] dark:text-white hover:text-primary transition-colors duration-300 max-w-[55ch] tracking-[-1px]"
                     >
                       {item.title}
                     </motion.h3>
@@ -85,7 +91,7 @@ const Main = ({
                       initial="hidden"
                       whileInView="show"
                       viewport={{ once: true }}
-                      className="text-lg leading-[1.526315789473684] font-light text-forground dark:text-white/80 hover:text-black dark:hover:text-white transition-colors duration-300"
+                      className="text-lg leading-[1.526315789473684] font-light text-para-color dark:text-white/80 hover:text-black dark:hover:text-white transition-colors duration-300 max-w-[55ch]"
                     >
                       {item.description}
                     </motion.p>

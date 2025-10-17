@@ -210,7 +210,7 @@ const JobApplicationForm = ({title}: {title: string}) => {
                       height={30}
                     />
                   </div>
-                  <div className="text-foreground dark:text-white transition-colors flex flex-col xl:flex-row xl:items-center justify-between xl:gap-2 ">
+                  <div className="text-para-color dark:text-white transition-colors flex flex-col xl:flex-row xl:items-center justify-between xl:gap-2 ">
                     <span className="text-lg">
                       {coverLetterFile
                         ? coverLetterFile.name
@@ -274,7 +274,7 @@ const JobApplicationForm = ({title}: {title: string}) => {
                       height={30}
                     />
                   </div>
-                  <div className="text-foreground dark:text-white transition-colors flex flex-col xl:flex-row xl:items-center justify-between xl:gap-2">
+                  <div className="text-para-color dark:text-white transition-colors flex flex-col xl:flex-row xl:items-center justify-between xl:gap-2">
                     <span className="text-lg">
                       {resumeFile ? resumeFile.name : "Upload Your Resume"}
                     </span>

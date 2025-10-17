@@ -318,7 +318,7 @@ const FooterV = () => {
             >
               <a
                 href="#"
-                className="bg-white text-foreground hover:bg-primary hover:text-white flex items-center justify-center rounded-4xl py-2 px-4 gap-2 transition-all
+                className="bg-white text-para-color hover:bg-primary hover:text-white flex items-center justify-center rounded-4xl py-2 px-4 gap-2 transition-all
                duration-300 ease-in-out group max-w-fit "
               >
                 <span className="text-xs font-medium uppercase leading-[1.578947368421053]">
