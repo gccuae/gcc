@@ -8,7 +8,7 @@ import { QhseType } from "../type";
 type Props = {
   title: string;
   description: string;
-  measures: QhseType['thirdSection']['items'];
+  measures: QhseType["thirdSection"]["items"];
 };
 
 const HealthandSafety = ({ title, description, measures }: Props) => {

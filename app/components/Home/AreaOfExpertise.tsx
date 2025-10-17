@@ -15,10 +15,10 @@ import { fadeIn, moveUp } from "../motionVarients";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Thumbs, Autoplay, Navigation } from "swiper/modules";
 import "swiper/css/navigation";
-import { ThirdSection } from "../Home/type";
+import { SecondSection } from "../expertise/type";
 
 interface AreaOfExpertiseProps {
-  data: ThirdSection;
+  data: SecondSection;
 }
 
 const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
@@ -163,7 +163,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
             viewport={{ once: true }}
             className="text-5xl font-normal leading-[1.147058823529412] text-black dark:text-white"
           >
-            {data.title}
+            Area of Expertise
           </motion.h2>
           <div className="flex items-center gap-2">
             <motion.div
@@ -274,7 +274,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true }}
-                    className="text-lg text-foreground font-normal leading-sm xl:leading-[1.2] group-hover:text-primary dark:text-white transition-colors duration-300 pr-2"
+                    className="text-lg text-para-color font-normal leading-sm xl:leading-[1.2] group-hover:text-primary dark:text-white transition-colors duration-300 pr-2"
                   >
                     {item.title}
                   </motion.h3>
@@ -314,23 +314,23 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                 >
                   <div className="img-wrapper md:border-r-1 border-r-smgray pr-4 xl:pr-[50px] pb-0 xl:py-5 relative">
                     <Image
-                      src={item.image}
-                      alt={item.imageAlt}
+                      src={item.homeThumbnail}
+                      alt={item.homeThumbnailAlt}
                       width={1000}
                       height={1000}
-                      className="slide-img w-full h-auto rounded object-cover"
+                      className="slide-img w-full h-[300px] md:h-[400px] 2xl:h-[500px] rounded object-cover"
                     />
                   </div>
                   <div className="group">
                     <h3 className="text-2xl font-normal leading-[1.5625] mb-2 xl:mb-5 dark:text-white hover:text-primary transition-all duration-300">
                       {item.title}
                     </h3>
-                    <p className="slide-text text-lg font-[300] leading-[1.526315789473684] text-foreground dark:text-white/80 transition-all duration-300 w-full">
+                    <p className="slide-text text-lg font-[300] leading-[1.526315789473684] text-para-color dark:text-white/80 transition-all duration-300 w-full">
                       {item.description}
                     </p>
                     <div className="slide-btn mt-6 xl:mt-[43px] mb-4">
                       <BtnPrimary
-                        link={"/expertise/" + item.title}
+                        link={"/expertise/" + item.slug}
                         text="Read More"
                         bgtrans={false}
                       />

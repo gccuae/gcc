@@ -22,7 +22,6 @@ const NewsBlock = ({ data }: NewsBlockProps) => {
       category: cat.category, // ensure category is attached
     }))
   );
-  console.log(allNews, "data nw");
 
   const sectionRef = useRef<HTMLElement | null>(null);
 
@@ -98,7 +97,7 @@ const NewsBlock = ({ data }: NewsBlockProps) => {
                       className="flex items-center justify-between mb-3 xl:mb-[28px]"
                     >
                       <button className="bg-accent px-5 py-2 transition-all duration-300 uppercase ">
-                        <span className="text-foreground group-hover:text-white transition-all duration-300">
+                        <span className="text-para-color group-hover:text-white transition-all duration-300">
                           {item.category}
                         </span>
                       </button>

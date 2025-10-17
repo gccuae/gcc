@@ -70,7 +70,7 @@ const ContactInfo = ({data}: {data: contactType["secondSection"]}) => {
                     whileInView="show"
                     viewport={{ once: true }}
                   >
-                    <h4 className="text-base leading-lh-25 uppercase text-foreground dark:text-white/70">
+                    <h4 className="text-base leading-lh-25 uppercase text-para-color dark:text-white/70">
                       Location
                     </h4>
                     <div>
@@ -107,7 +107,7 @@ const ContactInfo = ({data}: {data: contactType["secondSection"]}) => {
                   </svg>
 
                   <div>
-                    <h4 className="text-base leading-lh-25 uppercase text-foreground dark:text-white/70">
+                    <h4 className="text-base leading-lh-25 uppercase text-para-color dark:text-white/70">
                       Telephone
                     </h4>
                     <a
@@ -141,7 +141,7 @@ const ContactInfo = ({data}: {data: contactType["secondSection"]}) => {
                     whileInView="show"
                     viewport={{ once: true }}
                   >
-                    <h4 className="text-base leading-lh-25 uppercase text-foreground dark:text-white/70">
+                    <h4 className="text-base leading-lh-25 uppercase text-para-color dark:text-white/70">
                       Email
                     </h4>
                     <a
@@ -173,7 +173,7 @@ const ContactInfo = ({data}: {data: contactType["secondSection"]}) => {
                     whileInView="show"
                     viewport={{ once: true }}
                   >
-                    <h4 className="text-base leading-lh-25 uppercase text-foreground dark:text-white/70">
+                    <h4 className="text-base leading-lh-25 uppercase text-para-color dark:text-white/70">
                       fax
                     </h4>
                     <a
@@ -192,7 +192,7 @@ const ContactInfo = ({data}: {data: contactType["secondSection"]}) => {
                   viewport={{ once: true }}
                   className="bg-black/5 dark:bg-white/5 p-3 xl:p-5"
                 >
-                  <p className="text-lg leading-lh-text19 text-foreground dark:text-white/70">
+                  <p className="text-lg leading-lh-text19 text-para-color dark:text-white/70">
                     {data.timings}
                   </p>
                 </motion.div>

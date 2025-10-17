@@ -82,7 +82,7 @@ const JobDetails = ({secondSection,thirdSection,forthSection}: {secondSection: c
               variants={moveUp(idx * 0.2)}
               initial="hidden"
               whileInView="show"
-              className="text-lg leading-lh-text19 mb-2 font-light text-foreground dark:text-white/70"
+              className="text-lg leading-lh-text19 mb-2 font-light text-para-color dark:text-white/70"
             >
               {para}
             </motion.p>
@@ -117,7 +117,7 @@ const JobDetails = ({secondSection,thirdSection,forthSection}: {secondSection: c
             variants={moveUp(0.2)}
             initial="hidden"
             whileInView="show"
-            className="text-lg leading-lh-text19 font-light mb-27px text-foreground dark:text-white/70"
+            className="text-lg leading-lh-text19 font-light mb-27px text-para-color dark:text-white/70"
           >
             {forthSection.description}
           </motion.p>

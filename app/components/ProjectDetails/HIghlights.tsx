@@ -32,7 +32,7 @@ const HIghlights = ({ data }: { data: ForthSection }) => {
                   {item.title}
                 </h3>
               </div>
-              <p className="text-lg leading-[1.5625] text-white/80  dark:text-foreground">
+              <p className="text-lg leading-[1.5625] text-white/80  dark:text-para-color">
                 {item.description}
               </p>
             </motion.div>

@@ -28,7 +28,7 @@ const BusinessNetworks = ({ data }: SecondSectionProps) => {
             viewport={{ once: true }}
             initial="hidden"
             whileInView="show"
-            className="text-lg max-w-[88ch] leading-lh-text19 text-black dark:text-white/70 font-light mb-0"
+            className="text-lg max-w-[88ch] leading-lh-text19 text-black dark:text-white/70 font-light mb-0 text-para-color"
           >
             {data.description}
           </motion.p>

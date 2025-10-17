@@ -12,7 +12,7 @@ const MsgChairman = ({ items }: MessageSection) => {
   return (
     <section className="pt-57px xl:pt-[105px] mb-57px xl:mb-[101px]  dark:bg-light-dark pb-57px lg:pb-0">
       <SpecialContainer className="lg:ps-0" side="left">
-        <div className="grid grid-cols-1 lg:grid-cols-2 items-end gap-6 md:gap-10 xl:gap-15 lg:border-b lg:border-[#c2c2c2] dark:border-light-dark">
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-end gap-6 md:gap-10 xl:gap-13 lg:border-b lg:border-[#c2c2c2] dark:border-light-dark">
           <motion.div
             variants={moveRight()}
             viewport={{ once: true }}
@@ -71,7 +71,7 @@ const MsgChairman = ({ items }: MessageSection) => {
                     initial="hidden"
                     whileInView="show"
                     key={index}
-                    className="mb-3 last:mb-0 lg:last:mb-[17px] lg:mb-[17px] text-lg leading-lh-text19 text-foreground dark:text-white font-light"
+                    className="mb-3 last:mb-0 lg:last:mb-[17px] lg:mb-[17px] text-lg leading-lh-text19 text-para-color dark:text-white font-light"
                   >
                     {line}
                   </motion.p>

@@ -8,14 +8,16 @@ import NewsBlock from "./NewsBlock";
 import { HomeData } from "./type";
 import { Project } from "@/types/Projects";
 import { NewsData } from "../news-listing/type";
+import { ExpertiseData } from "../expertise/type";
 
 interface Props {
   data: HomeData;
   projects: Project;
   news: NewsData;
+  expertise: ExpertiseData;
 }
 
-const Index = ({ data, projects, news }: Props) => {
+const Index = ({ data, projects, news, expertise }: Props) => {
   return (
     <>
       <HeroSlider
@@ -25,7 +27,7 @@ const Index = ({ data, projects, news }: Props) => {
       <AboutCompany data={data.firstSection} />
       <FeaturedProjects data={projects} />
 
-      <AreaOfExpertise data={data.thirdSection} />
+      <AreaOfExpertise data={expertise.secondSection} />
       <SectorSlider data={data.fourthSection} />
       <NewsBlock data={news} />
     </>

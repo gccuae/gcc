@@ -7,6 +7,7 @@
 
 :root {
   --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --para-color: #515151;
   --primary-color: #EE3524;
   --secondary-color: #7AC142;
   --background: oklch(1 0 0);
@@ -66,6 +67,7 @@
   --font-sans: var(--font-sans);
 
   --color-primary: var(--primary-color);
+  --color-para-color: var(--para-color);
   --color-secondary: var(--secondary-color);
   --color-accent: var(--accent-color);
   --color-foreground: var(--foreground);
@@ -138,6 +140,8 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
   --color-background: var(--background);
+
+
 
 
 
@@ -291,6 +295,10 @@ body {
     @apply bg-accent w-[27px];
   }
 
+}
+
+.letterSp-3 {
+  letter-spacing: -3px;
 }
 
 .slideroverlay:after {

@@ -275,7 +275,7 @@ const ContactForm: React.FC = () => {
             />
             <label
               htmlFor="acceptPrivacy"
-              className="text-base font-light text-foreground dark:text-white"
+              className="text-base font-light text-para-color dark:text-white"
             >
               I ACCEPT THE PRIVACY AND TERMS
             </label>

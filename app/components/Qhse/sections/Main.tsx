@@ -8,10 +8,10 @@ type Props = {
   title: string;
   subtitle: string;
   description: string;
-  primaryColorText?:string;
+  primaryColorText?: string;
 };
 
-const Main = ({ title, subtitle, description,primaryColorText }: Props) => {
+const Main = ({ title, subtitle, description, primaryColorText }: Props) => {
   return (
     <section className="pt-57px xl:pt-25 dark:bg-light-dark">
       <div className="container">
@@ -22,7 +22,7 @@ const Main = ({ title, subtitle, description,primaryColorText }: Props) => {
               variants={moveUp()}
               initial="hidden"
               animate="show"
-              className="text-3xl leading-lh-text48 font-normal text-black dark:text-white"
+              className="text-3xl leading-lh-text48 font-normal text-black dark:text-white capitalize max-w-[30ch]"
             >
               {subtitle}
             </motion.h2>
@@ -32,9 +32,9 @@ const Main = ({ title, subtitle, description,primaryColorText }: Props) => {
               variants={moveUp(0.2)}
               initial="hidden"
               animate="show"
-              className="text-lg lg:text-xl leading-[1.4] lg:leading-[1.608695652173913] text-black dark:text-white"
+              className="text-lg lg:text-xl leading-[1.4] lg:leading-[1.608695652173913] text-para-color dark:text-white font-light"
             >
-              <span className="text-red-500">{primaryColorText}, </span>
+              <span className="text-primary font-normal">{primaryColorText}, </span>
               {description}
             </motion.p>
           </div>

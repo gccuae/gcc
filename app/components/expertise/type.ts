@@ -32,7 +32,10 @@ export interface SecondSectionItem {
   logoAlt: string;
   title: string;
   slug: string;
+  description?: string;
   projects: string[];
+  homeThumbnail: string;
+  homeThumbnailAlt: string;
   firstSection?: SecondSectionFirstSection;
   secondSection?: SecondSectionSecondSection;
   thirdSection?: SecondSectionThirdSection;
