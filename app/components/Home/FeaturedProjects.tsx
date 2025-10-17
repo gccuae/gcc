@@ -222,7 +222,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                               Superficie
                             </p>
                             <p className="text-lg leading-[1.842105263157895] font-light dark:text-white group-hover:translate-x-2 transition-all duration-300">
-                              {slide.secondSection.projectValue}
+                              {slide.secondSection.superficie}
                             </p>
                           </motion.div>
                         </div>
