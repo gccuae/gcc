@@ -337,7 +337,7 @@ export default function FeaturedProjects({
 
             {/* Projects List */}
             <div className="space-y-37px 2xl:space-y-47px relative bg-light-white">
-              {visibleProjects?.map((project, index) => (
+              {visibleProjects.length > 0 ? visibleProjects?.map((project, index) => (
                 <motion.div
                   onClick={() => navigate.push(`/projects/${project.slug}`)}
                   key={project._id}
@@ -434,7 +434,8 @@ export default function FeaturedProjects({
                     {project.title}
                   </motion.h3>
                 </motion.div>
-              ))}
+              )) : <div className="mb-10 lg:mb-0"><p className="text-2xl">No results in this area</p>
+<p>Try zooming out, moving the map, or changing your filters.</p></div>}
             </div>
           </div>
 
