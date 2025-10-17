@@ -434,7 +434,7 @@ export default function FeaturedProjects({
                     {project.title}
                   </motion.h3>
                 </motion.div>
-              )) : <div><p className="text-2xl">No results in this area</p>
+              )) : <div className="mb-10 lg:mb-0"><p className="text-2xl">No results in this area</p>
 <p>Try zooming out, moving the map, or changing your filters.</p></div>}
             </div>
           </div>
