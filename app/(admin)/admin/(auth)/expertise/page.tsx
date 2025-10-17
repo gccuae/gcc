@@ -34,6 +34,9 @@ interface ExpertiseFormProps {
             logoAlt: string;
             title: string;
             slug: string;
+            description: string;
+            homeThumbnail: string;
+            homeThumbnailAlt: string;
         }[];
     };
 }
@@ -306,6 +309,44 @@ const ExpertisePage = () => {
                                     })} />
                                     {errors.secondSection?.items?.[index]?.slug && <p className='text-red-500'>{errors.secondSection?.items?.[index]?.slug.message}</p>}
                                 </div>
+                                
+                        <div className='flex flex-col gap-2'>
+                                <div className='flex flex-col gap-2'>
+                                    <Label className='font-bold'>Home Thumbnail</Label>
+                                    <Controller
+                                        name={`secondSection.items.${index}.homeThumbnail`}
+                                        control={control}
+                                        rules={{ required: "Image is required" }}
+                                        render={({ field }) => (
+                                            <ImageUploader
+                                                value={field.value}
+                                                onChange={field.onChange}
+                                            />
+                                        )}
+                                    />
+                                    {errors.secondSection?.items?.[index]?.homeThumbnail && (
+                                        <p className="text-red-500">{errors.secondSection?.items?.[index]?.homeThumbnail.message}</p>
+                                    )}
+                                </div>
+
+                                <div className='flex flex-col gap-2'>
+                                <div className='flex flex-col gap-2'>
+                                    <Label className='font-bold'>Alt Tag</Label>
+                                    <Input type='text' placeholder='Alt Tag' {...register(`secondSection.items.${index}.homeThumbnailAlt`, {
+                                        required: "Value is required"
+                                    })} />
+                                    {errors.secondSection?.items?.[index]?.homeThumbnailAlt && <p className='text-red-500'>{errors.secondSection?.items?.[index]?.homeThumbnailAlt.message}</p>}
+                                </div>
+                            </div>
+
+
+                            </div>
+                            <div>
+                            <Label className="text-sm font-bold">Description</Label>
+                            <Controller name={`secondSection.items.${index}.description`} control={control} rules={{ required: "Description is required" }} render={({ field }) => {
+                                return <Textarea value={field.value} onChange={field.onChange} />
+                            }} />
+                        </div>
                             </div>
                             </div>
 
@@ -316,7 +357,7 @@ const ExpertisePage = () => {
 
                 </div>
                 <div className='flex justify-end mt-2'>
-                        <Button type='button' addItem onClick={() => secondSectionAppend({ title: "", image: "", imageAlt: "", logo: "", logoAlt: "", slug: "" })}>Add Item</Button>
+                        <Button type='button' addItem onClick={() => secondSectionAppend({ title: "", image: "", imageAlt: "", logo: "", logoAlt: "", slug: "", description: "", homeThumbnail: "", homeThumbnailAlt: "" })}>Add Item</Button>
                     </div>
                 </div>
 
