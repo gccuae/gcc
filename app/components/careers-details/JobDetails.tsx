@@ -61,7 +61,15 @@ const Modal = ({
   );
 };
 
-const JobDetails = ({secondSection,thirdSection,forthSection}: {secondSection: careerData['openings'][number]['secondSection'],thirdSection: careerData['openings'][number]['thirdSection'],forthSection: careerData['openings'][number]['forthSection']}) => {
+const JobDetails = ({
+  secondSection,
+  thirdSection,
+  forthSection,
+}: {
+  secondSection: careerData["openings"][number]["secondSection"];
+  thirdSection: careerData["openings"][number]["thirdSection"];
+  forthSection: careerData["openings"][number]["forthSection"];
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <section className="dark:bg-[#0d0d0d]">
@@ -76,21 +84,28 @@ const JobDetails = ({secondSection,thirdSection,forthSection}: {secondSection: c
           >
             {secondSection.title}
           </motion.h2>
-          {secondSection.description.split("\n").map((para: string, idx: number) => (
-            <motion.p
-              key={idx}
-              variants={moveUp(idx * 0.2)}
-              initial="hidden"
-              whileInView="show"
-              className="text-lg leading-lh-text19 mb-2 font-light text-para-color dark:text-white/70"
-            >
-              {para}
-            </motion.p>
-          ))}
+          {secondSection.description
+            .split("\n")
+            .map((para: string, idx: number) => (
+              <motion.p
+                key={idx}
+                variants={moveUp(idx * 0.2)}
+                initial="hidden"
+                whileInView="show"
+                className="text-lg leading-lh-text19 mb-2 -mt-1 font-light text-para-color dark:text-white/70"
+              >
+                {para}
+              </motion.p>
+            ))}
         </div>
 
         {/* Key Responsibilities */}
-        <motion.div className="pt-47px pb-57px border-b border-smgray" variants={moveUp()} initial="hidden" whileInView="show">
+        <motion.div
+          className="pt-47px pb-57px border-b border-smgray"
+          variants={moveUp()}
+          initial="hidden"
+          whileInView="show"
+        >
           <h2 className="text-2xl leading-lh-text32 text-black dark:text-white mb-3 lg:mb-27px">
             {thirdSection.title}
           </h2>
@@ -98,7 +113,7 @@ const JobDetails = ({secondSection,thirdSection,forthSection}: {secondSection: c
             variants={moveUp()}
             initial="hidden"
             whileInView="show"
-            className="flex flex-col gap-4 lg:gap-[20px] job-detail-responsibility"
+            className="flex flex-col gap-4 lg:gap-27px job-detail-responsibility" 
             dangerouslySetInnerHTML={{ __html: thirdSection.description }}
           />
         </motion.div>
@@ -135,9 +150,9 @@ const JobDetails = ({secondSection,thirdSection,forthSection}: {secondSection: c
           </motion.div>
         </div>
       </div>
-        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-          <JobApplicationModal onSuccess={() => setIsModalOpen(false)} />
-        </Modal>
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <JobApplicationModal onSuccess={() => setIsModalOpen(false)} />
+      </Modal>
     </section>
   );
 };

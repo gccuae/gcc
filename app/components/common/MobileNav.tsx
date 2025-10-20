@@ -209,7 +209,7 @@ const MobileNav = () => {
 
             {/* Contact Link */}
             <li className="uppercase">
-              <Link href="/contact" onClick={() => setMenuOpen(false)} className="font-semibold">
+              <Link href="/contact-us" onClick={() => setMenuOpen(false)} className="font-semibold">
                 Contact Us
               </Link>
             </li>

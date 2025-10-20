@@ -109,7 +109,7 @@ const CurrentOpenings = ({ data,jobs,departments,locations }: {data:careerData['
   const DropdownIndicator = (props: DropdownIndicatorProps) => {
     return (
       <components.DropdownIndicator {...props}>
-        <ChevronDown size={20} className="select-down-arrow" />
+        <ChevronDown size={22} className="select-down-arrow" />
       </components.DropdownIndicator>
     );
   };
@@ -237,7 +237,7 @@ const CurrentOpenings = ({ data,jobs,departments,locations }: {data:careerData['
                   whileInView="show"
                   viewport={{ once: true }}
                   key={index}
-                  className=" pb-6 xl:pb-10 mb-6 xl:mb-10 border-b border-smgray last:border-b-0 flex md:flex-row flex-col justify-between gap-6 md:items-center"
+                  className=" pb-6 xl:pb-10 mb-6 xl:mb-10 border-b border-smgray flex md:flex-row flex-col justify-between gap-6 md:items-center"
                 >
                   <div>
                     <h3 className="text-xl lg:text-2xl leading-[1.3] lg:leading-[1.5625] font-normal text-black dark:text-white">

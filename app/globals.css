@@ -615,7 +615,7 @@ header.modal-open {
 
 .job-detail-responsibility {
   h3 {
-    @apply text-lg font-medium text-foreground dark:text-white;
+    @apply text-lg font-medium text-para-color dark:text-white -mb-3;
   }
 
   ol {
@@ -623,7 +623,7 @@ header.modal-open {
     list-style-type: square;
 
     li {
-      @apply text-lg font-light text-foreground dark:text-white/70 lg:pl-5;
+      @apply text-lg font-light text-para-color dark:text-white/70 lg:pl-5;
 
       &::marker {
         color: var(--color-accent);

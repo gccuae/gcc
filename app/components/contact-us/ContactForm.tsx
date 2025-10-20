@@ -41,7 +41,10 @@ const ContactForm: React.FC = () => {
 
   return (
     <div className="w-full ">
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="xl:space-y-[37px] space-y-[27px] "
+      >
         {/* First Name and Last Name Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 xl:gap-10">
           <motion.div
@@ -52,7 +55,7 @@ const ContactForm: React.FC = () => {
           >
             <label
               htmlFor="firstName"
-              className="block text-base font-normal leading-lh-base text-black dark:text-white/70 mb-4 xl:mb-9"
+              className="block text-base font-normal leading-lh-base text-black dark:text-white/70 mb-27px xl:mb-37px"
             >
               {" "}
               First Name{" "}
@@ -93,7 +96,7 @@ const ContactForm: React.FC = () => {
           >
             <label
               htmlFor="lastName"
-              className="block text-sm font-medium text-black dark:text-white/70 mb-4 xl:mb-9"
+              className="block text-base font-normal leading-lh-base text-black dark:text-white/70 mb-27px xl:mb-37px"
             >
               Last Name
             </label>
@@ -136,7 +139,7 @@ const ContactForm: React.FC = () => {
           >
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-black dark:text-white/70 mb-4 xl:mb-9"
+              className="block text-base font-normal leading-lh-base text-black dark:text-white/70 mb-27px xl:mb-37px"
             >
               Email
             </label>
@@ -172,7 +175,7 @@ const ContactForm: React.FC = () => {
           >
             <label
               htmlFor="contact"
-              className="block text-sm font-medium text-black dark:text-white/70 mb-4 xl:mb-9"
+              className="block text-base font-normal leading-lh-base text-black dark:text-white/70 mb-27px xl:mb-37px"
             >
               Contact
             </label>
@@ -214,7 +217,7 @@ const ContactForm: React.FC = () => {
         >
           <label
             htmlFor="message"
-            className="block text-sm font-medium text-black dark:text-white/70 mb-4 xl:mb-9"
+            className="block text-base font-normal leading-lh-base text-black dark:text-white/70 mb-27px xl:mb-37px"
           >
             Message
           </label>
@@ -254,7 +257,7 @@ const ContactForm: React.FC = () => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="flex justify-between items-center"
+          className="flex flex-col md:flex-row md:justify-between md:items-center gap-6 md:gap-0"
         >
           <motion.div
             variants={moveUp(0.6)}
@@ -292,7 +295,7 @@ const ContactForm: React.FC = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="flex justify-end"
+            className="flex md:justify-end"
           >
             <button
               type="submit"
