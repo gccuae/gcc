@@ -89,6 +89,8 @@ export const Menu = ({
   const [searchQuery, setSearchQuery] = useState('');
   const searchInputRef = useRef<HTMLInputElement>(null);
   const popupRef = useRef<HTMLDivElement>(null);
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState<[] | null>(null);
 
   // Focus input when popup opens and is animating in
   useEffect(() => {
@@ -128,14 +130,41 @@ export const Menu = ({
     };
   }, [isOpen]);
 
-  const handleSearch = (e: React.MouseEvent | React.KeyboardEvent) => {
+  const handleSearch = async (e: React.MouseEvent | React.KeyboardEvent) => {
     e.preventDefault();
-    if (searchQuery.trim()) {
+    try {
+      if (searchQuery.trim()) {
+      setLoading(true);
       console.log('Searching for:', searchQuery);
       // Add your search logic here
-      closePopup();
+      const res = await fetch("/api/search", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ searchQuery }),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        console.log(data)
+        setResult(data.data);
+        setSearchQuery("")
+      }
     }
+    } catch (error) {
+      console.log(error)
+    }finally{
+      setLoading(false)
+    }
+    
   };
+
+
+  useEffect(() => {
+    console.log(loading)
+  }, [loading])
 
   const openPopup = () => {
     setIsOpen(true);
@@ -234,10 +263,10 @@ export const Menu = ({
 
       {/* Search Popup */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-start justify-center pt-40 px-4">
+        <div className="fixed inset-0 z-50 flex items-start justify-center pt-15 px-4">
           <div
             ref={popupRef}
-            className={`bg-white rounded-2xl shadow-2xl w-full max-w-2xl transform transition-all duration-300 ease-out ${isAnimating
+            className={`bg-white rounded-2xl shadow-2xl w-full max-w-5xl transform transition-all duration-300 ease-out ${isAnimating
               ? 'translate-y-0 opacity-100 scale-100'
               : '-translate-y-8 opacity-0 scale-95'
               }`}
@@ -257,7 +286,7 @@ export const Menu = ({
             </div>
 
             {/* Search Form */}
-            <div className="p-6">
+            <div className="p-6 h-full">
               <div className="space-y-6">
                 <div className="relative">
                   <Search
@@ -293,8 +322,89 @@ export const Menu = ({
                 </div>
               </div>
 
+              <div className="mt-5 px-4 flex flex-col gap-5 text-black h-[300px]"> {/* 👈 fixed height */}
+  {result && result.length > 0 ? (
+    <div className="text-md font-semibold">Results</div>
+  ) : null}
+
+  {loading ? (
+    <div className="flex justify-center items-center h-full">
+      <div className="loader">
+        <div className="bar1"></div>
+        <div className="bar2"></div>
+        <div className="bar3"></div>
+        <div className="bar4"></div>
+        <div className="bar5"></div>
+        <div className="bar6"></div>
+        <div className="bar7"></div>
+        <div className="bar8"></div>
+        <div className="bar9"></div>
+        <div className="bar10"></div>
+        <div className="bar11"></div>
+        <div className="bar12"></div>
+      </div>
+    </div>
+  ) : (
+    <div className="flex-1 overflow-hidden h-full">
+      {/* 👇 scrollable area */}
+      <ul className="grid grid-cols-3 list-disc gap-5 text-md px-4 max-h-full overflow-y-auto pr-2 text-black gap-x-10">
+        {result && result.length > 0 ? (
+          result.map(
+            (
+              item: {
+                type: string;
+                project?: { title: string; slug: string };
+                item?: { title: string; slug: string };
+              },
+              index: number
+            ) => {
+              if (item.type === "project") {
+                return (
+                  <Link
+                    href={`/projects/${item.item?.slug}`}
+                    key={index}
+                    className="cursor-pointer"
+                    onClick={() => {setResult(null);setIsOpen(false)}}
+                  >
+                    <li>{item.item?.title || "Untitled Project"}</li>
+                  </Link>
+                );
+              } else if (item.type === "news") {
+                return (
+                  <Link
+                    href={`/news/${item.item?.slug}`}
+                    key={index}
+                    className="cursor-pointer"
+                    onClick={() => {setResult(null);setIsOpen(false)}}
+                  >
+                    <li>{item.item?.title || "Untitled"}</li>
+                  </Link>
+                );
+              } else if (item.type === "expertise") {
+                return (
+                  <Link
+                    href={`/expertise/${item.item?.slug}`}
+                    key={index}
+                    className="cursor-pointer"
+                    onClick={() => setResult(null)}
+                  >
+                    <li>{item.item?.title || "Untitled Expertise"}</li>
+                  </Link>
+                );
+              }
+            }
+          )
+        ) : result?.length === 0 ? (
+          <div>No Results</div>
+        ) : null}
+      </ul>
+    </div>
+  )}
+</div>
+
+
               {/* Recent Searches or Suggestions */}
-              <div className="mt-8">
+              {/* <div className="mt-8">
                 <h3 className="text-sm font-medium text-gray-700 mb-4">Popular Searches</h3>
                 <div className="flex flex-wrap gap-3">
                   {['Civil & Structural Works', 'Projects Completed', 'Manpower'].map((suggestion, index) => (
@@ -310,7 +420,11 @@ export const Menu = ({
                     </button>
                   ))}
                 </div>
-              </div>
+              </div> */}
+
+              
+
+
             </div>
           </div>
         </div>
