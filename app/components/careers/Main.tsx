@@ -9,7 +9,7 @@ const Main = ({ data }: { data: careerData['firstSection'] }) => {
   return (
     <section className="py-57px bg-light-white dark:bg-black overflow-hidden">
       <div className="container">
-        <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-[705px_auto] gap-6 xl:gap-10 2xl:gap-70px w-full">
+        <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-[705px_auto] gap-6 xl:gap-12 2xl:gap-[70px] w-full">
           <motion.div
             variants={fadeIn(0.12)}
             initial="hidden"
@@ -29,6 +29,7 @@ const Main = ({ data }: { data: careerData['firstSection'] }) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
+
           >
             <p
               className="text-lg lg:text-xl xl:text-2xl leading-[1.46875] font-light dark:text-white"
