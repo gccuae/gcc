@@ -20,7 +20,7 @@ const Services = ({ data }: ServicesProps) => {
           viewport={{ once: true }}
           className="text-5xl leading-[1.147058823529412] text-black dark:text-white pb-6 xl:pb-[47px]"
         >
-          Services for Any Project
+          {data.title}
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-3 gap-y-6  xl:gap-x-[30px] xl:gap-y-[37px]">
           {data.items.map((item, index) => (

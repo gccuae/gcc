@@ -9,7 +9,11 @@ import { moveUp } from "../motionVarients";
 import { motion } from "framer-motion";
 import { AiTechnologyType } from "./type";
 
-const AiSlider = ({data}: {data: AiTechnologyType['secondSection']['items']}) => {
+const AiSlider = ({
+  data,
+}: {
+  data: AiTechnologyType["secondSection"]["items"];
+}) => {
   const totalSlides = data.length;
   const visibleSlides = 3;
 
@@ -58,7 +62,6 @@ const AiSlider = ({data}: {data: AiTechnologyType['secondSection']['items']}) =>
     setBgImage(data[prevIndex].image);
   };
 
-
   return (
     <motion.div
       variants={moveUp(0.2)}
@@ -93,7 +96,7 @@ const AiSlider = ({data}: {data: AiTechnologyType['secondSection']['items']}) =>
                 1024: { slidesPerView: visibleSlides, spaceBetween: 20 },
               }}
             >
-              {data.map((item,index: number) => (
+              {data.map((item, index: number) => (
                 <SwiperSlide key={index}>
                   <motion.div
                     variants={moveUp(0.2)}
@@ -117,9 +120,10 @@ const AiSlider = ({data}: {data: AiTechnologyType['secondSection']['items']}) =>
                         <p className="text-white text-22 mb-[18px] xl:mb-[23px] leading-[1.3]">
                           {item.subTitle}
                         </p>
-                        <div className="ai-technology-items" dangerouslySetInnerHTML={{__html: item.description}}>
-                        
-                        </div>
+                        <div
+                          className="ai-technology-items"
+                          dangerouslySetInnerHTML={{ __html: item.description }}
+                        ></div>
                       </div>
                       <div>
                         <div
@@ -145,7 +149,7 @@ const AiSlider = ({data}: {data: AiTechnologyType['secondSection']['items']}) =>
               {/* Custom Navigation Buttons */}
               <button
                 onClick={goPrev}
-                className="text-accent w-2 xl:w-[12px] h-auto"
+                className="text-accent w-2 xl:w-[12px] h-auto cursor-pointer"
               >
                 <svg
                   width="15"
@@ -165,7 +169,7 @@ const AiSlider = ({data}: {data: AiTechnologyType['secondSection']['items']}) =>
               </button>
               <button
                 onClick={goNext}
-                className="text-accent w-2 xl:w-[12px] h-auto"
+                className="text-accent w-2 xl:w-[12px] h-auto cursor-pointer"
               >
                 <svg
                   width="15"

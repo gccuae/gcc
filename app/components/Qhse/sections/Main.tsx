@@ -34,7 +34,10 @@ const Main = ({ title, subtitle, description, primaryColorText }: Props) => {
               animate="show"
               className="text-lg lg:text-xl leading-[1.4] lg:leading-[1.608695652173913] text-para-color dark:text-white font-light"
             >
-              <span className="text-primary font-normal">{primaryColorText}, </span>
+              At{" "}
+              <span className="text-primary font-normal">
+                {primaryColorText},{" "}
+              </span>
               {description}
             </motion.p>
           </div>
