@@ -472,7 +472,7 @@ export default function FeaturedProjects({
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className=" lg:block lg:pl-37px 2xl:pl-47px pt-37px 2xl:pt-47px 
+            className=" lg:block lg:pl-37px lg:pr-27px 2xl:pl-47px pt-37px 2xl:pt-47px 
             sticky top-[60px] h-[calc(100vh-70px)] max-md:h-[300px] z-10"
           >
             {/* <iframe
@@ -489,7 +489,7 @@ export default function FeaturedProjects({
               }}
               defaultZoom={15}
               mapId="2567b86b459988d06657407f"
-              className="w-full h-full"
+              className="w-full h-full border-white border-8"
               gestureHandling="greedy"
               onCameraChanged={handleCameraChanged}
               disableDefaultUI={true}
