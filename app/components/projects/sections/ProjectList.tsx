@@ -406,25 +406,6 @@ export default function FeaturedProjects({
                       <span>{project.secondSection.status}</span>
                     </motion.div>
 
-                    {/* Mobile Map */}
-                    {/* <motion.div
-                    variants={moveUp(0.15)}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true }}
-                    className="block lg:hidden mt-4"
-                  >
-                    {mobileMapOpen === project._id && (
-                      <iframe
-                        src={project.mapUrl}
-                        width="100%"
-                        height={300}
-                        loading="lazy"
-                        className="border-0"
-                      />
-                    )}
-                  </motion.div> */}
-
                     <motion.h3
                       variants={moveUp(0.15)}
                       initial="hidden"
@@ -472,7 +453,7 @@ export default function FeaturedProjects({
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className=" lg:block lg:pl-37px lg:pr-27px 2xl:pl-47px pt-37px 2xl:pt-47px 
+            className=" lg:block lg:pr-27px lg:pl-37px 2xl:pl-47px pt-37px 2xl:pt-47px 
             sticky top-[60px] h-[calc(100vh-70px)] max-md:h-[300px] z-10"
           >
             {/* <iframe
