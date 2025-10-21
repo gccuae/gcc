@@ -26,7 +26,7 @@ const FooterV = () => {
               whileInView="show"
               viewport={{ once: true, amount: 0.2 }}
             >
-              Transforming Spaces, Building Futures
+              Innovating Spaces, Empowering Communities
             </motion.h2>
           </div>
           <div className="grid gap-y-8 lg:grid-cols-2 xl:grid-cols-[6fr_4fr] pt-4 pb-4 xl:pt-27px xl:pb-27px border-b border-foreground">
