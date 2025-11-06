@@ -12,7 +12,9 @@ interface ServiceDetailsProps {
   projects: SingleProject[];
 }
 
+
 const Index = ({ data, allServices, projects }: ServiceDetailsProps) => {
+  console.log("dataa", data);
   return (
     <>
       {data.firstSection && <Main data={data.firstSection} />}
@@ -21,7 +23,7 @@ const Index = ({ data, allServices, projects }: ServiceDetailsProps) => {
       )}
       {projects.length > 0 && <KeyProjects projects={projects} />}
       {data.thirdSection && <Cta data={data.thirdSection} />}
-      <MoreExpertise allServices={allServices} />
+      <MoreExpertise allServices={allServices} exclude={data._id} />
     </>
   );
 };

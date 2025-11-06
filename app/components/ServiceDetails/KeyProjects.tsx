@@ -164,7 +164,7 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
         {projects.map((item, index) => (
           <SwiperSlide
             key={index}
-            className="!overflow-hidden !p-[15px] md:!p-[0px]"
+            className="!overflow-hidden !p-[15px] md:!p-[0px] 2xl:!w-[1003px] 2xl:!h-[633px]"
             // onMouseEnter={() => {
             //   swiperRef.current?.slideToLoop(index); // move hovered slide to center
             // }}
@@ -174,7 +174,7 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="relative h-[250px] lg:h-[350px] xl:h-[450px] 2xl:h-[533px] 3xl:h-[633px] w-full lg:w-[700px] 2xl:w-[1003px] flex flex-col justify-end px-6 py-6 xl:py-8 group"
+              className="relative h-[250px] lg:h-[350px] xl:h-[450px] 2xl:h-[633px] w-full lg:w-[700px] 2xl:w-[1003px] flex flex-col justify-end px-6 py-6 xl:py-8 group"
               onClick={() =>
                 setActiveOverlay(activeOverlay === item._id ? null : item._id)
               }
@@ -182,8 +182,8 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
               <Image
                 src={item.thumbnail}
                 alt={item.title}
-                width={600}
-                height={400}
+                width={1003}
+                height={633}
                 className="w-full h-full object-cover absolute inset-0 z-0"
               />
 
@@ -225,7 +225,7 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
       </Swiper>
 
       <div className="swiper-pagination w-full">
-        <div className="flex justify-center items-center gap-2 mt-6 w-fit mx-auto">
+        <div className="flex justify-center items-center gap-2 mt-4 lg:mt-[40px] w-fit mx-auto">
           {serviceDetailsData.keyProjects.items.map((_, idx) => (
             <button
               key={idx}

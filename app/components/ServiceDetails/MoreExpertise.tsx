@@ -9,13 +9,17 @@ import { SecondSectionItem } from "../expertise/type";
 
 interface MoreExpertiseProps {
   allServices: SecondSectionItem[];
+  exclude: string;
 }
 
-const MoreExpertise = ({ allServices }: MoreExpertiseProps) => {
+const MoreExpertise = ({ allServices, exclude }: MoreExpertiseProps) => {
+  const filteredServices = allServices.filter(
+    (service) => service._id !== exclude
+  );
   return (
     <section className="py-57px bg-light-white dark:bg-black">
       <div className="container">
-        <div className="flex justify-between items-center pb-8 xl:pb-[45px] mb-8 xl:mb-15 border-b border-smgray">
+        <div className="flex justify-between items-center pb-8 xl:pb-47px mb-8 xl:mb-47px border-b border-smgray">
           <motion.h2
             variants={moveUp()}
             initial="hidden"
@@ -35,8 +39,8 @@ const MoreExpertise = ({ allServices }: MoreExpertiseProps) => {
             <BtnPrimary link={"/expertise"} text="View All" bgtrans={true} />
           </motion.div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 xl:gap-10">
-          {allServices.slice(0, 3).map((item, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 xl:gap-[30px]">
+          {filteredServices.slice(0, 3).map((item, index) => (
             <motion.div
               key={index}
               variants={moveUp(index * 0.2)}
