@@ -12,7 +12,7 @@ interface PageBnrProps {
 
 const PageBnr = ({ pageTitle, bannerImg, bannerAlt }: PageBnrProps) => {
   return (
-    <section className="relative h-[300px] md:h-[350px]  xl:h-[450px] flex flex-col justify-end pb-6 md:pb-15 xl:pb-[83x]">
+    <section className="relative h-[300px] md:h-[350px] xl:h-[450px] flex flex-col justify-end pb-6 md:pb-15 xl:pb-[83px]">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

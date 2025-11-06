@@ -5,12 +5,14 @@ import ViMiVa from "./ViMiVa";
 import LegacyTimelineSlider from "./LegacyTimelineSlider";
 import WhyChoose from "./WhyChoose";
 import { HomePageData } from "./type";
+import { ExpertiseData } from "../expertise/type";
 
 interface HomeIndexProps {
   data: HomePageData;
+  expertiseData: ExpertiseData["secondSection"];
 }
 
-const Index = ({ data }: HomeIndexProps) => {
+const Index = ({ data, expertiseData }: HomeIndexProps) => {
   return (
     <>
       <PageBnr
@@ -19,7 +21,7 @@ const Index = ({ data }: HomeIndexProps) => {
         bannerAlt={data.bannerAlt}
       />
       <ImgDesc data={data.firstSection} />
-      <WhatWeDo data={data.secondSection} />
+      <WhatWeDo data={data.secondSection} expertiseData={expertiseData} />
       <ViMiVa data={data.thirdSection} />
       <LegacyTimelineSlider data={data.historySection} />
       <WhyChoose data={data.fifthSection} />

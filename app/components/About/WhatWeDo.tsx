@@ -5,8 +5,15 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { moveUp } from "../motionVarients";
 import { WhatWeDoProps } from "./type";
+import Link from "next/link";
+import { ExpertiseData } from "../expertise/type";
 
-const WhatWeDo = ({ data }: WhatWeDoProps) => {
+interface WhatWeDoComponentProps {
+  data: WhatWeDoProps;
+  expertiseData: ExpertiseData["secondSection"];
+}
+
+const WhatWeDo = ({ data, expertiseData }: WhatWeDoComponentProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
   return (
     <section className="bg-light-white dark:bg-light-dark overflow-hidden">
@@ -17,7 +24,7 @@ const WhatWeDo = ({ data }: WhatWeDoProps) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-5xl leading-lh-title text-black dark:text-white mb-4 lg:mb-2"
+            className="text-5xl leading-lh-title text-black dark:text-white mb-4 lg:mb-[13px]"
           >
             {data.mainTitle}
           </motion.h2>
@@ -50,8 +57,8 @@ const WhatWeDo = ({ data }: WhatWeDoProps) => {
             >
               {data.firstDescription}
             </motion.p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-2 xl:gap-x-50px mb-7 xl:mb-10 ">
-              {data.items.map((item, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-2 xl:gap-x-50px mb-7 xl:mb-14 ">
+              {expertiseData.items.map((item, index) => (
                 <motion.button
                   variants={moveUp(index * 0.17)}
                   initial="hidden"
@@ -64,9 +71,11 @@ const WhatWeDo = ({ data }: WhatWeDoProps) => {
                     index === activeIndex ? "text-black dark:text-primary" : ""
                   }`}
                 >
-                  <p className="text-xl leading-[1.2] py-4 md:py-5 text-left group-hover:text-primary group-hover:scale-[1.03] transition-all duration-400 dark:group-hover:text-primary ">
-                    {item.title}
-                  </p>
+                  <Link href={`expertise/${item?.slug || "#"}`}>
+                    <p className="text-xl leading-[1.2] py-4 md:py-5 text-left group-hover:text-primary group-hover:scale-[1.03] transition-all duration-400 dark:group-hover:text-primary ">
+                      {item.title}
+                    </p>
+                  </Link>
                   {index === activeIndex && (
                     <Image
                       src="/assets/img/icons/arrow-tr-green.svg"

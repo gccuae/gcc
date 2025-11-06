@@ -15,17 +15,15 @@ export interface ImgDescProps {
 
 // ---------- What We Do Section ----------
 export interface WhatWeDoProps {
-  data: {
-    mainTitle: string;
-    subTitle: string;
-    firstDescription: string;
-    items: {
-      image: string;
-      imageAlt: string;
-      title: string;
-    }[];
-    secondDescription: string;
-  };
+  mainTitle: string;
+  subTitle: string;
+  firstDescription: string;
+  items: {
+    image: string;
+    imageAlt: string;
+    title: string;
+  }[];
+  secondDescription: string;
 }
 
 // ---------- Vision / Mission / Values ----------
@@ -82,7 +80,7 @@ export interface HomePageData {
   banner: string;
   bannerAlt: string;
   firstSection: ImgDescProps;
-  secondSection: WhatWeDoProps["data"];
+  secondSection: WhatWeDoProps;
   thirdSection: ViMiVaProps["data"];
   historySection: LegacySection;
   fifthSection: WhyChooseProps["data"];

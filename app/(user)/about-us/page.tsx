@@ -6,9 +6,16 @@ const Page = async () => {
   });
   const data = await response.json();
 
+  const expertiseData = await fetch(
+    `${process.env.BASE_URL}/api/admin/expertise`,
+    {
+      next: { revalidate: 60 },
+    }
+  ).then((res) => res.json());
+
   return (
     <>
-      <Index data={data.data} />
+      <Index data={data.data} expertiseData={expertiseData.data.secondSection} />
     </>
   );
 };

@@ -68,7 +68,7 @@ const Scops = ({ data }: ScopsProps) => {
               className="px-[15px] md:px-0 border-b border-sm-gray hover:border-primary transition-colors duration-300 flex flex-col h-full justify-between"
             >
               {/* Top: Image */}
-              <div>
+              <div className="2xl:h-[380px] 2xl:h-[380px]">
                 <Image
                   src={item.image}
                   alt={item.imageAlt}
