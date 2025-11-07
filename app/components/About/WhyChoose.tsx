@@ -89,7 +89,7 @@ const WhyChoose = ({ data }: WhyChooseProps) => {
                 </h3>
               </div>
 
-              <div className="p-4 xl:p-5 2xl:p-10 2xl:pt-[27px]">
+              <div className="p-4 xl:p-5 2xl:p-8 2xl:pt-[27px]">
                 <p className="text-lg leading-[1.5625] dark:text-white text-para-color font-light">
                   {item.description}
                 </p>
