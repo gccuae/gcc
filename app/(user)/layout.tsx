@@ -5,6 +5,7 @@ import Header from "../components/common/Header";
 import { ThemeProvider } from "next-themes";
 // import { ScrollSmootherWrapper } from "../components/common/ScrollSmootherWrapper";
 import FooterV from "../components/common/FooterV";
+import parse from 'html-react-parser'
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -17,14 +18,20 @@ export const metadata: Metadata = {
 };
 
 export const dynamic = "force-dynamic";
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const tagResponse = await fetch(`${process.env.BASE_URL}/api/admin/tags`);
+  const tagData = await tagResponse.json();
+  
   return (
     <html lang="en" suppressHydrationWarning>
+      {tagData?.tag && <head>{parse(tagData?.tag?.headerScript || "")}</head>}
       <body className={`${dmSans.variable}  antialiased`}>
+        {tagData?.tag && <>{parse(tagData?.tag?.bodyScript || "")}</>}
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           {/* <ScrollSmootherWrapper> */}
           <Header />
