@@ -30,6 +30,13 @@ const AiSlider = ({
     return () => clearInterval(interval);
   }, [activeIndex]);
 
+  useEffect(() => {
+    const swiper = swiperRef.current?.swiper;
+    if (swiper && window.innerWidth < 1024) {
+      swiper.slideToLoop(activeIndex);
+    }
+  }, [activeIndex]);
+
   const goNext = () => {
     let nextIndex = activeIndex + 1;
     if (nextIndex >= totalSlides) {
@@ -104,16 +111,12 @@ const AiSlider = ({
                     viewport={{ once: true }}
                   >
                     <div
-                      className={`itmmn h-[411px] flex flex-col justify-start transition-all duration-300 ${
-                        activeIndex === index
-                          ? "bg-gradient-to-b from-black/30 to-black/30 backdrop-blur-[1px]"
-                          : "bg-[#ffffff10] md:bg-transparent"
-                      }`}
+                      className={`itmmn h-[411px] flex flex-col justify-start transition-all duration-300`}
                       style={
                         activeIndex === index
                           ? {
                               background:
-                                "linear-gradient(180deg, rgba(0,0,0,0.26) 0%, rgba(0,0,0,0.26) 100%)",
+                                "linear-gradient(180deg, rgba(0,0,0,0.56) 0%, rgba(0,0,0,0.0) 100%)",
                               backdropFilter: "blur(1px)",
                             }
                           : {}
@@ -122,7 +125,7 @@ const AiSlider = ({
                       <div className={`transition-all duration-300`}>
                         {/* ===== MAIN TITLE (Always visible) ===== */}
                         <div
-                          className={`bgsre transition-all duration-300 cursor-pointer ${
+                          className={`bgsre transition-all duration-300 cursor-pointer border-b border-[#c2c2c2] ${
                             activeIndex === index
                               ? "bg-primary"
                               : "bg-white/8 backdrop-blur-[1px]"
