@@ -33,7 +33,6 @@ const Index = ({
   projectTypes: ProjectType[];
   locations: Location[];
 }) => {
-  console.log(projects, "hi");
   return (
     <>
       <PageBnr

@@ -77,7 +77,7 @@ const HeroSlider = ({ data, counterData }: HeroSliderProps) => {
                       variants={moveUp(1.25)}
                       initial="hidden"
                       animate="show"
-                      className="text-white text-xl font-light max-w-[73ch] leading-[1.521739130434783] pt-[35px] pb-[35px]"
+                      className="text-white text-lg lg:text-xl font-light max-w-[73ch] leading-[1.521739130434783] pt-[35px] pb-[35px]"
                     >
                       {slide.description}
                     </motion.p>

@@ -71,7 +71,7 @@ const AiSlider = ({
       className="relative"
     >
       <section
-        className="transition-all duration-500 h-[400px] lg:h-[500px] xl:h-[750px] relative after:content-[''] after:absolute after:top-0 after:left-0 after:w-full after:h-full afterbgf"
+        className="transition-all duration-500 h-auto xl:h-[600px] relative after:content-[''] after:absolute after:top-0 after:left-0 after:w-full after:h-full afterbgf"
         style={{ background: `url(${bgImage}) center/cover no-repeat` }}
       >
         <div className="container relative h-full w-full">
@@ -80,20 +80,19 @@ const AiSlider = ({
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="border-b border-smgray w-full pt-5 md:pt-0"
+            className="w-full pt-5 md:pt-0"
           >
             <Swiper
               ref={swiperRef}
               allowTouchMove={false}
-              className="md:border-b border-smgray aislider"
+              className="islider"
               slidesPerView={visibleSlides}
               loop={true}
-              spaceBetween={20}
               modules={[Navigation, Autoplay]}
               breakpoints={{
-                0: { slidesPerView: 1, spaceBetween: 10 },
-                590: { slidesPerView: 2, spaceBetween: 15 },
-                1024: { slidesPerView: visibleSlides, spaceBetween: 20 },
+                0: { slidesPerView: 1 },
+                590: { slidesPerView: 2 },
+                1024: { slidesPerView: visibleSlides },
               }}
             >
               {data.map((item, index: number) => (
@@ -105,37 +104,52 @@ const AiSlider = ({
                     viewport={{ once: true }}
                   >
                     <div
-                      className={`itmmn h-[360px] lg:h-[450px] xl:h-[700px] flex flex-col justify-end transition-all duration-300
-                        ${
-                          activeIndex === index
-                            ? "bg-[#ffffff40]"
-                            : "bg-[#ffffff10] md:bg-transparent"
-                        }`}
+                      className={`itmmn h-[411px] flex flex-col justify-start transition-all duration-300 ${
+                        activeIndex === index
+                          ? "bg-gradient-to-b from-black/30 to-black/30 backdrop-blur-[1px]"
+                          : "bg-[#ffffff10] md:bg-transparent"
+                      }`}
+                      style={
+                        activeIndex === index
+                          ? {
+                              background:
+                                "linear-gradient(180deg, rgba(0,0,0,0.26) 0%, rgba(0,0,0,0.26) 100%)",
+                              backdropFilter: "blur(1px)",
+                            }
+                          : {}
+                      }
                     >
-                      <div
-                        className={`transition-all duration-300 px-5 py-5 lg:pb-12 ${
-                          activeIndex === index ? "opacity-100" : "md:opacity-0"
-                        }`}
-                      >
-                        <p className="text-white text-22 mb-[18px] xl:mb-[23px] leading-[1.3]">
-                          {item.subTitle}
-                        </p>
+                      <div className={`transition-all duration-300`}>
+                        {/* ===== MAIN TITLE (Always visible) ===== */}
                         <div
-                          className="ai-technology-items"
-                          dangerouslySetInnerHTML={{ __html: item.description }}
-                        ></div>
-                      </div>
-                      <div>
-                        <div
-                          className={`bgsre px-2 py-3 md:py-5 md:p-8 lg:p-10 transition-all duration-300 cursor-pointer ${
+                          className={`bgsre transition-all duration-300 cursor-pointer ${
                             activeIndex === index
                               ? "bg-primary"
-                              : "bg-primary md:bg-transparent"
+                              : "bg-white/8 backdrop-blur-[1px]"
                           }`}
                         >
-                          <h3 className="text-xl xl:text-2xl leading-[1] font-normal text-white">
+                          <h3 className="text-xl xl:text-2xl leading-[1] font-normal text-white px-2 py-3 md:py-5 md:p-8 lg:p-10">
                             {item.mainTitle}
                           </h3>
+                        </div>
+
+                        {/* ===== SUBTITLE + DESCRIPTION (Only active slide) ===== */}
+                        <div
+                          className={`px-6 lg:px-10 py-57px transition-all duration-500 ${
+                            activeIndex === index
+                              ? "opacity-100 max-h-[800px] pointer-events-auto"
+                              : "opacity-0 max-h-0 overflow-hidden pointer-events-none"
+                          }`}
+                        >
+                          <p className="text-white text-22 mb-[18px] xl:mb-[23px] leading-[1.3]">
+                            {item.subTitle}
+                          </p>
+                          <div
+                            className="ai-technology-items"
+                            dangerouslySetInnerHTML={{
+                              __html: item.description,
+                            }}
+                          />
                         </div>
                       </div>
                     </div>
