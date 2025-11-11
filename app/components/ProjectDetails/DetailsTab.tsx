@@ -41,7 +41,7 @@ const DetailsTab = ({ data }: { data: ThirdSection }) => {
   };
 
   return (
-    <section className="py-57px bg-light-white dark:bg-light-dark">
+    <section className="py-57px bg-white">
       <div className="container">
         <div className="">
           {/* Tab buttons */}
@@ -62,10 +62,11 @@ const DetailsTab = ({ data }: { data: ThirdSection }) => {
                 viewport={{ once: true }}
                 key={tab.title}
                 onClick={() => handleTabClick(idx)}
-                className={`group relative py-2 md:py-4 xl:py-[27px] text-xl leading-normal font-medium transition-colors duration-300 cursor-pointer ${activeTab === idx
+                className={`group relative pb-4 pt-2 xl:py-[27px] text-xl leading-normal font-medium transition-colors duration-300 cursor-pointer ${
+                  activeTab === idx
                     ? "text-black dark:text-white"
                     : "text-gray-500 dark:text-white/70 hover:text-black dark:hover:text-white"
-                  }`}
+                }`}
               >
                 {tab.title}
 
@@ -80,14 +81,11 @@ const DetailsTab = ({ data }: { data: ThirdSection }) => {
 
                 {/* 🟥 Hover Red Line */}
                 {activeTab !== idx && (
-                  <motion.div
-                    className="absolute top-[-2px] left-0 right-0 h-[4px] bg-red-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
-                  />
+                  <motion.div className="absolute top-[-2px] left-0 right-0 h-[4px] bg-red-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
                 )}
               </motion.button>
             ))}
           </motion.div>
-
 
           {/* Tab content */}
           <motion.div
@@ -95,7 +93,7 @@ const DetailsTab = ({ data }: { data: ThirdSection }) => {
             variants={moveUp()}
             initial="hidden"
             animate="show"
-            className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 xl:gap-[70px] xl:grid-cols-[934px_auto] items-start"
+            className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8 xl:gap-[70px] xl:grid-cols-[934px_auto] items-stretch"
           >
             {/* Text */}
             <div>
@@ -114,7 +112,7 @@ const DetailsTab = ({ data }: { data: ThirdSection }) => {
               variants={moveLeft()}
               initial="hidden"
               animate="show"
-              className="relative w-full h-64 md:h-96"
+              className="relative w-full h-64 md:h-96 xl:h-auto"
             >
               <Image
                 src={projectDetails[activeTab]?.image || ""}

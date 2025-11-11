@@ -56,7 +56,7 @@ const MoreProjects = ({ projects }: Props) => {
                 />
               </div>
               <div className="pt-5 xl:pt-[27px]">
-                <p className="text-lg leading-lh-text19 dark:text-white/80 mb-2 xl:mb-[12px]">
+                <p className="text-lg leading-lh-text19 text-[#515151] dark:text-white/80 mb-2 xl:mb-[12px]">
                   {project.secondSection?.projectType?.name}{" "}
                   <span className="mx-2">|</span>{" "}
                   {project.secondSection?.sector?.name}{" "}

@@ -5,6 +5,7 @@ import HIghlights from "./HIghlights";
 import MoreProjects from "./MoreProjects";
 import { SecondSectionItemData } from "./type";
 import { Project } from "@/types/Projects";
+import LocationDetails from "./LocationDetails";
 
 interface Props {
   data: SecondSectionItemData;
@@ -24,10 +25,11 @@ const Index = ({ data, projects }: Props) => {
         bannerAlt={data?.bannerAlt || ""}
       />
       <ProjectSlider data={data} />
+      {data.forthSection && <HIghlights data={data.forthSection} />}
       {data.thirdSection?.items && data.thirdSection.items.length > 0 && (
         <DetailsTab data={data.thirdSection} />
       )}
-      {data.forthSection && <HIghlights data={data.forthSection} />}
+      {data.fifthSection && <LocationDetails data={data.fifthSection} />}
       <MoreProjects projects={filteredProjects} />
     </>
   );

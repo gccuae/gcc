@@ -498,7 +498,8 @@ header.modal-open {
 }
 
 .news-slider .swiper-button-prev {
-  right: 125px !important; /* adjust gap as needed */
+  right: 125px !important;
+  /* adjust gap as needed */
 }
 
 .news-slider .swiper-button-next:after,
@@ -544,6 +545,7 @@ header.modal-open {
 
 /* Mobile adjustments */
 @media (max-width: 768px) {
+
   .news-slider .swiper-button-next,
   .news-slider .swiper-button-prev {
     @apply bottom-[30px] top-[unset];
@@ -734,12 +736,12 @@ header.modal-open {
   }
 }
 
-.blog-details{
+.blog-details {
   h3 {
     @apply text-2xl font-normal mb-5 xl:mb-[27px] text-foreground dark:text-white mt-[47px];
   }
 
-  p{
+  p {
     @apply mb-5 xl:mb-6 text-lg font-normal text-foreground dark:text-white/70;
   }
 
@@ -749,18 +751,18 @@ header.modal-open {
 
     li {
       @apply text-lg font-normal font-light text-foreground dark:text-white/70;
-    
-     &::marker{
-      color: var(--color-accent);
-     }
+
+      &::marker {
+        color: var(--color-accent);
+      }
     }
 
-    
+
   }
 }
 
-.news-details{
-  p{
+.news-details {
+  p {
     @apply mb-5 xl:mb-[27px] text-lg xl:text-21 leading-[1.380952380952381] font-normal text-[#515151] dark:text-white/70;
 
   }
@@ -777,7 +779,8 @@ header.modal-open {
 .loader div {
   width: 8%;
   height: 24%;
-  background: rgb(0, 0, 0); /* changed to black */
+  background: rgb(0, 0, 0);
+  /* changed to black */
   position: absolute;
   left: 50%;
   top: 30%;
@@ -791,20 +794,68 @@ header.modal-open {
   from {
     opacity: 1;
   }
+
   to {
     opacity: 0.25;
   }
 }
 
-.loader .bar1 { transform: rotate(0deg) translate(0, -130%); animation-delay: 0s; }
-.loader .bar2 { transform: rotate(30deg) translate(0, -130%); animation-delay: -1.1s; }
-.loader .bar3 { transform: rotate(60deg) translate(0, -130%); animation-delay: -1s; }
-.loader .bar4 { transform: rotate(90deg) translate(0, -130%); animation-delay: -0.9s; }
-.loader .bar5 { transform: rotate(120deg) translate(0, -130%); animation-delay: -0.8s; }
-.loader .bar6 { transform: rotate(150deg) translate(0, -130%); animation-delay: -0.7s; }
-.loader .bar7 { transform: rotate(180deg) translate(0, -130%); animation-delay: -0.6s; }
-.loader .bar8 { transform: rotate(210deg) translate(0, -130%); animation-delay: -0.5s; }
-.loader .bar9 { transform: rotate(240deg) translate(0, -130%); animation-delay: -0.4s; }
-.loader .bar10 { transform: rotate(270deg) translate(0, -130%); animation-delay: -0.3s; }
-.loader .bar11 { transform: rotate(300deg) translate(0, -130%); animation-delay: -0.2s; }
-.loader .bar12 { transform: rotate(330deg) translate(0, -130%); animation-delay: -0.1s; }
+.loader .bar1 {
+  transform: rotate(0deg) translate(0, -130%);
+  animation-delay: 0s;
+}
+
+.loader .bar2 {
+  transform: rotate(30deg) translate(0, -130%);
+  animation-delay: -1.1s;
+}
+
+.loader .bar3 {
+  transform: rotate(60deg) translate(0, -130%);
+  animation-delay: -1s;
+}
+
+.loader .bar4 {
+  transform: rotate(90deg) translate(0, -130%);
+  animation-delay: -0.9s;
+}
+
+.loader .bar5 {
+  transform: rotate(120deg) translate(0, -130%);
+  animation-delay: -0.8s;
+}
+
+.loader .bar6 {
+  transform: rotate(150deg) translate(0, -130%);
+  animation-delay: -0.7s;
+}
+
+.loader .bar7 {
+  transform: rotate(180deg) translate(0, -130%);
+  animation-delay: -0.6s;
+}
+
+.loader .bar8 {
+  transform: rotate(210deg) translate(0, -130%);
+  animation-delay: -0.5s;
+}
+
+.loader .bar9 {
+  transform: rotate(240deg) translate(0, -130%);
+  animation-delay: -0.4s;
+}
+
+.loader .bar10 {
+  transform: rotate(270deg) translate(0, -130%);
+  animation-delay: -0.3s;
+}
+
+.loader .bar11 {
+  transform: rotate(300deg) translate(0, -130%);
+  animation-delay: -0.2s;
+}
+
+.loader .bar12 {
+  transform: rotate(330deg) translate(0, -130%);
+  animation-delay: -0.1s;
+}
