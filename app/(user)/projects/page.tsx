@@ -1,24 +1,47 @@
 import Index from "@/app/components/projects/index";
 
-const Page = async() => {
-  const projectsResponse = await fetch(`${process.env.BASE_URL}/api/admin/projects`, {
-    next: { revalidate: 60 },
-  });
+const Page = async () => {
+  const projectsResponse = await fetch(
+    `${process.env.BASE_URL}/api/admin/projects`,
+    {
+      next: { revalidate: 60 },
+    }
+  );
   const projectsData = await projectsResponse.json();
 
-  const sectorsResponse = await fetch(`${process.env.BASE_URL}/api/admin/projects/sector`, {
-    next: { revalidate: 60 },
-  });
+  const sectorsResponse = await fetch(
+    `${process.env.BASE_URL}/api/admin/projects/sector`,
+    {
+      next: { revalidate: 60 },
+    }
+  );
   const sectorsData = await sectorsResponse.json();
 
-  const projectTypesResponse = await fetch(`${process.env.BASE_URL}/api/admin/projects/project-type`, {
-    next: { revalidate: 60 },
-  });
+  const projectTypesResponse = await fetch(
+    `${process.env.BASE_URL}/api/admin/projects/project-type`,
+    {
+      next: { revalidate: 60 },
+    }
+  );
   const projectTypesData = await projectTypesResponse.json();
+
+  const locationsResponse = await fetch(
+    `${process.env.BASE_URL}/api/admin/projects/location`,
+    {
+      next: { revalidate: 60 },
+    }
+  );
+  const locationsData = await locationsResponse.json();
+
 
   return (
     <>
-      <Index projects={projectsData.data} sectors={sectorsData.data} projectTypes={projectTypesData.data}/>
+      <Index
+        projects={projectsData}
+        sectors={sectorsData.data}
+        projectTypes={projectTypesData.data}
+        locations={locationsData.data}
+      />
     </>
   );
 };

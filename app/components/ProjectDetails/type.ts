@@ -3,6 +3,7 @@ export interface SecondSectionItemData {
   secondSection?: SecondSection;
   thirdSection?: ThirdSection;
   forthSection?: ForthSection;
+  fifthSection?: FifthSection;
   metaTitle?: string;
   metaDescription?: string;
   banner?: string;
@@ -38,7 +39,7 @@ export interface ThirdSection {
   items: ThirdSectionItem[];
 }
 
-export interface  ThirdSectionItem {
+export interface ThirdSectionItem {
   _id: string;
   title: string;
   image: string;
@@ -55,4 +56,12 @@ export interface ForthSectionItem {
   _id: string;
   title: string;
   description: string;
+}
+
+export interface FifthSection {
+  title: string;
+  description: string;
+  buttonTitle: string;
+  buttonLink: string;
+  map: string;
 }
