@@ -103,7 +103,7 @@ const ProjectsList = ({
     );
   });
   return (
-    <section className="dark:bg-light-dark" ref={sectionRef}>
+    <section className="dark:bg-light-dark pb-37px" ref={sectionRef}>
       {/* ===================== Filter Bar ===================== */}
       <div className="border-b border-gray-300 mb-57px">
         <div className="container">
