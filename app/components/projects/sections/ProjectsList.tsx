@@ -111,12 +111,12 @@ const ProjectsList = ({
         variants={moveUp(0.2)}
         initial="hidden"
         whileInView="show"
-        className="border-b border-gray-300 mb-57px"
+        className="border-b border-gray-300 pb-27px xl:pb-0 mb-57px"
       >
         <div className="container">
           <div className="grid grid-cols-1 2xl:grid-cols-[1fr_repeat(4,1fr)_auto] xl:grid-cols-[2fr_repeat(4,1fr)_auto] items-center gap-4 xl:gap-[30px]">
             {/* Search Input */}
-            <div className="flex items-center justify-start gap-5 xl:border-r border-gray-300 h-full py-[20px] xl:py-47px 2xl:w-[303px] pr-8">
+            <div className="flex items-center justify-start gap-5 xl:border-r border-gray-300 h-full pt-[20px] pb-[12px] xl:py-47px 2xl:w-[303px] pr-8">
               <Image
                 src={"/assets/img/projects/searchIcon.svg"}
                 alt="search"
@@ -194,10 +194,8 @@ const ProjectsList = ({
                         key={option}
                         value={option}
                         className={({ active }) =>
-                          `cursor-pointer select-none px-3 py-2 text-sm ${
-                            active
-                              ? "bg-green-100 text-green-700"
-                              : "text-gray-700"
+                          `cursor-pointer select-none px-3 py-2 text-sm rounded-sm ${
+                            active ? "bg-primary text-white" : "text-para-color"
                           }`
                         }
                       >
@@ -262,10 +260,8 @@ const ProjectsList = ({
                       key={option}
                       value={option}
                       className={({ active }) =>
-                        `cursor-pointer select-none px-3 py-2 text-sm ${
-                          active
-                            ? "bg-green-100 text-green-700"
-                            : "text-gray-700"
+                        `cursor-pointer select-none px-3 py-2 text-sm rounded-sm ${
+                          active ? "bg-primary text-white" : "text-para-color"
                         }`
                       }
                     >
@@ -330,8 +326,8 @@ const ProjectsList = ({
                     key="All"
                     value="All"
                     className={({ active }) =>
-                      `cursor-pointer select-none px-3 py-2 text-sm ${
-                        active ? "bg-green-100 text-green-700" : "text-gray-700"
+                      `cursor-pointer select-none px-3 py-2 text-sm rounded-sm ${
+                        active ? "bg-primary text-white" : "text-para-color"
                       }`
                     }
                   >
@@ -342,10 +338,8 @@ const ProjectsList = ({
                       key={option._id}
                       value={option._id}
                       className={({ active }) =>
-                        `cursor-pointer select-none px-3 py-2 text-sm ${
-                          active
-                            ? "bg-green-100 text-green-700"
-                            : "text-gray-700"
+                        `cursor-pointer select-none px-3 py-2 text-sm rounded-sm ${
+                          active ? "bg-primary text-white" : "text-para-color"
                         }`
                       }
                     >
@@ -408,8 +402,8 @@ const ProjectsList = ({
                     key="All"
                     value="All"
                     className={({ active }) =>
-                      `cursor-pointer select-none px-3 py-2 text-sm ${
-                        active ? "bg-green-100 text-green-700" : "text-gray-700"
+                      `cursor-pointer select-none px-3 py-2 text-sm rounded-sm ${
+                        active ? "bg-primary text-white" : "text-para-color"
                       }`
                     }
                   >
@@ -420,10 +414,8 @@ const ProjectsList = ({
                       key={option.value}
                       value={option.value}
                       className={({ active }) =>
-                        `cursor-pointer select-none px-3 py-2 text-sm ${
-                          active
-                            ? "bg-green-100 text-green-700"
-                            : "text-gray-700"
+                        `cursor-pointer select-none px-3 py-2 text-sm rounded-sm ${
+                          active ? "bg-primary text-white" : "text-para-color"
                         }`
                       }
                     >
@@ -450,7 +442,7 @@ const ProjectsList = ({
         {filteredProjects.length === 0 ? (
           <p className="text-center text-gray-500">No projects found.</p>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 xl:gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 xl:gap-10">
             {filteredProjects.slice(0, visibleCount).map((item, index) => (
               <motion.div
                 variants={moveUp(index * 0.17)}

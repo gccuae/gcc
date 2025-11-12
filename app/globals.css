@@ -859,3 +859,9 @@ header.modal-open {
   transform: rotate(330deg) translate(0, -130%);
   animation-delay: -0.1s;
 }
+
+
+/* Prevent layout jump when dropdowns open */
+html {
+  scrollbar-gutter: stable;
+}

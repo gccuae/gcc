@@ -162,7 +162,7 @@ const AiSlider = ({
             </Swiper>
 
             {/* Navigation Buttons */}
-            <div className="cursor-pointer absolute top-1/2 right-[-10px] xl:top-[40%] xl:-right-8 z-50 w-[50px] h-[50px] xl:w-[94px] xl:h-[94px] bg-black rounded-full flex items-center justify-center gap-4 xl:gap-6">
+            <div className="cursor-pointer absolute bottom-2 right-2 md:top-[40%] ring-1 ring-white md:ring-0 xl:-right-3 2xl:-right-8 z-50 w-[50px] h-[50px] xl:w-[65px] xl:h-[65px] 2xl:w-[94px] 2xl:h-[94px] bg-black rounded-full flex items-center justify-center gap-4 xl:gap-6">
               {/* Custom Navigation Buttons */}
               <button
                 onClick={goPrev}

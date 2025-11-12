@@ -11,7 +11,7 @@ const ImgDesc = ({ data }: { data: ImgDescProps }) => {
       <div className="container">
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 xl:gap-[70px] items-stretch">
           {/* Text Section */}
-          <div className="flex flex-col gap-6 justify-center order-1 lg:order-2 w-[105%]">
+          <div className="flex flex-col gap-6 justify-center order-1 lg:order-2 lg:w-[105%]">
             <div>
               <motion.h2
                 variants={moveUp(0.2)}
