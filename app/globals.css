@@ -722,7 +722,7 @@ header.modal-open {
     list-style-type: square;
 
     li {
-      @apply mb-2 last:mb-0 flex items-center gap-2 text-base capitalize;
+      @apply mb-2 text-lg last:mb-0 flex items-center gap-2 capitalize;
 
       &::before {
         content: "";
