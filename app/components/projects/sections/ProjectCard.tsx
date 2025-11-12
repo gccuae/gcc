@@ -63,7 +63,7 @@ const ProjectCard = ({ item, index }: { item: Project; index: number }) => {
   return (
     <div
       key={index}
-      className="relative border-b border-smgray hover:border-primary pb-27px group transition-all duration-300"
+      className="relative border-b border-smgray hover:border-primary pb-[15px] lg:pb-27px group transition-all duration-300"
     >
       <div
         className="relative p-3 xl:p-5 h-[300px] xl:h-[486px] overflow-hidden group/img"
@@ -81,7 +81,7 @@ const ProjectCard = ({ item, index }: { item: Project; index: number }) => {
         />
         <div className="absolute bottom-0 left-0 w-full h-0 bg-black opacity-25 group-hover:h-full transition-all duration-300"></div>
         <div
-          className="absolute pointer-events-none z-20 transition-opacity duration-300 ease-out"
+          className="hidden lg:block absolute pointer-events-none z-20 transition-opacity duration-300 ease-out"
           style={{
             left: `${currentPosition.x}px`,
             top: `${currentPosition.y}px`,
@@ -122,7 +122,7 @@ const ProjectCard = ({ item, index }: { item: Project; index: number }) => {
       </div>
       <div className="mt-5 xl:mt-[27px] relative">
         <div className="flex justify-between items-center mb-2 xl:mb-[12px]">
-          <div className="flex items-center flex-wrap gap-2 xl:gap-[13px] text-lg leading-lh-text19 font-light dark:text-white text-para-color">
+          <div className="flex items-center flex-wrap gap-[7px] xl:gap-[13px] text-lg leading-lh-text19 font-light dark:text-white text-para-color">
             <span>{item.secondSection.projectType.name}</span>
             <span className="text-black">|</span>
             <span>{item.secondSection.sector.name}</span>
