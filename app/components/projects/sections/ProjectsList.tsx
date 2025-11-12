@@ -103,8 +103,6 @@ const ProjectsList = ({
     );
   });
 
-  const [isSearchFocused, setIsSearchFocused] = useState(false);
-
   return (
     // <section className="dark:bg-light-dark pb-37px" ref={sectionRef}>
     <section className="dark:bg-light-dark pb-57px" ref={sectionRef}>
