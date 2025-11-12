@@ -107,7 +107,12 @@ const ProjectsList = ({
     // <section className="dark:bg-light-dark pb-37px" ref={sectionRef}>
     <section className="dark:bg-light-dark pb-57px" ref={sectionRef}>
       {/* ===================== Filter Bar ===================== */}
-      <div className="border-b border-gray-300 mb-57px">
+      <motion.div
+        variants={moveUp(0.2)}
+        initial="hidden"
+        whileInView="show"
+        className="border-b border-gray-300 mb-57px"
+      >
         <div className="container">
           <div className="grid grid-cols-1 2xl:grid-cols-[1fr_repeat(4,1fr)_auto] xl:grid-cols-[2fr_repeat(4,1fr)_auto] items-center gap-4 xl:gap-[30px]">
             {/* Search Input */}
@@ -438,7 +443,7 @@ const ProjectsList = ({
             </button>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* ===================== Projects Grid ===================== */}
       <div className="container">

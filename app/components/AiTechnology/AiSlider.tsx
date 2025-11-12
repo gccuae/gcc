@@ -78,7 +78,7 @@ const AiSlider = ({
       className="relative"
     >
       <section
-        className="transition-all duration-500 h-auto xl:h-[600px] relative after:content-[''] after:absolute after:top-0 after:left-0 after:w-full after:h-full afterbgf"
+        className="transition-colors duration-500 h-auto xl:h-[600px] relative after:content-[''] after:absolute after:top-0 after:left-0 after:w-full after:h-full afterbgf"
         style={{ background: `url(${bgImage}) center/cover no-repeat` }}
       >
         <div className="container relative h-full w-full">
@@ -105,7 +105,7 @@ const AiSlider = ({
               {data.map((item, index: number) => (
                 <SwiperSlide key={index}>
                   <motion.div
-                    variants={moveUp(0.2)}
+                    variants={moveUp(index * 0.25)}
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true }}
@@ -162,7 +162,7 @@ const AiSlider = ({
             </Swiper>
 
             {/* Navigation Buttons */}
-            <div className="cursor-pointer absolute top-1/3 right-[-10px] xl:top-[40%] xl:-right-8 z-50 w-[50px] h-[50px] xl:w-[94px] xl:h-[94px] bg-black rounded-full flex items-center justify-center gap-4 xl:gap-6">
+            <div className="cursor-pointer absolute top-1/2 right-[-10px] xl:top-[40%] xl:-right-8 z-50 w-[50px] h-[50px] xl:w-[94px] xl:h-[94px] bg-black rounded-full flex items-center justify-center gap-4 xl:gap-6">
               {/* Custom Navigation Buttons */}
               <button
                 onClick={goPrev}
