@@ -18,7 +18,7 @@ const FooterV = () => {
           />
         </div>
         <div className="container relative z-2">
-          <div className="pt-8 lg:pt-15 pb-4 lg:pb-6 border-b border-foreground">
+          <div className="pt-8 lg:pt-15 pb-4 lg:pb-6 border-b border-para-color">
             <motion.h2
               className="text-4xl font-normal leading-[1.147058823529412] text-white max-w-3xl"
               variants={moveUp(0)}
@@ -29,9 +29,52 @@ const FooterV = () => {
               Innovating Spaces, Empowering Communities
             </motion.h2>
           </div>
-          <div className="grid gap-y-8 lg:grid-cols-2 xl:grid-cols-[6fr_4fr] pt-4 pb-4 xl:pt-27px xl:pb-27px border-b border-foreground">
+          <div className="grid gap-y-8 lg:grid-cols-2 xl:grid-cols-[6fr_4fr] pt-4 pb-4 xl:pt-27px xl:pb-27px border-b border-para-color">
             <div>
               <div className="flex flex-col gap-2 lg:gap-3 pt-3 xl:pt-4 pb-5">
+                <motion.p
+                  className="text-md font-light text-white leading-[1.526315789473684] max-w-[472px]"
+                  variants={moveUp(0.2)}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true, amount: 0.2 }}
+                >
+                  Gulf Contractors Company (GCC) LLC
+                  <br />
+                  Suite No. 023, Liberty Tower, Khalifa St., P O Box 45363{" "}
+                  <br /> Abu Dhabi, UAE
+                </motion.p>
+                <motion.div
+                  className="flex items-center gap-4"
+                  variants={moveUp(0.6)}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true, amount: 0.2 }}
+                >
+                  <div className="flex items-center justify-center bg-black rounded-full border border-foreground w-10 h-10">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="20"
+                      viewBox="0 0 16 20"
+                      fill="none"
+                    >
+                      <path
+                        d="M7.6796 9.2001C8.09326 9.2001 8.44593 9.05276 8.7376 8.7581C9.02926 8.4636 9.1751 8.10943 9.1751 7.6956C9.1751 7.28193 9.02776 6.92927 8.7331 6.6376C8.4386 6.34593 8.08443 6.2001 7.6706 6.2001C7.25693 6.2001 6.90426 6.34743 6.6126 6.6421C6.32093 6.9366 6.1751 7.29076 6.1751 7.7046C6.1751 8.11826 6.32243 8.47093 6.6171 8.7626C6.9116 9.05427 7.26576 9.2001 7.6796 9.2001ZM7.6751 17.3251C9.50843 15.7584 10.9876 14.1043 12.1126 12.3626C13.2376 10.6209 13.8001 9.1251 13.8001 7.8751C13.8001 6.04176 13.2209 4.5251 12.0626 3.3251C10.9043 2.1251 9.44176 1.5251 7.6751 1.5251C5.90843 1.5251 4.44593 2.1251 3.2876 3.3251C2.12926 4.5251 1.5501 6.04176 1.5501 7.8751C1.5501 9.1251 2.1126 10.6209 3.2376 12.3626C4.3626 14.1043 5.84176 15.7584 7.6751 17.3251ZM7.6751 18.2751C5.4251 16.2584 3.7251 14.3751 2.5751 12.6251C1.4251 10.8751 0.850098 9.29177 0.850098 7.8751C0.850098 5.8751 1.50426 4.20426 2.8126 2.8626C4.12093 1.52093 5.74176 0.850098 7.6751 0.850098C9.60843 0.850098 11.2293 1.52093 12.5376 2.8626C13.8459 4.20426 14.5001 5.8751 14.5001 7.8751C14.5001 9.29177 13.9251 10.8751 12.7751 12.6251C11.6251 14.3751 9.9251 16.2584 7.6751 18.2751Z"
+                        fill="#EE3524"
+                        stroke="#EE3524"
+                        strokeWidth="1.7"
+                      />
+                    </svg>
+                  </div>
+                  <Link
+                    target="_blank"
+                    href="https://maps.app.goo.gl/peoXPWWJdxxXejpKA"
+                    className="text-md xl:text-xl font-normal text-white leading-[1.3125] hover:text-accent transition-all duration-300 cursor-pointer capitalize"
+                  >
+                    Get Directions
+                  </Link>
+                </motion.div>
                 <motion.div
                   className="flex items-center gap-4"
                   variants={moveUp(0.4)}
@@ -77,7 +120,7 @@ const FooterV = () => {
                   </div>
                   <Link
                     href="mailto:info@gcc.ae"
-                    className="text-md font-normal text-white leading-[1.3125] hover:text-accent transition-all duration-300"
+                    className="text-md xl:text-xl font-normal text-white leading-[1.3125] hover:text-accent transition-all duration-300"
                   >
                     info@gcc.ae
                   </Link>
@@ -136,22 +179,12 @@ const FooterV = () => {
                   </div>
                   <Link
                     href="tel:+97126267510"
-                    className="text-md font-normal text-white leading-[1.3125] hover:text-accent transition-all duration-300"
+                    className="text-md xl:text-xl font-normal text-white leading-[1.3125] hover:text-accent transition-all duration-300"
                   >
                     +971 2 626 7510
                   </Link>
                 </motion.div>
               </div>
-              <motion.p
-                className="text-md font-normal text-white leading-[1.526315789473684] max-w-[472px]"
-                variants={moveUp(0.2)}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, amount: 0.2 }}
-              >
-                Gulf Contractors Company (GCC) LLCSuite No. 023, Liberty Tower,
-                Khalifa St., P O Box 45363 Abu Dhabi, UAE
-              </motion.p>
             </div>
             <div>
               <motion.h3
