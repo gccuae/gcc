@@ -122,16 +122,17 @@ const ProjectCard = ({ item, index }: { item: Project; index: number }) => {
       </div>
       <div className="mt-5 xl:mt-[27px] relative">
         <div className="flex justify-between items-center mb-2 xl:mb-[12px]">
-          <p className="text-lg leading-lh-text19 font-light dark:text-white text-para-color">
-            {item.secondSection.projectType.name} &nbsp;{" "}
-            <span className="text-black">|</span> &nbsp;
-            {item.secondSection.sector.name} &nbsp;{" "}
-            <span className="text-black">|</span> &nbsp;
-            {item.secondSection.location.name} &nbsp;{" "}
-            <span className="text-black">|</span> &nbsp;
-            {item.secondSection.status}
-          </p>
+          <div className="flex items-center flex-wrap gap-2 xl:gap-[13px] text-lg leading-lh-text19 font-light dark:text-white text-para-color">
+            <span>{item.secondSection.projectType.name}</span>
+            <span className="text-black">|</span>
+            <span>{item.secondSection.sector.name}</span>
+            <span className="text-black">|</span>
+            <span>{item.secondSection.location.name}</span>
+            <span className="text-black">|</span>
+            <span>{item.secondSection.status}</span>
+          </div>
         </div>
+
         <h3 className="text-xl md:text-2xl leading-normal font-normal mb-1 md:mb-3 xl:mb-[12px] text-black dark:text-white capitalize">
           {item.title.toLowerCase()}
         </h3>
