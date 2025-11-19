@@ -674,7 +674,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 <Controller
                   name={`secondSection.projectType`}
                   control={control}
-                  // rules={{ required: "Project Type is required" }}
+                  rules={{ required: "Project Type is required" }}
                   render={({ field }) => (
                     <Select
                       onValueChange={field.onChange}
