@@ -162,7 +162,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                   loop
                   className="w-full h-full "
                 >
-                  {featuredProjects.map((slide, index) => (
+                  {featuredProjects?.map((slide, index) => (
                     <SwiperSlide key={index}>
                       <div className="">
                         <h3 className="text-2xl font-normal mb-5 lg:mb-15 dark:text-white leading-[1.40625] pr-5">
@@ -180,7 +180,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                               Location
                             </p>
                             <p className="text-lg leading-[1.842105263157895] font-light dark:text-white group-hover:translate-x-2 transition-all duration-300">
-                              {slide.secondSection.location.name}
+                              {slide.secondSection.location?.name}
                             </p>
                           </motion.div>
                           <motion.div
@@ -194,7 +194,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                               Client
                             </p>
                             <p className="text-lg leading-[1.842105263157895] font-light dark:text-white group-hover:translate-x-2 transition-all duration-300">
-                              {slide.secondSection.client}
+                              {slide.secondSection?.client}
                             </p>
                           </motion.div>
                           <motion.div
@@ -208,7 +208,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                               Project Value
                             </p>
                             <p className="text-lg leading-[1.842105263157895] font-light dark:text-white group-hover:translate-x-2 transition-all duration-300">
-                              {slide.secondSection.projectValue}
+                              {slide.secondSection?.projectValue}
                             </p>
                           </motion.div>
                           <motion.div
@@ -221,9 +221,11 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                             <p className="text-[#979797] text-base leading-[1.5625] font-light uppercase  dark:text-white/64 group-hover:text-primary transition-all duration-300">
                               Superficie
                             </p>
-                            <p className="text-lg leading-[1.842105263157895] font-light dark:text-white group-hover:translate-x-2 transition-all duration-300">
-                              {slide.secondSection.superficie}
-                            </p>
+                            {slide.secondSection?.superficie && (
+                              <p className="text-lg leading-[1.842105263157895] font-light dark:text-white group-hover:translate-x-2 transition-all duration-300">
+                                {slide.secondSection?.superficie}
+                              </p>
+                            )}
                           </motion.div>
                         </div>
                         <div className="mt-0 lg:mt-16">
@@ -287,7 +289,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                           href={"/projects/" + slide.slug}
                           className="bg-accent text-base font-light leading-[1.75] text-para-color uppercase px-5 xl:px-[25px] py-3 xl:py-[15px] rounded-[75px] group-hover:text-white group-hover:bg-primary transition-all duration-300"
                         >
-                          {slide.secondSection.sector.name}
+                          {slide.secondSection?.sector?.name}
                         </Link>
                       </div>
                     </SwiperSlide>

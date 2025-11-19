@@ -70,29 +70,29 @@ const ProjectsList = ({
   };
 
   // Filter logic applies only when "Apply" is clicked
-  const filteredProjects = data.projects.filter((project) => {
-    const searchTerm = pendingFilters.search.trim().toLowerCase();
+  const filteredProjects = data.projects?.filter((project) => {
+    const searchTerm = pendingFilters?.search.trim().toLowerCase();
 
     const matchesSearch =
       searchTerm === "" ||
-      project.title.toLowerCase().includes(searchTerm) ||
-      project.thumbDescription.toLowerCase().includes(searchTerm);
+      project.title?.toLowerCase().includes(searchTerm) ||
+      project.thumbDescription?.toLowerCase().includes(searchTerm);
 
     const matchesType =
       filters.projectType === "All" ||
-      project.secondSection.projectType.name === filters.projectType;
+      project.secondSection?.projectType?.name === filters.projectType;
 
     const matchesSector =
       filters.sector === "All" ||
-      project.secondSection.sector.name === filters.sector;
+      project.secondSection?.sector?.name === filters.sector;
 
     const matchesLocation =
       filters.location === "All" ||
-      project.secondSection.location._id === filters.location;
+      project.secondSection?.location?._id === filters.location;
 
     const matchesStatus =
       filters.status === "All" ||
-      project.secondSection.status === filters.status;
+      project.secondSection?.status === filters.status;
 
     return (
       matchesSearch &&
@@ -139,7 +139,7 @@ const ProjectsList = ({
 
             {/* Project Type */}
             <Listbox
-              value={pendingFilters.projectType}
+              value={pendingFilters?.projectType}
               onChange={(value) =>
                 setPendingFilters((prev) => ({ ...prev, projectType: value }))
               }
