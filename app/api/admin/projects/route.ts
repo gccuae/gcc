@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
       );
       const relatedService = expertise.secondSection.items.find(
         (item: { _id: string }) =>
-          item._id.toString() === foundProject?.relatedService.toString()
+          item._id.toString() === foundProject?.relatedService?.toString()
       );
       if (!foundProject) {
         return NextResponse.json(
