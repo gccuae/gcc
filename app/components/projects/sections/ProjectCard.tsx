@@ -123,21 +123,35 @@ const ProjectCard = ({ item, index }: { item: Project; index: number }) => {
       <div className="mt-5 xl:mt-[27px] relative">
         <div className="flex justify-between items-center mb-2 xl:mb-[12px]">
           <div className="flex items-center flex-wrap gap-[7px] xl:gap-[13px] text-lg leading-lh-text19 font-light dark:text-white text-para-color">
-            <span>{item.secondSection.projectType.name}</span>
-            <span className="text-black">|</span>
-            <span>{item.secondSection.sector.name}</span>
-            <span className="text-black">|</span>
-            <span>{item.secondSection.location.name}</span>
-            <span className="text-black">|</span>
-            <span>{item.secondSection.status}</span>
+            {item?.secondSection?.projectType?.name && (
+              <span>{item?.secondSection?.projectType?.name}</span>
+            )}
+            {item?.secondSection?.sector?.name && (
+              <span className="text-black">|</span>
+            )}
+            {item?.secondSection?.sector?.name && (
+              <span>{item?.secondSection?.sector?.name}</span>
+            )}
+            {item?.secondSection?.location?.name && (
+              <span className="text-black">|</span>
+            )}
+            {item?.secondSection?.location?.name && (
+              <span>{item?.secondSection?.location?.name}</span>
+            )}
+            {item?.secondSection?.status && (
+              <span className="text-black">|</span>
+            )}
+            {item?.secondSection?.status && (
+              <span>{item?.secondSection?.status}</span>
+            )}
           </div>
         </div>
 
         <h3 className="text-xl md:text-2xl leading-normal font-normal mb-1 md:mb-3 xl:mb-[12px] text-black dark:text-white capitalize">
-          {item.title.toLowerCase()}
+          {item?.title?.toLowerCase()}
         </h3>
         <h4 className="text-lg leading-normal font-light mb-0 dark:text-white line-clamp-2 !overflow-hidden !text-ellipsis text-para-color">
-          {item.thumbDescription}
+          {item?.thumbDescription}
         </h4>
       </div>
     </div>

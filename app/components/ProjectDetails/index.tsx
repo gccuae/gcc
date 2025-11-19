@@ -24,12 +24,14 @@ const Index = ({ data, projects }: Props) => {
         bannerImg={data?.banner || ""}
         bannerAlt={data?.bannerAlt || ""}
       />
-      <ProjectSlider data={data} />
-      {data.forthSection && <HIghlights data={data.forthSection} />}
-      {data.thirdSection?.items && data.thirdSection.items.length > 0 && (
-        <DetailsTab data={data.thirdSection} />
+      {data?.secondSection?.title && <ProjectSlider data={data} />}
+      {data?.forthSection?.title && <HIghlights data={data?.forthSection} />}
+      {data?.thirdSection?.items && data?.thirdSection?.items.length > 0 && (
+        <DetailsTab data={data?.thirdSection} />
       )}
-      {data.fifthSection && <LocationDetails data={data.fifthSection} />}
+      {data?.fifthSection?.title && (
+        <LocationDetails data={data?.fifthSection} />
+      )}
       <MoreProjects projects={filteredProjects} />
     </>
   );

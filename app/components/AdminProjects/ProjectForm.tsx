@@ -525,9 +525,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 <Input
                   type="text"
                   placeholder="Progress"
-                  {...register("secondSection.progress", {
-                    required: "Progress is required",
-                  })}
+                  {...register("secondSection.progress")}
                 />
                 {errors.secondSection?.progress && (
                   <p className="text-red-500">
@@ -555,9 +553,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 <Input
                   type="text"
                   placeholder="Scope Of Work"
-                  {...register("secondSection.scopeOfWork", {
-                    required: "Scope Of Work is required",
-                  })}
+                  {...register("secondSection.scopeOfWork")}
                 />
                 {errors.secondSection?.scopeOfWork && (
                   <p className="text-red-500">
@@ -585,9 +581,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 <Input
                   type="text"
                   placeholder="Project Value"
-                  {...register("secondSection.projectValue", {
-                    required: "Project Value is required",
-                  })}
+                  {...register("secondSection.projectValue")}
                 />
                 {errors.secondSection?.projectValue && (
                   <p className="text-red-500">
@@ -600,9 +594,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 <Input
                   type="text"
                   placeholder="Superficie"
-                  {...register("secondSection.superficie", {
-                    required: "Superficie is required",
-                  })}
+                  {...register("secondSection.superficie")}
                 />
                 {errors.secondSection?.superficie && (
                   <p className="text-red-500">
@@ -650,7 +642,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 <Controller
                   name={`secondSection.location`}
                   control={control}
-                  rules={{ required: "Location is required" }}
+                  // rules={{ required: "Location is required" }}
                   render={({ field }) => (
                     <Select
                       onValueChange={field.onChange}
@@ -682,7 +674,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 <Controller
                   name={`secondSection.projectType`}
                   control={control}
-                  rules={{ required: "Project Type is required" }}
+                  // rules={{ required: "Project Type is required" }}
                   render={({ field }) => (
                     <Select
                       onValueChange={field.onChange}
@@ -888,9 +880,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 <Input
                   type="text"
                   placeholder="Title"
-                  {...register(`forthSection.title`, {
-                    required: "Value is required",
-                  })}
+                  {...register(`forthSection.title`)}
                 />
                 {errors.forthSection?.title && (
                   <p className="text-red-500">
@@ -960,9 +950,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 <Input
                   type="text"
                   placeholder="Title"
-                  {...register(`fifthSection.title`, {
-                    required: "Value is required",
-                  })}
+                  {...register(`fifthSection.title`)}
                 />
                 {errors.fifthSection?.title && (
                   <p className="text-red-500">
@@ -1042,7 +1030,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
             <Controller
               name={`featuredProject`}
               control={control}
-              rules={{ required: "Featured Project is required" }}
+              // rules={{ required: "Featured Project is required" }}
               render={({ field }) => (
                 <Select
                   onValueChange={field.onChange}
@@ -1069,7 +1057,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
             <Controller
               name={`relatedService`}
               control={control}
-              rules={{ required: "Related Service is required" }}
+              // rules={{ required: "Related Service is required" }}
               render={({ field }) => (
                 <Select
                   onValueChange={field.onChange}

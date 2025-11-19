@@ -24,7 +24,7 @@ const Page = async ({ params }: Props) => {
 
   return (
     <>
-      <Index data={projectData.data} projects={projectsData.data} />
+      <Index data={projectData?.data} projects={projectsData?.data} />
     </>
   );
 };
