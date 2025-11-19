@@ -126,19 +126,19 @@ const ProjectCard = ({ item, index }: { item: Project; index: number }) => {
             {item?.secondSection?.projectType?.name && (
               <span>{item?.secondSection?.projectType?.name}</span>
             )}
-            {item?.secondSection?.sector?.name && (
+            {item?.secondSection?.projectType?.name && (
               <span className="text-black">|</span>
             )}
             {item?.secondSection?.sector?.name && (
               <span>{item?.secondSection?.sector?.name}</span>
             )}
-            {item?.secondSection?.location?.name && (
+            {item?.secondSection?.sector?.name && (
               <span className="text-black">|</span>
             )}
             {item?.secondSection?.location?.name && (
               <span>{item?.secondSection?.location?.name}</span>
             )}
-            {item?.secondSection?.status && (
+            {item?.secondSection?.location?.name && (
               <span className="text-black">|</span>
             )}
             {item?.secondSection?.status && (

@@ -49,6 +49,7 @@ const projectSchema = new mongoose.Schema({
         sector: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "Sector",
+          default: null,
         },
         location: {
           type: mongoose.Schema.Types.ObjectId,
