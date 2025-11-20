@@ -65,6 +65,7 @@ interface ProjectFormProps {
     projectType: string;
     sector: string;
     location: string;
+    fullLocation: string;
     superficie: string;
   };
   thirdSection: {
@@ -665,6 +666,20 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 {errors.secondSection?.location && (
                   <p className="text-red-500">
                     {errors.secondSection?.location.message}
+                  </p>
+                )}
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <Label className="">Full Location</Label>
+                <Input
+                  type="text"
+                  placeholder="Full Location"
+                  {...register("secondSection.fullLocation")}
+                />
+                {errors.secondSection?.fullLocation && (
+                  <p className="text-red-500">
+                    {errors.secondSection?.fullLocation.message}
                   </p>
                 )}
               </div>
