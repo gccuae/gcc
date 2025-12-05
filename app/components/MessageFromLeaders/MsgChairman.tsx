@@ -10,7 +10,7 @@ const MsgChairman = ({ items }: MessageSection) => {
   const chairmanData = items[0];
 
   return (
-    <section className="pt-57px xl:pt-[105px] mb-57px xl:mb-[101px]  dark:bg-light-dark pb-57px lg:pb-0">
+    <section className="pt-[57px] dark:bg-light-dark pb-57px lg:pb-0 bg-[#F5F3F0]">
       <SpecialContainer className="lg:ps-0" side="left">
         <div className="grid grid-cols-1 lg:grid-cols-2 items-end gap-6 md:gap-10 xl:gap-13 lg:border-b lg:border-[#c2c2c2] dark:border-light-dark">
           <motion.div
@@ -20,7 +20,7 @@ const MsgChairman = ({ items }: MessageSection) => {
             whileInView="show"
             className="relative pt-10"
           >
-            <div className="absolute top-0 left-0 w-[80%] h-[100%] bg-light-white dark:bg-[#797979] z-0"></div>
+            <div className="absolute top-0 left-0 w-[80%] h-[100%] bg-[#0000001A] dark:bg-[#F5F3F0] z-0"></div>
             <motion.div
               variants={moveRight(0.3)}
               viewport={{ once: true }}
