@@ -61,7 +61,7 @@ const MsgChairman = ({ items }: MessageSection) => {
             >
               {chairmanData.title}
             </motion.h2>
-            <div className="lg:max-w-[62ch]">
+            <div className="">
               {chairmanData?.message
                 .split(/\r?\n/)
                 .map((line: string, index: number) => (
