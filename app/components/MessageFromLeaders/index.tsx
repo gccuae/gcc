@@ -1,10 +1,12 @@
 import MsgGm from "./MsgGm";
 import MsgChairman from "./MsgChairman";
 import { MessageProps } from "./type";
+import LeadersShowcase from "./LeadersShowcase";
 
 const Index = ({ data }: MessageProps) => {
   return (
     <>
+    <LeadersShowcase />
       <MsgChairman items={data.messageSection.items} />
       <MsgGm items={data.messageSection.items} />
     </>

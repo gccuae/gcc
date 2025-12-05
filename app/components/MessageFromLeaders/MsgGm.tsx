@@ -10,7 +10,7 @@ const MsgGm = ({ items }: MessageSection) => {
   const gmData = items[1];
 
   return (
-    <section className="pb-57px lg:pb-[101px] dark:bg-black overflow-hidden">
+    <section className="pb-57px lg:pb-[101px] dark:bg-black overflow-hidden bg-[#F5F3F0] pt-57px xl:pt-[180px]">
       <SpecialContainer className="" side="right">
         <div className="flex flex-col-reverse lg:grid grid-cols-1 lg:grid-cols-2 lg:items-end gap-6 md:gap-8 lg:border-b lg:border-[#c2c2c2] dark:border-[#797979]">
           <div className="">
@@ -47,7 +47,7 @@ const MsgGm = ({ items }: MessageSection) => {
             whileInView="show"
             className="relative pt-10"
           >
-            <div className="absolute top-0 right-0 w-[85%] h-full bg-light-white dark:bg-[#0d0d0d] z-0 dark:bg-[#797979]"></div>
+            <div className="absolute top-0 right-0 w-[85%] h-full bg-[#0000001A] dark:bg-[#F5F3F0] z-0"></div>
             <motion.div
               variants={moveLeft(0.3)}
               viewport={{ once: true }}

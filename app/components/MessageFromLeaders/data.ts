@@ -25,3 +25,28 @@ export const leadersData = {
     ],
   },
 };
+
+
+export const leaders = [
+    {
+        name: "Mr. Kassim Al Sharafi",
+        position: "Chairman & Managing Director",
+        image: "/assets/img/team/t1.png",
+        type: "leader",
+
+    },
+    {
+        name: "Dr. Ahmed Alsharafi",
+        position: "Vice-Chairman",
+        image: "/assets/img/team/t2.png",
+        type: "leader",
+
+    },
+    {
+        name: "Jamie Doyle",
+        position: "General Manager",
+        image: "/assets/img/team/t4.png",
+        type: "leader",
+
+    },
+]
