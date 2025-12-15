@@ -17,7 +17,7 @@ const Index = ({ data, allServices, projects }: ServiceDetailsProps) => {
   console.log("dataa", data);
   return (
     <>
-      {data.firstSection && <Main data={data.firstSection} />}
+      {data.firstSection && <Main data={data.firstSection} title={data.title} />}
       {data.secondSection && data.secondSection.items.length > 0 && (
         <Scops data={data.secondSection} />
       )}
