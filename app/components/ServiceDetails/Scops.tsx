@@ -32,8 +32,8 @@ const Scops = ({ data }: ScopsProps) => {
         pagination={{ clickable: true }}
         spaceBetween={40}
         slidesPerView={"auto"}
-        centeredSlides={true}
-        loop={true}
+        // centeredSlides={true}
+        // loop={true}
         grabCursor={true}
         autoplay={{
           delay: 2000,

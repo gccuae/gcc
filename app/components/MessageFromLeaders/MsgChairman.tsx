@@ -32,7 +32,7 @@ const MsgChairman = ({ items }: MessageSection) => {
                 alt="msg chairman"
                 width={1500}
                 height={1500}
-                className="w-full h-[400px] lg:h-[60%] max-h-[980px] object-contain relative z-10"
+                className="w-full h-[400px] lg:h-[60%] max-h-[900px] object-contain relative z-10"
               />
             </motion.div>
             <div className="absolute bottom-5 md:bottom-10 lg:bottom-20 left-3 md:left-10 lg:left-30 w-[70%] lg:w-[70%] h-fit px-4 xl:px-[38px] py-2 xl:py-[18px] bg-gradient-to-r from-primary to-transparent dark:bg-[#0d0d0d] z-20">
@@ -51,13 +51,14 @@ const MsgChairman = ({ items }: MessageSection) => {
               </motion.div>
             </div>
           </motion.div>
-          <div className="pb-0 lg:pb-6">
+          {/* <div className="pb-0 lg:pb-6"> */}
+          <div>
             <motion.h2
               variants={moveUp()}
               viewport={{ once: true }}
               initial="hidden"
               whileInView="show"
-              className="text-2xl lg:text-6xl leading-lh-title text-black dark:text-white mb-2 md:mb-5 xl:mb-[34px] lg:max-w-[16ch]"
+              className="text-2xl lg:text-[55px] 3xl:text-6xl leading-lh-title text-black dark:text-white mb-2 md:mb-5 xl:mb-[34px] 3xl:max-w-[16ch]"
             >
               {chairmanData.title}
             </motion.h2>
