@@ -5,11 +5,11 @@ import { motion } from "framer-motion";
 import { moveUp } from "../../components/motionVarients";
 import { SecondSectionFirstSection } from "../expertise/type";
 
-const Main = ({ data }: { data: SecondSectionFirstSection }) => {
+const Main = ({ data, title }: { data: SecondSectionFirstSection; title: string }) => {
   return (
     <section className="pt-57px xl:pt-25   dark:bg-light-dark">
       <div className="container">
-        <StandardBnr title="Civil & Structural Works" />
+        <StandardBnr title={title} />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 xl:gap-10 justify-items-between  lg:pt-[23px] pb-7 lg:pb-10 xl:pb-20">
           <div>
             <motion.h2
