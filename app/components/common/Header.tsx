@@ -9,6 +9,7 @@ import { menuItems } from "./data";
 import { HoveredLink, Menu, MenuItem } from "../ui/navbar-menu";
 import { AnimatePresence, motion } from "framer-motion";
 
+
 const Header = () => {
   // const pathname = usePathname();
   const [active, setActive] = useState<string | null>(null);

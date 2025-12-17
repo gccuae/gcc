@@ -8,6 +8,8 @@ import { slideDown } from "@/public/frameranimation/animation";
 
 import { useTheme } from "next-themes";
 import { Search, X } from 'lucide-react';
+import { RiArrowDownSLine } from "react-icons/ri";
+
 
 
 export const MenuItem = ({
@@ -34,7 +36,17 @@ export const MenuItem = ({
         <Link href={url}>
           <motion.p transition={{ duration: 0.3, ease: easeOut }}
             className="cursor-pointer hover:text-secondary text-black dark:text-white  uppercase transition-all duration-500 ease-in-out">
-            <span className="flex gap-3 text-base leading-[1.82] text-[13px] xl:text-[15px]  2xl:text-base hover:text-primary transition-all duration-300 font-normal">{item}</span>
+            {/* <span className="flex gap-3 text-base leading-[1.82] text-[13px] xl:text-[15px]  2xl:text-base hover:text-primary transition-all duration-300 font-normal">{item}</span> */}
+            <span className="flex items-center gap-2 text-base leading-[1.82] text-[13px] xl:text-[15px] 2xl:text-base hover:text-primary transition-all duration-300 font-normal">
+  {item}
+
+  {!noMenu && (
+    <RiArrowDownSLine
+      className="text-[20px]"
+    />
+  )}
+</span>
+
           </motion.p>
         </Link>
         {/* {!noMenu && <Image src={arrow} alt="arrow" className="arrowst" />} */}

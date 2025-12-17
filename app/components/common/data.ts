@@ -19,10 +19,10 @@ export const menuItems: MenuItem[] = [
         url: "/message-from-leaders", 
       }, 
      
-      {
-        title: "Our Team",
-        url: "/our-team",
-      }, 
+      // {
+      //   title: "Our Team",
+      //   url: "/our-team",
+      // }, 
       {
         title: "Group Companies",
         url: "/group-companies",
