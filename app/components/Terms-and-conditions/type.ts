@@ -1,46 +1,7 @@
-export type TermsConditionsType = {
-    metaTitle:string;
-    metaDescription:string;
-    banner:string;
-    bannerAlt:string;
-    pageTitle:string;
-    firstSection:{
-        title:string;
-        description:string;
-        image:string;
-        imageAlt:string;
-    },
-    secondSection:{
-        title:string;
-        description:string;
-        items:[{
-            image:string;
-            imageAlt:string;
-            title:string;
-            description:string
-        }]
-    },
-    thirdSection:{
-        title:string;
-        items:[{
-            logo:string;
-            logoAlt:string;
-            title:string;
-            description:string;
-            image:string;
-            imageAlt:string;
-        }]
-    },
-    forthSection:{
-        title:string;
-        description:string;
-        items:[{
-            logo:string;
-            logoAlt:string;
-            title:string;
-            description:string;
-            image:string;
-            imageAlt:string;
-        }]
-    }
+export interface TermsConditionsType {
+  title: string;
+  sections: {
+    heading: string;
+    content: string;
+  }[];
 }
