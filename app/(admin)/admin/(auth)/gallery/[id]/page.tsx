@@ -160,7 +160,7 @@ const IndiGallery = () => {
     <div className="flex flex-col gap-6">
       <h1 className="text-md font-semibold">Images</h1>
 
-      {/* ✅ BULK UPLOAD */}
+      {/* BULK UPLOAD */}
       <ImageUploader
         multiple
         onChange={(url) =>
