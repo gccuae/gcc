@@ -414,7 +414,7 @@ const FooterV = () => {
                 viewport={{ once: true, amount: 0.2 }}
               >
                 <Link
-                  href="#"
+                  href="/terms-and-conditions"
                   className="text-base leading-[1.875] font-light text-mdgray hover:text-accent transition-all duration-300"
                 >
                   Terms & Conditions
