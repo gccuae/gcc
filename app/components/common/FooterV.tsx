@@ -309,7 +309,7 @@ const FooterV = () => {
                 whileInView="show"
                 viewport={{ once: true, amount: 0.2 }}
               >
-                <Link href="#" className="flex items-center gap-2">
+                <Link href="https://www.facebook.com/profile.php?id=61585660241145" className="flex items-center gap-2">
                   <span className="text-mdgray text-md font-light leading-[1.578947368421053] uppercase hover:text-primary transition-all duration-300">
                     Facebook
                   </span>
@@ -329,7 +329,7 @@ const FooterV = () => {
                 whileInView="show"
                 viewport={{ once: true, amount: 0.2 }}
               >
-                <Link href="#" className="flex items-center gap-2">
+                <Link href="https://www.youtube.com/@GCCae" className="flex items-center gap-2">
                   <span className="text-mdgray text-md font-light leading-[1.578947368421053] uppercase hover:text-primary transition-all duration-300">
                     Youtube
                   </span>

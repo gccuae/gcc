@@ -221,13 +221,13 @@ const MobileNav = () => {
             <div className="flex space-x-4 mt-4">
               <div>
                 <div className="flex space-x-4" >
-                  <Link href="https://www.facebook.com" target="_blank" className="cursor-pointer bg-black text-white rounded-full p-2 hover:bg-primary transition-all duration-500">
+                  <Link href="https://www.facebook.com/profile.php?id=61585660241145" target="_blank" className="cursor-pointer bg-black text-white rounded-full p-2 hover:bg-primary transition-all duration-500">
                     <FaFacebookF className="cursor-pointer w-5 h-5 hover:text-primary transition-all duration-500" />
                   </Link>
                   <Link href="https://www.linkedin.com" target="_blank" className="cursor-pointer bg-black text-white rounded-full p-2 hover:bg-primary transition-all duration-500">
                     <FaLinkedinIn className="cursor-pointer w-5 h-5 hover:text-primary transition-all duration-500" />
                   </Link>
-                  <Link href="https://www.youtube.com" target="_blank" className="cursor-pointer bg-black text-white rounded-full p-2 hover:bg-primary transition-all duration-500">
+                  <Link href="https://www.youtube.com/@GCCae" target="_blank" className="cursor-pointer bg-black text-white rounded-full p-2 hover:bg-primary transition-all duration-500">
                     <FaYoutube className="cursor-pointer w-5 h-5 hover:text-primary transition-all duration-500" />
                   </Link>
                 </div>
