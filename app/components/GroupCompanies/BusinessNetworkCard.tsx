@@ -16,6 +16,16 @@ const BusinessNetworkCard = ({ item, index }: BusinessNetworkCardProps) => {
   const [currentPosition, setCurrentPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const animationRef = useRef<number>(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // Smooth interpolation function
   const lerp = (start: number, end: number, factor: number) => {
@@ -75,9 +85,9 @@ const BusinessNetworkCard = ({ item, index }: BusinessNetworkCardProps) => {
         <div
           className="relative p-3 xl:p-5 h-[300px] xl:h-[486px] overflow-hidden group/img"
           ref={containerRef}
-          onMouseMove={handleMouseMove}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+          onMouseMove={!isMobile ? handleMouseMove : () => { }}
+          onMouseEnter={!isMobile ? handleMouseEnter : () => { }}
+          onMouseLeave={!isMobile ? handleMouseLeave : () => { }}
         >
           <div className="bg-white rounded-[5px] w-[175px] max-h-[45px] flex items-center justify-center px-3 py-5">
             <Image

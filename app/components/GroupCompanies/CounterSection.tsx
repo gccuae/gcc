@@ -73,7 +73,7 @@ const CounterSection = ({ data }: FirstSectionProps) => {
                     }
                     duration={2}
                   />
-                  +
+                  {item.number.toString().split("").includes("+") ? "+" : ""}
                 </h3>
                 <p className="text-lg leading-lh-text19 dark:text-white uppercase">
                   {item.value}
