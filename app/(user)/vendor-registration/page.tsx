@@ -6,7 +6,7 @@ const Index = () => {
         <>
             <PageBnr
                 pageTitle="Vendor Registration"
-                bannerImg=""
+                bannerImg="/assets/img/clients/bnr.jpg"
                 bannerAlt=""
             />
             <Main />

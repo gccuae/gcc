@@ -110,7 +110,7 @@ const ProjectCard = ({ item, index }: { item: Project; index: number }) => {
                 </div>
                 <div className="absolute top-50 left-50 pointer-events-none z-20 opacity-0 group-hover:opacity-100 group-hover/img:opacity-0 transition-opacity duration-300 ease-out">
                     <Link
-                        href={`/news/${item.slug}`}
+                        href={`/projects/${item.slug}`}
                         rel="noopener noreferrer"
                         className="bg-white rounded-full w-6 h-6 flex items-center justify-center xl:w-20 xl:h-20 pointer-events-auto transition-transform duration-200 hover:scale-110 group-hover:opacity-100 "
                     >
