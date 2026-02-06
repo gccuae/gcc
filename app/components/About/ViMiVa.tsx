@@ -61,12 +61,12 @@ const ViMiVa = ({ data }: ViMiVaProps) => {
                 {item.title}
               </h3>
 
-              <div className="text-lg leading-[1.5] dark:text-white text-para-color flex flex-col">
+              <div className="text-lg leading-[1.5] dark:text-white text-para-color flex flex-col vision-mission-section">
                 {item.description.split(" ").length > 30 &&
-                activeReadMore !== item._id
+                  activeReadMore !== item._id
                   ? parse(
-                      item.description.split(" ").slice(0, 30).join(" ") + "..."
-                    )
+                    item.description.split(" ").slice(0, 30).join(" ") + "..."
+                  )
                   : parse(item.description)}
 
                 {item.description.split(" ").length > 30 && (

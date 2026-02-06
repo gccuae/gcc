@@ -1,5 +1,5 @@
 "use client";
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { menuItems } from "./data";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
@@ -187,23 +187,23 @@ const MobileNav = () => {
                   {activeDropdown === index && (
                     <ul className="">
                       {item.children.map((childItem, childIndex) => (
-                        <li key={childIndex} className="py-1">
-                          <Link
-                            href={childItem.url}
-                            onClick={() => setMenuOpen(false)}>
+                        <Link
+                          href={childItem.url}
+                          onClick={() => setMenuOpen(false)}>
+                          <li key={childIndex} className="py-1">
                             {childItem.title}
-                          </Link>
-                        </li>
+                          </li>
+                        </Link>
                       ))}
                     </ul>
                   )}
                 </li>
               ) : (
-                <li key={index} className="pb-2 uppercase">
-                  <Link href={item.url} onClick={() => setMenuOpen(false)} className="font-semibold">
+                <Link href={item.url} onClick={() => setMenuOpen(false)} className="font-semibold">
+                  <li key={index} className="pb-2 uppercase">
                     {item.title}
-                  </Link>
-                </li>
+                  </li>
+                </Link>
               )
             )}
 

@@ -872,11 +872,16 @@ html {
 }
 
 .has-dropdown::after {
-  content: "›"; /* or ▸ */
+  content: "›";
+  /* or ▸ */
   position: absolute;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
   font-size: 14px;
   opacity: 0.7;
+}
+
+.vision-mission-section p span {
+  @apply text-para-color dark:text-white;
 }

@@ -7,6 +7,8 @@ import Image from "next/image";
 import { SecondSectionItemData } from "./type";
 // import { Autoplay } from "swiper/modules";
 import { Navigation } from "swiper/modules";
+import { useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
 // import { useState } from "react";
 interface ProjectSliderProps {
   data: SecondSectionItemData;
@@ -18,10 +20,57 @@ const ProjectSlider = ({ data }: ProjectSliderProps) => {
     (data?.secondSection?.progress || "").replace(/\D/g, "")
   );
 
+  const [animatedProgress, setAnimatedProgress] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const [displayProgress, setDisplayProgress] = useState(0);
+
+
+  const { ref, inView } = useInView({
+    threshold: 0.9, // 40% visible
+    triggerOnce: true, // 👈 animate only once
+  });
+
+  useEffect(() => {
+    if (inView && !hasAnimated) {
+      setAnimatedProgress(progress);
+      setHasAnimated(true);
+    }
+  }, [inView, hasAnimated, progress]);
+
+  useEffect(() => {
+    if (animatedProgress === 0) return;
+
+    const start = 0;
+    const end = animatedProgress;
+    const duration = 2000;
+    const startTime = performance.now();
+
+    const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+
+    const animate = (time: number) => {
+      const elapsed = time - startTime;
+      const t = Math.min(elapsed / duration, 1);
+      const eased = easeOutCubic(t);
+
+      setDisplayProgress(start + (end - start) * eased);
+
+      if (t < 1) requestAnimationFrame(animate);
+    };
+
+    requestAnimationFrame(animate);
+  }, [animatedProgress]);
+
+  useEffect(() => {
+    console.log(`${Math.max(0, Math.min(85, displayProgress - 7.5))}%`);
+
+  }, [displayProgress])
+
+
+
   return (
     <section className="py-57px">
       <div className="container">
-        <div className="relative h-fit">
+        <div className="relative h-fit" ref={ref}>
           <Swiper
             modules={[Navigation]}
             spaceBetween={30}
@@ -29,6 +78,7 @@ const ProjectSlider = ({ data }: ProjectSliderProps) => {
             loop={false}
             hashNavigation={true}
             grabCursor={true}
+
             // autoplay={{ delay: 2000, disableOnInteraction: true, pauseOnMouseEnter: true }}
             // speed={800}
             navigation={true}
@@ -44,6 +94,7 @@ const ProjectSlider = ({ data }: ProjectSliderProps) => {
                   className="w-full h-[400px] xl:h-[550px] 2xl:h-[700px] object-cover"
                 />
                 <div className="absolute bottom-0 md:bottom-30px right-0 lg:right-30px z-40 p-5 xl:p-30px max-w-fit xl:max-w-[515px] border border-smgray/36">
+                  <div className="absolute top-0 left-0 h-1 w-full" />
                   <div className="absolute top-0 left-0 w-full h-full bg-white/12 z-20 backdrop-blur-xs"></div>
                   <div className="absolute top-0 left-0 w-full h-full bg-[#0F0D0D] opacity-[39%] z-20"></div>
                   <div className="relative z-50">
@@ -57,8 +108,8 @@ const ProjectSlider = ({ data }: ProjectSliderProps) => {
                         {/* Progress Fill */}
                         <div
                           // className="h-full bg-gradient-to-r from-green-500 to-green-600 rounded-full transition-all duration-300 ease-out shadow-sm"
-                          className="h-full bg-[#7AC142] rounded-full transition-all duration-300 ease-out shadow-sm"
-                          style={{ width: `${progress}%` }}
+                          className="h-full bg-[#7AC142] rounded-full shadow-sm"
+                          style={{ width: `${displayProgress}%` }}
                         />
 
                         {/* Partition Lines - 5 sectors means 4 divider lines */}
@@ -75,14 +126,14 @@ const ProjectSlider = ({ data }: ProjectSliderProps) => {
 
                       {/* Percentage Indicator */}
                       <div
-                        className="absolute -top-12 bg-white border border-gray-200 px-[10px] py-[5.5px] rounded-md shadow-md transition-all duration-300 ease-out"
+                        className="absolute -top-12 bg-white border border-gray-200 px-[10px] py-[5.5px] rounded-md shadow-md"
                         style={{
-                          left: `${Math.max(0, Math.min(85, progress - 7.5))}%`,
-                          opacity: progress > 0 ? 1 : 0,
+                          left: `${displayProgress - 15}%`,
+                          opacity: displayProgress > 0 ? 1 : 0,
                         }}
                       >
-                        <div className="text-sm xl:text-lg leading-normal font-semibold text-black ">
-                          {Number(progress)}%
+                        <div className="text-sm xl:text-lg leading-normal font-semibold text-black">
+                          {Math.round(displayProgress)}%
                         </div>
                         {/* Arrow pointing down */}
                         <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-5 border-r-5 border-t-8 border-l-transparent border-r-transparent border-white"></div>
