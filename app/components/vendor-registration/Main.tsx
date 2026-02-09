@@ -233,7 +233,7 @@ const ContactForm: React.FC = () => {
                         disabled={isSubmitting}
                         className="hover:bg-primary cursor-pointer hover:text-white group flex items-center justify-center py-1 xl:py-[7.39px] px-4 xl:px-[28px] gap-2 transition-all duration-300 border border-foreground rounded-4xl"
                     >
-                        {isSubmitting ? "Submitting..." : "SUBMIT VENDOR REGISTRATION"}
+                        {isSubmitting ? "Submitting..." : "Submit"}
                         <svg
                             width="26"
                             height="10"
