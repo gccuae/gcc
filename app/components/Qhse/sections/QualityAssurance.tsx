@@ -65,35 +65,35 @@ const QualityAssurance = ({
       </div>
 
       {/* Certifications */}
-      <div className="container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 mt-[23px] md:mt-[46px]">
-        {certifications.map((cert, index) => (
-          <motion.div
-            variants={moveLeft(index * 0.12)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            key={index}
-            className={`
+      <div className="container mx-auto flex justify-center mt-[23px] md:mt-[46px] items-center">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {certifications.map((cert, index) => (
+            <motion.div
+              variants={moveLeft(index * 0.12)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              key={index}
+              className={`
         flex flex-col items-center py-[11px] px-[20px] xl:px-[82px] border border-smgray
-        ${
-          index % 5 !== 0 ? "border-l-0" : ""
-        }   // remove left border except first in row
-        ${
-          index >= 5 ? "border-t-0" : ""
-        }        // remove top border except first row
+        ${index % 4 !== 0 ? "border-l-0" : ""
+                }   // remove left border except first in row
+        ${index >= 4 ? "border-t-0" : ""
+                }        // remove top border except first row
       `}
-          >
-            <Image
-              src={cert.image}
-              alt={cert.imageAlt}
-              width={140}
-              height={140}
-            />
-            <p className="mt-[12px] font-light text-sm text-para-color dark:text-white">
-              {cert.title}
-            </p>
-          </motion.div>
-        ))}
+            >
+              <Image
+                src={cert.image}
+                alt={cert.imageAlt}
+                width={140}
+                height={140}
+              />
+              <p className="mt-[12px] font-bold text-sm text-para-color dark:text-white">
+                {cert.title}
+              </p>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

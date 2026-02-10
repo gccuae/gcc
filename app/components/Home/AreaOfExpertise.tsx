@@ -285,7 +285,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
           </Swiper>
         </motion.div>
 
-        <div className="relative">
+        <div className="relative  xl:mb-0">
           <Swiper
             onSwiper={setMainSwiper}
             thumbs={{ swiper: thumbsSwiper }}
@@ -328,7 +328,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                     <p className="slide-text text-lg font-[300] leading-[1.526315789473684] text-para-color dark:text-white/80 transition-all duration-300 w-full">
                       {item.description}
                     </p>
-                    <div className="slide-btn mt-6 xl:mt-[43px] mb-4">
+                    <div className="lg:slide-btn mt-6 xl:mt-[43px] mb-4">
                       <BtnPrimary
                         link={"/expertise/" + item.slug}
                         text="Read More"

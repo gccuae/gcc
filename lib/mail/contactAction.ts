@@ -13,14 +13,15 @@ export async function sendContactAction(formData: FormData) {
     website: formData.get("website") as string,
     services: formData.get("services") as string,
     expertise: formData.get("expertise") as string,
-    contactDetails: formData.get("contactDetails") as string,
+    email: formData.get("email") as string,
+    phone: formData.get("phone") as string,
+    address: formData.get("address") as string,
   };
 
   const icv = formData.getAll("icvCertificate") as File[];
   const companyDocs = formData.getAll("companyDocuments") as File[];
   const additional = formData.getAll("additionalAttachments") as File[];
 
-  console.log("icv", icv, "companyDocs", companyDocs, "additional", additional);
 
 
   const attachments = await buildAttachments([
