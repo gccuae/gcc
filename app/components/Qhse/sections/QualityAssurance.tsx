@@ -66,21 +66,18 @@ const QualityAssurance = ({
 
       {/* Certifications */}
       <div className="container mx-auto flex justify-center mt-[23px] md:mt-[46px] items-center">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="
+  grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4
+  divide-x divide-y divide-smgray border-t border-t-smgray
+">
           {certifications.map((cert, index) => (
             <motion.div
+              key={index}
               variants={moveLeft(index * 0.12)}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              key={index}
-              className={`
-        flex flex-col items-center py-[11px] px-[20px] xl:px-[82px] border border-smgray
-        ${index % 4 !== 0 ? "border-l-0" : ""
-                }   // remove left border except first in row
-        ${index >= 4 ? "border-t-0" : ""
-                }        // remove top border except first row
-      `}
+              className={`flex flex-col items-center py-[11px] px-[20px] xl:px-[82px] last:border-r border-smgray first:border-l last:border-b ${index % 2 == 0 && "max-md:border-l"} ${index % 3 == 0 && "md:border-l lg:border-l-0"}`}
             >
               <Image
                 src={cert.image}
@@ -88,12 +85,13 @@ const QualityAssurance = ({
                 width={140}
                 height={140}
               />
-              <p className="mt-[12px] font-bold text-sm text-para-color dark:text-white">
+              <p className="mt-[12px] font-bold text-sm text-para-color dark:text-white text-center">
                 {cert.title}
               </p>
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );
