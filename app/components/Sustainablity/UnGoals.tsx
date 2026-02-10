@@ -125,7 +125,7 @@ const SectorSlider = ({
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.2 }}
                     transition={{ delay: index * 0.2, duration: 0.6 }}
-                    className="h-full border-t-1 border-r-1 border-smgray relative group md:pl-[15px] pr-[15px] xl:pr-0"
+                    className="h-full border-t-1 border-r-1 border-smgray relative group md:pl-[15px] pr-[15px] xl:pr-0 max-md:mb-5"
                   >
                     <div className="absolute -top-1 left-0 w-full h-[6px] bg-transparent  group-hover:bg-primary transition-all duration-300 z-50"></div>
 
@@ -151,13 +151,13 @@ const SectorSlider = ({
                         </p>
                       </div>
 
-                      <div className="mt-auto overflow-hidden group-first:pl-0 transition-all duration-300 relative z-20 xl:pt-27px pt-3">
+                      <div className="mt-auto overflow-hidden group-first:pl-0 transition-all duration-300 relative z-20 xl:pt-27px pt-3 max-xl:h-[400px]">
                         <Image
                           src={item.image}
                           alt={item.imageAlt}
                           width={487}
                           height={403}
-                          className="w-full h-full xl:h-[403px] object-cover object-top flex overflow-hidden pl-0 pr-0 xl:pl-[15px] xl:pr-[15px] group-first:pl-0"
+                          className="w-full h-full  object-cover object-top flex overflow-hidden pl-0 pr-0 xl:pl-[15px] xl:pr-[15px] group-first:pl-0"
                         />
                       </div>
                     </div>

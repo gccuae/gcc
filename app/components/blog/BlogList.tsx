@@ -51,11 +51,10 @@ const BlogList = ({ data }: { data: BlogData }) => {
               viewport={{ once: true }}
               key={cat}
               onClick={() => setActiveTab(idx)}
-              className={`cursor-pointer py-4 xl:py-[27px] text-md lg:text-xl leading-normal font-medium relative ${
-                activeTab === idx
+              className={`cursor-pointer py-4 xl:py-[27px] text-md lg:text-xl leading-normal font-medium relative ${activeTab === idx
                   ? "text-para-color dark:text-white"
                   : "text-para-color hover:text-black dark:hover:text-white font-normal transition-colors duration-300"
-              }`}
+                }`}
             >
               {cat}
               {activeTab === idx && (
@@ -86,13 +85,12 @@ const BlogList = ({ data }: { data: BlogData }) => {
                 className="w-full flex justify-between items-center py-4 text-lg font-medium"
               >
                 <span
-                  className={`${
-                    activeTab === idx ? "text-black" : "text-gray-500"
-                  }`}
+                  className={`${activeTab === idx ? "text-black" : "text-gray-500"
+                    }`}
                 >
                   {cat}
                 </span>
-                <span>{activeTab === idx ? "−" : "+"}</span>
+                <span className="text-xl">{activeTab === idx ? "−" : "+"}</span>
               </button>
 
               <AnimatePresence initial={false}>

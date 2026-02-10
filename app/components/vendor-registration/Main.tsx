@@ -17,7 +17,9 @@ interface ContactFormData {
     expertise: string;
     icvCertificate: FileList;
     companyDocuments: FileList;
-    contactDetails: string;
+    phone: string;
+    email: string;
+    address: string;
     additionalAttachments: FileList;
 }
 
@@ -196,21 +198,100 @@ const ContactForm: React.FC = () => {
                 </div>
 
                 {/* Contact Details */}
-                <motion.div variants={moveUp(0.8)} initial="hidden" whileInView="show" viewport={{ once: true }}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 xl:gap-10">
+                    <motion.div
+                        variants={moveUp(0.8)}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true }}
+                    >
+                        <label className="block text-base font-normal leading-lh-base text-black dark:text-white/70 mb-27px xl:mb-37px">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            placeholder="example@email.com"
+                            className={`w-full pb-3 border-b-2 focus:outline-none placeholder:text-lg placeholder:text-[#979797]
+      ${errors.email ? "border-red-500 bg-red-50" : "border-[#C2C2C2]/35 focus:border-black"}
+    `}
+                            {...register("email", {
+                                required: "Email is required",
+                                pattern: {
+                                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                    message: "Enter a valid email address",
+                                },
+                            })}
+                        />
+
+                        {errors.email && (
+                            <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
+                        )}
+                    </motion.div>
+
+                    <motion.div
+                        variants={moveUp(1)}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true }}
+                    >
+                        <label className="block text-base font-normal leading-lh-base text-black dark:text-white/70 mb-27px xl:mb-37px">
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            placeholder="+971 50 123 4567"
+                            className={`w-full pb-3 border-b-2 focus:outline-none placeholder:text-lg placeholder:text-[#979797]
+      ${errors.phone ? "border-red-500 bg-red-50" : "border-[#C2C2C2]/35 focus:border-black"}
+    `}
+                            {...register("phone", {
+                                required: "Phone number is required",
+                                pattern: {
+                                    value: /^[0-9+\-\s]{7,15}$/,
+                                    message: "Enter a valid phone number",
+                                },
+                            })}
+                        />
+
+                        {errors.phone && (
+                            <p className="mt-1 text-sm text-red-600">{errors.phone.message}</p>
+                        )}
+                    </motion.div>
+                </div>
+
+                <motion.div
+                    variants={moveUp(1.2)}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true }}
+                >
                     <label className="block text-base font-normal leading-lh-base text-black dark:text-white/70 mb-27px xl:mb-37px">
-                        Contact Details
+                        Address
                     </label>
+
                     <textarea
                         rows={3}
-                        placeholder="Email, phone number, address"
-                        className={`w-full pb-3 border-b-2 focus:outline-none placeholder:text-lg placeholder:text-[#979797] ${errors.contactDetails ? "border-red-500 bg-red-50" : "border-[#C2C2C2]/35 focus:border-black"
-                            }`}
-                        {...register("contactDetails", { required: "Contact details are required" })}
+                        placeholder="Enter your address"
+                        className={`w-full pb-3 border-b-2 resize-none focus:outline-none placeholder:text-lg placeholder:text-[#979797]
+      ${errors.address ? "border-red-500 bg-red-50" : "border-[#C2C2C2]/35 focus:border-black"}
+    `}
+                        {...register("address", {
+                            required: "Address is required",
+                            minLength: {
+                                value: 10,
+                                message: "Address should be at least 10 characters",
+                            },
+                        })}
                     />
-                    {errors.contactDetails && (
-                        <p className="mt-1 text-sm text-red-600">{errors.contactDetails.message}</p>
+
+                    {errors.address && (
+                        <p className="mt-1 text-sm text-red-600">{errors.address.message}</p>
                     )}
                 </motion.div>
+
+
+
 
                 {/* Additional Attachments */}
                 <motion.div variants={moveUp(0.9)} initial="hidden" whileInView="show" viewport={{ once: true }}>

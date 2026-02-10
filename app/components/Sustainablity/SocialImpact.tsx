@@ -333,7 +333,7 @@ const SocialImpact = ({
                         alt={item.title}
                         width={775}
                         height={483}
-                        className="w-full max-w-[775px] h-[350px] lg:h-[433px] xl:h-[483px] object-cover"
+                        className="w-full max-w-[775px] h-[330px] lg:h-[433px] xl:h-[483px] object-cover"
                       />
                     </motion.div>
 
@@ -344,22 +344,21 @@ const SocialImpact = ({
                         initial="hidden"
                         whileInView="show"
                         viewport={{ once: true }}
-                        className="text-2xl font-normal leading-[1.3] mb-2 xl:mb-3 text-white transition-colors duration-300"
+                        className="text-2xl font-normal leading-[1.3] mb-2 xl:mb-3 text-white transition-colors duration-300 hidden lg:block"
                       >
                         {item.title}
                       </motion.h3>
 
                       <motion.p
                         variants={moveUp()}
-                        initial="hidden"
-                        whileInView="show"
+
                         viewport={{ once: true }}
                         className="text-lg font-light leading-[1.526315789473684]  transition-colors duration-300 w-full text-white/80"
                       >
                         {item.description.split("\n").map((line, i) => (
                           <span
                             key={i}
-                            className="block slide-text mt-4 xl:mt-[17px]"
+                            className="block slide-text  xl:mt-[17px]"
                           >
                             {line}
                           </span>
