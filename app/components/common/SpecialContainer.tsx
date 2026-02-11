@@ -30,7 +30,7 @@ export default function SpecialContainer({
       const rect = container.getBoundingClientRect();
       const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
-      if(window.innerWidth > 1023){
+      if (window.innerWidth > 1279) {
         if (side === 'right') {
           // start where container starts, extend to viewport right
           const leftGap = rect.left;
@@ -45,9 +45,9 @@ export default function SpecialContainer({
           el.style.width = `${targetWidth}px`;
         }
       }
-      else{
+      else {
         el.classList.add('container');
-        el.style.margin = 'auto'; 
+        el.style.margin = 'auto';
         el.style.paddingRight = '15px';
         el.style.width = '100%';
 

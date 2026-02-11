@@ -22,7 +22,7 @@ const Cta = ({ data }: { data: AiTechnologyType["thirdSection"] }) => {
             const [firstLine, ...rest] = data.title.split("\n", 3);
             return (
               <>
-                {firstLine}{" "}
+                <span className="text-nowrap">{firstLine}{" "}</span>
                 {rest.length > 0 && (
                   <span className="block">{rest.join(" ")}</span>
                 )}
