@@ -11,7 +11,7 @@ import { ChevronDown } from "lucide-react";
 import { careerData } from "./type";
 
 
-const CurrentOpenings = ({ data,jobs,departments,locations }: {data:careerData['secondSection'],jobs:careerData['openings'],departments:careerData['departments'],locations:careerData['locations']}) => {
+const CurrentOpenings = ({ data, jobs, departments, locations }: { data: careerData['secondSection'], jobs: careerData['openings'], departments: careerData['departments'], locations: careerData['locations'] }) => {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const leftRef = useRef<HTMLDivElement | null>(null);
   const lastTouchY = useRef<number | null>(null);
@@ -237,9 +237,9 @@ const CurrentOpenings = ({ data,jobs,departments,locations }: {data:careerData['
                   whileInView="show"
                   viewport={{ once: true }}
                   key={index}
-                  className=" pb-6 xl:pb-10 mb-6 xl:mb-10 border-b border-smgray flex md:flex-row flex-col justify-between gap-6 md:items-center"
+                  className="pb-6 xl:pb-10 mb-6 xl:mb-10 border-b border-smgray flex xl:flex-row flex-col justify-between gap-6 xl:items-center"
                 >
-                  <div>
+                  <div className="xl:w-[60%]">
                     <h3 className="text-xl lg:text-2xl leading-[1.3] lg:leading-[1.5625] font-normal text-black dark:text-white">
                       {job.firstSection.jobTitle}
                     </h3>
@@ -249,7 +249,7 @@ const CurrentOpenings = ({ data,jobs,departments,locations }: {data:careerData['
                       <span className="mx-2">|</span> <span>{job.firstSection.employmentType}</span>
                     </h4>
                   </div>
-                  <div>
+                  <div className="">
                     <BtnPrimary
                       link={`careers/${job.firstSection.slug}`}
                       text="Apply Now"

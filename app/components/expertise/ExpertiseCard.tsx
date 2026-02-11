@@ -44,7 +44,7 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
               className="w-12 h-12 xl:w-[45px] xl:h-[45px] group-hover:brightness-0 group-hover:invert-100"
             />
           </div>
-          <h3 className="text-xl lg:text-2xl leading-[1.2] dark:text-white dark:group-hover:text-primary group-hover:text-black transition-all duration-300 line-clamp-2">
+          <h3 className="text-xl xl:text-2xl leading-[1.2] dark:text-white dark:group-hover:text-primary group-hover:text-black transition-all duration-300 line-clamp-2">
             {item.title}
           </h3>
         </div>
