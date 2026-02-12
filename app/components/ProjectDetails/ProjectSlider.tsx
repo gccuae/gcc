@@ -156,10 +156,7 @@ const ProjectSlider = ({ data }: ProjectSliderProps) => {
                           label: "Completion Date",
                           value: data?.secondSection?.completionDate,
                         },
-                        {
-                          label: "Project Value",
-                          value: data?.secondSection?.projectValue,
-                        },
+
                         { label: "Status", value: data?.secondSection?.status },
                       ].map(({ label, value }) => (
                         <div
