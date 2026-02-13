@@ -197,7 +197,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                               {slide.secondSection?.client}
                             </p>
                           </motion.div>
-                          <motion.div
+                          {/* <motion.div
                             variants={moveUp(1.5)}
                             initial="hidden"
                             whileInView="show"
@@ -210,7 +210,8 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                             <p className="text-lg leading-[1.842105263157895] font-light dark:text-white group-hover:translate-x-2 transition-all duration-300">
                               {slide.secondSection?.projectValue}
                             </p>
-                          </motion.div>
+                          </motion.div> */}
+                          { slide.secondSection?.superficie && (
                           <motion.div
                             variants={moveUp(2)}
                             initial="hidden"
@@ -221,12 +222,11 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                             <p className="text-[#979797] text-base leading-[1.5625] font-light uppercase  dark:text-white/64 group-hover:text-primary transition-all duration-300">
                               Superficie
                             </p>
-                            {slide.secondSection?.superficie && (
-                              <p className="text-lg leading-[1.842105263157895] font-light dark:text-white group-hover:translate-x-2 transition-all duration-300">
-                                {slide.secondSection?.superficie}
-                              </p>
-                            )}
+                            <p className="text-lg leading-[1.842105263157895] font-light dark:text-white group-hover:translate-x-2 transition-all duration-300">
+                              {slide.secondSection?.superficie}
+                            </p>
                           </motion.div>
+                          )}
                         </div>
                         <div className="mt-0 lg:mt-16">
                           <BtnPrimary
