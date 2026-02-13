@@ -101,7 +101,7 @@ const DetailsTab = ({ data }: { data: ThirdSection }) => {
                 variants={moveUp(0.2)}
                 initial="hidden"
                 animate="show"
-                className="text-21 leading-[1.380952380952381] text-[#515151] dark:text-white/70 [&_p]:-mb-[5px] [&_p:last-child]:mb-0"
+                className="text-21 leading-[1.380952380952381] text-[#515151] dark:text-white/70 [&_p]:-mb-[5px] [&_p:last-child]:mb-0 text-justify"
               >
                 {parse(projectDetails[activeTab]?.description || "")}
               </motion.div>

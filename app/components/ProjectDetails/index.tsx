@@ -29,7 +29,7 @@ const Index = ({ data, projects }: Props) => {
       {data?.thirdSection?.items && data?.thirdSection?.items.length > 0 && (
         <DetailsTab data={data?.thirdSection} />
       )}
-      {data?.fifthSection?.title && (
+      {data?.fifthSection?.map && (
         <LocationDetails data={data?.fifthSection} />
       )}
       <MoreProjects projects={filteredProjects} />
