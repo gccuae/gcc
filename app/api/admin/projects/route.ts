@@ -146,7 +146,7 @@ export async function PATCH(request: NextRequest) {
       foundProject.firstSection.images = body.firstSection.images;
       foundProject.secondSection = body.secondSection;
       foundProject.thirdSection = body.thirdSection;
-      foundProject.fourthSection = body.forthSection;
+      foundProject.forthSection = body.forthSection;
       foundProject.fifthSection = body.fifthSection;
       foundProject.banner = body.banner;
       foundProject.bannerAlt = body.bannerAlt;
