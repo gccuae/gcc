@@ -21,7 +21,7 @@ const LocationDetails = ({ data }: { data: FifthSection }) => {
                     <p className="text-lg mb-[35px] xl:mb-[62px] text-white/80 font-light leading-[1.52] lg:max-w-[90%]">
                         {data.description}
                     </p>
-                    <motion.div variants={moveUp(0.6)} initial="hidden" whileInView="show">
+                    {data.buttonTitle && <motion.div variants={moveUp(0.6)} initial="hidden" whileInView="show">
                         <Link
                             href={data?.buttonLink || "#"}
                             target={data?.buttonLink?.trim() ? "_blank" : undefined}
@@ -36,7 +36,7 @@ const LocationDetails = ({ data }: { data: FifthSection }) => {
                                 {data.buttonTitle}
                             </button>
                         </Link>
-                    </motion.div>
+                    </motion.div>}
                 </motion.div>
 
                 {/* RIGHT SECTION (MAP) */}

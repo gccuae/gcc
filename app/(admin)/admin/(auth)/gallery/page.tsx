@@ -21,6 +21,9 @@ import { MdDelete } from "react-icons/md";
 import { FilesIcon } from "lucide-react";
 import Link from "next/link";
 import { ImageUploader } from "@/components/ui/image-uploader";
+import { closestCorners, DndContext, DragEndEvent } from '@dnd-kit/core'
+import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
+import GalleryCard from "./ProjectCard";
 
 interface GalleryFormProps {
     metaTitle: string;
@@ -34,6 +37,7 @@ const GalleryPage = () => {
     const [item, setItem] = useState<string>("");
     const [image, setImage] = useState<string>("");
     const [imageAlt, setImageAlt] = useState<string>("");
+    const [reorderMode, setReorderMode] = useState(false);
 
     const [itemList, setItemList] = useState<{ _id: string; item: string; thumbnail: string; thumbnailAlt: string }[]>([]);
 
@@ -148,6 +152,44 @@ const GalleryPage = () => {
         }
     };
 
+
+    const getTaskPos = (id: number | string) => itemList.findIndex((item: { _id: string }) => (item._id == id))
+    const handleDragEnd = (event: DragEndEvent) => {
+        const { active, over } = event;
+
+        if (!over || active.id === over.id) return;
+
+        setItemList((itemList: { _id: string; item: string; thumbnail: string; thumbnailAlt: string }[]) => {
+            const originalPos = getTaskPos(active.id);
+            const newPos = getTaskPos(over.id);
+            return arrayMove(itemList, originalPos, newPos);
+        });
+    };
+
+
+    const confirmPosition = async () => {
+        setReorderMode(!reorderMode);
+
+        const updatedItems = itemList.map((item) => ({
+            ...item,
+        }));
+
+        setItemList(updatedItems);
+
+        const formData = new FormData()
+        formData.append('items', JSON.stringify(updatedItems))
+        const response = await fetch(`/api/admin/gallery/reorder`, {
+            method: "POST",
+            body: formData
+        })
+        if (response.ok) {
+            const data = await response.json()
+            if (data.success) {
+                alert(data.message)
+            }
+        }
+    };
+
     useEffect(() => {
         fetchGalleryData();
     }, []);
@@ -163,43 +205,60 @@ const GalleryPage = () => {
                 <AdminItemContainer>
                     <div className="flex justify-between items-center p-5">
                         <h1 className="text-md font-semibold">Gallery</h1>
-                        <Dialog>
-                            <DialogTrigger
-                                className="bg-primary text-white px-3 py-1 rounded-md font-semibold"
-                                onClick={() => setItem("")}
-                            >
-                                Add Item
-                            </DialogTrigger>
-                            <DialogContent>
-                                <DialogHeader>
-                                    <DialogTitle>Add Item</DialogTitle>
-                                    <DialogDescription className="flex flex-col gap-2">
-                                        <Label className="font-bold">Title</Label>
-                                        <Input
-                                            type="text"
-                                            placeholder="Title"
-                                            value={item}
-                                            onChange={(e) => setItem(e.target.value)}
-                                        />
-                                        <Label className="font-bold">Thumbnail</Label>
-                                        <ImageUploader value={image} onChange={(url) => setImage(url)} />
-                                        <Label className="font-bold">Thumbnail Alt</Label>
-                                        <Input
-                                            type="text"
-                                            placeholder="Thumbnail Alt"
-                                            value={imageAlt}
-                                            onChange={(e) => setImageAlt(e.target.value)}
-                                        />
-                                    </DialogDescription>
-                                </DialogHeader>
-                                <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={handleAddItem}>
-                                    Save
-                                </DialogClose>
-                            </DialogContent>
-                        </Dialog>
+                        <div className="flex items-center gap-2">
+                            <Button type="button" className={`text-white text-[16px] ${reorderMode ? "bg-yellow-700" : "bg-green-700"}`} onClick={() => reorderMode ? confirmPosition() : setReorderMode(!reorderMode)}>{reorderMode ? "Done" : "Reorder"}</Button>
+                            {!reorderMode && <Dialog>
+                                <DialogTrigger
+                                    className="bg-primary text-white px-3 py-1 rounded-md font-semibold"
+                                    onClick={() => setItem("")}
+                                >
+                                    Add Item
+                                </DialogTrigger>
+                                <DialogContent>
+                                    <DialogHeader>
+                                        <DialogTitle>Add Item</DialogTitle>
+                                        <DialogDescription className="flex flex-col gap-2">
+                                            <Label className="font-bold">Title</Label>
+                                            <Input
+                                                type="text"
+                                                placeholder="Title"
+                                                value={item}
+                                                onChange={(e) => setItem(e.target.value)}
+                                            />
+                                            <Label className="font-bold">Thumbnail</Label>
+                                            <ImageUploader value={image} onChange={(url) => setImage(url)} />
+                                            <Label className="font-bold">Thumbnail Alt</Label>
+                                            <Input
+                                                type="text"
+                                                placeholder="Thumbnail Alt"
+                                                value={imageAlt}
+                                                onChange={(e) => setImageAlt(e.target.value)}
+                                            />
+                                        </DialogDescription>
+                                    </DialogHeader>
+                                    <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={handleAddItem}>
+                                        Save
+                                    </DialogClose>
+                                </DialogContent>
+                            </Dialog>}
+                        </div>
                     </div>
                     <div className="px-5 flex flex-col gap-4 py-3">
-                        {itemList?.map((item) => (
+
+                        {reorderMode &&
+
+                            <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
+                                <SortableContext items={itemList.map((item) => item._id)} strategy={verticalListSortingStrategy}>
+                                    {itemList?.map((item, index) => (
+                                        <GalleryCard key={index} item={item} id={item._id} />
+                                    ))}
+                                </SortableContext>
+                            </DndContext>
+
+                        }
+
+
+                        {!reorderMode && itemList?.map((item) => (
                             <div
                                 className="flex justify-between items-center border rounded-md p-4 hover:bg-gray-100  hover:shadow-md transform  transition-all"
                                 key={item._id}

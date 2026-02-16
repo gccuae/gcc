@@ -18,14 +18,17 @@ import { useRouter } from "next/navigation";
 import AdminItemContainer from '@/app/components/common/AdminItemContainer';
 import { useForm, Controller } from "react-hook-form";
 import { ImageUploader } from '@/components/ui/image-uploader'
+import { closestCorners, DndContext, DragEndEvent } from '@dnd-kit/core'
+import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
+import ProjectCard from "./ProjectCard";
 
 
 interface CurrentOpeningsPageProps {
   metaTitle: string;
   metaDescription: string;
-  banner:string;
-  bannerAlt:string;
-  pageTitle:string;
+  banner: string;
+  bannerAlt: string;
+  pageTitle: string;
   firstSection: {
     title: string;
   },
@@ -38,10 +41,11 @@ export default function CurrentOpenings() {
   const [projectType, setProjectType] = useState<string>("");
   const [sector, setSector] = useState<string>("");
   const [location, setLocation] = useState<string>("");
-  const [projectsList, setProjectsList] = useState<{_id:string,title:string}[]>([]);
+  const [projectsList, setProjectsList] = useState<{ _id: string, title: string }[]>([]);
   const [locationList, setLocationList] = useState<{ _id: string, name: string }[]>([]);
   const [projectTypeList, setProjectTypeList] = useState<{ _id: string, name: string }[]>([]);
   const [sectorList, setSectorList] = useState<{ _id: string, name: string }[]>([]);
+  const [reorderMode, setReorderMode] = useState(false);
 
   const router = useRouter();
 
@@ -288,24 +292,24 @@ export default function CurrentOpenings() {
 
   const onSubmit = async (data: CurrentOpeningsPageProps) => {
     try {
-        const response = await fetch(`/api/admin/projects`, {
-            method: "PATCH",
-            body: JSON.stringify(data),
-        });
-        if (response.ok) {
-            const data = await response.json();
-            alert(data.message);
-            // router.push("/admin/commitment");
-        }
+      const response = await fetch(`/api/admin/projects`, {
+        method: "PATCH",
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        alert(data.message);
+        // router.push("/admin/commitment");
+      }
     } catch (error) {
-        console.log("Error in submitting details", error);
+      console.log("Error in submitting details", error);
     }
-}
+  }
 
-  const handleFetchProjects = async() => {
+  const handleFetchProjects = async () => {
     try {
       const response = await fetch("/api/admin/projects");
-      if(response.ok) {
+      if (response.ok) {
         const data = await response.json();
         setValue("metaTitle", data.data.metaTitle);
         setValue("metaDescription", data.data.metaDescription);
@@ -314,7 +318,7 @@ export default function CurrentOpenings() {
         setValue("pageTitle", data.data.pageTitle);
         setValue("firstSection", data.data.firstSection);
         setProjectsList(data.data.projects);
-      }else{
+      } else {
         const data = await response.json();
         alert(data.message);
       }
@@ -322,6 +326,45 @@ export default function CurrentOpenings() {
       console.log("Error fetching project details", error);
     }
   }
+
+
+  const getTaskPos = (id: number | string) => projectsList.findIndex((item: { _id: string }) => (item._id == id))
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+
+    if (!over || active.id === over.id) return;
+
+    setProjectsList((projectsList: { _id: string; title: string }[]) => {
+      const originalPos = getTaskPos(active.id);
+      const newPos = getTaskPos(over.id);
+      return arrayMove(projectsList, originalPos, newPos);
+    });
+  };
+
+
+  const confirmPosition = async () => {
+    setReorderMode(!reorderMode);
+
+    const updatedProjects = projectsList.map((project) => ({
+      ...project,
+    }));
+
+    setProjectsList(updatedProjects);
+
+    const formData = new FormData()
+    formData.append('projects', JSON.stringify(updatedProjects))
+    const response = await fetch(`/api/admin/projects/reorder`, {
+      method: "POST",
+      body: formData
+    })
+    if (response.ok) {
+      const data = await response.json()
+      if (data.success) {
+        alert(data.message)
+      }
+    }
+  };
+
 
   useEffect(() => {
     handleFetchProjectType();
@@ -333,75 +376,75 @@ export default function CurrentOpenings() {
   return (
     <div className="flex flex-col gap-5">
 
-<form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-5'>
+      <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-5'>
 
 
-<AdminItemContainer>
-                        <Label className="" main>Banner</Label>
-                        <div className='p-5 rounded-md grid grid-cols-2 gap-5'>
-                    <div>
-                        <Controller
-                            name="banner"
-                            control={control}
-                            rules={{ required: "Banner is required" }}
-                            render={({ field }) => (
-                                <ImageUploader
-                                    value={field.value}
-                                    onChange={field.onChange}
-                                />
-                            )}
-                        />
-                        {errors.banner && (
-                            <p className="text-red-500">{errors.banner.message}</p>
-                        )}
-                    </div>
-                    <div className='flex flex-col gap-2'>
-                    <div className='flex flex-col gap-1'>
-                        <Label className='font-bold'>Alt Tag</Label>
-                        <Input type='text' placeholder='Alt Tag' {...register("bannerAlt")} />
-                    </div>
-                    <div className='flex flex-col gap-1'>
-                        <Label className='font-bold'>Page Title</Label>
-                        <Input type='text' placeholder='Page Title' {...register("pageTitle")} />
-                    </div>
-                    </div>
-                </div>
-                </AdminItemContainer>
+        <AdminItemContainer>
+          <Label className="" main>Banner</Label>
+          <div className='p-5 rounded-md grid grid-cols-2 gap-5'>
+            <div>
+              <Controller
+                name="banner"
+                control={control}
+                rules={{ required: "Banner is required" }}
+                render={({ field }) => (
+                  <ImageUploader
+                    value={field.value}
+                    onChange={field.onChange}
+                  />
+                )}
+              />
+              {errors.banner && (
+                <p className="text-red-500">{errors.banner.message}</p>
+              )}
+            </div>
+            <div className='flex flex-col gap-2'>
+              <div className='flex flex-col gap-1'>
+                <Label className='font-bold'>Alt Tag</Label>
+                <Input type='text' placeholder='Alt Tag' {...register("bannerAlt")} />
+              </div>
+              <div className='flex flex-col gap-1'>
+                <Label className='font-bold'>Page Title</Label>
+                <Input type='text' placeholder='Page Title' {...register("pageTitle")} />
+              </div>
+            </div>
+          </div>
+        </AdminItemContainer>
 
 
-                      <AdminItemContainer>
-                    <Label className='' main>First Section</Label>
-                    <div className='p-5 flex flex-col gap-2'>
-                        <div className='flex flex-col gap-2'>
-                            <div className='flex flex-col gap-1'>
-                                <Label className=' font-bold'>Title</Label>
-                                <Input type='text' placeholder='Title' {...register("firstSection.title", {
-                                    required: "Title is required"
-                                })} />
-                                {errors.firstSection?.title && <p className='text-red-500'>{errors.firstSection?.title.message}</p>}
-                            </div>                            
-                        </div>
+        <AdminItemContainer>
+          <Label className='' main>First Section</Label>
+          <div className='p-5 flex flex-col gap-2'>
+            <div className='flex flex-col gap-2'>
+              <div className='flex flex-col gap-1'>
+                <Label className=' font-bold'>Title</Label>
+                <Input type='text' placeholder='Title' {...register("firstSection.title", {
+                  required: "Title is required"
+                })} />
+                {errors.firstSection?.title && <p className='text-red-500'>{errors.firstSection?.title.message}</p>}
+              </div>
+            </div>
 
-                    </div>
-                </AdminItemContainer>
-
-
+          </div>
+        </AdminItemContainer>
 
 
-                <div className='flex flex-col gap-2'>
-                                    <Label className='font-bold'>Meta Title</Label>
-                                    <Input type='text' placeholder='Meta Title' {...register("metaTitle")} />
-                                </div>
-                                <div className='flex flex-col gap-2'>
-                                    <Label className='font-bold'>Meta Description</Label>
-                                    <Input type='text' placeholder='Meta Description' {...register("metaDescription")} />
-                                </div>
-                
-                                <div className='flex justify-center mt-5'>
-                                    <Button type='submit' className="cursor-pointer text-white text-[16px] w-full">Submit</Button>
-                                </div>
 
-                </form>
+
+        <div className='flex flex-col gap-2'>
+          <Label className='font-bold'>Meta Title</Label>
+          <Input type='text' placeholder='Meta Title' {...register("metaTitle")} />
+        </div>
+        <div className='flex flex-col gap-2'>
+          <Label className='font-bold'>Meta Description</Label>
+          <Input type='text' placeholder='Meta Description' {...register("metaDescription")} />
+        </div>
+
+        <div className='flex justify-center mt-5'>
+          <Button type='submit' className="cursor-pointer text-white text-[16px] w-full">Submit</Button>
+        </div>
+
+      </form>
 
 
       <div className="h-screen grid grid-cols-2 gap-5">
@@ -432,7 +475,7 @@ export default function CurrentOpenings() {
                   </div>
                   <div className="flex gap-5">
                     <Dialog>
-                      <DialogTrigger onClick={() => { setProjectType(item.name)}}><MdEdit /></DialogTrigger>
+                      <DialogTrigger onClick={() => { setProjectType(item.name) }}><MdEdit /></DialogTrigger>
                       <DialogContent>
                         <DialogHeader>
                           <DialogTitle>Edit Project Type</DialogTitle>
@@ -485,7 +528,7 @@ export default function CurrentOpenings() {
                 </DialogContent>
 
               </Dialog>
-            </div>  
+            </div>
             <div className="mt-2 flex flex-col gap-2 overflow-y-scroll h-[80%]">
               {sectorList.map((item) => (
                 <div className="flex justify-between border p-2 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
@@ -494,7 +537,7 @@ export default function CurrentOpenings() {
                   </div>
                   <div className="flex gap-5">
                     <Dialog>
-                      <DialogTrigger onClick={() => { setSector(item.name)}}><MdEdit /></DialogTrigger>
+                      <DialogTrigger onClick={() => { setSector(item.name) }}><MdEdit /></DialogTrigger>
                       <DialogContent>
                         <DialogHeader>
                           <DialogTitle>Edit Sector</DialogTitle>
@@ -559,7 +602,7 @@ export default function CurrentOpenings() {
                     </div>
                     <div className="flex gap-5">
                       <Dialog>
-                        <DialogTrigger onClick={() => { setLocation(item.name)}}><MdEdit /></DialogTrigger>
+                        <DialogTrigger onClick={() => { setLocation(item.name) }}><MdEdit /></DialogTrigger>
                         <DialogContent>
                           <DialogHeader>
                             <DialogTitle>Edit Location</DialogTitle>
@@ -603,10 +646,25 @@ export default function CurrentOpenings() {
         <div className="h-screen w-full p-5 shadow-md border-gray-300 rounded-md overflow-y-hidden bg-white">
           <div className="flex justify-between border-b-2 pb-2">
             <Label className="text-sm font-bold">Projects</Label>
-            <Button onClick={() => router.push("/admin/projects/add")}>Add Project</Button>
+            <div className="flex gap-2">
+              <Button className={`text-white text-[16px] ${reorderMode ? "bg-yellow-700" : "bg-green-700"}`} onClick={() => reorderMode ? confirmPosition() : setReorderMode(!reorderMode)}>{reorderMode ? "Done" : "Reorder"}</Button>
+              <Button onClick={() => router.push("/admin/projects/add")}>Add Project</Button>
+            </div>
           </div>
           <div className="mt-2 flex flex-col gap-2 overflow-y-scroll h-[90%]">
-            {projectsList.map((item) => (
+            {reorderMode &&
+
+              <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
+                <SortableContext items={projectsList.map((project) => project._id)} strategy={verticalListSortingStrategy}>
+                  {projectsList?.map((project, index) => (
+                    <ProjectCard key={index} project={project} id={project._id} />
+                  ))}
+                </SortableContext>
+              </DndContext>
+
+            }
+
+            {!reorderMode && projectsList.map((item) => (
               <div className="flex justify-between border p-2 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
                 <div className="text-[16px]">
                   {item.title}
