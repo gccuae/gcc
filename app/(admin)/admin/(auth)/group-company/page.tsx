@@ -28,6 +28,9 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+import { closestCorners, DndContext, DragEndEvent } from '@dnd-kit/core'
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
+import CompanyCard from './CompanyCard';
 
 interface GroupCompanyFormProps {
     metaTitle: string;
@@ -69,19 +72,20 @@ const GroupCompanyPage = () => {
         name: "firstSection.items"
     });
 
-    const { fields: secondSectionItems, append: secondSectionAppend, remove: secondSectionRemove } = useFieldArray({
+    const { fields: secondSectionItems, append: secondSectionAppend, remove: secondSectionRemove, move } = useFieldArray({
         control,
         name: "secondSection.items"
     });
 
     const [category, setCategory] = useState<string>("")
+    const [reorderMode, setReorderMode] = useState(false);
 
     const [categoryList, setCategoryList] = useState<{ _id: string, category: string }[]>([]);
 
-    const handleFetchCategory = async() => {
+    const handleFetchCategory = async () => {
         try {
             const response = await fetch("/api/admin/group-company/category");
-            if(response.ok) {
+            if (response.ok) {
                 const data = await response.json();
                 console.log(data)
                 setCategoryList(data.data);
@@ -91,9 +95,9 @@ const GroupCompanyPage = () => {
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         handleFetchCategory();
-    },[])
+    }, [])
 
 
     const handleAddGroupCompany = async (data: GroupCompanyFormProps) => {
@@ -113,18 +117,18 @@ const GroupCompanyPage = () => {
     }
 
 
-    const handleAddCategory = async() => {
+    const handleAddCategory = async () => {
         try {
-            const response = await fetch("/api/admin/group-company/category",{
+            const response = await fetch("/api/admin/group-company/category", {
                 method: "POST",
                 body: JSON.stringify({ name: category }),
             });
-            if(response.ok) {
+            if (response.ok) {
                 const data = await response.json();
                 setCategory("");
                 alert(data.message);
                 handleFetchCategory();
-            }else{
+            } else {
                 const data = await response.json();
                 alert(data.message);
             }
@@ -133,18 +137,18 @@ const GroupCompanyPage = () => {
         }
     }
 
-    const handleEditCategory = async(id: string) => {
+    const handleEditCategory = async (id: string) => {
         try {
-            const response = await fetch(`/api/admin/group-company/category?id=${id}`,{
+            const response = await fetch(`/api/admin/group-company/category?id=${id}`, {
                 method: "PATCH",
                 body: JSON.stringify({ name: category }),
             });
-            if(response.ok) {
+            if (response.ok) {
                 const data = await response.json();
                 alert(data.message);
                 handleFetchCategory();
                 fetchGroupCompanyData();
-            }else{
+            } else {
                 const data = await response.json();
                 alert(data.message);
             }
@@ -153,17 +157,17 @@ const GroupCompanyPage = () => {
         }
     }
 
-    const handleDeleteCategory = async(id: string) => {
+    const handleDeleteCategory = async (id: string) => {
         try {
-            const response = await fetch(`/api/admin/group-company/category?id=${id}`,{
+            const response = await fetch(`/api/admin/group-company/category?id=${id}`, {
                 method: "DELETE",
             });
-            if(response.ok) {
+            if (response.ok) {
                 const data = await response.json();
                 alert(data.message);
                 handleFetchCategory();
                 fetchGroupCompanyData();
-            }else{
+            } else {
                 const data = await response.json();
                 alert(data.message);
             }
@@ -195,6 +199,21 @@ const GroupCompanyPage = () => {
             console.log("Error in fetching about data", error);
         }
     }
+
+
+    const getTaskPos = (id: number | string) => secondSectionItems.findIndex((item: { id: string }) => (item.id == id))
+    const handleDragEnd = (event: DragEndEvent) => {
+        const { active, over } = event;
+
+        if (!over || active.id === over.id) return;
+
+        const originalPos = getTaskPos(active.id);
+        const newPos = getTaskPos(over.id);
+
+        if (originalPos !== -1 && newPos !== -1) {
+            move(originalPos, newPos);
+        }
+    };
 
 
 
@@ -418,11 +437,26 @@ const GroupCompanyPage = () => {
 
 
                             <div>
-                                <Label className='font-bold'>Items</Label>
+                                <div className='flex justify-between items-center my-5'>
+                                    <Label className='font-bold'>Items</Label>
+                                    <Button disabled={secondSectionItems.length < 2} type="button" className={`text-white text-[16px] ${reorderMode ? "bg-yellow-700" : "bg-green-700"}`} onClick={() => setReorderMode(!reorderMode)}>{reorderMode ? "Done" : "Reorder"}</Button>
+                                </div>
                                 <div className='border p-2 rounded-md flex flex-col gap-5'>
 
+                                    {reorderMode &&
 
-                                    {secondSectionItems.map((field, index) => (
+                                        <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
+                                            <SortableContext items={secondSectionItems.map((item) => item.id)} strategy={verticalListSortingStrategy}>
+                                                {secondSectionItems?.map((item, index) => (
+                                                    <CompanyCard key={index} item={item} id={item.id} />
+                                                ))}
+                                            </SortableContext>
+                                        </DndContext>
+
+                                    }
+
+
+                                    {!reorderMode && secondSectionItems.map((field, index) => (
                                         <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b pb-5 last:border-b-0'>
                                             <div className='absolute top-2 right-2'>
                                                 <RiDeleteBinLine onClick={() => secondSectionRemove(index)} className='cursor-pointer text-red-600' />
@@ -505,33 +539,33 @@ const GroupCompanyPage = () => {
                                             </div>
 
                                             <div className='flex flex-col gap-2'>
-                    <Label className=''>Category</Label>
-                    <Controller
-                        name={`secondSection.items.${index}.category`}
-                        control={control}
-                        rules={{ required: "Category is required" }}
-                        render={({ field }) => (
-                            <Select
-                                onValueChange={field.onChange}
-                                value={field.value}
-                                defaultValue=""
-                            >
-                                <SelectTrigger className="w-full">
-                                    <SelectValue placeholder="Select Category" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    {categoryList.map((item, index) => (
-                                        <SelectItem key={index} value={item.category}>
-                                            {item.category}
-                                        </SelectItem>
-                                    ))}
-                                </SelectContent>
-                            </Select>
-                        )}
-                    />
-                    {errors.secondSection?.items?.[index]?.category && <p className="text-red-500">{errors.secondSection?.items?.[index]?.category.message}</p>}
+                                                <Label className=''>Category</Label>
+                                                <Controller
+                                                    name={`secondSection.items.${index}.category`}
+                                                    control={control}
+                                                    rules={{ required: "Category is required" }}
+                                                    render={({ field }) => (
+                                                        <Select
+                                                            onValueChange={field.onChange}
+                                                            value={field.value}
+                                                            defaultValue=""
+                                                        >
+                                                            <SelectTrigger className="w-full">
+                                                                <SelectValue placeholder="Select Category" />
+                                                            </SelectTrigger>
+                                                            <SelectContent>
+                                                                {categoryList.map((item, index) => (
+                                                                    <SelectItem key={index} value={item.category}>
+                                                                        {item.category}
+                                                                    </SelectItem>
+                                                                ))}
+                                                            </SelectContent>
+                                                        </Select>
+                                                    )}
+                                                />
+                                                {errors.secondSection?.items?.[index]?.category && <p className="text-red-500">{errors.secondSection?.items?.[index]?.category.message}</p>}
 
-                </div>
+                                            </div>
 
                                         </div>
                                     ))}
@@ -540,7 +574,7 @@ const GroupCompanyPage = () => {
 
                                 </div>
                                 <div className='flex justify-end mt-2'>
-                                    <Button type='button' addItem onClick={() => secondSectionAppend({ title: "", image: "", imageAlt: "",logo:"",logoAlt:"",category:"" })}>Add Item</Button>
+                                    <Button type='button' addItem onClick={() => secondSectionAppend({ title: "", image: "", imageAlt: "", logo: "", logoAlt: "", category: "" })}>Add Item</Button>
                                 </div>
                             </div>
 

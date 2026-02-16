@@ -2,7 +2,7 @@
 
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { Button } from '@/components/ui/button'
@@ -10,6 +10,9 @@ import { ImageUploader } from '@/components/ui/image-uploader'
 import { RiDeleteBinLine } from "react-icons/ri";
 import AdminItemContainer from '@/app/components/common/AdminItemContainer';
 import { Textarea } from '@/components/ui/textarea'
+import { closestCorners, DndContext, DragEndEvent } from '@dnd-kit/core'
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
+import ClientCard from './ClientCard';
 
 interface ClientsFormProps {
     metaTitle: string;
@@ -30,9 +33,9 @@ const ClientsPage = () => {
 
 
     const { register, handleSubmit, setValue, control, formState: { errors } } = useForm<ClientsFormProps>();
+    const [reorderMode, setReorderMode] = useState(false);
 
-
-    const { fields: firstSectionItems, append: firstSectionAppend, remove: firstSectionRemove } = useFieldArray({
+    const { fields: firstSectionItems, append: firstSectionAppend, remove: firstSectionRemove, move } = useFieldArray({
         control,
         name: "firstSection.items"
     });
@@ -76,6 +79,21 @@ const ClientsPage = () => {
     }
 
 
+    const getTaskPos = (id: number | string) => firstSectionItems.findIndex((item: { id: string }) => (item.id == id))
+    const handleDragEnd = (event: DragEndEvent) => {
+        const { active, over } = event;
+
+        if (!over || active.id === over.id) return;
+
+        const originalPos = getTaskPos(active.id);
+        const newPos = getTaskPos(over.id);
+
+        if (originalPos !== -1 && newPos !== -1) {
+            move(originalPos, newPos);
+        }
+    };
+
+
 
     useEffect(() => {
         fetchClientsData();
@@ -87,104 +105,118 @@ const ClientsPage = () => {
             <form className='flex flex-col gap-5' onSubmit={handleSubmit(handleAddClients)}>
 
 
-                    <AdminItemContainer>
-                        <Label className="" main>Banner</Label>
-                        <div className='p-5 rounded-md grid grid-cols-2 gap-5'>
-                    <div>
-                        <Controller
-                            name="banner"
-                            control={control}
-                            rules={{ required: "Banner is required" }}
-                            render={({ field }) => (
-                                <ImageUploader
-                                    value={field.value}
-                                    onChange={field.onChange}
-                                />
+                <AdminItemContainer>
+                    <Label className="" main>Banner</Label>
+                    <div className='p-5 rounded-md grid grid-cols-2 gap-5'>
+                        <div>
+                            <Controller
+                                name="banner"
+                                control={control}
+                                rules={{ required: "Banner is required" }}
+                                render={({ field }) => (
+                                    <ImageUploader
+                                        value={field.value}
+                                        onChange={field.onChange}
+                                    />
+                                )}
+                            />
+                            {errors.banner && (
+                                <p className="text-red-500">{errors.banner.message}</p>
                             )}
-                        />
-                        {errors.banner && (
-                            <p className="text-red-500">{errors.banner.message}</p>
-                        )}
+                        </div>
+                        <div className='flex flex-col gap-2'>
+                            <div className='flex flex-col gap-1'>
+                                <Label className='font-bold'>Alt Tag</Label>
+                                <Input type='text' placeholder='Alt Tag' {...register("bannerAlt")} />
+                            </div>
+                            <div className='flex flex-col gap-1'>
+                                <Label className='font-bold'>Page Title</Label>
+                                <Input type='text' placeholder='Page Title' {...register("pageTitle")} />
+                            </div>
+                        </div>
                     </div>
-                    <div className='flex flex-col gap-2'>
-                    <div className='flex flex-col gap-1'>
-                        <Label className='font-bold'>Alt Tag</Label>
-                        <Input type='text' placeholder='Alt Tag' {...register("bannerAlt")} />
-                    </div>
-                    <div className='flex flex-col gap-1'>
-                        <Label className='font-bold'>Page Title</Label>
-                        <Input type='text' placeholder='Page Title' {...register("pageTitle")} />
-                    </div>
-                    </div>
-                </div>
                 </AdminItemContainer>
 
                 <AdminItemContainer>
-                <Label main>First Section</Label>
-                <div className='p-5 rounded-md flex flex-col gap-2'>
-                    <div className='flex flex-col gap-2'>
+                    <Label main>First Section</Label>
+                    <div className='p-5 rounded-md flex flex-col gap-2'>
+                        <div className='flex flex-col gap-2'>
+                            <div>
+                                <Label className="text-sm font-bold">Description</Label>
+                                <Controller name="firstSection.description" control={control} rules={{ required: "Description is required" }} render={({ field }) => {
+                                    return <Textarea value={field.value} onChange={field.onChange} />
+                                }} />
+                            </div>
+                        </div>
+
                         <div>
-                            <Label className="text-sm font-bold">Description</Label>
-                            <Controller name="firstSection.description" control={control} rules={{ required: "Description is required" }} render={({ field }) => {
-                                return <Textarea value={field.value} onChange={field.onChange} />
-                            }} />
+                            <div className='flex justify-between my-5'>
+                                <Label className='font-bold'>Items</Label>
+                                <Button disabled={firstSectionItems.length < 2} type="button" className={`text-white text-[16px] ${reorderMode ? "bg-yellow-700" : "bg-green-700"}`} onClick={() => setReorderMode(!reorderMode)}>{reorderMode ? "Done" : "Reorder"}</Button>
+                            </div>
+                            <div className={`border p-2 rounded-md flex flex-col gap-5 ${!reorderMode ? "grid grid-cols-3" : "grid grid-cols-1"}`}>
+
+                                {reorderMode &&
+
+                                    <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
+                                        <SortableContext items={firstSectionItems.map((item) => item.id)} strategy={verticalListSortingStrategy}>
+                                            {firstSectionItems?.map((item, index) => (
+                                                <ClientCard key={index} item={item} id={item.id} />
+                                            ))}
+                                        </SortableContext>
+                                    </DndContext>
+
+                                }
+
+                                {!reorderMode && firstSectionItems.map((field, index) => (
+                                    <div key={field.id} className='grid grid-cols-1 gap-2 relative border-b pb-5 last:border-b-0'>
+                                        <div className='absolute top-2 right-2'>
+                                            <RiDeleteBinLine onClick={() => firstSectionRemove(index)} className='cursor-pointer text-red-600' />
+                                        </div>
+
+                                        <div className='flex flex-col gap-2'>
+                                            <div className='flex flex-col gap-2'>
+                                                <Label className='font-bold'>Logo</Label>
+                                                <Controller
+                                                    name={`firstSection.items.${index}.logo`}
+                                                    control={control}
+                                                    rules={{ required: "Logo is required" }}
+                                                    render={({ field }) => (
+                                                        <ImageUploader
+                                                            value={field.value}
+                                                            onChange={field.onChange}
+                                                        />
+                                                    )}
+                                                />
+                                                {errors.firstSection?.items?.[index]?.logo && (
+                                                    <p className="text-red-500">{errors.firstSection?.items?.[index]?.logo.message}</p>
+                                                )}
+                                            </div>
+
+                                            <div className='flex flex-col gap-2'>
+                                                <div className='flex flex-col gap-2'>
+                                                    <Label className='font-bold'>Alt Tag</Label>
+                                                    <Input type='text' placeholder='Alt Tag' {...register(`firstSection.items.${index}.logoAlt`, {
+                                                        required: "Value is required"
+                                                    })} />
+                                                    {errors.firstSection?.items?.[index]?.logoAlt && <p className='text-red-500'>{errors.firstSection?.items?.[index]?.logoAlt.message}</p>}
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                ))}
+
+
+
+                            </div>
+                            {!reorderMode && <div className='flex justify-end mt-2'>
+                                <Button type='button' addItem onClick={() => firstSectionAppend({ logo: "", logoAlt: "" })}>Add Item</Button>
+                            </div>}
                         </div>
+
                     </div>
-
-                    <div>
-                    <Label className='font-bold'>Items</Label>
-                <div className='border p-2 rounded-md flex flex-col gap-5 grid grid-cols-3'>
-
-
-                    {firstSectionItems.map((field, index) => (
-                        <div key={field.id} className='grid grid-cols-1 gap-2 relative border-b pb-5 last:border-b-0'>
-                            <div className='absolute top-2 right-2'>
-                                <RiDeleteBinLine onClick={() => firstSectionRemove(index)} className='cursor-pointer text-red-600' />
-                            </div>
-
-                            <div className='flex flex-col gap-2'>
-                                <div className='flex flex-col gap-2'>
-                                    <Label className='font-bold'>Logo</Label>
-                                    <Controller
-                                        name={`firstSection.items.${index}.logo`}
-                                        control={control}
-                                        rules={{ required: "Logo is required" }}
-                                        render={({ field }) => (
-                                            <ImageUploader
-                                                value={field.value}
-                                                onChange={field.onChange}
-                                            />
-                                        )}
-                                    />
-                                    {errors.firstSection?.items?.[index]?.logo && (
-                                        <p className="text-red-500">{errors.firstSection?.items?.[index]?.logo.message}</p>
-                                    )}
-                                </div>
-
-                                <div className='flex flex-col gap-2'>
-                                <div className='flex flex-col gap-2'>
-                                    <Label className='font-bold'>Alt Tag</Label>
-                                    <Input type='text' placeholder='Alt Tag' {...register(`firstSection.items.${index}.logoAlt`, {
-                                        required: "Value is required"
-                                    })} />
-                                    {errors.firstSection?.items?.[index]?.logoAlt && <p className='text-red-500'>{errors.firstSection?.items?.[index]?.logoAlt.message}</p>}
-                                </div>
-                            </div>
-
-
-                            </div>
-                        </div>
-                    ))}
-
-                    
-
-                </div>
-                <div className='flex justify-end mt-2'>
-                        <Button type='button' addItem onClick={() => firstSectionAppend({ logo: "", logoAlt: "" })}>Add Item</Button>
-                    </div>
-                </div>
-
-                </div>
                 </AdminItemContainer>
 
                 <div className='flex flex-col gap-2'>
