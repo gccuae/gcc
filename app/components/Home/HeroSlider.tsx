@@ -9,6 +9,7 @@ import Counter from "../common/Counter";
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
 import { BannerItem, NumberItem } from "./type";
+import { parseCounterValue } from "@/lib/parseCounterValue";
 
 interface HeroSliderProps {
   data: BannerItem[];
@@ -141,10 +142,10 @@ const HeroSlider = ({ data, counterData }: HeroSliderProps) => {
                   <p className="text-2xl md:text-5xl font-normal leading-[0.7352941176470588] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
                     <Counter
                       from={0}
-                      to={Number(counterData[0].number.replace(/\D/g, ""))}
+                      to={parseCounterValue(counterData[0].number).number}
                       duration={2}
                     />
-                    <span>+</span>
+                    {parseCounterValue(counterData[0].number).suffix.trim()}
                   </p>
                   <p className="uppercase font-light text-base xl:text-lg leading-[1]">
                     Years of Expertise
@@ -164,10 +165,10 @@ const HeroSlider = ({ data, counterData }: HeroSliderProps) => {
                   <p className="text-2xl md:text-5xl font-normal leading-[0.7352941176470588] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
                     <Counter
                       from={0}
-                      to={Number(counterData[1].number.replace(/\D/g, ""))}
+                      to={parseCounterValue(counterData[1].number).number}
                       duration={2}
                     />
-                    M
+                    {parseCounterValue(counterData[1].number).suffix.trim()}
                   </p>
                   <p className="uppercase font-light text-base xl:text-lg leading-[1]">
                     {" "}
@@ -188,10 +189,10 @@ const HeroSlider = ({ data, counterData }: HeroSliderProps) => {
                   <p className="text-2xl md:text-5xl font-normal leading-[0.7352941176470588] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
                     <Counter
                       from={0}
-                      to={Number(counterData[2].number.replace(/\D/g, ""))}
+                      to={parseCounterValue(counterData[2].number).number}
                       duration={2}
                     />
-                    +
+                    {parseCounterValue(counterData[2].number).suffix.trim()}
                   </p>
                   <p className="uppercase font-light text-base xl:text-lg leading-[1]">
                     Projects Completed
@@ -211,10 +212,10 @@ const HeroSlider = ({ data, counterData }: HeroSliderProps) => {
                   <p className="text-2xl md:text-5xl font-normal leading-[0.7352941176470588] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
                     <Counter
                       from={0}
-                      to={Number(counterData[3].number.replace(/\D/g, ""))}
+                      to={parseCounterValue(counterData[3].number).number}
                       duration={2}
                     />
-                    +
+                    {parseCounterValue(counterData[3].number).suffix.trim()}
                   </p>
                   <p className="uppercase font-light text-base xl:text-lg  leading-[1]">
                     Dedicated Manpower

@@ -66,7 +66,7 @@ const ContactForm: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 xl:gap-10">
                     <motion.div variants={moveUp()} initial="hidden" whileInView="show" viewport={{ once: true }}>
                         <label className="block text-base font-normal leading-lh-base text-black dark:text-white/70 mb-27px xl:mb-37px">
-                            Vendor Name
+                            Vendor Name *
                         </label>
                         <input
                             type="text"
@@ -81,7 +81,7 @@ const ContactForm: React.FC = () => {
 
                     <motion.div variants={moveUp(0.1)} initial="hidden" whileInView="show" viewport={{ once: true }}>
                         <label className="block text-base font-normal leading-lh-base text-black dark:text-white/70 mb-27px xl:mb-37px">
-                            Trade License
+                            Trade License *
                         </label>
                         <input
                             type="text"
@@ -138,15 +138,19 @@ const ContactForm: React.FC = () => {
                         className={`w-full pb-3 border-b-2 focus:outline-none placeholder:text-lg placeholder:text-[#979797] ${
                             errors.services ? "border-red-500 bg-red-50" : "border-[#C2C2C2]/35 focus:border-black"
                         }`}
-                        {...register("services", { required: "Service description is required" })}
+                        {...register("services", {
+                            validate: (value) =>
+                                !value || value.trim().length >= 5 || "Please enter a proper service description",
+                        })}
                     />
+
                     {errors.services && <p className="mt-1 text-sm text-red-600">{errors.services.message}</p>}
                 </motion.div>
 
                 {/* Expertise */}
                 <motion.div variants={moveUp(0.5)} initial="hidden" whileInView="show" viewport={{ once: true }}>
                     <label className="block text-base font-normal leading-lh-base text-black dark:text-white/70 mb-27px xl:mb-37px">
-                        Areas of Expertise / Capabilities
+                        Areas of Expertise / Capabilities *
                     </label>
                     <textarea
                         rows={3}
@@ -184,7 +188,7 @@ const ContactForm: React.FC = () => {
 
                     <motion.div variants={moveUp(0.7)} initial="hidden" whileInView="show" viewport={{ once: true }}>
                         <label className="block text-base font-normal leading-lh-base text-black dark:text-white/70 mb-4">
-                            Brochures / Catalogues / Company Profile
+                            Brochures / Catalogues / Trade License / Company Profile *
                         </label>
                         <FileDropField
                             key={`company-${fileResetKey}`}
@@ -204,7 +208,7 @@ const ContactForm: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 xl:gap-10">
                     <motion.div variants={moveUp(0.8)} initial="hidden" whileInView="show" viewport={{ once: true }}>
                         <label className="block text-base font-normal leading-lh-base text-black dark:text-white/70 mb-27px xl:mb-37px">
-                            Email
+                            Email *
                         </label>
 
                         <input
@@ -227,7 +231,7 @@ const ContactForm: React.FC = () => {
 
                     <motion.div variants={moveUp(1)} initial="hidden" whileInView="show" viewport={{ once: true }}>
                         <label className="block text-base font-normal leading-lh-base text-black dark:text-white/70 mb-27px xl:mb-37px">
-                            Phone Number
+                            Phone Number *
                         </label>
 
                         <input
@@ -258,14 +262,10 @@ const ContactForm: React.FC = () => {
                         rows={3}
                         placeholder="Enter your address"
                         className={`w-full pb-3 border-b-2 resize-none focus:outline-none placeholder:text-lg placeholder:text-[#979797]
-      ${errors.address ? "border-red-500 bg-red-50" : "border-[#C2C2C2]/35 focus:border-black"}
-    `}
+    ${errors.address ? "border-red-500 bg-red-50" : "border-[#C2C2C2]/35 focus:border-black"}
+  `}
                         {...register("address", {
-                            required: "Address is required",
-                            minLength: {
-                                value: 10,
-                                message: "Address should be at least 10 characters",
-                            },
+                            validate: (value) => !value || value.length >= 5 || "Address should be at least 5 characters",
                         })}
                     />
 
