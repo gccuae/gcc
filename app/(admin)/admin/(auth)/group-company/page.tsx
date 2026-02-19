@@ -804,11 +804,11 @@ const GroupCompanyPage = () => {
                           />
 
                           {errors.secondSection?.items?.[index]
-                            ?.showCompany && (
+                            ?.hideCompany && (
                             <p className="text-red-500">
                               {
                                 errors.secondSection?.items?.[index]
-                                  ?.showCompany.message
+                                  ?.hideCompany.message
                               }
                             </p>
                           )}
