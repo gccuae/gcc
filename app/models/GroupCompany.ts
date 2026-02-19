@@ -51,6 +51,13 @@ const groupCompanySchema = new mongoose.Schema({
             type:String,
         },
         items:[{
+            link:{
+                type:String,
+            },
+            hideCompany:{
+                type:Boolean,
+                default:false,
+            },
             image:{
                 type:String,
             },
