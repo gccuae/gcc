@@ -22,7 +22,7 @@ export const menuItems: MenuItem[] = [
       // {
       //   title: "Our Team",
       //   url: "/our-team",
-      // }, 
+      // },
       {
         title: "Group Companies",
         url: "/group-companies",
@@ -37,16 +37,6 @@ export const menuItems: MenuItem[] = [
       },
     ],
   },
-  {
-    title: "Expertise",
-    url: "/expertise",
-  },
-  {
-    title: "AI Technology",
-    url: "/ai-technology",
-
-  },
-
   {
     title: "Projects",
     url: "/projects",
@@ -63,7 +53,15 @@ export const menuItems: MenuItem[] = [
         title: "Sustainability",
         url: "/sustainability",
       },
-    ]
+      {
+        title: "AI Technology",
+        url: "/ai-technology",
+      },
+      {
+        title: "Expertise",
+        url: "/expertise",
+      },
+    ],
   },
   {
     title: "News & Media",
@@ -88,10 +86,11 @@ export const menuItems: MenuItem[] = [
     title: "Careers",
     url: "/careers",
   },
-
-
+  {
+    title: "Vendor Registration",
+    url: "/vendor-registration",
+  },
 ];
-
 
 export const menuItemsV3: MenuItem[] = [
   {
@@ -111,7 +110,7 @@ export const menuItemsV3: MenuItem[] = [
       // {
       //   title: "Our Team",
       //   url: "/our-team",
-      // }, 
+      // },
       {
         title: "Group Companies",
         url: "/group-companies",
@@ -133,7 +132,6 @@ export const menuItemsV3: MenuItem[] = [
   {
     title: "AI Technology",
     url: "/ai-technology",
-
   },
 
   {
@@ -152,7 +150,7 @@ export const menuItemsV3: MenuItem[] = [
         title: "Sustainability",
         url: "/sustainability",
       },
-    ]
+    ],
   },
   {
     title: "News & Media",

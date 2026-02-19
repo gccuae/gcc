@@ -25,6 +25,8 @@ export interface SecondSectionItem {
   logoAlt: string;
   title: string;
   category: string;
+  hideCompany: boolean;
+  link: string;
 }
 
 // ---------- Second Section ----------

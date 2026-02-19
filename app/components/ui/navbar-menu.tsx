@@ -31,7 +31,7 @@ export const MenuItem = ({
 
   return (
     <div onMouseEnter={() => (noMenu ? setActive(null) : setActive(item))}
-      className="relative mr-0 not-first:ml-3 not-first:lg:ml-[15px] not-first:xl:ml-[25px] not-first:2xl:ml-[37px] ">
+      className="relative mr-0 not-first:ml-3 not-first:lg:ml-[12px] not-first:xl:ml-[25px] not-first:2xl:ml-[37px] ">
       <div className="flex gap-2 mb-0">
         <Link href={url}>
           <motion.p transition={{ duration: 0.3, ease: easeOut }}

@@ -138,14 +138,15 @@ const HeroSlider = ({ data, counterData }: HeroSliderProps) => {
               transition={{ duration: 0.6, delay: 0 }}
             >
               <div className="text-white border border-[#C2C2C2] border-b-0 transition-all duration-300 group active:bg-primary hover:bg-primary hover:translate-y-2">
-                <div className="pe-3 ps-3 xl:ps-12 py-5 xl:py-[32px]">
-                  <p className="text-2xl md:text-5xl font-normal leading-[0.7352941176470588] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
+                <div className="pe-3 ps-3 xl:ps-10 py-5 xl:py-[32px]">
+                  <p className="text-2xl md:text-3xl xl:text-4xl 2xl:text-5xl font-normal leading-[0.7352941176470588] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
+                    {parseCounterValue(counterData[0].number).prefix}
                     <Counter
                       from={0}
                       to={parseCounterValue(counterData[0].number).number}
                       duration={2}
                     />
-                    {parseCounterValue(counterData[0].number).suffix.trim()}
+                    {parseCounterValue(counterData[0].number).suffix}
                   </p>
                   <p className="uppercase font-light text-base xl:text-lg leading-[1]">
                     Years of Expertise
@@ -161,14 +162,15 @@ const HeroSlider = ({ data, counterData }: HeroSliderProps) => {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <div className="text-white border border-[#C2C2C2] border-b-0 pe-3 transition-all duration-300 group active:bg-primary hover:bg-primary hover:translate-y-2">
-                <div className="ps-3 xl:ps-12 py-5 xl:py-[32px]">
-                  <p className="text-2xl md:text-5xl font-normal leading-[0.7352941176470588] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
+                <div className="ps-3 xl:ps-10 py-5 xl:py-[32px]">
+                  <p className="text-2xl md:text-3xl xl:text-4xl 2xl:text-5xl font-normal leading-[0.7352941176470588] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
+                    {parseCounterValue(counterData[1].number).prefix}
                     <Counter
                       from={0}
                       to={parseCounterValue(counterData[1].number).number}
                       duration={2}
                     />
-                    {parseCounterValue(counterData[1].number).suffix.trim()}
+                    {parseCounterValue(counterData[1].number).suffix}
                   </p>
                   <p className="uppercase font-light text-base xl:text-lg leading-[1]">
                     {" "}
@@ -185,14 +187,15 @@ const HeroSlider = ({ data, counterData }: HeroSliderProps) => {
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <div className="text-white border border-[#C2C2C2] border-b-0 pe-3 transition-all duration-300 group active:bg-primary hover:bg-primary hover:translate-y-2">
-                <div className="ps-3 xl:ps-12 py-5 xl:py-[32px]">
-                  <p className="text-2xl md:text-5xl font-normal leading-[0.7352941176470588] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
+                <div className="ps-3 xl:ps-10 py-5 xl:py-[32px]">
+                  <p className="text-2xl md:text-3xl xl:text-4xl 2xl:text-5xl font-normal leading-[0.7352941176470588] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
+                    {parseCounterValue(counterData[2].number).prefix}
                     <Counter
                       from={0}
                       to={parseCounterValue(counterData[2].number).number}
                       duration={2}
                     />
-                    {parseCounterValue(counterData[2].number).suffix.trim()}
+                    {parseCounterValue(counterData[2].number).suffix}
                   </p>
                   <p className="uppercase font-light text-base xl:text-lg leading-[1]">
                     Projects Completed
@@ -208,14 +211,15 @@ const HeroSlider = ({ data, counterData }: HeroSliderProps) => {
               transition={{ duration: 0.6, delay: 0.6 }}
             >
               <div className="text-white border border-[#C2C2C2] border-b-0 pe-3 transition-all duration-300 group active:bg-primary hover:bg-primary hover:translate-y-2">
-                <div className="ps-3 xl:ps-12 py-5 xl:py-[32px]">
-                  <p className="text-2xl md:text-5xl font-normal leading-[0.7352941176470588] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
+                <div className="ps-3 xl:ps-10 py-5 xl:py-[32px]">
+                  <p className="text-2xl md:text-3xl xl:text-4xl 2xl:text-5xl font-normal leading-[0.7352941176470588] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
+                    {parseCounterValue(counterData[3].number).prefix}
                     <Counter
                       from={0}
                       to={parseCounterValue(counterData[3].number).number}
                       duration={2}
                     />
-                    {parseCounterValue(counterData[3].number).suffix.trim()}
+                    {parseCounterValue(counterData[3].number).suffix}
                   </p>
                   <p className="uppercase font-light text-base xl:text-lg  leading-[1]">
                     Dedicated Manpower

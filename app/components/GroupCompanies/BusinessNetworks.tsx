@@ -4,6 +4,7 @@ import BusinessNetworkCard from "./BusinessNetworkCard";
 import { motion } from "framer-motion";
 import { moveUp } from "../../components/motionVarients";
 import { SecondSection } from "./type";
+import Link from "next/link";
 
 export interface SecondSectionProps {
   data: SecondSection;
@@ -34,7 +35,7 @@ const BusinessNetworks = ({ data }: SecondSectionProps) => {
           </motion.p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 xl:gap-8 ">
-          {data.items.map((item, index) => (
+          {data.items.filter((item) => !item.hideCompany).map((item, index) => (
             <motion.div
               key={index}
               variants={moveUp(index * 0.12)}
@@ -42,7 +43,15 @@ const BusinessNetworks = ({ data }: SecondSectionProps) => {
               initial="hidden"
               whileInView="show"
             >
-              <BusinessNetworkCard item={item} index={index} />
+              {item?.link !== '#' ? (
+                <Link href={item.link} target="_blank" className="cursor-pointer">
+                  <BusinessNetworkCard item={item} index={index} />
+                </Link>
+              ) : (
+                <div>
+                  <BusinessNetworkCard item={item} index={index} />
+                </div>
+              )}
             </motion.div>
           ))}
         </div>
