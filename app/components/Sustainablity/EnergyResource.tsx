@@ -31,13 +31,13 @@ const EnergyResource = ({
         >
           {data.description}
         </motion.p>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 border border-smgray mt-57px">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 border dark:border-white/20 mt-57px">
           {data.items.map((item, index) => (
             <div
               key={index}
-              className="flex flex-col border-r border-smgray last:border-r-0 group"
+              className="flex flex-col border-r dark:border-white/20 last:border-r-0 group"
             >
-              <div className="border-b border-smgray xl:pt-5 2xl:pr-1 p-5 pb-2 2xl:pb-0  2xl:p-8 xl:pb-0 group-hover:border-b-primary group-hover:border-b-[2px] transition-colors duration-300">
+              <div className="border-b dark:border-white/20 xl:pt-5 2xl:pr-1 p-5 pb-2 2xl:pb-0  2xl:p-8 xl:pb-0 group-hover:border-b-primary group-hover:border-b-[2px] transition-colors duration-300">
                 <motion.div
                   variants={moveUp(0.2)}
                   initial="hidden"

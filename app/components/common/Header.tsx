@@ -107,7 +107,7 @@ const Header = () => {
                             src={"/assets/img/icons/arrow.svg"}
                             alt=""
                             width={15}
-                            height={15}
+                            height={15} className="dark:invert-50"
                           />
                         </div>{" "}
                         <p className="m-0 p-0 text-[16px] uppercase ">

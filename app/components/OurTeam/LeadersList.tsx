@@ -18,7 +18,7 @@ const LeadersList = ({ data }: OurTeamProps) => {
         >
           {data.firstSection.title}
         </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-6 md:gap-y-6 xl:gap-y-0 pb-6 xl:pb-[37px] mb-5 md:mb-12 xl:mb-57px border-b border-smgray">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-6 md:gap-y-6 xl:gap-y-0 pb-6 xl:pb-[37px] mb-5 md:mb-12 xl:mb-57px border-b dark:border-white/20">
           {data.firstSection.items.map((leader, index) => (
             <motion.div
               variants={moveUp(index * 0.23)}
@@ -29,9 +29,8 @@ const LeadersList = ({ data }: OurTeamProps) => {
               className="group"
             >
               <div
-                className={`${
-                  index % 2 === 0 ? "bg-[#ebebeb]" : "bg-[#dfdfdf]"
-                } group-hover:bg-gray-100 transition-all duration-300 h-[380px] xl:h-[468px] flex flex-col mb-5 xl:mb-10 overflow-hidden relative`}
+                className={`${index % 2 === 0 ? "bg-[#ebebeb]" : "bg-[#dfdfdf]"
+                  } group-hover:bg-gray-100 transition-all duration-300 h-[380px] xl:h-[468px] flex flex-col mb-5 xl:mb-10 overflow-hidden relative`}
               >
                 <Image
                   src={leader.image}

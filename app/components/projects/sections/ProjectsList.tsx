@@ -111,18 +111,13 @@ const ProjectsList = ({
         variants={moveUp(0.2)}
         initial="hidden"
         whileInView="show"
-        className="border-b border-gray-300 pb-27px xl:pb-0 mb-57px"
+        className="border-b border-gray-300 dark:border-white/20 pb-27px xl:pb-0 mb-57px"
       >
         <div className="container">
           <div className="grid grid-cols-1 2xl:grid-cols-[1fr_repeat(4,1fr)_auto] xl:grid-cols-[2fr_repeat(4,1fr)_auto] items-center gap-4 xl:gap-[30px]">
             {/* Search Input */}
-            <div className="flex items-center justify-start gap-5 xl:border-r border-gray-300 h-full pt-[20px] pb-[12px] xl:py-47px 2xl:w-[303px] pr-8">
-              <Image
-                src={"/assets/img/projects/searchIcon.svg"}
-                alt="search"
-                width={32}
-                height={32}
-              />
+            <div className="flex items-center justify-start gap-5 xl:border-r border-gray-300 dark:border-white/20 h-full pt-[20px] pb-[12px] xl:py-47px 2xl:w-[303px] pr-8">
+              <Image src={"/assets/img/projects/searchIcon.svg"} alt="search" width={32} height={32} />
               <input
                 type="text"
                 placeholder="FIND A PROJECT"
@@ -133,7 +128,7 @@ const ProjectsList = ({
                     search: e.target.value,
                   }))
                 }
-                className="w-full bg-transparent outline-none text-para-color placeholder-para-color uppercase tracking-wide"
+                className="w-full bg-transparent outline-none text-para-color dark:text-white  placeholder-para-color dark:placeholder-white/70 uppercase tracking-wide"
               />
             </div>
 
@@ -145,7 +140,7 @@ const ProjectsList = ({
               }
             >
               <div className="relative">
-                <Listbox.Button className="flex w-full items-center justify-between border-b border-sm-gray pb-1 font-light text-para-color text-lg capitalize min-w-[140px] 2xl:max-w-[220px]">
+                <Listbox.Button className="flex w-full items-center justify-between border-b border-sm-gray dark:border-white/50 pb-1 font-light text-para-color dark:text-white/70 text-lg capitalize min-w-[140px] 2xl:max-w-[220px]">
                   <span className="truncate">
                     {pendingFilters.projectType === "All"
                       ? "Project Type"
@@ -178,24 +173,17 @@ const ProjectsList = ({
                         &times;
                       </span>
                     )}
-                    <Image
-                      src={"/assets/img/projects/downArrow.svg"}
-                      alt="arrowDown"
-                      width={15}
-                      height={15}
-                      className="w-[15px] h-[15px] cursor-pointer transition-opacity duration-300 hover:opacity-60"
-                    />
+                    <Image src={"/assets/img/projects/downArrow.svg"} alt="arrowDown" width={15} height={15} className="w-[15px] h-[15px] cursor-pointer transition-opacity duration-300 hover:opacity-60 dark:invert-100 dark:hover:invert-80" />
                   </div>
                 </Listbox.Button>
-                <Listbox.Options className="absolute mt-1 w-full bg-white border border-sm-gray rounded-md z-50">
+                <Listbox.Options className="absolute mt-1 w-full bg-white border border-sm-gray  rounded-md z-50">
                   {["All", ...projectTypesData.map((pt) => pt.name)].map(
                     (option) => (
                       <Listbox.Option
                         key={option}
                         value={option}
                         className={({ active }) =>
-                          `cursor-pointer select-none px-3 py-2 text-sm rounded-sm ${
-                            active ? "bg-primary text-white" : "text-para-color"
+                          `cursor-pointer select-none px-3 py-2 text-sm rounded-sm ${active ? "bg-primary text-white" : "text-para-color"
                           }`
                         }
                       >
@@ -215,7 +203,7 @@ const ProjectsList = ({
               }
             >
               <div className="relative">
-                <Listbox.Button className="flex w-full items-center justify-between border-b border-sm-gray pb-1 text-para-color text-lg font-light capitalize min-w-[140px] 2xl:max-w-[220px]">
+                <Listbox.Button className="flex w-full items-center justify-between border-b border-sm-gray dark:border-white/50 pb-1 text-para-color dark:text-white/70 text-lg font-light capitalize min-w-[140px] 2xl:max-w-[220px]">
                   <span className="truncate">
                     {pendingFilters.sector === "All"
                       ? "Sector"
@@ -250,18 +238,17 @@ const ProjectsList = ({
                       alt="arrowDown"
                       width={15}
                       height={15}
-                      className="w-[15px] h-[15px] cursor-pointer transition-opacity duration-300 hover:opacity-60"
+                      className="w-[15px] h-[15px] cursor-pointer transition-opacity duration-300 hover:opacity-60 dark:invert-100 dark:hover:invert-80"
                     />
                   </div>
                 </Listbox.Button>
-                <Listbox.Options className="absolute mt-1 w-full bg-white border border-sm-gray rounded-md z-50">
+                <Listbox.Options className="absolute mt-1 w-full bg-white border border-sm-gray  rounded-md z-50">
                   {["All", ...sectorsData.map((s) => s.name)].map((option) => (
                     <Listbox.Option
                       key={option}
                       value={option}
                       className={({ active }) =>
-                        `cursor-pointer select-none px-3 py-2 text-sm rounded-sm ${
-                          active ? "bg-primary text-white" : "text-para-color"
+                        `cursor-pointer select-none px-3 py-2 text-sm rounded-sm ${active ? "bg-primary text-white" : "text-para-color"
                         }`
                       }
                     >
@@ -280,13 +267,13 @@ const ProjectsList = ({
               }
             >
               <div className="relative">
-                <Listbox.Button className="flex w-full items-center justify-between border-b border-sm-gray pb-1 text-para-color text-lg font-light capitalize min-w-[140px] 2xl:max-w-[220px]">
+                <Listbox.Button className="flex w-full items-center justify-between border-b border-sm-gray dark:border-white/50 pb-1 text-para-color dark:text-white/70 text-lg font-light capitalize min-w-[140px] 2xl:max-w-[220px]">
                   <span className="truncate">
                     {pendingFilters.location === "All"
                       ? "Location"
                       : locationsData.find(
-                          (loc) => loc._id === pendingFilters.location
-                        )?.name || "Location"}
+                        (loc) => loc._id === pendingFilters.location
+                      )?.name || "Location"}
                   </span>
                   <div className="flex items-center gap-2">
                     {pendingFilters.location !== "All" && (
@@ -317,7 +304,7 @@ const ProjectsList = ({
                       alt="arrowDown"
                       width={15}
                       height={15}
-                      className="w-[15px] h-[15px] cursor-pointer transition-opacity duration-300 hover:opacity-60"
+                      className="w-[15px] h-[15px] cursor-pointer transition-opacity duration-300 hover:opacity-60 dark:invert-100 dark:hover:invert-80"
                     />
                   </div>
                 </Listbox.Button>
@@ -326,8 +313,7 @@ const ProjectsList = ({
                     key="All"
                     value="All"
                     className={({ active }) =>
-                      `cursor-pointer select-none px-3 py-2 text-sm rounded-sm ${
-                        active ? "bg-primary text-white" : "text-para-color"
+                      `cursor-pointer select-none px-3 py-2 text-sm rounded-sm ${active ? "bg-primary text-white" : "text-para-color"
                       }`
                     }
                   >
@@ -338,8 +324,7 @@ const ProjectsList = ({
                       key={option._id}
                       value={option._id}
                       className={({ active }) =>
-                        `cursor-pointer select-none px-3 py-2 text-sm rounded-sm ${
-                          active ? "bg-primary text-white" : "text-para-color"
+                        `cursor-pointer select-none px-3 py-2 text-sm rounded-sm ${active ? "bg-primary text-white" : "text-para-color"
                         }`
                       }
                     >
@@ -358,7 +343,7 @@ const ProjectsList = ({
               }
             >
               <div className="relative">
-                <Listbox.Button className="flex w-full items-center justify-between border-b border-sm-gray pb-1 text-para-color text-lg font-light capitalize min-w-[140px] 2xl:max-w-[220px]">
+                <Listbox.Button className="flex w-full items-center justify-between border-b border-sm-gray dark:border-white/50 pb-1 text-para-color dark:text-white/70 text-lg font-light capitalize min-w-[140px] 2xl:max-w-[220px]">
                   <span className="truncate">
                     {pendingFilters.status === "All"
                       ? "Status"
@@ -388,13 +373,8 @@ const ProjectsList = ({
                         &times;
                       </span>
                     )}
-                    <Image
-                      src={"/assets/img/projects/downArrow.svg"}
-                      alt="arrowDown"
-                      width={15}
-                      height={15}
-                      className="w-[15px] h-[15px] cursor-pointer transition-opacity duration-300 hover:opacity-60"
-                    />
+                    <Image src={"/assets/img/projects/downArrow.svg"} alt="arrowDown" width={15} height={15} 
+                    className="w-[15px] h-[15px] cursor-pointer transition-opacity duration-300 hover:opacity-60 dark:invert-100 dark:hover:invert-80" />
                   </div>
                 </Listbox.Button>
                 <Listbox.Options className="absolute mt-1 w-full bg-white border border-sm-gray rounded-md z-50">
@@ -402,8 +382,7 @@ const ProjectsList = ({
                     key="All"
                     value="All"
                     className={({ active }) =>
-                      `cursor-pointer select-none px-3 py-2 text-sm rounded-sm ${
-                        active ? "bg-primary text-white" : "text-para-color"
+                      `cursor-pointer select-none px-3 py-2 text-sm rounded-sm ${active ? "bg-primary text-white" : "text-para-color"
                       }`
                     }
                   >
@@ -414,8 +393,7 @@ const ProjectsList = ({
                       key={option.value}
                       value={option.value}
                       className={({ active }) =>
-                        `cursor-pointer select-none px-3 py-2 text-sm rounded-sm ${
-                          active ? "bg-primary text-white" : "text-para-color"
+                        `cursor-pointer select-none px-3 py-2 text-sm rounded-sm ${active ? "bg-primary text-white" : "text-para-color"
                         }`
                       }
                     >

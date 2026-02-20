@@ -11,7 +11,7 @@ import { moveUp } from "../../components/motionVarients";
 
 type FormData = z.infer<typeof jobApplicationSchema>;
 
-const JobApplicationForm = ({title}: {title: string}) => {
+const JobApplicationForm = ({ title }: { title: string }) => {
   const {
     register,
     handleSubmit,
@@ -63,7 +63,7 @@ const JobApplicationForm = ({title}: {title: string}) => {
                 {...register("firstName")}
                 type="text"
                 placeholder="First Name"
-                className="w-full px-0 py-4 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:placeholder-white transition-colors duration-300"
+                className="w-full px-0 py-4 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:placeholder-white transition-colors duration-300"
               />
               {errors.firstName && (
                 <p className="text-red-500 text-sm">
@@ -77,7 +77,7 @@ const JobApplicationForm = ({title}: {title: string}) => {
                 {...register("lastName")}
                 type="text"
                 placeholder="Last Name"
-                className="w-full px-0 py-4 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:placeholder-white transition-colors duration-300"
+                className="w-full px-0 py-4 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:placeholder-white transition-colors duration-300"
               />
               {errors.lastName && (
                 <p className="text-red-500 text-sm">
@@ -100,7 +100,7 @@ const JobApplicationForm = ({title}: {title: string}) => {
                 {...register("email")}
                 type="email"
                 placeholder="Email"
-                className="w-full px-0 py-4 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:placeholder-white transition-colors duration-300"
+                className="w-full px-0 py-4 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:placeholder-white transition-colors duration-300"
               />
               {errors.email && (
                 <p className="text-red-500 text-sm">{errors.email.message}</p>
@@ -112,7 +112,7 @@ const JobApplicationForm = ({title}: {title: string}) => {
                 {...register("phoneNumber")}
                 type="tel"
                 placeholder="Phone Number"
-                className="w-full px-0 py-4 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:placeholder-white transition-colors duration-300"
+                className="w-full px-0 py-4 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:placeholder-white transition-colors duration-300"
               />
               {errors.phoneNumber && (
                 <p className="text-red-500 text-sm">
@@ -135,7 +135,7 @@ const JobApplicationForm = ({title}: {title: string}) => {
                 {...register("nationality")}
                 type="text"
                 placeholder="Nationality"
-                className="w-full px-0 py-4 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:placeholder-white transition-colors duration-300"
+                className="w-full px-0 py-4 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:placeholder-white transition-colors duration-300"
               />
               {errors.nationality && (
                 <p className="text-red-500 text-sm">
@@ -149,7 +149,7 @@ const JobApplicationForm = ({title}: {title: string}) => {
                 {...register("hasConstructionExperience")}
                 type="text"
                 placeholder="Current Location"
-                className="w-full px-0 py-4 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:placeholder-white transition-colors duration-300"
+                className="w-full px-0 py-4 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:placeholder-white transition-colors duration-300"
               />
               {errors.hasConstructionExperience && (
                 <p className="text-red-500 text-sm">
@@ -169,7 +169,7 @@ const JobApplicationForm = ({title}: {title: string}) => {
           >
             {/* Cover Letter */}
             <div className="space-y-2">
-              <div className="relative border-b border-smgray focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none transition-colors duration-300">
+              <div className="relative border-b dark:border-white/20 focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none transition-colors duration-300">
                 <input
                   {...register("coverLetter", {
                     required: "Cover letter is required",
@@ -235,7 +235,7 @@ const JobApplicationForm = ({title}: {title: string}) => {
 
             {/* Resume */}
             <div className="space-y-2">
-              <div className="relative border-b border-smgray focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none transition-colors duration-300">
+              <div className="relative border-b dark:border-white/20 focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none transition-colors duration-300">
                 <input
                   {...register("resume", {
                     required: "Resume is required",

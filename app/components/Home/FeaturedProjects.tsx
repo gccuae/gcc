@@ -63,7 +63,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
     <section className="bg-light-white dark:bg-light-dark overflow-hidden">
       <div>
         <div className="container" ref={containerRef}>
-          <div className="md:flex justify-between items-center py-37px border-b border-[#C2C2C2]">
+          <div className="md:flex justify-between items-center py-37px border-b border-[#C2C2C2] dark:border-white/20">
             <motion.h2
               className="text-5xl font-normal text-black dark:text-white mb-8 md:mb-0 leading-[1.147058823529412]"
               variants={moveUp(0)}
@@ -79,62 +79,25 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true, amount: 0.2 }}
-                className="flex border border-foreground dark:border-white rounded-full "
+                className="flex border border-foreground dark:border-white/20 rounded-full "
               >
                 <div
                   ref={prevRef}
-                  className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] border-r border-foreground dark:border-white rounded-tl-full rounded-bl-full group  cursor-pointer hover:bg-accent  transition-all duration-300"
+                  className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] border-r border-foreground dark:border-white/20 rounded-tl-full rounded-bl-full group  cursor-pointer hover:bg-accent  transition-all duration-300"
                 >
-                  <svg
-                    width="10"
-                    height="16"
-                    viewBox="0 0 10 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]"
-                  >
-                    <path
-                      d="M8.33594 1.33154L1.66731 8.00017L8.33594 14.6688"
-                      stroke="#7AC142"
-                      className="group-hover:stroke-white transition-all duration-300"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    />
+                  <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]" >
+                    <path d="M8.33594 1.33154L1.66731 8.00017L8.33594 14.6688" stroke="#7AC142" className="group-hover:stroke-white transition-all duration-300" strokeWidth="2" strokeLinecap="round" />
                   </svg>
                 </div>
-                <div
-                  ref={nextRef}
-                  className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] rounded-tr-full rounded-br-full cursor-pointer group hover:bg-accent dark:hover:bg-white transition-all duration-300"
+                <div ref={nextRef} className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] rounded-tr-full rounded-br-full cursor-pointer group hover:bg-accent dark:hover:bg-secondary transition-all duration-300"
                 >
-                  <svg
-                    width="10"
-                    height="16"
-                    viewBox="0 0 10 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]"
-                  >
-                    <path
-                      d="M1.66406 1.33154L8.33269 8.00017L1.66406 14.6688"
-                      stroke="#7AC142"
-                      className="group-hover:stroke-white transition-all duration-300"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    />
+                  <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]" >
+                    <path d="M1.66406 1.33154L8.33269 8.00017L1.66406 14.6688" stroke="#7AC142" className="group-hover:stroke-white transition-all duration-300" strokeWidth="2" strokeLinecap="round" />
                   </svg>
                 </div>
               </motion.div>
-              <motion.div
-                variants={moveUp(1)}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, amount: 0.2 }}
-              >
-                <BtnPrimary
-                  link={"/projects"}
-                  text="Explore Projects"
-                  bgtrans={true}
-                />
+              <motion.div variants={moveUp(1)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} >
+                <BtnPrimary link={"/projects"} text="Explore Projects" bgtrans={true} />
               </motion.div>
             </div>
           </div>
@@ -142,7 +105,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
         <div className="onside-margin">
           <div className="container">
             <div className="flex md:flex-row flex-col-reverse">
-              <div className="py-8 md:py-10 md:w-[31.5%] w-full md:border-r border-[#C2C2C2]">
+              <div className="py-8 md:py-10 md:w-[31.5%] w-full md:border-r border-[#C2C2C2] dark:border-white/20">
                 <Swiper
                   modules={[Autoplay, Navigation]}
                   navigation={{
@@ -174,7 +137,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                             initial="hidden"
                             whileInView="show"
                             viewport={{ once: true, amount: 0.2 }}
-                            className="pb-4 mb-6 border-b border-[#C2C2C2] group"
+                            className="pb-4 mb-6 border-b border-[#C2C2C2] dark:border-white/20 group"
                           >
                             <p className="text-[#979797] text-base leading-[1.5625] font-light uppercase  dark:text-white/64 group-hover:text-primary transition-all duration-300">
                               Location
@@ -188,7 +151,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                             initial="hidden"
                             whileInView="show"
                             viewport={{ once: true, amount: 0.2 }}
-                            className="pb-4 mb-6 border-b border-[#C2C2C2] group"
+                            className="pb-4 mb-6 border-b border-[#C2C2C2] dark:border-white/20 group"
                           >
                             <p className="text-[#979797] text-base leading-[1.5625] font-light uppercase  dark:text-white/64 group-hover:text-primary transition-all duration-300">
                               Client

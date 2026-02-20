@@ -45,7 +45,7 @@ const JobApplicationModalForm = ({ onSuccess }: Props) => {
         Apply for Site Engineer Position
       </h2>
 
-      <div className="w-full border-t-[1px] border-smgray mb-[36px]" />
+      <div className="w-full border-t-[1px] dark:border-white/20 mb-[36px]" />
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-[37px]">
         {/* First Row */}
@@ -55,7 +55,7 @@ const JobApplicationModalForm = ({ onSuccess }: Props) => {
               {...register("firstName")}
               type="text"
               placeholder="First Name"
-              className="w-full px-0 py-3 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-foreground dark:placeholder-white"
+              className="w-full px-0 py-3 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-foreground dark:placeholder-white"
             />
             {errors.firstName && (
               <p className="text-primary text-sm">{errors.firstName.message}</p>
@@ -67,7 +67,7 @@ const JobApplicationModalForm = ({ onSuccess }: Props) => {
               {...register("lastName")}
               type="text"
               placeholder="Last Name"
-              className="w-full px-0 py-3 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-foreground dark:placeholder-white"
+              className="w-full px-0 py-3 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-foreground dark:placeholder-white"
             />
             {errors.lastName && (
               <p className="text-primary text-sm">{errors.lastName.message}</p>
@@ -82,7 +82,7 @@ const JobApplicationModalForm = ({ onSuccess }: Props) => {
               {...register("email")}
               type="email"
               placeholder="Email"
-              className="w-full px-0 py-3 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-foreground dark:placeholder-white"
+              className="w-full px-0 py-3 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-foreground dark:placeholder-white"
             />
             {errors.email && (
               <p className="text-primary text-sm">{errors.email.message}</p>
@@ -94,7 +94,7 @@ const JobApplicationModalForm = ({ onSuccess }: Props) => {
               {...register("phoneNumber")}
               type="tel"
               placeholder="Phone Number"
-              className="w-full px-0 py-3 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-foreground dark:placeholder-white"
+              className="w-full px-0 py-3 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-foreground dark:placeholder-white"
             />
             {errors.phoneNumber && (
               <p className="text-primary text-sm">
@@ -111,7 +111,7 @@ const JobApplicationModalForm = ({ onSuccess }: Props) => {
               {...register("nationality")}
               type="text"
               placeholder="Nationality"
-              className="w-full px-0 py-3 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-foreground dark:placeholder-white"
+              className="w-full px-0 py-3 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-foreground dark:placeholder-white"
             />
             {errors.nationality && (
               <p className="text-primary text-sm">
@@ -125,7 +125,7 @@ const JobApplicationModalForm = ({ onSuccess }: Props) => {
               {...register("hasConstructionExperience")}
               type="text"
               placeholder="Current Location"
-              className="w-full px-0 py-3 text-lg border-0 border-b border-smgray bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-foreground dark:placeholder-white"
+              className="w-full px-0 py-3 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-foreground dark:placeholder-white"
             />
             {errors.hasConstructionExperience && (
               <p className="text-primary text-sm">
@@ -139,7 +139,7 @@ const JobApplicationModalForm = ({ onSuccess }: Props) => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Cover Letter */}
           <div className="space-y-2">
-            <div className="relative border-b border-smgray hover:border-black dark:hover:border-white/50 transition-colors">
+            <div className="relative border-b dark:border-white/20 hover:border-black dark:hover:border-white/50 transition-colors">
               <input
                 {...register("coverLetter", {
                   required: "Cover letter is required",
@@ -187,7 +187,7 @@ const JobApplicationModalForm = ({ onSuccess }: Props) => {
 
           {/* Resume */}
           <div className="space-y-2">
-            <div className="relative border-b border-smgray hover:border-black dark:hover:border-white/50 transition-colors">
+            <div className="relative border-b dark:border-white/20 hover:border-black dark:hover:border-white/50 transition-colors">
               <input
                 {...register("resume", { required: "Resume is required" })}
                 type="file"

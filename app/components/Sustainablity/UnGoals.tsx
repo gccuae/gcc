@@ -125,7 +125,7 @@ const SectorSlider = ({
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.2 }}
                     transition={{ delay: index * 0.2, duration: 0.6 }}
-                    className="h-full border-t-1 border-r-1 border-smgray relative group md:pl-[15px] pr-[15px] xl:pr-0 max-md:mb-5"
+                    className="h-full border-t-1 border-r-1 dark:border-white/20 relative group md:pl-[15px] pr-[15px] xl:pr-0 max-md:mb-5"
                   >
                     <div className="absolute -top-1 left-0 w-full h-[6px] bg-transparent  group-hover:bg-primary transition-all duration-300 z-50"></div>
 

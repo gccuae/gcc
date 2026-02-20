@@ -75,7 +75,7 @@ const PageHeader = ({ title }: PageHeaderProps) => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="border-b border-smgray pb-5 xl:pb-10 pb-8 xl:pb-57px"
+          className="border-b dark:border-white/20 pb-5 xl:pb-10 pb-8 xl:pb-57px"
         >
           <div className="flex justify-between items-center">
             <motion.h1

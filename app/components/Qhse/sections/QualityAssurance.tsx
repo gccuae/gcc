@@ -29,13 +29,7 @@ const QualityAssurance = ({
           viewport={{ once: true }}
           className="w-full lg:w-[49%]"
         >
-          <Image
-            src={image}
-            alt="Quality Assurance"
-            width={705}
-            height={502}
-            className="object-cover w-full h-[402px] lg:h-[502px]"
-          />
+          <Image src={image} alt="Quality Assurance" width={705} height={502} className="object-cover w-full h-[402px] lg:h-[502px]" />
         </motion.div>
 
         {/* Right Content */}
@@ -66,10 +60,7 @@ const QualityAssurance = ({
 
       {/* Certifications */}
       <div className="container mx-auto flex justify-center mt-[23px] md:mt-[46px] items-center">
-        <div className="
-  grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4
-  divide-x divide-y divide-smgray border-t border-t-smgray
-">
+        <div className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 divide-x divide-y divide-smgray border-t border-t-smgray dark:divide-white/20 dark:border-white/20">
           {certifications.map((cert, index) => (
             <motion.div
               key={index}
@@ -77,7 +68,7 @@ const QualityAssurance = ({
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className={`flex flex-col items-center py-[11px] px-[20px] xl:px-[82px] last:border-r border-smgray first:border-l last:border-b ${index % 2 == 0 && "max-md:border-l"} ${index % 3 == 0 && "md:border-l lg:border-l-0"}`}
+              className={`flex flex-col items-center py-[11px] px-[20px] xl:px-[82px] last:border-r dark:border-white/20 first:border-l last:border-b ${index % 2 == 0 && "max-md:border-l"} ${index % 3 == 0 && "md:border-l lg:border-l-0"}`}
             >
               <Image
                 src={cert.image}

@@ -35,23 +35,14 @@ const Index = ({
 }) => {
   return (
     <>
-      <PageBnr
-        pageTitle={projects.data.pageTitle}
-        bannerImg={projects.data.banner}
-        bannerAlt={projects.data.bannerAlt}
-      />
+      <PageBnr pageTitle={projects.data.pageTitle} bannerImg={projects.data.banner} bannerAlt={projects.data.bannerAlt} />
       <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API as string}>
         {/* <ProjectList
           projects={projects}
           sectors={sectors}
           projectTypes={projectTypes}
         /> */}
-        <ProjectsList
-          data={projects.data}
-          sectorsData={sectors}
-          projectTypesData={projectTypes}
-          locationsData={locations}
-        />
+        <ProjectsList data={projects.data} sectorsData={sectors} projectTypesData={projectTypes} locationsData={locations} />
       </APIProvider>
     </>
   );

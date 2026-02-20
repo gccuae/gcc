@@ -27,9 +27,8 @@ const GalleryCard: React.FC<{
       return (
         <div key={index} className="relative flex last:-ml-2">
           <div
-            className={`w-8 h-8 xl:w-[50px] xl:h-[50px] rounded-full overflow-hidden border-1 border-white shadow-sm ${
-              index % 2 === 0 ? "" : "-ml-2"
-            }`}
+            className={`w-8 h-8 xl:w-[50px] xl:h-[50px] rounded-full overflow-hidden border-1 border-white shadow-sm ${index % 2 === 0 ? "" : "-ml-2"
+              }`}
           >
             <Image
               width={50}
@@ -52,7 +51,7 @@ const GalleryCard: React.FC<{
   };
 
   return (
-    <div className="overflow-hidden transition-transform group border-b border-smgray hover:border-primary transition-colors duration-300">
+    <div className="overflow-hidden transition-transform group border-b dark:border-white/20 hover:border-primary transition-colors duration-300">
       {/* Header Image */}
       <div
         className="relative h-48 xl:h-[475px] overflow-hidden cursor-pointer"
@@ -76,9 +75,8 @@ const GalleryCard: React.FC<{
               alt="Expand"
               width={30}
               height={30}
-              className={`w-full h-full xl:w-[29.99px] xl:h-[29.99px] object-contain transition-transform duration-300 ${
-                isHovered ? "scale-110" : ""
-              }`}
+              className={`w-full h-full xl:w-[29.99px] xl:h-[29.99px] object-contain transition-transform duration-300 ${isHovered ? "scale-110" : ""
+                }`}
             />
           </div>
         </div>
@@ -97,7 +95,7 @@ const GalleryCard: React.FC<{
   );
 };
 
-const Gallery: React.FC<{data: GalleryType}> = ({data}) => {
+const Gallery: React.FC<{ data: GalleryType }> = ({ data }) => {
   const [selectedItem, setSelectedItem] = useState<GalleryType['items'][number] | null>(null);
   const [visibleCount, setVisibleCount] = useState(8);
   const sectionRef = useRef<HTMLElement | null>(null);

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { moveLeft, moveUp } from "../motionVarients";
 import { contactType } from "./type";
 
-const ContactInfo = ({data}: {data: contactType["secondSection"]}) => {
+const ContactInfo = ({ data }: { data: contactType["secondSection"] }) => {
   return (
     <section className="py-57px bg-light-white dark:bg-black overflow-hidden">
       <div className="container">
@@ -42,7 +42,7 @@ const ContactInfo = ({data}: {data: contactType["secondSection"]}) => {
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true }}
-                className="text-2xl leading-lh-text32 text-black dark:text-white border-b border-smgray pb-4 xl:pb-27px"
+                className="text-2xl leading-lh-text32 text-black dark:text-white border-b dark:border-white/20 pb-4 xl:pb-27px"
               >
                 {data.addressTitle}
               </motion.h3>
@@ -74,12 +74,12 @@ const ContactInfo = ({data}: {data: contactType["secondSection"]}) => {
                       Location
                     </h4>
                     <div>
-                      {data.location.split("\n").map((item:string,index:number)=>(
+                      {data.location.split("\n").map((item: string, index: number) => (
                         <p key={index} className="text-lg leading-lh-text19 text-black dark:text-white">
-                      {item}
-                    </p>
+                          {item}
+                        </p>
                       ))}
-                    
+
                     </div>
                   </motion.div>
                 </div>

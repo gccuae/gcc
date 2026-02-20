@@ -17,7 +17,7 @@ const ViMiVa = ({ data }: ViMiVaProps) => {
   return (
     <section className="py-57px xl:py-57px dark:bg-black">
       <div className="container">
-        {/* <div className="border-b border-smgray  pb-8 xl:pb-57px"> */}
+        {/* <div className="border-b dark:border-white/20  pb-8 xl:pb-57px"> */}
         <div className="pb-8 xl:pb-57px">
           <motion.h2
             variants={moveUp()}
@@ -46,7 +46,7 @@ const ViMiVa = ({ data }: ViMiVaProps) => {
               whileInView="show"
               viewport={{ once: true }}
               key={index}
-              className="bg-white dark:bg-black  flex flex-col gap-5 xl:border-r border-smgray xl:last:border-r-0 xl:px-8"
+              className="bg-white dark:bg-black  flex flex-col gap-5 xl:border-r dark:border-white/20 xl:last:border-r-0 xl:px-8"
             >
               <div>
                 <Image

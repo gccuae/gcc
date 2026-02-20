@@ -41,7 +41,7 @@ const HealthandSafety = ({ title, description, measures }: Props) => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid lg:grid-cols-4 border border-smgray overflow-hidden"
+          className="grid lg:grid-cols-4 border dark:border-white/20 overflow-hidden"
         >
           {measures.map((item, index) => {
             const isLastCol = (index + 1) % 4 === 0; // last col in lg grid
@@ -57,10 +57,9 @@ const HealthandSafety = ({ title, description, measures }: Props) => {
                 className={`
           p-[20px] lg:p-[32px] xl:p-[35px] 2xl:p-[40px]
           hover:bg-primary hover:text-white transition-colors duration-300 group
-          border-b lg:border-b-0 border-smgray lg:border-b-${
-            isLastRow ? "0" : "smgray"
-          } 
-          ${!isLastCol ? "lg:border-r border-smgray" : ""}
+          border-b lg:border-b-0 dark:border-white/20 lg:border-b-${isLastRow ? "0" : "smgray"
+                  } 
+          ${!isLastCol ? "lg:border-r dark:border-white/20" : ""}
         `}
               >
                 <div>

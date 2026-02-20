@@ -40,7 +40,7 @@ const BlogList = ({ data }: { data: BlogData }) => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="hidden md:flex relative border-t border-gray-200 space-x-8 xl:space-x-20 overflow-x-auto"
+          className="hidden md:flex relative border-t border-gray-200 dark:border-white/50 space-x-8 xl:space-x-20 overflow-x-auto"
         >
           {categories.map((cat, idx) => (
             <motion.button
@@ -53,7 +53,7 @@ const BlogList = ({ data }: { data: BlogData }) => {
               onClick={() => setActiveTab(idx)}
               className={`cursor-pointer py-4 xl:py-[27px] text-md lg:text-xl leading-normal font-medium relative ${activeTab === idx
                   ? "text-para-color dark:text-white"
-                  : "text-para-color hover:text-black dark:hover:text-white font-normal transition-colors duration-300"
+                  : "text-para-color dark:text-white/70 hover:text-black dark:hover:text-white font-normal transition-colors duration-300"
                 }`}
             >
               {cat}

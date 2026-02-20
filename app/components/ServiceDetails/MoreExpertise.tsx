@@ -19,7 +19,7 @@ const MoreExpertise = ({ allServices, exclude }: MoreExpertiseProps) => {
   return (
     <section className="py-57px bg-light-white dark:bg-black">
       <div className="container">
-        <div className="flex justify-between items-center pb-8 xl:pb-47px mb-8 xl:mb-47px border-b border-smgray">
+        <div className="flex justify-between items-center pb-8 xl:pb-47px mb-8 xl:mb-47px border-b dark:border-white/20">
           <motion.h2
             variants={moveUp()}
             initial="hidden"

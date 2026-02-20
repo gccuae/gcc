@@ -104,9 +104,10 @@ const ContactForm: React.FC = () => {
               type="text"
               id="lastName"
               placeholder="Enter Last Name"
-              className={`w-full pb-3 border-b-2 transition-colors duration-200 focus:outline-none placeholder:text-lg placeholder:text-[#979797] dark:placeholder:text-white placeholder:font-normal placeholder:leading-lh-base ${
+              className={`w-full pb-3 border-b-2 transition-colors duration-200
+                bg-transparent focus:bg-transparent  dark:bg-transparent  dark:focus:bg-black focus:outline-none placeholder:text-lg placeholder:text-[#979797] dark:placeholder:text-white placeholder:font-normal placeholder:leading-lh-base ${
                 errors.lastName
-                  ? "border-red-500 bg-red-50"
+                  ? "border-red-500 "
                   : "border-[#C2C2C2]/35 focus:border-black"
               }`}
               {...register("lastName", {
@@ -149,7 +150,7 @@ const ContactForm: React.FC = () => {
               placeholder="Enter Email Id"
               className={`w-full pb-3 border-b-2 transition-colors duration-200 focus:outline-none placeholder:text-lg placeholder:text-[#979797] dark:placeholder:text-white placeholder:font-normal placeholder:leading-lh-base ${
                 errors.email
-                  ? "border-red-500 bg-red-50"
+                  ? "border-red-500"
                   : "border-[#C2C2C2]/35 focus:border-black"
               }`}
               {...register("email", {
@@ -185,7 +186,7 @@ const ContactForm: React.FC = () => {
               placeholder="Enter Mobile/Phone Number"
               className={`w-full pb-3 border-b-2 transition-colors duration-200 focus:outline-none placeholder:text-lg placeholder:text-[#979797] dark:placeholder:text-white placeholder:font-normal placeholder:leading-lh-base ${
                 errors.contact
-                  ? "border-red-500 bg-red-50"
+                  ? "border-red-500 "
                   : "border-[#C2C2C2]/35 focus:border-black"
               }`}
               {...register("contact", {
@@ -228,7 +229,7 @@ const ContactForm: React.FC = () => {
             maxLength={1000}
             className={`w-full pb-3 border-b-2 transition-colors duration-200 focus:outline-none resize-vertical placeholder:text-lg placeholder:text-[#979797] dark:placeholder:text-white placeholder:font-normal placeholder:leading-lh-base ${
               errors.message
-                ? "border-red-500 bg-red-50"
+                ? "border-red-500 "
                 : "border-[#C2C2C2]/35 focus:border-black"
             }`}
             {...register("message", {

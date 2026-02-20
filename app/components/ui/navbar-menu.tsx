@@ -38,14 +38,13 @@ export const MenuItem = ({
             className="cursor-pointer hover:text-secondary text-black dark:text-white  uppercase transition-all duration-500 ease-in-out">
             {/* <span className="flex gap-3 text-base leading-[1.82] text-[13px] xl:text-[15px]  2xl:text-base hover:text-primary transition-all duration-300 font-normal">{item}</span> */}
             <span className="flex items-center gap-2 text-base leading-[1.82] text-[13px] xl:text-[15px] 2xl:text-base hover:text-primary transition-all duration-300 font-normal">
-  {item}
-
-  {!noMenu && (
-    <RiArrowDownSLine
-      className="text-[20px]"
-    />
-  )}
-</span>
+              {item}
+              {!noMenu && (
+                <RiArrowDownSLine
+                  className="text-[20px] dark:text-white transition-transform duration-300"
+                />
+              )}
+            </span>
 
           </motion.p>
         </Link>
@@ -55,7 +54,7 @@ export const MenuItem = ({
         <motion.div initial={{ opacity: 0, scale: 0.85, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }}>
           {active === item && (
             <div className="">
-              <motion.div layoutId="active" 
+              <motion.div layoutId="active"
                 className="bg-white absolute dark:bg-black backdrop-blur-sm  overflow-hidden rounded-[8px] dark:border-white/[0.2] shadow-xl">
                 <motion.div layout className="w-max h-full px-3 ">
                   {children}
@@ -146,31 +145,31 @@ export const Menu = ({
     e.preventDefault();
     try {
       if (searchQuery.trim()) {
-      setLoading(true);
-      console.log('Searching for:', searchQuery);
-      // Add your search logic here
-      const res = await fetch("/api/search", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ searchQuery }),
-      });
+        setLoading(true);
+        console.log('Searching for:', searchQuery);
+        // Add your search logic here
+        const res = await fetch("/api/search", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ searchQuery }),
+        });
 
-      const data = await res.json();
+        const data = await res.json();
 
-      if (data.success) {
-        console.log(data)
-        setResult(data.data);
-        setSearchQuery("")
+        if (data.success) {
+          console.log(data)
+          setResult(data.data);
+          setSearchQuery("")
+        }
       }
-    }
     } catch (error) {
       console.log(error)
-    }finally{
+    } finally {
       setLoading(false)
     }
-    
+
   };
 
 
@@ -335,84 +334,84 @@ export const Menu = ({
               </div>
 
               <div className="mt-5 px-4 flex flex-col gap-5 text-black h-[300px]"> {/* 👈 fixed height */}
-  {result && result.length > 0 ? (
-    <div className="text-md font-semibold">Results</div>
-  ) : null}
+                {result && result.length > 0 ? (
+                  <div className="text-md font-semibold">Results</div>
+                ) : null}
 
-  {loading ? (
-    <div className="flex justify-center items-center h-full">
-      <div className="loader">
-        <div className="bar1"></div>
-        <div className="bar2"></div>
-        <div className="bar3"></div>
-        <div className="bar4"></div>
-        <div className="bar5"></div>
-        <div className="bar6"></div>
-        <div className="bar7"></div>
-        <div className="bar8"></div>
-        <div className="bar9"></div>
-        <div className="bar10"></div>
-        <div className="bar11"></div>
-        <div className="bar12"></div>
-      </div>
-    </div>
-  ) : (
-    <div className="flex-1 overflow-hidden h-full">
-      {/* 👇 scrollable area */}
-      <ul className="grid grid-cols-3 list-disc gap-5 text-md px-4 max-h-full overflow-y-auto pr-2 text-black gap-x-10">
-        {result && result.length > 0 ? (
-          result.map(
-            (
-              item: {
-                type: string;
-                project?: { title: string; slug: string };
-                item?: { title: string; slug: string };
-              },
-              index: number
-            ) => {
-              if (item.type === "project") {
-                return (
-                  <Link
-                    href={`/projects/${item.item?.slug}`}
-                    key={index}
-                    className="cursor-pointer"
-                    onClick={() => {setResult(null);setIsOpen(false)}}
-                  >
-                    <li>{item.item?.title || "Untitled Project"}</li>
-                  </Link>
-                );
-              } else if (item.type === "news") {
-                return (
-                  <Link
-                    href={`/news/${item.item?.slug}`}
-                    key={index}
-                    className="cursor-pointer"
-                    onClick={() => {setResult(null);setIsOpen(false)}}
-                  >
-                    <li>{item.item?.title || "Untitled"}</li>
-                  </Link>
-                );
-              } else if (item.type === "expertise") {
-                return (
-                  <Link
-                    href={`/expertise/${item.item?.slug}`}
-                    key={index}
-                    className="cursor-pointer"
-                    onClick={() => setResult(null)}
-                  >
-                    <li>{item.item?.title || "Untitled Expertise"}</li>
-                  </Link>
-                );
-              }
-            }
-          )
-        ) : result?.length === 0 ? (
-          <div>No Results</div>
-        ) : null}
-      </ul>
-    </div>
-  )}
-</div>
+                {loading ? (
+                  <div className="flex justify-center items-center h-full">
+                    <div className="loader">
+                      <div className="bar1"></div>
+                      <div className="bar2"></div>
+                      <div className="bar3"></div>
+                      <div className="bar4"></div>
+                      <div className="bar5"></div>
+                      <div className="bar6"></div>
+                      <div className="bar7"></div>
+                      <div className="bar8"></div>
+                      <div className="bar9"></div>
+                      <div className="bar10"></div>
+                      <div className="bar11"></div>
+                      <div className="bar12"></div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex-1 overflow-hidden h-full">
+                    {/* 👇 scrollable area */}
+                    <ul className="grid grid-cols-3 list-disc gap-5 text-md px-4 max-h-full overflow-y-auto pr-2 text-black gap-x-10">
+                      {result && result.length > 0 ? (
+                        result.map(
+                          (
+                            item: {
+                              type: string;
+                              project?: { title: string; slug: string };
+                              item?: { title: string; slug: string };
+                            },
+                            index: number
+                          ) => {
+                            if (item.type === "project") {
+                              return (
+                                <Link
+                                  href={`/projects/${item.item?.slug}`}
+                                  key={index}
+                                  className="cursor-pointer"
+                                  onClick={() => { setResult(null); setIsOpen(false) }}
+                                >
+                                  <li>{item.item?.title || "Untitled Project"}</li>
+                                </Link>
+                              );
+                            } else if (item.type === "news") {
+                              return (
+                                <Link
+                                  href={`/news/${item.item?.slug}`}
+                                  key={index}
+                                  className="cursor-pointer"
+                                  onClick={() => { setResult(null); setIsOpen(false) }}
+                                >
+                                  <li>{item.item?.title || "Untitled"}</li>
+                                </Link>
+                              );
+                            } else if (item.type === "expertise") {
+                              return (
+                                <Link
+                                  href={`/expertise/${item.item?.slug}`}
+                                  key={index}
+                                  className="cursor-pointer"
+                                  onClick={() => setResult(null)}
+                                >
+                                  <li>{item.item?.title || "Untitled Expertise"}</li>
+                                </Link>
+                              );
+                            }
+                          }
+                        )
+                      ) : result?.length === 0 ? (
+                        <div>No Results</div>
+                      ) : null}
+                    </ul>
+                  </div>
+                )}
+              </div>
 
 
               {/* Recent Searches or Suggestions */}
@@ -434,7 +433,7 @@ export const Menu = ({
                 </div>
               </div> */}
 
-              
+
 
 
             </div>

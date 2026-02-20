@@ -50,7 +50,7 @@ const NewsBlock = ({ data }: NewsBlockProps) => {
     >
       <div className="reveal-overlay absolute inset-0 bg-white z-20"></div>
       <div className="container">
-        <div className="flex justify-between items-center pb-27px mb-37px border-b border-smgray">
+        <div className="flex justify-between items-center pb-27px mb-37px border-b dark:border-white/20 dark:border-white/20">
           <motion.h2
             variants={moveUp(0)}
             initial="hidden"

@@ -21,7 +21,7 @@ const MoreBlog = ({ category, items }: { category: string, items: BlogData }) =>
           variants={moveUp()}
           initial="hidden"
           whileInView="show"
-          className="flex justify-between items-center pb-5 md:pb-8 xl:pb-[45px] mb-8 xl:mb-15 border-b border-smgray"
+          className="flex justify-between items-center pb-5 md:pb-8 xl:pb-[45px] mb-8 xl:mb-15 border-b dark:border-white/20"
         >
           <h2 className="text-5xl leading-[1.147058823529412] text-black dark:text-white">
             More Blog

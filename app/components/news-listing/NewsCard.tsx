@@ -69,7 +69,7 @@ const NewsCard = ({
   return (
     <div
       key={index}
-      className="relative border-b border-smgray hover:border-primary pb-27px group transition-all duration-300"
+      className="relative border-b dark:border-white/20 hover:border-primary pb-27px group transition-all duration-300"
     >
       <div
         className="relative p-3 xl:p-5 h-[300px] xl:h-[486px] overflow-hidden group/img"
@@ -134,11 +134,11 @@ const NewsCard = ({
           <p className="text-lg leading-lh-text19 font-light dark:text-white">
             {item.date
               ? new Date(item.date)
-                  .toLocaleDateString("en-GB")
-                  .replace(/\//g, "-")
+                .toLocaleDateString("en-GB")
+                .replace(/\//g, "-")
               : new Date(item.createdAt)
-                  .toLocaleDateString("en-GB")
-                  .replace(/\//g, "-")}
+                .toLocaleDateString("en-GB")
+                .replace(/\//g, "-")}
           </p>
         </div>
         <h3 className="text-xl md:text-2xl leading-normal font-normal mb-1 md:mb-3 xl:mb-[12px] text-black dark:text-white">

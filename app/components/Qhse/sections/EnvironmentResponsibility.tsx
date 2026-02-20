@@ -57,7 +57,7 @@ const EnvironmentalResponsibility = ({
               viewport={{ once: true }}
               onClick={() => setSelectedItem(item)}
               key={index}
-              className="group flex flex-col overflow-hidden md:border-b border-gray-200 hover:border-primary transition-colors duration-300 pb-27px xl:pb-[31px]"
+              className="group flex flex-col overflow-hidden md:border-b border-gray-200 dark:border-white/50 hover:border-primary transition-colors duration-300 pb-27px xl:pb-[31px]"
             >
               {/* Thumbnail */}
               <div className="relative overflow-hidden">
