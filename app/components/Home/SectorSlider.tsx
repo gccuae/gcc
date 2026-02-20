@@ -121,7 +121,7 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, amount: 0.2 }}
-                    className="flex flex-col justify-between  xl:max-h-[30em] overflow-hidden z-40 relative group"
+                    className="flex flex-col justify-between  xl:max-h-[35em] overflow-hidden z-40 relative group"
                   >
                     <div className="flex items-center justify-between mb-3 xl:mb-[25px] xl:pl-4 xl:pr-3 pt-6 xl:pt-[37px] group-hover:xl:pl-[37px]  group-hover:xl:pt-[35px] group-hover:xl:pr-[35px] group-first:pl-0 transition-all duration-300">
                       <div className="flex items-center gap-2 xl:gap-4">
@@ -132,7 +132,7 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
                           height={200}
                           className="w-auto h-15 object-contain"
                         />
-                        <h3 className="xl:text-2xl text-xl leading-[1.5625] font-normal transition-all duration-300">
+                        <h3 className="xl:text-2xl text-xl leading-[1.2] font-normal transition-all duration-300 min-h-[50px] lg:min-h-[77px] flex items-center">
                           {item.title}
                         </h3>
                       </div>
