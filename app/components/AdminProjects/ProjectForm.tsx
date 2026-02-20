@@ -322,7 +322,6 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 <Controller
                   name="banner"
                   control={control}
-                  rules={{ required: "Banner is required" }}
                   render={({ field }) => (
                     <ImageUploader
                       value={field.value}
@@ -349,7 +348,6 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 <Controller
                   name="thumbnail"
                   control={control}
-                  rules={{ required: "Thumbnail is required" }}
                   render={({ field }) => (
                     <ImageUploader
                       value={field.value}
@@ -567,9 +565,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 <Input
                   type="text"
                   placeholder="Completion Date"
-                  {...register("secondSection.completionDate", {
-                    required: "Completion Date is required",
-                  })}
+                  {...register("secondSection.completionDate")}
                 />
                 {errors.secondSection?.completionDate && (
                   <p className="text-red-500">
@@ -776,7 +772,6 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                           <Controller
                             name={`thirdSection.items.${index}.image`}
                             control={control}
-                            rules={{ required: "Image is required" }}
                             render={({ field }) => (
                               <ImageUploader
                                 value={field.value}

@@ -76,6 +76,7 @@ const ProjectCard = ({ item, index }: { item: Project; index: number }) => {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
             >
+                {item.thumbnail ?
                 <Image
                     src={item.thumbnail}
                     alt={item.thumbnailAlt}
@@ -83,6 +84,9 @@ const ProjectCard = ({ item, index }: { item: Project; index: number }) => {
                     height={1000}
                     className="w-full h-full object-cover absolute top-0 left-0   group-hover:blur-[4px] group-hover:backdrop-blur-xl transition-all duration-300"
                 />
+                :
+                <div className="w-full h-full object-cover absolute top-0 left-0   group-hover:blur-[4px] group-hover:backdrop-blur-xl transition-all duration-300 bg-gray-200 flex items-center justify-center">350*350</div>
+}
                 <div className="absolute bottom-0 left-0 w-full h-0 bg-black opacity-25 group-hover:h-full transition-all duration-300"></div>
                 <div
                     className="hidden lg:block absolute pointer-events-none z-20 transition-opacity duration-300 ease-out"

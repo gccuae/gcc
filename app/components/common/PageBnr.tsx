@@ -19,6 +19,7 @@ const PageBnr = ({ pageTitle, bannerImg, bannerAlt }: PageBnrProps) => {
         transition={{ duration: 0.4, ease: "easeInOut" }}
         className="absolute top-0 left-0 w-full h-full z-0"
       >
+        { bannerImg ?
         <Image
           src={bannerImg}
           alt={bannerAlt || ""}
@@ -26,6 +27,9 @@ const PageBnr = ({ pageTitle, bannerImg, bannerAlt }: PageBnrProps) => {
           height={800}
           className="w-full h-full object-cover"
         />
+        :
+        <div className="h-full w-full flex text-2xl bg-gray-200 text-black">1920*1000</div>
+}
       </motion.div>
       <div className="absolute top-0 left-0 w-full h-full z-0 bg-gradient-to-b from-black/80 from-0% via-black/55 via-51% to-black/85 to-100%"></div>
       <div className="container relative z-10">
