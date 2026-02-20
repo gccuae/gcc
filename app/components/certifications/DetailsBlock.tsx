@@ -66,7 +66,7 @@ const DetailsBlock: React.FC<DetailsBlockProps> = ({
 
       {/* Document Details */}
       <div className="pt-4 xl:pt-[19.74px]">
-        <div className="flex align-items-end justify-between mb-4 pb-3 xl:pb-[22.9px] group border-b border-smgray hover:border-primary transition-colors duration-300">
+        <div className="flex align-items-end justify-between mb-4 pb-3 xl:pb-[22.9px] group border-b dark:border-white/20 hover:border-primary transition-colors duration-300">
           <div>
             <h3 className="text-xl leading-normal font-normal text-black dark:text-white mb-2 xl:mb-[11.22px]">
               {selectedItem.documentTitle}

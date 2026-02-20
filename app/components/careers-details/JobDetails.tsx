@@ -75,7 +75,7 @@ const JobDetails = ({
     <section className="dark:bg-[#0d0d0d]">
       <div className="container">
         {/* About the Role */}
-        <div className="pt-47px pb-57px border-b border-smgray">
+        <div className="pt-47px pb-57px border-b dark:border-white/20">
           <motion.h2
             variants={moveUp()}
             initial="hidden"
@@ -101,7 +101,7 @@ const JobDetails = ({
 
         {/* Key Responsibilities */}
         <motion.div
-          className="pt-47px pb-57px border-b border-smgray"
+          className="pt-47px pb-57px border-b dark:border-white/20"
           variants={moveUp()}
           initial="hidden"
           whileInView="show"
@@ -113,13 +113,13 @@ const JobDetails = ({
             variants={moveUp()}
             initial="hidden"
             whileInView="show"
-            className="flex flex-col gap-4 lg:gap-27px job-detail-responsibility" 
+            className="flex flex-col gap-4 lg:gap-27px job-detail-responsibility"
             dangerouslySetInnerHTML={{ __html: thirdSection.description }}
           />
         </motion.div>
 
         {/* Apply Now */}
-        <div className="pt-47px pb-57px border-b border-smgray">
+        <div className="pt-47px pb-57px border-b dark:border-white/20">
           <motion.h3
             variants={moveUp()}
             initial="hidden"

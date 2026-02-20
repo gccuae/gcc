@@ -171,12 +171,12 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="flex border border-foreground dark:border-white rounded-full"
+              className="flex border border-foreground dark:border-white/20 rounded-full"
             >
               <div
                 ref={prevRef}
                 onClick={handlePrev}
-                className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] border-r border-foreground dark:border-white rounded-tl-full rounded-bl-full group  cursor-pointer hover:bg-accent  transition-all duration-300"
+                className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] border-r border-foreground dark:border-white/20 rounded-tl-full rounded-bl-full group  cursor-pointer hover:bg-accent  transition-all duration-300"
               >
                 {/* <Image src="/assets/img/icons/greenrightarrow.svg" alt="image" className="rotate-180 group-hover:brightness-0 group-hover:invert transition-all duration-300 min-w-[6px] min-h-[13px]" width={6} height={13} /> */}
                 <svg
@@ -199,7 +199,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
               <div
                 ref={nextRef}
                 onClick={handleNext}
-                className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] rounded-tr-full rounded-br-full cursor-pointer group hover:bg-accent dark:hover:bg-white transition-all duration-300"
+                className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] rounded-tr-full rounded-br-full cursor-pointer group hover:bg-accent dark:hover:bg-secondary transition-all duration-300"
               >
                 {/* <Image src="/assets/img/icons/greenrightarrow.svg" alt="image" className="group-hover:brightness-0 group-hover:invert transition-all duration-300 min-w-[6px] min-h-[13px]" width={6} height={13} /> */}
                 <svg
@@ -259,7 +259,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true }}
-                    className="flex items-center justify-center flex-shrink-0 rounded-full border-1 border-smgray dark:border-white w-[85px] h-[85px] group-hover:bg-primary transition-colors duration-300 icon-wrapper dark:bg-[#0d0d0d]"
+                    className="flex items-center justify-center flex-shrink-0 rounded-full border-1 dark:border-white/20 dark:border-white/20 w-[85px] h-[85px] group-hover:bg-primary transition-colors duration-300 icon-wrapper dark:bg-[#0d0d0d]"
                   >
                     <Image
                       src={item.logo}
@@ -281,7 +281,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                 </div>
               </SwiperSlide>
             ))}
-            <div className="absolute bottom-[39px] lg:bottom-[39px] xl:bottom-[35px] left-0 w-full h-[1px] bg-smgray -z-[1]" />
+            <div className="absolute bottom-[39px] lg:bottom-[39px] xl:bottom-[35px] left-0 w-full h-[1px] bg-smgray dark:bg-white/20 -z-[1]" />
           </Swiper>
         </motion.div>
 
@@ -312,7 +312,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                   viewport={{ once: true }}
                   className="container h-full slide-container grid md:grid-cols-2 xl:grid-cols-[6fr_4fr] items-start gap-6 xl:gap-50px bg-white dark:bg-black group"
                 >
-                  <div className="img-wrapper md:border-r-1 border-r-smgray pr-4 xl:pr-[50px] pb-0 xl:py-5 relative">
+                  <div className="img-wrapper md:border-r-1 border-r-smgray dark:border-white/20 pr-4 xl:pr-[50px] pb-0 xl:py-5 relative">
                     <Image
                       src={item.homeThumbnail}
                       alt={item.homeThumbnailAlt}

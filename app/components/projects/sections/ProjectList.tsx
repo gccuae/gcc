@@ -297,10 +297,10 @@ export default function FeaturedProjects({
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="flex flex-col-reverse lg:grid lg:grid-cols-2 border-t border-smgray pr-[15px] lg:pr-0"
+          className="flex flex-col-reverse lg:grid lg:grid-cols-2 border-t dark:border-white/20 pr-[15px] lg:pr-0"
         >
           {/* Left Column */}
-          <div className="lg:border-r border-smgray max-md:z-20 relative bg-light-white">
+          <div className="lg:border-r dark:border-white/20 max-md:z-20 relative bg-light-white">
             {/* Filters */}
             <div className="flex flex-col lg:flex-row gap-37px 2xl:gap-47px my-37px 2xl:my-47px lg:pr-37px w-full">
               {filterConfigs.map(({ key, placeholder }, index) => (
@@ -411,7 +411,7 @@ export default function FeaturedProjects({
                       initial="hidden"
                       whileInView="show"
                       viewport={{ once: true }}
-                      className="text-2xl leading-1h-text32 text-primary mt-[17px] pb-[15px] border-b border-smgray lg:mr-[47px]"
+                      className="text-2xl leading-1h-text32 text-primary mt-[17px] pb-[15px] border-b dark:border-white/20 lg:mr-[47px]"
                     >
                       {project.title}
                     </motion.h3>

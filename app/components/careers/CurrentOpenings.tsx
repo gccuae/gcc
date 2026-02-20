@@ -223,11 +223,11 @@ const CurrentOpenings = ({ data, jobs, departments, locations }: { data: careerD
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-[55%_40%] 2xl:grid-cols-[55%_45%] justify-between gap-0 md:gap-0 xl:gap-0 border-t border-smgray relative"
+            className="grid grid-cols-1 md:grid-cols-[55%_40%] 2xl:grid-cols-[55%_45%] justify-between gap-0 md:gap-0 xl:gap-0 border-t dark:border-white/20 relative"
             ref={sectionRef}
           >
             <div
-              className="md:border-r border-smgray pr-6 xl:pr-[67px] pt-6 xl:pt-[67px] max-h-[842px] overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden left-col"
+              className="md:border-r dark:border-white/20 pr-6 xl:pr-[67px] pt-6 xl:pt-[67px] max-h-[842px] overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden left-col"
               ref={leftRef}
             >
               {jobs.map((job, index) => (
@@ -237,7 +237,7 @@ const CurrentOpenings = ({ data, jobs, departments, locations }: { data: careerD
                   whileInView="show"
                   viewport={{ once: true }}
                   key={index}
-                  className="pb-6 xl:pb-10 mb-6 xl:mb-10 border-b border-smgray flex xl:flex-row flex-col justify-between gap-6 xl:items-center"
+                  className="pb-6 xl:pb-10 mb-6 xl:mb-10 border-b dark:border-white/20 flex xl:flex-row flex-col justify-between gap-6 xl:items-center"
                 >
                   <div className="xl:w-[60%]">
                     <h3 className="text-xl lg:text-2xl leading-[1.3] lg:leading-[1.5625] font-normal text-black dark:text-white">
@@ -267,7 +267,7 @@ const CurrentOpenings = ({ data, jobs, departments, locations }: { data: careerD
               className="sticky top-0 self-start right-col"
             >
               <div className="bg-light-white dark:bg-[#0d0d0d] p-6 xl:p-10 mb-57px   md:max-w-[575px] m-auto md:mr-0 ml-auto md:mt-6 xl:mt-[67px]">
-                <div className="border-b border-smgray pb-27px">
+                <div className="border-b dark:border-white/20 pb-27px">
                   <h3 className="text-2xl leading-[1.205882352941176] mb-4 xl:mb-6 font-normal text-black dark:text-white">
                     Didn’t find a role that fits you?
                   </h3>

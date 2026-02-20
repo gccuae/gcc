@@ -39,7 +39,7 @@ const CounterSection = ({ data }: FirstSectionProps) => {
           viewport={{ once: true }}
           initial="hidden"
           whileInView="show"
-          className="grid grid-cols-2 lg:grid-cols-4 border-t border-l border-r border-smgray dark:border-[#3f3f3f]"
+          className="grid grid-cols-2 lg:grid-cols-4 border-t border-l border-r dark:border-white/20 dark:border-[#3f3f3f]"
         >
           {data.items.map((item: FirstSectionItem, index: number) => (
             <motion.div
@@ -48,7 +48,7 @@ const CounterSection = ({ data }: FirstSectionProps) => {
               viewport={{ once: true }}
               initial="hidden"
               whileInView="show"
-              className="border-b lg:border-b-0 border-r dark:border-[#3f3f3f] border-smgray last:border-r-0 [&:nth-child(2)]:border-r-0 [&:nth-child(4)]:border-r-0 lg:[&:nth-child(2)]:border-r-1
+              className="border-b lg:border-b-0 border-r dark:border-[#3f3f3f] dark:border-white/20 last:border-r-0 [&:nth-child(2)]:border-r-0 [&:nth-child(4)]:border-r-0 lg:[&:nth-child(2)]:border-r-1
             px-5 md:px-10 xl:px-14 2xl:px-18 pt-4 xl:pt-[22px] pb-4 xl:pb-[21px]
                hover:bg-primary hover:text-white transition-colors duration-300 group"
             >

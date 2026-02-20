@@ -82,7 +82,7 @@ export const Accordion: React.FC<{ items: AccordionItem[] }> = ({ items }) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="border-b border-smgray accordion-item"
+            className="border-b dark:border-white/20 accordion-item"
             key={index}
           >
             <div className="flex flex-col w-full">
@@ -147,11 +147,10 @@ export const Accordion: React.FC<{ items: AccordionItem[] }> = ({ items }) => {
                     alt="Arrow"
                     width={25}
                     height={25}
-                    className={`transform transition-transform duration-250 lg:mt-4 ${
-                      openIndex === index
+                    className={`transform transition-transform duration-250 lg:mt-4 ${openIndex === index
                         ? "rotate-0" // clicked → normal
                         : "rotate-180" // initial → rotated
-                    }`}
+                      }`}
                     style={{
                       filter:
                         openIndex === index

@@ -12,7 +12,7 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
   return (
     <div
       key={index}
-      className="flex flex-col justify-between border-b border-smgray pb-3 lg:pb-4 xl:pb-[25px] group transition-all duration-300"
+      className="flex flex-col justify-between border-b dark:border-white/20 pb-3 lg:pb-4 xl:pb-[25px] group transition-all duration-300"
     >
       <Link href={`/expertise/${item.slug}`} className="flex flex-col h-full">
         <div className="mb-4 xl:mb-[17px] overflow-hidden relative h-[300px] xl:h-[486px] p-4 xl:p-[27px] flex justify-end items-end">

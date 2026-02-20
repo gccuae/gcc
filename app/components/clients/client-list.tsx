@@ -25,25 +25,17 @@ const ClientList = ({ data }: { data: ClientsFirstSection }) => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 border-l border-t border-smgray/56"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 border-l border-t dark:border-white/20"
         >
           {data.items.map((client, index) => (
-            <div
-              key={index}
-              className="p-4 xl:p-6 flex items-center justify-center border-r border-b border-smgray/56 group h-30 xl:h-[380px] dark:bg-white"
-            >
-              <motion.div
-                variants={moveUp(index * 0.05)}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-              >
+            <div key={index} className="p-4 xl:p-6 flex items-center justify-center border-r border-b dark:border-white/20 group h-30 xl:h-[380px] " >
+              <motion.div variants={moveUp(index * 0.05)} initial="hidden" whileInView="show" viewport={{ once: true }} className="dark:bg-white dark:h-full dark:rounded-2xl dark:w-full" >
                 <Image
                   src={client.logo}
                   alt={client.logoAlt}
                   width={300}
                   height={300}
-                  className="max-w-full h-full object-contain group-hover:scale-110 transition-all duration-300"
+                  className="max-w-full h-full object-contain group-hover:scale-110 transition-all duration-300 dark:mix-blend-multiply"
                 />
               </motion.div>
             </div>

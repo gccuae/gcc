@@ -26,15 +26,15 @@ export const MenuItem = ({
     noMenu?: boolean;
 }) => {
 
-const [isSmallScreen, setIsSmallScreen] = React.useState(false);
+    const [isSmallScreen, setIsSmallScreen] = React.useState(false);
 
-useEffect(() => {
-  const check = () => setIsSmallScreen(window.innerWidth < 1400);
+    useEffect(() => {
+        const check = () => setIsSmallScreen(window.innerWidth < 1400);
 
-  check(); // run once
-  window.addEventListener("resize", check);
-  return () => window.removeEventListener("resize", check);
-}, []);
+        check(); // run once
+        window.addEventListener("resize", check);
+        return () => window.removeEventListener("resize", check);
+    }, []);
 
     return (
         <div
@@ -51,10 +51,10 @@ useEffect(() => {
                         {/* <span className="flex gap-3 text-base leading-[1.82] text-[13px] xl:text-[15px]  2xl:text-base hover:text-primary transition-all duration-300 font-normal">{item}</span> */}
                         <span className="flex items-center gap-[1px] text-base leading-[1.82] text-[13px] xl:text-[15px] 2xl:text-base hover:text-primary transition-all duration-300 font-normal">
                             {item === "Vendor Registration" && isSmallScreen
-    ? item.split(" ").slice(0, 1)
-    : item}
+                                ? item.split(" ").slice(0, 1)
+                                : item}
 
-                            {!noMenu && <RiArrowDownSLine className="text-[20px]" />}
+                            {!noMenu && <RiArrowDownSLine className="text-[20px] dark:text-white transition-transform duration-300" />}
                         </span>
                     </motion.p>
                 </Link>
@@ -274,42 +274,25 @@ export const Menu = ({ setActive, children }: { setActive: (item: string | null)
                                                 onClick={openPopup}
                                                 className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center group"
                                             >
-                                                <Image
-                                                    src="/assets/img/icons/search.svg"
-                                                    alt="youtube"
-                                                    width={14}
-                                                    height={10}
-                                                    className="group-hover:filter-[brightness(0)_invert(1)] transition-all duration-300"
-                                                />
+                                                <Image src="/assets/img/icons/search.svg" alt="youtube" width={14} height={10} className="group-hover:filter-[brightness(0)_invert(1)] transition-all duration-300" />
                                             </button>
                                         </div>
                                         <div>
-                                            <button
-                                                onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                                            <button onClick={() => setTheme(theme === "light" ? "dark" : "light")}
                                                 className="relative w-[68px] h-[30px] flex items-center  overflow-hidden rounded-full border border-foreground dark:border-white bg-light-white dark:bg-black cursor-pointer"
                                             >
                                                 {/* Light mode icon */}
                                                 <span
                                                     className={` transition-all duration-500 ease-in-out ${theme === "light" ? "translate-x-2 opacity-100" : "translate-x-10 opacity-0"} `}
                                                 >
-                                                    <Image
-                                                        src="/assets/img/icons/light.svg"
-                                                        alt="light"
-                                                        width={20}
-                                                        height={20}
-                                                    />
+                                                    <Image src="/assets/img/icons/light.svg" alt="light" width={20} height={20} />
                                                 </span>
 
                                                 {/* Dark mode icon */}
                                                 <span
                                                     className={`transition-all duration-500 ease-in-out ${theme === "dark" ? "translate-x-5 opacity-100" : "translate-x-[50%] opacity-0"}`}
                                                 >
-                                                    <Image
-                                                        src="/assets/img/icons/dark.svg"
-                                                        alt="dark"
-                                                        width={20}
-                                                        height={20}
-                                                    />
+                                                    <Image src="/assets/img/icons/dark.svg" alt="dark" width={20} height={20} />
                                                 </span>
                                             </button>
                                         </div>
@@ -343,9 +326,8 @@ export const Menu = ({ setActive, children }: { setActive: (item: string | null)
             {/* Backdrop */}
             {isOpen && (
                 <div
-                    className={`fixed inset-0 bg-black/50 z-40 transition-all duration-300 ease-out ${
-                        isAnimating ? "bg-opacity-50" : "bg-opacity-0"
-                    }`}
+                    className={`fixed inset-0 bg-black/50 z-40 transition-all duration-300 ease-out ${isAnimating ? "bg-opacity-50" : "bg-opacity-0"
+                        }`}
                 />
             )}
 
@@ -354,9 +336,8 @@ export const Menu = ({ setActive, children }: { setActive: (item: string | null)
                 <div className="fixed inset-0 z-50 flex items-start justify-center pt-15 px-4">
                     <div
                         ref={popupRef}
-                        className={`bg-white rounded-2xl shadow-2xl w-full max-w-5xl transform transition-all duration-300 ease-out ${
-                            isAnimating ? "translate-y-0 opacity-100 scale-100" : "-translate-y-8 opacity-0 scale-95"
-                        }`}
+                        className={`bg-white rounded-2xl shadow-2xl w-full max-w-5xl transform transition-all duration-300 ease-out ${isAnimating ? "translate-y-0 opacity-100 scale-100" : "-translate-y-8 opacity-0 scale-95"
+                            }`}
                         style={{
                             boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05)",
                         }}
@@ -376,10 +357,7 @@ export const Menu = ({ setActive, children }: { setActive: (item: string | null)
                         <div className="p-6 h-full">
                             <div className="space-y-6">
                                 <div className="relative">
-                                    <Search
-                                        size={20}
-                                        className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
-                                    />
+                                    <Search size={20} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
                                     <input
                                         ref={searchInputRef}
                                         type="text"

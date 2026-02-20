@@ -14,7 +14,7 @@
 //       initial="hidden"
 //       whileInView="show"
 //       viewport={{ once: true }}
-//       className="border-b border-smgray pb-5 xl:pb-10 mb-8 xl:mb-57px"
+//       className="border-b dark:border-white/20 pb-5 xl:pb-10 mb-8 xl:mb-57px"
 //     >
 //       <motion.h2
 //         initial={{ opacity: 0, x: -30, clipPath: "inset(0 100% 0 0)" }}
@@ -88,7 +88,7 @@ const StandardBnr = ({ title }: Props) => {
   return (
     <div
       ref={containerRef}
-      className="border-b border-smgray pb-5 xl:pb-10 mb-8 xl:mb-57px"
+      className="border-b dark:border-white/20 pb-5 xl:pb-10 mb-8 xl:mb-57px"
     >
       <h2
         ref={titleRef}

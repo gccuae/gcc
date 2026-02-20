@@ -6,14 +6,14 @@ import { careerData } from "../careers/type";
 
 
 
-const JobSpecs = ({data}: {data: careerData['openings'][number]['firstSection']}) => {
+const JobSpecs = ({ data }: { data: careerData['openings'][number]['firstSection'] }) => {
 
   const jobSpecs = [
-  { label: "Job Title", value: data.jobTitle },
-  { label: "Department", value: data.department },
-  { label: "Location", value: data.location },
-  { label: "Employment Type", value: data.employmentType },
-];
+    { label: "Job Title", value: data.jobTitle },
+    { label: "Department", value: data.department },
+    { label: "Location", value: data.location },
+    { label: "Employment Type", value: data.employmentType },
+  ];
 
   return (
     <section className="dark:bg-black pt-57px">
@@ -35,7 +35,7 @@ const JobSpecs = ({data}: {data: careerData['openings'][number]['firstSection']}
           variants={moveUp()}
           initial="hidden"
           whileInView="show"
-          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3 xl:gap-[63px] md:pb-57px md:border-b border-smgray"
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3 xl:gap-[63px] md:pb-57px md:border-b dark:border-white/20"
         >
           {jobSpecs.map((spec, index) => (
             <motion.div
@@ -43,7 +43,7 @@ const JobSpecs = ({data}: {data: careerData['openings'][number]['firstSection']}
               variants={moveUp(index * 0.25)}
               initial="hidden"
               whileInView="show"
-              className="pt-3 md:pt-27px border-t border-smgray"
+              className="pt-3 md:pt-27px border-t dark:border-white/20"
             >
               <h3 className="leading-[1.5625] font-light text-base uppercase text-black dark:text-white">
                 {spec.label}

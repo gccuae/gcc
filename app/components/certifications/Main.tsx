@@ -92,16 +92,15 @@ const Main = ({ data }: AwardsProps) => {
         <div className="bg-light-white dark:bg-light-dark pb-6 lg:pb-0 pt-57px">
           <div className="container">
             {/* Tab Navigation */}
-            <div className="flex md:flex-row flex-col border-y border-smgray dark:border-white gap-2 md:gap-8 xl:gap-12 w-full">
+            <div className="flex md:flex-row flex-col border-y dark:border-white/20 dark:border-white/20 gap-2 md:gap-8 xl:gap-12 w-full">
               {data.categories.map((cat) => (
                 <button
                   key={cat.category}
                   onClick={() => setActiveTab(cat.category)}
-                  className={`py-3 w-fit cursor-pointer text-xl leading-[1.2] xl:leading-[2.173913043478261] transition-all duration-300 border-t-6 whitespace-nowrap ${
-                    activeTab === cat.category
-                      ? "text-black dark:text-white border-secondary"
-                      : "border-transparent text-para-color dark:text-white/70"
-                  }`}
+                  className={`py-3 w-fit cursor-pointer text-xl leading-[1.2] xl:leading-[2.173913043478261] transition-all duration-300 border-t-6 whitespace-nowrap ${activeTab === cat.category
+                    ? "text-black dark:text-white border-secondary "
+                    : "border-transparent text-para-color dark:text-white/70"
+                    }`}
                 >
                   {cat.category}
                 </button>
@@ -110,7 +109,7 @@ const Main = ({ data }: AwardsProps) => {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-[3fr_1.9fr] mt-5 md:mt-0">
               {/* Left Column - Items List */}
-              <div className="lg:border-r border-smgray dark:border-white lg:pr-[67px] xl:pr-[67px] pt-6 xl:pt-[47px]">
+              <div className="lg:border-r dark:border-white/20 dark:border-white/20 lg:pr-[67px] xl:pr-[67px] pt-6 xl:pt-[47px]">
                 <div className="space-y-1">
                   {filteredItems[0]?.files.length === 0 && (
                     <div>
@@ -132,33 +131,27 @@ const Main = ({ data }: AwardsProps) => {
                                 setSelectedItem(file);
                                 handleMobileToggle(combinedIndex);
                               }}
-                              className={`w-full text-left flex items-center justify-between pb-4 xl:pb-[27px] mb-4 xl:mb-[27px] ${
-                                fileIndex !== item.files.length - 1
-                                  ? "border-b border-smgray dark:border-white"
-                                  : ""
-                              } transition-all duration-200 group ${
-                                selectedItem === file ? "border-b-primary" : ""
-                              }`}
+                              className={`w-full text-left flex items-center justify-between pb-4 xl:pb-[27px] mb-4 xl:mb-[27px] ${fileIndex !== item.files.length - 1
+                                ? "border-b dark:border-white/20 dark:border-white/20"
+                                : ""
+                                } transition-all duration-200 group ${selectedItem === file ? "border-b-primary" : ""
+                                }`}
                             >
                               <div>
-                                <h3
-                                  className={`text-xl leading-normal mb-1 transition-all duration-300 
-    ${
-      selectedItem === file
-        ? "text-black dark:text-white"
-        : "text-para-color dark:text-white/70 group-hover:text-black group-hover:dark:text-white/70"
-    }`}
+                                <h3 className={`text-xl leading-normal mb-1 transition-all duration-300 
+                                  ${selectedItem === file
+                                    ? "text-black dark:text-white"
+                                    : "text-para-color dark:text-white/70 group-hover:text-black group-hover:dark:text-white/70"
+                                  }`}
                                 >
                                   {file.mainTitle}
                                 </h3>
 
-                                <p
-                                  className={`text-lg font-light leading-lh-text19 transition-all duration-300 
-    ${
-      selectedItem === file
-        ? "text-black dark:text-white/80"
-        : "text-gray-600 dark:text-gray-400 group-hover:text-black group-hover:dark:text-white/60"
-    }`}
+                                <p className={`text-lg font-light leading-lh-text19 transition-all duration-300 
+                                    ${selectedItem === file
+                                    ? "text-black dark:text-white/80"
+                                    : "text-gray-600 dark:text-gray-400 group-hover:text-black group-hover:dark:text-white/60"
+                                  }`}
                                 >
                                   {file.subTitle}
                                 </p>
@@ -170,18 +163,16 @@ const Main = ({ data }: AwardsProps) => {
                                   width={50}
                                   height={50}
                                   className={`w-4 h-4 xl:w-[19.08px] xl:h-[19.05px]
-                    opacity-0 group-hover:opacity-100 -translate-x-2 translate-y-2 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300 ${
-                      selectedItem === file ? "opacity-100 translate-x-0" : ""
-                    }`}
+                    opacity-0 group-hover:opacity-100 -translate-x-2 translate-y-2 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300 ${selectedItem === file ? "opacity-100 translate-x-0" : ""
+                                    }`}
                                 />
                               </div>
                             </button>
 
                             {/* Mobile Accordion */}
                             <div
-                              className={`lg:pl-12 lg:pt-6 xl:pl-[67px] xl:pt-[47px] px-3 md:px-5 mb-5 ${
-                                openIndex === combinedIndex ? "block" : "hidden"
-                              } lg:hidden`}
+                              className={`lg:pl-12 lg:pt-6 xl:pl-[67px] xl:pt-[47px] px-3 md:px-5 mb-5 ${openIndex === combinedIndex ? "block" : "hidden"
+                                } lg:hidden`}
                             >
                               {selectedItem === file && (
                                 <DetailsBlock
@@ -213,14 +204,14 @@ const Main = ({ data }: AwardsProps) => {
                   selectedItem={
                     selectedItem
                       ? {
-                          title: selectedItem.mainTitle,
-                          info: selectedItem.subTitle,
-                          thumbnail: selectedItem.thumbnail || "",
-                          document: selectedItem.file,
-                          documentTitle: selectedItem.mainTitle, // or another field
-                          documentInfo: selectedItem.subTitle,
-                          category: selectedItem.category || activeTab,
-                        }
+                        title: selectedItem.mainTitle,
+                        info: selectedItem.subTitle,
+                        thumbnail: selectedItem.thumbnail || "",
+                        document: selectedItem.file,
+                        documentTitle: selectedItem.mainTitle, // or another field
+                        documentInfo: selectedItem.subTitle,
+                        category: selectedItem.category || activeTab,
+                      }
                       : null
                   }
                   handleOpenModal={handleOpenModal}

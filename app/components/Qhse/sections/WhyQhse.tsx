@@ -44,7 +44,7 @@ const WhyQhse = ({ title, description, matters }: Props) => {
               key={index}
               className="group grid gap-4 md:gap-27px grid-rows-[auto_1fr]"
             >
-              <div className="border-b border-smgray group-hover:border-b-primary group-hover:border-b-[2px] pb-4 md:pb-27px transition-colors duration-300">
+              <div className="border-b dark:border-white/20 group-hover:border-b-primary group-hover:border-b-[2px] pb-4 md:pb-27px transition-colors duration-300">
                 <div className="flex items-center gap-[17px]">
                   <Image
                     src={item.image}

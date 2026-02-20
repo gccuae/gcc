@@ -56,9 +56,9 @@ const WhyChoose = ({ data }: WhyChooseProps) => {
                   },
                 },
               }}
-              className="flex flex-col border xl:border-r-0 xl:last:border-r border-smgray dark:border-[#434343] group"
+              className="flex flex-col border xl:border-r-0 xl:last:border-r dark:border-white/20 dark:border-[#434343] group"
             >
-              <div className="border-b border-smgray dark:border-[#434343] xl:pt-5 2xl:pr-1 p-5 pb-2 2xl:pb-0 2xl:p-8 xl:pb-0 group-hover:border-b-primary group-hover:border-b-[4px] transition-all duration-300">
+              <div className="border-b dark:border-white/20 dark:border-[#434343] xl:pt-5 2xl:pr-1 p-5 pb-2 2xl:pb-0 2xl:p-8 xl:pb-0 group-hover:border-b-primary group-hover:border-b-[4px] transition-all duration-300">
                 {/* ICON POP-IN */}
                 <motion.div
                   variants={{

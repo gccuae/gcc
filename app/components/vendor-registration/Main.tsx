@@ -72,7 +72,7 @@ const ContactForm: React.FC = () => {
                             type="text"
                             placeholder="Enter Vendor Name"
                             className={`w-full pb-3 border-b-2 focus:outline-none placeholder:text-lg placeholder:text-[#979797] ${
-                                errors.vendorName ? "border-red-500 bg-red-50" : "border-[#C2C2C2]/35 focus:border-black"
+                                errors.vendorName ? "border-red-500 " : "border-[#C2C2C2]/35 focus:border-black"
                             }`}
                             {...register("vendorName", { required: "Vendor name is required" })}
                         />
@@ -87,7 +87,7 @@ const ContactForm: React.FC = () => {
                             type="text"
                             placeholder="Enter Trade License Number"
                             className={`w-full pb-3 border-b-2 focus:outline-none placeholder:text-lg placeholder:text-[#979797] ${
-                                errors.tradeLicense ? "border-red-500 bg-red-50" : "border-[#C2C2C2]/35 focus:border-black"
+                                errors.tradeLicense ? "border-red-500 " : "border-[#C2C2C2]/35 focus:border-black"
                             }`}
                             {...register("tradeLicense", { required: "Trade license is required" })}
                         />
@@ -117,7 +117,7 @@ const ContactForm: React.FC = () => {
                             type="url"
                             placeholder="https://example.com"
                             className={`w-full pb-3 border-b-2 focus:outline-none placeholder:text-lg placeholder:text-[#979797] ${
-                                errors.website ? "border-red-500 bg-red-50" : "border-[#C2C2C2]/35 focus:border-black"
+                                errors.website ? "border-red-500 " : "border-[#C2C2C2]/35 focus:border-black"
                             }`}
                             {...register("website", {
                                 pattern: { value: /^https?:\/\/.+$/, message: "Enter a valid URL" },
@@ -136,7 +136,7 @@ const ContactForm: React.FC = () => {
                         rows={4}
                         placeholder="Manufacturer, Supplier, Agent, Contracting, etc."
                         className={`w-full pb-3 border-b-2 focus:outline-none placeholder:text-lg placeholder:text-[#979797] ${
-                            errors.services ? "border-red-500 bg-red-50" : "border-[#C2C2C2]/35 focus:border-black"
+                            errors.services ? "border-red-500 " : "border-[#C2C2C2]/35 focus:border-black"
                         }`}
                         {...register("services", {
                             validate: (value) =>
@@ -156,7 +156,7 @@ const ContactForm: React.FC = () => {
                         rows={3}
                         placeholder="Enter areas of expertise"
                         className={`w-full pb-3 border-b-2 focus:outline-none placeholder:text-lg placeholder:text-[#979797] ${
-                            errors.expertise ? "border-red-500 bg-red-50" : "border-[#C2C2C2]/35 focus:border-black"
+                            errors.expertise ? "border-red-500 " : "border-[#C2C2C2]/35 focus:border-black"
                         }`}
                         {...register("expertise", {
                             required: "Areas of expertise is required",
@@ -215,7 +215,7 @@ const ContactForm: React.FC = () => {
                             type="email"
                             placeholder="example@email.com"
                             className={`w-full pb-3 border-b-2 focus:outline-none placeholder:text-lg placeholder:text-[#979797]
-      ${errors.email ? "border-red-500 bg-red-50" : "border-[#C2C2C2]/35 focus:border-black"}
+      ${errors.email ? "border-red-500 " : "border-[#C2C2C2]/35 focus:border-black"}
     `}
                             {...register("email", {
                                 required: "Email is required",
@@ -238,7 +238,7 @@ const ContactForm: React.FC = () => {
                             type="tel"
                             placeholder="+971 50 123 4567"
                             className={`w-full pb-3 border-b-2 focus:outline-none placeholder:text-lg placeholder:text-[#979797]
-      ${errors.phone ? "border-red-500 bg-red-50" : "border-[#C2C2C2]/35 focus:border-black"}
+      ${errors.phone ? "border-red-500 " : "border-[#C2C2C2]/35 focus:border-black"}
     `}
                             {...register("phone", {
                                 required: "Phone number is required",
@@ -262,7 +262,7 @@ const ContactForm: React.FC = () => {
                         rows={3}
                         placeholder="Enter your address"
                         className={`w-full pb-3 border-b-2 resize-none focus:outline-none placeholder:text-lg placeholder:text-[#979797]
-    ${errors.address ? "border-red-500 bg-red-50" : "border-[#C2C2C2]/35 focus:border-black"}
+    ${errors.address ? "border-red-500 " : "border-[#C2C2C2]/35 focus:border-black"}
   `}
                         {...register("address", {
                             validate: (value) => !value || value.length >= 5 || "Address should be at least 5 characters",

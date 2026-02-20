@@ -16,7 +16,7 @@ const MoreProjects = ({ projects }: Props) => {
   return (
     <section className="py-57px bg-light-white dark:bg-light-dark">
       <div className="container">
-        <div className="flex justify-between items-center pb-8 xl:pb-[45px] mb-8 xl:mb-15 border-b border-smgray">
+        <div className="flex justify-between items-center pb-8 xl:pb-[45px] mb-8 xl:mb-15 border-b dark:border-white/20">
           <motion.h2
             variants={moveUp()}
             initial="hidden"
@@ -40,7 +40,7 @@ const MoreProjects = ({ projects }: Props) => {
             <motion.div
               onClick={() => router.push(`/projects/${project.slug}`)}
               key={index}
-              className="group border-b border-smgray pb-27px"
+              className="group border-b dark:border-white/20 pb-27px"
               variants={moveUp(index * 0.24)}
               initial="hidden"
               whileInView="show"

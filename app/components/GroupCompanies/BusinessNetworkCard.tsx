@@ -76,9 +76,8 @@ const BusinessNetworkCard = ({ item, index }: BusinessNetworkCardProps) => {
   };
 
   return (
-    <div
-      key={index}
-      className="group border-b border-smgray pb-3 xl:pb-[17px] hover:border-primary transition-all duration-300 flex flex-col justify-between h-full"
+    <div key={index}
+      className="group border-b dark:border-white/20 pb-3 xl:pb-[17px] hover:border-primary transition-all duration-300 flex flex-col justify-between h-full"
     >
       {/* Top: Image + title */}
       <div>
@@ -123,13 +122,7 @@ const BusinessNetworkCard = ({ item, index }: BusinessNetworkCardProps) => {
               rel="noopener noreferrer"
               className="bg-white rounded-full w-6 h-6 flex items-center justify-center xl:w-20 xl:h-20 pointer-events-auto transition-transform duration-200 hover:scale-110"
             > */}
-            <Image
-              src={assets.linkArrowGreen}
-              alt="arrow"
-              width={20}
-              height={20}
-              className="w-6 h-6 object-contain xl:w-[19px] xl:h-[19px]"
-            />
+            <Image src={assets.linkArrowGreen} alt="arrow" width={20} height={20} className="w-6 h-6 object-contain xl:w-[19px] xl:h-[19px]" />
             {/* </Link> */}
           </div>
           <div className="absolute top-50 left-50 opacity-0 group-hover:opacity-100 group-hover/img:opacity-0 pointer-events-none z-20 transition-opacity duration-300 ease-out">
@@ -138,19 +131,13 @@ const BusinessNetworkCard = ({ item, index }: BusinessNetworkCardProps) => {
               rel="noopener noreferrer"
               className="bg-white rounded-full w-6 h-6 flex items-center justify-center xl:w-20 xl:h-20 pointer-events-auto transition-transform duration-200 hover:scale-110"
             > */}
-            <Image
-              src={assets.linkArrowGreen}
-              alt="arrow"
-              width={20}
-              height={20}
-              className="w-6 h-6 object-contain xl:w-[19px] xl:h-[19px]"
-            />
+            <Image src={assets.linkArrowGreen} alt="arrow" width={20} height={20} className="w-6 h-6 object-contain xl:w-[19px] xl:h-[19px]" />
             {/* </Link> */}
           </div>
         </div>
 
         {/* Title */}
-        <h3 className="mt-5 xl:mt-[27px] text-xl xl:text-2xl leading-[1.3] xl:leading-1h-text32 font-normal group-hover:text-black dark:text-white mb-[2px] lg:mb-[7px]">
+        <h3 className="mt-5 xl:mt-[27px] text-xl xl:text-2xl leading-[1.3] xl:leading-1h-text32 font-normal group-hover:text-black dark:group-hover:text-secondary dark:text-white mb-[2px] lg:mb-[7px]">
           {item.title}
         </h3>
 

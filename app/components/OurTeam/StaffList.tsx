@@ -48,7 +48,7 @@ const StaffList = ({ data }: OurTeamProps) => {
 
         {/* DESKTOP TABS */}
         <div className="hidden xl:block mb-12 w-full">
-          <div className="flex flex-wrap justify-between min-w-max w-full border-t border-smgray">
+          <div className="flex flex-wrap justify-between min-w-max w-full border-t dark:border-white/20">
             {categories.map((category, index) => (
               <motion.button
                 variants={moveLeft(index * 0.1)}
@@ -58,11 +58,10 @@ const StaffList = ({ data }: OurTeamProps) => {
                 key={category}
                 onClick={() => setActiveCategory(category)}
                 className={`text-center py-2 text-xl font-light transition-colors duration-300 whitespace-nowrap flex-grow relative first:text-left 
-                ${
-                  activeCategory === category
+                ${activeCategory === category
                     ? "text-white"
                     : "text-white/70 hover:text-white"
-                }
+                  }
               `}
               >
                 {category}
@@ -122,9 +121,8 @@ const StaffList = ({ data }: OurTeamProps) => {
               className="group"
             >
               <div
-                className={`${
-                  index % 2 === 0 ? "bg-[#ebebeb]" : "bg-[#dfdfdf]"
-                } group-hover:bg-gray-100 transition-all duration-300 flex flex-col mb-6 overflow-hidden relative`}
+                className={`${index % 2 === 0 ? "bg-[#ebebeb]" : "bg-[#dfdfdf]"
+                  } group-hover:bg-gray-100 transition-all duration-300 flex flex-col mb-6 overflow-hidden relative`}
               >
                 <Image
                   src={category.image}
@@ -153,9 +151,8 @@ const StaffList = ({ data }: OurTeamProps) => {
               className="group"
             >
               <div
-                className={`${
-                  index % 2 === 0 ? "bg-[#ebebeb]" : "bg-[#dfdfdf]"
-                } group-hover:bg-gray-100 transition-all duration-300 flex flex-col mb-6   overflow-hidden relative`}
+                className={`${index % 2 === 0 ? "bg-[#ebebeb]" : "bg-[#dfdfdf]"
+                  } group-hover:bg-gray-100 transition-all duration-300 flex flex-col mb-6   overflow-hidden relative`}
               >
                 <Image
                   src={category.image}

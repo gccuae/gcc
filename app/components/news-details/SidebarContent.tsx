@@ -7,17 +7,17 @@ import { motion } from "framer-motion";
 import { moveUp, moveLeft } from "../motionVarients";
 import { NewsData } from "../news-listing/type";
 
-const SidebarContent = ({allNewsData,category}: {allNewsData: NewsData,category: string}) => {
+const SidebarContent = ({ allNewsData, category }: { allNewsData: NewsData, category: string }) => {
   const allItems = allNewsData.categories.flatMap((item: { news: NewsData['categories'][number]['news'] }) => item.news);
-    const filtered = allItems
-      .filter((item: { category: string }) => item.category === category)
-      .sort((a: { date: string }, b: { date: string }) => new Date(b.date).getTime() - new Date(a.date).getTime())
-      .slice(0, 4);
-  
+  const filtered = allItems
+    .filter((item: { category: string }) => item.category === category)
+    .sort((a: { date: string }, b: { date: string }) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 4);
+
   return (
     <aside>
       <motion.div
-        className="border-b border-smgray pb-5 xl:pb-27px mb-5 xl:mb-27px"
+        className="border-b dark:border-white/20 pb-5 xl:pb-27px mb-5 xl:mb-27px"
         variants={moveUp()}
         initial="hidden"
         whileInView="show"
@@ -146,7 +146,7 @@ const SidebarContent = ({allNewsData,category}: {allNewsData: NewsData,category:
               whileInView="show"
               viewport={{ once: true }}
               key={index}
-              className="mb-8 md:mb-5 xl:mb-[17px] border-b border-smgray pb-5 xl:pb-[17px]"
+              className="mb-8 md:mb-5 xl:mb-[17px] border-b dark:border-white/20 pb-5 xl:pb-[17px]"
             >
               <Link href={`/news/${item.slug}`}>
                 <Image
@@ -172,22 +172,22 @@ const SidebarContent = ({allNewsData,category}: {allNewsData: NewsData,category:
           ))}
         </div>
         <Link href={`/news`}>
-        <motion.button
-          variants={moveUp(0.4)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="group cursor-pointer px-6 py-2 text-black rounded-3xl bg-light-white border border-mdgray uppercase flex items-center gap-2 hover:bg-primary hover:text-white transition-colors duration-300 ease-in-out"
-        >
-          <span>View All</span>
-          <Image
-            src={assets.singleGreenArrow}
-            alt="arrow"
-            width={20}
-            height={20}
-            className="inline group-hover:translate-x-2 transition-all duration-300 ease-in-out"
-          />
-        </motion.button>
+          <motion.button
+            variants={moveUp(0.4)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="group cursor-pointer px-6 py-2 text-black rounded-3xl bg-light-white border border-mdgray uppercase flex items-center gap-2 hover:bg-primary hover:text-white transition-colors duration-300 ease-in-out"
+          >
+            <span>View All</span>
+            <Image
+              src={assets.singleGreenArrow}
+              alt="arrow"
+              width={20}
+              height={20}
+              className="inline group-hover:translate-x-2 transition-all duration-300 ease-in-out"
+            />
+          </motion.button>
         </Link>
       </div>
     </aside>
