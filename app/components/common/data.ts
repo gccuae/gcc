@@ -35,6 +35,10 @@ export const menuItems: MenuItem[] = [
         title: "Certifications",
         url: "/certifications",
       },
+      {
+        title: "Expertise",
+        url: "/expertise",
+      },
     ],
   },
   {
@@ -56,10 +60,6 @@ export const menuItems: MenuItem[] = [
       {
         title: "AI Technology",
         url: "/ai-technology",
-      },
-      {
-        title: "Expertise",
-        url: "/expertise",
       },
     ],
   },
