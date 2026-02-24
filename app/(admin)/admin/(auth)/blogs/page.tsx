@@ -251,8 +251,8 @@ const BlogsPage = () => {
                 </AdminItemContainer>
 
                 <AdminItemContainer>
-                    <div className='flex justify-between items-center p-5'>
-                        <h1 className='text-md font-semibold'>Category</h1>
+                    <div className='flex justify-between items-center p-5 border-b'>
+                        <h1 className='text-lg font-semibold'>Category</h1>
                         <Dialog>
                             <DialogTrigger className='bg-primary text-white px-3 py-1 rounded-md font-semibold' onClick={() => setCategory("")}>Add Category</DialogTrigger>
                             <DialogContent>
@@ -311,8 +311,8 @@ const BlogsPage = () => {
                 </AdminItemContainer>
 
                 <AdminItemContainer>
-                    <div className='flex justify-between items-center p-5'>
-                        <h1 className='text-md font-semibold'>Blogs</h1>
+                    <div className='flex justify-between items-center p-5 border-b'>
+                        <h1 className='text-lg font-semibold'>Blogs</h1>
                         <div className='flex gap-2'>
                             <Button type="button" className={`text-white text-[16px] ${reorderMode ? "bg-yellow-700" : "bg-green-700"}`} onClick={() => reorderMode ? confirmPosition() : setReorderMode(!reorderMode)}>{reorderMode ? "Done" : "Reorder"}</Button>
                             {!reorderMode && <Link href="/admin/blogs/add" className='bg-primary text-white px-3 py-1 rounded-md font-semibold'>Add Blog</Link>}
@@ -363,14 +363,19 @@ const BlogsPage = () => {
                     </div>
                 </AdminItemContainer>
 
-                <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Meta Title</Label>
-                    <Input type='text' placeholder='Meta Title' {...register("metaTitle")} />
-                </div>
-                <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Meta Description</Label>
-                    <Input type='text' placeholder='Meta Description' {...register("metaDescription")} />
-                </div>
+                <AdminItemContainer>
+                    <Label main>SEO</Label>
+                    <div className="p-5 flex flex-col gap-2">
+                        <div className='flex flex-col gap-2'>
+                            <Label className='font-bold'>Title</Label>
+                            <Input type='text' placeholder='' {...register("metaTitle")} />
+                        </div>
+                        <div className='flex flex-col gap-2'>
+                            <Label className='font-bold'>Description</Label>
+                            <Input type='text' placeholder='' {...register("metaDescription")} />
+                        </div>
+                    </div>
+                </AdminItemContainer>
 
                 <div className='flex'>
                     <Button type='submit' className="cursor-pointer text-white text-[16px] w-full">Submit</Button>

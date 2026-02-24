@@ -37,10 +37,10 @@ const AwardsPage = () => {
 
     const [categoryList, setCategoryList] = useState<{ _id: string, category: string }[]>([]);
 
-    const handleFetchCategory = async() => {
+    const handleFetchCategory = async () => {
         try {
             const response = await fetch("/api/admin/awards/category");
-            if(response.ok) {
+            if (response.ok) {
                 const data = await response.json();
                 console.log(data)
                 setCategoryList(data.data);
@@ -50,9 +50,9 @@ const AwardsPage = () => {
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         handleFetchCategory();
-    },[])
+    }, [])
 
 
     const handleAddAwards = async (data: AwardsFormProps) => {
@@ -72,18 +72,18 @@ const AwardsPage = () => {
     }
 
 
-    const handleAddCategory = async() => {
+    const handleAddCategory = async () => {
         try {
-            const response = await fetch("/api/admin/awards/category",{
+            const response = await fetch("/api/admin/awards/category", {
                 method: "POST",
                 body: JSON.stringify({ name: category }),
             });
-            if(response.ok) {
+            if (response.ok) {
                 const data = await response.json();
                 setCategory("");
                 alert(data.message);
                 handleFetchCategory();
-            }else{
+            } else {
                 const data = await response.json();
                 alert(data.message);
             }
@@ -92,17 +92,17 @@ const AwardsPage = () => {
         }
     }
 
-    const handleEditCategory = async(id: string) => {
+    const handleEditCategory = async (id: string) => {
         try {
-            const response = await fetch(`/api/admin/awards/category?id=${id}`,{
+            const response = await fetch(`/api/admin/awards/category?id=${id}`, {
                 method: "PATCH",
                 body: JSON.stringify({ name: category }),
             });
-            if(response.ok) {
+            if (response.ok) {
                 const data = await response.json();
                 alert(data.message);
                 handleFetchCategory();
-            }else{
+            } else {
                 const data = await response.json();
                 alert(data.message);
             }
@@ -111,16 +111,16 @@ const AwardsPage = () => {
         }
     }
 
-    const handleDeleteCategory = async(id: string) => {
+    const handleDeleteCategory = async (id: string) => {
         try {
-            const response = await fetch(`/api/admin/awards/category?id=${id}`,{
+            const response = await fetch(`/api/admin/awards/category?id=${id}`, {
                 method: "DELETE",
             });
-            if(response.ok) {
+            if (response.ok) {
                 const data = await response.json();
                 alert(data.message);
                 handleFetchCategory();
-            }else{
+            } else {
                 const data = await response.json();
                 alert(data.message);
             }
@@ -157,15 +157,15 @@ const AwardsPage = () => {
     return (
         <div className='flex flex-col gap-5'>
             <form className='flex flex-col gap-5' onSubmit={handleSubmit(handleAddAwards)}>
-            <div className='flex flex-col gap-1'>
-                                <Label className='font-bold'>Page Title</Label>
-                                <Input type='text' placeholder='Page Title' {...register("pageTitle")} />
-                            </div>
+                <div className='flex flex-col gap-1'>
+                    <Label className='font-bold'>Page Title</Label>
+                    <Input type='text' placeholder='Page Title' {...register("pageTitle")} />
+                </div>
 
 
                 <AdminItemContainer>
-                    <div className='flex justify-between items-center p-5'>
-                        <h1 className='text-md font-semibold'>Awards Category</h1>
+                    <div className='flex justify-between items-center p-5 border-b'>
+                        <h1 className='text-lg font-semibold'>Awards Category</h1>
                         <Dialog>
                             <DialogTrigger className='bg-primary text-white px-3 py-1 rounded-md font-semibold' onClick={() => setCategory("")}>Add Category</DialogTrigger>
                             <DialogContent>
@@ -225,14 +225,19 @@ const AwardsPage = () => {
                     </div>
                 </AdminItemContainer>
 
-                <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Meta Title</Label>
-                    <Input type='text' placeholder='Meta Title' {...register("metaTitle")} />
-                </div>
-                <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Meta Description</Label>
-                    <Input type='text' placeholder='Meta Description' {...register("metaDescription")} />
-                </div>
+                <AdminItemContainer>
+                    <Label main>SEO</Label>
+                    <div className="p-5 flex flex-col gap-2">
+                        <div className='flex flex-col gap-2'>
+                            <Label className='font-bold'>Title</Label>
+                            <Input type='text' placeholder='' {...register("metaTitle")} />
+                        </div>
+                        <div className='flex flex-col gap-2'>
+                            <Label className='font-bold'>Description</Label>
+                            <Input type='text' placeholder='' {...register("metaDescription")} />
+                        </div>
+                    </div>
+                </AdminItemContainer>
 
                 <div className='flex'>
                     <Button type='submit' className="cursor-pointer text-white text-[16px] w-full">Submit</Button>

@@ -31,8 +31,8 @@ interface CurrentOpeningsPageProps {
     imageAlt: string;
   },
   secondSection: {
-      mainTitle: string;
-      subTitle: string;
+    mainTitle: string;
+    subTitle: string;
   };
   thirdSection: {
     title: string;
@@ -45,7 +45,7 @@ export default function CurrentOpenings() {
 
   const [department, setDepartment] = useState<string>("");
   const [location, setLocation] = useState<string>("");
-  const [openingsList, setOpeningsList] = useState<{_id:string,firstSection:{jobTitle:string,description:string}}[]>([]);
+  const [openingsList, setOpeningsList] = useState<{ _id: string, firstSection: { jobTitle: string, description: string } }[]>([]);
   const [locationList, setLocationList] = useState<{ _id: string, name: string }[]>([]);
   const [departmentList, setDepartmentList] = useState<{ _id: string, name: string }[]>([]);
 
@@ -239,24 +239,24 @@ export default function CurrentOpenings() {
 
   const onSubmit = async (data: CurrentOpeningsPageProps) => {
     try {
-        const response = await fetch(`/api/admin/current-openings`, {
-            method: "PATCH",
-            body: JSON.stringify(data),
-        });
-        if (response.ok) {
-            const data = await response.json();
-            alert(data.message);
-            // router.push("/admin/commitment");
-        }
+      const response = await fetch(`/api/admin/current-openings`, {
+        method: "PATCH",
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        alert(data.message);
+        // router.push("/admin/commitment");
+      }
     } catch (error) {
-        console.log("Error in submitting details", error);
+      console.log("Error in submitting details", error);
     }
-}
+  }
 
-  const fetchOpeningDetails = async() => {
+  const fetchOpeningDetails = async () => {
     try {
       const response = await fetch("/api/admin/current-openings");
-      if(response.ok) {
+      if (response.ok) {
         const data = await response.json();
         setValue("metaTitle", data.data.metaTitle);
         setValue("metaDescription", data.data.metaDescription);
@@ -264,7 +264,7 @@ export default function CurrentOpenings() {
         setValue("secondSection", data.data.secondSection);
         setValue("thirdSection", data.data.thirdSection);
         setOpeningsList(data.data.openings);
-      }else{
+      } else {
         const data = await response.json();
         alert(data.message);
       }
@@ -283,107 +283,111 @@ export default function CurrentOpenings() {
   return (
     <div className="flex flex-col gap-5">
 
-<form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-5'>
+      <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-5'>
 
-                      <AdminItemContainer>
-                    <Label className='' main>First Section</Label>
-                    <div className='p-5 flex flex-col gap-2'>
-                        <div className='flex flex-col gap-2'>
-                            <div className='flex flex-col gap-1'>
-                                <Label className=' font-bold'>Page Title</Label>
-                                <Input type='text' placeholder='Page Title' {...register("firstSection.pageTitle", {
-                                    required: "Page Title is required"
-                                })} />
-                                {errors.firstSection?.pageTitle && <p className='text-red-500'>{errors.firstSection?.pageTitle.message}</p>}
-                            </div>
-                            <div className='flex flex-col gap-1'>
-                                <Label className=' font-bold'>Description</Label>
-                                <Textarea placeholder='Description' {...register("firstSection.description", {
-                                    required: "Description is required"
-                                })} />
-                                {errors.firstSection?.description && <p className='text-red-500'>{errors.firstSection?.description.message}</p>}
-                            </div>
-                            <div className='flex flex-col gap-1'>
-                                <Label className=' font-bold'>Image</Label>
-                                <Controller
-                                    name="firstSection.image"
-                                    control={control}
-                                    rules={{ required: "Image is required" }}
-                                    render={({ field }) => (
-                                        <ImageUploader
-                                            value={field.value}
-                                            onChange={field.onChange}
-                                        />
-                                    )}
-                                />
-                                {errors.firstSection?.image && (
-                                    <p className="text-red-500">{errors.firstSection?.image.message}</p>
-                                )}
-                                <Label className='font-bold'>Alt Tag</Label>
-                                <Input type='text' placeholder='Alt Tag' {...register("firstSection.imageAlt")} />
-                            </div>
-                        </div>
+        <AdminItemContainer>
+          <Label className='' main>First Section</Label>
+          <div className='p-5 flex flex-col gap-2'>
+            <div className='flex flex-col gap-2'>
+              <div className='flex flex-col gap-1'>
+                <Label className=' font-bold'>Page Title</Label>
+                <Input type='text' placeholder='Page Title' {...register("firstSection.pageTitle", {
+                  required: "Page Title is required"
+                })} />
+                {errors.firstSection?.pageTitle && <p className='text-red-500'>{errors.firstSection?.pageTitle.message}</p>}
+              </div>
+              <div className='flex flex-col gap-1'>
+                <Label className=' font-bold'>Description</Label>
+                <Textarea placeholder='Description' {...register("firstSection.description", {
+                  required: "Description is required"
+                })} />
+                {errors.firstSection?.description && <p className='text-red-500'>{errors.firstSection?.description.message}</p>}
+              </div>
+              <div className='flex flex-col gap-1'>
+                <Label className=' font-bold'>Image</Label>
+                <Controller
+                  name="firstSection.image"
+                  control={control}
+                  rules={{ required: "Image is required" }}
+                  render={({ field }) => (
+                    <ImageUploader
+                      value={field.value}
+                      onChange={field.onChange}
+                    />
+                  )}
+                />
+                {errors.firstSection?.image && (
+                  <p className="text-red-500">{errors.firstSection?.image.message}</p>
+                )}
+                <Label className='font-bold'>Alt Tag</Label>
+                <Input type='text' placeholder='Alt Tag' {...register("firstSection.imageAlt")} />
+              </div>
+            </div>
 
-                    </div>
-                </AdminItemContainer>
+          </div>
+        </AdminItemContainer>
 
-                <AdminItemContainer>
-                    <Label className='' main>Second Section</Label>
-                    <div className='p-5 flex flex-col gap-2'>
-                        <div className='flex flex-col gap-2'>
-                            <div className='flex flex-col gap-1'>
-                                <Label className=' font-bold'>Main Title</Label>
-                                <Input type='text' placeholder='Main Title' {...register("secondSection.mainTitle", {
-                                    required: "Main Title is required"
-                                })} />
-                                {errors.secondSection?.mainTitle && <p className='text-red-500'>{errors.secondSection?.mainTitle.message}</p>}
-                            </div>
-                            <div className='flex flex-col gap-1'>
-                                <Label className=' font-bold'>Sub Title</Label>
-                                <Input type='text' placeholder='Sub Title' {...register("secondSection.subTitle", {
-                                    required: "Sub Title is required"
-                                })} />
-                                {errors.secondSection?.subTitle && <p className='text-red-500'>{errors.secondSection?.subTitle.message}</p>}
-                            </div>
-                        </div>
+        <AdminItemContainer>
+          <Label className='' main>Second Section</Label>
+          <div className='p-5 flex flex-col gap-2'>
+            <div className='flex flex-col gap-2'>
+              <div className='flex flex-col gap-1'>
+                <Label className=' font-bold'>Main Title</Label>
+                <Input type='text' placeholder='Main Title' {...register("secondSection.mainTitle", {
+                  required: "Main Title is required"
+                })} />
+                {errors.secondSection?.mainTitle && <p className='text-red-500'>{errors.secondSection?.mainTitle.message}</p>}
+              </div>
+              <div className='flex flex-col gap-1'>
+                <Label className=' font-bold'>Sub Title</Label>
+                <Input type='text' placeholder='Sub Title' {...register("secondSection.subTitle", {
+                  required: "Sub Title is required"
+                })} />
+                {errors.secondSection?.subTitle && <p className='text-red-500'>{errors.secondSection?.subTitle.message}</p>}
+              </div>
+            </div>
 
-                    </div>
-                </AdminItemContainer>
-
-
-                <AdminItemContainer>
-                    <Label className='' main>Third Section</Label>
-                    <div className='p-5 flex flex-col gap-2'>
-                        <div className='flex flex-col gap-2'>
-                            <div className='flex flex-col gap-1'>
-                                <Label className=' font-bold'>Title</Label>
-                                <Input type='text' placeholder='Title' {...register("thirdSection.title", {
-                                    required: "Title is required"
-                                })} />
-                                {errors.thirdSection?.title && <p className='text-red-500'>{errors.thirdSection?.title.message}</p>}
-                            </div>
-                        </div>
-
-                    </div>
-                </AdminItemContainer>
+          </div>
+        </AdminItemContainer>
 
 
+        <AdminItemContainer>
+          <Label className='' main>Third Section</Label>
+          <div className='p-5 flex flex-col gap-2'>
+            <div className='flex flex-col gap-2'>
+              <div className='flex flex-col gap-1'>
+                <Label className=' font-bold'>Title</Label>
+                <Input type='text' placeholder='Title' {...register("thirdSection.title", {
+                  required: "Title is required"
+                })} />
+                {errors.thirdSection?.title && <p className='text-red-500'>{errors.thirdSection?.title.message}</p>}
+              </div>
+            </div>
+
+          </div>
+        </AdminItemContainer>
 
 
-                <div className='flex flex-col gap-2'>
-                                    <Label className='font-bold'>Meta Title</Label>
-                                    <Input type='text' placeholder='Meta Title' {...register("metaTitle")} />
-                                </div>
-                                <div className='flex flex-col gap-2'>
-                                    <Label className='font-bold'>Meta Description</Label>
-                                    <Input type='text' placeholder='Meta Description' {...register("metaDescription")} />
-                                </div>
-                
-                                <div className='flex justify-center mt-5'>
-                                    <Button type='submit' className="cursor-pointer text-white text-[16px] w-full">Submit</Button>
-                                </div>
 
-                </form>
+        <AdminItemContainer>
+          <Label main>SEO</Label>
+          <div className="p-5 flex flex-col gap-2">
+            <div className='flex flex-col gap-2'>
+              <Label className='font-bold'>Title</Label>
+              <Input type='text' placeholder='' {...register("metaTitle")} />
+            </div>
+            <div className='flex flex-col gap-2'>
+              <Label className='font-bold'>Description</Label>
+              <Input type='text' placeholder='' {...register("metaDescription")} />
+            </div>
+          </div>
+        </AdminItemContainer>
+
+        <div className='flex justify-center mt-5'>
+          <Button type='submit' className="cursor-pointer text-white text-[16px] w-full">Submit</Button>
+        </div>
+
+      </form>
 
 
       <div className="h-screen grid grid-cols-2 gap-5">
@@ -414,7 +418,7 @@ export default function CurrentOpenings() {
                   </div>
                   <div className="flex gap-5">
                     <Dialog>
-                      <DialogTrigger onClick={() => { setDepartment(item.name)}}><MdEdit /></DialogTrigger>
+                      <DialogTrigger onClick={() => { setDepartment(item.name) }}><MdEdit /></DialogTrigger>
                       <DialogContent>
                         <DialogHeader>
                           <DialogTitle>Edit Department</DialogTitle>
@@ -479,7 +483,7 @@ export default function CurrentOpenings() {
                     </div>
                     <div className="flex gap-5">
                       <Dialog>
-                        <DialogTrigger onClick={() => { setLocation(item.name)}}><MdEdit /></DialogTrigger>
+                        <DialogTrigger onClick={() => { setLocation(item.name) }}><MdEdit /></DialogTrigger>
                         <DialogContent>
                           <DialogHeader>
                             <DialogTitle>Edit Location</DialogTitle>
