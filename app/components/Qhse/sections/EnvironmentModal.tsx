@@ -85,10 +85,10 @@ const EnvironmentModal: React.FC<EnvironmentModalProps> = ({
             </button>
 
             {/* Image Container */}
-            <div className="relative mt-10 lg:mt-0 w-full lg:w-[800px] rounded-[12px] xl:w-[1000px] 2xl:w-[1264px] h-[450px] max-h-[640px] flex items-center justify-center overflow-hidden">
+            <div className="relative mt-10 lg:mt-0 w-full lg:w-[800px] rounded-[12px] xl:w-[1000px] 2xl:w-[1264px] h-[450px] 2xl:h-[600px] max-h-[800px] flex items-center justify-center overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={item.images[currentIndex].image}
+                  key={item.images[currentIndex]?.image}
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
@@ -96,10 +96,10 @@ const EnvironmentModal: React.FC<EnvironmentModalProps> = ({
                   className="absolute inset-0"
                 >
                   <Image
-                    src={item.images[currentIndex].image}
+                    src={item.images[currentIndex]?.image}
                     alt={`slide-${currentIndex}`}
                     fill
-                    className="object-cover rounded-[12px]"
+                    className="object-contain object-top rounded-[12px] w-auto"
                     sizes="(max-width: 768px) 100vw, 80vw"
                   />
                 </motion.div>

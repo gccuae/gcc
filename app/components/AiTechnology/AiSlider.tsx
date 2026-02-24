@@ -2,8 +2,8 @@
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { SwiperRef } from "swiper/react";
-import { useState, useRef, useEffect } from "react";
-import { Autoplay, Navigation } from "swiper/modules";
+import { useState, useRef, useEffect, useCallback } from "react";
+import { Navigation } from "swiper/modules";
 import "swiper/css";
 import { moveUp } from "../motionVarients";
 import { motion } from "framer-motion";
@@ -18,56 +18,76 @@ const AiSlider = ({
   const visibleSlides = 3;
 
   const [activeIndex, setActiveIndex] = useState(0);
-  const [bgImage, setBgImage] = useState(data[0]?.image);
+  const bgImage = data[activeIndex]?.image;
   const swiperRef = useRef<SwiperRef>(null);
+  const activeIndexRef = useRef(0);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  // Auto slide
-  useEffect(() => {
-    const interval = setInterval(() => {
-      goNext();
-    }, 4500);
+  const moveTo = useCallback(
+    (index: number) => {
+      const swiper = swiperRef.current?.swiper;
+      activeIndexRef.current = index;
+      setActiveIndex(index);
 
-    return () => clearInterval(interval);
-  }, [activeIndex]);
+      if (swiper) {
+        const firstVisible = swiper.realIndex;
+        const lastVisible = firstVisible + visibleSlides - 1;
 
-  useEffect(() => {
-    const swiper = swiperRef.current?.swiper;
-    if (swiper && window.innerWidth < 1024) {
-      swiper.slideToLoop(activeIndex);
-    }
-  }, [activeIndex]);
-
-  const goNext = () => {
-    let nextIndex = activeIndex + 1;
-    if (nextIndex >= totalSlides) {
-      nextIndex = 0;
-      swiperRef.current?.swiper.slideToLoop(0);
-    } else if (swiperRef.current) {
-      const swiper = swiperRef.current.swiper;
-      const firstVisible = swiper.realIndex;
-      if (nextIndex >= firstVisible + visibleSlides) {
-        swiper.slideNext();
+        if (index > lastVisible) {
+          swiper.slideNext();
+        } else if (index < firstVisible) {
+          swiper.slidePrev();
+        }
       }
-    }
-    setActiveIndex(nextIndex);
-    setBgImage(data[nextIndex].image);
-  };
+    },
+    [visibleSlides]
+  );
 
-  const goPrev = () => {
-    let prevIndex = activeIndex - 1;
-    if (prevIndex < 0) {
-      prevIndex = totalSlides - 1;
-      swiperRef.current?.swiper.slideToLoop(prevIndex);
-    } else if (swiperRef.current) {
-      const swiper = swiperRef.current.swiper;
-      const firstVisible = swiper.realIndex;
-      if (prevIndex < firstVisible) {
-        swiper.slidePrev();
-      }
-    }
-    setActiveIndex(prevIndex);
-    setBgImage(data[prevIndex].image);
-  };
+  const goNext = useCallback(() => {
+    const nextIndex = (activeIndexRef.current + 1) % totalSlides;
+    moveTo(nextIndex);
+  }, [totalSlides, moveTo]);
+
+  const goPrev = useCallback(() => {
+    const prevIndex = (activeIndexRef.current - 1 + totalSlides) % totalSlides;
+    moveTo(prevIndex);
+  }, [totalSlides, moveTo]);
+
+  // Start/restart the auto-play interval
+  const startInterval = useCallback(() => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(goNext, 4500);
+  }, [goNext]);
+
+  // Auto-slide on mount
+  useEffect(() => {
+    startInterval();
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [startInterval]);
+
+  // Handle title click — set active + reset timer
+  const handleTitleClick = useCallback(
+    (index: number) => {
+      moveTo(index);
+      startInterval(); // reset countdown on manual interaction
+    },
+    [moveTo, startInterval]
+  );
+
+  // Handle nav button clicks — also reset timer
+  const handleNext = useCallback(() => {
+    goNext();
+    startInterval();
+  }, [goNext, startInterval]);
+
+  const handlePrev = useCallback(() => {
+    goPrev();
+    startInterval();
+  }, [goPrev, startInterval]);
+
+  if (!data || data.length === 0) return null;
 
   return (
     <motion.div
@@ -93,9 +113,9 @@ const AiSlider = ({
               ref={swiperRef}
               allowTouchMove={false}
               className="islider"
-              slidesPerView={visibleSlides}
               loop={true}
-              modules={[Navigation, Autoplay]}
+              modules={[Navigation]}
+              speed={1800}
               breakpoints={{
                 0: { slidesPerView: 1 },
                 590: { slidesPerView: 2 },
@@ -111,7 +131,7 @@ const AiSlider = ({
                     viewport={{ once: true }}
                   >
                     <div
-                      className={`itmmn h-[411px] flex flex-col justify-start transition-all duration-300`}
+                      className="itmmn h-[411px] flex flex-col justify-start transition-all duration-300"
                       style={
                         activeIndex === index
                           ? {
@@ -122,9 +142,10 @@ const AiSlider = ({
                           : {}
                       }
                     >
-                      <div className={`transition-all duration-300`}>
-                        {/* ===== MAIN TITLE (Always visible) ===== */}
+                      <div className="transition-all duration-300">
+                        {/* ===== MAIN TITLE (Clickable) ===== */}
                         <div
+                          onClick={() => handleTitleClick(index)}
                           className={`bgsre transition-all duration-300 cursor-pointer border-b border-[#c2c2c2] ${
                             activeIndex === index
                               ? "bg-primary"
@@ -163,9 +184,8 @@ const AiSlider = ({
 
             {/* Navigation Buttons */}
             <div className="cursor-pointer absolute bottom-2 right-2 md:top-[40%] ring-1 ring-white md:ring-0 xl:-right-3 2xl:-right-8 z-50 w-[50px] h-[50px] xl:w-[65px] xl:h-[65px] 2xl:w-[94px] 2xl:h-[94px] bg-black rounded-full flex items-center justify-center gap-4 xl:gap-6">
-              {/* Custom Navigation Buttons */}
               <button
-                onClick={goPrev}
+                onClick={handlePrev}
                 className="text-accent w-2 xl:w-[12px] h-auto cursor-pointer"
               >
                 <svg
@@ -185,7 +205,7 @@ const AiSlider = ({
                 </svg>
               </button>
               <button
-                onClick={goNext}
+                onClick={handleNext}
                 className="text-accent w-2 xl:w-[12px] h-auto cursor-pointer"
               >
                 <svg

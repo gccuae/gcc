@@ -4,6 +4,7 @@ import BtnPrimary from "../common/BtnPrimary";
 import Image from "next/image";
 import { moveRight, moveUp } from "../motionVarients";
 import { NewsData } from "./type";
+import Link from "next/link";
 const Main = ({
   title,
   items,
@@ -46,6 +47,7 @@ const Main = ({
                     viewport={{ once: true }}
                     className="w-full xl:w-1/2 overflow-hidden"
                   >
+                    <Link href={`news/${item.slug}`}>
                     <Image
                       src={item.thumbnail}
                       alt="newsBlockImage"
@@ -53,15 +55,10 @@ const Main = ({
                       height={2000}
                       className="w-full h-full object-cover hover:scale-110 transition-all duration-400"
                     />
+                    </Link>
                   </motion.div>
                   <div className="xl:w-1/2 group xl:py-3">
-                    <motion.div
-                      variants={moveUp(0.2)}
-                      initial="hidden"
-                      whileInView="show"
-                      viewport={{ once: true }}
-                      className="flex items-center justify-between mb-4 xl:mb-[47px]"
-                    >
+                    <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true }} className="flex items-center justify-between mb-4 xl:mb-[47px]" >
                       <button className="bg-accent px-5 py-2 transition-all duration-300 uppercase ">
                         <span className="text-para-color group-hover:text-white transition-all duration-300">
                           {item.category}
@@ -84,7 +81,9 @@ const Main = ({
                       viewport={{ once: true }}
                       className="text-2xl font-normal leading-[1.40625] text-para-color mb-3 xl:mb-[22px] dark:text-white hover:text-primary transition-colors duration-300 max-w-[55ch] tracking-[-1px]"
                     >
+                      <Link href={`news/${item.slug}`} >
                       {item.title}
+                      </Link>
                     </motion.h3>
                     <motion.p
                       variants={moveUp(0.4)}

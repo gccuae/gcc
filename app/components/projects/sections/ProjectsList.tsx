@@ -140,7 +140,7 @@ const ProjectsList = ({
               }
             >
               <div className="relative">
-                <Listbox.Button className="flex w-full items-center justify-between border-b border-sm-gray dark:border-white/50 pb-1 font-light text-para-color dark:text-white/70 text-lg capitalize min-w-[140px] 2xl:max-w-[220px]">
+                <Listbox.Button className="flex w-full items-center justify-between border-b border-sm-gray dark:border-white/50 pb-1 font-light text-para-color dark:text-white/70 text-lg capitalize min-w-[140px] 2xl:max-w-[220px] cursor-pointer">
                   <span className="truncate">
                     {pendingFilters.projectType === "All"
                       ? "Project Type"
@@ -203,7 +203,7 @@ const ProjectsList = ({
               }
             >
               <div className="relative">
-                <Listbox.Button className="flex w-full items-center justify-between border-b border-sm-gray dark:border-white/50 pb-1 text-para-color dark:text-white/70 text-lg font-light capitalize min-w-[140px] 2xl:max-w-[220px]">
+                <Listbox.Button className="flex w-full items-center justify-between border-b border-sm-gray dark:border-white/50 pb-1 text-para-color dark:text-white/70 text-lg font-light capitalize min-w-[140px] 2xl:max-w-[220px] cursor-pointer">
                   <span className="truncate">
                     {pendingFilters.sector === "All"
                       ? "Sector"
@@ -267,7 +267,7 @@ const ProjectsList = ({
               }
             >
               <div className="relative">
-                <Listbox.Button className="flex w-full items-center justify-between border-b border-sm-gray dark:border-white/50 pb-1 text-para-color dark:text-white/70 text-lg font-light capitalize min-w-[140px] 2xl:max-w-[220px]">
+                <Listbox.Button className="flex w-full items-center justify-between border-b border-sm-gray dark:border-white/50 pb-1 text-para-color dark:text-white/70 text-lg font-light capitalize min-w-[140px] 2xl:max-w-[220px] cursor-pointer">
                   <span className="truncate">
                     {pendingFilters.location === "All"
                       ? "Location"
@@ -343,7 +343,7 @@ const ProjectsList = ({
               }
             >
               <div className="relative">
-                <Listbox.Button className="flex w-full items-center justify-between border-b border-sm-gray dark:border-white/50 pb-1 text-para-color dark:text-white/70 text-lg font-light capitalize min-w-[140px] 2xl:max-w-[220px]">
+                <Listbox.Button className="flex w-full items-center justify-between border-b border-sm-gray dark:border-white/50 pb-1 text-para-color dark:text-white/70 text-lg font-light capitalize min-w-[140px] 2xl:max-w-[220px] cursor-pointer">
                   <span className="truncate">
                     {pendingFilters.status === "All"
                       ? "Status"
@@ -405,10 +405,8 @@ const ProjectsList = ({
             </Listbox>
 
             {/* Apply Filter Button */}
-            <button
-              className="bg-[#7AC142] hover:bg-[#5cb43d] text-white px-6 py-[11px] rounded-[25px] font-semibold uppercase text-base leading-[1] transition-colors"
-              onClick={handleApplyFilters}
-            >
+            <button className="bg-[#7AC142] hover:bg-[#5cb43d] text-white px-6 py-[11px] rounded-[25px] font-semibold uppercase text-base leading-[1] transition-colors cursor-pointer"
+              onClick={handleApplyFilters} >
               Apply Filter
             </button>
           </div>
@@ -437,40 +435,16 @@ const ProjectsList = ({
 
         {/* Load More / Show Less */}
         {filteredProjects.length > 9 && (
-          <motion.div
-            variants={moveUp(0.2)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="flex justify-center mt-8"
-          >
+          <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true }} className="flex justify-center mt-8" >
             {visibleCount < filteredProjects.length ? (
-              <button
-                onClick={handleLoadMore}
-                className="px-6 py-2 bg-light-white text-black rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition"
-              >
+              <button onClick={handleLoadMore} className="px-6 py-2 bg-light-white text-black rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition cursor-pointer" >
                 <span>Load More</span>
-                <Image
-                  src={assets.singleGreenArrow}
-                  alt="arrow"
-                  width={20}
-                  height={20}
-                  className="inline rotate-90"
-                />
+                <Image src={assets.singleGreenArrow} alt="arrow" width={20} height={20} className="inline rotate-90" />
               </button>
             ) : filteredProjects.length > 9 ? (
-              <button
-                onClick={handleShowLess}
-                className="px-6 py-2 bg-light-white text-black rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition"
-              >
+              <button onClick={handleShowLess} className="px-6 py-2 bg-light-white text-black rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition cursor-pointer" >
                 <span>Show Less</span>
-                <Image
-                  src={assets.singleGreenArrow}
-                  alt="arrow"
-                  width={20}
-                  height={20}
-                  className="inline -rotate-90"
-                />
+                <Image src={assets.singleGreenArrow} alt="arrow" width={20} height={20} className="inline -rotate-90" />
               </button>
             ) : null}
           </motion.div>

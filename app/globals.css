@@ -609,6 +609,19 @@ header.modal-open {
   color: white;
 }
 
+.current-openings-select .react-select__control {
+  border-bottom: 1px solid #bcbcbc !important;
+}
+
+.current-openings-select .react-select__control:hover {
+  border-bottom: 1px solid #000 !important;
+}
+
+.dark .current-openings-select .react-select__control,
+.dark .current-openings-select .react-select__control:hover {
+  border-bottom: 1px solid #fff !important;
+}
+
 .year-navigation-slider {
   overflow: visible !important;
 }

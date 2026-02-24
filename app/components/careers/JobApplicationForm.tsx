@@ -59,11 +59,8 @@ const JobApplicationForm = ({ title }: { title: string }) => {
             className="grid grid-cols-1 md:grid-cols-2 lg:gap-8 text-black dark:text-white"
           >
             <div className="space-y-2">
-              <input
-                {...register("firstName")}
-                type="text"
-                placeholder="First Name"
-                className="w-full px-0 py-4 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:placeholder-white transition-colors duration-300"
+              <input {...register("firstName")} type="text" placeholder="First Name"
+                className="w-full px-0 py-4 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:focus:border-white/50 dark:placeholder-white transition-colors duration-300"
               />
               {errors.firstName && (
                 <p className="text-red-500 text-sm">
@@ -77,7 +74,7 @@ const JobApplicationForm = ({ title }: { title: string }) => {
                 {...register("lastName")}
                 type="text"
                 placeholder="Last Name"
-                className="w-full px-0 py-4 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:placeholder-white transition-colors duration-300"
+                className="w-full px-0 py-4 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:focus:border-white/50 dark:placeholder-white transition-colors duration-300"
               />
               {errors.lastName && (
                 <p className="text-red-500 text-sm">
@@ -100,7 +97,7 @@ const JobApplicationForm = ({ title }: { title: string }) => {
                 {...register("email")}
                 type="email"
                 placeholder="Email"
-                className="w-full px-0 py-4 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:placeholder-white transition-colors duration-300"
+                className="w-full px-0 py-4 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:focus:border-white/50 dark:placeholder-white transition-colors duration-300"
               />
               {errors.email && (
                 <p className="text-red-500 text-sm">{errors.email.message}</p>
@@ -112,7 +109,7 @@ const JobApplicationForm = ({ title }: { title: string }) => {
                 {...register("phoneNumber")}
                 type="tel"
                 placeholder="Phone Number"
-                className="w-full px-0 py-4 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:placeholder-white transition-colors duration-300"
+                className="w-full px-0 py-4 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:focus:border-white/50 dark:placeholder-white transition-colors duration-300"
               />
               {errors.phoneNumber && (
                 <p className="text-red-500 text-sm">
@@ -135,7 +132,7 @@ const JobApplicationForm = ({ title }: { title: string }) => {
                 {...register("nationality")}
                 type="text"
                 placeholder="Nationality"
-                className="w-full px-0 py-4 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:placeholder-white transition-colors duration-300"
+                className="w-full px-0 py-4 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:focus:border-white/50 dark:placeholder-white transition-colors duration-300"
               />
               {errors.nationality && (
                 <p className="text-red-500 text-sm">
@@ -149,7 +146,7 @@ const JobApplicationForm = ({ title }: { title: string }) => {
                 {...register("hasConstructionExperience")}
                 type="text"
                 placeholder="Current Location"
-                className="w-full px-0 py-4 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:placeholder-white transition-colors duration-300"
+                className="w-full px-0 py-4 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:focus:border-white/50 dark:placeholder-white transition-colors duration-300"
               />
               {errors.hasConstructionExperience && (
                 <p className="text-red-500 text-sm">

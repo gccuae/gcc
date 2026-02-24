@@ -38,7 +38,7 @@ const Cta = ({ data }: { data: AiTechnologyType["thirdSection"] }) => {
           viewport={{ once: true }}
           className="flex justify-between items-center pb-0 "
         >
-          <BtnPrimary link={`#`} text={data.buttonText} bgtrans={true} />
+          <BtnPrimary link={`/contact-us`} text={data.buttonText} bgtrans={true} />
         </motion.div>
       </div>
     </section>

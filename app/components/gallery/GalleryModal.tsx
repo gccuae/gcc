@@ -1,11 +1,14 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { GalleryType } from "./type";
+import { Swiper, SwiperSlide } from "swiper/react";
+import type { Swiper as SwiperType } from "swiper";
+import "swiper/css";
 
 interface GalleryModalProps {
   item: GalleryType['items'][number]; // single album item
@@ -15,8 +18,9 @@ interface GalleryModalProps {
 const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
-
-  console.log(item)
+  const [thumbAtStart, setThumbAtStart] = useState(true);
+  const [thumbAtEnd, setThumbAtEnd] = useState(false);
+  const thumbsSwiperRef = useRef<SwiperType | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -37,6 +41,14 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
   const selectImage = (index: number) => {
     setCurrentIndex(index);
   };
+
+  useEffect(() => {
+    if (thumbsSwiperRef.current) {
+      thumbsSwiperRef.current.slideTo(currentIndex);
+      setThumbAtStart(thumbsSwiperRef.current.isBeginning);
+      setThumbAtEnd(thumbsSwiperRef.current.isEnd);
+    }
+  }, [currentIndex]);
 
   if (!mounted) return null;
 
@@ -63,10 +75,7 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
               {item.item}
             </div>
 
-            <button
-              onClick={onClose}
-              className="ml-auto text-white text-[40px] font-light z-20 cursor-pointer"
-            >
+            <button onClick={onClose} className="ml-auto text-white text-[40px] font-light z-20 cursor-pointer" >
               &times;
             </button>
           </div>
@@ -92,20 +101,13 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
                   transition={{ duration: 0.4, ease: "easeInOut" }}
                   className="absolute inset-0"
                 >
-                  <Image
-                    src={item?.images[currentIndex]?.image}
-                    alt={`slide-${currentIndex}`}
-                    fill
-                    className="object-cover rounded-[12px]"
-                    sizes="(max-width: 768px) 100vw, 80vw"
-                  />
+                  <Image src={item?.images[currentIndex]?.image} alt={`slide-${currentIndex}`} fill className="object-contain rounded-[12px]" sizes="(max-width: 768px) 100vw, 80vw" />
                 </motion.div>
               </AnimatePresence>
             </div>
 
             {/* Next */}
-            <button
-              onClick={goNext}
+            <button onClick={goNext}
               className="absolute right-0 lg:top-1/2 top-0 lg:-translate-y-1/2 translate-y-0 cursor-pointer"
             >
               <SlArrowRight className="text-white hover:text-primary transition-all duration-300 h-[20px] lg:h-[28px] w-[20px] lg:w-[28px]" />
@@ -113,40 +115,74 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
           </div>
 
           {/* Thumbnails */}
-          <div className="flex flex-wrap justify-center items-center mt-[15px] lg:mt-[30px] gap-[10px]">
-            {item.images.map((img, idx) => {
-              const isActive = currentIndex === idx;
+          <div className="relative mt-[15px] lg:mt-[30px] px-8">
+            <button
+              type="button"
+              onClick={() => thumbsSwiperRef.current?.slidePrev()}
+              className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 ${
+                thumbAtStart ? "opacity-40 cursor-default" : "opacity-100 cursor-pointer"
+              }`}
+            >
+              <SlArrowLeft className="text-white hover:text-primary transition-all duration-300 h-[16px] lg:h-[20px] w-[16px] lg:w-[20px]" />
+            </button>
 
-              return (
-                <div
-                  key={idx}
-                  onClick={() => selectImage(idx)}
-                  className="relative flex items-center justify-center rounded-[9px] overflow-hidden cursor-pointer transition-all duration-200"
-                  style={{ height: "73px" }}
-                >
-                  <div
-                    className="relative rounded-[9px] w-full h-full flex items-center justify-center"
-                    style={{
-                      width: isActive ? "110px" : "80px",
-                      height: isActive ? "73px" : "54px",
-                      margin: "auto",
-                      transition: "width 0.2s, height 0.2s",
-                    }}
-                  >
-                    <Image
-                      src={img.image}
-                      alt={`thumb-${idx}`}
-                      width={isActive ? 110 : 80}
-                      height={isActive ? 73 : 54}
-                      className="object-cover rounded-[9px] w-full h-full"
-                    />
-                    {!isActive && (
-                      <div className="absolute inset-0 bg-white/60 rounded-[9px] pointer-events-none transition-opacity duration-200" />
-                    )}
-                  </div>
-                </div>
-              );
-            })}
+            <Swiper
+              slidesPerView="auto"
+              spaceBetween={10}
+              onSwiper={(swiper) => {
+                thumbsSwiperRef.current = swiper;
+                swiper.slideTo(currentIndex, 0);
+                setThumbAtStart(swiper.isBeginning);
+                setThumbAtEnd(swiper.isEnd);
+              }}
+              onSlideChange={(swiper) => {
+                setThumbAtStart(swiper.isBeginning);
+                setThumbAtEnd(swiper.isEnd);
+              }}
+              onResize={(swiper) => {
+                setThumbAtStart(swiper.isBeginning);
+                setThumbAtEnd(swiper.isEnd);
+              }}
+            >
+              {item.images.map((img, idx) => {
+                const isActive = currentIndex === idx;
+
+                return (
+                  <SwiperSlide key={idx} className="!w-auto !h-auto">
+                    <div
+                      onClick={() => selectImage(idx)}
+                      className="relative flex items-center justify-center rounded-[9px] overflow-hidden cursor-pointer transition-all duration-200"
+                      style={{ height: "73px" }}
+                    >
+                      <div
+                        className="relative rounded-[9px] w-full h-full flex items-center justify-center"
+                        style={{
+                          width: isActive ? "110px" : "80px",
+                          height: isActive ? "73px" : "54px",
+                          margin: "auto",
+                          transition: "width 0.2s, height 0.2s",
+                        }}
+                      >
+                        <Image src={img.image} alt={`thumb-${idx}`} width={isActive ? 110 : 80} height={isActive ? 73 : 54} className="object-cover rounded-[9px] w-full h-full" />
+                        {!isActive && (
+                          <div className="absolute inset-0 bg-white/60 rounded-[9px] pointer-events-none transition-opacity duration-200" />
+                        )}
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+
+            <button
+              type="button"
+              onClick={() => thumbsSwiperRef.current?.slideNext()}
+              className={`absolute right-0 top-1/2 -translate-y-1/2 z-20 ${
+                thumbAtEnd ? "opacity-40 cursor-default" : "opacity-100 cursor-pointer"
+              }`}
+            >
+              <SlArrowRight className="text-white hover:text-primary transition-all duration-300 h-[16px] lg:h-[20px] w-[16px] lg:w-[20px]" />
+            </button>
           </div>
         </div>
       </div>

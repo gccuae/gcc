@@ -135,7 +135,9 @@ export const BlogItem = ({
           </p>
         </div>
         <h3 className="text-xl leading-normal font-normal mb-3 xl:mb-[12px] text-black dark:text-white">
+          <Link href={`/blog/${item.slug}`} >
           {item.title}
+          </Link>
         </h3>
       </div>
     </div>

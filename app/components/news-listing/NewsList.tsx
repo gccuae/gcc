@@ -74,7 +74,7 @@ const NewsList = ({ data }: { data: NewsData }) => {
           {visibleCount < totalNews ? (
             <button
               onClick={handleLoadMore}
-              className="px-6 py-2 bg-light-white text-black rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition"
+              className="px-6 py-2 bg-light-white text-black rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition cursor-pointer"
             >
               <span>Load More</span>
               <Image
@@ -88,7 +88,7 @@ const NewsList = ({ data }: { data: NewsData }) => {
           ) : totalNews > 6 ? (
             <button
               onClick={handleShowLess}
-              className="px-6 py-2 bg-light-white text-black rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition"
+              className="px-6 py-2 bg-light-white text-black rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition cursor-pointer"
             >
               <span>Show Less</span>
               <Image

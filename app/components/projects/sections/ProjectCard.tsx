@@ -125,7 +125,9 @@ const ProjectCard = ({ item, index }: { item: Project; index: number }) => {
                 </div>
 
                 <h3 className="text-xl md:text-2xl leading-[1.4] font-normal mb-1 md:mb-3 xl:mb-[12px] text-black dark:text-white capitalize">
+                    <Link href={`/projects/${item.slug}`} >
                     {item?.title?.toLowerCase()}
+                    </Link>
                 </h3>
                 <h4 className="text-lg leading-normal font-light mb-0 dark:text-white line-clamp-2 !overflow-hidden !text-ellipsis text-para-color">
                     {item?.thumbDescription}
