@@ -36,9 +36,9 @@ const NewsPage = () => {
 
 
     const [category, setCategory] = useState<string>("")
-    
-    const [categoryList, setCategoryList] = useState<{_id: string, category: string}[]>([]);
-    const [newsList, setNewsList] = useState<{_id: string, title: string}[]>([]);
+
+    const [categoryList, setCategoryList] = useState<{ _id: string, category: string }[]>([]);
+    const [newsList, setNewsList] = useState<{ _id: string, title: string }[]>([]);
 
 
     const handleAddNews = async (data: NewsFormProps) => {
@@ -83,7 +83,7 @@ const NewsPage = () => {
                 setValue("pageTitle", data.data.pageTitle);
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
-                setNewsList(data.data.categories.flatMap((news: { news: { title: string; }[]; })=>news.news ?? []));
+                setNewsList(data.data.categories.flatMap((news: { news: { title: string; }[]; }) => news.news ?? []));
             } else {
                 const data = await response.json();
                 alert(data.message);
@@ -93,10 +93,10 @@ const NewsPage = () => {
         }
     }
 
-    const handleFetchCategory = async() => {
+    const handleFetchCategory = async () => {
         try {
             const response = await fetch("/api/admin/news/category");
-            if(response.ok) {
+            if (response.ok) {
                 const data = await response.json();
                 setCategoryList(data.data);
             }
@@ -106,18 +106,18 @@ const NewsPage = () => {
     }
 
 
-    const handleAddCategory = async() => {
+    const handleAddCategory = async () => {
         try {
-            const response = await fetch("/api/admin/news/category",{
+            const response = await fetch("/api/admin/news/category", {
                 method: "POST",
                 body: JSON.stringify({ name: category }),
             });
-            if(response.ok) {
+            if (response.ok) {
                 const data = await response.json();
                 setCategory("");
                 alert(data.message);
                 handleFetchCategory();
-            }else{
+            } else {
                 const data = await response.json();
                 alert(data.message);
             }
@@ -126,17 +126,17 @@ const NewsPage = () => {
         }
     }
 
-    const handleEditCategory = async(id: string) => {
+    const handleEditCategory = async (id: string) => {
         try {
-            const response = await fetch(`/api/admin/news/category?id=${id}`,{
+            const response = await fetch(`/api/admin/news/category?id=${id}`, {
                 method: "PATCH",
                 body: JSON.stringify({ name: category }),
             });
-            if(response.ok) {
+            if (response.ok) {
                 const data = await response.json();
                 alert(data.message);
                 handleFetchCategory();
-            }else{
+            } else {
                 const data = await response.json();
                 alert(data.message);
             }
@@ -145,16 +145,16 @@ const NewsPage = () => {
         }
     }
 
-    const handleDeleteCategory = async(id: string) => {
+    const handleDeleteCategory = async (id: string) => {
         try {
-            const response = await fetch(`/api/admin/news/category?id=${id}`,{
+            const response = await fetch(`/api/admin/news/category?id=${id}`, {
                 method: "DELETE",
             });
-            if(response.ok) {
+            if (response.ok) {
                 const data = await response.json();
                 alert(data.message);
                 handleFetchCategory();
-            }else{
+            } else {
                 const data = await response.json();
                 alert(data.message);
             }
@@ -176,64 +176,64 @@ const NewsPage = () => {
             <form className='flex flex-col gap-5' onSubmit={handleSubmit(handleAddNews)}>
 
 
-                    <AdminItemContainer>
-                        <Label className="" main>Banner</Label>
-                        <div className='p-5 rounded-md grid grid-cols-2 gap-5'>
-                    <div>
-                        <Controller
-                            name="banner"
-                            control={control}
-                            rules={{ required: "Banner is required" }}
-                            render={({ field }) => (
-                                <ImageUploader
-                                    value={field.value}
-                                    onChange={field.onChange}
-                                />
+                <AdminItemContainer>
+                    <Label className="" main>Banner</Label>
+                    <div className='p-5 rounded-md grid grid-cols-2 gap-5'>
+                        <div>
+                            <Controller
+                                name="banner"
+                                control={control}
+                                rules={{ required: "Banner is required" }}
+                                render={({ field }) => (
+                                    <ImageUploader
+                                        value={field.value}
+                                        onChange={field.onChange}
+                                    />
+                                )}
+                            />
+                            {errors.banner && (
+                                <p className="text-red-500">{errors.banner.message}</p>
                             )}
-                        />
-                        {errors.banner && (
-                            <p className="text-red-500">{errors.banner.message}</p>
-                        )}
+                        </div>
+                        <div className='flex flex-col gap-2'>
+                            <div className='flex flex-col gap-1'>
+                                <Label className='font-bold'>Alt Tag</Label>
+                                <Input type='text' placeholder='Alt Tag' {...register("bannerAlt")} />
+                            </div>
+                            <div className='flex flex-col gap-1'>
+                                <Label className='font-bold'>Page Title</Label>
+                                <Input type='text' placeholder='Page Title' {...register("pageTitle")} />
+                            </div>
+                        </div>
                     </div>
-                    <div className='flex flex-col gap-2'>
-                    <div className='flex flex-col gap-1'>
-                        <Label className='font-bold'>Alt Tag</Label>
-                        <Input type='text' placeholder='Alt Tag' {...register("bannerAlt")} />
-                    </div>
-                    <div className='flex flex-col gap-1'>
-                        <Label className='font-bold'>Page Title</Label>
-                        <Input type='text' placeholder='Page Title' {...register("pageTitle")} />
-                    </div>
-                    </div>
-                </div>
                 </AdminItemContainer>
 
-                                <AdminItemContainer>
-                            <div className='flex justify-between items-center p-5'>
-                                <h1 className='text-md font-semibold'>Category</h1>
-                                <Dialog>
-                                        <DialogTrigger className='bg-primary text-white px-3 py-1 rounded-md font-semibold' onClick={()=>setCategory("")}>Add Category</DialogTrigger>
-                                        <DialogContent>
-                                            <DialogHeader>
-                                                <DialogTitle>Add Category</DialogTitle>
-                                                <DialogDescription>
-                                                    <Input type="text" placeholder="Category Name" value={category} onChange={(e) => setCategory(e.target.value)} />
-                                                </DialogDescription>
-                                            </DialogHeader>
-                                            <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={handleAddCategory}>Save</DialogClose>
-                                        </DialogContent>
-                
-                                    </Dialog>
-                            </div>
-                            <div className='px-5 flex flex-col gap-4 py-3'>
-                            {categoryList.map((item)=>(
-                                <div className='flex justify-between items-center border rounded-md p-4 hover:bg-gray-100  hover:shadow-md transform  transition-all' key={item._id}>
+                <AdminItemContainer>
+                    <div className='flex justify-between items-center p-5 border-b'>
+                        <h1 className='text-lg font-semibold'>Category</h1>
+                        <Dialog>
+                            <DialogTrigger className='bg-primary text-white px-3 py-1 rounded-md font-semibold' onClick={() => setCategory("")}>Add Category</DialogTrigger>
+                            <DialogContent>
+                                <DialogHeader>
+                                    <DialogTitle>Add Category</DialogTitle>
+                                    <DialogDescription>
+                                        <Input type="text" placeholder="Category Name" value={category} onChange={(e) => setCategory(e.target.value)} />
+                                    </DialogDescription>
+                                </DialogHeader>
+                                <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={handleAddCategory}>Save</DialogClose>
+                            </DialogContent>
+
+                        </Dialog>
+                    </div>
+                    <div className='px-5 flex flex-col gap-4 py-3'>
+                        {categoryList.map((item) => (
+                            <div className='flex justify-between items-center border rounded-md p-4 hover:bg-gray-100  hover:shadow-md transform  transition-all' key={item._id}>
                                 <div>
                                     <p>{item.category}</p>
                                 </div>
                                 <div className='flex gap-8 items-center'>
                                     <Dialog>
-                                        <DialogTrigger onClick={()=>setCategory(item.category)}><FaEdit className='text-lg cursor-pointer' /></DialogTrigger>
+                                        <DialogTrigger onClick={() => setCategory(item.category)}><FaEdit className='text-lg cursor-pointer' /></DialogTrigger>
                                         <DialogContent>
                                             <DialogHeader>
                                                 <DialogTitle>Edit Category</DialogTitle>
@@ -241,79 +241,84 @@ const NewsPage = () => {
                                                     <Input type="text" placeholder="Category Name" value={category} onChange={(e) => setCategory(e.target.value)} />
                                                 </DialogDescription>
                                             </DialogHeader>
-                                            <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={()=>handleEditCategory(item._id)}>Save</DialogClose>
+                                            <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={() => handleEditCategory(item._id)}>Save</DialogClose>
                                         </DialogContent>
-                
+
                                     </Dialog>
-                
-                
+
+
                                     <Dialog>
-                                                  <DialogTrigger><MdDelete className='text-lg cursor-pointer' /></DialogTrigger>
-                                                  <DialogContent>
-                                                    <DialogHeader>
-                                                      <DialogTitle>Are you sure?</DialogTitle>
-                                                    </DialogHeader>
-                                                    <div className="flex gap-2">
-                                                      <DialogClose className="bg-black text-white px-2 py-1 rounded-md">No</DialogClose>
-                                                      <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={()=>handleDeleteCategory(item._id)}>Yes</DialogClose>
-                                                    </div>
-                                    
-                                                  </DialogContent>
-                                    
-                                                </Dialog>
-                 
+                                        <DialogTrigger><MdDelete className='text-lg cursor-pointer' /></DialogTrigger>
+                                        <DialogContent>
+                                            <DialogHeader>
+                                                <DialogTitle>Are you sure?</DialogTitle>
+                                            </DialogHeader>
+                                            <div className="flex gap-2">
+                                                <DialogClose className="bg-black text-white px-2 py-1 rounded-md">No</DialogClose>
+                                                <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={() => handleDeleteCategory(item._id)}>Yes</DialogClose>
+                                            </div>
+
+                                        </DialogContent>
+
+                                    </Dialog>
+
                                 </div>
                             </div>
-                            ))}
-                            </div>
-                            </AdminItemContainer>
+                        ))}
+                    </div>
+                </AdminItemContainer>
 
-                            <AdminItemContainer>
-                            <div className='flex justify-between items-center p-5'>
-                                <h1 className='text-md font-semibold'>News</h1>
-                                <Link href="/admin/news/add" className='bg-primary text-white px-3 py-1 rounded-md font-semibold'>Add News</Link>
-                            </div>
-                            <div className='px-5 flex flex-col gap-4 py-3'>
-                            {newsList.map((item)=>(
-                                <div className='flex justify-between items-center border rounded-md p-4 hover:bg-gray-100  hover:shadow-md transform  transition-all' key={item._id}>
+                <AdminItemContainer>
+                    <div className='flex justify-between items-center p-5 border-b'>
+                        <h1 className='text-lg font-semibold'>News</h1>
+                        <Link href="/admin/news/add" className='bg-primary text-white px-3 py-1 rounded-md font-semibold'>Add News</Link>
+                    </div>
+                    <div className='px-5 flex flex-col gap-4 py-3'>
+                        {newsList.map((item) => (
+                            <div className='flex justify-between items-center border rounded-md p-4 hover:bg-gray-100  hover:shadow-md transform  transition-all' key={item._id}>
                                 <div>
                                     <p>{item.title}</p>
                                 </div>
                                 <div className='flex gap-8 items-center'>
-                                    
-                                        <Link href={`/admin/news/edit/${item._id}`}><FaEdit className='text-lg cursor-pointer' /></Link>
-                                        
-                
-                
+
+                                    <Link href={`/admin/news/edit/${item._id}`}><FaEdit className='text-lg cursor-pointer' /></Link>
+
+
+
                                     <Dialog>
-                                                  <DialogTrigger><MdDelete className='text-lg cursor-pointer' /></DialogTrigger>
-                                                  <DialogContent>
-                                                    <DialogHeader>
-                                                      <DialogTitle>Are you sure?</DialogTitle>
-                                                    </DialogHeader>
-                                                    <div className="flex gap-2">
-                                                      <DialogClose className="bg-black text-white px-2 py-1 rounded-md">No</DialogClose>
-                                                      <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={()=>handleDeleteNews(item._id)}>Yes</DialogClose>
-                                                    </div>
-                                    
-                                                  </DialogContent>
-                                    
-                                                </Dialog>
-                 
+                                        <DialogTrigger><MdDelete className='text-lg cursor-pointer' /></DialogTrigger>
+                                        <DialogContent>
+                                            <DialogHeader>
+                                                <DialogTitle>Are you sure?</DialogTitle>
+                                            </DialogHeader>
+                                            <div className="flex gap-2">
+                                                <DialogClose className="bg-black text-white px-2 py-1 rounded-md">No</DialogClose>
+                                                <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={() => handleDeleteNews(item._id)}>Yes</DialogClose>
+                                            </div>
+
+                                        </DialogContent>
+
+                                    </Dialog>
+
                                 </div>
                             </div>
-                            ))}
-                            </div>
-                            </AdminItemContainer>
+                        ))}
+                    </div>
+                </AdminItemContainer>
 
-                <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Meta Title</Label>
-                    <Input type='text' placeholder='Meta Title' {...register("metaTitle")} />
-                </div>
-                <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Meta Description</Label>
-                    <Input type='text' placeholder='Meta Description' {...register("metaDescription")} />
-                </div>
+                <AdminItemContainer>
+                    <Label main>SEO</Label>
+                    <div className="p-5 flex flex-col gap-2">
+                        <div className='flex flex-col gap-2'>
+                            <Label className='font-bold'>Title</Label>
+                            <Input type='text' placeholder='' {...register("metaTitle")} />
+                        </div>
+                        <div className='flex flex-col gap-2'>
+                            <Label className='font-bold'>Description</Label>
+                            <Input type='text' placeholder='' {...register("metaDescription")} />
+                        </div>
+                    </div>
+                </AdminItemContainer>
 
                 <div className='flex'>
                     <Button type='submit' className="cursor-pointer text-white text-[16px] w-full">Submit</Button>

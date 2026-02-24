@@ -430,15 +430,19 @@ export default function CurrentOpenings() {
 
 
 
-
-        <div className='flex flex-col gap-2'>
-          <Label className='font-bold'>Meta Title</Label>
-          <Input type='text' placeholder='Meta Title' {...register("metaTitle")} />
-        </div>
-        <div className='flex flex-col gap-2'>
-          <Label className='font-bold'>Meta Description</Label>
-          <Input type='text' placeholder='Meta Description' {...register("metaDescription")} />
-        </div>
+        <AdminItemContainer>
+          <Label main>SEO</Label>
+          <div className="p-5 flex flex-col gap-2">
+            <div className='flex flex-col gap-2'>
+              <Label className='font-bold'>Title</Label>
+              <Input type='text' placeholder='' {...register("metaTitle")} />
+            </div>
+            <div className='flex flex-col gap-2'>
+              <Label className='font-bold'>Description</Label>
+              <Input type='text' placeholder='' {...register("metaDescription")} />
+            </div>
+          </div>
+        </AdminItemContainer>
 
         <div className='flex justify-center mt-5'>
           <Button type='submit' className="cursor-pointer text-white text-[16px] w-full">Submit</Button>

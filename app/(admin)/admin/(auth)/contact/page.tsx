@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import React, { useEffect } from 'react'
 
-import { useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import AdminItemContainer from '@/app/components/common/AdminItemContainer';
@@ -17,19 +17,19 @@ interface ContactFormProps {
     pageTitle: string;
     firstSection: {
         pageTitle: string;
-        mainTitle:string;
-        subTitle:string;
+        mainTitle: string;
+        subTitle: string;
     };
     secondSection: {
         mainTitle: string;
         subTitle: string;
-        addressTitle:string;
-        location:string;
-        telephone:string;
-        email:string;
-        fax:string;
-        timings:string;
-        map:string;
+        addressTitle: string;
+        location: string;
+        telephone: string;
+        email: string;
+        fax: string;
+        timings: string;
+        map: string;
     };
 }
 
@@ -90,126 +90,131 @@ const ContactPage = () => {
 
 
                 <AdminItemContainer>
-                <Label main>First Section</Label>
-                <div className='p-5 rounded-md flex flex-col gap-2'>
-                    <div className='flex flex-col gap-2'>
-                        <div className='flex flex-col gap-1'>
-                            <Label className='font-bold'>Page Title</Label>
-                            <Input type='text' placeholder='Title' {...register("firstSection.pageTitle", {
-                                required: "Page Title is required"
-                            })} />
-                            {errors.firstSection?.pageTitle && <p className='text-red-500'>{errors.firstSection?.pageTitle.message}</p>}
+                    <Label main>First Section</Label>
+                    <div className='p-5 rounded-md flex flex-col gap-2'>
+                        <div className='flex flex-col gap-2'>
+                            <div className='flex flex-col gap-1'>
+                                <Label className='font-bold'>Page Title</Label>
+                                <Input type='text' placeholder='Title' {...register("firstSection.pageTitle", {
+                                    required: "Page Title is required"
+                                })} />
+                                {errors.firstSection?.pageTitle && <p className='text-red-500'>{errors.firstSection?.pageTitle.message}</p>}
+                            </div>
+                            <div className='flex flex-col gap-1'>
+                                <Label className='font-bold'>Main Title</Label>
+                                <Input type='text' placeholder='Title' {...register("firstSection.mainTitle", {
+                                    required: "Main Title is required"
+                                })} />
+                                {errors.firstSection?.mainTitle && <p className='text-red-500'>{errors.firstSection?.mainTitle.message}</p>}
+                            </div>
+                            <div className='flex flex-col gap-1'>
+                                <Label className='font-bold'>Sub Title</Label>
+                                <Input type='text' placeholder='Title' {...register("firstSection.subTitle", {
+                                    required: "Sub Title is required"
+                                })} />
+                                {errors.firstSection?.subTitle && <p className='text-red-500'>{errors.firstSection?.subTitle.message}</p>}
+                            </div>
                         </div>
-                        <div className='flex flex-col gap-1'>
-                            <Label className='font-bold'>Main Title</Label>
-                            <Input type='text' placeholder='Title' {...register("firstSection.mainTitle", {
-                                required: "Main Title is required"
-                            })} />
-                            {errors.firstSection?.mainTitle && <p className='text-red-500'>{errors.firstSection?.mainTitle.message}</p>}
-                        </div>
-                        <div className='flex flex-col gap-1'>
-                            <Label className='font-bold'>Sub Title</Label>
-                            <Input type='text' placeholder='Title' {...register("firstSection.subTitle", {
-                                required: "Sub Title is required"
-                            })} />
-                            {errors.firstSection?.subTitle && <p className='text-red-500'>{errors.firstSection?.subTitle.message}</p>}
-                        </div>
-                    </div>
 
-                </div>
+                    </div>
                 </AdminItemContainer>
 
 
                 <AdminItemContainer>
-                <Label main>Second Section</Label>
-                <div className='p-5 rounded-md flex flex-col gap-2'>
-                    <div className='flex flex-col gap-2'>
-                        <div className='flex flex-col gap-1'>
-                            <Label className='font-bold'>Main Title</Label>
-                            <Input type='text' placeholder='Main Title' {...register("secondSection.mainTitle", {
-                                required: "Main Title is required"
-                            })} />
-                            {errors.secondSection?.mainTitle && <p className='text-red-500'>{errors.secondSection?.mainTitle.message}</p>}
-                        </div>
-                        <div className='flex flex-col gap-1'>
-                            <Label className='font-bold'>Sub Title</Label>
-                            <Input type='text' placeholder='Sub Title' {...register("secondSection.subTitle", {
-                                required: "Sub Title is required"
-                            })} />
-                            {errors.secondSection?.subTitle && <p className='text-red-500'>{errors.secondSection?.subTitle.message}</p>}
-                        </div>
-                        
-                        <div className='flex flex-col gap-1'>
-                            <Label className='font-bold'>Address Title</Label>
-                            <Input type='text' placeholder='Address Title' {...register("secondSection.addressTitle", {
-                                required: "Address Title is required"
-                            })} />
-                            {errors.secondSection?.addressTitle && <p className='text-red-500'>{errors.secondSection?.addressTitle.message}</p>}
-                        </div>
+                    <Label main>Second Section</Label>
+                    <div className='p-5 rounded-md flex flex-col gap-2'>
+                        <div className='flex flex-col gap-2'>
+                            <div className='flex flex-col gap-1'>
+                                <Label className='font-bold'>Main Title</Label>
+                                <Input type='text' placeholder='Main Title' {...register("secondSection.mainTitle", {
+                                    required: "Main Title is required"
+                                })} />
+                                {errors.secondSection?.mainTitle && <p className='text-red-500'>{errors.secondSection?.mainTitle.message}</p>}
+                            </div>
+                            <div className='flex flex-col gap-1'>
+                                <Label className='font-bold'>Sub Title</Label>
+                                <Input type='text' placeholder='Sub Title' {...register("secondSection.subTitle", {
+                                    required: "Sub Title is required"
+                                })} />
+                                {errors.secondSection?.subTitle && <p className='text-red-500'>{errors.secondSection?.subTitle.message}</p>}
+                            </div>
 
-                        <div className='flex flex-col gap-1'>
-                            <Label className='font-bold'>Location</Label>
-                            <Textarea placeholder='Description' {...register(`secondSection.location`, {
-                                        required: "Value is required"
-                            })} />
-                            {errors.secondSection?.location && <p className='text-red-500'>{errors.secondSection?.location.message}</p>}
-                        </div>
+                            <div className='flex flex-col gap-1'>
+                                <Label className='font-bold'>Address Title</Label>
+                                <Input type='text' placeholder='Address Title' {...register("secondSection.addressTitle", {
+                                    required: "Address Title is required"
+                                })} />
+                                {errors.secondSection?.addressTitle && <p className='text-red-500'>{errors.secondSection?.addressTitle.message}</p>}
+                            </div>
 
-                        <div className='flex flex-col gap-1'>
-                            <Label className='font-bold'>Telephone</Label>
-                            <Input type='text' placeholder='Address Title' {...register("secondSection.telephone", {
-                                required: "Telephone is required"
-                            })} />
-                            {errors.secondSection?.telephone && <p className='text-red-500'>{errors.secondSection?.telephone.message}</p>}
-                        </div>
+                            <div className='flex flex-col gap-1'>
+                                <Label className='font-bold'>Location</Label>
+                                <Textarea placeholder='Description' {...register(`secondSection.location`, {
+                                    required: "Value is required"
+                                })} />
+                                {errors.secondSection?.location && <p className='text-red-500'>{errors.secondSection?.location.message}</p>}
+                            </div>
 
-                        <div className='flex flex-col gap-1'>
-                            <Label className='font-bold'>Email</Label>
-                            <Input type='text' placeholder='Address Title' {...register("secondSection.email", {
-                                required: "Email is required"
-                            })} />
-                            {errors.secondSection?.email && <p className='text-red-500'>{errors.secondSection?.email.message}</p>}
-                        </div>
+                            <div className='flex flex-col gap-1'>
+                                <Label className='font-bold'>Telephone</Label>
+                                <Input type='text' placeholder='Address Title' {...register("secondSection.telephone", {
+                                    required: "Telephone is required"
+                                })} />
+                                {errors.secondSection?.telephone && <p className='text-red-500'>{errors.secondSection?.telephone.message}</p>}
+                            </div>
 
-                        <div className='flex flex-col gap-1'>
-                            <Label className='font-bold'>Fax</Label>
-                            <Input type='text' placeholder='Address Title' {...register("secondSection.fax", {
-                                required: "Fax is required"
-                            })} />
-                            {errors.secondSection?.fax && <p className='text-red-500'>{errors.secondSection?.fax.message}</p>}
-                        </div>
+                            <div className='flex flex-col gap-1'>
+                                <Label className='font-bold'>Email</Label>
+                                <Input type='text' placeholder='Address Title' {...register("secondSection.email", {
+                                    required: "Email is required"
+                                })} />
+                                {errors.secondSection?.email && <p className='text-red-500'>{errors.secondSection?.email.message}</p>}
+                            </div>
 
-                        <div className='flex flex-col gap-1'>
-                            <Label className='font-bold'>Timings</Label>
-                            <Textarea placeholder='Description' {...register(`secondSection.timings`, {
-                                        required: "Value is required"
-                            })} />
-                            {errors.secondSection?.timings && <p className='text-red-500'>{errors.secondSection?.timings.message}</p>}
-                        </div>
+                            <div className='flex flex-col gap-1'>
+                                <Label className='font-bold'>Fax</Label>
+                                <Input type='text' placeholder='Address Title' {...register("secondSection.fax", {
+                                    required: "Fax is required"
+                                })} />
+                                {errors.secondSection?.fax && <p className='text-red-500'>{errors.secondSection?.fax.message}</p>}
+                            </div>
 
-                        <div className='flex flex-col gap-1'>
-                            <Label className='font-bold'>Map</Label>
-                            <Input type='text' placeholder='Address Title' {...register("secondSection.map", {
-                                required: "Fax is required"
-                            })} />
-                            {errors.secondSection?.map && <p className='text-red-500'>{errors.secondSection?.map.message}</p>}
-                        </div>
+                            <div className='flex flex-col gap-1'>
+                                <Label className='font-bold'>Timings</Label>
+                                <Textarea placeholder='Description' {...register(`secondSection.timings`, {
+                                    required: "Value is required"
+                                })} />
+                                {errors.secondSection?.timings && <p className='text-red-500'>{errors.secondSection?.timings.message}</p>}
+                            </div>
 
+                            <div className='flex flex-col gap-1'>
+                                <Label className='font-bold'>Map</Label>
+                                <Input type='text' placeholder='Address Title' {...register("secondSection.map", {
+                                    required: "Fax is required"
+                                })} />
+                                {errors.secondSection?.map && <p className='text-red-500'>{errors.secondSection?.map.message}</p>}
+                            </div>
+
+
+                        </div>
 
                     </div>
-
-                </div>
                 </AdminItemContainer>
 
 
-                <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Meta Title</Label>
-                    <Input type='text' placeholder='Meta Title' {...register("metaTitle")} />
-                </div>
-                <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Meta Description</Label>
-                    <Input type='text' placeholder='Meta Description' {...register("metaDescription")} />
-                </div>
+                <AdminItemContainer>
+                    <Label main>SEO</Label>
+                    <div className="p-5 flex flex-col gap-2">
+                        <div className='flex flex-col gap-2'>
+                            <Label className='font-bold'>Title</Label>
+                            <Input type='text' placeholder='' {...register("metaTitle")} />
+                        </div>
+                        <div className='flex flex-col gap-2'>
+                            <Label className='font-bold'>Description</Label>
+                            <Input type='text' placeholder='' {...register("metaDescription")} />
+                        </div>
+                    </div>
+                </AdminItemContainer>
 
                 <div className='flex'>
                     <Button type='submit' className="cursor-pointer text-white text-[16px] w-full">Submit</Button>
