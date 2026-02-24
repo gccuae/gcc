@@ -59,22 +59,12 @@ const GalleryCard: React.FC<{
         onMouseLeave={() => setIsHovered(false)}
         onClick={() => item.images.length > 0 && onOpenModal(item)}
       >
-        <Image
-          width={1920}
-          height={1280}
-          src={item.thumbnail}
-          alt={item.thumbnailAlt}
-          className="w-full h-full object-cover group-hover:blur-[2px] transition-transform"
-        />
+        <Image width={1920} height={1280} src={item.thumbnail} alt={item.thumbnailAlt} className="w-full h-full object-cover group-hover:blur-[2px] transition-transform" />
 
         {/* Hover Icon */}
         <div className="absolute inset-0 bg-white/12 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
           <div className="w-12 h-12 xl:w-20 xl:h-20 bg-white rounded-full flex items-center justify-center shadow-lg">
-            <Image
-              src={assets.expandPlusIcon}
-              alt="Expand"
-              width={30}
-              height={30}
+            <Image src={assets.expandPlusIcon} alt="Expand" width={30} height={30}
               className={`w-full h-full xl:w-[29.99px] xl:h-[29.99px] object-contain transition-transform duration-300 ${isHovered ? "scale-110" : ""
                 }`}
             />

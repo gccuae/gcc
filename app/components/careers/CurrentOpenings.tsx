@@ -140,16 +140,10 @@ const CurrentOpenings = ({ data, jobs, departments, locations }: { data: careerD
         <div className="pt-6 xl:pt-10 pb-6 xl:pb-47px">
           <div className="flex flex-col gap-6 xl:flex-row md:gap-6 xl:gap-10 w-full xl:w-fit">
             {dropdowns.map((options, idx) => (
-              <motion.div
-                key={idx}
-                variants={moveLeft(idx * 0.25)}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-              >
+              <motion.div key={idx} variants={moveLeft(idx * 0.25)} initial="hidden" whileInView="show" viewport={{ once: true }} >
                 <Select
                   components={{ DropdownIndicator }}
-                  className="xl:w-[280px]"
+                  className="xl:w-[280px] current-openings-select"
                   key={idx}
                   classNamePrefix="react-select"
                   options={options.map((label) => ({ value: label, label }))}
@@ -241,7 +235,9 @@ const CurrentOpenings = ({ data, jobs, departments, locations }: { data: careerD
                 >
                   <div className="xl:w-[60%]">
                     <h3 className="text-xl lg:text-2xl leading-[1.3] lg:leading-[1.5625] font-normal text-black dark:text-white">
+                      <Link href={`careers/${job.firstSection.slug}`} >
                       {job.firstSection.jobTitle}
+                      </Link>
                     </h3>
                     <h4 className="text-lg leading-[1.5625] font-normal text-para-color dark:text-white/50">
                       <span>{job.firstSection.department}</span> <span className="mx-2">|</span>{" "}

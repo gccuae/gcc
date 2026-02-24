@@ -71,8 +71,8 @@ const ContactForm: React.FC = () => {
                         <input
                             type="text"
                             placeholder="Enter Vendor Name"
-                            className={`w-full pb-3 border-b-2 focus:outline-none placeholder:text-lg placeholder:text-[#979797] ${
-                                errors.vendorName ? "border-red-500 " : "border-[#C2C2C2]/35 focus:border-black"
+                            className={`w-full pb-3 dark:focus:border-white/50 border-b-2 focus:outline-none placeholder:text-lg placeholder:text-[#979797] ${
+                                errors.vendorName ? "border-red-500":"border-[#C2C2C2]/35 focus:border-black"
                             }`}
                             {...register("vendorName", { required: "Vendor name is required" })}
                         />
@@ -86,7 +86,7 @@ const ContactForm: React.FC = () => {
                         <input
                             type="text"
                             placeholder="Enter Trade License Number"
-                            className={`w-full pb-3 border-b-2 focus:outline-none placeholder:text-lg placeholder:text-[#979797] ${
+                            className={`w-full pb-3 dark:focus:border-white/50 border-b-2 focus:outline-none placeholder:text-lg placeholder:text-[#979797] ${
                                 errors.tradeLicense ? "border-red-500 " : "border-[#C2C2C2]/35 focus:border-black"
                             }`}
                             {...register("tradeLicense", { required: "Trade license is required" })}
@@ -104,7 +104,7 @@ const ContactForm: React.FC = () => {
                         <input
                             type="text"
                             placeholder="Enter Classification"
-                            className="w-full pb-3 border-b-2 border-[#C2C2C2]/35 focus:border-black focus:outline-none"
+                            className="w-full pb-3 dark:focus:border-white/50 border-b-2 border-[#C2C2C2]/35 focus:border-black focus:outline-none"
                             {...register("classification")}
                         />
                     </motion.div>
@@ -116,7 +116,7 @@ const ContactForm: React.FC = () => {
                         <input
                             type="url"
                             placeholder="https://example.com"
-                            className={`w-full pb-3 border-b-2 focus:outline-none placeholder:text-lg placeholder:text-[#979797] ${
+                            className={`w-full pb-3 dark:focus:border-white/50 border-b-2 focus:outline-none placeholder:text-lg placeholder:text-[#979797] ${
                                 errors.website ? "border-red-500 " : "border-[#C2C2C2]/35 focus:border-black"
                             }`}
                             {...register("website", {
@@ -135,7 +135,7 @@ const ContactForm: React.FC = () => {
                     <textarea
                         rows={4}
                         placeholder="Manufacturer, Supplier, Agent, Contracting, etc."
-                        className={`w-full pb-3 border-b-2 focus:outline-none placeholder:text-lg placeholder:text-[#979797] ${
+                        className={`w-full pb-3 dark:focus:border-white/50 border-b-2 focus:outline-none placeholder:text-lg placeholder:text-[#979797] ${
                             errors.services ? "border-red-500 " : "border-[#C2C2C2]/35 focus:border-black"
                         }`}
                         {...register("services", {
@@ -155,7 +155,7 @@ const ContactForm: React.FC = () => {
                     <textarea
                         rows={3}
                         placeholder="Enter areas of expertise"
-                        className={`w-full pb-3 border-b-2 focus:outline-none placeholder:text-lg placeholder:text-[#979797] ${
+                        className={`w-full pb-3 dark:focus:border-white/50 border-b-2 focus:outline-none placeholder:text-lg placeholder:text-[#979797] ${
                             errors.expertise ? "border-red-500 " : "border-[#C2C2C2]/35 focus:border-black"
                         }`}
                         {...register("expertise", {
@@ -214,7 +214,7 @@ const ContactForm: React.FC = () => {
                         <input
                             type="email"
                             placeholder="example@email.com"
-                            className={`w-full pb-3 border-b-2 focus:outline-none placeholder:text-lg placeholder:text-[#979797]
+                            className={`w-full pb-3 dark:focus:border-white/50 border-b-2 focus:outline-none placeholder:text-lg placeholder:text-[#979797]
       ${errors.email ? "border-red-500 " : "border-[#C2C2C2]/35 focus:border-black"}
     `}
                             {...register("email", {
@@ -237,7 +237,7 @@ const ContactForm: React.FC = () => {
                         <input
                             type="tel"
                             placeholder="+971 50 123 4567"
-                            className={`w-full pb-3 border-b-2 focus:outline-none placeholder:text-lg placeholder:text-[#979797]
+                            className={`w-full pb-3 dark:focus:border-white/50 border-b-2 focus:outline-none placeholder:text-lg placeholder:text-[#979797]
       ${errors.phone ? "border-red-500 " : "border-[#C2C2C2]/35 focus:border-black"}
     `}
                             {...register("phone", {
@@ -261,7 +261,7 @@ const ContactForm: React.FC = () => {
                     <textarea
                         rows={3}
                         placeholder="Enter your address"
-                        className={`w-full pb-3 border-b-2 resize-none focus:outline-none placeholder:text-lg placeholder:text-[#979797]
+                        className={`w-full pb-3 dark:focus:border-white/50 border-b-2 resize-none focus:outline-none placeholder:text-lg placeholder:text-[#979797]
     ${errors.address ? "border-red-500 " : "border-[#C2C2C2]/35 focus:border-black"}
   `}
                         {...register("address", {

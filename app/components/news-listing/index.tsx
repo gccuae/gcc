@@ -13,11 +13,7 @@ const Index = ({ data }: { data: NewsData }) => {
   )[0];
   return (
     <>
-      <PageBnr
-        pageTitle={data.pageTitle}
-        bannerImg={data.banner}
-        bannerAlt={data.bannerAlt}
-      />
+      <PageBnr pageTitle={data.pageTitle} bannerImg={data.banner} bannerAlt={data.bannerAlt} />
       <Main title={"Latest Highlights"} items={[sortedNews]} />
       <NewsList data={data} />
     </>
