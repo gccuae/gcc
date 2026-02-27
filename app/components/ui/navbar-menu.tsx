@@ -31,7 +31,7 @@ export const MenuItem = ({
 
   return (
     <div onMouseEnter={() => (noMenu ? setActive(null) : setActive(item))}
-      className="relative mr-0 not-first:ml-3 not-first:lg:ml-[12px] not-first:xl:ml-[25px] not-first:2xl:ml-[37px] ">
+      className="relative mr-0 not-first:ml-3 not-first:lg:ml-[12px] not-first:xl:ml-[25px] not-first:2xl:ml-[37px] dark:bg-black">
       <div className="flex gap-2 mb-0">
         <Link href={url}>
           <motion.p transition={{ duration: 0.3, ease: easeOut }}
@@ -53,7 +53,7 @@ export const MenuItem = ({
       {active !== null && !noMenu && (
         <motion.div initial={{ opacity: 0, scale: 0.85, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }}>
           {active === item && (
-            <div className="">
+            <div onClick={() => setActive(null)}>
               <motion.div layoutId="active"
                 className="bg-white absolute dark:bg-black backdrop-blur-sm  overflow-hidden rounded-[8px] dark:border-white/[0.2] shadow-xl">
                 <motion.div layout className="w-max h-full px-3 ">
@@ -194,7 +194,7 @@ export const Menu = ({
     }, 200);
   };
   return (
-    <div>
+    <div className="dark:bg-black">
       <AnimatePresence>
         <motion.div key="header-menu" {...slideDown()} className="bg-white dark:bg-black" >
           <div className="container" ref={containerRef}></div>
@@ -248,7 +248,6 @@ export const Menu = ({
                       {children}
                     </div>
                   </div>
-
                 </div>
               </div>
 
@@ -460,20 +459,10 @@ export const ProductItem = ({
 }) => {
   return (
     <Link href={href} className="flex space-x-2">
-      <Image
-        src={src}
-        width={140}
-        height={70}
-        alt={title}
-        className="flex-shrink-0 rounded-md shadow-2xl"
-      />
+      <Image src={src} width={140} height={70} alt={title} className="flex-shrink-0 rounded-md shadow-2xl" />
       <div>
-        <h4 className="text-xl font-bold mb-1 text-black dark:text-white">
-          {title}
-        </h4>
-        <p className="text-neutral-700 text-sm max-w-[10rem] dark:text-neutral-300">
-          {description}
-        </p>
+        <h4 className="text-xl font-bold mb-1 text-black dark:text-white"> {title} </h4>
+        <p className="text-neutral-700 text-sm max-w-[10rem] dark:text-neutral-300"> {description} </p>
       </div>
     </Link>
   );
@@ -484,10 +473,6 @@ export const HoveredLink = ({
   ...rest
 }: LinkProps & { children: ReactNode }) => {
   return (
-    <Link
-      {...rest}
-      className="text-neutral-700 dark:text-neutral-200 hover:text-black">
-      {children}
-    </Link>
+    <Link {...rest} className="text-neutral-700 dark:text-neutral-200 hover:text-black"> {children} </Link>
   );
 };

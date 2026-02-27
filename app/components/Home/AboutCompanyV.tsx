@@ -192,11 +192,10 @@ const AboutCompanyV = ({ data }: Props) => {
 
             {/* Popup Video */}
             {isPopupOpen && (
-              <div className="fixed inset-0 flex items-center justify-center bg-[#00000090] z-50">
-                <div className="relative w-[90%] max-w-[1080px]">
+              <div className="fixed inset-0 flex items-center justify-center bg-[#00000090] z-50 p-4 bg-black/90 backdrop-blur-sm">
+                <div className="relative w-[90%] max-w-[1080px] 2xl:h-[500px] overflow-hidden rounded-lg">
                   {/* Close Button */}
-                  <button
-                    className="absolute z-10 right-5 top-5 cursor-pointer bg-white bg-opacity-50 p-2 rounded-full hover:bg-opacity-100 transition size-10"
+                  <button className="absolute z-10 right-5 top-5 cursor-pointer bg-white bg-opacity-50 p-2 rounded-full hover:bg-opacity-100 transition size-10 dark:text-black"
                     onClick={() => setIsPopupOpen(false)}
                   >
                     ✖
@@ -204,7 +203,7 @@ const AboutCompanyV = ({ data }: Props) => {
 
                   {/* Video Player */}
                   <video
-                    className="w-full h-full rounded-lg object-cover"
+                    className="w-full h-full rounded-lg object-cover "
                     src={data.video}
                     poster={data.poster}
                     width={1080}

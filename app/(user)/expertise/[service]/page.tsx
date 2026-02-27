@@ -45,11 +45,7 @@ const Page = async ({ params }: Props) => {
 
   return (
     <main>
-      <Index
-        data={serviceData.data}
-        allServices={allServices.data.secondSection.items}
-        projects={filteredProjects}
-      />
+      <Index data={serviceData.data} allServices={allServices.data.secondSection.items} projects={filteredProjects} />
     </main>
   );
 };

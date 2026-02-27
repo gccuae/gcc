@@ -14,7 +14,6 @@ interface ServiceDetailsProps {
 
 
 const Index = ({ data, allServices, projects }: ServiceDetailsProps) => {
-  console.log("dataa", data);
   return (
     <>
       {data.firstSection && <Main data={data.firstSection} title={data.title} />}

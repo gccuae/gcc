@@ -3,8 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { assets } from "@/public/assets/assets";
-import { fadeIn, moveLeft, moveUp } from "../motionVarients";
-import { motion } from "framer-motion";
 import { SecondSectionThirdSection } from "../expertise/type";
 
 interface CtaProps {
@@ -14,12 +12,7 @@ interface CtaProps {
 const Cta = ({ data }: CtaProps) => {
   return (
     <section className="py-57px xl:py-[90.05px] bg-light-white dark:bg-black relative overflow-hidden">
-      <motion.div
-        variants={fadeIn(0.2)}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-      >
+      <div>
         <Image
           src={data.image}
           alt={data.imageAlt}
@@ -27,7 +20,7 @@ const Cta = ({ data }: CtaProps) => {
           height={500}
           className="absolute inset-0 w-full h-full object-cover"
         />
-      </motion.div>
+      </div>
       <div
         style={{
           background:
@@ -37,22 +30,10 @@ const Cta = ({ data }: CtaProps) => {
       />
       <div className="container">
         <div className="relative z-10">
-          <motion.h2
-            variants={moveUp()}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="text-5xl leading-lh-text68 font-normal text-white mb-15 xl:mb-[87px]"
-          >
+          <h2 className="text-5xl leading-lh-text68 font-normal text-white mb-15 xl:mb-[87px]">
             {data.title}
-          </motion.h2>
-          <motion.div
-            variants={moveLeft(0.2)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="lg:w-2/4 ml-auto"
-          >
+          </h2>
+          <div className="lg:w-2/4 ml-auto">
             <p className="text-lg leading-lh-text24 text-white font-light">
               {data.description}
             </p>
@@ -70,7 +51,7 @@ const Cta = ({ data }: CtaProps) => {
                 className="transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-x-0"
               />
             </Link>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

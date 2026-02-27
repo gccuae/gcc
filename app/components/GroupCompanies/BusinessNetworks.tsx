@@ -36,7 +36,7 @@ const BusinessNetworks = ({ data }: SecondSectionProps) => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 xl:gap-8 ">
           {data.items.filter((item) => !item.hideCompany).map((item, index) => (
-            <motion.div
+            <motion.div className="border-b dark:border-white/20 hover:border-primary"
               key={index}
               variants={moveUp(index * 0.12)}
               viewport={{ once: true }}
@@ -44,12 +44,12 @@ const BusinessNetworks = ({ data }: SecondSectionProps) => {
               whileInView="show"
             >
               {item?.link !== '#' ? (
-                <Link href={item.link} target="_blank" className="cursor-pointer">
-                  <BusinessNetworkCard item={item} index={index} />
+                <Link href={item.link} target="_blank" className="cursor-pointer ">
+                  <BusinessNetworkCard item={item} index={index} hasLink={true} />
                 </Link>
               ) : (
                 <div>
-                  <BusinessNetworkCard item={item} index={index} />
+                  <BusinessNetworkCard item={item} index={index} hasLink={false} />
                 </div>
               )}
             </motion.div>

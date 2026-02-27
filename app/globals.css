@@ -314,7 +314,12 @@ body {
 .letterSp-3 {
   letter-spacing: -3px;
 }
-
+.lettersp-2 {
+  letter-spacing: -0.02em;
+}
+h2{
+  @apply tracking-[-0.02em];
+}
 .slideroverlay:after {
   content: "";
   z-index: 1;
