@@ -180,7 +180,7 @@ const AboutCompany = () => {
                 <div className="relative w-[90%] max-w-[1080px]">
                   {/* Close Button */}
                   <button
-                    className="absolute z-10 right-5 top-5 cursor-pointer bg-white bg-opacity-50 p-2 rounded-full hover:bg-opacity-100 transition size-10"
+                    className="absolute z-10 right-5 top-5 cursor-pointer bg-white bg-opacity-50 p-2 rounded-full hover:bg-opacity-100 transition size-10 dark:text-black"
                     onClick={() => setIsPopupOpen(false)}
                   >
                     ✖

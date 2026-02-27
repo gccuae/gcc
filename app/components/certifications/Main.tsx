@@ -92,7 +92,7 @@ const Main = ({ data }: AwardsProps) => {
         <div className="bg-light-white dark:bg-light-dark pb-6 lg:pb-0 pt-57px">
           <div className="container">
             {/* Tab Navigation */}
-            <div className="flex md:flex-row flex-col border-y dark:border-white/20 dark:border-white/20 gap-2 md:gap-8 xl:gap-12 w-full">
+            <div className="flex md:flex-row flex-col border-y dark:border-white/20 dark:border-white/20 gap-2 md:gap-8 xl:gap-12 2xl:gap-25 w-full">
               {data.categories.map((cat) => (
                 <button
                   key={cat.category}
@@ -107,7 +107,7 @@ const Main = ({ data }: AwardsProps) => {
               ))}
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-[3fr_1.9fr] mt-5 md:mt-0">
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-[3fr_1.9fr] mt-5 md:mt-0 lg:items-start">
               {/* Left Column - Items List */}
               <div className="lg:border-r dark:border-white/20 dark:border-white/20 lg:pr-[67px] xl:pr-[67px] pt-6 xl:pt-[47px]">
                 <div className="space-y-1">
@@ -131,8 +131,8 @@ const Main = ({ data }: AwardsProps) => {
                                 setSelectedItem(file);
                                 handleMobileToggle(combinedIndex);
                               }}
-                              className={`w-full text-left flex items-center justify-between pb-4 xl:pb-[27px] mb-4 xl:mb-[27px] ${fileIndex !== item.files.length - 1
-                                ? "border-b dark:border-white/20 dark:border-white/20"
+                              className={`w-full text-left flex items-center justify-between pb-4 xl:pb-[27px] mb-4 xl:mb-[27px] cursor-pointer ${fileIndex !== item.files.length - 1
+                                ? "border-b  "
                                 : ""
                                 } transition-all duration-200 group ${selectedItem === file ? "border-b-primary" : ""
                                 }`}
@@ -157,23 +157,15 @@ const Main = ({ data }: AwardsProps) => {
                                 </p>
                               </div>
                               <div>
-                                <Image
-                                  src={assets.linkArrowGreen}
-                                  alt={file.mainTitle}
-                                  width={50}
-                                  height={50}
-                                  className={`w-4 h-4 xl:w-[19.08px] xl:h-[19.05px]
-                    opacity-0 group-hover:opacity-100 -translate-x-2 translate-y-2 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300 ${selectedItem === file ? "opacity-100 translate-x-0" : ""
+                                <Image src={assets.linkArrowGreen} alt={file.mainTitle} width={50} height={50}
+                                  className={`w-4 h-4 xl:w-[19.08px] xl:h-[19.05px] opacity-0 group-hover:opacity-100 -translate-x-2 translate-y-2 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300 ${selectedItem === file ? "opacity-100 translate-x-0" : ""
                                     }`}
                                 />
                               </div>
                             </button>
 
                             {/* Mobile Accordion */}
-                            <div
-                              className={`lg:pl-12 lg:pt-6 xl:pl-[67px] xl:pt-[47px] px-3 md:px-5 mb-5 ${openIndex === combinedIndex ? "block" : "hidden"
-                                } lg:hidden`}
-                            >
+                            <div className={`lg:pl-12 lg:pt-6 xl:pl-[67px] xl:pt-[47px] px-3 md:px-5 mb-5 ${openIndex === combinedIndex ? "block" : "hidden" } lg:hidden`} >
                               {selectedItem === file && (
                                 <DetailsBlock
                                   selectedItem={{
@@ -199,7 +191,7 @@ const Main = ({ data }: AwardsProps) => {
               </div>
 
               {/* Right Column - Document Preview */}
-              <div className="lg:pl-12 lg:pt-6 xl:pl-[67px] xl:pt-[47px] hidden lg:block">
+              <div className="lg:pl-12 lg:pt-6 xl:pl-[67px] xl:pt-[47px] hidden lg:block lg:sticky lg:top-20 xl:top-24 2xl:top-28 self-start">
                 <DetailsBlock
                   selectedItem={
                     selectedItem
@@ -231,20 +223,9 @@ const Main = ({ data }: AwardsProps) => {
             {/* Download */}
             <div className="border-r border-white/54">
               {" "}
-              <button
-                onClick={handleDownload}
-                className="px-4 text-black rounded-full transition-all duration-200 shadow-lg hover:scale-105 "
-                title="Download"
-              >
+              <button onClick={handleDownload} className="px-4 text-black rounded-full transition-all duration-200 shadow-lg hover:scale-105 " title="Download" >
                 {" "}
-                <svg
-                  width="30"
-                  height="30"
-                  viewBox="0 0 30 30"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6 xl:w-[28px] xl:h-[28px]"
-                >
+                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 xl:w-[28px] xl:h-[28px]" >
                   {" "}
                   <path
                     d="M8.62662 15.8294L14.9878 22.22L21.3757 15.8294M1 21.1981V25.9416C1 26.8068 1.29331 27.5328 1.87992 28.1197C2.46654 28.7066 3.19103 29 4.05338 29H25.9466C26.809 29 27.5335 28.7066 28.1201 28.1197C28.7067 27.5328 29 26.8068 29 25.9416V21.1981M15.0049 1V22.2089"
@@ -260,20 +241,9 @@ const Main = ({ data }: AwardsProps) => {
             <div>
               {" "}
               {/* Close Button */}{" "}
-              <button
-                onClick={handleCloseModal}
-                className="px-1 text-black rounded-full transition-all duration-200 shadow-lg hover:scale-105"
-                title="Close"
-              >
+              <button onClick={handleCloseModal} className="px-1 text-black rounded-full transition-all duration-200 shadow-lg hover:scale-105" title="Close" >
                 {" "}
-                <svg
-                  width="31"
-                  height="30"
-                  viewBox="0 0 31 30"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6 xl:w-[28px] xl:h-[28px]"
-                >
+                <svg width="31" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 xl:w-[28px] xl:h-[28px]" >
                   {" "}
                   <path
                     d="M9.54592 21.2041L15.75 15M21.9541 8.79592L15.75 15M15.75 15L21.9541 21.2041M15.75 15L9.54592 8.79592M15.7598 29C13.8237 29 12.0024 28.6324 10.2957 27.8971C8.58905 27.1616 7.10442 26.1637 5.84184 24.9033C4.57925 23.6426 3.5817 22.1619 2.84918 20.4612C2.11639 18.7605 1.75 16.9434 1.75 15.0098C1.75 13.0737 2.11762 11.2524 2.85286 9.54571C3.58837 7.83905 4.58633 6.35442 5.84673 5.09184C7.10741 3.82925 8.5881 2.8317 10.2888 2.09918C11.9895 1.36639 13.8066 1 15.7402 1C17.6763 1 19.4976 1.36762 21.2043 2.10286C22.911 2.83837 24.3956 3.83633 25.6582 5.09673C26.9207 6.35741 27.9183 7.8381 28.6508 9.53878C29.3836 11.2395 29.75 13.0566 29.75 14.9902C29.75 16.9263 29.3824 18.7476 28.6471 20.4543C27.9116 22.161 26.9137 23.6456 25.6533 24.9082C24.3926 26.1707 22.9119 27.1683 21.2112 27.9008C19.5105 28.6336 17.6934 29 15.7598 29Z"
@@ -287,13 +257,7 @@ const Main = ({ data }: AwardsProps) => {
 
           {/* Modal Content */}
           <div className="pt-30 mx-auto">
-            <Image
-              src={selectedItem.thumbnail || ""}
-              alt={selectedItem.documentTitle || ""}
-              width={1500}
-              height={1500}
-              className="w-auto h-auto xl:w-[400px] max-w-full mx-auto"
-            />
+            <Image src={selectedItem.thumbnail || ""} alt={selectedItem.documentTitle || ""} width={1500} height={1500} className="w-auto h-auto xl:w-[400px] max-w-full mx-auto" />
           </div>
         </div>
       )}

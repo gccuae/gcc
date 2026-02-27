@@ -30,42 +30,13 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
 
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // useEffect(() => {
-  //   if (!containerRef.current) return;
-
-  //   const wrappers = gsap.utils.toArray<HTMLDivElement>(
-  //     ".featured-image-wrapper"
-  //   );
-
-  //   wrappers.forEach((wrapper) => {
-  //     gsap.fromTo(
-  //       wrapper,
-  //       { y: "-10vh" },
-  //       {
-  //         y: "10vh",
-  //         ease: "none",
-  //         scrollTrigger: {
-  //           trigger: wrapper,
-  //           start: "top bottom",
-  //           end: "bottom top",
-  //           scrub: true,
-  //         },
-  //       }
-  //     );
-  //   });
-
-  //   return () => {
-  //     ScrollTrigger.getAll().forEach((st) => st.kill());
-  //   };
-  // }, []);
-
   return (
     <section className="bg-light-white dark:bg-light-dark overflow-hidden">
       <div>
         <div className="container" ref={containerRef}>
           <div className="md:flex justify-between items-center py-37px border-b border-[#C2C2C2] dark:border-white/20">
             <motion.h2
-              className="text-5xl font-normal text-black dark:text-white mb-8 md:mb-0 leading-[1.147058823529412]"
+              className="text-5xl font-normal text-black dark:text-white mb-8 md:mb-0 leading-[1.147058823529412] lettersp-2"
               variants={moveUp(0)}
               initial="hidden"
               whileInView="show"
@@ -81,8 +52,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                 viewport={{ once: true, amount: 0.2 }}
                 className="flex border border-foreground dark:border-white/20 rounded-full "
               >
-                <div
-                  ref={prevRef}
+                <div ref={prevRef}
                   className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] border-r border-foreground dark:border-white/20 rounded-tl-full rounded-bl-full group  cursor-pointer hover:bg-accent  transition-all duration-300"
                 >
                   <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]" >
@@ -120,7 +90,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                     swiper.navigation.init();
                     swiper.navigation.update();
                   }}
-                  autoplay={{ delay: 4000 }}
+                  autoplay={{ delay: 6500 }}
                   allowTouchMove={false}
                   loop
                   className="w-full h-full "
@@ -129,7 +99,9 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                     <SwiperSlide key={index}>
                       <div className="">
                         <h3 className="text-2xl font-normal mb-5 lg:mb-15 dark:text-white leading-[1.40625] pr-5">
+                          <Link href={"/projects/" + slide.slug} className="hover:text-primary transition-all duration-300">
                           {slide.title}
+                          </Link>
                         </h3>
                         <div className="w-full pr-10">
                           <motion.div
@@ -213,7 +185,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                 <Swiper
                   className="h-full featured-slider"
                   modules={[Autoplay, Navigation]}
-                  autoplay={{ delay: 4000 }}
+                  autoplay={{ delay: 6500 }}
                   allowTouchMove={false}
                   loop
                   navigation={{
@@ -231,30 +203,22 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                   spaceBetween={20}
                   slidesPerView={1}
                 >
-                  {data.projects.map((slide, index) => (
-                    <SwiperSlide
-                      key={index}
-                      className="h-full min-h-[250px] relative overflow-hidden group"
-                    >
+                  {featuredProjects.map((slide, index) => (
+                    <SwiperSlide key={index} className="h-full min-h-[250px] relative overflow-hidden group" >
                       <div className="absolute inset-0">
-                        <Image
-                          src={slide.thumbnail}
-                          alt={slide.thumbnailAlt}
-                          width={2000}
-                          height={2000}
-                          className="w-full h-full object-cover hover:scale-105 transition-all duration-300"
-                        />
+                        <Link href={"/projects/" + slide.slug} className="w-full h-full block">
+                        <Image src={slide.thumbnail} alt={slide.thumbnailAlt} width={2000} height={2000} className="w-full h-full object-cover hover:scale-105 transition-all duration-300" />
+                        </Link>
                       </div>
 
                       {/* Padding wrapper to create 30px gap */}
-                      <div className="absolute top-[25px] left-[15px] 2xl:top-[40px] 2xl:left-[30px] z-10">
-                        <Link
-                          href={"/projects/" + slide.slug}
+                      <button className="absolute top-[25px] left-[15px] 2xl:top-[40px] 2xl:left-[30px] z-10">
+                        <span
                           className="bg-accent text-base font-light leading-[1.75] text-para-color uppercase px-5 xl:px-[25px] py-3 xl:py-[15px] rounded-[75px] group-hover:text-white group-hover:bg-primary transition-all duration-300"
                         >
                           {slide.secondSection?.sector?.name}
-                        </Link>
-                      </div>
+                        </span>
+                      </button>
                     </SwiperSlide>
                   ))}
                 </Swiper>

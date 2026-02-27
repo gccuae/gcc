@@ -4,8 +4,6 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { moveUp } from "../motionVarients";
 import { SecondSectionSecondSection } from "../expertise/type";
 
 interface ScopsProps {
@@ -17,30 +15,25 @@ const Scops = ({ data }: ScopsProps) => {
     <section className="py-57px bg-black">
       <div className="container">
         <div className="mb-57px">
-          <motion.h2
-            variants={moveUp()}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="text-5xl leading-lh-text68 font-normal text-white"
-          >
+          <h2 className="text-5xl leading-lh-text68 font-normal text-white">
             {data.title}
-          </motion.h2>
+          </h2>
         </div>
       </div>
       <Swiper
         pagination={{ clickable: true }}
         spaceBetween={40}
-        slidesPerView={"auto"}
-        // centeredSlides={true}
-        // loop={true}
-        grabCursor={true}
+        allowTouchMove={false}
+        simulateTouch={false}
+        touchStartPreventDefault={false}
+        touchMoveStopPropagation={false}
         autoplay={{
-          delay: 2000,
-          disableOnInteraction: true,
+          delay: 3200,
+          disableOnInteraction: false,
           pauseOnMouseEnter: true,
         }}
-        speed={1500}
+        speed={700}
+        watchOverflow={true}
         modules={[Autoplay]}
         breakpoints={{
           425: {
@@ -60,20 +53,17 @@ const Scops = ({ data }: ScopsProps) => {
       >
         {data.items.map((item, index) => (
           <SwiperSlide key={index}>
-            <motion.div
-              variants={moveUp(index * 0.02)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="px-[15px] md:px-0 border-b border-sm-gray hover:border-primary transition-colors duration-300 flex flex-col h-full justify-between"
-            >
+            <div className="px-[15px] md:px-0 border-b border-sm-gray hover:border-primary transition-colors duration-300 flex flex-col h-full justify-between">
               {/* Top: Image */}
-              <div className="2xl:h-[380px] 2xl:h-[380px]">
+              <div className="aspect-[4/3] md:aspect-[5/4] 2xl:aspect-auto 2xl:h-[380px]">
                 <Image
                   src={item.image}
                   alt={item.imageAlt}
                   width={500}
                   height={500}
+                  sizes="(min-width: 1280px) 22vw, (min-width: 1024px) 28vw, (min-width: 768px) 33vw, 85vw"
+                  loading={index < 2 ? "eager" : "lazy"}
+                  fetchPriority={index < 2 ? "high" : "auto"}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -84,7 +74,7 @@ const Scops = ({ data }: ScopsProps) => {
                   {item.title}
                 </h3>
               </div>
-            </motion.div>
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>

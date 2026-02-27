@@ -10,6 +10,7 @@ import { fadeIn, moveUp } from "../motionVarients";
 import { useEffect, useRef } from "react";
 import { NewsData } from "../news-listing/type";
 import gsap from "gsap";
+import Link from "next/link";
 // import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 interface NewsBlockProps {
@@ -80,6 +81,7 @@ const NewsBlock = ({ data }: NewsBlockProps) => {
                     viewport={{ once: true, amount: 0.2 }}
                     className="xl:w-1/2 overflow-hidden flex items-stretch w-full"
                   >
+                    <Link href={"/news/" + item.slug}>
                     <Image
                       src={item.thumbnail}
                       alt={item.thumbnailAlt}
@@ -87,6 +89,7 @@ const NewsBlock = ({ data }: NewsBlockProps) => {
                       height={2000}
                       className="w-full h-[330px] md:[431px] 2xl:h-[450px] object-cover hover:scale-110 transition-all duration-400"
                     />
+                    </Link>
                   </motion.div>
                   <div className="xl:w-1/2 group">
                     <motion.div
@@ -112,7 +115,9 @@ const NewsBlock = ({ data }: NewsBlockProps) => {
                       viewport={{ once: true, amount: 0.2 }}
                       className="text-2xl font-normal leading-[1.40625] text-forground mb-3 xl:mb-[22px] dark:text-white hover:text-primary transition-colors duration-300"
                     >
+                        <Link href={"/news/" + item.slug} >
                       {item.title}
+                      </Link>
                     </motion.h3>
                     <motion.p
                       variants={moveUp(0.4)}
@@ -131,7 +136,7 @@ const NewsBlock = ({ data }: NewsBlockProps) => {
                       className="mt-4 xl:mt-[53px]"
                     >
                       <BtnPrimary
-                        link={"/news/1"}
+                        link={"/news/" + item.slug}
                         text="Read More"
                         bgtrans={true}
                       />

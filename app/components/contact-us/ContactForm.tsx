@@ -66,7 +66,7 @@ const ContactForm: React.FC = () => {
               placeholder="Enter First Name"
               className={`w-full pb-3 border-b-2 transition-colors duration-200 focus:outline-none dark:focus:border-white/50  placeholder:text-lg placeholder:text-[#979797] dark:placeholder:text-white placeholder:font-normal placeholder:leading-lh-base ${
                 errors.firstName
-                  ? "border-red-500 bg-red-50"
+                  ? "border-red-500"
                   : "border-[#C2C2C2]/35 focus:border-black"
               }`}
               {...register("firstName", {

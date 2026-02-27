@@ -2,22 +2,17 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectFade, Navigation } from "swiper/modules";
+import { Autoplay, EffectFade } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { Swiper as SwiperType } from "swiper/types";
 import gsap from "gsap"; // 👈 GSAP import
 import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { LegacySection } from "./type";
 
 const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
-  const doubledTimelineData = {
-    ...data,
-    items: [...data.items, ...data.items],
-  };
+  if (!data.items?.length) return null;
 
   const [activeSlide, setActiveSlide] = useState(0);
   const mainSwiperRef = useRef<SwiperType>(null);
@@ -25,10 +20,10 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
   const [navLocked, setNavLocked] = useState(false);
 
   const handleMainSlideChange = (swiper: SwiperType) => {
-    const realIndex = swiper.realIndex;
+    const realIndex = swiper.realIndex % data.items.length;
     setActiveSlide(realIndex);
     if (yearSwiperRef.current) {
-      yearSwiperRef.current.slideToLoop(realIndex, 0);
+      yearSwiperRef.current.slideTo(realIndex, 300);
     }
 
     // 🔥 Animate active slide text
@@ -79,15 +74,14 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
         mainSwiperRef.current.slidePrev();
       }
     }
-    if (yearSwiperRef.current) {
-      if (direction === "next") {
-        yearSwiperRef.current.slideNext();
-      } else {
-        yearSwiperRef.current.slidePrev();
-      }
-    }
 
     setTimeout(() => setNavLocked(false), 600);
+  };
+
+  const handleYearClick = (index: number) => {
+    if (mainSwiperRef.current) {
+      mainSwiperRef.current.slideToLoop(index);
+    }
   };
 
   return (
@@ -96,7 +90,7 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
       <div className="absolute inset-0">
         <AnimatePresence initial={false} mode="popLayout">
           <motion.div
-            key={doubledTimelineData.items[activeSlide].year} // unique key per image
+            key={`${activeSlide}-${data.items[activeSlide].year}`}
             initial={{ opacity: 0, scale: 1.05 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
@@ -104,8 +98,8 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
             className="absolute inset-0 w-full h-full"
           >
             <Image
-              src={doubledTimelineData.items[activeSlide].image}
-              alt={doubledTimelineData.items[activeSlide].imageAlt}
+              src={data.items[activeSlide].image}
+              alt={data.items[activeSlide].imageAlt}
               fill
               className="object-cover w-full h-full"
             />
@@ -129,18 +123,15 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
                     onSwiper={(swiper) => {
                       yearSwiperRef.current = swiper;
                     }}
-                    modules={[Navigation, Autoplay]}
+                    modules={[Autoplay]}
                     spaceBetween={22}
                     slidesPerView={5}
-                    autoplay={{
-                      delay: 5000,
-                    }}
                     allowTouchMove={false}
                     slideToClickedSlide={false}
                     preventClicks={true}
                     preventClicksPropagation={true}
                     centeredSlides={false}
-                    loop={true}
+                    loop={false}
                     speed={500}
                     className="year-navigation-slider h-full "
                     breakpoints={{
@@ -149,13 +140,13 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
                       768: { slidesPerView: 4, spaceBetween: 22 },
                     }}
                   >
-                    {doubledTimelineData.items.map((item, index) => (
+                    {data.items.map((item, index) => (
                       <SwiperSlide
                         key={`year-${item.year}-${index}`}
                         className=" "
                       >
                         <button
-                          // onClick={() => handleYearClick(index)}
+                          onClick={() => handleYearClick(index)}
                           className={`font-normal  duration-500 text-lg leading-[32px] xl:pb-5 hover:text-white whitespace-nowrap ${
                             activeSlide === index
                               ? "text-white font-semibold  md:text-2xl "
@@ -178,24 +169,6 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
                   </Swiper>
                 </div>
 
-                {/* Navigation Arrows */}
-                {/* <div className="flex items-center space-x-[1px] absolute top-0 lg:-top-1 right-0 z-10"> */}
-                {/* <div className="flex items-center space-x-[1px]">
-                <button
-                  onClick={() => handleNavigation("prev")}
-                  className="cursor-pointer py-2 px-4 rounded-l-2xl bg-white hover:bg-white/20 transition-colors duration-300 backdrop-blur-sm"
-                  aria-label="Previous slide"
-                >
-                  <ChevronLeft className="w-5 h-5 text-accent" />
-                </button>
-                <button
-                  onClick={() => handleNavigation("next")}
-                  className="cursor-pointer py-2 px-4 rounded-r-2xl bg-white hover:bg-white/20 transition-colors duration-300 backdrop-blur-sm"
-                  aria-label="Next slide"
-                >
-                  <ChevronRight className="w-5 h-5 text-accent" />
-                </button>
-              </div> */}
               </div>
               <div className="flex items-center space-x-[1px] order-2 xl:order-3 ml-auto xl:ml-0">
                 <button
@@ -226,7 +199,7 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
             onSwiper={(swiper) => {
               mainSwiperRef.current = swiper;
             }}
-            modules={[Navigation, EffectFade, Autoplay]}
+            modules={[EffectFade, Autoplay]}
             spaceBetween={0}
             slidesPerView={1}
             allowTouchMove={false}
@@ -243,7 +216,7 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
             onSlideChange={handleMainSlideChange}
             className="w-full h-full history-slider relative z-50"
           >
-            {doubledTimelineData.items.map((item, index) => (
+            {data.items.map((item, index) => (
               <SwiperSlide key={index} className="history-slide">
                 <div className="w-full">
                   <div className="container relative z-10">
