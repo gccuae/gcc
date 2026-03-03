@@ -13,7 +13,7 @@ const HIghlights = ({ data }: { data: ForthSection }) => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="text-6xl leading-[1.147058823529412] text-black dark:text-white mb-57px"
+          className="text-6xl leading-[1.147058823529412] text-black dark:text-white mb-57px max-w-4xl"
         >
           {data.title}
         </motion.h2>

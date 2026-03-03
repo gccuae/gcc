@@ -31,13 +31,13 @@ export const MenuItem = ({
 
   return (
     <div onMouseEnter={() => (noMenu ? setActive(null) : setActive(item))}
-      className="relative mr-0 not-first:ml-3 not-first:lg:ml-[12px] not-first:xl:ml-[25px] not-first:2xl:ml-[37px] dark:bg-black">
+      className="relative mr-0 not-first:ml-3 not-first:lg:ml-[12px] not-first:2xl:ml-[25px] not-first:2xl:ml-[37px] dark:bg-black">
       <div className="flex gap-2 mb-0">
         <Link href={url}>
           <motion.p transition={{ duration: 0.3, ease: easeOut }}
             className="cursor-pointer hover:text-secondary text-black dark:text-white  uppercase transition-all duration-500 ease-in-out">
             {/* <span className="flex gap-3 text-base leading-[1.82] text-[13px] xl:text-[15px]  2xl:text-base hover:text-primary transition-all duration-300 font-normal">{item}</span> */}
-            <span className="flex items-center gap-2 text-base leading-[1.82] text-[13px] xl:text-[15px] 2xl:text-base hover:text-primary transition-all duration-300 font-normal">
+            <span className="flex items-center gap-2 text-base leading-[1.82] text-[13px]  3xl:text-base hover:text-primary transition-all duration-300 font-normal">
               {item}
               {!noMenu && (
                 <RiArrowDownSLine

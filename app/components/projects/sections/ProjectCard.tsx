@@ -86,12 +86,11 @@ const ProjectCard = ({
         //   key={index}
         //   className="relative border-b dark:border-white/20 hover:border-primary pb-[15px] lg:pb-27px group transition-all duration-300"
         // >
-        <div
-            key={index}
+        <div key={index}
             className="relative border-b dark:border-white/20 hover:border-primary pb-[15px] lg:pb-27px group transition-all duration-300 flex flex-col h-full"
         >
             <div
-                className="relative p-3 xl:p-5 h-[300px] xl:h-[486px] overflow-hidden group/img"
+                className="relative p-3 xl:p-5 h-[300px] 2xl:h-[486px] overflow-hidden group/img"
                 ref={containerRef}
                 onMouseMove={handleMouseMove}
                 onMouseEnter={handleMouseEnter}
@@ -134,7 +133,7 @@ const ProjectCard = ({
             </div>
             <div className="mt-5 xl:mt-[27px] relative">
                 <div className="flex justify-between items-center mb-2 xl:mb-[12px]">
-                    <div className="flex items-center flex-wrap gap-[7px] xl:gap-[13px] text-lg leading-[1] font-light dark:text-white/80 text-para-color">
+                    <div className="flex items-center flex-wrap gap-[7px] xl:gap-[13px] 2xl:text-lg leading-[1] font-light dark:text-white/80 text-para-color">
                         {item?.secondSection?.projectType?.name && <span>{item?.secondSection?.projectType?.name}</span>}
                         {item?.secondSection?.projectType?.name && <span className="text-black dark:text-secondary">|</span>}
                         {item?.secondSection?.sector?.name && <span>{item?.secondSection?.sector?.name}</span>}
@@ -145,9 +144,9 @@ const ProjectCard = ({
                     </div>
                 </div>
 
-                <h3 className="text-xl md:text-2xl leading-[1.4] font-normal mb-1 md:mb-3 xl:mb-[12px] text-black dark:text-white capitalize">
+                <h3 className="text-xl xl:text-[1.5rem] 2xl:text-2xl leading-[1.4] font-normal mb-1 md:mb-3 xl:mb-[12px] text-black dark:text-white capitalize">
                     <Link href={`/projects/${item.slug}`} >
-                    {item?.title?.toLowerCase()}
+                        {item?.title?.toLowerCase()}
                     </Link>
                 </h3>
                 {showDescription && (

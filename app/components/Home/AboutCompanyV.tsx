@@ -176,16 +176,8 @@ const AboutCompanyV = ({ data }: Props) => {
             {/* Play Button */}
             <div className="absolute inset-0 flex items-center justify-center">
               {!isPlaying && (
-                <button
-                  className="cursor-pointer transition-transform duration-300 hover:scale-110"
-                  onClick={togglePlay}
-                >
-                  <Image
-                    src={"/assets/img/icons/play.svg"}
-                    alt="Play"
-                    width={52}
-                    height={52}
-                  />
+                <button className="cursor-pointer transition-transform duration-300 hover:scale-110" onClick={togglePlay} >
+                  <Image src={"/assets/img/icons/play.svg"} alt="Play" width={52} height={52} />
                 </button>
               )}
             </div>
@@ -202,15 +194,7 @@ const AboutCompanyV = ({ data }: Props) => {
                   </button>
 
                   {/* Video Player */}
-                  <video
-                    className="w-full h-full rounded-lg object-cover "
-                    src={data.video}
-                    poster={data.poster}
-                    width={1080}
-                    height={740}
-                    controls
-                    autoPlay
-                  />
+                  <video className="w-full h-full rounded-lg object-cover " src={data.video} poster={data.poster} width={1080} height={740} controls autoPlay />
                 </div>
               </div>
             )}
@@ -218,19 +202,12 @@ const AboutCompanyV = ({ data }: Props) => {
 
           {/* Text Block with Split Animation */}
           <div className="w-full lg:w-[52%]">
-            <p
-              ref={textRef}
-              className="text-lg xl:text-[30px] font-light text-para-color mb-5 md:mb-8 lg:mb-12 2xl:mb-20 3xl:mb-24 dark:text-white leading-[1.3]"
-            >
+            <p ref={textRef} className="text-lg xl:text-[1.5rem] 2xl:text-[30px] font-light text-para-color mb-5 md:mb-8 lg:mb-12 2xl:mb-20 3xl:mb-24 dark:text-white leading-[1.3] 2xl:leading-[1.3]" >
               {splitTextToSpans(data.description)}
             </p>
 
             <div ref={btnRef}>
-              <BtnPrimary
-                link={"/about-us"}
-                text={data.buttonText}
-                bgtrans={false}
-              />
+              <BtnPrimary link={"/about-us"} text={data.buttonText} bgtrans={false} />
             </div>
           </div>
         </div>

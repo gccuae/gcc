@@ -25,7 +25,7 @@ const HeaderV3 = () => {
 
     // Screen size check for mobile
     const handleScreenCheck = () => {
-      setIsMobile(window.innerWidth < 1139);
+      setIsMobile(window.innerWidth < 1280);
     };
     handleScreenCheck();
     window.addEventListener("resize", handleScreenCheck);

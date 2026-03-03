@@ -9,7 +9,7 @@ const Main = ({data,allNewsData}: {data: NewsData['categories'][number]['news'][
     <section className="py-57px dark:bg-light-dark">
       <div className="container">
         <StandardBnr title={data.title} />
-        <div className="grid grid-cols-1 xl:grid-cols-[75%_25%] gap-3 md:gap-5 xl:gap-70px mt-5 xl:mt-12">
+        <div className="grid grid-cols-1 xl:grid-cols-[65%_30%] 2xl:grid-cols-[75%_25%] gap-3 md:gap-5 xl:gap-10 2xl:gap-12 mt-5 xl:mt-12">
           <MainContent
             subTitle={data.subTitle}
             images={data.images}
