@@ -9,7 +9,7 @@ import { leaders } from "./data";
 
 const LeadersShowcase = () => {
     return (
-        <section className="pt-15 xl:pt-25px dark:pb-1 dark:bg-light-dark ">
+        <section className="pt-15 xl:pt-25px dark:pb-1 dark:bg-black ">
             <div className="container">
                 <motion.h2
                     variants={moveUp()}

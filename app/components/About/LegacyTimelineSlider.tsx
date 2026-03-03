@@ -147,7 +147,7 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
                       >
                         <button
                           onClick={() => handleYearClick(index)}
-                          className={`font-normal  duration-500 text-lg leading-[32px] xl:pb-5 hover:text-white whitespace-nowrap ${
+                          className={`cursor-pointer font-normal  duration-500 text-lg leading-[32px] xl:pb-5 hover:text-white whitespace-nowrap ${
                             activeSlide === index
                               ? "text-white font-semibold  md:text-2xl "
                               : "text-gray-400 hover:text-gray-200   "
