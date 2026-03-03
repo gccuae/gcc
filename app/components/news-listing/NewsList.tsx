@@ -29,9 +29,11 @@ const NewsList = ({ data }: { data: NewsData }) => {
 
   const handleShowLess = () => {
     setVisibleCount(6); // reset back to first 6
-    sectionRef.current?.scrollIntoView({ behavior: "smooth" });
+    const topOffset = 80;
+    const sectionTop =
+      (sectionRef.current?.getBoundingClientRect().top || 0) + window.scrollY;
     window.scrollTo({
-      top: sectionRef.current?.offsetTop || 0,
+      top: Math.max(sectionTop - topOffset, 0),
       behavior: "smooth",
     });
   };
@@ -86,18 +88,9 @@ const NewsList = ({ data }: { data: NewsData }) => {
               />
             </button>
           ) : totalNews > 6 ? (
-            <button
-              onClick={handleShowLess}
-              className="px-6 py-2 bg-light-white text-black rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition cursor-pointer"
-            >
+            <button onClick={handleShowLess} className="px-6 py-2 bg-light-white text-black rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition cursor-pointer" >
               <span>Show Less</span>
-              <Image
-                src={assets.singleGreenArrow}
-                alt="arrow"
-                width={20}
-                height={20}
-                className="inline -rotate-90"
-              />
+              <Image src={assets.singleGreenArrow} alt="arrow" width={20} height={20} className="inline -rotate-90" />
             </button>
           ) : null}
         </motion.div>

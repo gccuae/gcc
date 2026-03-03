@@ -67,22 +67,9 @@ const NewsCard = ({
   };
 
   return (
-    <div
-      key={index}
-      className="relative border-b dark:border-white/20 hover:border-primary pb-27px group transition-all duration-300"
-    >
-      <div
-        className="relative p-3 xl:p-5 h-[300px] xl:h-[486px] overflow-hidden group/img"
-        ref={containerRef}
-        onMouseMove={handleMouseMove}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        <Image
-          src={item.thumbnail}
-          alt={item.thumbnailAlt}
-          width={1000}
-          height={1000}
+    <div key={index} className="relative border-b dark:border-white/20 hover:border-primary pb-27px group transition-all duration-300 h-full" >
+      <div className="relative p-3 xl:p-5 h-[300px] xl:h-[486px] overflow-hidden group/img" ref={containerRef} onMouseMove={handleMouseMove} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
+        <Image src={item.thumbnail} alt={item.thumbnailAlt} width={1000} height={1000}
           className="w-full h-full object-cover absolute top-0 left-0   group-hover:blur-[4px] group-hover:backdrop-blur-xl transition-all duration-300"
         />
         <div className="absolute bottom-0 left-0 w-full h-0 bg-black opacity-25 group-hover:h-full transition-all duration-300"></div>
@@ -101,13 +88,7 @@ const NewsCard = ({
             rel="noopener noreferrer"
             className="bg-white rounded-full w-6 h-6 flex items-center justify-center xl:w-20 xl:h-20 pointer-events-auto transition-transform duration-200 hover:scale-110 group-hover:opacity-100 "
           >
-            <Image
-              src={assets.linkArrowGreen}
-              alt="arrow"
-              width={20}
-              height={20}
-              className="w-6 h-6 object-contain xl:w-[19px] xl:h-[19px]"
-            />
+            <Image src={assets.linkArrowGreen} alt="arrow" width={20} height={20} className="w-6 h-6 object-contain xl:w-[19px] xl:h-[19px]" />
           </Link>
         </div>
         <div className="absolute top-50 left-50 pointer-events-none z-20 opacity-0 group-hover:opacity-100 group-hover/img:opacity-0 transition-opacity duration-300 ease-out">
@@ -116,13 +97,7 @@ const NewsCard = ({
             rel="noopener noreferrer"
             className="bg-white rounded-full w-6 h-6 flex items-center justify-center xl:w-20 xl:h-20 pointer-events-auto transition-transform duration-200 hover:scale-110 group-hover:opacity-100 "
           >
-            <Image
-              src={assets.linkArrowGreen}
-              alt="arrow"
-              width={20}
-              height={20}
-              className="w-6 h-6 object-contain xl:w-[19px] xl:h-[19px]"
-            />
+            <Image src={assets.linkArrowGreen} alt="arrow" width={20} height={20} className="w-6 h-6 object-contain xl:w-[19px] xl:h-[19px]" />
           </Link>
         </div>
       </div>
@@ -142,7 +117,9 @@ const NewsCard = ({
           </p>
         </div>
         <h3 className="text-xl md:text-2xl leading-normal font-normal mb-1 md:mb-3 xl:mb-[12px] text-black dark:text-white">
+          <Link href={`/news/${item.slug}`} className="hover:text-primary transition-colors duration-300">
           {item.title}
+          </Link>
         </h3>
         <h4 className="text-lg leading-normal font-normal mb-0 dark:text-white line-clamp-4 !overflow-hidden !text-ellipsis text-para-color">
           {item.description}

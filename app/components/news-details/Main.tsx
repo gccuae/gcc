@@ -18,7 +18,11 @@ const Main = ({data,allNewsData}: {data: NewsData['categories'][number]['news'][
             content={data.content}
           />
 
-          <SidebarContent allNewsData={allNewsData} category={data.category}/>
+          <SidebarContent
+            allNewsData={allNewsData}
+            category={data.category}
+            currentSlug={data.slug}
+          />
         </div>
       </div>
     </section>

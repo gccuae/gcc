@@ -1,4 +1,4 @@
-import { resend } from "./mailer";
+import { getResendClient } from "./mailer";
 import { VendorEmail } from "../../templates/vendorTemplate";
 import type { ReactElement } from "react";
 
@@ -18,8 +18,11 @@ export async function sendMailWithAttachments({
   fields: any;
   attachments: Attachment[];
 }) {
+  const resend = getResendClient();
+  const fromEmail = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
+
   const { data, error } = await resend.emails.send({
-    from: "onboarding@resend.dev",
+    from: fromEmail,
     to,
     subject,
     react: VendorEmail(fields) as ReactElement,
@@ -28,7 +31,11 @@ export async function sendMailWithAttachments({
 
   if (error) {
     console.error("Resend error:", error);
-    throw new Error("Failed to send email");
+    const errorMessage =
+      typeof error === "object" && error && "message" in error
+        ? String((error as { message?: string }).message)
+        : "Failed to send email";
+    throw new Error(errorMessage);
   }
 
   return data;

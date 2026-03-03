@@ -95,13 +95,7 @@ const EnvironmentModal: React.FC<EnvironmentModalProps> = ({
                   transition={{ duration: 0.4, ease: "easeInOut" }}
                   className="absolute inset-0"
                 >
-                  <Image
-                    src={item.images[currentIndex]?.image}
-                    alt={`slide-${currentIndex}`}
-                    fill
-                    className="object-contain object-top rounded-[12px] w-auto"
-                    sizes="(max-width: 768px) 100vw, 80vw"
-                  />
+                  <Image src={item.images[currentIndex]?.image} alt={`slide-${currentIndex}`} fill className="object-contain object-top rounded-[12px] w-auto" sizes="(max-width: 768px) 100vw, 80vw" />
                 </motion.div>
               </AnimatePresence>
             </div>

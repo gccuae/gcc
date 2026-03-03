@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import gsap from "gsap";
-import { Thumbs, EffectFade, Navigation, Autoplay } from "swiper/modules";
+import { Thumbs, EffectFade, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/thumbs";
@@ -23,38 +23,22 @@ const SocialImpact = ({
 }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
   const [mainSwiper, setMainSwiper] = useState<SwiperType | null>(null);
-  const prevRef = useRef<HTMLDivElement>(null);
-  const nextRef = useRef<HTMLDivElement>(null);
-  const [canClick, setCanClick] = useState(true);
 
   const handlePrev = () => {
-    if (!canClick || !thumbsSwiper || !mainSwiper) return;
-
-    setCanClick(false); // lock further clicks
-
-    // Slide both swipers immediately
-    thumbsSwiper.slidePrev();
+    if (!mainSwiper) return;
+    // Drive only main swiper; thumbs syncs via Thumbs module.
     mainSwiper.slidePrev();
-
-    // Unlock clicks after 600ms
-    setTimeout(() => setCanClick(true), 200);
   };
 
   const handleNext = () => {
-    if (!canClick || !thumbsSwiper || !mainSwiper) return;
-
-    setCanClick(false); // lock further clicks
-
-    thumbsSwiper.slideNext();
+    if (!mainSwiper) return;
+    // Drive only main swiper; thumbs syncs via Thumbs module.
     mainSwiper.slideNext();
-
-    setTimeout(() => setCanClick(true), 200);
   };
 
-  const handleSlideHover = (index: number) => {
-    if (mainSwiper) {
-      mainSwiper.slideTo(index);
-    }
+  const handleThumbSelect = (index: number) => {
+    if (!mainSwiper || mainSwiper.realIndex === index) return;
+    mainSwiper.slideToLoop(index, 900);
   };
 
   useEffect(() => {
@@ -71,15 +55,15 @@ const SocialImpact = ({
 
             gsap.fromTo(
               img,
-              { y: "-10vh" },
+              { y: "-6vh" },
               {
-                y: "10vh",
+                y: "6vh",
                 ease: "none",
                 scrollTrigger: {
                   trigger: container,
                   start: "top bottom",
                   end: "bottom top",
-                  scrub: true,
+                  scrub: 0.6,
                 },
               }
             );
@@ -89,12 +73,12 @@ const SocialImpact = ({
         gsap.utils.toArray<HTMLElement>(".slide-text").forEach((text) => {
           gsap.fromTo(
             text,
-            { y: 40, opacity: 0 },
+            { y: 20, opacity: 0 },
             {
               y: 0,
               opacity: 1,
-              duration: 1,
-              ease: "power3.out",
+              duration: 0.8,
+              ease: "power2.out",
               scrollTrigger: {
                 trigger: text,
                 start: "top 80%",
@@ -107,12 +91,12 @@ const SocialImpact = ({
         gsap.utils.toArray<HTMLElement>(".slide-btn").forEach((btn) => {
           gsap.fromTo(
             btn,
-            { y: 30, opacity: 1 }, // opacity 0 to fade in properly
+            { y: 16, opacity: 0 },
             {
               y: 0,
               opacity: 1,
-              duration: 0.4,
-              ease: "power3.out",
+              duration: 0.5,
+              ease: "power2.out",
               scrollTrigger: {
                 trigger: btn,
                 start: "top 70%",
@@ -128,23 +112,6 @@ const SocialImpact = ({
       ScrollTrigger.getAll().forEach((st) => st.kill()); // cleanup
     };
   }, []);
-
-  useEffect(() => {
-    if (
-      thumbsSwiper &&
-      prevRef.current &&
-      nextRef.current &&
-      thumbsSwiper.params.navigation &&
-      thumbsSwiper.params.navigation !== true
-    ) {
-      thumbsSwiper.params.navigation.prevEl = prevRef.current;
-      thumbsSwiper.params.navigation.nextEl = nextRef.current;
-
-      thumbsSwiper.navigation.destroy();
-      thumbsSwiper.navigation.init();
-      thumbsSwiper.navigation.update();
-    }
-  }, [thumbsSwiper]);
 
   // Pause main swiper autoplay when hovering over thumbs swiper
   useEffect(() => {
@@ -168,14 +135,14 @@ const SocialImpact = ({
             {data.title}
           </motion.h2>
           <div className="flex items-center gap-2">
-            <motion.div variants={moveUp(0.5)} initial="hidden" whileInView="show" viewport={{ once: true }} className="flex border border-foreground dark:border-white/20 rounded-full" >
-              <div ref={prevRef} onClick={handlePrev} className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] rounded-tl-full rounded-bl-full group  cursor-pointer hover:bg-accent  transition-all duration-300" >
+            <motion.div variants={moveUp(0.5)} initial="hidden" whileInView="show" viewport={{ once: true }} className="flex border border-white/50 dark:border-white/50 rounded-full" >
+              <div onClick={handlePrev} className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] rounded-tl-full rounded-bl-full group  cursor-pointer hover:bg-accent  transition-all duration-300" >
                 <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]" >
                   <path d="M8.33594 1.33154L1.66731 8.00017L8.33594 14.6688" stroke="#7AC142" className="group-hover:stroke-white transition-all duration-300" strokeWidth="2" strokeLinecap="round" />
                 </svg>
               </div>
-              <div ref={nextRef} onClick={handleNext}
-                className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] border-l border-white/30 rounded-tr-full rounded-br-full cursor-pointer group hover:bg-accent dark:hover:bg-white transition-all duration-300"
+              <div onClick={handleNext}
+                className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] border-l border-white/30 rounded-tr-full rounded-br-full cursor-pointer group hover:bg-accent dark:hover:bg-accent transition-all duration-300"
               >
                 <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]" >
                   <path d="M1.66406 1.33154L8.33269 8.00017L1.66406 14.6688" stroke="#7AC142" className="group-hover:stroke-white transition-all duration-300" strokeWidth="2" strokeLinecap="round" />
@@ -190,9 +157,10 @@ const SocialImpact = ({
             onSwiper={setThumbsSwiper}
             spaceBetween={0}
             slidesPerView={4}
-            modules={[Thumbs, Autoplay, Navigation]}
+            modules={[Thumbs, Autoplay]}
             allowTouchMove={false}
             loop={true}
+            loopPreventsSliding={false}
             breakpoints={{
               0: { slidesPerView: 1 },
               768: { slidesPerView: 2 },
@@ -200,17 +168,12 @@ const SocialImpact = ({
               1280: { slidesPerView: 4 },
             }}
             watchSlidesProgress
-            navigation={{
-              lockClass: "my-custom-lock",
-              prevEl: prevRef.current,
-              nextEl: nextRef.current,
-            }}
           >
             {data.items.map((item, index) => (
               <SwiperSlide
                 key={index}
                 className="cursor-pointer transition mb-4 xl:mb-[65px] group"
-                onMouseOver={() => handleSlideHover(index)}
+                onClick={() => handleThumbSelect(index)}
               >
                 <motion.div
                   variants={moveUp()}
@@ -231,13 +194,13 @@ const SocialImpact = ({
                       alt={item.logoAlt}
                       width={200}
                       height={200}
-                      className="mb-2 w-10 h-10 object-contain"
+                      className="mb-2 w-10 h-10 object-contain transition-all duration-500 ease-out"
                     />
                   </motion.div>
                   <div className="absolute bottom-[-6px] left-0 w-full h-[2px] bg-smgray dark:bg-white/50 -z-[1]">
                     {" "}
                   </div>
-                  <div className="hoverline absolute bottom-[-8px] left-0 w-0 h-[6px] bg-secondary -z-[1] transition-all duration-300 rounded-sm">
+                  <div className="hoverline absolute bottom-[-8px] left-0 w-0 h-[6px] bg-secondary -z-[1] transition-all duration-500 ease-out rounded-sm">
                     {" "}
                   </div>
                 </motion.div>
@@ -263,14 +226,11 @@ const SocialImpact = ({
               spaceBetween={30}
               modules={[Thumbs, EffectFade, Autoplay]}
               loop={true}
-              speed={800}
+              loopPreventsSliding={false}
+              speed={850}
               effect="fade"
               fadeEffect={{ crossFade: true }}
-              autoplay={{ delay: 5000, disableOnInteraction: false }}
-              onSlideChange={() => {
-                mainSwiper?.autoplay?.stop();
-                mainSwiper?.autoplay?.start();
-              }}
+              autoplay={{ delay: 5600, disableOnInteraction: true, waitForTransition: false }}
               className="px-6"
             >
               {data.items.map((item, index) => (

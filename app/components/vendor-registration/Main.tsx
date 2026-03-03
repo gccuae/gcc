@@ -49,13 +49,22 @@ const ContactForm: React.FC = () => {
                 }
             });
 
-            await sendContactAction(formData);
+            const result = await sendContactAction(formData);
+            if (!result?.success) {
+                alert(result?.message || "Error sending message. Please try again.");
+                return;
+            }
+
             reset();
             setFileResetKey((prev) => prev + 1);
-            alert("Message sent successfully!");
+            alert(result.message || "Message sent successfully!");
         } catch (error) {
             console.error("Error submitting form:", error);
-            alert("Error sending message. Please try again.");
+            const errorMessage =
+                error instanceof Error && error.message
+                    ? error.message
+                    : "Error sending message. Please try again.";
+            alert(errorMessage);
         }
     };
 
