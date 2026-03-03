@@ -68,7 +68,7 @@ const NewsCard = ({
 
   return (
     <div key={index} className="relative border-b dark:border-white/20 hover:border-primary pb-27px group transition-all duration-300 h-full" >
-      <div className="relative p-3 xl:p-5 h-[300px] xl:h-[486px] overflow-hidden group/img" ref={containerRef} onMouseMove={handleMouseMove} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
+      <div className="relative p-3 xl:p-5 h-[300px] 2xl:h-[486px] overflow-hidden group/img" ref={containerRef} onMouseMove={handleMouseMove} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
         <Image src={item.thumbnail} alt={item.thumbnailAlt} width={1000} height={1000}
           className="w-full h-full object-cover absolute top-0 left-0   group-hover:blur-[4px] group-hover:backdrop-blur-xl transition-all duration-300"
         />
@@ -116,12 +116,12 @@ const NewsCard = ({
                 .replace(/\//g, "-")}
           </p>
         </div>
-        <h3 className="text-xl md:text-2xl leading-normal font-normal mb-1 md:mb-3 xl:mb-[12px] text-black dark:text-white">
+        <h3 className="text-xl xl:text-[1.8rem] 2xl:text-2xl 2xl:leading-normal font-normal mb-1 md:mb-3 xl:mb-[12px] text-black dark:text-white">
           <Link href={`/news/${item.slug}`} className="hover:text-primary transition-colors duration-300">
           {item.title}
           </Link>
         </h3>
-        <h4 className="text-lg leading-normal font-normal mb-0 dark:text-white line-clamp-4 !overflow-hidden !text-ellipsis text-para-color">
+        <h4 className="text-base 2xl:text-lg 2xl:leading-normal font-normal mb-0 dark:text-white line-clamp-4 !overflow-hidden !text-ellipsis text-para-color">
           {item.description}
         </h4>
       </div>

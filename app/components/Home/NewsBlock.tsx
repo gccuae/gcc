@@ -73,7 +73,7 @@ const NewsBlock = ({ data }: NewsBlockProps) => {
           >
             {allNews.map((item, index) => (
               <SwiperSlide key={index}>
-                <div className="flex flex-wrap lg:flex-nowrap items-stretch gap-4 lg:gap-[69px] ">
+                <div className="flex flex-wrap lg:flex-nowrap items-stretch gap-4 xl:gap-10 2xl:gap-17 ">
                   <motion.div variants={fadeIn(0.1)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="xl:w-1/2 overflow-hidden flex items-stretch w-full" >
                     <Link href={"/news/" + item.slug} className="w-full">
                     <Image src={item.thumbnail} alt={item.thumbnailAlt} width={1000} height={579} 

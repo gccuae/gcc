@@ -93,9 +93,9 @@ const MainContent = ({
           {item}
         </motion.p>
       ))} */}
-      <motion.div dangerouslySetInnerHTML={{ __html: content }} className="news-details">
+      <motion.div dangerouslySetInnerHTML={{ __html: content }} className="news-details [&_p]:!text-base 2xl:[&_p]:!text-lg [&_p]:!leading-[1.5] 2xl:leading-[1.5]"/>
 
-      </motion.div>
+      
     </div>
   );
 };
