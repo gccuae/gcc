@@ -329,11 +329,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                       {item.description}
                     </p>
                     <div className="lg:slide-btn mt-6 xl:mt-[43px] mb-4">
-                      <BtnPrimary
-                        link={"/expertise/" + item.slug}
-                        text="Read More"
-                        bgtrans={false}
-                      />
+                      <BtnPrimary link={"/expertise/" + item.slug} text="Read More" bgtrans={false} />
                     </div>
                   </div>
                 </motion.div>

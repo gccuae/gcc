@@ -20,7 +20,7 @@ const LeadersShowcase = () => {
                 >
                     More Than Structures, We Build Together
                 </motion.h2>
-                <div className='flex justify-center items-center flex-col'>
+                <div className='flex md:justify-center md:items-center flex-col'>
                     <div className="grid grid-cols-1  mb-5 md:mb-12 xl:mb-[32px]">
                         <motion.div
                             variants={moveUp(0 * 0.23)}

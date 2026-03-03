@@ -24,7 +24,7 @@ const ViMiVa = ({ data }: ViMiVaProps) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-5xl leading-lh-title text-black dark:text-white mb-[17px] letterSp-3"
+            className="text-5xl leading-lh-title text-black dark:text-white mb-[17px] letterSp-2"
           >
             {data.mainTitle}
           </motion.h2>
@@ -46,18 +46,12 @@ const ViMiVa = ({ data }: ViMiVaProps) => {
               whileInView="show"
               viewport={{ once: true }}
               key={index}
-              className="bg-white dark:bg-black  flex flex-col gap-5 xl:border-r dark:border-white/20 xl:last:border-r-0 xl:pl-8 xl:pr-8 last:pr-0"
+              className="bg-white dark:bg-black flex flex-col md:gap-5 xl:border-r dark:border-white/20 xl:last:border-r-0 xl:pl-8 xl:pr-8 last:pr-0 border-b last:border-b-0 last:pb-0 dark:border-white/20 pb-8 xl:pb-0 px-5 xl:px-0 md:border-b-0"
             >
               <div>
-                <Image
-                  src={item.logo}
-                  alt={item.logoAlt}
-                  width={50}
-                  height={50}
-                  className="w-auto h-10 xl:h-13"
-                />
+                <Image src={item.logo} alt={item.logoAlt} width={50} height={50} className="w-auto h-10 xl:h-13 mb-2 md:mb-0" />
               </div>
-              <h3 className="text-2xl leading-lh-title text-black dark:text-white text-para-color">
+              <h3 className="text-2xl leading-lh-title text-black dark:text-white text-para-color mb-3 md:mb-0">
                 {item.title}
               </h3>
 
