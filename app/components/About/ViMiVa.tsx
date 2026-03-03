@@ -46,7 +46,7 @@ const ViMiVa = ({ data }: ViMiVaProps) => {
               whileInView="show"
               viewport={{ once: true }}
               key={index}
-              className="bg-white dark:bg-black  flex flex-col gap-5 xl:border-r dark:border-white/20 xl:last:border-r-0 xl:px-8"
+              className="bg-white dark:bg-black  flex flex-col gap-5 xl:border-r dark:border-white/20 xl:last:border-r-0 xl:pl-8 xl:pr-8 last:pr-0"
             >
               <div>
                 <Image

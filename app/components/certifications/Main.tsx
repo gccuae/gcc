@@ -92,7 +92,7 @@ const Main = ({ data }: AwardsProps) => {
         <div className="bg-light-white dark:bg-light-dark pb-6 lg:pb-0 pt-57px">
           <div className="container">
             {/* Tab Navigation */}
-            <div className="flex md:flex-row flex-col border-y dark:border-white/20 dark:border-white/20 gap-2 md:gap-8 xl:gap-12 2xl:gap-25 w-full">
+            <div className="flex md:flex-row flex-col border-y dark:border-white/20 dark:border-white/20 gap-2 md:gap-8 xl:gap-18 2xl:gap-25 w-full">
               {data.categories.map((cat) => (
                 <button
                   key={cat.category}
