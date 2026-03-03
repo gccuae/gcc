@@ -36,9 +36,14 @@ const ContactForm: React.FC = () => {
     const MAX_2MB = 2 * 1024 * 1024;
     const MAX_5MB = 5 * 1024 * 1024;
     const [fileResetKey, setFileResetKey] = useState(0);
+    const [formStatus, setFormStatus] = useState<{
+        type: "success" | "error";
+        message: string;
+    } | null>(null);
 
     const onSubmit: SubmitHandler<ContactFormData> = async (data) => {
         try {
+            setFormStatus(null);
             const formData = new FormData();
 
             Object.entries(data).forEach(([key, value]) => {
@@ -51,20 +56,26 @@ const ContactForm: React.FC = () => {
 
             const result = await sendContactAction(formData);
             if (!result?.success) {
-                alert(result?.message || "Error sending message. Please try again.");
+                setFormStatus({
+                    type: "error",
+                    message: result?.message || "Error sending message. Please try again.",
+                });
                 return;
             }
 
             reset();
             setFileResetKey((prev) => prev + 1);
-            alert(result.message || "Message sent successfully!");
+            setFormStatus({
+                type: "success",
+                message: result.message || "Message sent successfully!",
+            });
         } catch (error) {
             console.error("Error submitting form:", error);
             const errorMessage =
                 error instanceof Error && error.message
                     ? error.message
                     : "Error sending message. Please try again.";
-            alert(errorMessage);
+            setFormStatus({ type: "error", message: errorMessage });
         }
     };
 
@@ -297,6 +308,72 @@ const ContactForm: React.FC = () => {
 
                 {/* Submit Button */}
                 <motion.div variants={moveUp(1)} initial="hidden" whileInView="show" viewport={{ once: true }}>
+                    {formStatus && (
+                        <div
+                            className={`mb-4 w-fit max-w-full px-4 py-3 rounded-lg text-sm border flex items-start justify-between gap-3 ${
+                                formStatus.type === "success"
+                                    ? "bg-green-50 text-green-700 border-green-200 dark:bg-green-900/20 dark:text-green-300 dark:border-green-700/40"
+                                    : "bg-red-50 text-red-700 border-red-200 dark:bg-red-900/20 dark:text-red-300 dark:border-red-700/40"
+                            }`}
+                        >
+                            <div className="flex items-center gap-2">
+                                <motion.svg
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    initial={{ scale: 0.8, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    transition={{ duration: 0.2, ease: "easeOut" }}
+                                    className="shrink-0 mt-0.5"
+                                >
+                                    <motion.circle
+                                        cx="12"
+                                        cy="12"
+                                        r="10"
+                                        stroke={formStatus.type === "success" ? "#16A34A" : "#DC2626"}
+                                        strokeWidth="2"
+                                        initial={{ pathLength: 0 }}
+                                        animate={{ pathLength: 1 }}
+                                        transition={{ duration: 0.3, ease: "easeOut" }}
+                                    />
+                                    {formStatus.type === "success" ? (
+                                        <motion.path
+                                            d="M7.5 12.5L10.5 15.5L16.5 9.5"
+                                            stroke="#16A34A"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            initial={{ pathLength: 0 }}
+                                            animate={{ pathLength: 1 }}
+                                            transition={{ duration: 0.25, delay: 0.1, ease: "easeOut" }}
+                                        />
+                                    ) : (
+                                        <motion.path
+                                            d="M9 9L15 15M15 9L9 15"
+                                            stroke="#DC2626"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            initial={{ pathLength: 0 }}
+                                            animate={{ pathLength: 1 }}
+                                            transition={{ duration: 0.25, delay: 0.1, ease: "easeOut" }}
+                                        />
+                                    )}
+                                </motion.svg>
+                                <span>{formStatus.message}</span>
+                            </div>
+                            <button
+                                type="button"
+                                onClick={() => setFormStatus(null)}
+                                className="text-current/70 hover:text-current transition-colors duration-200 leading-none cursor-pointer"
+                                aria-label="Close status message"
+                            >
+                                ×
+                            </button>
+                        </div>
+                    )}
                     <button
                         type="submit"
                         disabled={isSubmitting}

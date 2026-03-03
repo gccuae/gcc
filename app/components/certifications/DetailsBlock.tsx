@@ -79,19 +79,13 @@ const DetailsBlock: React.FC<DetailsBlockProps> = ({
             className="h-fit mt-auto align-self-end"
             onClick={() => window.open(selectedItem.document, "_blank")}
           >
-            <svg
-              width="30"
-              height="31"
-              viewBox="0 0 30 31"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg" >
               <path
                 d="M8.97079 16.1716L15.2248 22.444L21.5051 16.1716M1.47266 21.441V26.0966C1.47266 26.9458 1.76102 27.6584 2.33776 28.2345C2.91449 28.8105 3.62677 29.0985 4.4746 29.0985H25.999C26.8468 29.0985 27.5591 28.8105 28.1358 28.2345C28.7126 27.6584 29.0009 26.9458 29.0009 26.0966V21.441M15.2416 1.61658V22.433"
                 stroke="black"
                 strokeWidth="2"
                 strokeLinecap="round"
-                className="group-hover:stroke-primary dark:stroke-gray-400 dark:group-hover:stroke-gray-300"
+                className="group-hover:stroke-primary dark:stroke-gray-400 dark:group-hover:stroke-primary"
               />
             </svg>
           </button>

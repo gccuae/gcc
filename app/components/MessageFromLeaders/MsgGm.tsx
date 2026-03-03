@@ -12,7 +12,7 @@ const MsgGm = ({ items }: MessageSection) => {
   return (
     <section className="pb-57px lg:pb-[101px] dark:bg-black overflow-hidden bg-[#F5F3F0] pt-57px xl:pt-[180px]">
       <SpecialContainer className="" side="right">
-        <div className="flex flex-col lg:grid grid-cols-1 xl:grid-cols-2 lg:items-center gap-6 md:gap-8 lg:border-b lg:border-[#c2c2c2] dark:border-[#797979] overflow-hidden">
+        <div className="flex flex-col lg:grid grid-cols-1 xl:grid-cols-2 lg:items-center gap-6 md:gap-8 lg:border-b lg:border-[#c2c2c2] dark:border-transparent overflow-hidden">
           <div className="max-xl:order-2">
             <motion.h2
               variants={moveUp()}
@@ -34,7 +34,7 @@ const MsgGm = ({ items }: MessageSection) => {
                     initial="hidden"
                     whileInView="show"
                     key={index}
-                    className="mb-3 last:mb-0 lg:last:mb-[17px]  lg:mb-[17px] text-lg leading-lh-text19 text-para-color dark:text-white font-light"
+                    className="mb-3 last:mb-0 lg:last:mb-[17px] xl:last:mb-20 lg:mb-[17px] text-lg leading-lh-text19 text-para-color dark:text-white font-light"
                   >
                     {line}
                   </motion.p>
@@ -46,9 +46,9 @@ const MsgGm = ({ items }: MessageSection) => {
             viewport={{ once: true }}
             initial="hidden"
             whileInView="show"
-            className="relative pt-10"
+            className="relative pt-10 dark:bg-light-dark"
           >
-            <div className="absolute top-0 right-0 w-full xl:w-[85%] h-full bg-[#0000001A] dark:bg-[#F5F3F0] z-0"></div>
+            <div className="absolute top-0 right-0 w-full xl:w-[85%] h-full bg-[#0000001A] dark:bg-light-dark z-0"></div>
             <motion.div
               variants={moveLeft(0.3)}
               viewport={{ once: true }}
@@ -63,7 +63,7 @@ const MsgGm = ({ items }: MessageSection) => {
                 className="img-fluid   h-[400px] xl:h-[60%] max-h-[750px] object-contain relative right-0 md:right-14 z-10"
               />
             </motion.div>
-            <div className="absolute bottom-5 md:bottom-10 lg:bottom-20 right-0 md:left-50 lg:left-40 w-full xl:w-fit h-fit px-4 xl:px-[38px] py-2 xl:py-[18px] bg-gradient-to-r from-primary to-transparent dark:bg-[#0d0d0d] z-20">
+            <div className="absolute bottom-5 md:bottom-10 lg:bottom-20 right-0 md:left-50 lg:left-40 w-full xl:w-fit h-fit px-4 xl:px-[38px] py-2 xl:py-[18px] bg-gradient-to-r from-primary to-transparent dark:from-[50%] z-20">
               <motion.div
                 variants={moveUp()}
                 viewport={{ once: true }}

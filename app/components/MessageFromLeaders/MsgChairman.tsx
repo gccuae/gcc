@@ -20,7 +20,7 @@ const MsgChairman = ({ items }: MessageSection) => {
             whileInView="show"
             className="relative pt-10"
           >
-            <div className="absolute top-0 left-0 xl:w-[80%] w-full h-[100%] bg-[#0000001A] dark:bg-[#F5F3F0] z-0"></div>
+            <div className="absolute top-0 left-0 xl:w-[80%] w-full h-[100%] bg-[#0000001A] dark:bg-black z-0"></div>
             <motion.div
               variants={moveRight(0.3)}
               viewport={{ once: true }}
@@ -35,7 +35,7 @@ const MsgChairman = ({ items }: MessageSection) => {
                 className="w-full h-[400px] xl:h-[60%] max-h-[900px] object-contain relative z-10"
               />
             </motion.div>
-            <div className="absolute bottom-5 md:bottom-10 lg:bottom-20 left-3 md:left-10 lg:left-30 w-full  xl:w-[70%] h-fit px-4 xl:px-[38px] py-2 xl:py-[18px] bg-gradient-to-r from-primary to-transparent dark:bg-[#0d0d0d] z-20">
+            <div className="absolute bottom-5 md:bottom-10 lg:bottom-20 left-3 md:left-10 lg:left-30 w-full  xl:w-[70%] h-fit px-4 xl:px-[38px] py-2 xl:py-[18px] bg-gradient-to-r from-primary to-transparent dark:from-[50%] z-20">
               <motion.div
                 variants={moveUp()}
                 viewport={{ once: true }}
@@ -72,7 +72,7 @@ const MsgChairman = ({ items }: MessageSection) => {
                     initial="hidden"
                     whileInView="show"
                     key={index}
-                    className="mb-3 last:mb-0 lg:last:mb-[17px] lg:mb-[17px] text-lg leading-lh-text19 text-para-color dark:text-white font-light"
+                    className="mb-3 last:mb-0 lg:last:mb-[17px] xl:last:mb-20 lg:mb-[17px] text-lg leading-lh-text19 text-para-color dark:text-white font-light"
                   >
                     {line}
                   </motion.p>
