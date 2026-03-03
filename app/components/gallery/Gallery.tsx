@@ -51,7 +51,7 @@ const GalleryCard: React.FC<{
   };
 
   return (
-    <div className="overflow-hidden transition-transform group border-b dark:border-white/20 hover:border-primary transition-colors duration-300">
+    <div className="overflow-hidden transition-transform group border-b dark:border-white/20 hover:border-primary transition-colors duration-300 cursor-pointer" onClick={() => item.images.length > 0 && onOpenModal(item)}>
       {/* Header Image */}
       <div
         className="relative h-48 xl:h-[475px] overflow-hidden cursor-pointer"

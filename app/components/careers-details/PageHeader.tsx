@@ -1,6 +1,6 @@
 "use client";
 
-import Breadcrumb from "../common/BreadCrumb";
+import BreadcrumbStd from "../common/BreadCrumbStd";
 import BtnPrimary from "../common/BtnPrimary";
 import { AnimatePresence, motion } from "framer-motion";
 import { moveLeft, moveUp } from "../motionVarients";
@@ -99,7 +99,7 @@ const PageHeader = ({ title }: PageHeaderProps) => {
               />
             </motion.div>
           </div>
-          <Breadcrumb standard={true} />
+          <BreadcrumbStd standard={true} />
         </motion.div>
       </div>
 

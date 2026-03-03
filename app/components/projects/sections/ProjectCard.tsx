@@ -3,9 +3,30 @@ import { assets } from "@/public/assets/assets";
 import Image from "next/image";
 import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
-import { Project } from "../type";
 
-const ProjectCard = ({ item, index }: { item: Project; index: number }) => {
+interface ProjectCardItem {
+    slug: string;
+    title: string;
+    thumbnail?: string;
+    thumbnailAlt?: string;
+    thumbDescription?: string;
+    secondSection?: {
+        projectType?: { name?: string };
+        sector?: { name?: string };
+        location?: { name?: string };
+        status?: string;
+    };
+}
+
+const ProjectCard = ({
+    item,
+    index,
+    showDescription = true,
+}: {
+    item: ProjectCardItem;
+    index: number;
+    showDescription?: boolean;
+}) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [targetPosition, setTargetPosition] = useState({ x: 0, y: 0 });
     const [currentPosition, setCurrentPosition] = useState({ x: 0, y: 0 });
@@ -79,7 +100,7 @@ const ProjectCard = ({ item, index }: { item: Project; index: number }) => {
                 {item.thumbnail ?
                     <Image
                         src={item.thumbnail}
-                        alt={item.thumbnailAlt}
+                        alt={item.thumbnailAlt || ""}
                         width={1000}
                         height={1000}
                         className="w-full h-full object-cover absolute top-0 left-0   group-hover:blur-[4px] group-hover:backdrop-blur-xl transition-all duration-300"
@@ -129,9 +150,11 @@ const ProjectCard = ({ item, index }: { item: Project; index: number }) => {
                     {item?.title?.toLowerCase()}
                     </Link>
                 </h3>
-                <h4 className="text-lg leading-normal font-light mb-0 dark:text-white line-clamp-2 !overflow-hidden !text-ellipsis text-para-color">
-                    {item?.thumbDescription}
-                </h4>
+                {showDescription && (
+                    <h4 className="text-lg leading-normal font-light mb-0 dark:text-white line-clamp-2 !overflow-hidden !text-ellipsis text-para-color">
+                        {item?.thumbDescription}
+                    </h4>
+                )}
             </div>
         </div>
     );

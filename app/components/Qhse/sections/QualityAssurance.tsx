@@ -20,7 +20,7 @@ const QualityAssurance = ({
 }: Props) => {
   return (
     <section className="bg-light-white dark:bg-black py-57px">
-      <div className="container flex flex-col-reverse lg:flex-row items-center gap-[35px] xl:gap-[70px]">
+      <div className="container flex flex-col-reverse lg:flex-row items-stretch gap-[35px] xl:gap-[70px]">
         {/* Left Image */}
         <motion.div
           variants={fadeIn(0.2)}
@@ -29,7 +29,7 @@ const QualityAssurance = ({
           viewport={{ once: true }}
           className="w-full lg:w-[49%]"
         >
-          <Image src={image} alt="Quality Assurance" width={705} height={502} className="object-cover w-full h-[402px] lg:h-[502px]" />
+          <Image src={image} alt="Quality Assurance" width={705} height={502} className="object-cover w-full h-[402px] lg:h-[502px] xl:h-full" />
         </motion.div>
 
         {/* Right Content */}

@@ -8,7 +8,7 @@ interface Props {
   standard?: boolean;
 }
 
-const Breadcrumb = ({ standard = false }: Props) => {
+const BreadcrumbStd = ({ standard = false }: Props) => {
   const pathname = usePathname();
 
   const pathParts = pathname.split("/").filter((part) => part);
@@ -36,7 +36,7 @@ const Breadcrumb = ({ standard = false }: Props) => {
         <Link
           href="/"
           className={`${
-            standard ? "text-white/70" : "text-white/70 dark:text-white/70"
+            standard ? "text-mdgray dark:text-white/70" : "text-mdgray dark:text-white/70"
           } hover:underline`}
         >
           Home
@@ -78,7 +78,7 @@ const Breadcrumb = ({ standard = false }: Props) => {
             {!isLast ? (
               <Link
                 href={href}
-                className="text-white/70 hover:underline"
+                className="text-mdgray dark:text-white/70 hover:underline"
               >
                 {/* Show truncated on mobile, full on larger screens */}
                 <span className="block sm:hidden">{truncatedLabel}</span>
@@ -116,4 +116,4 @@ const Breadcrumb = ({ standard = false }: Props) => {
   );
 };
 
-export default Breadcrumb;
+export default BreadcrumbStd;

@@ -26,24 +26,12 @@ const EnvironmentalResponsibility = ({
     <section className="pb-2 md:pb-57px py-57px bg-white dark:bg-black">
       <div className="container">
         {/* Title */}
-        <motion.h2
-          variants={moveUp()}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="text-5xl md:text-6xl font-light leading-lh-title text-black dark:text-white mb-4 md:mb-27px"
-        >
+        <motion.h2 variants={moveUp()} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-5xl md:text-6xl font-light leading-lh-title text-black dark:text-white mb-4 md:mb-27px" >
           {title}
         </motion.h2>
 
         {/* Description */}
-        <motion.p
-          variants={moveUp(0.2)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="text-lg leading-lh-text19 font-light text-para-color dark:text-white max-w-[100ch] mb-57px"
-        >
+        <motion.p variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-lg leading-lh-text19 font-light text-para-color dark:text-white max-w-[100ch] mb-57px" >
           {description}
         </motion.p>
 
@@ -61,15 +49,15 @@ const EnvironmentalResponsibility = ({
             >
               {/* Thumbnail */}
               <div className="relative overflow-hidden">
-                <Image
-                  src={item.thumbnail}
-                  alt={item.thumbnailAlt}
-                  width={486}
-                  height={475}
+                <Image src={item.thumbnail} alt={item.thumbnailAlt} width={486} height={475}
                   className="object-cover w-full max-w-full max-h-[300px] lg:max-h-[475px] group-hover:scale-[1.02] transition-all duration-300 group-hover:blur-[2px]"
                 />
                 {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex items-center justify-center">
+                  <div className="flex items-center justify-center h-full w-10 h-10 xl:w-20 xl:h-20 rounded-full mx-auto border border-white/90 bg-white/30 backdrop-blur-[0.2px] cursor-pointer">
+                    <img src="/assets/img/icons/magnify.svg" alt="View" width={29.99} height={29.99} className="object-contain" />
+                  </div>
+                </div>
               </div>
 
               <div className="mt-[27px] flex justify-between items-center">
@@ -80,17 +68,8 @@ const EnvironmentalResponsibility = ({
                 {/* Small images row */}
                 <div className="flex justify-center gap-2">
                   {item.images.map((img, i) => (
-                    <div
-                      key={i}
-                      className="w-[50px] h-[50px] rounded-full overflow-hidden border border-gray-200 -ml-4"
-                    >
-                      <Image
-                        src={img.image}
-                        alt={`${item.title} ${i + 1}`}
-                        width={50}
-                        height={50}
-                        className="object-cover w-full h-full"
-                      />
+                    <div key={i} className="w-[50px] h-[50px] rounded-full overflow-hidden border border-gray-200 -ml-4">
+                      <Image src={img.image} alt={`${item.title} ${i + 1}`} width={50} height={50} className="object-cover w-full h-full" />
                     </div>
                   ))}
                 </div>
@@ -100,10 +79,7 @@ const EnvironmentalResponsibility = ({
         </div>
         <AnimatePresence>
           {selectedItem && (
-            <EnvironmentModal
-              item={selectedItem}
-              onClose={() => setSelectedItem(null)}
-            />
+            <EnvironmentModal item={selectedItem} onClose={() => setSelectedItem(null)} />
           )}
         </AnimatePresence>
       </div>

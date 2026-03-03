@@ -19,10 +19,14 @@ const JobApplicationForm = ({ title }: { title: string }) => {
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(jobApplicationSchema),
+    mode: "onChange",
+    reValidateMode: "onChange",
   });
+  const [isSubmitted, setIsSubmitted] = React.useState(false);
 
   const onSubmit = (data: FormData) => {
     console.log("Form submitted:", data);
+    setIsSubmitted(true);
     reset();
     setCoverLetterFile(null);
     setResumeFile(null);
@@ -32,6 +36,8 @@ const JobApplicationForm = ({ title }: { title: string }) => {
     null
   );
   const [resumeFile, setResumeFile] = React.useState<File | null>(null);
+  const coverLetterRegister = register("coverLetter");
+  const resumeRegister = register("resume");
 
   return (
     <section className="py-57px bg-light-white dark:bg-black">
@@ -48,6 +54,9 @@ const JobApplicationForm = ({ title }: { title: string }) => {
 
         <form
           onSubmit={handleSubmit(onSubmit)}
+          onChange={() => {
+            if (isSubmitted) setIsSubmitted(false);
+          }}
           className="space-y-0 lg:space-y-8 font-light"
         >
           {/* First Row */}
@@ -143,7 +152,7 @@ const JobApplicationForm = ({ title }: { title: string }) => {
 
             <div className="space-y-2">
               <input
-                {...register("hasConstructionExperience")}
+                  {...register("hasConstructionExperience")}
                 type="text"
                 placeholder="Current Location"
                 className="w-full px-0 py-4 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:focus:border-white/50 dark:placeholder-white transition-colors duration-300"
@@ -168,31 +177,16 @@ const JobApplicationForm = ({ title }: { title: string }) => {
             <div className="space-y-2">
               <div className="relative border-b dark:border-white/20 focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none transition-colors duration-300">
                 <input
-                  {...register("coverLetter", {
-                    required: "Cover letter is required",
-                    validate: {
-                      fileSize: (files) =>
-                        (files && files[0]?.size <= 20 * 1024 * 1024) ||
-                        "File size must be < 20MB",
-                      fileType: (files) => {
-                        const allowed = [".pdf", ".doc", ".docx"];
-                        return (
-                          !files?.[0] ||
-                          allowed.some((ext) =>
-                            files[0].name.toLowerCase().endsWith(ext)
-                          ) ||
-                          "Only PDF, DOC, DOCX allowed"
-                        );
-                      },
-                    },
-                  })}
+                  {...coverLetterRegister}
                   type="file"
                   accept=".pdf,.doc,.docx"
                   className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                   id="coverLetter"
-                  onChange={(e) =>
-                    setCoverLetterFile(e.target.files?.[0] || null)
-                  }
+                  onChange={(e) => {
+                    coverLetterRegister.onChange(e);
+                    setCoverLetterFile(e.target.files?.[0] || null);
+                    setIsSubmitted(false);
+                  }}
                 />
 
                 <label
@@ -234,29 +228,16 @@ const JobApplicationForm = ({ title }: { title: string }) => {
             <div className="space-y-2">
               <div className="relative border-b dark:border-white/20 focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none transition-colors duration-300">
                 <input
-                  {...register("resume", {
-                    required: "Resume is required",
-                    validate: {
-                      fileSize: (files) =>
-                        (files && files[0]?.size <= 20 * 1024 * 1024) ||
-                        "File size must be < 20MB",
-                      fileType: (files) => {
-                        const allowed = [".pdf", ".doc", ".docx"];
-                        return (
-                          !files?.[0] ||
-                          allowed.some((ext) =>
-                            files[0].name.toLowerCase().endsWith(ext)
-                          ) ||
-                          "Only PDF, DOC, DOCX allowed"
-                        );
-                      },
-                    },
-                  })}
+                  {...resumeRegister}
                   type="file"
                   accept=".pdf,.doc,.docx"
                   className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                   id="resume"
-                  onChange={(e) => setResumeFile(e.target.files?.[0] || null)}
+                  onChange={(e) => {
+                    resumeRegister.onChange(e);
+                    setResumeFile(e.target.files?.[0] || null);
+                    setIsSubmitted(false);
+                  }}
                 />
 
                 <label
@@ -301,9 +282,47 @@ const JobApplicationForm = ({ title }: { title: string }) => {
             viewport={{ once: true }}
             className="flex justify-end pt-4 lg:pt-8"
           >
+            {isSubmitted && (
+              <div className="mr-4 self-center flex items-center gap-3 px-4 py-2 rounded-xl border border-green-200 dark:border-green-500/40 bg-green-50 dark:bg-green-900/20">
+                <motion.svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.25, ease: "easeOut" }}
+                >
+                  <motion.circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="#16A34A"
+                    strokeWidth="2"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 0.35, ease: "easeOut" }}
+                  />
+                  <motion.path
+                    d="M7.5 12.5L10.5 15.5L16.5 9.5"
+                    stroke="#16A34A"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 0.3, delay: 0.15, ease: "easeOut" }}
+                  />
+                </motion.svg>
+                <p className="text-sm text-green-700 dark:text-green-300">
+                  Application submitted successfully.
+                </p>
+              </div>
+            )}
             <button
               type="submit"
-              className="hover:bg-accent hover:border-accent dark:hover:bg-transparent hover:text-white flex items-center justify-center py-1 xl:py-[7.39px] px-4 xl:px-[28px] gap-2 transition-all duration-300 ease-in-out group border border-foreground dark:border-white rounded-4xl w-fit hover:shadow-xl dark:bg-transparent group 2xl:min-w-[230px]"
+              className="hover:bg-accent cursor-pointer hover:border-accent dark:hover:bg-transparent hover:text-white flex items-center justify-center py-1 xl:py-[7.39px] px-4 xl:px-[28px] gap-2 transition-all duration-300 ease-in-out group border border-foreground dark:border-white rounded-4xl w-fit hover:shadow-xl dark:bg-transparent group 2xl:min-w-[230px]"
             >
               <span className="font-normal">SUBMIT</span>
               <svg

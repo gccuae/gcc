@@ -7,10 +7,18 @@ import { motion } from "framer-motion";
 import { moveUp, moveLeft } from "../motionVarients";
 import { NewsData } from "../news-listing/type";
 
-const SidebarContent = ({ allNewsData, category }: { allNewsData: NewsData, category: string }) => {
+const SidebarContent = ({
+  allNewsData,
+  category,
+  currentSlug,
+}: {
+  allNewsData: NewsData;
+  category: string;
+  currentSlug: string;
+}) => {
   const allItems = allNewsData.categories.flatMap((item: { news: NewsData['categories'][number]['news'] }) => item.news);
   const filtered = allItems
-    .filter((item: { category: string }) => item.category === category)
+    .filter((item: { category: string; slug: string }) => item.category === category && item.slug !== currentSlug)
     .sort((a: { date: string }, b: { date: string }) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 4);
 

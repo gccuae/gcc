@@ -33,7 +33,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Breadcrumb from "./BreadCrumb";
+import BreadcrumbStd from "./BreadCrumbStd";
 import gsap from "gsap";
 
 interface Props {
@@ -96,7 +96,7 @@ const StandardBnr = ({ title }: Props) => {
       >
         {title}
       </h2>
-      <Breadcrumb standard={true} />
+      <BreadcrumbStd standard={true} />
     </div>
   );
 };

@@ -34,7 +34,7 @@ const BtnPrimary = ({
 }: BtnPrimaryProps) => {
   const baseClasses = `
     ${bgtrans ? "bg-transparent" : "bg-white"}
-    hover:bg-mdgray dark:hover:bg-transparent hover:text-white
+    hover:bg-mdgray dark:hover:bg-transparent hover:text-white cursor-pointer
     flex items-center justify-center
     py-1 xl:py-[7.39px] px-4 xl:px-[28px] gap-2
     transition-all duration-300 ease-in-out

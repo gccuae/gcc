@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import BtnPrimary from "../common/BtnPrimary";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { moveLeft, moveUp } from "../motionVarients";
@@ -10,11 +10,30 @@ import { components, DropdownIndicatorProps } from "react-select";
 import { ChevronDown } from "lucide-react";
 import { careerData } from "./type";
 
+const Select = dynamic(() => import("react-select"), { ssr: false });
+
+type FilterState = {
+  jobType: string;
+  department: string;
+  location: string;
+};
+
+type SelectOption = {
+  value: string;
+  label: string;
+};
 
 const CurrentOpenings = ({ data, jobs, departments, locations }: { data: careerData['secondSection'], jobs: careerData['openings'], departments: careerData['departments'], locations: careerData['locations'] }) => {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const leftRef = useRef<HTMLDivElement | null>(null);
   const lastTouchY = useRef<number | null>(null);
+  const defaultFilters: FilterState = {
+    jobType: "All Jobs",
+    department: "All Departments",
+    location: "All Locations",
+  };
+  const [pendingFilters, setPendingFilters] = useState<FilterState>(defaultFilters);
+  const [appliedFilters, setAppliedFilters] = useState<FilterState>(defaultFilters);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -104,7 +123,6 @@ const CurrentOpenings = ({ data, jobs, departments, locations }: { data: careerD
   ];
 
   const dropdowns = [jobTitles, jobDepartments, jobLocations];
-  const Select = dynamic(() => import("react-select"), { ssr: false });
 
   const DropdownIndicator = (props: DropdownIndicatorProps) => {
     return (
@@ -112,6 +130,54 @@ const CurrentOpenings = ({ data, jobs, departments, locations }: { data: careerD
         <ChevronDown size={22} className="select-down-arrow" />
       </components.DropdownIndicator>
     );
+  };
+
+  const toOption = (value: string): SelectOption => ({ value, label: value });
+  const normalize = (value: string) => value.trim().toLowerCase();
+  const isAllOrPlaceholder = (value: string, allValue: string, placeholderValue: string) =>
+    value === allValue || value === placeholderValue;
+
+  const filteredJobs = jobs.filter((job) => {
+    const jobType = normalize(job.firstSection.employmentType);
+    const department = normalize(job.firstSection.department);
+    const location = normalize(job.firstSection.location);
+
+    if (
+      !isAllOrPlaceholder(appliedFilters.jobType, "All Jobs", "Job Title") &&
+      normalize(appliedFilters.jobType) !== jobType
+    ) {
+      return false;
+    }
+    if (
+      !isAllOrPlaceholder(appliedFilters.department, "All Departments", "Department") &&
+      normalize(appliedFilters.department) !== department
+    ) {
+      return false;
+    }
+    if (
+      !isAllOrPlaceholder(appliedFilters.location, "All Locations", "Location") &&
+      normalize(appliedFilters.location) !== location
+    ) {
+      return false;
+    }
+
+    return true;
+  });
+
+  const isFilterApplied = (value: string, allValue: string, placeholderValue: string) =>
+    !isAllOrPlaceholder(value, allValue, placeholderValue);
+
+  const hasActiveFilters =
+    isFilterApplied(pendingFilters.jobType, "All Jobs", "Job Title") ||
+    isFilterApplied(pendingFilters.department, "All Departments", "Department") ||
+    isFilterApplied(pendingFilters.location, "All Locations", "Location") ||
+    isFilterApplied(appliedFilters.jobType, "All Jobs", "Job Title") ||
+    isFilterApplied(appliedFilters.department, "All Departments", "Department") ||
+    isFilterApplied(appliedFilters.location, "All Locations", "Location");
+
+  const handleClearFilters = () => {
+    setPendingFilters(defaultFilters);
+    setAppliedFilters(defaultFilters);
   };
 
   return (
@@ -148,6 +214,22 @@ const CurrentOpenings = ({ data, jobs, departments, locations }: { data: careerD
                   classNamePrefix="react-select"
                   options={options.map((label) => ({ value: label, label }))}
                   placeholder={options[0]}
+                  value={
+                    idx === 0
+                      ? toOption(pendingFilters.jobType)
+                      : idx === 1
+                      ? toOption(pendingFilters.department)
+                      : toOption(pendingFilters.location)
+                  }
+                  onChange={(selected) => {
+                    const value = (selected as SelectOption | null)?.value;
+                    if (!value) return;
+                    setPendingFilters((prev) => {
+                      if (idx === 0) return { ...prev, jobType: value };
+                      if (idx === 1) return { ...prev, department: value };
+                      return { ...prev, location: value };
+                    });
+                  }}
                   styles={{
                     control: (base) => ({
                       ...base,
@@ -205,10 +287,23 @@ const CurrentOpenings = ({ data, jobs, departments, locations }: { data: careerD
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="bg-accent px-6 py-3 rounded-3xl uppercase w-full md:w-auto"
+              className="bg-accent px-6 py-3 rounded-3xl uppercase w-full md:w-auto cursor-pointer hover:bg-primary transition-all duration-300 text-white font-semibold"
+              onClick={() => setAppliedFilters(pendingFilters)}
             >
               Apply filter
             </motion.button>
+            {hasActiveFilters && (
+              <motion.button
+                variants={moveLeft(0.75)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                className="px-6 py-3 rounded-3xl uppercase w-full md:w-auto cursor-pointer border border-priamry text-mdgray dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300 font-light "
+                onClick={handleClearFilters}
+              >
+                Clear filter
+              </motion.button>
+            )}
           </div>
         </div>
         <div className="relative">
@@ -224,7 +319,7 @@ const CurrentOpenings = ({ data, jobs, departments, locations }: { data: careerD
               className="md:border-r dark:border-white/20 pr-6 xl:pr-[67px] pt-6 xl:pt-[67px] max-h-[842px] overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden left-col"
               ref={leftRef}
             >
-              {jobs.map((job, index) => (
+              {filteredJobs.map((job, index) => (
                 <motion.div
                   variants={moveUp(index * 0.15)}
                   initial="hidden"
@@ -254,6 +349,11 @@ const CurrentOpenings = ({ data, jobs, departments, locations }: { data: careerD
                   </div>
                 </motion.div>
               ))}
+              {filteredJobs.length === 0 && (
+                <p className="text-lg leading-[1.5] text-para-color dark:text-white/60">
+                  No openings found for the selected filters.
+                </p>
+              )}
             </div>
             <motion.div
               variants={moveUp()}

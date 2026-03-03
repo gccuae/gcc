@@ -41,7 +41,7 @@ const DetailsTab = ({ data }: { data: ThirdSection }) => {
   };
 
   return (
-    <section className="py-57px bg-white">
+    <section className="py-57px bg-white dark:bg-light-dark">
       <div className="container">
         <div className="">
           {/* Tab buttons */}
@@ -62,11 +62,10 @@ const DetailsTab = ({ data }: { data: ThirdSection }) => {
                 viewport={{ once: true }}
                 key={tab.title}
                 onClick={() => handleTabClick(idx)}
-                className={`group relative pb-4 pt-2 xl:py-[27px] text-xl leading-normal font-medium transition-colors duration-300 cursor-pointer ${
-                  activeTab === idx
+                className={`group relative pb-4 pt-2 xl:py-[27px] text-xl leading-normal font-medium transition-colors duration-300 cursor-pointer ${activeTab === idx
                     ? "text-black dark:text-white"
                     : "text-gray-500 dark:text-white/70 hover:text-black dark:hover:text-white"
-                }`}
+                  }`}
               >
                 {tab.title}
 
@@ -97,36 +96,33 @@ const DetailsTab = ({ data }: { data: ThirdSection }) => {
           >
             {/* Text */}
             <div>
-              <motion.div
-                variants={moveUp(0.2)}
-                initial="hidden"
-                animate="show"
-                className="text-21 leading-[1.380952380952381] text-[#515151] dark:text-white/70 [&_p]:-mb-[5px] [&_p:last-child]:mb-0 text-justify"
+              <motion.div variants={moveUp(0.2)} initial="hidden" animate="show"
+                className="text-21 leading-[1.380952380952381] text-[#515151] dark:!text-white dark:[&_*]:!text-white/90 [&_p]:-mb-[5px] [&_p:last-child]:mb-0 text-justify"
               >
                 {parse(projectDetails[activeTab]?.description || "")}
               </motion.div>
             </div>
 
             {/* Image */}
-<motion.div
-  variants={moveLeft()}
-  initial="hidden"
-  animate="show"
-  className="relative w-full aspect-[4/3] md:aspect-[16/10] xl:aspect-[934/560] overflow-hidden"
->
-  {projectDetails[activeTab]?.image ? (
-    <Image
-      src={projectDetails[activeTab].image}
-      alt={projectDetails[activeTab]?.title || ""}
-      fill
-      className="object-cover"
-    />
-  ) : (
-    <div className="absolute inset-0 bg-gray-200 flex items-center justify-center">
-      <span className="text-gray-500 text-2xl">350 × 350</span>
-    </div>
-  )}
-</motion.div>
+            <motion.div
+              variants={moveLeft()}
+              initial="hidden"
+              animate="show"
+              className="relative w-full aspect-[4/3] md:aspect-[16/10] xl:aspect-[934/560] overflow-hidden"
+            >
+              {projectDetails[activeTab]?.image ? (
+                <Image
+                  src={projectDetails[activeTab].image}
+                  alt={projectDetails[activeTab]?.title || ""}
+                  fill
+                  className="object-cover"
+                />
+              ) : (
+                <div className="absolute inset-0 bg-gray-200 flex items-center justify-center">
+                  <span className="text-gray-500 text-2xl">350 × 350</span>
+                </div>
+              )}
+            </motion.div>
 
           </motion.div>
         </div>

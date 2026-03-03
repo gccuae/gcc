@@ -348,19 +348,27 @@ h2{
 }
 
 .area-of-expertise-thumbs .swiper-slide.swiper-slide-thumb-active:not(.swiper-slide-duplicate) .icon-wrapper {
-  @apply bg-primary border-black;
+  @apply bg-primary border-black; 
 }
 
 .area-of-expertise-thumbs .swiper-slide.swiper-slide-thumb-active .icon-wrapper img {
   @apply brightness-0 invert-100;
 }
 
-.area-of-expertise-thumbs.greenslide .swiper-slide.swiper-slide-thumb-active h3 {
+.area-of-expertise-thumbs.greenslide .swiper-slide.swiper-slide-thumb-active:not(.swiper-slide-duplicate) h3 {
   @apply text-white;
 }
 
-.area-of-expertise-thumbs.greenslide .swiper-slide.swiper-slide-thumb-active .hoverline {
+.area-of-expertise-thumbs.greenslide .swiper-slide.swiper-slide-thumb-active:not(.swiper-slide-duplicate) .hoverline {
   @apply w-full;
+}
+
+.area-of-expertise-thumbs .swiper-slide .hoverline {
+  transition: width 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.area-of-expertise-thumbs .swiper-slide .icon-wrapper img {
+  transition: filter 450ms ease, transform 450ms ease;
 }
 
 :focus-visible {
