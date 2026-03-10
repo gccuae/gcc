@@ -20,7 +20,7 @@ const CounterSection = ({ data }: FirstSectionProps) => {
             viewport={{ once: true }}
             initial="hidden"
             whileInView="show"
-            className="text-5xl leading-[1.147058823529412] font-normal mb-4 xl:mb-[27px] text-black dark:text-white letterSp-3"
+            className="text-5xl leading-[1.147058823529412] font-normal mb-4 xl:mb-[27px] text-black dark:text-white letterSp-2"
           >
             {data.title}
           </motion.h2>

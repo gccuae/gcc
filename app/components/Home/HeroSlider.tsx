@@ -10,6 +10,8 @@ import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
 import { BannerItem, NumberItem } from "./type";
 import { parseCounterValue } from "@/lib/parseCounterValue";
+import DirhamIcon from "../common/DirhamIcon";
+import Image from "next/image";
 
 interface HeroSliderProps {
   data: BannerItem[];
@@ -135,13 +137,13 @@ const HeroSlider = ({ data, counterData }: HeroSliderProps) => {
             >
               <div className="text-white border border-[#C2C2C2] border-b-0 pe-3 transition-all duration-300 group active:bg-primary hover:bg-primary hover:translate-y-2">
                 <div className="ps-3 xl:ps-10 py-5 xl:py-[32px]">
+                
                   <p className="text-2xl md:text-3xl xl:text-4xl 2xl:text-5xl font-normal leading-[0.7352941176470588] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
+                   <span>
+                     <Image src="/assets/img/icons/aed.svg" alt="Dirham Icon" width={60} height={60} className="w-6 h-6 md:w-10 md:h-10 xl:w-[60px] h-[60px] inline-block me-1 mb-1" />
+                   </span> 
                     {parseCounterValue(counterData[1].number).prefix}
-                    <Counter
-                      from={0}
-                      to={parseCounterValue(counterData[1].number).number}
-                      duration={2}
-                    />
+                    <Counter from={0} to={parseCounterValue(counterData[1].number).number} duration={2} />
                     {parseCounterValue(counterData[1].number).suffix}
                   </p>
                   <p className="uppercase font-light text-base xl:text-lg leading-[1]">

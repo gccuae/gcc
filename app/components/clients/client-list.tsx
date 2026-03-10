@@ -28,7 +28,7 @@ const ClientList = ({ data }: { data: ClientsFirstSection }) => {
           className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 border-l border-t dark:border-white/20"
         >
           {data.items.map((client, index) => (
-            <div key={index} className="p-4 xl:p-6 flex items-center justify-center border-r border-b dark:border-white/20 group h-30 xl:h-[380px] " >
+            <div key={index} className="p-4 xl:p-6 flex items-center justify-center border-r border-b dark:border-white/20 group h-auto xl:h-[380px] " >
               <motion.div variants={moveUp(index * 0.05)} initial="hidden" whileInView="show" viewport={{ once: true }} className="dark:bg-white dark:h-full dark:rounded-2xl dark:w-full" >
                 <Image
                   src={client.logo}

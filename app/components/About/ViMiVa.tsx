@@ -46,7 +46,7 @@ const ViMiVa = ({ data }: ViMiVaProps) => {
               whileInView="show"
               viewport={{ once: true }}
               key={index}
-              className="bg-white dark:bg-black flex flex-col md:gap-5 xl:border-r dark:border-white/20 xl:last:border-r-0 xl:pl-8 xl:pr-8 last:pr-0 border-b last:border-b-0 last:pb-0 dark:border-white/20 pb-8 xl:pb-0 px-5 xl:px-0 md:border-b-0"
+              className="bg-white dark:bg-black flex flex-col md:gap-5 md:border-r dark:border-white/20 md:last:border-r-0 xl:pl-8 xl:pr-8 last:pr-0 border-b last:border-b-0 last:pb-0 dark:border-white/20 pb-8 xl:pb-0 px-0 md:px-5 xl:px-0 md:border-b-0"
             >
               <div>
                 <Image src={item.logo} alt={item.logoAlt} width={50} height={50} className="w-auto h-10 xl:h-13 mb-2 md:mb-0" />
@@ -55,7 +55,7 @@ const ViMiVa = ({ data }: ViMiVaProps) => {
                 {item.title}
               </h3>
 
-              <div className="text-lg leading-[1.5] dark:text-white text-para-color flex flex-col vision-mission-section">
+              <div className="text-base xl:text-lg leading-[1.5] dark:text-white text-para-color flex flex-col vision-mission-section">
                 {item.description.split(" ").length > 30 &&
                   activeReadMore !== item._id
                   ? parse(

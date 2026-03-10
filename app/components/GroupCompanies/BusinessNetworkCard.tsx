@@ -79,8 +79,7 @@ const BusinessNetworkCard = ({ item, index, hasLink }: BusinessNetworkCardProps)
     <div key={index} className="group pb-3 xl:pb-[17px] transition-all duration-300 flex flex-col justify-between h-full" >
       {/* Top: Image + title */}
       <div>
-        <div
-          className="relative p-3 xl:p-5 h-[300px] xl:h-[486px] overflow-hidden group/img"
+        <div className="relative p-3 xl:p-5 h-[300px] xl:h-[486px] overflow-hidden group/img"
           ref={containerRef}
           onMouseMove={!isMobile && hasLink ? handleMouseMove : undefined}
           onMouseEnter={!isMobile && hasLink ? handleMouseEnter : undefined}
@@ -90,21 +89,14 @@ const BusinessNetworkCard = ({ item, index, hasLink }: BusinessNetworkCardProps)
             <Image src={item.logo} alt={item.logoAlt} width={400} height={400} className="w-auto h-10 xl:h-[38px] object-contain"
             />
           </div>
-          <Image
-            src={item.image}
-            alt={item.imageAlt}
-            width={1000}
-            height={1000}
-            className="w-full h-full object-cover absolute top-0 left-0 -z-10  transition-all duration-300"
-          />
+          <Image src={item.image} alt={item.imageAlt} width={1000} height={1000} className="w-full h-full object-cover absolute top-0 left-0 -z-10  transition-all duration-300" />
           {hasLink && (
             <div className="absolute bottom-0 left-0 w-full h-0 bg-black/45 group-hover:h-full transition-all duration-300"></div>
           )}
 
           {/* Hover link (mouse follow + centered option) */}
           {hasLink && (
-            <div
-              className="absolute pointer-events-none z-20 transition-opacity duration-300 ease-out"
+            <div className="absolute pointer-events-none z-20 transition-opacity duration-300 ease-out"
               style={{
                 left: `${currentPosition.x}px`,
                 top: `${currentPosition.y}px`,
@@ -113,15 +105,15 @@ const BusinessNetworkCard = ({ item, index, hasLink }: BusinessNetworkCardProps)
                 scale: isHovering ? 1 : 0.8,
               }}
             >
-              <div className="bg-white rounded-full w-6 h-6 flex items-center justify-center xl:w-20 xl:h-20 transition-transform duration-200">
-                <Image src={assets.linkArrowGreen} alt="arrow" width={20} height={20} className="w-6 h-6 object-contain xl:w-[19px] xl:h-[19px]" />
+              <div className="bg-white rounded-full w-8 h-8 flex items-center justify-center xl:w-20 xl:h-20 transition-transform duration-200">
+                <Image src={assets.linkArrowGreen} alt="arrow" width={20} height={20} className="w-5 h-5 object-contain xl:w-[19px] xl:h-[19px]" />
               </div>
             </div>
           )}
           {hasLink && (
             <div className="absolute top-50 left-50 opacity-0 group-hover:opacity-100 group-hover/img:opacity-0 pointer-events-none z-20 transition-opacity duration-300 ease-out">
-              <div className="bg-white rounded-full w-6 h-6 flex items-center justify-center xl:w-20 xl:h-20 transition-transform duration-200">
-                <Image src={assets.linkArrowGreen} alt="arrow" width={20} height={20} className="w-6 h-6 object-contain xl:w-[19px] xl:h-[19px]" />
+              <div className="bg-white rounded-full w-8 h-8 flex items-center justify-center xl:w-20 xl:h-20 transition-transform duration-200">
+                <Image src={assets.linkArrowGreen} alt="arrow" width={20} height={20} className="w-5 h-5 object-contain xl:w-[19px] xl:h-[19px]" />
               </div>
             </div>
           )}

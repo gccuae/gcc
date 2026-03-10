@@ -86,7 +86,7 @@ const WhatWeDo = ({ data, expertiseData }: WhatWeDoComponentProps) => {
               {data.secondDescription}
             </motion.p>
           </div>
-          <div className="pt-2 pb-10 md:py-5 xl:py-10  relative overflow-hidden lg:min-h-[800px] p-6">
+          <div className="pt-2 pb-10 md:py-5 xl:py-10 pl-0 md:pl-5 xl:pl-10  relative overflow-hidden lg:min-h-[800px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}

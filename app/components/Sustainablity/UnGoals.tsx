@@ -26,7 +26,7 @@ const SectorSlider = ({
         >
           {data.title}
         </motion.h2>
-        <motion.h2
+        <motion.p
           variants={moveUp(0)}
           initial="hidden"
           whileInView="show"
@@ -34,7 +34,7 @@ const SectorSlider = ({
           className="text-xl font-light leading-[1.391304347826087] pb-6 xl:pb-47px text-para-color dark:text-white max-w-[80ch]"
         >
           {data.description}
-        </motion.h2>
+        </motion.p>
         <div>
           <div className="relative">
             <div className="absolute top-2/4 right-[-10px] xl:top-4/6 xl:-right-12 z-50 w-[50px] h-[50px] xl:w-[94px] xl:h-[94px] bg-black rounded-full flex items-center justify-center gap-4 xl:gap-4">

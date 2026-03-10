@@ -194,6 +194,9 @@ body {
   overscroll-behavior: contain;
   @apply dark:bg-black;
 }
+p{
+  @apply text-justify;
+}
 
 @media (prefers-color-scheme: dark) {
   :root {
