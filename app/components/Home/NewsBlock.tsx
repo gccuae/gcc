@@ -45,13 +45,12 @@ const NewsBlock = ({ data }: NewsBlockProps) => {
   }, []);
 
   return (
-    <section
-      className="py-37px bg-light-white dark:bg-black relative overflow-hidden"
+    <section className="py-37px bg-light-white dark:bg-black relative overflow-hidden"
       ref={sectionRef}
     >
       <div className="reveal-overlay absolute inset-0 bg-white z-20"></div>
       <div className="container">
-        <div className="flex justify-between items-center pb-27px mb-37px border-b dark:border-white/20 dark:border-white/20">
+        <div className="flex justify-between items-center pb-4 md:pb-27px mb-30px md:mb-37px border-b dark:border-white/20 dark:border-white/20">
           <motion.h2
             variants={moveUp(0)}
             initial="hidden"

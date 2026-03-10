@@ -150,7 +150,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
   }, [thumbsSwiper, mainSwiper]);
 
   return (
-    <section className="wrapper pt-37px overflow-hidden dark:bg-black">
+    <section className="wrapper pt-30px md:pt-37px overflow-hidden dark:bg-black">
       <div>
         <div
           ref={headingRef}

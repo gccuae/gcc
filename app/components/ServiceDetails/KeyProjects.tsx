@@ -91,7 +91,7 @@ const ProjectTitleCta = ({ title, href }: { title: string; href: string }) => {
       onMouseEnter={triggerArrow}
       className="bg-light-white w-fit p-2 lg:p-4 min-w-[50%] flex items-center justify-between gap-4 group cursor-pointer"
     >
-      
+
       <h3 className="text-xl lg:text-2xl leading-normal font-normal text-black">
         {title}
       </h3>
@@ -108,7 +108,15 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
   const [viewportWidth, setViewportWidth] = useState(0);
   const [enableTransition, setEnableTransition] = useState(true);
   const [virtualIndex, setVirtualIndex] = useState(projects.length);
+  const [dragOffset, setDragOffset] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
   const virtualIndexRef = useRef(projects.length);
+  const activePointerIdRef = useRef<number | null>(null);
+  const dragStartXRef = useRef(0);
+  const dragStartYRef = useRef(0);
+  const dragAxisRef = useRef<"x" | "y" | null>(null);
+  const didDragRef = useRef(false);
+  const blockClickRef = useRef(false);
   const projectsCount = projects.length;
 
   const loopItems = useMemo(() => {
@@ -210,6 +218,79 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
     recenterWithoutJump("next");
   };
 
+  const resetDragState = () => {
+    setIsDragging(false);
+    setDragOffset(0);
+    dragAxisRef.current = null;
+  };
+
+  const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (!projectsCount || step <= 0) return;
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+    dragStartXRef.current = event.clientX;
+    dragStartYRef.current = event.clientY;
+    activePointerIdRef.current = event.pointerId;
+    event.currentTarget.setPointerCapture(event.pointerId);
+    dragAxisRef.current = null;
+    didDragRef.current = false;
+    setEnableTransition(false);
+    setIsDragging(true);
+    setDragOffset(0);
+  };
+
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDragging || activePointerIdRef.current !== event.pointerId) return;
+    const dx = event.clientX - dragStartXRef.current;
+    const dy = event.clientY - dragStartYRef.current;
+
+    if (!dragAxisRef.current) {
+      if (Math.abs(dx) < 5 && Math.abs(dy) < 5) return;
+      dragAxisRef.current = Math.abs(dx) > Math.abs(dy) ? "x" : "y";
+    }
+
+    if (dragAxisRef.current !== "x") {
+      resetDragState();
+      return;
+    }
+
+    if (Math.abs(dx) > 8) {
+      didDragRef.current = true;
+      blockClickRef.current = true;
+    }
+
+    setDragOffset(dx);
+  };
+
+  const handlePointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDragging || activePointerIdRef.current !== event.pointerId) return;
+    const dx = event.clientX - dragStartXRef.current;
+    const dragAxis = dragAxisRef.current;
+    const swipeThreshold = Math.max(40, step * 0.2);
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+    activePointerIdRef.current = null;
+    resetDragState();
+
+    if (dragAxis === "x" && Math.abs(dx) >= swipeThreshold) {
+      if (dx < 0) {
+        handleNextClick();
+      } else {
+        handlePrevClick();
+      }
+      return;
+    }
+
+    setEnableTransition(true);
+  };
+
+  const handlePointerCancel = () => {
+    if (!isDragging) return;
+    activePointerIdRef.current = null;
+    resetDragState();
+    setEnableTransition(true);
+  };
+
   return (
     <section className="py-57px pb-14 xl:pb-25 bg-light-white dark:bg-light-dark max-w-[1920px] mx-auto overflow-hidden">
       <div ref={headerContainerRef} className="container">
@@ -246,19 +327,33 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
 
       <div
         ref={viewportRef}
-        className="overflow-hidden"
+        className={`overflow-hidden ${isDragging ? "cursor-grabbing" : "cursor-grab"}`}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerCancel}
+        onDragStart={(event) => event.preventDefault()}
+        onClickCapture={(event) => {
+          if (!blockClickRef.current) return;
+          event.preventDefault();
+          event.stopPropagation();
+          blockClickRef.current = false;
+        }}
         style={{
           marginLeft: `${leftOffset}px`,
           width: `calc(100vw - ${leftOffset}px)`,
           visibility: isLayoutReady ? "visible" : "hidden",
+          touchAction: "pan-y",
+          userSelect: isDragging ? "none" : "auto",
         }}
       >
         <div
           className="flex"
           style={{
             gap: `${gap}px`,
-            transform: `translate3d(${translateX}px, 0, 0)`,
-            transition: enableTransition ? "transform 0.8s ease" : "none",
+            transform: `translate3d(${translateX + dragOffset}px, 0, 0)`,
+            transition:
+              enableTransition && !isDragging ? "transform 0.8s ease" : "none",
             willChange: "transform",
           }}
         >
@@ -311,9 +406,8 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
                 setEnableTransition(true);
                 setVirtualIndex(projectsCount + idx);
               }}
-              className={`w-3 h-[3px] rounded-full cursor-pointer transition-all duration-300 ${
-                activeIndex === idx ? "bg-accent w-[27px]" : "bg-mdgray"
-              }`}
+              className={`w-3 h-[3px] rounded-full cursor-pointer transition-all duration-300 ${activeIndex === idx ? "bg-accent w-[27px]" : "bg-mdgray"
+                }`}
             />
           ))}
         </div>

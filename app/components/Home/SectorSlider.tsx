@@ -20,7 +20,7 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   return (
-    <section className="wrapper py-37px bg-black dark:bg-light-dark text-white overflow-hidden">
+    <section className="wrapper pt-30px pb-37px md:py-37px bg-black dark:bg-light-dark text-white overflow-hidden">
       <div className="container">
         <motion.h2
           variants={moveUp(0)}
@@ -33,18 +33,15 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
         </motion.h2>
         <div>
           <div className="relative">
-            <div className="absolute top-2/4  right-[-10px] xl:top-4/6 xl:-right-12 z-50 w-[50px] h-[50px] xl:w-[94px] xl:h-[94px] bg-black rounded-full flex items-center justify-center gap-4 xl:gap-6">
+            <div className="absolute top:3/4 md:top-2/4  md:right-[-10px] xl:top-4/6 xl:-right-12 z-50 w-full h-full  md:w-[50px] md:h-[50px] xl:w-[94px] xl:h-[94px] md:bg-black rounded-full flex items-center justify-between md:justify-center gap-4 xl:gap-6">
               {/* Custom Navigation Buttons */}
-              <button ref={prevRef} className="text-accent w-2 xl:w-[12px] h-auto" >
-                <svg width="15" height="26" viewBox="0 0 15 26" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full" >
+              <button ref={prevRef} className="text-accent w-10 h-10  md:w-2 xl:w-[12px] md:h-auto mt-[40%] md:mt-0 bg-black border border-white md:border-0 md:bg-transparent rounded-full flex items-center justify-center ">
+                <svg width="15" height="26" viewBox="0 0 15 26" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 md:w-full md:h-full" >
                   <path d="M14 1L2 13L14 25" stroke="#7AC142" strokeWidth="2" strokeLinecap="round" />
                 </svg>
               </button>
-              <button
-                ref={nextRef}
-                className="text-accent w-2 xl:w-[12px] h-auto"
-              >
-                <svg width="15" height="26" viewBox="0 0 15 26" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full" >
+              <button ref={nextRef} className="text-accent w-10 h-10  md:w-2 xl:w-[12px] md:h-auto mt-[40%] md:mt-0 bg-black border border-white md:border-0 md:bg-transparent rounded-full flex items-center justify-center ">
+                <svg width="15" height="26" viewBox="0 0 15 26" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 md:w-full md:h-full" >
                   <path d="M1 1L13 13L1 25" stroke="#7AC142" strokeWidth="2" strokeLinecap="round" />
                 </svg>
               </button>

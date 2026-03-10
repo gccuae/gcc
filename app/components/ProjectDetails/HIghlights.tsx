@@ -13,7 +13,7 @@ const HIghlights = ({ data }: { data: ForthSection }) => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="text-6xl leading-[1.147058823529412] text-black dark:text-white mb-57px max-w-4xl"
+          className="text-5xl xl:text-6xl leading-[1.147058823529412] text-black dark:text-white mb-57px max-w-4xl"
         >
           {data.title}
         </motion.h2>
@@ -28,7 +28,7 @@ const HIghlights = ({ data }: { data: ForthSection }) => {
               className="group grid gap-30px grid-rows-[auto_1fr]"
             >
               <div className="border-b dark:border-white/20 group-hover:border-b-primary pb-30px transition-all duration-300">
-                <h3 className="text-2xl leading-[1.5625] text-black dark:text-white">
+                <h3 className="text-2xl leading-[1.12] xl:leading-[1.5625] text-black dark:text-white">
                   {item.title}
                 </h3>
               </div>

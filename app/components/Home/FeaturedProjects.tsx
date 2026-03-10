@@ -34,9 +34,9 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
     <section className="bg-light-white dark:bg-light-dark overflow-hidden">
       <div>
         <div className="container" ref={containerRef}>
-          <div className="md:flex justify-between items-center py-37px border-b border-[#C2C2C2] dark:border-white/20">
+          <div className="md:flex justify-between items-center pt-30px pb-5 xl:py-37px border-b border-[#C2C2C2] dark:border-white/20">
             <motion.h2
-              className="text-5xl font-normal text-black dark:text-white mb-8 md:mb-0 leading-[1.147058823529412] lettersp-2"
+              className="text-5xl font-normal text-black dark:text-white mb-4 md:mb-0 leading-[1.147058823529412] lettersp-2"
               variants={moveUp(0)}
               initial="hidden"
               whileInView="show"
@@ -44,7 +44,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
             >
               Featured Projects
             </motion.h2>
-            <div className="flex gap-3 md:gap-5 items-center  ">
+            <div className="flex gap-3 md:gap-5 items-center flex-row-reverse md:flex-row w-full justify-between md:w-auto md:justify-start">
               <motion.div
                 variants={moveUp(0.5)}
                 initial="hidden"
@@ -75,7 +75,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
         <div className="onside-margin">
           <div className="container">
             <div className="flex md:flex-row flex-col-reverse">
-              <div className="py-8 md:py-10 md:w-[31.5%] w-full md:border-r border-[#C2C2C2] dark:border-white/20">
+              <div className="pt-4 pb-6 md:py-10 md:w-[31.5%] w-full md:border-r border-[#C2C2C2] dark:border-white/20">
                 <Swiper
                   modules={[Autoplay, Navigation]}
                   navigation={{
@@ -176,7 +176,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                 </Swiper>
               </div>
               <motion.div
-                className="pb-0 pt-10 md:py-10 md:ps-10 md:w-[68.5%] w-full"
+                className="pb-0 pt-4 md:py-10 md:ps-10 md:w-[68.5%] w-full"
                 variants={moveLeft(0.5)}
                 initial="hidden"
                 whileInView="show"
