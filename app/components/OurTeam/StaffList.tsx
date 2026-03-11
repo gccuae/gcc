@@ -41,7 +41,7 @@ const StaffList = ({ data }: OurTeamProps) => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="text-5xl leading-[1.205882352941176] text-white mb-6 lg:mb-14"
+          className=" text-4xl xl:text-5xl leading-[1.205882352941176] text-white mb-6 lg:mb-14"
         >
           {data.secondSection.title}
         </motion.h2>

@@ -16,7 +16,7 @@ const LeadersShowcase = () => {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true }}
-                    className="text-5xl leading-[1.205882352941176] text-black dark:text-white mb-57px"
+                    className="text-3xl 2xl:text-5xl leading-[1.205882352941176] text-black dark:text-white mb-57px"
                 >
                     More Than Structures, We Build Together
                 </motion.h2>

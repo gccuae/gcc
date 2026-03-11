@@ -20,7 +20,7 @@ const VMV = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-5xl leading-lh-title text-black dark:text-white mb-[17px]"
+            className=" text-4xl xl:text-5xl leading-lh-title text-black dark:text-white mb-[17px]"
           >
             Vision, Mission & Values
           </motion.h2>

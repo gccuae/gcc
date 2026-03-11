@@ -295,7 +295,7 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
     <section className="py-57px pb-14 xl:pb-25 bg-light-white dark:bg-light-dark max-w-[1920px] mx-auto overflow-hidden">
       <div ref={headerContainerRef} className="container">
         <div className="mb-57px flex items-center justify-between">
-          <motion.h2 variants={moveUp()} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-5xl leading-lh-text68 font-normal text-black dark:text-white" >
+          <motion.h2 variants={moveUp()} initial="hidden" whileInView="show" viewport={{ once: true }} className=" text-4xl xl:text-5xl leading-lh-text68 font-normal text-black dark:text-white" >
             Key Projects
           </motion.h2>
 

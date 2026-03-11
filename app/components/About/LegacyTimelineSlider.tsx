@@ -113,7 +113,7 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
           <div className="container relative h-full">
             {/* Header */}
             <div className="pt-10 xl:pt-20 h-full  lg:pb-0 flex items-start flex-wrap ">
-              <h2 className="text-5xl leading-[1] font-light text-white pb-4 tracking-wide ">
+              <h2 className=" text-4xl xl:text-5xl leading-[1] font-light text-white pb-4 tracking-wide ">
                 {data.title}
               </h2>
               {/* Timeline Years Navigation Slider */}
@@ -147,21 +147,19 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
                       >
                         <button
                           onClick={() => handleYearClick(index)}
-                          className={`cursor-pointer font-normal  duration-500 text-lg leading-[32px] xl:pb-5 hover:text-white whitespace-nowrap ${
-                            activeSlide === index
+                          className={`cursor-pointer font-normal  duration-500 text-lg leading-[32px] xl:pb-5 hover:text-white whitespace-nowrap ${activeSlide === index
                               ? "text-white font-semibold  md:text-2xl "
                               : "text-gray-400 hover:text-gray-200   "
-                          }`}
+                            }`}
                         >
                           {item.year}
                         </button>
                         <div className="!w-[60px] md:!w-[85px] h-full !flex ml-5 xl:ml-0 xl:items-center flex-col justify-center">
                           <div
-                            className={`w-[2px] h-8 xl:h-14 bg-accent ${
-                              activeSlide === index
+                            className={`w-[2px] h-8 xl:h-14 bg-accent ${activeSlide === index
                                 ? "opacity-100"
                                 : "opacity-0"
-                            }`}
+                              }`}
                           ></div>
                         </div>
                       </SwiperSlide>

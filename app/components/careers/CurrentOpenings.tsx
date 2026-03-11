@@ -364,10 +364,10 @@ const CurrentOpenings = ({ data, jobs, departments, locations }: { data: careerD
             >
               <div className="bg-light-white dark:bg-[#0d0d0d] p-6 xl:p-10 mb-57px   md:max-w-[575px] m-auto md:mr-0 ml-auto md:mt-6 xl:mt-[67px]">
                 <div className="border-b dark:border-white/20 pb-27px">
-                  <h3 className="text-2xl leading-[1.205882352941176] mb-4 xl:mb-6 font-normal text-black dark:text-white">
+                  <h3 className="text-xl xl:text-2xl leading-[1.205882352941176] mb-4 xl:mb-6 font-normal text-black dark:text-white">
                     Didn’t find a role that fits you?
                   </h3>
-                  <p className="text-xl leading-[1.46875] font-light text-para-color dark:text-white/50">
+                  <p className="xl:text-xl leading-[1.46875] font-light text-para-color dark:text-white/50">
                     Send your resume and we’ll get in touch with you.
                   </p>
                 </div>

@@ -98,7 +98,7 @@ export const BlogItem = ({
           <Link
             href={`/blog/${item.slug}`}
             rel="noopener noreferrer"
-            className="bg-white rounded-full w-6 h-6 flex items-center justify-center xl:w-20 xl:h-20 pointer-events-auto transition-transform duration-200 hover:scale-110"
+            className="bg-white rounded-full w-10 h-10 flex items-center justify-center xl:w-20 xl:h-20 pointer-events-auto transition-transform duration-200 hover:scale-110"
           >
             <Image
               src={assets.linkArrowGreen}
@@ -134,7 +134,7 @@ export const BlogItem = ({
             {item.date ? new Date(item.date).toLocaleDateString("en-GB").replace(/\//g, "-") : new Date(item.createdAt).toLocaleDateString("en-GB").replace(/\//g, "-")}
           </p>
         </div>
-        <h3 className="text-xl leading-normal font-normal mb-3 xl:mb-[12px] text-black dark:text-white">
+        <h3 className="text-lg xl:text-xl leading-normal font-normal mb-3 xl:mb-[12px] text-black dark:text-white">
           <Link href={`/blog/${item.slug}`} >
           {item.title}
           </Link>

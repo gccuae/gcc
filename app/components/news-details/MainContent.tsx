@@ -29,7 +29,7 @@ const MainContent = ({
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="text-2xl leading-lh-text32 font-normal mb-5 xl:mb-[27px] text-black dark:text-white"
+        className="text-xl xl:text-2xl leading-lh-text32 font-normal mb-5 xl:mb-[27px] text-black dark:text-white"
       >
         {subTitle}
       </motion.h3>

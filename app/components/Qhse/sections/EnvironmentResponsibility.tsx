@@ -26,7 +26,7 @@ const EnvironmentalResponsibility = ({
     <section className="pb-2 md:pb-57px py-57px bg-white dark:bg-black">
       <div className="container">
         {/* Title */}
-        <motion.h2 variants={moveUp()} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-5xl md:text-6xl font-light leading-lh-title text-black dark:text-white mb-4 md:mb-27px" >
+        <motion.h2 variants={moveUp()} initial="hidden" whileInView="show" viewport={{ once: true }} className=" text-4xl xl:text-5xl md:text-6xl font-light leading-lh-title text-black dark:text-white mb-4 md:mb-27px" >
           {title}
         </motion.h2>
 

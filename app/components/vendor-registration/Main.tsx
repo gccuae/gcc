@@ -80,7 +80,7 @@ const ContactForm: React.FC = () => {
     };
 
     return (
-        <div className="w-full container py-57px">
+        <div className="w-full container pt-57px pb-12 md:pb-15 xl:py-57px">
             <form onSubmit={handleSubmit(onSubmit)} className="xl:space-y-[37px] space-y-[27px]">
                 {/* Vendor Name & Trade License */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 xl:gap-10">

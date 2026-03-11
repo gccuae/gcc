@@ -6,14 +6,14 @@ import { WhyChooseProps } from "./type";
 
 const WhyChoose = ({ data }: WhyChooseProps) => {
   return (
-    <section className="2xl:pb-[100px]  py-57px bg-light-white dark:bg-black">
+    <section className="2xl:pb-25 md:pb-15 py-57px bg-light-white dark:bg-black">
       <div className="container">
         <motion.h2
           variants={moveUp()}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="text-5xl leading-[1.147058823529412] text-black dark:text-white mb-3  tracking-[-1.9px]"
+          className=" text-4xl xl:text-5xl leading-[1.147058823529412] text-black dark:text-white mb-3  tracking-[-1.9px]"
         >
           {data.mainTitle}
         </motion.h2>

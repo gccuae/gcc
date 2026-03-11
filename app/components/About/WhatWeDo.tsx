@@ -24,7 +24,7 @@ const WhatWeDo = ({ data, expertiseData }: WhatWeDoComponentProps) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-5xl leading-lh-title text-black dark:text-white mb-4 lg:mb-[13px]"
+            className=" text-4xl xl:text-5xl leading-lh-title text-black dark:text-white mb-4 lg:mb-[13px]"
           >
             {data.mainTitle}
           </motion.h2>

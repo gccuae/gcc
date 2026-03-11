@@ -21,14 +21,8 @@ const FileDropField: React.FC<FileDropFieldProps> = ({
 
     return (
         <div>
-            <div
-                onClick={() => inputRef.current?.click()}
-                className={`cursor-pointer border-2 border-dashed rounded-xl px-6 py-10 text-center transition-all
-          ${files.length > 0
-                        ? "border-green-500 bg-green-50"
-                        : "border-[#C2C2C2]/50 hover:border-black dark:hover:border-white"
-                    }
-        `}
+            <div onClick={() => inputRef.current?.click()} className={`cursor-pointer border-2 border-dashed rounded-xl px-6 py-10 text-center transition-all
+          ${files.length > 0 ? "border-green-500 bg-green-50" : "border-[#C2C2C2]/50 hover:border-black dark:hover:border-white" } `}
             >
                 <p className="text-sm text-gray-500 dark:text-white/60">
                     {files.length > 0

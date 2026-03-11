@@ -6,7 +6,7 @@ import { contactType } from "./type";
 
 const ContactInfo = ({ data }: { data: contactType["secondSection"] }) => {
   return (
-    <section className="py-57px bg-light-white dark:bg-black overflow-hidden">
+    <section className="pt-57px pb-12 md:pb-15 xl:py-57px bg-light-white dark:bg-black overflow-hidden">
       <div className="container">
         <div className="grid grid-cols-1 xl:grid-cols-[387px_auto] gap-6 xl:gap-12">
           <div className="">
@@ -205,7 +205,7 @@ const ContactInfo = ({ data }: { data: contactType["secondSection"] }) => {
               viewport={{ once: true }}
               className="overflow-hidden"
             >
-              <div className="aspect-square overflow-hidden h-full">
+              <div className="xl:aspect-square overflow-hidden xl:h-full">
                 <iframe
                   src={data.map}
                   width="600"
@@ -214,7 +214,7 @@ const ContactInfo = ({ data }: { data: contactType["secondSection"] }) => {
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  className="w-full h-full"
+                  className="w-full h-[400px] md:!h-[400px] xl:!h-full"
                 ></iframe>
               </div>
             </motion.div>

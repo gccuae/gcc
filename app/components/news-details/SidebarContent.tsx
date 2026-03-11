@@ -146,7 +146,7 @@ const SidebarContent = ({
         >
           Related News
         </motion.h3>
-        <div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 xl:block">
           {filtered.map((item, index) => (
             <motion.div
               variants={moveUp(index * 0.1)}

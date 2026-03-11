@@ -108,7 +108,7 @@ const BlogList = ({ data }: { data: BlogData }) => {
       : items.filter((item) => item.category === categories[activeTab]);
 
   return (
-    <section className="py-57px bg-light-white dark:bg-black">
+    <section className="pt-57px pb-12 md:pb-15 xl:py-57px bg-light-white dark:bg-black">
       <div className="container">
         {/* ----------- Desktop Tabs ----------- */}
         <motion.div

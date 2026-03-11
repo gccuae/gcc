@@ -17,9 +17,7 @@ const Index = ({ data, allServices, projects }: ServiceDetailsProps) => {
   return (
     <>
       {data.firstSection && <Main data={data.firstSection} title={data.title} />}
-      {data.secondSection && data.secondSection.items.length > 0 && (
-        <Scops data={data.secondSection} />
-      )}
+      {data.secondSection && data.secondSection.items.length > 0 && ( <Scops data={data.secondSection} /> )}
       {projects.length > 0 && <KeyProjects projects={projects} />}
       {data.thirdSection && <Cta data={data.thirdSection} />}
       <MoreExpertise allServices={allServices} exclude={data._id} />

@@ -34,7 +34,7 @@ const Scops = ({ data }: ScopsProps) => {
     <section className="py-57px bg-black">
       <div className="container">
         <div className="mb-57px flex items-center justify-between gap-4">
-          <h2 className="text-5xl leading-lh-text68 font-normal text-white">
+          <h2 className=" text-4xl xl:text-5xl leading-lh-text68 font-normal text-white">
             {data.title}
           </h2>
           <div className="flex border border-white rounded-full">
@@ -116,7 +116,7 @@ const Scops = ({ data }: ScopsProps) => {
         }}
         className="scope-swiper w-full"
       >
-        {[...data.items,...data.items].map((item, index) => (
+        {[...data.items, ...data.items].map((item, index) => (
           <SwiperSlide key={index}>
             <div className="px-[15px] md:px-0 border-b border-sm-gray hover:border-primary transition-colors duration-300 flex flex-col h-full justify-between">
               {/* Top: Image */}
