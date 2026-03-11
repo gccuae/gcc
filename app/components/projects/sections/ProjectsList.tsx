@@ -117,7 +117,7 @@ const ProjectsList = ({
           <div className="grid grid-cols-1 2xl:grid-cols-[1fr_repeat(4,1fr)_auto] xl:grid-cols-[2fr_repeat(4,1fr)_auto] items-center gap-4 xl:gap-[30px]">
             {/* Search Input */}
             <div className="flex items-center justify-start gap-5 xl:border-r border-gray-300 dark:border-white/20 h-full pt-[20px] pb-[12px] xl:py-47px 2xl:w-[303px] pr-8">
-              <Image src={"/assets/img/projects/searchIcon.svg"} alt="search" width={32} height={32} />
+              <Image src={"/assets/img/projects/searchIcon.svg"} alt="search" width={32} height={32} className="dark:invert-100" />
               <input
                 type="text"
                 placeholder="FIND A PROJECT"
@@ -146,7 +146,7 @@ const ProjectsList = ({
                       ? "Project Type"
                       : pendingFilters.projectType}
                   </span>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center ml-auto gap-3 ">
                     {pendingFilters.projectType !== "All" && (
                       <span
                         onClick={(e) => {
@@ -204,12 +204,12 @@ const ProjectsList = ({
             >
               <div className="relative">
                 <Listbox.Button className="flex w-full items-center justify-between border-b border-sm-gray dark:border-white/50 pb-1 text-para-color dark:text-white/70 text-lg font-light capitalize min-w-[140px] 2xl:max-w-[220px] cursor-pointer">
-                  <span className="truncate">
+                  <span className="truncate ">
                     {pendingFilters.sector === "All"
                       ? "Sector"
                       : pendingFilters.sector}
                   </span>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-3">
                     {pendingFilters.sector !== "All" && (
                       <span
                         onClick={(e) => {
@@ -275,7 +275,7 @@ const ProjectsList = ({
                         (loc) => loc._id === pendingFilters.location
                       )?.name || "Location"}
                   </span>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-3">
                     {pendingFilters.location !== "All" && (
                       <span
                         onClick={(e) => {
@@ -349,7 +349,7 @@ const ProjectsList = ({
                       ? "Status"
                       : pendingFilters.status}
                   </span>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-3">
                     {pendingFilters.status !== "All" && (
                       <span
                         onClick={(e) => {

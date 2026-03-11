@@ -46,7 +46,7 @@ const BtnPrimary = ({
 
   const content = (
     <>
-      <span className="text-sm lg:text-base font-light uppercase leading-[1.75] dark:text-white">
+      <span className="text-sm lg:text-base font-light uppercase leading-[1.75] dark:text-white min-w-max">
         {text}
       </span>
       <svg

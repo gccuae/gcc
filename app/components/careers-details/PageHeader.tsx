@@ -77,7 +77,7 @@ const PageHeader = ({ title }: PageHeaderProps) => {
           viewport={{ once: true }}
           className="border-b dark:border-white/20 pb-5 xl:pb-10 pb-8 xl:pb-57px"
         >
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center flex-wrap gap-y-5 mb-4 xl:mb-0">
             <motion.h1
               initial={{ opacity: 0, x: -30, clipPath: "inset(0 100% 0 0)" }}
               animate={{ opacity: 1, x: 0, clipPath: "inset(0 0% 0 0)" }}

@@ -30,10 +30,16 @@ const AiSlider = ({
       setActiveIndex(index);
 
       if (swiper) {
-        const firstVisible = swiper.realIndex;
-        const lastVisible = firstVisible + visibleSlides - 1;
+        const currentPerView =
+          typeof swiper.params.slidesPerView === "number"
+            ? swiper.params.slidesPerView
+            : visibleSlides;
+        const firstVisible = swiper.activeIndex;
+        const lastVisible = firstVisible + currentPerView - 1;
 
-        if (index > lastVisible) {
+        if (currentPerView <= 1) {
+          swiper.slideTo(index);
+        } else if (index > lastVisible) {
           swiper.slideNext();
         } else if (index < firstVisible) {
           swiper.slidePrev();
@@ -113,7 +119,8 @@ const AiSlider = ({
               ref={swiperRef}
               allowTouchMove={false}
               className="islider"
-              loop={true}
+              loop={false}
+              rewind={true}
               modules={[Navigation]}
               speed={1800}
               breakpoints={{
@@ -132,11 +139,8 @@ const AiSlider = ({
                   >
                     <div
                       className="itmmn h-[411px] flex flex-col justify-start transition-all duration-300"
-                      style={
-                        activeIndex === index
-                          ? {
-                              background:
-                                "linear-gradient(180deg, rgba(0,0,0,0.56) 0%, rgba(0,0,0,0.0) 100%)",
+                      style={ activeIndex === index
+                          ? { background: "linear-gradient(180deg, rgba(0,0,0,0.56) 0%, rgba(0,0,0,0.0) 100%)",
                               backdropFilter: "blur(1px)",
                             }
                           : {}
@@ -158,18 +162,16 @@ const AiSlider = ({
                         </div>
 
                         {/* ===== SUBTITLE + DESCRIPTION (Only active slide) ===== */}
-                        <div
-                          className={`px-6 lg:px-10 py-57px transition-all duration-500 ${
+                        <div className={`px-6 lg:px-10 py-57px transition-all duration-500 ${
                             activeIndex === index
                               ? "opacity-100 max-h-[800px] pointer-events-auto"
                               : "opacity-0 max-h-0 overflow-hidden pointer-events-none"
                           }`}
                         >
-                          <p className="text-white text-22 mb-[18px] xl:mb-[23px] leading-[1.3]">
+                          <p className="text-white xl:text-22 mb-[18px] xl:mb-[23px] leading-[1.3] !text-left">
                             {item.subTitle}
                           </p>
-                          <div
-                            className="ai-technology-items"
+                          <div className="ai-technology-items"
                             dangerouslySetInnerHTML={{
                               __html: item.description,
                             }}
@@ -188,40 +190,13 @@ const AiSlider = ({
                 onClick={handlePrev}
                 className="text-accent w-2 xl:w-[12px] h-auto cursor-pointer"
               >
-                <svg
-                  width="15"
-                  height="26"
-                  viewBox="0 0 15 26"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-full h-full"
-                >
-                  <path
-                    d="M14 1L2 13L14 25"
-                    stroke="#7AC142"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
+                <svg width="15" height="26" viewBox="0 0 15 26" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full" >
+                  <path d="M14 1L2 13L14 25" stroke="#7AC142" strokeWidth="2" strokeLinecap="round" />
                 </svg>
               </button>
-              <button
-                onClick={handleNext}
-                className="text-accent w-2 xl:w-[12px] h-auto cursor-pointer"
-              >
-                <svg
-                  width="15"
-                  height="26"
-                  viewBox="0 0 15 26"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-full h-full"
-                >
-                  <path
-                    d="M1 1L13 13L1 25"
-                    stroke="#7AC142"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
+              <button onClick={handleNext} className="text-accent w-2 xl:w-[12px] h-auto cursor-pointer" >
+                <svg width="15" height="26" viewBox="0 0 15 26" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full" >
+                  <path d="M1 1L13 13L1 25" stroke="#7AC142" strokeWidth="2" strokeLinecap="round" />
                 </svg>
               </button>
             </div>

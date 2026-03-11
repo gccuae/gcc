@@ -23,17 +23,26 @@ const SocialImpact = ({
 }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
   const [mainSwiper, setMainSwiper] = useState<SwiperType | null>(null);
+  const [canClick, setCanClick] = useState(true);
 
   const handlePrev = () => {
-    if (!mainSwiper) return;
+    if (!canClick || !mainSwiper) return;
+    setCanClick(false);
+
     // Drive only main swiper; thumbs syncs via Thumbs module.
     mainSwiper.slidePrev();
+    thumbsSwiper?.slidePrev();
+    setTimeout(() => setCanClick(true), 250);
   };
 
   const handleNext = () => {
-    if (!mainSwiper) return;
+    if (!canClick || !mainSwiper) return;
+    setCanClick(false);
+
     // Drive only main swiper; thumbs syncs via Thumbs module.
     mainSwiper.slideNext();
+    thumbsSwiper?.slideNext();
+    setTimeout(() => setCanClick(true), 250);
   };
 
   const handleThumbSelect = (index: number) => {
@@ -160,7 +169,6 @@ const SocialImpact = ({
             modules={[Thumbs, Autoplay]}
             allowTouchMove={false}
             loop={true}
-            loopPreventsSliding={false}
             breakpoints={{
               0: { slidesPerView: 1 },
               768: { slidesPerView: 2 },
@@ -226,7 +234,6 @@ const SocialImpact = ({
               spaceBetween={30}
               modules={[Thumbs, EffectFade, Autoplay]}
               loop={true}
-              loopPreventsSliding={false}
               speed={850}
               effect="fade"
               fadeEffect={{ crossFade: true }}

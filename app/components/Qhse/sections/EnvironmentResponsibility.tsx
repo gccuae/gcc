@@ -54,8 +54,8 @@ const EnvironmentalResponsibility = ({
                 />
                 {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex items-center justify-center">
-                  <div className="flex items-center justify-center h-full w-10 h-10 xl:w-20 xl:h-20 rounded-full mx-auto border border-white/90 bg-white/30 backdrop-blur-[0.2px] cursor-pointer">
-                    <img src="/assets/img/icons/magnify.svg" alt="View" width={29.99} height={29.99} className="object-contain" />
+                  <div className="flex items-center justify-center  w-12 h-12 xl:w-20 xl:h-20 rounded-full mx-auto border border-white/90 bg-white/30 backdrop-blur-[0.2px] cursor-pointer">
+                    <img src="/assets/img/icons/magnify.svg" alt="View" width={29.99} height={29.99} className=" w-6 h-6 xl:w-[29.99] xl:h-[29.99] object-contain" />
                   </div>
                 </div>
               </div>

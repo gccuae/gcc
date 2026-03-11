@@ -194,8 +194,13 @@ body {
   overscroll-behavior: contain;
   @apply dark:bg-black;
 }
-p{
+
+p {
   @apply text-justify;
+  text-wrap: balance;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  overflow-wrap: break-word;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -317,12 +322,15 @@ p{
 .letterSp-3 {
   letter-spacing: -3px;
 }
+
 .lettersp-2 {
   letter-spacing: -0.02em;
 }
-h2{
+
+h2 {
   @apply tracking-[-0.02em];
 }
+
 .slideroverlay:after {
   content: "";
   z-index: 1;
@@ -351,7 +359,7 @@ h2{
 }
 
 .area-of-expertise-thumbs .swiper-slide.swiper-slide-thumb-active:not(.swiper-slide-duplicate) .icon-wrapper {
-  @apply bg-primary border-black; 
+  @apply bg-primary border-black;
 }
 
 .area-of-expertise-thumbs .swiper-slide.swiper-slide-thumb-active .icon-wrapper img {
@@ -504,7 +512,7 @@ header.modal-open {
 
   .project-slider .swiper-button-prev,
   .project-slider .swiper-button-next {
-    @apply top-7;
+    @apply top-10;
   }
 }
 
@@ -661,6 +669,10 @@ header.modal-open {
 .job-detail-responsibility {
   h3 {
     @apply text-lg font-medium text-para-color dark:text-white -mb-3;
+  }
+
+  p {
+    @apply mb-5 text-lg font-light text-para-color dark:text-white/70;
   }
 
   ol {

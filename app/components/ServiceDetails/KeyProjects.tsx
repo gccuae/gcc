@@ -156,7 +156,7 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
   const getPerView = () => {
     if (windowWidth >= 1024) return 2.1;
     if (windowWidth >= 768) return 2;
-    if (windowWidth >= 425) return 1.2;
+    if (windowWidth >= 425) return 1;
     return 1.1;
   };
 
@@ -368,7 +368,7 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true }}
-                className="relative h-[350px] xl:h-[450px] 2xl:h-[633px] w-full flex flex-col justify-end px-6 py-6 xl:py-8 group"
+                className="relative h-[350px] xl:h-[450px] 2xl:h-[633px] w-full flex flex-col justify-end px-4 md:px-6 py-6 xl:py-8 group"
               >
                 <Image src={item.thumbnail} alt={item.title} width={1003} height={633} className="w-full h-full object-cover absolute inset-0 z-0" />
 
@@ -382,7 +382,7 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
                     href={`/projects/${item.slug}`}
                     className="bg-black w-fit p-2 lg:px-5 lg:py-3 block"
                   >
-                    <p className="text-lg leading-lh-text19 font-normal text-white">
+                    <p className="text-lg leading-lh-text19 font-normal text-white !text-left">
                       {item.secondSection.projectType.name},{" "}
                       {item.secondSection.sector.name},{" "}
                       {item.secondSection.location.name}
