@@ -22,7 +22,7 @@ const Main = ({ title, subtitle, description, primaryColorText }: Props) => {
               variants={moveUp()}
               initial="hidden"
               animate="show"
-              className="text-3xl leading-lh-text48 font-normal text-black dark:text-white capitalize max-w-[30ch]"
+              className="text-3xl leading-lh-text48 font-normal text-black dark:text-white capitalize max-w-[30ch] mb-1 md:mb-0"
             >
               {subtitle}
             </motion.h2>

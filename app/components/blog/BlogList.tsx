@@ -1,7 +1,9 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
+import Image from "next/image";
+import { assets } from "@/public/assets/assets";
 import { BlogItem } from "./BlogItem";
 import { moveUp, moveLeft } from "../motionVarients";
 import { BlogData } from "./type";
@@ -10,7 +12,6 @@ const BlogList = ({ data }: { data: BlogData }) => {
   const items = data.categories.flatMap(
     (item: { blogs: BlogData["categories"][number]["blogs"] }) => item.blogs
   );
-  console.log(items);
 
   // Extract unique categories
   const categories = useMemo(() => {
@@ -19,11 +20,86 @@ const BlogList = ({ data }: { data: BlogData }) => {
         data.categories.map((item: { category: string }) => item.category)
       )
     );
-    console.log(unique);
     return ["All", ...unique];
   }, [data]);
 
   const [activeTab, setActiveTab] = useState(0);
+  const [expandedMobileTabs, setExpandedMobileTabs] = useState<
+    Record<number, boolean>
+  >({});
+  const mobileTabRefs = useRef<Record<number, HTMLDivElement | null>>({});
+  const scrollRafRef = useRef<number | null>(null);
+
+  const getItemsByTab = (idx: number, cat: string) => {
+    return idx === 0 ? items : items.filter((item) => item.category === cat);
+  };
+
+  const scrollToMobileTab = (idx: number, delay = 0) => {
+    window.setTimeout(() => {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const tabTop =
+            (mobileTabRefs.current[idx]?.getBoundingClientRect().top || 0) +
+            window.scrollY;
+          const targetY = Math.max(tabTop - 90, 0);
+          const startY = window.scrollY;
+          const distance = targetY - startY;
+          const duration = 520;
+          const startTime = performance.now();
+
+          if (scrollRafRef.current) {
+            cancelAnimationFrame(scrollRafRef.current);
+          }
+
+          const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+
+          const animate = (now: number) => {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const easedProgress = easeOutCubic(progress);
+            window.scrollTo(0, startY + distance * easedProgress);
+
+            if (progress < 1) {
+              scrollRafRef.current = requestAnimationFrame(animate);
+            } else {
+              scrollRafRef.current = null;
+            }
+          };
+
+          scrollRafRef.current = requestAnimationFrame(animate);
+        });
+      });
+    }, delay);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (scrollRafRef.current) {
+        cancelAnimationFrame(scrollRafRef.current);
+      }
+    };
+  }, []);
+
+  const handleMobileAccordionTabToggle = (idx: number) => {
+    const nextTab = activeTab === idx ? -1 : idx;
+    setActiveTab(nextTab);
+
+    if (nextTab !== -1) {
+      // Wait for collapse/expand animation so final position is accurate.
+      scrollToMobileTab(idx, 280);
+    }
+  };
+
+  const handleMobileToggleMoreLess = (idx: number) => {
+    const isExpanded = !!expandedMobileTabs[idx];
+    setExpandedMobileTabs((prev) => ({
+      ...prev,
+      [idx]: !prev[idx],
+    }));
+
+    if (!isExpanded) return;
+    scrollToMobileTab(idx, 200);
+  };
 
   // Filter blogs based on selected category
   const filteredItems =
@@ -69,21 +145,16 @@ const BlogList = ({ data }: { data: BlogData }) => {
         </motion.div>
 
         {/* ----------- Mobile Accordion Tabs ----------- */}
-        <motion.div
-          variants={moveUp(0.2)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="md:hidden border-t border-gray-200 divide-y divide-gray-200"
-        >
+        <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true }} className="md:hidden border-t border-gray-200 divide-y divide-gray-200" >
           {categories.map((cat, idx) => (
-            <div key={cat} className="w-full">
-              <button
-                onClick={
-                  () => setActiveTab(activeTab === idx ? -1 : idx) // toggle open/close
-                }
-                className="w-full flex justify-between items-center py-4 text-lg font-medium"
-              >
+            <div
+              key={cat}
+              className="w-full"
+              ref={(el) => {
+                mobileTabRefs.current[idx] = el;
+              }}
+            >
+              <button onClick={() => handleMobileAccordionTabToggle(idx)} className="w-full flex justify-between items-center py-4 text-lg font-medium" >
                 <span
                   className={`${activeTab === idx ? "text-black" : "text-gray-500"
                     }`}
@@ -103,7 +174,10 @@ const BlogList = ({ data }: { data: BlogData }) => {
                     className="overflow-hidden"
                   >
                     <div className="mt-4 grid grid-cols-1 gap-5">
-                      {filteredItems.map((item, i) => (
+                      {(expandedMobileTabs[idx]
+                        ? getItemsByTab(idx, cat)
+                        : getItemsByTab(idx, cat).slice(0, 5)
+                      ).map((item, i) => (
                         <motion.div
                           key={`${item.title}-${i}`}
                           initial={{ opacity: 0, y: 10 }}
@@ -119,6 +193,27 @@ const BlogList = ({ data }: { data: BlogData }) => {
                         </motion.div>
                       ))}
                     </div>
+                    {getItemsByTab(idx, cat).length > 5 && (
+                      <div className="flex justify-center mt-6 mb-2">
+                        <button
+                          onClick={() => handleMobileToggleMoreLess(idx)}
+                          className="px-6 py-2 bg-light-white text-black rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition cursor-pointer"
+                        >
+                          <span>
+                            {expandedMobileTabs[idx] ? "Show Less" : "Show More"}
+                          </span>
+                          <Image
+                            src={assets.singleGreenArrow}
+                            alt="arrow"
+                            width={20}
+                            height={20}
+                            className={`inline ${
+                              expandedMobileTabs[idx] ? "-rotate-90" : "rotate-90"
+                            }`}
+                          />
+                        </button>
+                      </div>
+                    )}
                   </motion.div>
                 )}
               </AnimatePresence>

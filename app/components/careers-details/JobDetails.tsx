@@ -109,13 +109,9 @@ const JobDetails = ({
           <h2 className="text-2xl leading-lh-text32 text-black dark:text-white mb-3 lg:mb-27px">
             {thirdSection.title}
           </h2>
-          <motion.div
-            variants={moveUp()}
-            initial="hidden"
-            whileInView="show"
-            className="flex flex-col gap-4 lg:gap-27px job-detail-responsibility"
-            dangerouslySetInnerHTML={{ __html: thirdSection.description }}
-          />
+          <motion.div variants={moveUp()} initial="hidden" whileInView="show"
+           className="flex flex-col gap-4 lg:gap-27px job-detail-responsibility [&_p>span]:text-para-color [&_p>span]:font-light [&_p>span]:text-lg [&_p>span]:leading-lh-text19 dark:[&_p>span]:!text-white/70 dark:[&_h3>span]:!text-white/70 dark:[&_li>span]:!text-white/70"
+            dangerouslySetInnerHTML={{ __html: thirdSection.description }} />
         </motion.div>
 
         {/* Apply Now */}

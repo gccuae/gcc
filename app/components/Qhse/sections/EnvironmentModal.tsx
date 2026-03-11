@@ -61,7 +61,7 @@ const EnvironmentModal: React.FC<EnvironmentModalProps> = ({
           {/* Header with centered title and right-aligned close button */}
           <div className="relative flex items-center justify-center mb-[15px]">
             {/* Centered Title */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 text-black text-2xl leading-lh-text32 md:text-center w-full dark:text-white">
+            <div className="absolute left-1/2 transform -translate-x-1/2 text-black text-xl xl:text-2xl leading-lh-text32 md:text-center w-full dark:text-white">
               {item.title}
             </div>
 
@@ -85,7 +85,7 @@ const EnvironmentModal: React.FC<EnvironmentModalProps> = ({
             </button>
 
             {/* Image Container */}
-            <div className="relative mt-10 lg:mt-0 w-full lg:w-[800px] rounded-[12px] xl:w-[1000px] 2xl:w-[1264px] h-[450px] 2xl:h-[600px] max-h-[800px] flex items-center justify-center overflow-hidden">
+            <div className="relative mt-10 lg:mt-0 w-full lg:w-[800px] rounded-[12px] xl:w-[1000px] 2xl:w-[1264px] h-[250px] 2xl:h-[500px] 3xl:h-[600px] max-h-[800px] flex items-center justify-center overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={item.images[currentIndex]?.image}
@@ -95,15 +95,13 @@ const EnvironmentModal: React.FC<EnvironmentModalProps> = ({
                   transition={{ duration: 0.4, ease: "easeInOut" }}
                   className="absolute inset-0"
                 >
-                  <Image src={item.images[currentIndex]?.image} alt={`slide-${currentIndex}`} fill className="object-contain object-top rounded-[12px] w-auto" sizes="(max-width: 768px) 100vw, 80vw" />
+                  <Image src={item.images[currentIndex]?.image} alt={`slide-${currentIndex}`} fill
+                   className="object-cover h-full object-top rounded-[12px] w-auto" sizes="(max-width: 768px) 100vw, 80vw" />
                 </motion.div>
               </AnimatePresence>
             </div>
 
-            <button
-              onClick={goNext}
-              className="absolute right-0 lg:top-1/2 top-0 lg:-translate-y-1/2 translate-y-0 cursor-pointer dark:text-black"
-            >
+            <button onClick={goNext} className="absolute right-0 lg:top-1/2 top-0 lg:-translate-y-1/2 translate-y-0 cursor-pointer dark:text-black" >
               <SlArrowRight className="text-black dark:text-white hover:text-primary transition-all duration-300 h-[20px] lg:h-[28px] w-[20px] lg:w-[28px]" />
             </button>
           </div>
