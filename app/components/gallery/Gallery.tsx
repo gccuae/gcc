@@ -110,7 +110,7 @@ const Gallery: React.FC<{ data: GalleryType }> = ({ data }) => {
   };
 
   return (
-    <section className="min-h-screen pb-57px" ref={sectionRef}>
+    <section className="min-h-screen pb-12 md:pb-15 xl:pb-57px" ref={sectionRef}>
       <div className="container">
         {/* Gallery Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-30px gap-y-47px">

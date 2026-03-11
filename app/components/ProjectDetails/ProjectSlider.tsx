@@ -74,21 +74,17 @@ const ProjectSlider = ({ data }: ProjectSliderProps) => {
       <div className="absolute top-0 left-0 h-1 w-full" />
       <div className="absolute top-0 left-0 w-full h-full bg-black/80 md:bg-white/12 z-20 backdrop-blur-xs"></div>
       <div className="absolute top-0 left-0 w-full h-full bg-[#0F0D0D] opacity-[39%] z-20"></div>
-
       <div className="relative z-50">
         <h3 className="text-lg xl:text-2xl leading-lh-text32 font-normal text-white mb-6 xl:mb-12"> Project Specifications </h3>
-
         <div className="relative mb-5">
           <div className="w-full h-3 bg-gray-300 rounded-full overflow-hidden shadow-inner relative">
             <div className="h-full bg-[#7AC142] rounded-full shadow-sm" style={{ width: `${displayProgress}%` }} />
-
             <div className="absolute inset-0 flex">
               {[1, 2, 3, 4].map((i) => (
                 <div key={i} className="absolute top-0 bottom-0 w-px bg-white opacity-60" style={{ left: `${i * 20}%` }} />
               ))}
             </div>
           </div>
-
           <div className="absolute -top-12 bg-white border border-gray-200 px-[10px] py-[5.5px] rounded-md shadow-md"
             style={{
               left: `${displayProgress - 15}%`,
@@ -102,7 +98,6 @@ const ProjectSlider = ({ data }: ProjectSliderProps) => {
           </div>
         </div>
       </div>
-
       <div className="relative z-50">
         <div className="grid grid-cold-1 md:grid-cols-2 3xl:grid-cols-[auto_1fr] gap-y-5 lg:gap-y-5 xl:gap-y-7">
           {[
@@ -128,20 +123,10 @@ const ProjectSlider = ({ data }: ProjectSliderProps) => {
       <div className="container">
         <div className="relative h-auto md:h-fit" ref={ref}>
           {hasImages ? (
-            <Swiper
-              modules={[Navigation]}
-              spaceBetween={30}
-              slidesPerView={1}
-              loop={false}
-              hashNavigation={true}
-              grabCursor={true}
-              navigation={true}
-              className="project-slider relative h-full"
-            >
+            <Swiper modules={[Navigation]} spaceBetween={30} slidesPerView={1} loop={false} hashNavigation={true} grabCursor={true} navigation={true} className="project-slider relative h-full" >
               {images.map((image, index) => (
                 <SwiperSlide key={index} className="relative md:max-h-[715px]">
                   <Image src={image} width={1000} height={1000} alt="" className="w-full h-[250px] md:h-[400px] xl:h-[550px] 2xl:h-[700px] object-cover" />
-
                   {/* overlay panel */}
                   {renderOverlay()}
                 </SwiperSlide>

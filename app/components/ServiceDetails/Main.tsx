@@ -40,7 +40,7 @@ const Main = ({ data, title }: { data: SecondSectionFirstSection; title: string 
     <section className="pt-57px xl:pt-25   dark:bg-light-dark">
       <div className="container">
         <StandardBnr title={title} />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 xl:gap-10 justify-items-between  lg:pt-[23px] pb-7 lg:pb-10 xl:pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 xl:gap-10 justify-items-between  lg:pt-[23px] pb-7 lg:pb-10 xl:pb-20">
           <div>
             <h2 className="text-3xl leading-lh-text48 font-normal text-black dark:text-white">
               {data.title}

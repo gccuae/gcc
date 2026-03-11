@@ -135,7 +135,7 @@ const Main = ({ data }: AwardsProps) => {
     <>
       <section className="pt-6 lg:pt-15 xl:pt-25px">
         <div className="container mx-auto px-4">
-          <h2 className="text-5xl leading-[1.205882352941176] text-black dark:text-white pb-6 xl:pb-[47px]">
+          <h2 className=" text-4xl xl:text-5xl leading-[1.205882352941176] text-black dark:text-white pb-6 xl:pb-[47px]">
             {data.pageTitle}
           </h2>
         </div>
@@ -216,7 +216,7 @@ const Main = ({ data }: AwardsProps) => {
                             </button>
 
                             {/* Mobile Accordion */}
-                            <div className={`lg:pl-12 lg:pt-6 xl:pl-[67px] xl:pt-[47px] px-0 md:px-5 mb-5 ${openIndex === combinedIndex ? "block" : "hidden" } lg:hidden`} >
+                            <div className={`lg:pl-12 lg:pt-6 xl:pl-[67px] xl:pt-[47px] px-0 xl:px-5 mb-5 ${openIndex === combinedIndex ? "block" : "hidden"} lg:hidden`} >
                               {selectedItem === file && (
                                 <DetailsBlock
                                   selectedItem={{
@@ -269,7 +269,7 @@ const Main = ({ data }: AwardsProps) => {
       {/* Modal */}
       {isModalOpen && selectedItem && (
         <div
-          className="fixed inset-0 bg-black/90 z-[999] overflow-y-auto px-4 py-5 sm:px-6 sm:py-8"
+          className="fixed inset-0 bg-black/90 z-[999] overflow-y-auto px-4 pt-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] sm:px-6 sm:pt-8 sm:pb-[calc(2rem+env(safe-area-inset-bottom))]"
           onClick={handleCloseModal}
         >
           {/* Button Wrapper */}
@@ -304,7 +304,8 @@ const Main = ({ data }: AwardsProps) => {
 
           {/* Modal Content */}
           <div className="mx-auto mt-12 sm:mt-16 flex w-full items-center justify-center" onClick={(event) => event.stopPropagation()}>
-            <Image src={selectedItem.thumbnail || ""} alt={selectedItem.mainTitle || "Document preview"} width={1500} height={1500} className="w-auto h-auto max-h-[68vh] sm:max-h-[72vh] lg:max-h-[76vh] max-w-full object-contain mx-auto" />
+            <Image src={selectedItem.thumbnail || ""} alt={selectedItem.mainTitle || "Document preview"} width={1500} height={1500}
+              className="w-auto h-auto max-h-[calc(100dvh-8rem-env(safe-area-inset-bottom))] sm:max-h-[calc(100dvh-10rem-env(safe-area-inset-bottom))] lg:max-h-[calc(100dvh-11rem)] max-w-full object-contain mx-auto" />
           </div>
         </div>
       )}

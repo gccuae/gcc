@@ -20,7 +20,7 @@ const CounterSection = ({ data }: FirstSectionProps) => {
             viewport={{ once: true }}
             initial="hidden"
             whileInView="show"
-            className="text-5xl leading-[1.147058823529412] font-normal mb-4 xl:mb-[27px] text-black dark:text-white letterSp-2"
+            className="text-4xl xl:text-5xl leading-[1.147058823529412] font-normal mb-4 xl:mb-[27px] text-black dark:text-white letterSp-2"
           >
             {data.title}
           </motion.h2>
@@ -62,7 +62,7 @@ const CounterSection = ({ data }: FirstSectionProps) => {
                     className="w-10 h-auto xl:w-[62px] group-hover:brightness-0 group-hover:invert-100 transition-all duration-300"
                   />
                 </div>
-                <h3 className="text-5xl leading-lh-text68 font-normal mb-4 xl:mb-[16px] text-black dark:text-white group-hover:text-white transition-all duration-300">
+                <h3 className=" text-4xl xl:text-5xl leading-lh-text68 font-normal mb-4 xl:mb-[16px] text-black dark:text-white group-hover:text-white transition-all duration-300">
                   {/* <Counter from={0} to={Number(item.number)} duration={2} />+ */}
                   <Counter
                     from={0}

@@ -39,14 +39,14 @@ const NewsList = ({ data }: { data: NewsData }) => {
   };
 
   return (
-    <section className="py-57px dark:bg-light-dark" ref={sectionRef}>
+    <section className="pt-57px pb-12 md:pb-15 xl:py-57px dark:bg-light-dark" ref={sectionRef}>
       <div className="container">
         <motion.h2
           variants={moveUp()}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="text-5xl font-normal text-black dark:text-white mb-27px"
+          className=" text-4xl xl:text-5xl font-normal text-black dark:text-white mb-27px"
         >
           More News
         </motion.h2>

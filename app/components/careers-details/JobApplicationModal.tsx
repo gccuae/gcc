@@ -41,7 +41,7 @@ const JobApplicationModalForm = ({ onSuccess }: Props) => {
 
   return (
     <div className="w-full">
-      <h2 className="text-5xl leading-1h-title text-black dark:text-white mb-[36px]">
+      <h2 className=" text-4xl xl:text-5xl leading-1h-title text-black dark:text-white mb-[36px]">
         Apply for Site Engineer Position
       </h2>
 

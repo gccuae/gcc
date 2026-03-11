@@ -7,7 +7,7 @@ import { moveUp } from "../motionVarients";
 
 const ClientList = ({ data }: { data: ClientsFirstSection }) => {
   return (
-    <section className="py-57px">
+    <section className="pt-57px pb-12 md:pb-15 xl:py-57px">
       <div className="container">
         <div className="mb-57px">
           <motion.p
@@ -15,7 +15,7 @@ const ClientList = ({ data }: { data: ClientsFirstSection }) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-xl leading-[1.608695652173913] text-para-color dark:text-white/80"
+            className="xl:text-xl leading-[1.608695652173913] text-para-color dark:text-white/80"
           >
             {data.description}
           </motion.p>

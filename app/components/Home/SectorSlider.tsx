@@ -27,7 +27,7 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
-          className="text-5xl font-normal leading-[1.147058823529412] pb-4 xl:pb-27px "
+          className=" text-4xl xl:text-5xl font-normal leading-[1.147058823529412] pb-4 xl:pb-27px "
         >
           {data.title}
         </motion.h2>
@@ -73,9 +73,9 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
                   slidesPerView: 2,
                 },
                 1024: {
-                  slidesPerView: 3,
+                  slidesPerView: 2,
                 },
-                1280: {
+                1360: {
                   slidesPerView: 3,
                 },
               }}

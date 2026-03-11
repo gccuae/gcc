@@ -12,7 +12,7 @@ export interface SecondSectionProps {
 
 const BusinessNetworks = ({ data }: SecondSectionProps) => {
   return (
-    <section className="py-57px">
+    <section className="pt-57px pb-12 md:pb-15 xl:py-57px">
       <div className="container">
         <div className="mb-5 xl:mb-[47px]">
           <motion.h2
@@ -20,7 +20,7 @@ const BusinessNetworks = ({ data }: SecondSectionProps) => {
             viewport={{ once: true }}
             initial="hidden"
             whileInView="show"
-            className="text-5xl leading-[1.147058823529412] text-black dark:text-white mb-5 xl:mb-[27px]"
+            className=" text-4xl xl:text-5xl leading-[1.147058823529412] text-black dark:text-white mb-4 xl:mb-[27px]"
           >
             {data.title}
           </motion.h2>
@@ -34,7 +34,7 @@ const BusinessNetworks = ({ data }: SecondSectionProps) => {
             {data.description}
           </motion.p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 xl:gap-8 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-8 xl:gap-x-8 xl:gap-y-47px">
           {data.items.filter((item) => !item.hideCompany).map((item, index) => (
             <motion.div className="border-b dark:border-white/20 hover:border-primary"
               key={index}

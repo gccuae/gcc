@@ -20,7 +20,7 @@ const MoreProjects = ({ projects }: Props) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-5xl leading-[1.147058823529412] text-black dark:text-white"
+            className=" text-4xl xl:text-5xl leading-[1.147058823529412] text-black dark:text-white"
           >
             More Projects
           </motion.h2>
@@ -39,7 +39,7 @@ const MoreProjects = ({ projects }: Props) => {
             <ProjectCard key={index} item={item} index={index} showDescription={false} />
 
             // <motion.div
-              
+
             //   key={index}
             //   className="group border-b dark:border-white/20 pb-27px"
             //   variants={moveUp(index * 0.24)}

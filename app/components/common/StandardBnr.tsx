@@ -20,7 +20,7 @@
 //         initial={{ opacity: 0, x: -30, clipPath: "inset(0 100% 0 0)" }}
 //         animate={{ opacity: 1, x: 0, clipPath: "inset(0 0% 0 0)" }}
 //         transition={{ duration: 1.3, ease: "easeOut" }}
-//         className="text-5xl leading-[1.205882352941176] font-normal text-black dark:text-white"
+//         className=" text-4xl xl:text-5xl leading-[1.205882352941176] font-normal text-black dark:text-white"
 //       >
 //         {title}
 //       </motion.h2>
@@ -92,7 +92,7 @@ const StandardBnr = ({ title }: Props) => {
     >
       <h2
         ref={titleRef}
-        className="text-5xl leading-[1.205882352941176] font-normal text-black dark:text-white"
+        className=" text-4xl xl:text-5xl leading-[1.205882352941176] font-normal text-black dark:text-white"
       >
         {title}
       </h2>

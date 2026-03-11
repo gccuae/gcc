@@ -152,16 +152,13 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
   return (
     <section className="wrapper pt-30px md:pt-37px overflow-hidden dark:bg-black">
       <div>
-        <div
-          ref={headingRef}
-          className="flex justify-between items-center container mb-6 xl:mb-[43px]"
-        >
+        <div ref={headingRef} className="flex justify-between items-center container mb-6 xl:mb-[43px]" >
           <motion.h2
             variants={moveUp(0)}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-5xl font-normal leading-[1.147058823529412] text-black dark:text-white"
+            className=" text-4xl xl:text-5xl font-normal leading-[1.147058823529412] text-black dark:text-white"
           >
             Area of Expertise
           </motion.h2>
@@ -179,21 +176,8 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                 className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] border-r border-foreground dark:border-white/20 rounded-tl-full rounded-bl-full group  cursor-pointer hover:bg-accent  transition-all duration-300"
               >
                 {/* <Image src="/assets/img/icons/greenrightarrow.svg" alt="image" className="rotate-180 group-hover:brightness-0 group-hover:invert transition-all duration-300 min-w-[6px] min-h-[13px]" width={6} height={13} /> */}
-                <svg
-                  width="10"
-                  height="16"
-                  viewBox="0 0 10 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]"
-                >
-                  <path
-                    d="M8.33594 1.33154L1.66731 8.00017L8.33594 14.6688"
-                    stroke="#7AC142"
-                    className="group-hover:stroke-white transition-all duration-300"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
+                <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]" >
+                  <path d="M8.33594 1.33154L1.66731 8.00017L8.33594 14.6688" stroke="#7AC142" className="group-hover:stroke-white transition-all duration-300" strokeWidth="2" strokeLinecap="round" />
                 </svg>
               </div>
               <div
@@ -202,35 +186,15 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                 className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] rounded-tr-full rounded-br-full cursor-pointer group hover:bg-accent dark:hover:bg-secondary transition-all duration-300"
               >
                 {/* <Image src="/assets/img/icons/greenrightarrow.svg" alt="image" className="group-hover:brightness-0 group-hover:invert transition-all duration-300 min-w-[6px] min-h-[13px]" width={6} height={13} /> */}
-                <svg
-                  width="10"
-                  height="16"
-                  viewBox="0 0 10 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]"
-                >
-                  <path
-                    d="M1.66406 1.33154L8.33269 8.00017L1.66406 14.6688"
-                    stroke="#7AC142"
-                    className="group-hover:stroke-white transition-all duration-300"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
+                <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]" >
+                  <path d="M1.66406 1.33154L8.33269 8.00017L1.66406 14.6688" stroke="#7AC142" className="group-hover:stroke-white transition-all duration-300" strokeWidth="2" strokeLinecap="round" />
                 </svg>
               </div>
             </motion.div>
           </div>
         </div>
 
-        <motion.div
-          variants={moveUp(0)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="relative"
-          style={{ paddingLeft: `${leftOffset}px`, paddingRight: 0 }}
-        >
+        <motion.div variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true }} className="relative" style={{ paddingLeft: `${leftOffset}px`, paddingRight: 0 }} >
           <Swiper
             className="area-of-expertise-thumbs relative"
             onSwiper={setThumbsSwiper}
@@ -261,13 +225,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                     viewport={{ once: true }}
                     className="flex items-center justify-center flex-shrink-0 rounded-full border-1 dark:border-white/20 dark:border-white/20 w-[85px] h-[85px] group-hover:bg-primary transition-colors duration-300 icon-wrapper dark:bg-[#0d0d0d]"
                   >
-                    <Image
-                      src={item.logo}
-                      alt={item.logoAlt}
-                      width={200}
-                      height={200}
-                      className="mb-2 w-10 h-10 object-contain group-hover:brightness-0 group-hover:invert-100"
-                    />
+                    <Image src={item.logo} alt={item.logoAlt} width={200} height={200} className="mb-2 w-10 h-10 object-contain group-hover:brightness-0 group-hover:invert-100" />
                   </motion.div>
                   <motion.h3
                     variants={moveUp(index * 0.13)}
@@ -318,7 +276,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                       alt={item.homeThumbnailAlt}
                       width={1000}
                       height={1000}
-                      className="slide-img w-full h-[300px] md:h-[400px] 2xl:h-[500px] rounded object-cover"
+                      className="slide-img w-full h-[300px] md:h-[400px] 2xl:h-[500px] rounded object-cover mb-2"
                     />
                   </div>
                   <div className="group">

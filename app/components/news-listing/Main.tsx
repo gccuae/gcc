@@ -22,7 +22,7 @@ const Main = ({
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-5xl font-normal leading-[1.147058823529412] text-black dark:text-white"
+            className=" text-4xl xl:text-5xl font-normal leading-[1.147058823529412] text-black dark:text-white"
           >
             {title}
           </motion.h2>
@@ -48,13 +48,13 @@ const Main = ({
                     className="w-full xl:w-1/2 overflow-hidden"
                   >
                     <Link href={`news/${item.slug}`}>
-                    <Image
-                      src={item.thumbnail}
-                      alt="newsBlockImage"
-                      width={2000}
-                      height={2000}
-                      className="w-full h-full object-cover hover:scale-110 transition-all duration-400"
-                    />
+                      <Image
+                        src={item.thumbnail}
+                        alt="newsBlockImage"
+                        width={2000}
+                        height={2000}
+                        className="w-full h-full object-cover hover:scale-110 transition-all duration-400"
+                      />
                     </Link>
                   </motion.div>
                   <div className="xl:w-1/2 group xl:py-3">
@@ -67,11 +67,11 @@ const Main = ({
                       <p className="text-base font-light text-forground underline underline-offset-10 dark:text-white hover:text-black dark:hover:text-white transition-colors duration-300">
                         {item.date
                           ? new Date(item.date)
-                              .toLocaleDateString("en-GB")
-                              .replace(/\//g, "-")
+                            .toLocaleDateString("en-GB")
+                            .replace(/\//g, "-")
                           : new Date(item.createdAt)
-                              .toLocaleDateString("en-GB")
-                              .replace(/\//g, "-")}
+                            .toLocaleDateString("en-GB")
+                            .replace(/\//g, "-")}
                       </p>
                     </motion.div>
                     <motion.h3
@@ -82,7 +82,7 @@ const Main = ({
                       className="text-2xl font-normal leading-[1.40625] text-para-color mb-3 xl:mb-[22px] dark:text-white hover:text-primary transition-colors duration-300 max-w-[55ch] tracking-[-1px]"
                     >
                       <Link href={`news/${item.slug}`} >
-                      {item.title}
+                        {item.title}
                       </Link>
                     </motion.h3>
                     <motion.p

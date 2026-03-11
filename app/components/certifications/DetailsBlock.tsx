@@ -43,23 +43,15 @@ const DetailsBlock: React.FC<DetailsBlockProps> = ({
           alt={selectedItem.title}
           width={500}
           height={500}
-          className="object-contain w-auto h-[300px]"
+          className="object-contain w-auto h-[300px] md:h-[450px]"
         />
 
         {/* Overlay */}
         <div className="absolute inset-0 w-full h-full linear-gradient-to-r from-transparent to-black z-[5] opacity-[20]"></div>
         <div className="absolute inset-0 w-full h-full z-10 bg-black/63 flex items-center justify-center opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300">
-          <button
-            onClick={handleOpenModal}
-            className="rounded-full bg-white w-15 h-15 xl:w-[91.73px] xl:h-[91.73px] flex items-center justify-center cursor-pointer transition-all duration-300"
+          <button onClick={handleOpenModal} className="rounded-full bg-white w-15 h-15 xl:w-[91.73px] xl:h-[91.73px] flex items-center justify-center cursor-pointer transition-all duration-300"
           >
-            <Image
-              src={assets}
-              alt={selectedItem.title}
-              width={50}
-              height={50}
-              className="w-4 h-4 xl:w-auto xl:h-8 transition-all duration-300"
-            />
+            <Image src={assets} alt={selectedItem.title} width={50} height={50} className="w-4 h-4 md:w-6 md:h-6 xl:w-auto xl:h-8 transition-all duration-300" />
           </button>
         </div>
         <button
@@ -69,11 +61,7 @@ const DetailsBlock: React.FC<DetailsBlockProps> = ({
           <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg" >
             <path
               d="M8.97079 16.1716L15.2248 22.444L21.5051 16.1716M1.47266 21.441V26.0966C1.47266 26.9458 1.76102 27.6584 2.33776 28.2345C2.91449 28.8105 3.62677 29.0985 4.4746 29.0985H25.999C26.8468 29.0985 27.5591 28.8105 28.1358 28.2345C28.7126 27.6584 29.0009 26.9458 29.0009 26.0966V21.441M15.2416 1.61658V22.433"
-              stroke="black"
-              strokeWidth="2"
-              strokeLinecap="round"
-              className="group-hover:stroke-primary dark:stroke-gray-400 dark:group-hover:stroke-primary"
-            />
+              stroke="black" strokeWidth="2" strokeLinecap="round" className="group-hover:stroke-primary dark:stroke-gray-400 dark:group-hover:stroke-primary" />
           </svg>
         </button>
       </div>

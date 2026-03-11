@@ -56,6 +56,12 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
+@media (max-width:1024px){
+  :root {
+    --spacing-57px: clamp(1.5rem, 5vw + 0.1em, 40px);
+  }
+}
+
 @theme {
   /* --breakpoint-*: initial; */
   /* --breakpoint-xl: 1400px;
@@ -186,7 +192,6 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
-  ;
   font-optical-sizing: auto;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
@@ -195,7 +200,7 @@ body {
   @apply dark:bg-black;
 }
 
-p {
+.justify-txt {
   @apply text-justify;
   text-wrap: balance;
   hyphens: auto;
@@ -450,7 +455,7 @@ header.modal-open {
 
 .project-slider .swiper-button-next:after,
 .project-slider .swiper-button-prev:after {
-  @apply text-2xl text-black font-bold;
+  @apply text-lg xl:text-2xl text-black font-bold;
 }
 
 .project-slider .swiper-button-next,
@@ -459,11 +464,11 @@ header.modal-open {
 }
 
 .project-slider .swiper-button-next {
-  @apply left-35;
+  @apply left-22 xl:left-35;
 }
 
 .project-slider .swiper-button-prev {
-  @apply left-30px;
+  @apply left-30px ;
 }
 
 .project-slider .swiper-button-next svg,
