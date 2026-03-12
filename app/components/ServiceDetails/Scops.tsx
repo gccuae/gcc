@@ -2,7 +2,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Image from "next/image";
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Swiper as SwiperType } from "swiper";
 import { SecondSectionSecondSection } from "../expertise/type";
 
@@ -10,8 +10,10 @@ interface ScopsProps {
   data: SecondSectionSecondSection;
 }
 
-  const Scops = ({ data }: ScopsProps) => {
+const Scops = ({ data }: ScopsProps) => {
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [sectionMinHeight, setSectionMinHeight] = useState<number>(0);
   const totalItems = data.items.length;
   // Looping with too few slides can cause Swiper clone/reflow jitter on load.
   const canLoop = totalItems > 5;
@@ -31,8 +33,49 @@ interface ScopsProps {
     swiper.slideNext();
   };
 
+  const updateSectionMinHeight = useCallback(() => {
+    if (!sectionRef.current) return;
+    const currentHeight = Math.ceil(sectionRef.current.getBoundingClientRect().height);
+    if (currentHeight > sectionMinHeight) {
+      setSectionMinHeight(currentHeight);
+    }
+  }, [sectionMinHeight]);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    let rafId = 0;
+    const scheduleMeasure = () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => updateSectionMinHeight());
+    };
+
+    scheduleMeasure();
+    const sectionEl = sectionRef.current;
+    const observer = new ResizeObserver(scheduleMeasure);
+    observer.observe(sectionEl);
+    window.addEventListener("resize", scheduleMeasure);
+    window.addEventListener("load", scheduleMeasure);
+
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      observer.disconnect();
+      window.removeEventListener("resize", scheduleMeasure);
+      window.removeEventListener("load", scheduleMeasure);
+    };
+  }, [updateSectionMinHeight]);
+
+  useEffect(() => {
+    // Recompute baseline when data changes.
+    setSectionMinHeight(0);
+  }, [totalItems]);
+
   return (
-    <section className="py-57px bg-black">
+    <section
+      ref={sectionRef}
+      className="py-57px bg-black"
+      style={sectionMinHeight ? { minHeight: `${sectionMinHeight}px` } : undefined}
+    >
       <div className="container">
         <div className="mb-57px flex items-center justify-between gap-4">
           <h2 className=" text-4xl xl:text-5xl leading-lh-text68 font-normal text-white">
