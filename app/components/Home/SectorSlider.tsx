@@ -100,9 +100,9 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
                           {item.title}
                         </h3>
                       </div>
-                      <Link href="#" className="bg-white dark:bg-transparent border dark:border-white/20 px-4 py-2 rounded-2xl xl:opacity-0 group-hover:xl:opacity-100 transition-all duration-300" >
+                      {/* <Link href="#" className="bg-white dark:bg-transparent border dark:border-white/20 px-4 py-2 rounded-2xl xl:opacity-0 group-hover:xl:opacity-100 transition-all duration-300" >
                         <Image src={assets.singleGreenArrow} alt={item.title} width={200} height={200} className="w-4 xl:w-[21.5px] h-auto object-contain" />{" "}
-                      </Link>
+                      </Link> */}
                     </div>
                     <div className="xl:pl-4 xl:pr-3 pt-6 group-hover:xl:pl-[37px]  group-hover:xl:pt-[35px] group-hover:xl:pr-[35px] group-first:pl-0 transition-all duration-300">
                       <p className="text-lg font-[300] leading-[1.526315789473684] pb-5 xl:pb-0 xl:opacity-0 xl:h-0 group-hover:xl:h-auto group-hover:xl:opacity-100 transition-all ease-in-out duration-300 group-hover:xl:pb-[23px] sector-description relative z-10 dark:text-white/80">

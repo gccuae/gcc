@@ -28,53 +28,22 @@ const ArrowLoopIcon = ({ playTick }: { playTick: number }) => {
   useEffect(() => {
     if (!outRef.current || !inRef.current || playTick === 0) return;
     tlRef.current?.kill();
-
-    // Reset start state on every trigger so animation is repeatable
     gsap.set(outRef.current, { x: 0, y: 0, opacity: 1 });
     gsap.set(inRef.current, { x: -34, y: 34, opacity: 1 });
-
     tlRef.current = gsap
-      .timeline({
-        defaults: { duration: 0.62, ease: "power2.out" },
-      })
-      .to(
-        outRef.current,
-        {
-          x: 34,
-          y: -34,
-        },
-        0
-      )
-      .to(
-        inRef.current,
-        {
-          x: 0,
-          y: 0,
-        },
-        0
-      );
+      .timeline({ defaults: { duration: 0.62, ease: "power2.out" } })
+      .to(outRef.current, { x: 34, y: -34 }, 0)
+      .to(inRef.current, { x: 0, y: 0 }, 0);
   }, [playTick]);
 
   return (
     <span className="bg-black w-10 h-10 xl:w-15 xl:h-15 rounded-full flex items-center justify-center relative overflow-hidden shrink-0">
       <span className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <span ref={outRef} className="absolute">
-          <Image
-            src={assets.linkArrowGreen}
-            alt="arrow-right"
-            width={20}
-            height={20}
-            className="w-5 h-5 xl:w-[19px] xl:h-[19.05px]"
-          />
+          <Image src={assets.linkArrowGreen} alt="arrow-right" width={20} height={20} className="w-5 h-5 xl:w-[19px] xl:h-[19.05px]" />
         </span>
         <span ref={inRef} className="absolute opacity-0">
-          <Image
-            src={assets.linkArrowGreen}
-            alt="arrow-right"
-            width={20}
-            height={20}
-            className="w-5 h-5 xl:w-[19px] xl:h-[19.05px]"
-          />
+          <Image src={assets.linkArrowGreen} alt="arrow-right" width={20} height={20} className="w-5 h-5 xl:w-[19px] xl:h-[19.05px]" />
         </span>
       </span>
     </span>
@@ -83,18 +52,13 @@ const ArrowLoopIcon = ({ playTick }: { playTick: number }) => {
 
 const ProjectTitleCta = ({ title, href }: { title: string; href: string }) => {
   const [playTick, setPlayTick] = useState(0);
-  const triggerArrow = () => setPlayTick((prev) => prev + 1);
-
   return (
     <Link
       href={href}
-      onMouseEnter={triggerArrow}
+      onMouseEnter={() => setPlayTick((p) => p + 1)}
       className="bg-light-white w-fit p-2 lg:p-4 min-w-[50%] flex items-center justify-between gap-4 group cursor-pointer"
     >
-
-      <h3 className="text-xl lg:text-2xl leading-normal font-normal text-black">
-        {title}
-      </h3>
+      <h3 className="text-xl lg:text-2xl leading-normal font-normal text-black">{title}</h3>
       <ArrowLoopIcon playTick={playTick} />
     </Link>
   );
@@ -110,13 +74,18 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
   const [virtualIndex, setVirtualIndex] = useState(projects.length);
   const [dragOffset, setDragOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
+
+  // All drag logic in refs — pointer events fire before React re-renders,
+  // so reading state gives stale values. Refs are always live.
+  const isDraggingRef = useRef(false);
   const virtualIndexRef = useRef(projects.length);
   const activePointerIdRef = useRef<number | null>(null);
   const dragStartXRef = useRef(0);
   const dragStartYRef = useRef(0);
   const dragAxisRef = useRef<"x" | "y" | null>(null);
-  const didDragRef = useRef(false);
-  const blockClickRef = useRef(false);
+  // Set to true only after a confirmed swipe — blocks the post-swipe click
+  const didSwipeRef = useRef(false);
+
   const projectsCount = projects.length;
 
   const loopItems = useMemo(() => {
@@ -147,7 +116,6 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
         setViewportWidth(viewportRef.current.clientWidth);
       }
     };
-
     updateLayout();
     window.addEventListener("resize", updateLayout);
     return () => window.removeEventListener("resize", updateLayout);
@@ -162,8 +130,7 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
 
   const gap = windowWidth >= 1024 ? 40 : 15;
   const perView = getPerView();
-  const slideWidth =
-    viewportWidth > 0 ? (viewportWidth - gap * (perView - 1)) / perView : 0;
+  const slideWidth = viewportWidth > 0 ? (viewportWidth - gap * (perView - 1)) / perView : 0;
   const step = slideWidth + gap;
   const translateX = -(virtualIndex * step);
   const activeIndex = projectsCount
@@ -173,17 +140,13 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
 
   useEffect(() => {
     if (enableTransition) return;
-    const id = requestAnimationFrame(() => {
-      setEnableTransition(true);
-    });
+    const id = requestAnimationFrame(() => setEnableTransition(true));
     return () => cancelAnimationFrame(id);
   }, [enableTransition]);
 
   const recenterWithoutJump = (direction: "next" | "prev") => {
     if (!projectsCount) return;
     const current = virtualIndexRef.current;
-
-    // Recenter before animating so boundary reset is never visible.
     if (direction === "next" && current >= projectsCount * 2 - 1) {
       setEnableTransition(false);
       setVirtualIndex(current - projectsCount);
@@ -193,7 +156,6 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
       });
       return;
     }
-
     if (direction === "prev" && current <= projectsCount) {
       setEnableTransition(false);
       setVirtualIndex(current + projectsCount);
@@ -203,22 +165,15 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
       });
       return;
     }
-
     setEnableTransition(true);
     setVirtualIndex((prev) => (direction === "next" ? prev + 1 : prev - 1));
   };
 
-  const handlePrevClick = () => {
-    if (!projectsCount) return;
-    recenterWithoutJump("prev");
-  };
-
-  const handleNextClick = () => {
-    if (!projectsCount) return;
-    recenterWithoutJump("next");
-  };
+  const handlePrevClick = () => { if (projectsCount) recenterWithoutJump("prev"); };
+  const handleNextClick = () => { if (projectsCount) recenterWithoutJump("next"); };
 
   const resetDragState = () => {
+    isDraggingRef.current = false;
     setIsDragging(false);
     setDragOffset(0);
     dragAxisRef.current = null;
@@ -227,22 +182,25 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
   const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
     if (!projectsCount || step <= 0) return;
     if (event.pointerType === "mouse" && event.button !== 0) return;
+
+    didSwipeRef.current = false;
     dragStartXRef.current = event.clientX;
     dragStartYRef.current = event.clientY;
     activePointerIdRef.current = event.pointerId;
-    // Avoid capturing touch pointers so vertical page scrolling remains natural.
-    if (event.pointerType === "mouse") {
-      event.currentTarget.setPointerCapture(event.pointerId);
-    }
+
+    // ✅ NO setPointerCapture — this was causing click events to fire on the
+    // viewport div instead of the Link underneath, breaking link navigation.
+    // Without capture, mouse drag still works as long as pointer stays in viewport.
+
     dragAxisRef.current = null;
-    didDragRef.current = false;
-    setEnableTransition(false);
+    isDraggingRef.current = true;
     setIsDragging(true);
+    setEnableTransition(false);
     setDragOffset(0);
   };
 
   const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (!isDragging || activePointerIdRef.current !== event.pointerId) return;
+    if (!isDraggingRef.current || activePointerIdRef.current !== event.pointerId) return;
     const dx = event.clientX - dragStartXRef.current;
     const dy = event.clientY - dragStartYRef.current;
 
@@ -258,43 +216,32 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
       return;
     }
 
-    if (Math.abs(dx) > 8) {
-      didDragRef.current = true;
-      blockClickRef.current = true;
-    }
-
     setDragOffset(dx);
   };
 
   const handlePointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (!isDragging || activePointerIdRef.current !== event.pointerId) return;
+    if (!isDraggingRef.current || activePointerIdRef.current !== event.pointerId) return;
     const dx = event.clientX - dragStartXRef.current;
     const dragAxis = dragAxisRef.current;
     const swipeThreshold = Math.max(40, step * 0.2);
-    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
-      event.currentTarget.releasePointerCapture(event.pointerId);
-    }
+
     activePointerIdRef.current = null;
     resetDragState();
+    setEnableTransition(true);
 
     if (dragAxis === "x" && Math.abs(dx) >= swipeThreshold) {
-      if (dx < 0) {
-        handleNextClick();
-      } else {
-        handlePrevClick();
-      }
-      return;
+      // Real swipe — block the synthetic click that fires right after pointerup
+      didSwipeRef.current = true;
+      if (dx < 0) handleNextClick();
+      else handlePrevClick();
     }
-
-    setEnableTransition(true);
+    // No swipe → didSwipeRef stays false → onClickCapture lets the click through → Links navigate
   };
 
   const handlePointerCancel = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (!isDragging) return;
-    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
-      event.currentTarget.releasePointerCapture(event.pointerId);
-    }
+    if (!isDraggingRef.current) return;
     activePointerIdRef.current = null;
+    didSwipeRef.current = false;
     resetDragState();
     setEnableTransition(true);
   };
@@ -303,29 +250,24 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
     <section className="py-57px pb-14 xl:pb-25 bg-light-white dark:bg-light-dark max-w-[1920px] mx-auto overflow-hidden">
       <div ref={headerContainerRef} className="container">
         <div className="mb-57px flex items-center justify-between">
-          <motion.h2 variants={moveUp()} initial="hidden" whileInView="show" viewport={{ once: true }} className=" text-4xl xl:text-5xl leading-lh-text68 font-normal text-black dark:text-white" >
+          <motion.h2 variants={moveUp()} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-4xl xl:text-5xl leading-lh-text68 font-normal text-black dark:text-white" >
             Key Projects
           </motion.h2>
-
-          <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true }} className="flex border border-foreground dark:border-white rounded-full" >
-            <button
-              type="button"
-              aria-label="Previous project"
-              onClick={handlePrevClick}
+          <motion.div
+            variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true }}
+            className="flex border border-foreground dark:border-white rounded-full"
+          >
+            <button type="button" aria-label="Previous project" onClick={handlePrevClick}
               className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] border-r border-foreground dark:border-white rounded-tl-full rounded-bl-full group cursor-pointer hover:bg-accent transition-all duration-300"
             >
-              <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]" >
+              <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]">
                 <path d="M8.33594 1.33154L1.66731 8.00017L8.33594 14.6688" stroke="#7AC142" className="group-hover:stroke-white transition-all duration-300" strokeWidth="2" strokeLinecap="round" />
               </svg>
             </button>
-
-            <button
-              type="button"
-              aria-label="Next project"
-              onClick={handleNextClick}
+            <button type="button" aria-label="Next project" onClick={handleNextClick}
               className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] rounded-tr-full rounded-br-full cursor-pointer group hover:bg-accent dark:hover:bg-secondary transition-all duration-300"
             >
-              <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]" >
+              <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]">
                 <path d="M1.66406 1.33154L8.33269 8.00017L1.66406 14.6688" stroke="#7AC142" className="group-hover:stroke-white transition-all duration-300" strokeWidth="2" strokeLinecap="round" />
               </svg>
             </button>
@@ -340,12 +282,15 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
         onPointerCancel={handlePointerCancel}
-        onDragStart={(event) => event.preventDefault()}
-        onClickCapture={(event) => {
-          if (!blockClickRef.current) return;
-          event.preventDefault();
-          event.stopPropagation();
-          blockClickRef.current = false;
+        onDragStart={(e) => e.preventDefault()}
+        // Only fires when didSwipeRef=true (after a real swipe) — blocks the
+        // synthetic click that the browser fires after pointerup on mouse devices.
+        // For a simple tap/click, didSwipeRef is always false so this is a no-op.
+        onClickCapture={(e) => {
+          if (!didSwipeRef.current) return;
+          didSwipeRef.current = false;
+          e.preventDefault();
+          e.stopPropagation();
         }}
         style={{
           marginLeft: `${leftOffset}px`,
@@ -360,36 +305,46 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
           style={{
             gap: `${gap}px`,
             transform: `translate3d(${translateX + dragOffset}px, 0, 0)`,
-            transition:
-              enableTransition && !isDragging ? "transform 0.8s ease" : "none",
+            transition: enableTransition && !isDragging ? "transform 0.8s ease" : "none",
             willChange: "transform",
           }}
         >
           {loopItems.map((item, index) => (
-            <div
-              key={index}
-              className="overflow-hidden shrink-0 3xl:h-[633px]"
-              style={{ width: `${slideWidth}px` }}
-            >
+            <div key={index} className="overflow-hidden shrink-0 3xl:h-[633px]" style={{ width: `${slideWidth}px` }}>
               <motion.div
                 variants={moveUp((projectsCount ? index % projectsCount : index) * 0.15)}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
+                initial="hidden" whileInView="show" viewport={{ once: true }}
                 className="relative h-[350px] xl:h-[450px] 3xl:h-[633px] w-full flex flex-col justify-end px-4 md:px-6 py-6 xl:py-8 group"
               >
-                <Image src={item.thumbnail} alt={item.title} width={2000} height={1633} className="w-full h-full object-cover absolute inset-0 z-0" />
-
-                <div className={` relative z-10 transition-all duration-500 content-box ${activeIndex === (index % projectsCount) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"} `}
+                {/* Full-card image link — no setPointerCapture means click events
+                    fire on this Link (not the viewport), so navigation works.
+                    Drag works because pointermove/pointerup still bubble to the viewport. */}
+                <Link
+                  href={`/projects/${item.slug}`}
+                  className="absolute inset-0 z-0"
+                  tabIndex={-1}
+                  aria-label={`View project: ${item.title}`}
+                  draggable={false}
                 >
-                  <Link href={`/projects/${item.slug}`} className="bg-black w-fit p-2 lg:px-5 lg:py-3 block" >
+                  <Image
+                    src={item.thumbnail}
+                    alt={item.title}
+                    width={2000}
+                    height={1633}
+                    className="w-full h-full object-cover"
+                    draggable={false}
+                  />
+                </Link>
+
+                <div className={`relative z-10 transition-all duration-500 content-box ${activeIndex === index % projectsCount ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                  }`}>
+                  <Link href={`/projects/${item.slug}`} className="bg-black w-fit p-2 lg:px-5 lg:py-3 block">
                     <p className="text-lg leading-lh-text19 font-normal text-white !text-left">
                       {item.secondSection.projectType.name},{" "}
                       {item.secondSection.sector.name},{" "}
                       {item.secondSection.location.name}
                     </p>
                   </Link>
-
                   <ProjectTitleCta title={item.title} href={`/projects/${item.slug}`} />
                 </div>
               </motion.div>
@@ -399,7 +354,7 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
       </div>
 
       <div className="swiper-pagination w-full">
-        <div className="flex justify-center items-center gap-2 mt-4 lg:mt-[40px] w-fit mx-auto ">
+        <div className="flex justify-center items-center gap-2 mt-4 lg:mt-[40px] w-fit mx-auto">
           {projects.map((_, idx) => (
             <button
               key={idx}
