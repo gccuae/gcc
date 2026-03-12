@@ -19,7 +19,7 @@ interface ScopsProps {
   const slidesPerView425 = Math.min(1.2, maxVisibleSlides);
   const slidesPerView768 = Math.min(3, maxVisibleSlides);
   const slidesPerView1024 = Math.min(3.5, maxVisibleSlides);
-  const slidesPerView1280 = Math.min(3.5, maxVisibleSlides);
+  const slidesPerView1280 = Math.min(4.5, maxVisibleSlides);
 
   const handlePrev = () => {
     if (!swiper) return;
@@ -57,21 +57,9 @@ interface ScopsProps {
               disabled={!swiper || (!canLoop && data.items.length <= 1)}
               className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] rounded-tr-full rounded-br-full cursor-pointer group hover:bg-accent transition-all duration-300"
             >
-              <svg
-                width="10"
-                height="16"
-                viewBox="0 0 10 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]"
+              <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]"
               >
-                <path
-                  d="M1.66406 1.33154L8.33269 8.00017L1.66406 14.6688"
-                  stroke="#7AC142"
-                  className="group-hover:stroke-white transition-all duration-300"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
+                <path d="M1.66406 1.33154L8.33269 8.00017L1.66406 14.6688" stroke="#7AC142" className="group-hover:stroke-white transition-all duration-300" strokeWidth="2" strokeLinecap="round" />
               </svg>
             </button>
           </div>
@@ -122,7 +110,7 @@ interface ScopsProps {
                   height={500}
                   draggable={false}
                   sizes="(min-width: 1280px) 22vw, (min-width: 1024px) 28vw, (min-width: 768px) 33vw, 85vw"
-                  loading={index < 6 ? "eager" : "lazy"}
+                  // loading={index < 6 ? "eager" : "lazy"}
                   fetchPriority={index < 4 ? "high" : "auto"}
                   className="w-full h-full object-cover select-none"
                 />

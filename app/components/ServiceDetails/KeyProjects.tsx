@@ -378,18 +378,11 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
                 viewport={{ once: true }}
                 className="relative h-[350px] xl:h-[450px] 3xl:h-[633px] w-full flex flex-col justify-end px-4 md:px-6 py-6 xl:py-8 group"
               >
-                <Image src={item.thumbnail} alt={item.title} width={1003} height={633} className="w-full h-full object-cover absolute inset-0 z-0" />
+                <Image src={item.thumbnail} alt={item.title} width={2000} height={1633} className="w-full h-full object-cover absolute inset-0 z-0" />
 
-                <div
-                  className={`
-                    relative z-10 transition-all duration-500 content-box
-                    ${activeIndex === (index % projectsCount) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
-                  `}
+                <div className={` relative z-10 transition-all duration-500 content-box ${activeIndex === (index % projectsCount) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"} `}
                 >
-                  <Link
-                    href={`/projects/${item.slug}`}
-                    className="bg-black w-fit p-2 lg:px-5 lg:py-3 block"
-                  >
+                  <Link href={`/projects/${item.slug}`} className="bg-black w-fit p-2 lg:px-5 lg:py-3 block" >
                     <p className="text-lg leading-lh-text19 font-normal text-white !text-left">
                       {item.secondSection.projectType.name},{" "}
                       {item.secondSection.sector.name},{" "}
