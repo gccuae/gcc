@@ -78,7 +78,7 @@ const DetailsBlock: React.FC<DetailsBlockProps> = ({
             </p>
           </div>
           <button
-            className="hidden xl:block h-fit mt-auto align-self-end"
+            className="hidden xl:block h-fit mt-auto align-self-end cursor-pointer"
             onClick={() => window.open(selectedItem.document, "_blank")}
           >
             <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg" >

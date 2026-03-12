@@ -40,15 +40,14 @@ const Modal = ({
             }}
             className="relative w-full max-w-7xl max-h-[90vh] overflow-y-auto rounded-xl bg-light-white dark:bg-[#0d0d0d] shadow-lg p-6 sm:p-10 md:p-[57px] 2xl:p-[77px]"
           >
-            <button
-              onClick={onClose}
-              className="absolute top-3 right-3 text-gray-500 hover:text-black dark:hover:text-white"
+            <button onClick={onClose} className="absolute top-5 right-5 md:top-6 md:right-6 xl:top-8 xl:right-8 p-1 rounded-full text-gray-500 hover:text-black dark:hover:text-white cursor-pointer"
             >
               <Image
                 src="/assets/img/careers/close-popup.svg"
                 alt="Close"
-                width={20}
-                height={20}
+                width={30}
+                height={30}
+                className="w-7 h-7 md:w-8 md:h-8 dark:invert-100"
               />
             </button>
 
