@@ -10,15 +10,16 @@ interface ScopsProps {
   data: SecondSectionSecondSection;
 }
 
-const Scops = ({ data }: ScopsProps) => {
+  const Scops = ({ data }: ScopsProps) => {
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
   const totalItems = data.items.length;
-  const canLoop = totalItems > 1;
-  const maxVisibleSlides = canLoop ? totalItems - 0.1 : 1;
+  // Looping with too few slides can cause Swiper clone/reflow jitter on load.
+  const canLoop = totalItems > 5;
+  const maxVisibleSlides = canLoop ? totalItems - 0.1 : totalItems;
   const slidesPerView425 = Math.min(1.2, maxVisibleSlides);
   const slidesPerView768 = Math.min(3, maxVisibleSlides);
   const slidesPerView1024 = Math.min(3.5, maxVisibleSlides);
-  const slidesPerView1280 = Math.min(4.5, maxVisibleSlides);
+  const slidesPerView1280 = Math.min(3.5, maxVisibleSlides);
 
   const handlePrev = () => {
     if (!swiper) return;
@@ -45,21 +46,8 @@ const Scops = ({ data }: ScopsProps) => {
               disabled={!swiper || (!canLoop && data.items.length <= 1)}
               className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] border-r border-white rounded-tl-full rounded-bl-full group cursor-pointer hover:bg-accent transition-all duration-300"
             >
-              <svg
-                width="10"
-                height="16"
-                viewBox="0 0 10 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]"
-              >
-                <path
-                  d="M8.33594 1.33154L1.66731 8.00017L8.33594 14.6688"
-                  stroke="#7AC142"
-                  className="group-hover:stroke-white transition-all duration-300"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
+              <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]" >
+                <path d="M8.33594 1.33154L1.66731 8.00017L8.33594 14.6688" stroke="#7AC142" className="group-hover:stroke-white transition-all duration-300" strokeWidth="2" strokeLinecap="round" />
               </svg>
             </button>
             <button
@@ -92,15 +80,20 @@ const Scops = ({ data }: ScopsProps) => {
       <Swiper
         onSwiper={setSwiper}
         spaceBetween={40}
-        loop={true}
-        loopAdditionalSlides={2}
-        // slidesPerGroup={1}
+        loop={canLoop}
+        loopAdditionalSlides={canLoop ? Math.min(2, totalItems) : 0}
         allowTouchMove={true}
         simulateTouch={true}
         grabCursor={true}
+        watchOverflow={true}
+        touchStartPreventDefault={false}
+        touchMoveStopPropagation={false}
         speed={800}
-        // watchOverflow={false}
+        breakpointsBase="window"
         breakpoints={{
+          0: {
+            slidesPerView: 1,
+          },
           425: {
             slidesPerView: slidesPerView425,
           },
@@ -110,13 +103,14 @@ const Scops = ({ data }: ScopsProps) => {
           1024: {
             slidesPerView: slidesPerView1024,
           },
-          1280: {
+          1360: {
             slidesPerView: slidesPerView1280,
           },
         }}
-        className="scope-swiper w-full"
+        className="scope-swiper w-full touch-pan-y"
+        style={{ touchAction: "pan-y" }}
       >
-        {[...data.items, ...data.items].map((item, index) => (
+        {data.items.map((item, index) => (
           <SwiperSlide key={index}>
             <div className="px-[15px] md:px-0 border-b border-sm-gray hover:border-primary transition-colors duration-300 flex flex-col h-full justify-between">
               {/* Top: Image */}
@@ -128,8 +122,8 @@ const Scops = ({ data }: ScopsProps) => {
                   height={500}
                   draggable={false}
                   sizes="(min-width: 1280px) 22vw, (min-width: 1024px) 28vw, (min-width: 768px) 33vw, 85vw"
-                  loading={index < 2 ? "eager" : "lazy"}
-                  fetchPriority={index < 2 ? "high" : "auto"}
+                  loading={index < 6 ? "eager" : "lazy"}
+                  fetchPriority={index < 4 ? "high" : "auto"}
                   className="w-full h-full object-cover select-none"
                 />
               </div>

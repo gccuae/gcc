@@ -15,7 +15,7 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
       className="flex flex-col justify-between border-b dark:border-white/20 pb-3 lg:pb-4 xl:pb-[25px] group transition-all duration-300"
     >
       <Link href={`/expertise/${item.slug}`} className="flex flex-col h-full">
-        <div className="mb-4 xl:mb-[17px] overflow-hidden relative h-[300px] xl:h-[486px] p-4 xl:p-[27px] flex justify-end items-end">
+        <div className="mb-4 xl:mb-[17px] overflow-hidden relative h-[300px] xl:h-[350px] 3xl:h-[486px] p-4 xl:p-[27px] flex justify-end items-end">
           <Image
             src={item.image}
             alt={item.title}
@@ -34,7 +34,7 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
           <div className="rounded-full flex items-center justify-center group-hover:bg-primary transition-all duration-300 overflow-hidden p-[12px] xl:p-[19px] w-12 h-12 xl:w-20 xl:h-20">
             <Image src={item.logo} alt={item.title} width={15} height={15} className="w-12 h-12 xl:w-[45px] xl:h-[45px] group-hover:brightness-0 group-hover:invert-100" />
           </div>
-          <h3 className="text-xl xl:text-2xl leading-[1.2] dark:text-white dark:group-hover:text-primary group-hover:text-black transition-all duration-300 line-clamp-2">
+          <h3 className="text-xl text-[1.8rem] 3xl:text-2xl leading-[1.2] dark:text-white dark:group-hover:text-primary group-hover:text-black transition-all duration-300 line-clamp-2">
             {item.title}
           </h3>
         </div>
