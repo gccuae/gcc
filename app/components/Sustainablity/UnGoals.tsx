@@ -92,7 +92,7 @@ const SectorSlider = ({
                       className="h-full border-t-1 md:border-r-1 dark:border-white/20 relative group md:pl-[15px] md:pr-[15px] xl:pr-0 max-md:mb-5" >
                       <div className="absolute -top-1 left-0 w-full h-[6px] bg-transparent group-hover:bg-primary transition-colors duration-300 z-50"></div>
 
-                      <div className="flex flex-col justify-between xl:max-h-[35em] overflow-hidden z-40 relative group">
+                      <div className="flex flex-col justify-between max-h-[28em] md:max-h-[35em] 3xl:max-h-[38em] overflow-hidden z-40 relative group">
                         <div className="flex xl:pl-4 xl:pr-3 pt-6 xl:pt-[37px] group-first:pl-0 transition-all duration-300">
                           <div className="flex flex-col items-start">
                             <Image src={item.logo} alt={item.logoAlt} width={100} height={100} className="w-[98px] h-[100px] object-contain mb-[17px] " />
@@ -112,7 +112,7 @@ const SectorSlider = ({
                           </div>
                         )}
 
-                        <div className="mt-auto overflow-hidden group-first:pl-0 relative z-20 3xl:pt-27px pt-3 min-h-[300px] max-h-[300px] max-xl:h-[400px]">
+                        <div className="mt-auto overflow-hidden group-first:pl-0 relative z-20 3xl:pt-27px pt-3 max-h-[300px]  md:max-h-[400px] max-xl:h-[400px] 2xl:max-h-[500px]">
                           <Image src={item.image} alt={item.imageAlt} width={487} height={403}
                             className="w-full h-full object-cover object-bottom flex overflow-hidden pl-0 pr-0 xl:pl-[15px] xl:pr-[15px] group-first:pl-0 xl:min-h-[403px]" />
                         </div>

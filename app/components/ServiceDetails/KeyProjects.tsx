@@ -230,7 +230,10 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
     dragStartXRef.current = event.clientX;
     dragStartYRef.current = event.clientY;
     activePointerIdRef.current = event.pointerId;
-    event.currentTarget.setPointerCapture(event.pointerId);
+    // Avoid capturing touch pointers so vertical page scrolling remains natural.
+    if (event.pointerType === "mouse") {
+      event.currentTarget.setPointerCapture(event.pointerId);
+    }
     dragAxisRef.current = null;
     didDragRef.current = false;
     setEnableTransition(false);
@@ -249,7 +252,9 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
     }
 
     if (dragAxisRef.current !== "x") {
+      activePointerIdRef.current = null;
       resetDragState();
+      setEnableTransition(true);
       return;
     }
 
@@ -284,8 +289,11 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
     setEnableTransition(true);
   };
 
-  const handlePointerCancel = () => {
+  const handlePointerCancel = (event: React.PointerEvent<HTMLDivElement>) => {
     if (!isDragging) return;
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
     activePointerIdRef.current = null;
     resetDragState();
     setEnableTransition(true);
@@ -360,7 +368,7 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
           {loopItems.map((item, index) => (
             <div
               key={index}
-              className="overflow-hidden shrink-0 2xl:h-[633px]"
+              className="overflow-hidden shrink-0 3xl:h-[633px]"
               style={{ width: `${slideWidth}px` }}
             >
               <motion.div
@@ -368,7 +376,7 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true }}
-                className="relative h-[350px] xl:h-[450px] 2xl:h-[633px] w-full flex flex-col justify-end px-4 md:px-6 py-6 xl:py-8 group"
+                className="relative h-[350px] xl:h-[450px] 3xl:h-[633px] w-full flex flex-col justify-end px-4 md:px-6 py-6 xl:py-8 group"
               >
                 <Image src={item.thumbnail} alt={item.title} width={1003} height={633} className="w-full h-full object-cover absolute inset-0 z-0" />
 

@@ -58,7 +58,7 @@ const ContactForm: React.FC = () => {
               className="block text-base font-normal leading-lh-base text-black dark:text-white/70 mb-27px xl:mb-37px"
             >
               {" "}
-              First Name{" "}
+              First Name <span className="text-primary">*</span>{" "}
             </label>
             <input
               type="text"
@@ -98,7 +98,7 @@ const ContactForm: React.FC = () => {
               htmlFor="lastName"
               className="block text-base font-normal leading-lh-base text-black dark:text-white/70 mb-27px xl:mb-37px"
             >
-              Last Name
+              Last Name <span className="text-primary">*</span>
             </label>
             <input
               type="text"
@@ -142,7 +142,7 @@ const ContactForm: React.FC = () => {
               htmlFor="email"
               className="block text-base font-normal leading-lh-base text-black dark:text-white/70 mb-27px xl:mb-37px"
             >
-              Email
+              Email <span className="text-primary">*</span>
             </label>
             <input
               type="email"
@@ -178,7 +178,7 @@ const ContactForm: React.FC = () => {
               htmlFor="contact"
               className="block text-base font-normal leading-lh-base text-black dark:text-white/70 mb-27px xl:mb-37px"
             >
-              Contact
+              Contact <span className="text-primary">*</span>
             </label>
             <input
               type="tel"
@@ -220,7 +220,7 @@ const ContactForm: React.FC = () => {
             htmlFor="message"
             className="block text-base font-normal leading-lh-base text-black dark:text-white/70 mb-27px xl:mb-37px"
           >
-            Message
+            Message <span className="text-primary">*</span>
           </label>
           <textarea
             id="message"
@@ -281,7 +281,7 @@ const ContactForm: React.FC = () => {
               htmlFor="acceptPrivacy"
               className="text-base font-light text-para-color dark:text-white"
             >
-              I ACCEPT THE PRIVACY AND TERMS
+              I ACCEPT THE PRIVACY AND TERMS <span className="text-primary">*</span>
             </label>
           </motion.div>
           {errors.acceptPrivacy && (
