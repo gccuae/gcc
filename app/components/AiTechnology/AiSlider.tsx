@@ -96,15 +96,8 @@ const AiSlider = ({
   if (!data || data.length === 0) return null;
 
   return (
-    <motion.div
-      variants={moveUp(0.2)}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true }}
-      className="relative"
-    >
-      <section
-        className="transition-colors duration-500 h-auto xl:h-[600px] relative after:content-[''] after:absolute after:top-0 after:left-0 after:w-full after:h-full afterbgf"
+
+      <section className="transition-colors duration-500 h-auto xl:h-[600px] relative after:content-[''] after:absolute after:top-0 after:left-0 after:w-full after:h-full afterbgf"
         style={{ background: `url(${bgImage}) center/cover no-repeat` }}
       >
         <div className="container relative h-full w-full">
@@ -185,7 +178,7 @@ const AiSlider = ({
             </Swiper>
 
             {/* Navigation Buttons */}
-            <div className="cursor-pointer absolute bottom-2 right-2 md:top-[40%] ring-1 ring-white md:ring-0 xl:-right-3 2xl:-right-8 z-50 w-[50px] h-[50px] xl:w-[65px] xl:h-[65px] 2xl:w-[94px] 2xl:h-[94px] bg-black rounded-full flex items-center justify-center gap-4 xl:gap-6">
+            <div className="cursor-pointer absolute bottom-2 right-2 md:top-[40%] ring-1 ring-white/40 md:ring-0 xl:-right-3 2xl:-right-8 z-50 w-[50px] h-[50px] xl:w-[65px] xl:h-[65px] 2xl:w-[94px] 2xl:h-[94px] bg-black rounded-full flex items-center justify-center gap-4 xl:gap-6">
               <button
                 onClick={handlePrev}
                 className="text-accent w-2 xl:w-[12px] h-auto cursor-pointer"
@@ -203,7 +196,7 @@ const AiSlider = ({
           </motion.div>
         </div>
       </section>
-    </motion.div>
+ 
   );
 };
 

@@ -77,7 +77,7 @@ const Scops = ({ data }: ScopsProps) => {
         {data.items.map((item, index) => (
           <SwiperSlide key={index}>
             <div className="px-[15px] md:px-0 border-b border-sm-gray hover:border-primary transition-colors duration-300 flex flex-col h-full justify-between">
-              <div className="aspect-[4/3] md:aspect-[5/4] 2xl:aspect-auto 2xl:h-[380px]">
+              <div className="aspect-[4/3] md:aspect-[5/4] 2xl:aspect-auto h-[250px] 2xl:h-[380px]">
                 <Image
                   src={item.image}
                   alt={item.imageAlt}

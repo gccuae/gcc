@@ -256,7 +256,7 @@ const SocialImpact = ({
                         alt={item.title}
                         width={775}
                         height={483}
-                        className="w-full max-w-[775px] h-[330px] lg:h-[433px] xl:h-[483px] object-cover"
+                        className="w-full max-w-[775px] h-[250px] lg:h-[433px] xl:h-[483px] object-cover"
                       />
                     </motion.div>
 

@@ -21,7 +21,7 @@ const HealthandSafety = ({ title, description, measures }: Props) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-6xl leading-lh-title font-normal mb-4 xl:mb-[27px] text-white"
+            className="text-4xl 2xl:text-5xl leading-lh-title font-normal mb-4 xl:mb-[27px] text-white"
           >
             {title}
           </motion.h2>

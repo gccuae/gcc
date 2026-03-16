@@ -25,9 +25,9 @@ const HIghlights = ({ data }: { data: ForthSection }) => {
               whileInView="show"
               viewport={{ once: true }}
               key={index}
-              className="group grid gap-30px grid-rows-[auto_1fr]"
+              className="group grid gap-3 xl:gap-30px grid-rows-[auto_1fr]"
             >
-              <div className="border-b dark:border-white/20 group-hover:border-b-primary pb-30px transition-all duration-300">
+              <div className="border-b dark:border-white/20 group-hover:border-b-primary pb-4 xl:pb-30px transition-all duration-300">
                 <h3 className="text-2xl leading-[1.12] xl:leading-[1.5625] text-black dark:text-white">
                   {item.title}
                 </h3>

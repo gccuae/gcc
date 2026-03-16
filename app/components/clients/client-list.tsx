@@ -7,35 +7,21 @@ import { moveUp } from "../motionVarients";
 
 const ClientList = ({ data }: { data: ClientsFirstSection }) => {
   return (
-    <section className="pt-57px pb-12 md:pb-15 xl:py-57px">
+    <section className="pt-57px pb-13 md:pb-15 xl:py-57px">
       <div className="container">
         <div className="mb-57px">
-          <motion.p
-            variants={moveUp()}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="xl:text-xl leading-[1.608695652173913] text-para-color dark:text-white/80"
-          >
+          <motion.p variants={moveUp()} initial="hidden" whileInView="show" viewport={{ once: true }} 
+          className="xl:text-xl leading-[1.608695652173913] text-para-color dark:text-white/80" >
             {data.description}
           </motion.p>
         </div>
-        <motion.div
-          variants={moveUp()}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 border-l border-t dark:border-white/20"
-        >
+        <motion.div variants={moveUp()} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 border-l border-t dark:border-white/20" >
           {data.items.map((client, index) => (
-            <div key={index} className="p-4 xl:p-6 flex items-center justify-center border-r border-b dark:border-white/20 group h-auto xl:h-[380px] " >
-              <motion.div variants={moveUp(index * 0.05)} initial="hidden" whileInView="show" viewport={{ once: true }} className="dark:bg-white dark:h-full dark:rounded-2xl dark:w-full" >
-                <Image
-                  src={client.logo}
-                  alt={client.logoAlt}
-                  width={300}
-                  height={300}
-                  className="max-w-full h-full object-contain group-hover:scale-110 transition-all duration-300 dark:mix-blend-multiply"
+            <div key={index} className="p-4 xl:p-6 flex items-stretch justify-center border-r border-b dark:border-white/20 group h-auto xl:min-h-[280px] " >
+              <motion.div variants={moveUp(index * 0.05)} initial="hidden" whileInView="show" viewport={{ once: true }}
+               className="w-full overflow-hidden flex items-center justify-center py-6 xl:py-8 dark:h-full dark:bg-white dark:rounded-2xl dark:px-6 dark:py-6 2xl:dark:px-8 2xl:dark:py-8" >
+                <Image src={client.logo} alt={client.logoAlt} width={300} height={300}
+                  className="max-w-[82%] max-h-[82%] mx-auto h-auto object-contain group-hover:scale-105 transition-all duration-300 dark:mix-blend-multiply"
                 />
               </motion.div>
             </div>

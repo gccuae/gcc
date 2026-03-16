@@ -20,7 +20,7 @@ const WhyQhse = ({ title, description, matters }: Props) => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="text-3xl md:text-4xl lg:text-6xl leading-[1.147058823529412] text-black dark:text-white mb-3 xl:mb-27px"
+          className="text-4xl xl:text-5xl leading-[1.147058823529412] text-black dark:text-white mb-3 xl:mb-27px"
         >
           {title}
         </motion.h2>
