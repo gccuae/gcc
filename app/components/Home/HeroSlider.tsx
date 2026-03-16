@@ -117,7 +117,7 @@ const HeroSlider = ({ data, counterData }: HeroSliderProps) => {
         <div className="container">
           <div className="grid grid-cols-2 lg:grid-cols-4 pt-8 xl:pt-[85px] relative z-10">
             <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0 }} >
-              <div className="text-white border border-[#C2C2C2] border-b-0 transition-all duration-300 group active:bg-primary hover:bg-primary hover:translate-y-2">
+              <div className="text-white border border-[#C2C2C2] border-b-0 transition-all duration-300 group active:bg-primary hover:bg-primary hover:translate-y-2 h-full">
                 <div className="pe-3 ps-3 xl:ps-10 py-5 xl:py-[32px]">
                   <p className="text-2xl md:text-3xl xl:text-4xl 2xl:text-5xl font-normal leading-[0.7352941176470588] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
                     {parseCounterValue(counterData[0].number).prefix}
@@ -129,18 +129,13 @@ const HeroSlider = ({ data, counterData }: HeroSliderProps) => {
               </div>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <div className="text-white border border-[#C2C2C2] border-b-0 pe-3 transition-all duration-300 group active:bg-primary hover:bg-primary hover:translate-y-2">
+            <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="-ml-px">
+              <div className="text-white border border-[#C2C2C2] border-b-0 pe-3 transition-all duration-300 group active:bg-primary hover:bg-primary hover:translate-y-2 h-full">
                 <div className="ps-3 xl:ps-10 py-5 xl:py-[32px]">
                 
                   <p className="text-2xl md:text-3xl xl:text-4xl 2xl:text-5xl font-normal leading-[0.7352941176470588] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
                    <span>
-                     <Image src="/assets/img/icons/aed.svg" alt="Dirham Icon" width={60} height={60} className="w-6 h-6 md:w-10 md:h-10 xl:w-[60px] h-[60px] inline-block me-1 mb-1" />
+                     <Image src="/assets/img/icons/aed.svg" alt="Dirham Icon" width={60} height={60} className="w-6 h-6 md:w-10 md:h-10 xl:w-[60px] xl:h-[60px] inline-block me-1 mb-1" />
                    </span> 
                     {parseCounterValue(counterData[1].number).prefix}
                     <Counter from={0} to={parseCounterValue(counterData[1].number).number} duration={2} />
@@ -154,8 +149,8 @@ const HeroSlider = ({ data, counterData }: HeroSliderProps) => {
               </div>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.4 }} >
-              <div className="text-white border border-[#C2C2C2] border-b-0 pe-3 transition-all duration-300 group active:bg-primary hover:bg-primary hover:translate-y-2">
+            <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.4 }} className="-mt-px lg:-mt-0 lg:-ml-px">
+              <div className="text-white border border-[#C2C2C2] border-b-0 pe-3 transition-all duration-300 group active:bg-primary hover:bg-primary h-full hover:translate-y-2">
                 <div className="ps-3 xl:ps-10 py-5 xl:py-[32px]">
                   <p className="text-2xl md:text-3xl xl:text-4xl 2xl:text-5xl font-normal leading-[0.7352941176470588] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
                     {parseCounterValue(counterData[2].number).prefix}
@@ -173,8 +168,8 @@ const HeroSlider = ({ data, counterData }: HeroSliderProps) => {
               </div>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.6 }} >
-              <div className="text-white border border-[#C2C2C2] border-b-0 pe-3 transition-all duration-300 group active:bg-primary hover:bg-primary hover:translate-y-2">
+            <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.6 }} className="relative z-[3] -ml-px -mt-px lg:-mt-0">
+              <div className="text-white border border-[#C2C2C2] border-b-0 pe-3 transition-all duration-300 group active:bg-primary hover:bg-primary h-full hover:translate-y-2">
                 <div className="ps-3 xl:ps-10 py-5 xl:py-[32px]">
                   <p className="text-2xl md:text-3xl xl:text-4xl 2xl:text-5xl font-normal leading-[0.7352941176470588] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
                     {parseCounterValue(counterData[3].number).prefix}

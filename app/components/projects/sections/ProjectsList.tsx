@@ -105,7 +105,7 @@ const ProjectsList = ({
 
   return (
     // <section className="dark:bg-light-dark pb-37px" ref={sectionRef}>
-    <section className="dark:bg-light-dark pb-12 md:pb-15 xl:pb-57px " ref={sectionRef}>
+    <section className="dark:bg-light-dark pt-8 pb-12 md:py-15 xl:py-57px " ref={sectionRef}>
       {/* ===================== Filter Bar ===================== */}
       <motion.div
         variants={moveUp(0.2)}
@@ -116,7 +116,7 @@ const ProjectsList = ({
         <div className="container">
           <div className="grid grid-cols-1 2xl:grid-cols-[1fr_repeat(4,1fr)_auto] xl:grid-cols-[2fr_repeat(4,1fr)_auto] items-center gap-4 xl:gap-[30px]">
             {/* Search Input */}
-            <div className="flex items-center justify-start gap-5 xl:border-r border-gray-300 dark:border-white/20 h-full pt-[20px] pb-[12px] xl:py-47px 2xl:w-[303px] pr-8">
+            <div className="flex items-center justify-start gap-5 xl:border-r border-gray-300 dark:border-white/20 h-full pb-[12px] xl:py-47px 2xl:w-[303px] pr-8">
               <Image src={"/assets/img/projects/searchIcon.svg"} alt="search" width={32} height={32} className="dark:invert-100" />
               <input
                 type="text"

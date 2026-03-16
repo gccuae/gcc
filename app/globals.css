@@ -58,7 +58,7 @@
 
 @media (max-width:1024px){
   :root {
-    --spacing-57px: clamp(1.5rem, 5vw + 0.1em, 40px);
+    --spacing-57px: clamp(2.5rem, 5vw + 0.1em, 40px);
   }
 }
 
@@ -89,7 +89,7 @@
   /* ~72px */
   --text-5xl: clamp(2rem, 5.5vw + 0.2rem, 4.25rem);
 
-  --text-4xl: clamp(2rem, 5vw + 0.2rem, 3.4rem);
+  --text-4xl: clamp(1.9rem, 5vw + 0.2rem, 3.4rem);
 
   --text-3xl: clamp(1.4rem, 5vw + 0.1rem, 2.8rem);
   /* ~68px */

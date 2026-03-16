@@ -194,7 +194,7 @@ const BlogList = ({ data }: { data: BlogData }) => {
                       ))}
                     </div>
                     {getItemsByTab(idx, cat).length > 5 && (
-                      <div className="flex justify-center mt-6 mb-2">
+                      <div className="flex justify-center mt-6 mb-4">
                         <button
                           onClick={() => handleMobileToggleMoreLess(idx)}
                           className="px-6 py-2 bg-light-white text-black rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition cursor-pointer"

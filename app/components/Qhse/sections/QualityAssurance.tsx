@@ -29,7 +29,7 @@ const QualityAssurance = ({
           viewport={{ once: true }}
           className="w-full lg:w-[49%]"
         >
-          <Image src={image} alt="Quality Assurance" width={705} height={502} className="object-cover w-full h-[402px] lg:h-[502px] xl:h-full" />
+          <Image src={image} alt="Quality Assurance" width={705} height={502} className="object-cover w-full  md:h-[402px] lg:h-[502px] xl:h-full" />
         </motion.div>
 
         {/* Right Content */}
@@ -39,19 +39,12 @@ const QualityAssurance = ({
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className=" text-4xl xl:text-5xl text-black dark:text-white leading-lh-title mb-4 md:mb-0"
+            className=" text-4xl 2xl:text-5xl text-black dark:text-white leading-lh-title mb-4 md:mb-0"
           >
             {title}
           </motion.h2>
           {description.split("\n").map((para, index) => (
-            <motion.p
-              key={index}
-              variants={moveUp(index * 0.12)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="text-lg text-para-color dark:text-white font-light leading-lh-text19 mt-3 md:mt-6"
-            >
+            <motion.p key={index} variants={moveUp(index * 0.12)} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-lg text-para-color dark:text-white font-light leading-lh-text19 mt-3 md:mt-6" >
               {para}
             </motion.p>
           ))}
@@ -70,15 +63,8 @@ const QualityAssurance = ({
               viewport={{ once: true }}
               className="flex flex-col items-center py-[11px] px-[20px] xl:px-[82px] border-r border-b border-smgray dark:border-white/20"
             >
-              <Image
-                src={cert.image}
-                alt={cert.imageAlt}
-                width={140}
-                height={140}
-              />
-              <p className="mt-[12px] font-bold text-sm text-para-color dark:text-white text-center">
-                {cert.title}
-              </p>
+              <Image src={cert.image} alt={cert.imageAlt} width={140} height={140} />
+              <p className="mt-[12px] font-bold text-sm text-para-color dark:text-white text-center"> {cert.title} </p>
             </motion.div>
           ))}
         </div>

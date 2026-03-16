@@ -41,7 +41,7 @@ const DetailsTab = ({ data }: { data: ThirdSection }) => {
   };
 
   return (
-    <section className="py-57px bg-white dark:bg-light-dark">
+    <section className="pt-57px bg-white dark:bg-light-dark">
       <div className="container">
         <div className="">
           {/* Tab buttons */}

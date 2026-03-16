@@ -42,22 +42,8 @@ const ImgDesc = ({ data }: { data: ImgDescProps }) => {
           </div>
 
           {/* Image Section */}
-          <motion.div
-            variants={moveUp(0.2)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="
-              relative order-2 xl:order-1
-              h-[350px] md:h-[400px] lg:h-[500px] xl:h-full
-            "
-          >
-            <Image
-              src={data.image}
-              alt={data.imageAlt || ""}
-              fill
-              className="object-cover"
-            />
+          <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true }} className=" relative order-2 xl:order-1 h-[250px] md:h-[400px] lg:h-[500px] xl:h-full " >
+            <Image src={data.image} alt={data.imageAlt || ""} fill className="object-cover" />
           </motion.div>
         </div>
       </div>

@@ -52,7 +52,7 @@ const MainContent = ({
           >
             {images.map((image, index) => (
               <SwiperSlide key={index} className="relative max-h-[600px]">
-                <Image src={image} width={1000} height={1000} alt="" className="w-full h-[400px] xl:h-[550px] 2xl:h-[700px] object-cover" />
+                <Image src={image} width={1000} height={1000} alt="" className="w-full h-[250px] lg:h-[400px] xl:h-[550px] 2xl:h-[700px] object-cover" />
               </SwiperSlide>
             ))}
            

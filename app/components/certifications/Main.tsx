@@ -182,11 +182,11 @@ const Main = ({ data }: AwardsProps) => {
                                 setSelectedItem(file);
                                 handleMobileToggle(combinedIndex);
                               }}
-                              className={`w-full text-left flex items-center justify-between pb-4 xl:pb-[27px] mb-4 xl:mb-[27px] cursor-pointer ${fileIndex !== item.files.length - 1
-                                ? "border-b  "
-                                : ""
-                                } transition-all duration-200 group ${selectedItem === file ? "border-b-primary" : ""
-                                }`}
+                              className={`w-full text-left flex items-center justify-between cursor-pointer transition-all duration-200 group ${
+                                fileIndex !== item.files.length - 1
+                                  ? "pb-4 xl:pb-[27px] mb-4 xl:mb-[27px] border-b"
+                                  : "pb-0 mb-0"
+                              } ${selectedItem === file ? "border-b-primary" : ""}`}
                             >
                               <div>
                                 <h3 className={`text-xl leading-normal mb-1 transition-all duration-300 

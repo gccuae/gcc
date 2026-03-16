@@ -15,7 +15,7 @@ const SectorSlider = ({
   data: SustainabilityType["forthSection"];
 }) => {
   return (
-    <section className="wrapper md:py-57px pt-57px bg-light-white dark:bg-light-dark text-white overflow-hidden">
+    <section className="wrapper pt-57px pb-10 md:pb-15 xl::py-57px  bg-light-white dark:bg-light-dark text-white overflow-hidden">
       <div className="container">
         <motion.h2
           variants={moveUp(0)}

@@ -15,7 +15,7 @@ const ViMiVa = ({ data }: ViMiVaProps) => {
   };
 
   return (
-    <section className="py-57px xl:py-57px dark:bg-black">
+    <section className="py-57px dark:bg-black">
       <div className="container">
         {/* <div className="border-b dark:border-white/20  pb-8 xl:pb-57px"> */}
         <div className="pb-8 xl:pb-57px">
@@ -24,7 +24,7 @@ const ViMiVa = ({ data }: ViMiVaProps) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className=" text-4xl xl:text-5xl leading-lh-title text-black dark:text-white mb-[17px] letterSp-2"
+            className=" text-4xl xl:text-5xl leading-lh-title text-black dark:text-white mb-3 xl:mb-[17px] letterSp-2"
           >
             {data.mainTitle}
           </motion.h2>
@@ -38,7 +38,7 @@ const ViMiVa = ({ data }: ViMiVaProps) => {
             {data.subTitle}
           </motion.h3>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 mt-5 gap-y-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 xl:mt-5 gap-y-10">
           {data.items.map((item, index) => (
             <motion.div
               variants={moveUp(index * 0.2)}
@@ -49,9 +49,9 @@ const ViMiVa = ({ data }: ViMiVaProps) => {
               className="bg-white dark:bg-black flex flex-col md:gap-5 md:border-r dark:border-white/20 md:last:border-r-0 xl:pl-8 xl:pr-8 last:pr-0 border-b last:border-b-0 last:pb-0 dark:border-white/20 pb-8 xl:pb-0 px-0 md:px-5 xl:px-0 md:border-b-0"
             >
               <div>
-                <Image src={item.logo} alt={item.logoAlt} width={50} height={50} className="w-auto h-10 xl:h-13 mb-2 md:mb-0" />
+                <Image src={item.logo} alt={item.logoAlt} width={50} height={50} className="w-auto h-10 xl:h-13 mb-4 md:mb-0" />
               </div>
-              <h3 className="text-2xl leading-lh-title text-black dark:text-white text-para-color mb-3 md:mb-0">
+              <h3 className="text-2xl leading-lh-title dark:text-white text-para-color mb-3 md:mb-0">
                 {item.title}
               </h3>
 

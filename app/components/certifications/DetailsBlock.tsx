@@ -21,7 +21,7 @@ const DetailsBlock: React.FC<DetailsBlockProps> = ({
 }) => {
   if (!selectedItem) {
     return (
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mb-12 text-center">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mb-12 last:mb-0 last:p-0 text-center">
         <div className="text-gray-400 text-6xl mb-4">📋</div>
         <h3 className="text-xl font-medium text-gray-900 dark:text-white mb-2">
           Select an item to view details
@@ -68,7 +68,7 @@ const DetailsBlock: React.FC<DetailsBlockProps> = ({
 
       {/* Document Details */}
       <div className="pt-0 xl:pt-[19.74px]">
-        <div className="flex align-items-end justify-between mb-0 pb-2 xl:pb-[22.9px] group border-b dark:border-white/20 hover:border-primary transition-colors duration-300">
+        <div className="flex align-items-end justify-between mb-0 pb-2 xl:pb-[22.9px] last:pb-0 last:mb-0 group border-b dark:border-white/20 hover:border-primary transition-colors duration-300">
           <div>
             <h3 className="hidden xl:block text-xl leading-normal font-normal text-black dark:text-white mb-2 xl:mb-[11.22px]">
               {selectedItem.documentTitle}

@@ -25,6 +25,7 @@ const AboutCompanyV = ({ data }: Props) => {
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isModalVideoReady, setIsModalVideoReady] = useState(false);
 
   const togglePlay = () => {
     const video = videoRef.current;
@@ -38,13 +39,24 @@ const AboutCompanyV = ({ data }: Props) => {
 
   useEffect(() => {
     if (isPopupOpen) {
+      const scrollbarWidth =
+        window.innerWidth - document.documentElement.clientWidth;
       document.documentElement.style.overflow = "hidden";
+      document.documentElement.style.paddingRight = `${scrollbarWidth}px`;
     } else {
       document.documentElement.style.overflow = "auto";
+      document.documentElement.style.paddingRight = "";
     }
     return () => {
-      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      document.documentElement.style.paddingRight = "";
     };
+  }, [isPopupOpen]);
+
+  useEffect(() => {
+    if (!isPopupOpen) {
+      setIsModalVideoReady(false);
+    }
   }, [isPopupOpen]);
 
   // 🔹 GSAP animations
@@ -168,6 +180,7 @@ const AboutCompanyV = ({ data }: Props) => {
               width={705}
               height={740}
               playsInline
+              preload="metadata"
               onEnded={() => setIsPlaying(false)}
             >
               Your browser does not support the video tag.
@@ -184,17 +197,33 @@ const AboutCompanyV = ({ data }: Props) => {
 
             {/* Popup Video */}
             {isPopupOpen && (
-              <div className="fixed inset-0 flex items-center justify-center bg-[#00000090] z-50 p-4 bg-black/90 backdrop-blur-sm">
-                <div className="relative w-[90%] max-w-[1080px] 2xl:h-[500px] overflow-hidden rounded-lg">
+              <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm sm:p-6">
+                <div className="relative w-full max-w-[1080px] overflow-hidden rounded-lg bg-black aspect-[1080/740] max-h-[70vh] sm:max-h-[75vh] md:max-h-[78vh] lg:max-w-[960px] lg:h-[66vh] lg:max-h-[66vh] xl:max-w-[980px] xl:h-[68vh] xl:max-h-[68vh] 2xl:max-w-[1080px] 2xl:h-[72vh] 2xl:max-h-[72vh]">
                   {/* Close Button */}
                   <button className="absolute z-10 right-5 top-5 cursor-pointer bg-white bg-opacity-50 p-2 rounded-full hover:bg-opacity-100 transition size-10 dark:text-black"
                     onClick={() => setIsPopupOpen(false)}
+                    aria-label="Close video modal"
                   >
                     ✖
                   </button>
 
                   {/* Video Player */}
-                  <video className="w-full h-full rounded-lg object-cover " src={data.video} poster={data.poster} width={1080} height={740} controls autoPlay />
+                  {!isModalVideoReady && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black">
+                      <div className="h-10 w-10 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                    </div>
+                  )}
+                  <video
+                    className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-200 ${isModalVideoReady ? "opacity-100" : "opacity-0"}`}
+                    src={data.video}
+                    width={1080}
+                    height={740}
+                    controls
+                    autoPlay
+                    playsInline
+                    preload="auto"
+                    onLoadedData={() => setIsModalVideoReady(true)}
+                  />
                 </div>
               </div>
             )}

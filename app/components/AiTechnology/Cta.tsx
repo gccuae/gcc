@@ -6,7 +6,7 @@ import { AiTechnologyType } from "./type";
 
 const Cta = ({ data }: { data: AiTechnologyType["thirdSection"] }) => {
   return (
-    <section className="py-57px bg-light-white dark:bg-black">
+    <section className="pt-57px pb-10 md:pb-15 xl:py-57px bg-light-white dark:bg-black">
       <div className="container">
         <motion.h2
           variants={moveUp(0.2)}
