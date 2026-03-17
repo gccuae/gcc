@@ -16,7 +16,7 @@ const LeadersShowcase = () => {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true }}
-                    className="text-3xl 2xl:text-5xl leading-[1.205882352941176] text-black dark:text-white mb-57px"
+                    className="text-4xl 2xl:text-5xl leading-[1.205882352941176] text-black dark:text-white mb-4 md:mb-57px"
                 >
                     More Than Structures, We Build Together
                 </motion.h2>
@@ -42,7 +42,7 @@ const LeadersShowcase = () => {
 
                             </div>{" "}
                             <div>
-                            <h3 className="text-2xl leading-[1.2] text-black dark:text-white xl:mb-2 text-center">
+                            <h3 className="text-xl md:text-2xl leading-[1.2] text-black dark:text-white xl:mb-2 text-center">
                                 {leaders[0].name}
                             </h3>
                             <p className="text-lg leading-lh-text19 text-para-color dark:text-white/70 font-light text-center">
@@ -74,10 +74,10 @@ const LeadersShowcase = () => {
                                     />
                                 </div>{" "}
                                 <div>
-                                <h3 className="text-2xl leading-[1.2] text-black dark:text-white xl:mb-2">
+                                <h3 className="text-xl md:text-2xl text-center leading-[1.2] text-black dark:text-white xl:mb-2">
                                     {item.name}
                                 </h3>
-                                <p className="text-lg leading-lh-text19 text-para-color dark:text-white/70 font-light">
+                                <p className="text-lg leading-lh-text19 text-center text-para-color dark:text-white/70 font-light">
                                     {item.position}
                                 </p>
                                 </div>

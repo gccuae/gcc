@@ -11,7 +11,7 @@ interface ServicesProps {
 
 const Services = ({ data }: ServicesProps) => {
   return (
-    <section className="pt-57px pb-12 md:pb-15 xl:py-57px bg-light-white dark:bg-light-dark">
+    <section className="pt-47px xl:pt-57px pb-12 md:pb-15 xl:py-57px bg-light-white dark:bg-light-dark">
       <div className="container">
         <motion.h2
           variants={moveUp(0.2)}

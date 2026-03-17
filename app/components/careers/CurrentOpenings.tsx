@@ -189,7 +189,7 @@ const CurrentOpenings = ({ data, jobs, departments, locations }: { data: careerD
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-4xl lg:text-5xl leading-[1.205882352941176] font-normal text-black dark:text-white mb-4 xl:mb-[17px]"
+            className="text-4xl lg:text-5xl leading-[1.205882352941176] font-normal text-black dark:text-white mb-3 md:mb-4 xl:mb-[17px]"
           >
             {data.mainTitle}
           </motion.h2>
@@ -198,7 +198,7 @@ const CurrentOpenings = ({ data, jobs, departments, locations }: { data: careerD
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-xl lg:text-2xl leading-lh-text32 text-para-color dark:text-white"
+            className="xl:text-xl 2xl:text-2xl leading-lh-text32 text-para-color dark:text-white"
           >
             {data.subTitle}
           </motion.p>

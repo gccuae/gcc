@@ -8,10 +8,10 @@ import { moveUp } from "../motionVarients";
 
 const LocationDetails = ({ data }: { data: FifthSection }) => {
     return (
-        <section className="py-57px">
-            <div className="container flex flex-col lg:flex-row gap-6 lg:gap-[30px]">
+        <section className="pt-47px md:pt-57px pb-57px">
+            <div className="container flex flex-col lg:flex-row gap-4 md:gap-6 lg:gap-[30px]">
                 {/* LEFT SECTION */}
-                <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" className="w-full lg:w-1/2 bg-black text-white p-4 lg:p-[30px] flex flex-col justify-center" >
+                <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" className="w-full lg:w-1/2 bg-black text-white px-4 pt-6 pb-8 lg:p-[30px] flex flex-col justify-center" >
                     <h2 className="text-2xl leading-[1.32] mb-3">{data.title}</h2>
                     <p className="text-lg mb-[35px] xl:mb-[62px] text-white/80 font-light leading-[1.52] lg:max-w-[90%]">
                         {data.description}

@@ -58,7 +58,7 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.4, ease: "easeInOut" }}
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 px-3 py-4 sm:px-4 sm:py-6"
     >
       <div className="container overflow-hidden">
         {/* Overlay */}
@@ -68,30 +68,30 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
         />
 
         {/* Modal Content */}
-        <div className="relative z-10 w-full overflow-y-auto">
+        <div className="relative z-10 w-full max-h-[calc(100dvh-2rem)] overflow-y-auto sm:max-h-[calc(100dvh-3rem)]">
           {/* Header */}
-          <div className="relative flex items-center justify-center mb-[15px]">
-            <div className="absolute left-1/2 transform -translate-x-1/2 text-white text-25 leading-[40px] md:text-center w-full">
+          <div className="relative mb-4 flex min-h-10 items-center justify-center sm:mb-[15px]">
+            <div className="w-full px-10 text-center text-xl leading-tight text-white sm:text-25 sm:leading-[40px]">
               {item.item}
             </div>
 
-            <button onClick={onClose} className="ml-auto text-white text-[40px] font-light z-20 cursor-pointer" >
+            <button onClick={onClose} className="absolute right-0 top-1/2 z-20 flex h-8 w-8 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/30 bg-black/40 text-2xl font-light text-white backdrop-blur-sm sm:h-10 sm:w-10 sm:text-[34px]" >
               &times;
             </button>
           </div>
 
           {/* Image Viewer */}
-          <div className="rounded-[12px] flex flex-col items-center justify-center relative w-full">
+          <div className="relative flex w-full flex-col items-center justify-center rounded-[12px]">
             {/* Prev */}
             <button
               onClick={goPrev}
-              className="absolute left-0 lg:top-1/2 top-0 lg:-translate-y-1/2 translate-y-0 cursor-pointer"
+              className="absolute left-2 top-1/2 z-20 -translate-y-1/2 cursor-pointer rounded-full bg-black/50 p-2 backdrop-blur-sm sm:left-0 sm:bg-transparent sm:p-0"
             >
-              <SlArrowLeft className="text-white hover:text-primary transition-all duration-300 h-[20px] lg:h-[28px] w-[20px] lg:w-[28px]" />
+              <SlArrowLeft className="h-4 w-4 text-white transition-all duration-300 hover:text-primary sm:h-[20px] sm:w-[20px] lg:h-[28px] lg:w-[28px]" />
             </button>
 
             {/* Image */}
-            <div className="relative mt-10 lg:mt-0 w-full lg:w-[800px] rounded-[12px] xl:w-[1000px] 2xl:w-[1264px] h-[450px] max-h-[640px] flex items-center justify-center overflow-hidden">
+            <div className="relative mt-2 flex h-[240px] max-h-[70dvh] w-full items-center justify-center overflow-hidden rounded-[12px] sm:mt-4 sm:h-[320px] md:h-[420px] lg:mt-0 lg:w-[800px] lg:max-h-[640px] xl:w-[1000px] 2xl:w-[1264px]">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={item?.images[currentIndex]?.image}
@@ -108,14 +108,14 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
 
             {/* Next */}
             <button onClick={goNext}
-              className="absolute right-0 lg:top-1/2 top-0 lg:-translate-y-1/2 translate-y-0 cursor-pointer"
+              className="absolute right-2 top-1/2 z-20 -translate-y-1/2 cursor-pointer rounded-full bg-black/50 p-2 backdrop-blur-sm sm:right-0 sm:bg-transparent sm:p-0"
             >
-              <SlArrowRight className="text-white hover:text-primary transition-all duration-300 h-[20px] lg:h-[28px] w-[20px] lg:w-[28px]" />
+              <SlArrowRight className="h-4 w-4 text-white transition-all duration-300 hover:text-primary sm:h-[20px] sm:w-[20px] lg:h-[28px] lg:w-[28px]" />
             </button>
           </div>
 
           {/* Thumbnails */}
-          <div className="relative mt-[15px] lg:mt-[30px] px-8">
+          <div className="relative mt-4 px-6 sm:mt-[15px] sm:px-8 lg:mt-[30px]">
             <button
               type="button"
               onClick={() => thumbsSwiperRef.current?.slidePrev()}
@@ -123,7 +123,7 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
                 thumbAtStart ? "opacity-40 cursor-default" : "opacity-100 cursor-pointer"
               }`}
             >
-              <SlArrowLeft className="text-white hover:text-primary transition-all duration-300 h-[16px] lg:h-[20px] w-[16px] lg:w-[20px]" />
+              <SlArrowLeft className="h-[14px] w-[14px] text-white transition-all duration-300 hover:text-primary sm:h-[16px] sm:w-[16px] lg:h-[20px] lg:w-[20px]" />
             </button>
 
             <Swiper
@@ -151,19 +151,19 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
                   <SwiperSlide key={idx} className="!w-auto !h-auto">
                     <div
                       onClick={() => selectImage(idx)}
-                      className="relative flex items-center justify-center rounded-[9px] overflow-hidden cursor-pointer transition-all duration-200"
-                      style={{ height: "73px" }}
+                      className="relative flex h-[56px] items-center justify-center overflow-hidden rounded-[9px] cursor-pointer transition-all duration-200 sm:h-[73px]"
                     >
                       <div
                         className="relative rounded-[9px] w-full h-full flex items-center justify-center"
                         style={{
-                          width: isActive ? "110px" : "80px",
-                          height: isActive ? "73px" : "54px",
+                          width: isActive ? "84px" : "64px",
+                          height: isActive ? "56px" : "44px",
                           margin: "auto",
                           transition: "width 0.2s, height 0.2s",
                         }}
                       >
-                        <Image src={img.image} alt={`thumb-${idx}`} width={isActive ? 110 : 80} height={isActive ? 73 : 54} className="object-cover rounded-[9px] w-full h-full" />
+                        <Image src={img.image} alt={`thumb-${idx}`} width={isActive ? 84 : 64} height={isActive ? 56 : 44} className="h-full w-full rounded-[9px] object-cover sm:hidden" />
+                        <Image src={img.image} alt={`thumb-${idx}`} width={isActive ? 110 : 80} height={isActive ? 73 : 54} className="hidden h-full w-full rounded-[9px] object-cover sm:block" />
                         {!isActive && (
                           <div className="absolute inset-0 bg-white/60 rounded-[9px] pointer-events-none transition-opacity duration-200" />
                         )}
@@ -181,7 +181,7 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
                 thumbAtEnd ? "opacity-40 cursor-default" : "opacity-100 cursor-pointer"
               }`}
             >
-              <SlArrowRight className="text-white hover:text-primary transition-all duration-300 h-[16px] lg:h-[20px] w-[16px] lg:w-[20px]" />
+              <SlArrowRight className="h-[14px] w-[14px] text-white transition-all duration-300 hover:text-primary sm:h-[16px] sm:w-[16px] lg:h-[20px] lg:w-[20px]" />
             </button>
           </div>
         </div>

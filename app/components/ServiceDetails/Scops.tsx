@@ -26,9 +26,9 @@ const Scops = ({ data }: ScopsProps) => {
   };
 
   return (
-    <section className="py-57px bg-black">
+    <section className="pt-47px pb-47px xl:pt-57px xl:pb-57px bg-black">
       <div className="container">
-        <div className="mb-57px flex items-center justify-between gap-4">
+        <div className="mb-4 md:mb-47px xl:mb-57px flex items-center justify-between gap-4">
           <h2 className="text-4xl xl:text-5xl leading-lh-text68 font-normal text-white">
             {data.title}
           </h2>

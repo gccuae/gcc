@@ -11,7 +11,7 @@ interface CtaProps {
 
 const Cta = ({ data }: CtaProps) => {
   return (
-    <section className="relative overflow-x-clip py-57px xl:py-[90.05px] bg-light-white dark:bg-black">
+    <section className="relative overflow-x-clip pt-47px pb-57px 3xl:py-[90.05px] bg-light-white dark:bg-black">
       <div className="pointer-events-none select-none" aria-hidden="true">
         <Image src={data.image} alt={data.imageAlt} width={500} height={500} className="absolute inset-0 w-full h-full object-cover" />
       </div>

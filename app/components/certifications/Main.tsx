@@ -133,17 +133,17 @@ const Main = ({ data }: AwardsProps) => {
 
   return (
     <>
-      <section className="pt-6 lg:pt-15 xl:pt-25px">
+      <section className="pt-6 lg:pt-15 xl:pt-25px ">
         <div className="container mx-auto px-4">
           <h2 className=" text-4xl xl:text-5xl leading-[1.205882352941176] text-black dark:text-white pb-6 xl:pb-[47px]">
             {data.pageTitle}
           </h2>
         </div>
 
-        <div className="bg-light-white dark:bg-light-dark pb-6 lg:pb-0 pt-57px">
+        <div className="bg-light-white dark:bg-light-dark py-10 md:py-57px">
           <div className="container">
             {/* Tab Navigation */}
-            <div className="flex md:flex-row flex-col border-y dark:border-white/20 dark:border-white/20 gap-2 md:gap-8 xl:gap-18 2xl:gap-25 w-full">
+            <div className="flex md:flex-row flex-col border-y dark:border-white/20 gap-0 md:gap-8 xl:gap-18 2xl:gap-25 w-full">
               {data.categories.map((cat) => (
                 <button
                   key={cat.category}
@@ -160,7 +160,7 @@ const Main = ({ data }: AwardsProps) => {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-[3fr_1.9fr] mt-5 md:mt-0 lg:items-start">
               {/* Left Column - Items List */}
-              <div className="lg:border-r dark:border-white/20 dark:border-white/20 lg:pr-[67px] xl:pr-[67px] pt-6 xl:pt-[47px]">
+              <div className="lg:border-r dark:border-white/20 dark:border-white/20 lg:pr-[67px] xl:pr-[67px] md:pt-6 xl:pt-[47px]">
                 <div className="space-y-1">
                   {filteredItems[0]?.files.length === 0 && (
                     <div>
@@ -189,7 +189,7 @@ const Main = ({ data }: AwardsProps) => {
                               } ${selectedItem === file ? "border-b-primary" : ""}`}
                             >
                               <div>
-                                <h3 className={`text-xl leading-normal mb-1 transition-all duration-300 
+                                <h3 className={`text-lg md:text-xl leading-normal mb-1 transition-all duration-300 
                                   ${selectedItem === file
                                     ? "text-black dark:text-white"
                                     : "text-para-color dark:text-white/70 group-hover:text-black group-hover:dark:text-white/70"
@@ -198,7 +198,7 @@ const Main = ({ data }: AwardsProps) => {
                                   {file.mainTitle}
                                 </h3>
 
-                                <p className={`text-lg font-light leading-lh-text19 transition-all duration-300 
+                                <p className={`md:text-lg font-light leading-lh-text19 transition-all duration-300 
                                     ${selectedItem === file
                                     ? "text-black dark:text-white/80"
                                     : "text-gray-600 dark:text-gray-400 group-hover:text-black group-hover:dark:text-white/60"
@@ -269,7 +269,7 @@ const Main = ({ data }: AwardsProps) => {
       {/* Modal */}
       {isModalOpen && selectedItem && (
         <div
-          className="fixed inset-0 bg-black/90 z-[999] overflow-y-auto px-4 pt-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] sm:px-6 sm:pt-8 sm:pb-[calc(2rem+env(safe-area-inset-bottom))]"
+          className="fixed inset-0 bg-black/90 z-[999] overflow-y-auto px-4 py-[calc(1.25rem+env(safe-area-inset-bottom))] sm:px-6 sm:py-[calc(2rem+env(safe-area-inset-bottom))]"
           onClick={handleCloseModal}
         >
           {/* Button Wrapper */}
@@ -303,9 +303,12 @@ const Main = ({ data }: AwardsProps) => {
           </div>
 
           {/* Modal Content */}
-          <div className="mx-auto mt-12 sm:mt-16 flex w-full items-center justify-center" onClick={(event) => event.stopPropagation()}>
+          <div
+            className="mx-auto flex min-h-[calc(100dvh-2.5rem-env(safe-area-inset-bottom))] w-full items-center justify-center pt-12 sm:min-h-[calc(100dvh-4rem-env(safe-area-inset-bottom))] sm:pt-16"
+            onClick={(event) => event.stopPropagation()}
+          >
             <Image src={selectedItem.thumbnail || ""} alt={selectedItem.mainTitle || "Document preview"} width={1500} height={1500}
-              className="w-auto h-auto max-h-[calc(100dvh-8rem-env(safe-area-inset-bottom))] sm:max-h-[calc(100dvh-10rem-env(safe-area-inset-bottom))] lg:max-h-[calc(100dvh-11rem)] max-w-full object-contain mx-auto" />
+              className="mx-auto h-auto max-h-[calc(100dvh-7rem-env(safe-area-inset-bottom))] w-auto max-w-full object-contain sm:max-h-[calc(100dvh-10rem-env(safe-area-inset-bottom))] lg:max-h-[calc(100dvh-11rem)]" />
           </div>
         </div>
       )}

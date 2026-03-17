@@ -60,7 +60,7 @@ const MsgGm = ({ items }: MessageSection) => {
                 alt={gmData?.imageAlt}
                 width={1500}
                 height={1500}
-                className="img-fluid   h-[400px] xl:h-[60%] max-h-[750px] object-contain relative right-0 md:right-14 z-10"
+                className="img-fluid h-[300px] md:h-[400px] xl:h-[60%] max-h-[750px] object-contain relative right-0 md:right-14 z-10"
               />
             </motion.div>
             <div className="absolute bottom-5 md:bottom-10 lg:bottom-20 right-0 md:left-50 lg:left-40 w-full xl:w-fit h-fit px-4 xl:px-[38px] py-2 xl:py-[18px] bg-gradient-to-r from-primary to-transparent dark:from-[50%] z-20">
@@ -70,10 +70,10 @@ const MsgGm = ({ items }: MessageSection) => {
                 initial="hidden"
                 whileInView="show"
               >
-                <h3 className="text-2xl leading-lh-title text-white dark:text-white ">
+                <h3 className="text-xl md:text-2xl leading-lh-title text-white dark:text-white ">
                   {gmData?.name}
                 </h3>
-                <p className="text-lg leading-[1.147] md:leading-lh-text19 text-white dark:text-white">
+                <p className="text-sm md:text-lg leading-[1.147] md:leading-lh-text19 text-white dark:text-white">
                   {gmData?.designation}
                 </p>
               </motion.div>

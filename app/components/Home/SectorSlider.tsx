@@ -7,15 +7,28 @@ import "swiper/css/navigation";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { FourthSection } from "./type";
 
 interface SectorSliderProps {
   data: FourthSection;
 }
 const SectorSlider = ({ data }: SectorSliderProps) => {
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
+  const prevRef = useRef<HTMLButtonElement | null>(null);
+  const nextRef = useRef<HTMLButtonElement | null>(null);
+  const swiperRef = useRef<any>(null);
+
+  useEffect(() => {
+    const swiper = swiperRef.current;
+    if (!swiper || !prevRef.current || !nextRef.current) return;
+    if (!swiper.params.navigation || typeof swiper.params.navigation === "boolean") return;
+
+    swiper.params.navigation.prevEl = prevRef.current;
+    swiper.params.navigation.nextEl = nextRef.current;
+    swiper.navigation.destroy();
+    swiper.navigation.init();
+    swiper.navigation.update();
+  }, []);
   return (
     <section className="wrapper pt-30px pb-37px md:py-37px bg-black dark:bg-light-dark text-white overflow-hidden">
       <div className="container">
@@ -45,6 +58,7 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
                 swiper.params.navigation.nextEl = nextRef.current;
               }}
               onSwiper={(swiper) => {
+                swiperRef.current = swiper;
                 if (!prevRef.current || !nextRef.current) return;
                 if (!swiper.params.navigation || typeof swiper.params.navigation === "boolean") return;
                 swiper.params.navigation.prevEl = prevRef.current;
@@ -112,12 +126,12 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
               ))}
             </Swiper>
             <div className="absolute left-0 right-0 bottom-2/7 xl:bottom-[120px] z-50 flex h-10 w-full translate-y-1/2 items-center justify-between gap-4 sm:bottom-[140px] md:right-[-10px] md:left-auto md:top-2/4 md:bottom-auto md:h-[50px] md:w-[50px] md:translate-y-0 md:justify-center md:bg-black xl:top-4/6 xl:-right-12 xl:h-[94px] xl:w-[94px] rounded-full xl:gap-6">
-              <button ref={prevRef} className="text-accent w-10 h-10 md:w-2 xl:w-[12px] md:h-auto bg-black border border-white/20 md:border-0 md:bg-transparent rounded-full flex items-center justify-center">
+              <button ref={prevRef} className="text-accent w-10 h-10 md:w-2 xl:w-[12px] md:h-auto bg-black border border-white/20 md:border-0 md:bg-transparent rounded-full flex items-center justify-center cursor-pointer">
                 <svg width="15" height="26" viewBox="0 0 15 26" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 md:w-full md:h-full">
                   <path d="M14 1L2 13L14 25" stroke="#7AC142" strokeWidth="2" strokeLinecap="round" />
                 </svg>
               </button>
-              <button ref={nextRef} className="text-accent w-10 h-10 md:w-2 xl:w-[12px] md:h-auto bg-black border border-white/20 md:border-0 md:bg-transparent rounded-full flex items-center justify-center">
+              <button ref={nextRef} className="text-accent w-10 h-10 md:w-2 xl:w-[12px] md:h-auto bg-black border border-white/20 md:border-0 md:bg-transparent rounded-full flex items-center justify-center cursor-pointer">
                 <svg width="15" height="26" viewBox="0 0 15 26" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 md:w-full md:h-full">
                   <path d="M1 1L13 13L1 25" stroke="#7AC142" strokeWidth="2" strokeLinecap="round" />
                 </svg>
