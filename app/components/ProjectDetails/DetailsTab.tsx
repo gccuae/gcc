@@ -92,7 +92,7 @@ const DetailsTab = ({ data }: { data: ThirdSection }) => {
             variants={moveUp()}
             initial="hidden"
             animate="show"
-            className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8 xl:gap-[70px] xl:grid-cols-[934px_auto] items-stretch"
+            className="mt-4 md:mt-8 grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8 xl:gap-[70px] xl:grid-cols-[934px_auto] items-stretch"
           >
             {/* Text */}
             <div>
@@ -104,19 +104,9 @@ const DetailsTab = ({ data }: { data: ThirdSection }) => {
             </div>
 
             {/* Image */}
-            <motion.div
-              variants={moveLeft()}
-              initial="hidden"
-              animate="show"
-              className="relative w-full aspect-[4/3] md:aspect-[16/10] xl:aspect-[934/560] overflow-hidden"
-            >
+            <motion.div variants={moveLeft()} initial="hidden" animate="show" className="relative w-full aspect-[4/3] md:aspect-[16/10] xl:aspect-[934/560] overflow-hidden" >
               {projectDetails[activeTab]?.image ? (
-                <Image
-                  src={projectDetails[activeTab].image}
-                  alt={projectDetails[activeTab]?.title || ""}
-                  fill
-                  className="object-cover"
-                />
+                <Image src={projectDetails[activeTab].image} alt={projectDetails[activeTab]?.title || ""} fill className="object-cover" />
               ) : (
                 <div className="absolute inset-0 bg-gray-200 flex items-center justify-center">
                   <span className="text-gray-500 text-2xl">350 × 350</span>

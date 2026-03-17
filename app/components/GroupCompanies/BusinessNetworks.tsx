@@ -20,7 +20,7 @@ const BusinessNetworks = ({ data }: SecondSectionProps) => {
             viewport={{ once: true }}
             initial="hidden"
             whileInView="show"
-            className=" text-4xl xl:text-5xl leading-[1.147058823529412] text-black dark:text-white mb-4 xl:mb-[27px]"
+            className=" text-4xl xl:text-5xl leading-[1.147058823529412] text-black dark:text-white mb-2 md:mb-4 xl:mb-[27px]"
           >
             {data.title}
           </motion.h2>

@@ -11,7 +11,7 @@ const EnergyResource = ({
   data: SustainabilityType["secondSection"];
 }) => {
   return (
-    <section className="py-57px bg-light-white dark:bg-light-dark">
+    <section className=" pt-47px md:pt-57px pb-57px bg-light-white dark:bg-light-dark">
       <div className="container">
         <motion.h2
           variants={moveUp(0.2)}
@@ -37,20 +37,20 @@ const EnergyResource = ({
               key={index}
               className="flex flex-col border-r dark:border-white/20 last:border-r-0 group"
             >
-              <div className="border-b dark:border-white/20 xl:pt-5 2xl:pr-1 p-5 pb-2 2xl:pb-0  2xl:p-8 xl:pb-0 group-hover:border-b-primary group-hover:border-b-[2px] transition-colors duration-300">
+              <div className="border-b dark:border-white/20 xl:pt-5 2xl:pr-1 p-5 pb-2 2xl:pb-0 2xl:p-8 xl:pb-0 group-hover:border-b-primary group-hover:border-b-[2px] transition-colors duration-300">
                 <motion.div
                   variants={moveUp(0.2)}
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true }}
-                  className="group-hover:bg-primary w-[80px] h-[80px] rounded-full transition-colors duration-300 flex items-center justify-center mb-2 lg:mb-4 p-3"
+                  className="group-hover:bg-primary w-15 h-15 xl:w-20 xl:h-20 rounded-full transition-colors duration-300 flex items-center justify-center mb-2 lg:mb-4 p-3"
                 >
                   <Image
                     src={item.image}
                     alt={item.imageAlt}
                     width={100}
                     height={100}
-                    className="w-[70px] h-[70px] group-hover:brightness-0 group-hover:invert-100 transition-all duration-300"
+                    className="w-10 h-10 xl:w-17 xl:h-17 group-hover:brightness-0 group-hover:invert-100 transition-all duration-300"
                   />
                 </motion.div>
                 <motion.h3
@@ -63,7 +63,7 @@ const EnergyResource = ({
                   {item.title}
                 </motion.h3>
               </div>
-              <div className="p-4 xl:p-5 2xl:p-10 2xl:pt-[27px]">
+              <div className="p-4 xl:p-5 2xl:p-10 2xl:pt-[27px] pb-0 last:pb-4 h-full">
                 <motion.p
                   variants={moveUp(0.5)}
                   initial="hidden"

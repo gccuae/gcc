@@ -150,7 +150,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
   }, [thumbsSwiper, mainSwiper]);
 
   return (
-    <section className="wrapper pt-30px md:pt-37px overflow-hidden dark:bg-black">
+    <section className="wrapper pt-30px md:pt-37px pb-5 overflow-hidden dark:bg-black">
       <div>
         <div ref={headingRef} className="flex justify-between items-center container mb-6 xl:mb-[43px]" >
           <motion.h2
@@ -268,7 +268,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true }}
-                  className="container h-full slide-container grid md:grid-cols-2 xl:grid-cols-[6fr_4fr] items-start gap-6 xl:gap-50px bg-white dark:bg-black group"
+                  className="container h-full slide-container grid md:grid-cols-2 xl:grid-cols-[6fr_4fr] items-start gap-3 md:gap-6 xl:gap-50px bg-white dark:bg-black group"
                 >
                   <div className="img-wrapper md:border-r-1 border-r-smgray dark:border-white/20 pr-4 xl:pr-[50px] pb-0 xl:py-5 relative">
                     <Image
@@ -276,11 +276,11 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                       alt={item.homeThumbnailAlt}
                       width={1000}
                       height={1000}
-                      className="slide-img w-full h-[300px] md:h-[400px] 2xl:h-[500px] rounded object-cover mb-2"
+                      className="slide-img w-full sm:h-[300px] md:h-[400px] 2xl:h-[500px] rounded object-cover mb-2"
                     />
                   </div>
                   <div className="group">
-                    <h3 className="text-2xl font-normal leading-[1.5625] mb-2 xl:mb-5 dark:text-white hover:text-primary transition-all duration-300">
+                    <h3 className="text-2xl font-normal leading-[1.2] mb-2 xl:mb-5 dark:text-white hover:text-primary transition-all duration-300">
                       {item.title}
                     </h3>
                     <p className="slide-text text-lg font-[300] leading-[1.526315789473684] text-para-color dark:text-white/80 transition-all duration-300 w-full">

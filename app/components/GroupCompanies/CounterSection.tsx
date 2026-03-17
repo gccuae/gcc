@@ -53,7 +53,7 @@ const CounterSection = ({ data }: FirstSectionProps) => {
                hover:bg-primary hover:text-white transition-colors duration-300 group"
             >
               <div>
-                <div className="mb-47px h-10 xl:h-[60px] xl:w-[62px] flex items-center">
+                <div className="mb-4 md:mb-47px h-10 xl:h-[60px] xl:w-[62px] flex items-center">
                   <Image
                     src={item.logo}
                     alt={item.logoAlt}
@@ -62,7 +62,7 @@ const CounterSection = ({ data }: FirstSectionProps) => {
                     className="w-10 h-auto xl:w-[62px] group-hover:brightness-0 group-hover:invert-100 transition-all duration-300"
                   />
                 </div>
-                <h3 className=" text-4xl xl:text-5xl leading-lh-text68 font-normal mb-4 xl:mb-[16px] text-black dark:text-white group-hover:text-white transition-all duration-300">
+                <h3 className=" text-4xl xl:text-5xl leading-lh-text68 font-normal mb-3 md:mb-4 xl:mb-[16px] text-black dark:text-white group-hover:text-white transition-all duration-300">
                   {/* <Counter from={0} to={Number(item.number)} duration={2} />+ */}
                   <Counter
                     from={0}
@@ -75,7 +75,7 @@ const CounterSection = ({ data }: FirstSectionProps) => {
                   />
                   {item.number.toString().split("").includes("+") ? "+" : ""}
                 </h3>
-                <p className="text-lg leading-lh-text19 dark:text-white uppercase">
+                <p className="text-sm md:text-lg leading-lh-text19 dark:text-white uppercase">
                   {item.value}
                 </p>
               </div>

@@ -90,7 +90,7 @@ const ProjectCard = ({
             className="relative border-b dark:border-white/20 hover:border-primary pb-[15px] lg:pb-27px group transition-all duration-300 flex flex-col h-full"
         >
             <div
-                className="relative p-3 xl:p-5 h-[300px] 2xl:h-[486px] overflow-hidden group/img"
+                className="relative p-3 xl:p-5 h-[250px] md:h-[300px] 2xl:h-[486px] overflow-hidden group/img"
                 ref={containerRef}
                 onMouseMove={handleMouseMove}
                 onMouseEnter={handleMouseEnter}

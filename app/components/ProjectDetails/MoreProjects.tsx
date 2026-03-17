@@ -12,7 +12,7 @@ interface Props {
 
 const MoreProjects = ({ projects }: Props) => {
   return (
-    <section className="pt-57px pb-13 md:pb-15 xl:pt-57px bg-light-white dark:bg-light-dark">
+    <section className="pt-47px md:pt-57px pb-13 md:pb-15 xl:pt-57px bg-light-white dark:bg-light-dark">
       <div className="container">
         <div className="flex justify-between items-center pb-5 md:pb-8 xl:pb-[45px] mb-5 md:mb-8 xl:mb-15 border-b dark:border-white/20">
           <motion.h2

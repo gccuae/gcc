@@ -16,14 +16,14 @@ const MsgChairman = ({ items }: MessageSection) => {
           <motion.div variants={moveRight()} viewport={{ once: true }} initial="hidden" whileInView="show" className="relative pt-10" >
             <div className="absolute top-0 left-0 xl:w-[80%] w-full h-[100%] bg-[#0000001A] dark:bg-black z-0"></div>
             <motion.div variants={moveRight(0.3)} viewport={{ once: true }} initial="hidden" whileInView="show" >
-              <Image src={chairmanData?.image} alt="msg chairman" width={1500} height={1500} className="w-full h-[400px] xl:h-[60%] max-h-[900px] object-contain relative z-10" />
+              <Image src={chairmanData?.image} alt="msg chairman" width={1500} height={1500} className="w-full h-[300px] md:h-[400px] xl:h-[60%] max-h-[900px] object-contain relative z-10" />
             </motion.div>
             <div className="absolute bottom-5 md:bottom-10 lg:bottom-20 left-3 md:left-10 lg:left-30 w-full  xl:w-[70%] h-fit px-4 xl:px-[38px] py-2 xl:py-[18px] bg-gradient-to-r from-primary to-transparent dark:from-[50%] z-20">
               <motion.div variants={moveUp()} viewport={{ once: true }} initial="hidden" whileInView="show" >
-                <h3 className="text-2xl leading-[1.147] md:leading-lh-title text-white dark:text-white">
+                <h3 className="text-xl md:text-2xl leading-[1.147] md:leading-lh-title text-white dark:text-white">
                   {chairmanData?.name}
                 </h3>
-                <p className="text-lg leading-lh-text19 text-white dark:text-white">
+                <p className="text-sm md:text-lg leading-lh-text19 text-white dark:text-white">
                   {chairmanData?.designation}
                 </p>
               </motion.div>

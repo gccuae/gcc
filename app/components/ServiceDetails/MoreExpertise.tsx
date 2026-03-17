@@ -17,7 +17,7 @@ const MoreExpertise = ({ allServices, exclude }: MoreExpertiseProps) => {
   return (
     <section className="pt-57px pb-13 md:pb-15 xl:py-57px bg-light-white dark:bg-black">
       <div className="container">
-        <div className="flex gap-y-3 justify-between items-center pb-5 md:pb-8 xl:pb-47px mb-5 md:mb-8 xl:mb-47px border-b dark:border-white/20">
+        <div className="flex flex-wrap gap-y-3 justify-between items-center pb-5 md:pb-8 xl:pb-47px mb-5 md:mb-8 xl:mb-47px border-b dark:border-white/20">
           <h2 className=" text-4xl xl:text-5xl leading-[1.147058823529412] text-black dark:text-white">
             {serviceDetailsData.moreExperiences.title}
           </h2>

@@ -13,10 +13,10 @@ const Main = ({
   items: NewsData["categories"][number]["news"];
 }) => {
   return (
-    <section className="pt-10 xl:pt-57px bg-light-white dark:bg-black relative overflow-hidden">
+    <section className="pt-10 pb-10 xl:pt-57px xl:pb-57px  bg-light-white dark:bg-black relative overflow-hidden">
       {/* <div className="reveal-overlay absolute inset-0 bg-black z-20"></div> */}
       <div className="container">
-        <div className="flex justify-between items-center pb-8 xl:pb-[47px]">
+        <div className="flex justify-between items-center pb-4 md:pb-8 xl:pb-[47px]">
           <motion.h2
             variants={moveUp(0)}
             initial="hidden"
@@ -79,7 +79,7 @@ const Main = ({
                       initial="hidden"
                       whileInView="show"
                       viewport={{ once: true }}
-                      className="text-2xl font-normal leading-[1.40625] text-para-color mb-3 xl:mb-[22px] dark:text-white hover:text-primary transition-colors duration-300 max-w-[55ch] tracking-[-1px]"
+                      className="text-xl md:text-2xl font-normal leading-[1.2] xl:leading-[1.40625] text-para-color mb-3 xl:mb-[22px] dark:text-white hover:text-primary transition-colors duration-300 max-w-[55ch] tracking-[-1px]"
                     >
                       <Link href={`news/${item.slug}`} >
                         {item.title}

@@ -13,7 +13,6 @@ const BlogList = ({ data }: { data: BlogData }) => {
     (item: { blogs: BlogData["categories"][number]["blogs"] }) => item.blogs
   );
 
-  // Extract unique categories
   const categories = useMemo(() => {
     const unique = Array.from(
       new Set(
@@ -34,42 +33,29 @@ const BlogList = ({ data }: { data: BlogData }) => {
     return idx === 0 ? items : items.filter((item) => item.category === cat);
   };
 
-  const scrollToMobileTab = (idx: number, delay = 0) => {
-    window.setTimeout(() => {
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          const tabTop =
-            (mobileTabRefs.current[idx]?.getBoundingClientRect().top || 0) +
-            window.scrollY;
-          const targetY = Math.max(tabTop - 90, 0);
-          const startY = window.scrollY;
-          const distance = targetY - startY;
-          const duration = 520;
-          const startTime = performance.now();
+  const smoothScrollTo = (targetY: number) => {
+    if (scrollRafRef.current) {
+      cancelAnimationFrame(scrollRafRef.current);
+    }
 
-          if (scrollRafRef.current) {
-            cancelAnimationFrame(scrollRafRef.current);
-          }
+    const startY = window.scrollY;
+    const distance = targetY - startY;
+    const duration = 480;
+    const startTime = performance.now();
+    const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
 
-          const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+    const animate = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      window.scrollTo(0, startY + distance * easeOutCubic(progress));
+      if (progress < 1) {
+        scrollRafRef.current = requestAnimationFrame(animate);
+      } else {
+        scrollRafRef.current = null;
+      }
+    };
 
-          const animate = (now: number) => {
-            const elapsed = now - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const easedProgress = easeOutCubic(progress);
-            window.scrollTo(0, startY + distance * easedProgress);
-
-            if (progress < 1) {
-              scrollRafRef.current = requestAnimationFrame(animate);
-            } else {
-              scrollRafRef.current = null;
-            }
-          };
-
-          scrollRafRef.current = requestAnimationFrame(animate);
-        });
-      });
-    }, delay);
+    scrollRafRef.current = requestAnimationFrame(animate);
   };
 
   useEffect(() => {
@@ -82,26 +68,43 @@ const BlogList = ({ data }: { data: BlogData }) => {
 
   const handleMobileAccordionTabToggle = (idx: number) => {
     const nextTab = activeTab === idx ? -1 : idx;
+
+    // Disable scroll anchoring on the root element so the browser doesn't
+    // auto-jump the window when the previously open (taller) tab collapses.
+    // Re-enable it one frame later after React has committed the DOM change.
+    document.documentElement.style.overflowAnchor = "none";
+
     setActiveTab(nextTab);
 
+    requestAnimationFrame(() => {
+      document.documentElement.style.overflowAnchor = "";
+    });
+
     if (nextTab !== -1) {
-      // Wait for collapse/expand animation so final position is accurate.
-      scrollToMobileTab(idx, 280);
+      // Wait for the collapse animation to finish (300ms), then read the
+      // element's actual settled position and smooth-scroll to it.
+      window.setTimeout(() => {
+        const tabEl = mobileTabRefs.current[idx];
+        if (!tabEl) return;
+        const tabTop = tabEl.getBoundingClientRect().top + window.scrollY;
+        smoothScrollTo(Math.max(tabTop - 90, 0));
+      }, 320);
     }
   };
 
   const handleMobileToggleMoreLess = (idx: number) => {
     const isExpanded = !!expandedMobileTabs[idx];
-    setExpandedMobileTabs((prev) => ({
-      ...prev,
-      [idx]: !prev[idx],
-    }));
+    setExpandedMobileTabs((prev) => ({ ...prev, [idx]: !prev[idx] }));
 
     if (!isExpanded) return;
-    scrollToMobileTab(idx, 200);
+    window.setTimeout(() => {
+      const tabEl = mobileTabRefs.current[idx];
+      if (!tabEl) return;
+      const tabTop = tabEl.getBoundingClientRect().top + window.scrollY;
+      smoothScrollTo(Math.max(tabTop - 90, 0));
+    }, 200);
   };
 
-  // Filter blogs based on selected category
   const filteredItems =
     activeTab === 0
       ? items
@@ -145,7 +148,13 @@ const BlogList = ({ data }: { data: BlogData }) => {
         </motion.div>
 
         {/* ----------- Mobile Accordion Tabs ----------- */}
-        <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true }} className="md:hidden border-t border-gray-200 divide-y divide-gray-200" >
+        <motion.div
+          variants={moveUp(0.2)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="md:hidden border-t border-gray-200 divide-y divide-gray-200"
+        >
           {categories.map((cat, idx) => (
             <div
               key={cat}
@@ -154,11 +163,11 @@ const BlogList = ({ data }: { data: BlogData }) => {
                 mobileTabRefs.current[idx] = el;
               }}
             >
-              <button onClick={() => handleMobileAccordionTabToggle(idx)} className="w-full flex justify-between items-center py-4 text-lg font-medium" >
-                <span
-                  className={`${activeTab === idx ? "text-black" : "text-gray-500"
-                    }`}
-                >
+              <button
+                onClick={() => handleMobileAccordionTabToggle(idx)}
+                className="w-full flex justify-between items-center py-4 text-lg font-medium"
+              >
+                <span className={activeTab === idx ? "text-black" : "text-gray-500"}>
                   {cat}
                 </span>
                 <span className="text-xl">{activeTab === idx ? "−" : "+"}</span>
@@ -185,11 +194,7 @@ const BlogList = ({ data }: { data: BlogData }) => {
                           exit={{ opacity: 0, y: -10 }}
                           transition={{ duration: 0.3, delay: i * 0.05 }}
                         >
-                          <BlogItem
-                            item={item}
-                            key={`${item.title}-${i}`}
-                            index={i}
-                          />
+                          <BlogItem item={item} key={`${item.title}-${i}`} index={i} />
                         </motion.div>
                       ))}
                     </div>
@@ -207,9 +212,8 @@ const BlogList = ({ data }: { data: BlogData }) => {
                             alt="arrow"
                             width={20}
                             height={20}
-                            className={`inline ${
-                              expandedMobileTabs[idx] ? "-rotate-90" : "rotate-90"
-                            }`}
+                            className={`inline ${expandedMobileTabs[idx] ? "-rotate-90" : "rotate-90"
+                              }`}
                           />
                         </button>
                       </div>

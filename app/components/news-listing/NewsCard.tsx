@@ -68,7 +68,7 @@ const NewsCard = ({
 
   return (
     <div key={index} className="relative border-b dark:border-white/20 hover:border-primary pb-27px group transition-all duration-300 h-full" >
-      <div className="relative p-3 xl:p-5 h-[300px] 2xl:h-[486px] overflow-hidden group/img" ref={containerRef} onMouseMove={handleMouseMove} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
+      <div className="relative p-3 xl:p-5 h-[250px] md:h-[300px] 2xl:h-[486px] overflow-hidden group/img" ref={containerRef} onMouseMove={handleMouseMove} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
         <Image src={item.thumbnail} alt={item.thumbnailAlt} width={1000} height={1000}
           className="w-full h-full object-cover absolute top-0 left-0   group-hover:blur-[4px] group-hover:backdrop-blur-xl transition-all duration-300"
         />

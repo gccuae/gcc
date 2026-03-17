@@ -70,7 +70,7 @@ export const BlogItem = ({
   return (
     <div className="relative group border-b dark:border-white/20 hover:border-primary pb-2 md:pb-27px transition-all duration-300">
       <div
-        className={`${index % 2 === 0 ? "h-[300px] xl:h-[415px]" : "h-[200px] xl:h-[280px]"
+        className={`${index % 2 === 0 ? "h-[250px] md:h-[300px] xl:h-[415px]" : "h-[200px] xl:h-[280px]"
           } p-3 xl:p-5 overflow-hidden group/img relative`}
         ref={containerRef}
         onMouseMove={handleMouseMove}

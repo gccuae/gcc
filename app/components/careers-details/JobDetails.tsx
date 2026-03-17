@@ -76,7 +76,7 @@ const JobDetails = ({
     <section className="dark:bg-[#0d0d0d]">
       <div className="container">
         {/* About the Role */}
-        <div className="pt-47px pb-57px border-b dark:border-white/20">
+        <div className="pt-47px pb-4 md:pb-57px border-b dark:border-white/20">
           <motion.h2
             variants={moveUp()}
             initial="hidden"
@@ -102,7 +102,7 @@ const JobDetails = ({
 
         {/* Key Responsibilities */}
         <motion.div
-          className="pt-47px pb-57px border-b dark:border-white/20"
+          className="pt-4 md:pt-47px pb-6 md:pb-57px border-b dark:border-white/20"
           variants={moveUp()}
           initial="hidden"
           whileInView="show"
@@ -116,7 +116,7 @@ const JobDetails = ({
         </motion.div>
 
         {/* Apply Now */}
-        <div className="pt-47px md:pb-15 xl:pb-57px border-b dark:border-white/20">
+        <div className="pt-4 md:pt-47px pb-13 md:pb-15 xl:pb-57px border-b dark:border-white/20">
           <motion.h3
             variants={moveUp()}
             initial="hidden"

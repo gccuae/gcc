@@ -7,7 +7,7 @@ import { ImgDescProps } from "../About/type";
 
 const ImgDesc = ({ data }: { data: ImgDescProps }) => {
   return (
-    <section className="py-57px dark:bg-black">
+    <section className=" pt-47px xl:pt-67px pb-57px dark:bg-black">
       <div className="container">
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 xl:gap-13 3xl:gap-17 items-stretch">
           {/* Text Section */}
@@ -32,7 +32,7 @@ const ImgDesc = ({ data }: { data: ImgDescProps }) => {
                       initial="hidden"
                       whileInView="show"
                       viewport={{ once: true }}
-                      className="dark:text-white text-lg font-light leading-[1.526315789473684] mb-3 lg:mb-6 last:mb-0 text-para-color"
+                      className="dark:text-white text-lg font-light leading-[1.526315789473684] mb-0 lg:mb-6 last:mb-0 text-para-color"
                     >
                       {line}
                     </motion.p>
