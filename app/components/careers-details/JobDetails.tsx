@@ -12,10 +12,12 @@ import { careerData } from "../careers/type";
 const Modal = ({
   isOpen,
   onClose,
+  disableClose = false,
   children,
 }: {
   isOpen: boolean;
   onClose: () => void;
+  disableClose?: boolean;
   children: React.ReactNode;
 }) => {
   if (!isOpen) return null;
@@ -42,8 +44,11 @@ const Modal = ({
             className="relative w-full max-w-7xl max-h-[90vh] overflow-y-auto rounded-xl bg-light-white dark:bg-[#0d0d0d] shadow-lg p-6 sm:p-10 md:p-[57px] 2xl:p-[77px]"
           >
             <button
-              onClick={onClose}
-              className="absolute top-5 right-5 md:top-6 md:right-6 p-1 rounded-full text-gray-500 hover:text-black dark:hover:text-white cursor-pointer"
+              onClick={disableClose ? undefined : onClose}
+              disabled={disableClose}
+              className={`absolute top-5 right-5 md:top-6 md:right-6 p-1 rounded-full text-gray-500 hover:text-black dark:hover:text-white ${
+                disableClose ? "cursor-not-allowed opacity-50" : "cursor-pointer"
+              }`}
             >
               <Image
                 src="/assets/img/careers/close-popup.svg"
@@ -72,6 +77,7 @@ const JobDetails = ({
   forthSection: careerData["openings"][number]["forthSection"];
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSubmittingApplication, setIsSubmittingApplication] = useState(false);
   return (
     <section className="dark:bg-[#0d0d0d]">
       <div className="container">
@@ -147,8 +153,21 @@ const JobDetails = ({
           </motion.div>
         </div>
       </div>
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <JobApplicationModal onSuccess={() => setIsModalOpen(false)} />
+      <Modal
+        isOpen={isModalOpen}
+        disableClose={isSubmittingApplication}
+        onClose={() => {
+          if (isSubmittingApplication) return;
+          setIsModalOpen(false);
+        }}
+      >
+        <JobApplicationModal
+          onSubmittingChange={setIsSubmittingApplication}
+          onSuccess={() => {
+            setIsSubmittingApplication(false);
+            setIsModalOpen(false);
+          }}
+        />
       </Modal>
     </section>
   );

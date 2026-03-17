@@ -57,7 +57,7 @@ const SectorSlider = ({
               className="sector-slider"
               slidesPerView={2}
               spaceBetween={0}
-              // loop={true}
+              loop={true}
               modules={[Pagination, Navigation]}
               pagination={false}
               navigation={{ prevEl: ".un-goals-prev", nextEl: ".un-goals-next" }}
@@ -67,6 +67,7 @@ const SectorSlider = ({
                 },
                 768: {
                   slidesPerView: 1,
+                  spaceBetween: 20,
                 },
                 1024: {
                   slidesPerView: 3,

@@ -11,10 +11,12 @@ import Image from "next/image";
 const Modal = ({
   isOpen,
   onClose,
+  disableClose = false,
   children,
 }: {
   isOpen: boolean;
   onClose: () => void;
+  disableClose?: boolean;
   children: React.ReactNode;
 }) => {
   if (!isOpen) return null;
@@ -40,7 +42,7 @@ const Modal = ({
             }}
             className="relative w-full max-w-7xl max-h-[90vh] overflow-y-auto rounded-xl bg-light-white dark:bg-[#0d0d0d] shadow-lg p-6 sm:p-10 md:p-[57px] 2xl:p-[77px]"
           >
-            <button onClick={onClose} className="absolute top-5 right-5 md:top-6 md:right-6 xl:top-8 xl:right-8 p-1 rounded-full text-gray-500 hover:text-black dark:hover:text-white cursor-pointer"
+            <button onClick={disableClose ? undefined : onClose} disabled={disableClose} className={`absolute top-5 right-5 md:top-6 md:right-6 xl:top-8 xl:right-8 p-1 rounded-full text-gray-500 hover:text-black dark:hover:text-white ${disableClose ? "cursor-not-allowed opacity-50" : "cursor-pointer"}`}
             >
               <Image
                 src="/assets/img/careers/close-popup.svg"
@@ -65,6 +67,7 @@ interface PageHeaderProps {
 
 const PageHeader = ({ title }: PageHeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSubmittingApplication, setIsSubmittingApplication] = useState(false);
 
   return (
     <section className="pt-57px dark:bg-[#0d0d0d]">
@@ -102,8 +105,21 @@ const PageHeader = ({ title }: PageHeaderProps) => {
         </motion.div>
       </div>
 
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-        <JobApplicationModal onSuccess={() => setIsOpen(false)} />
+      <Modal
+        isOpen={isOpen}
+        disableClose={isSubmittingApplication}
+        onClose={() => {
+          if (isSubmittingApplication) return;
+          setIsOpen(false);
+        }}
+      >
+        <JobApplicationModal
+          onSubmittingChange={setIsSubmittingApplication}
+          onSuccess={() => {
+            setIsSubmittingApplication(false);
+            setIsOpen(false);
+          }}
+        />
       </Modal>
     </section>
   );
