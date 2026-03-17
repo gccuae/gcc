@@ -96,7 +96,7 @@ const HeroSliderV = ({ data }: HeroSliderProps) => {
             <div className="container">
               <div className="grid grid-cols-2 lg:grid-cols-4 pt-8 lg:pt-[76px] relative z-10">
                 <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0 }}
-                 className="text-white border border-[#C2C2C2] border-b-0 transition-all duration-300 group active:bg-primary hover:bg-primary hover:translate-y-2" >
+                 className="text-white border border-[#C2C2C2] border-b-0 transition-all duration-300 group active:bg-primary hover:bg-primary xl:hover:translate-y-2 overflow-hidden relative hover:z-30" >
                   <div className="pe-3 ps-3 xl:ps-12 py-5 xl:py-[32px]">
                     <p className="text-2xl md:text-5xl font-normal leading-[0.7352941176470588] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
                       <Counter from={0} to={35} duration={2} /> <span>+</span>

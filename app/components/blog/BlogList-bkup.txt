@@ -26,12 +26,8 @@ const BlogList = ({ data }: { data: BlogData }) => {
   const [expandedMobileTabs, setExpandedMobileTabs] = useState<
     Record<number, boolean>
   >({});
-  const [openMobileTabs, setOpenMobileTabs] = useState<Record<number, boolean>>({
-    0: true,
-  });
   const mobileTabRefs = useRef<Record<number, HTMLDivElement | null>>({});
   const scrollRafRef = useRef<number | null>(null);
-  const delayedScrollTimeoutRef = useRef<number | null>(null);
 
   const getItemsByTab = (idx: number, cat: string) => {
     return idx === 0 ? items : items.filter((item) => item.category === cat);
@@ -67,33 +63,31 @@ const BlogList = ({ data }: { data: BlogData }) => {
       if (scrollRafRef.current) {
         cancelAnimationFrame(scrollRafRef.current);
       }
-      if (delayedScrollTimeoutRef.current !== null) {
-        window.clearTimeout(delayedScrollTimeoutRef.current);
-      }
     };
   }, []);
 
   const handleMobileAccordionTabToggle = (idx: number) => {
-    const willOpen = !openMobileTabs[idx];
+    const nextTab = activeTab === idx ? -1 : idx;
 
-    if (delayedScrollTimeoutRef.current !== null) {
-      window.clearTimeout(delayedScrollTimeoutRef.current);
-      delayedScrollTimeoutRef.current = null;
-    }
+    // Disable scroll anchoring on the root element so the browser doesn't
+    // auto-jump the window when the previously open (taller) tab collapses.
+    // Re-enable it one frame later after React has committed the DOM change.
+    document.documentElement.style.overflowAnchor = "none";
 
-    setOpenMobileTabs((prev) => ({
-      ...prev,
-      [idx]: !prev[idx],
-    }));
+    setActiveTab(nextTab);
 
-    if (willOpen) {
-      setActiveTab(idx);
-      delayedScrollTimeoutRef.current = window.setTimeout(() => {
+    requestAnimationFrame(() => {
+      document.documentElement.style.overflowAnchor = "";
+    });
+
+    if (nextTab !== -1) {
+      // Wait for the collapse animation to finish (300ms), then read the
+      // element's actual settled position and smooth-scroll to it.
+      window.setTimeout(() => {
         const tabEl = mobileTabRefs.current[idx];
         if (!tabEl) return;
         const tabTop = tabEl.getBoundingClientRect().top + window.scrollY;
         smoothScrollTo(Math.max(tabTop - 90, 0));
-        delayedScrollTimeoutRef.current = null;
       }, 320);
     }
   };
@@ -103,15 +97,11 @@ const BlogList = ({ data }: { data: BlogData }) => {
     setExpandedMobileTabs((prev) => ({ ...prev, [idx]: !prev[idx] }));
 
     if (!isExpanded) return;
-    if (delayedScrollTimeoutRef.current !== null) {
-      window.clearTimeout(delayedScrollTimeoutRef.current);
-    }
-    delayedScrollTimeoutRef.current = window.setTimeout(() => {
+    window.setTimeout(() => {
       const tabEl = mobileTabRefs.current[idx];
       if (!tabEl) return;
       const tabTop = tabEl.getBoundingClientRect().top + window.scrollY;
       smoothScrollTo(Math.max(tabTop - 90, 0));
-      delayedScrollTimeoutRef.current = null;
     }, 200);
   };
 
@@ -177,14 +167,14 @@ const BlogList = ({ data }: { data: BlogData }) => {
                 onClick={() => handleMobileAccordionTabToggle(idx)}
                 className="w-full flex justify-between items-center py-4 text-lg font-medium"
               >
-                <span className={openMobileTabs[idx] ? "text-black" : "text-gray-500"}>
+                <span className={activeTab === idx ? "text-black" : "text-gray-500"}>
                   {cat}
                 </span>
-                <span className="text-xl">{openMobileTabs[idx] ? "−" : "+"}</span>
+                <span className="text-xl">{activeTab === idx ? "−" : "+"}</span>
               </button>
 
               <AnimatePresence initial={false}>
-                {openMobileTabs[idx] && (
+                {activeTab === idx && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}

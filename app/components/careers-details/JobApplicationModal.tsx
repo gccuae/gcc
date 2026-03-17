@@ -13,30 +13,59 @@ type FormData = z.infer<typeof jobApplicationSchema>;
 
 type Props = {
   onSuccess?: () => void;
+  onSubmittingChange?: (isSubmitting: boolean) => void;
 };
 
-const JobApplicationModalForm = ({ onSuccess }: Props) => {
+const JobApplicationModalForm = ({
+  onSuccess,
+  onSubmittingChange,
+}: Props) => {
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<FormData>({
     resolver: zodResolver(jobApplicationSchema),
+    mode: "onChange",
+    reValidateMode: "onChange",
   });
 
+  const [isSubmitted, setIsSubmitted] = React.useState(false);
   const [coverLetterFile, setCoverLetterFile] = React.useState<File | null>(
     null
   );
   const [resumeFile, setResumeFile] = React.useState<File | null>(null);
+  const closeTimeoutRef = React.useRef<number | null>(null);
+  const coverLetterRegister = register("coverLetter");
+  const resumeRegister = register("resume");
 
-  const onSubmit = (data: FormData) => {
+  React.useEffect(() => {
+    onSubmittingChange?.(isSubmitting);
+  }, [isSubmitting, onSubmittingChange]);
+
+  React.useEffect(() => {
+    return () => {
+      if (closeTimeoutRef.current !== null) {
+        window.clearTimeout(closeTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  const onSubmit = async (data: FormData) => {
     console.log("Form submitted:", data);
+    await Promise.resolve(data);
+
+    setIsSubmitted(true);
     reset();
     setCoverLetterFile(null);
     setResumeFile(null);
 
-    if (onSuccess) onSuccess();
+    if (onSuccess) {
+      closeTimeoutRef.current = window.setTimeout(() => {
+        onSuccess();
+      }, 1200);
+    }
   };
 
   return (
@@ -47,7 +76,13 @@ const JobApplicationModalForm = ({ onSuccess }: Props) => {
 
       <div className="w-full border-t-[1px] dark:border-white/20 mb-[36px]" />
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-[37px]">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        onChange={() => {
+          if (isSubmitted) setIsSubmitted(false);
+        }}
+        className="space-y-[37px]"
+      >
         {/* First Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="space-y-2">
@@ -141,16 +176,16 @@ const JobApplicationModalForm = ({ onSuccess }: Props) => {
           <div className="space-y-2">
             <div className="relative border-b dark:border-white/20 hover:border-black dark:hover:border-white/50 transition-colors">
               <input
-                {...register("coverLetter", {
-                  required: "Cover letter is required",
-                })}
+                {...coverLetterRegister}
                 type="file"
                 accept=".pdf,.doc,.docx"
                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                 id="coverLetter"
-                onChange={(e) =>
-                  setCoverLetterFile(e.target.files?.[0] || null)
-                }
+                onChange={(e) => {
+                  coverLetterRegister.onChange(e);
+                  setCoverLetterFile(e.target.files?.[0] || null);
+                  setIsSubmitted(false);
+                }}
               />
               <label
                 htmlFor="coverLetter"
@@ -189,12 +224,16 @@ const JobApplicationModalForm = ({ onSuccess }: Props) => {
           <div className="space-y-2">
             <div className="relative border-b dark:border-white/20 hover:border-black dark:hover:border-white/50 transition-colors">
               <input
-                {...register("resume", { required: "Resume is required" })}
+                {...resumeRegister}
                 type="file"
                 accept=".pdf,.doc,.docx"
                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                 id="resume"
-                onChange={(e) => setResumeFile(e.target.files?.[0] || null)}
+                onChange={(e) => {
+                  resumeRegister.onChange(e);
+                  setResumeFile(e.target.files?.[0] || null);
+                  setIsSubmitted(false);
+                }}
               />
               <label
                 htmlFor="resume"
@@ -236,11 +275,52 @@ const JobApplicationModalForm = ({ onSuccess }: Props) => {
           viewport={{ once: true }}
           className="flex justify-end pt-3"
         >
+          {isSubmitted && (
+            <div className="mr-4 self-center flex items-center gap-3 px-4 py-2 rounded-xl border border-green-200 dark:border-green-500/40 bg-green-50 dark:bg-green-900/20">
+              <motion.svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.25, ease: "easeOut" }}
+              >
+                <motion.circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="#16A34A"
+                  strokeWidth="2"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 0.35, ease: "easeOut" }}
+                />
+                <motion.path
+                  d="M7.5 12.5L10.5 15.5L16.5 9.5"
+                  stroke="#16A34A"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 0.3, delay: 0.15, ease: "easeOut" }}
+                />
+              </motion.svg>
+              <p className="text-sm text-green-700 dark:text-green-300">
+                Application submitted successfully.
+              </p>
+            </div>
+          )}
           <button
             type="submit"
+            disabled={isSubmitting}
             className="hover:bg-accent hover:border-accent dark:hover:bg-transparent hover:text-white flex items-center justify-center py-1 xl:py-[7.39px] px-4 xl:px-[28px] gap-2 transition-all duration-300 ease-in-out group border border-foreground dark:border-white rounded-4xl w-fit hover:shadow-xl dark:bg-transparent group max-w-[143px]"
           >
-            <span className="font-normal">SUBMIT</span>
+            <span className="font-normal">
+              {isSubmitting ? "SUBMITTING..." : "SUBMIT"}
+            </span>
             <svg
               width="26"
               height="10"

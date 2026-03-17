@@ -84,6 +84,11 @@ export const BlogItem = ({
           height={1000}
           className="w-full h-full object-cover absolute top-0 left-0 md:group-hover:blur-[4px] md:group-hover:backdrop-blur-xl transition-all duration-300"
         />
+        <Link
+          href={`/blog/${item.slug}`}
+          className="absolute inset-0 z-[15] block"
+          aria-label={item.title}
+        />
         <div className="absolute bottom-0 left-0 w-full h-0 bg-black opacity-25 md:group-hover:h-full transition-all duration-300 z-10"></div>
         <div
           className="hidden md:block absolute pointer-events-none z-20 transition-opacity duration-300 ease-out"

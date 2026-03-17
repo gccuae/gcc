@@ -24,24 +24,26 @@ const SocialImpact = ({
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
   const [mainSwiper, setMainSwiper] = useState<SwiperType | null>(null);
   const [canClick, setCanClick] = useState(true);
+  const [isBeginning, setIsBeginning] = useState(true);
+  const [isEnd, setIsEnd] = useState(false);
 
+  const updateNavState = (swiper: SwiperType) => {
+    setIsBeginning(swiper.isBeginning);
+    setIsEnd(swiper.isEnd);
+  };
+
+  // ✅ Fix 5: Removed manual thumbsSwiper?.slidePrev() / slideNext() calls
   const handlePrev = () => {
-    if (!canClick || !mainSwiper) return;
+    if (!canClick || !mainSwiper || isBeginning) return;
     setCanClick(false);
-
-    // Drive only main swiper; thumbs syncs via Thumbs module.
     mainSwiper.slidePrev();
-    thumbsSwiper?.slidePrev();
     setTimeout(() => setCanClick(true), 250);
   };
 
   const handleNext = () => {
-    if (!canClick || !mainSwiper) return;
+    if (!canClick || !mainSwiper || isEnd) return;
     setCanClick(false);
-
-    // Drive only main swiper; thumbs syncs via Thumbs module.
     mainSwiper.slideNext();
-    thumbsSwiper?.slideNext();
     setTimeout(() => setCanClick(true), 250);
   };
 
@@ -51,11 +53,8 @@ const SocialImpact = ({
   };
 
   useEffect(() => {
-    // Setup responsive GSAP effects
     ScrollTrigger.matchMedia({
-      // Run only on tablet and above (min-width: 768px, adjust as needed)
       "(min-width: 768px)": function () {
-        // Parallax images
         gsap.utils
           .toArray<HTMLElement>(".slide-container")
           .forEach((container) => {
@@ -78,7 +77,6 @@ const SocialImpact = ({
             );
           });
 
-        // Text fade
         gsap.utils.toArray<HTMLElement>(".slide-text").forEach((text) => {
           gsap.fromTo(
             text,
@@ -96,7 +94,6 @@ const SocialImpact = ({
           );
         });
 
-        // Button fade
         gsap.utils.toArray<HTMLElement>(".slide-btn").forEach((btn) => {
           gsap.fromTo(
             btn,
@@ -118,11 +115,10 @@ const SocialImpact = ({
     });
 
     return () => {
-      ScrollTrigger.getAll().forEach((st) => st.kill()); // cleanup
+      ScrollTrigger.getAll().forEach((st) => st.kill());
     };
   }, []);
 
-  // Pause main swiper autoplay when hovering over thumbs swiper
   useEffect(() => {
     if (!thumbsSwiper || !mainSwiper) return;
     const el = thumbsSwiper.el as HTMLElement;
@@ -140,21 +136,49 @@ const SocialImpact = ({
     <section className="wrapper py-57px overflow-hidden bg-black">
       <div className="container">
         <div className="flex justify-between items-center mb-6 xl:mb-[43px]">
-          <motion.h2 variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true }} className=" text-4xl xl:text-5xl font-normal leading-[1.147058823529412] text-white" >
+          <motion.h2 variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-4xl xl:text-5xl font-normal leading-[1.147058823529412] text-white">
             {data.title}
           </motion.h2>
           <div className="flex items-center gap-2">
-            <motion.div variants={moveUp(0.5)} initial="hidden" whileInView="show" viewport={{ once: true }} className="flex border border-white/50 dark:border-white/50 rounded-full" >
-              <div onClick={handlePrev} className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] rounded-tl-full rounded-bl-full group  cursor-pointer hover:bg-accent  transition-all duration-300" >
-                <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]" >
-                  <path d="M8.33594 1.33154L1.66731 8.00017L8.33594 14.6688" stroke="#7AC142" className="group-hover:stroke-white transition-all duration-300" strokeWidth="2" strokeLinecap="round" />
+            <motion.div variants={moveUp(0.5)} initial="hidden" whileInView="show" viewport={{ once: true }} className="flex border border-white/50 dark:border-white/50 rounded-full">
+              <div
+                onClick={handlePrev}
+                className={`px-3 py-2 md:px-6 md:py-4 xl:py-[12px] rounded-tl-full rounded-bl-full group transition-all duration-300 ${
+                  isBeginning
+                    ? "cursor-not-allowed opacity-50 bg-black/30"
+                    : "cursor-pointer hover:bg-accent"
+                }`}
+              >
+                <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]">
+                  <path
+                    d="M8.33594 1.33154L1.66731 8.00017L8.33594 14.6688"
+                    stroke="#7AC142"
+                    className={`transition-all duration-300 ${
+                      isBeginning ? "" : "group-hover:stroke-white"
+                    }`}
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
                 </svg>
               </div>
-              <div onClick={handleNext}
-                className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] border-l border-white/30 rounded-tr-full rounded-br-full cursor-pointer group hover:bg-accent dark:hover:bg-accent transition-all duration-300"
+              <div
+                onClick={handleNext}
+                className={`px-3 py-2 md:px-6 md:py-4 xl:py-[12px] border-l border-white/30 rounded-tr-full rounded-br-full group transition-all duration-300 ${
+                  isEnd
+                    ? "cursor-not-allowed opacity-50 bg-black/30"
+                    : "cursor-pointer hover:bg-accent dark:hover:bg-accent"
+                }`}
               >
-                <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]" >
-                  <path d="M1.66406 1.33154L8.33269 8.00017L1.66406 14.6688" stroke="#7AC142" className="group-hover:stroke-white transition-all duration-300" strokeWidth="2" strokeLinecap="round" />
+                <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]">
+                  <path
+                    d="M1.66406 1.33154L8.33269 8.00017L1.66406 14.6688"
+                    stroke="#7AC142"
+                    className={`transition-all duration-300 ${
+                      isEnd ? "" : "group-hover:stroke-white"
+                    }`}
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
                 </svg>
               </div>
             </motion.div>
@@ -168,7 +192,7 @@ const SocialImpact = ({
             slidesPerView={4}
             modules={[Thumbs, Autoplay]}
             allowTouchMove={false}
-            loop={true}
+            // loop={true}
             breakpoints={{
               0: { slidesPerView: 1 },
               768: { slidesPerView: 2 },
@@ -188,7 +212,8 @@ const SocialImpact = ({
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true }}
-                  className="transition-colors duration-400 pb-4 mb-6 xl:pb-[37px] mb-6 xl:mb-[42px] relative"
+                  // ✅ Fix 1 & 2: Removed duplicate mb-6 and replaced duration-400 with duration-300
+                  className="transition-colors duration-300 pb-4 xl:pb-[37px] mb-6 xl:mb-[42px] relative"
                 >
                   <motion.div
                     variants={fadeIn(index * 0.25)}
@@ -215,7 +240,7 @@ const SocialImpact = ({
                 <motion.h3
                   variants={moveUp(index * 0.12)}
                   initial="hidden"
-                  whileInView="show"
+                  animate="show"
                   viewport={{ once: true, amount: 0.1 }}
                   className="text-xl text-white/80 font-normal leading-sm xl:leading-[1] group-hover:text-white transition-colors duration-300"
                 >
@@ -228,16 +253,20 @@ const SocialImpact = ({
           {/* Content Swiper */}
           <div className="relative">
             <Swiper
-              onSwiper={setMainSwiper}
+              onSwiper={(swiper) => {
+                setMainSwiper(swiper);
+                updateNavState(swiper);
+              }}
               thumbs={{ swiper: thumbsSwiper }}
               slidesPerView={1}
               spaceBetween={30}
               modules={[Thumbs, EffectFade, Autoplay]}
-              loop={true}
+              // loop={true}
               speed={850}
               effect="fade"
               fadeEffect={{ crossFade: true }}
               autoplay={{ delay: 5600, disableOnInteraction: true, waitForTransition: false }}
+              onSlideChange={updateNavState}
               className="px-6"
             >
               {data.items.map((item, index) => (
@@ -274,15 +303,11 @@ const SocialImpact = ({
 
                       <motion.p
                         variants={moveUp()}
-
                         viewport={{ once: true }}
-                        className="text-lg font-light leading-[1.526315789473684]  transition-colors duration-300 w-full text-white/80"
+                        className="text-lg font-light leading-[1.526315789473684] transition-colors duration-300 w-full text-white/80"
                       >
                         {item.description.split("\n").map((line, i) => (
-                          <span
-                            key={i}
-                            className="block slide-text  xl:mt-[17px]"
-                          >
+                          <span key={i} className="block slide-text xl:mt-[17px]">
                             {line}
                           </span>
                         ))}
