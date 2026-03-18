@@ -10,7 +10,7 @@ const MsgGm = ({ items }: MessageSection) => {
   const gmData = items[1];
 
   return (
-    <section className="pb-13 md:pb-15 xl::pb-25 dark:bg-black overflow-hidden bg-[#F5F3F0] pt-57px xl:pt-[180px]">
+    <section className="pb-13 md:pb-15 xl::pb-25 dark:bg-black overflow-hidden bg-[#F5F3F0] pt-57px xl:pt-25">
       <SpecialContainer className="" side="right">
         <div className="flex flex-col lg:grid grid-cols-1 xl:grid-cols-2 lg:items-center gap-6 md:gap-8 lg:border-b lg:border-[#c2c2c2] dark:border-transparent overflow-hidden">
           <div className="max-xl:order-2">

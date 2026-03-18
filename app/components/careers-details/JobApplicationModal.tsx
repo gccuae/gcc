@@ -89,7 +89,7 @@ const JobApplicationModalForm = ({
             <input
               {...register("firstName")}
               type="text"
-              placeholder="First Name"
+              placeholder="First Name *"
               className="w-full px-0 py-3 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-foreground dark:placeholder-white"
             />
             {errors.firstName && (
@@ -101,7 +101,7 @@ const JobApplicationModalForm = ({
             <input
               {...register("lastName")}
               type="text"
-              placeholder="Last Name"
+              placeholder="Last Name *"
               className="w-full px-0 py-3 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-foreground dark:placeholder-white"
             />
             {errors.lastName && (
@@ -116,7 +116,7 @@ const JobApplicationModalForm = ({
             <input
               {...register("email")}
               type="email"
-              placeholder="Email"
+              placeholder="Email *"
               className="w-full px-0 py-3 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-foreground dark:placeholder-white"
             />
             {errors.email && (
@@ -128,7 +128,7 @@ const JobApplicationModalForm = ({
             <input
               {...register("phoneNumber")}
               type="tel"
-              placeholder="Phone Number"
+              placeholder="Phone Number *"
               className="w-full px-0 py-3 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-foreground dark:placeholder-white"
             />
             {errors.phoneNumber && (
@@ -159,7 +159,7 @@ const JobApplicationModalForm = ({
             <input
               {...register("hasConstructionExperience")}
               type="text"
-              placeholder="Current Location"
+              placeholder="Current Location *"
               className="w-full px-0 py-3 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-foreground dark:placeholder-white"
             />
             {errors.hasConstructionExperience && (

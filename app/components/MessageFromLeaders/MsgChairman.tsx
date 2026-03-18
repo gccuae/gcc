@@ -10,7 +10,7 @@ const MsgChairman = ({ items }: MessageSection) => {
   const chairmanData = items[0];
 
   return (
-    <section className="pt-[57px] dark:bg-light-dark xl:pb-57px lg:pb-0 bg-[#F5F3F0]">
+    <section className="pt-[57px] dark:bg-light-dark lg:pb-0 bg-[#F5F3F0]">
       <SpecialContainer className="xl:ps-0" side="left">
         <div className="grid grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 items-end gap-6 md:gap-5 xl:gap-13 lg:border-b lg:border-[#c2c2c2] dark:border-light-dark overflow-hidden">
           <motion.div variants={moveRight()} viewport={{ once: true }} initial="hidden" whileInView="show" className="relative pt-10" >
