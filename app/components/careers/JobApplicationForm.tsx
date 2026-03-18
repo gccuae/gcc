@@ -68,12 +68,15 @@ const JobApplicationForm = ({ title }: { title: string }) => {
             className="grid grid-cols-1 md:grid-cols-2 lg:gap-8 text-black dark:text-white"
           >
             <div className="space-y-2">
-              <input {...register("firstName")} type="text" placeholder="First Name"
+              <input {...register("firstName")} type="text" placeholder="First Name *"
                 className="w-full px-0 py-4 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:focus:border-white/50 dark:placeholder-white transition-colors duration-300"
               />
+              <span className="absolute left-0 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
+                First Name <span className="text-red-500">*</span>
+              </span>
               {errors.firstName && (
                 <p className="text-red-500 text-sm">
-                  {errors.firstName.message}
+                  {errors.firstName.message} 
                 </p>
               )}
             </div>
@@ -82,7 +85,7 @@ const JobApplicationForm = ({ title }: { title: string }) => {
               <input
                 {...register("lastName")}
                 type="text"
-                placeholder="Last Name"
+                placeholder="Last Name *"
                 className="w-full px-0 py-4 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:focus:border-white/50 dark:placeholder-white transition-colors duration-300"
               />
               {errors.lastName && (
@@ -117,7 +120,7 @@ const JobApplicationForm = ({ title }: { title: string }) => {
               <input
                 {...register("phoneNumber")}
                 type="tel"
-                placeholder="Phone Number"
+                placeholder="Phone Number *"
                 className="w-full px-0 py-4 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:focus:border-white/50 dark:placeholder-white transition-colors duration-300"
               />
               {errors.phoneNumber && (
@@ -140,7 +143,7 @@ const JobApplicationForm = ({ title }: { title: string }) => {
               <input
                 {...register("nationality")}
                 type="text"
-                placeholder="Nationality"
+                placeholder="Nationality *"
                 className="w-full px-0 py-4 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:focus:border-white/50 dark:placeholder-white transition-colors duration-300"
               />
               {errors.nationality && (
@@ -154,7 +157,7 @@ const JobApplicationForm = ({ title }: { title: string }) => {
               <input
                   {...register("hasConstructionExperience")}
                 type="text"
-                placeholder="Current Location"
+                placeholder="Current Location *"
                 className="w-full px-0 py-4 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:focus:border-white/50 dark:placeholder-white transition-colors duration-300"
               />
               {errors.hasConstructionExperience && (
@@ -194,12 +197,7 @@ const JobApplicationForm = ({ title }: { title: string }) => {
                   className="flex items-center space-x-3 py-6 cursor-pointer group"
                 >
                   <div className="flex items-center justify-center">
-                    <Image
-                      src="/assets/img/careers/upload-icon.svg"
-                      alt="Upload Icon"
-                      width={24}
-                      height={30}
-                    />
+                    <Image src="/assets/img/careers/upload-icon.svg" alt="Upload Icon" width={24} height={30} />
                   </div>
                   <div className="text-para-color dark:text-white transition-colors flex flex-col xl:flex-row xl:items-center justify-between xl:gap-2 ">
                     <span className="text-lg">
