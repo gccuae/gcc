@@ -217,7 +217,7 @@ export const Menu = ({
                       <Link href="https://www.facebook.com/profile.php?id=61585660241145" target="_blank" className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center group" >
                         <Image src="/assets/img/icons/fb.svg" alt="fb" width={8} height={14} className="group-hover:filter-[brightness(0)_invert(1)] transition-all duration-300" />
                       </Link>
-                      <Link href="https://www.linkedin.com" target="_blank" className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center group" >
+                      <Link href="https://www.linkedin.com/company/gccae/ " target="_blank" className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center group" >
                         <Image src="/assets/img/icons/ln.svg" alt="ln" width={12} height={11} className="group-hover:filter-[brightness(0)_invert(1)] transition-all duration-300" />
                       </Link>
                       <Link href="https://www.youtube.com/@GCCae" target="_blank" className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center group" >
