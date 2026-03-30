@@ -23,6 +23,7 @@ interface BtnPrimaryProps {
   bgtrans?: boolean;
   borderwight?: boolean;
   onClick?: () => void;
+  className?: string;
 }
 
 const BtnPrimary = ({
@@ -31,6 +32,7 @@ const BtnPrimary = ({
   bgtrans,
   borderwight,
   onClick,
+  className,
 }: BtnPrimaryProps) => {
   const baseClasses = `
     ${bgtrans ? "bg-transparent" : "bg-white"}
@@ -42,6 +44,7 @@ const BtnPrimary = ({
     ${borderwight ? "border-white text-white" : "border-foreground"}
     dark:border-white rounded-4xl w-fit
     hover:shadow-xl dark:bg-transparent
+    ${className ?? ""}
   `;
 
   const content = (

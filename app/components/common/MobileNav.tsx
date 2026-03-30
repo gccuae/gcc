@@ -9,6 +9,7 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import Link from "next/link";
+import ThemeToggle from "./ThemeToggle";
 
 
 const MobileNav = () => {
@@ -113,28 +114,33 @@ const MobileNav = () => {
     <>
 
       {/* Navbar */}
-      <nav className="w-full bg-black text-white tanspheader py-4  top-0 z-10">
+      <nav className="w-full bg-white text-black dark:bg-black dark:text-white tanspheader py-4 top-0 z-10 transition-colors duration-300">
         <div className="container mx-auto flex items-center justify-between">
           <div>
             <div className="flex items-center">
               <Link href="/">
-                <Image src="/assets/img/logo.svg" alt="Assent" width={180} height={140} className="h-[48px] w-auto" />
+                <Image src="/assets/img/logo-light.svg" alt="Assent" width={180} height={140} className="h-[48px] w-auto dark:hidden" />
+                <Image src="/assets/img/logo.svg" alt="Assent" width={180} height={140} className="h-[48px] w-auto hidden dark:block" />
               </Link>
             </div>
 
           </div>
-          {/* Hamburger Button */}
-          <div
-            className="cursor-pointer px-3 py-6"
-            onClick={() => setMenuOpen(!menuOpen)}>
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+
+            {/* Hamburger Button */}
             <div
-              className={`relative block h-[2px] w-7 bg-primary transition-all
-                before:absolute before:top-[-0.35rem] before:block before:h-full before:w-full before:bg-primary before:transition-all
-                after:absolute after:bottom-[-0.35rem] after:block after:h-full after:w-full after:bg-primary after:transition-all
-                ${menuOpen
-                  ? "bg-transparent before:rotate-45 before:top-0 after:-rotate-45 after:bottom-0"
-                  : ""
-                }`}></div>
+              className="cursor-pointer px-3 py-6"
+              onClick={() => setMenuOpen(!menuOpen)}>
+              <div
+                className={`relative block h-[2px] w-7 bg-primary transition-all
+                  before:absolute before:top-[-0.35rem] before:block before:h-full before:w-full before:bg-primary before:transition-all
+                  after:absolute after:bottom-[-0.35rem] after:block after:h-full after:w-full after:bg-primary after:transition-all
+                  ${menuOpen
+                    ? "bg-transparent before:rotate-45 before:top-0 after:-rotate-45 after:bottom-0"
+                    : ""
+                  }`}></div>
+            </div>
           </div>
         </div>
       </nav>
@@ -149,7 +155,7 @@ const MobileNav = () => {
 
       {/* Sliding Menu */}
       <div
-        className={`fixed top-0 right-0 z-50 h-full w-[300px] bg-white shadow-2xl transform transition-transform duration-500
+        className={`fixed top-0 right-0 z-50 h-full w-[300px] bg-white text-black dark:bg-black dark:text-white shadow-2xl transform transition-transform duration-500
           ${menuOpen ? "translate-x-0" : "translate-x-full"}`}>
         <div className="min-h-full px-6 pt-[30px] pb-[40px] flex flex-col relative">
           {/* Close Button */}
@@ -163,7 +169,8 @@ const MobileNav = () => {
           <div className="mb-[50px]">
             <div className="text-left ">
               <Link href="/">
-                <Image src="/assets/img/invertlogo.svg" alt="Assent" width={120} height={50} className="h-[45px] w-auto" />
+                <Image src="/assets/img/logo-light.svg" alt="Assent" width={120} height={50} className="h-[45px] w-auto dark:hidden" />
+                <Image src="/assets/img/logo.svg" alt="Assent" width={120} height={50} className="h-[45px] w-auto hidden dark:block" />
               </Link>
             </div>
 
@@ -190,7 +197,7 @@ const MobileNav = () => {
                         <Link
                           href={childItem.url}
                           onClick={() => setMenuOpen(false)}>
-                          <li key={childIndex} className="py-1">
+                      <li key={childIndex} className="py-1 text-black dark:text-white">
                             {childItem.title}
                           </li>
                         </Link>
@@ -221,14 +228,14 @@ const MobileNav = () => {
             <div className="flex space-x-4 mt-4">
               <div>
                 <div className="flex space-x-4" >
-                  <Link href="https://www.facebook.com/profile.php?id=61585660241145" target="_blank" className="cursor-pointer bg-black text-white rounded-full p-2 hover:bg-primary transition-all duration-500">
-                    <FaFacebookF className="cursor-pointer w-5 h-5 hover:text-primary transition-all duration-500" />
+                  <Link href="https://www.facebook.com/profile.php?id=61585660241145" target="_blank" className="cursor-pointer rounded-full p-2 bg-black text-white dark:bg-white dark:text-black hover:bg-primary transition-all duration-500">
+                    <FaFacebookF className="cursor-pointer w-5 h-5 transition-all duration-500" />
                   </Link>
-                  <Link href="https://www.linkedin.com" target="_blank" className="cursor-pointer bg-black text-white rounded-full p-2 hover:bg-primary transition-all duration-500">
-                    <FaLinkedinIn className="cursor-pointer w-5 h-5 hover:text-primary transition-all duration-500" />
+                  <Link href="https://www.linkedin.com" target="_blank" className="cursor-pointer rounded-full p-2 bg-black text-white dark:bg-white dark:text-black hover:bg-primary transition-all duration-500">
+                    <FaLinkedinIn className="cursor-pointer w-5 h-5 transition-all duration-500" />
                   </Link>
-                  <Link href="https://www.youtube.com/@GCCae" target="_blank" className="cursor-pointer bg-black text-white rounded-full p-2 hover:bg-primary transition-all duration-500">
-                    <FaYoutube className="cursor-pointer w-5 h-5 hover:text-primary transition-all duration-500" />
+                  <Link href="https://www.youtube.com/@GCCae" target="_blank" className="cursor-pointer rounded-full p-2 bg-black text-white dark:bg-white dark:text-black hover:bg-primary transition-all duration-500">
+                    <FaYoutube className="cursor-pointer w-5 h-5 transition-all duration-500" />
                   </Link>
                 </div>
               </div>

@@ -58,7 +58,7 @@ const HeroSlider = ({ data, counterData }: HeroSliderProps) => {
                       {slide.description}
                     </motion.p>
                     <motion.div variants={moveUp(1.8)} initial="hidden" animate="show" >
-                      <BtnPrimary link="/about-us" text="Readmore" bgtrans={true} borderwight={true} />
+                      <BtnPrimary link="/about-us" text="Readmore" bgtrans={true} borderwight={true} className="gap-4" />
                     </motion.div>
                   </motion.div>
                 </div>
