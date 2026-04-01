@@ -24,21 +24,21 @@ export const menuItems: MenuItem[] = [
       //   url: "/our-team",
       // },
       {
-        title: "Group Companies",
-        url: "/group-companies",
-      },
-      {
-        title: "Clients",
-        url: "/clients",
-      },
-      {
-        title: "Certifications",
-        url: "/certifications",
-      },
-      {
         title: "Expertise",
         url: "/expertise",
       },
+      {
+        title: "Group Companies",
+        url: "/group-companies",
+      },
+      // {
+      //   title: "Clients",
+      //   url: "/clients",
+      // },
+      // {
+      //   title: "Certifications",
+      //   url: "/certifications",
+      // },
     ],
   },
   {

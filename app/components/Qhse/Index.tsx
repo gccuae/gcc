@@ -4,8 +4,16 @@ import HealthandSafety from "./sections/HealthandSafety";
 import WhyQhse from "./sections/WhyQhse";
 import EnvironmentResponsibility from "./sections/EnvironmentResponsibility";
 import { QhseType } from "./type";
+import CertificationMain from "../certifications/Main";
+import { AwardsPageData } from "../certifications/type";
 
-const Index = ({data}: {data:QhseType}) => {
+const Index = ({
+  data,
+  certificationsData,
+}: {
+  data: QhseType;
+  certificationsData: AwardsPageData;
+}) => {
   return (
     <>
       <Main
@@ -35,6 +43,7 @@ const Index = ({data}: {data:QhseType}) => {
         description={data.fifthSection.description}
         matters={data.fifthSection.items}
       />
+      <CertificationMain data={certificationsData} />
     </>
   );
 };

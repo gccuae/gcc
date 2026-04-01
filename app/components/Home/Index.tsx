@@ -25,7 +25,7 @@ const Index = ({ data, projects, news, expertise }: Props) => {
         counterData={data.numberSection.items}
       />
       <AboutCompany data={data.firstSection} />
-      <FeaturedProjects data={projects} />
+      {/* <FeaturedProjects data={projects} /> */}
 
       <AreaOfExpertise data={expertise.secondSection} />
       <SectorSlider data={data.fourthSection} />

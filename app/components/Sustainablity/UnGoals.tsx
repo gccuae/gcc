@@ -31,7 +31,7 @@ const SectorSlider = ({
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
-          className="text-lg 2xl:text-xl font-light leading-[1.391304347826087] pb-6 xl:pb-47px text-para-color dark:text-white max-w-[80ch]"
+          className="text-lg font-light leading-[1.391304347826087] pb-6 xl:pb-47px text-para-color dark:text-white max-w-[80ch]"
         >
           {data.description}
         </motion.p>

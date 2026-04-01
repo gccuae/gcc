@@ -41,7 +41,7 @@ const DetailsTab = ({ data }: { data: ThirdSection }) => {
   };
 
   return (
-    <section className="pt-57px bg-white dark:bg-light-dark">
+    <section className="py-57px bg-white dark:bg-light-dark">
       <div className="container">
         <div className="">
           {/* Tab buttons */}
@@ -97,7 +97,7 @@ const DetailsTab = ({ data }: { data: ThirdSection }) => {
             {/* Text */}
             <div>
               <motion.div variants={moveUp(0.2)} initial="hidden" animate="show"
-                className="3xl:text-21 leading-[1.380952380952381] text-[#515151] dark:!text-white dark:[&_*]:!text-white/90 [&_p]:-mb-[5px] [&_p:last-child]:mb-0 text-justify"
+                className="text-lg leading-[1.380952380952381] text-[#515151] dark:!text-white dark:[&_*]:!text-white/90 [&_p]:-mb-[5px] [&_p:last-child]:mb-0 "
               >
                 {parse(projectDetails[activeTab]?.description || "")}
               </motion.div>

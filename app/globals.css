@@ -203,11 +203,11 @@ body {
 }
 
 .justify-txt {
-  @apply text-justify;
-  text-wrap: balance;
+  @apply text-left;
+  /* text-wrap: balance;
   hyphens: auto;
   -webkit-hyphens: auto;
-  overflow-wrap: break-word;
+  overflow-wrap: break-word; */
 }
 
 @media (prefers-color-scheme: dark) {
