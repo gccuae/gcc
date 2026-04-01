@@ -9,15 +9,39 @@ import BtnPrimary from "../common/BtnPrimary";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { moveUp, moveLeft } from "../motionVarients";
-import { Project } from "@/types/Projects";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 import Link from "next/link";
+
+interface FeaturedProjectItem {
+  _id: string;
+  title: string;
+  slug: string;
+  thumbnail: string;
+  thumbnailAlt: string;
+  featuredProject: boolean;
+  secondSection: {
+    client: string;
+    projectValue?: string;
+    superficie?: string;
+    sector?: {
+      _id: string;
+      name: string;
+    };
+    location?: {
+      _id: string;
+      name: string;
+    };
+  };
+}
+
 interface FeaturedProjectsProps {
-  data: Project;
+  data: {
+    projects: FeaturedProjectItem[];
+  };
 }
 
 const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {

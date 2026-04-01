@@ -32,7 +32,7 @@ const Main = ({ title, subtitle, description, primaryColorText }: Props) => {
               variants={moveUp(0.2)}
               initial="hidden"
               animate="show"
-              className="text-lg lg:text-xl leading-[1.4] lg:leading-[1.608695652173913] text-para-color dark:text-white font-light"
+              className="text-lg lg:leading-[1.608695652173913] text-para-color dark:text-white font-light"
             >
               At{" "}
               <span className="text-primary font-normal">

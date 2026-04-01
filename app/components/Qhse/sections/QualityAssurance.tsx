@@ -44,7 +44,8 @@ const QualityAssurance = ({
             {title}
           </motion.h2>
           {description.split("\n").map((para, index) => (
-            <motion.p key={index} variants={moveUp(index * 0.12)} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-lg text-para-color dark:text-white font-light leading-lh-text19 mt-3 md:mt-6" >
+            <motion.p key={index} variants={moveUp(index * 0.12)} initial="hidden" whileInView="show" viewport={{ once: true }}
+             className="text-lg text-para-color dark:text-white font-light leading-lh-text19 mt-3 md:mt-6" >
               {para}
             </motion.p>
           ))}

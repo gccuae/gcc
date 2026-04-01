@@ -32,7 +32,7 @@ const Main = ({ data }: { data: careerData['firstSection'] }) => {
 
           >
             <p
-              className="text-lg lg:text-xl xl:text-2xl leading-[1.46875] font-light text-para-color dark:text-white text-justify"
+              className="text-lg leading-[1.46875] font-light text-para-color dark:text-white "
               dangerouslySetInnerHTML={{ __html: data.description }}
             />
           </motion.div>

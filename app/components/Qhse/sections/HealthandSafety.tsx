@@ -30,7 +30,7 @@ const HealthandSafety = ({ title, description, measures }: Props) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="text-lg leading-lh-text19 text-white font-light max-w-[100ch] text-justify"
+            className="text-lg leading-lh-text19 text-white font-light max-w-[120ch] "
           >
             {description}
           </motion.p>

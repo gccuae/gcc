@@ -47,12 +47,12 @@ const Main = ({ data, title }: { data: SecondSectionFirstSection; title: string 
             </h2>
           </div>
           <div>
-            <div
-              className="text-19 leading-lh-text19 text-[#515151] dark:text-white lg:w-[96%]"
+            <p
+              className="text-lg leading-lh-text19 text-[#515151] dark:text-white lg:w-[96%]"
               dangerouslySetInnerHTML={{
                 __html: parsedDescription,
               }}
-            ></div>
+            ></p>
           </div>
         </div>
       </div>

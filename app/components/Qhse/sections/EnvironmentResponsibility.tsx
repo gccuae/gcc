@@ -31,7 +31,7 @@ const EnvironmentalResponsibility = ({
         </motion.h2>
 
         {/* Description */}
-        <motion.p variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-lg leading-lh-text19 font-light text-para-color dark:text-white max-w-[100ch] mb-57px" >
+        <motion.p variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-lg leading-lh-text19 font-light text-para-color dark:text-white mb-57px" >
           {description}
         </motion.p>
 

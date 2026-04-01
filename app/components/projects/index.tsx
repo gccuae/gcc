@@ -5,6 +5,7 @@ import { APIProvider } from "@vis.gl/react-google-maps";
 // import { ProjectsPage } from "@/types/Projects";
 import { ProjectsResponse } from "./type";
 import PageBnr from "../common/PageBnr";
+import FeaturedProjects from "../Home/FeaturedProjects";
 import ProjectsList from "./sections/ProjectsList";
 
 interface Sector {
@@ -36,6 +37,7 @@ const Index = ({
   return (
     <>
       <PageBnr pageTitle={projects.data.pageTitle} bannerImg={projects.data.banner} bannerAlt={projects.data.bannerAlt} />
+      <FeaturedProjects data={{ projects: projects.data.projects }} />
       <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API as string}>
         {/* <ProjectList
           projects={projects}
