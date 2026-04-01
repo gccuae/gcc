@@ -90,9 +90,9 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                   </svg>
                 </div>
               </motion.div>
-              <motion.div variants={moveUp(1)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} >
+              {/* <motion.div variants={moveUp(1)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} >
                 <BtnPrimary link={"/projects"} text="Explore Projects" bgtrans={true} />
-              </motion.div>
+              </motion.div> */}
             </div>
           </div>
         </div>
