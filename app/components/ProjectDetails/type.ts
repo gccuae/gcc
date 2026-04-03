@@ -1,6 +1,7 @@
 export interface SecondSectionItemData {
   firstSection?: FirstSection;
   secondSection?: SecondSection;
+  numberSection?: NumberSection;
   thirdSection?: ThirdSection;
   forthSection?: ForthSection;
   fifthSection?: FifthSection;
@@ -20,6 +21,15 @@ export interface SecondSectionItemData {
 
 export interface FirstSection {
   images: string[];
+}
+
+export interface NumberSection {
+  items: {
+    number: string;
+    value: string;
+    image: string;
+    imageAlt: string;
+  }[];
 }
 
 export interface SecondSection {

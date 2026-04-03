@@ -1,0 +1,52 @@
+import { resend } from "./mailer";
+import { CareerTemplate } from "@/templates/careerTemplate";
+import { VendorEmail } from "@/templates/vendorTemplate";
+import type { ReactElement } from "react";
+
+interface Attachment {
+  filename: string;
+  content: Buffer; // ✅ change this
+  contentType?: string;
+}
+
+export async function sendMailWithAttachments({
+  type,
+  to,
+  subject,
+  fields,
+  attachments,
+}: {
+  type: string;
+  to: string | string[];
+  subject: string;
+  fields: any;
+  attachments?: Attachment[];
+}) {
+
+  if (type == "career") {
+    const { error } = await resend.emails.send({
+      from: "onboarding@resend.dev",
+      to,
+      subject,
+      react: CareerTemplate(fields) as ReactElement,
+      attachments,
+    });
+
+    if (error) {
+      console.error("Resend error:", error);
+      throw new Error("Failed to send email");
+    }
+  } else {
+    const { error } = await resend.emails.send({
+      from: "onboarding@resend.dev",
+      to,
+      subject,
+      react: VendorEmail(fields) as ReactElement,
+      attachments,
+    });
+    if (error) {
+      console.error("Resend error:", error);
+      throw new Error("Failed to send email");
+    }
+  }
+}

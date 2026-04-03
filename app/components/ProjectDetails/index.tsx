@@ -6,6 +6,7 @@ import MoreProjects from "./MoreProjects";
 import { SecondSectionItemData } from "./type";
 import { Project } from "@/types/Projects";
 import LocationDetails from "./LocationDetails";
+import KeyFacts from "./KeyFacts";
 
 interface Props {
   data: SecondSectionItemData;
@@ -17,6 +18,9 @@ const Index = ({ data, projects }: Props) => {
   const filteredProjects = projects.projects.filter(
     (p) => p._id !== data._id && p.slug !== data.slug
   );
+
+  console.log(data);
+
   return (
     <>
       <PageBnr
@@ -25,6 +29,7 @@ const Index = ({ data, projects }: Props) => {
         bannerAlt={data?.bannerAlt || ""}
       />
       {data?.secondSection?.title && <ProjectSlider data={data} />}
+      {data.numberSection && data.numberSection.items && <KeyFacts data={data.numberSection} />}
       {data?.forthSection?.title && <HIghlights data={data?.forthSection} />}
       {data?.thirdSection?.items && data?.thirdSection?.items.length > 0 && (
         <DetailsTab data={data?.thirdSection} />

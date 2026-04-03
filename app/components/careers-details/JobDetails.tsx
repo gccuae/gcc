@@ -30,7 +30,7 @@ const Modal = ({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4"
+          className="fixed inset-0 z-1000 flex items-center justify-center bg-black/75 p-4"
         >
           {/* Modal box animation */}
           <motion.div
@@ -46,9 +46,8 @@ const Modal = ({
             <button
               onClick={disableClose ? undefined : onClose}
               disabled={disableClose}
-              className={`absolute top-5 right-5 md:top-6 md:right-6 p-1 rounded-full text-gray-500 hover:text-black dark:hover:text-white ${
-                disableClose ? "cursor-not-allowed opacity-50" : "cursor-pointer"
-              }`}
+              className={`absolute top-5 right-5 md:top-6 md:right-6 p-1 rounded-full text-gray-500 hover:text-black dark:hover:text-white ${disableClose ? "cursor-not-allowed opacity-50" : "cursor-pointer"
+                }`}
             >
               <Image
                 src="/assets/img/careers/close-popup.svg"

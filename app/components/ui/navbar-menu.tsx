@@ -173,10 +173,6 @@ export const Menu = ({
   };
 
 
-  useEffect(() => {
-    console.log(loading)
-  }, [loading])
-
   const openPopup = () => {
     setIsOpen(true);
     // Small delay to trigger entry animation
@@ -362,6 +358,8 @@ export const Menu = ({
                         result.map(
                           (
                             item: {
+                              title: string,
+                              slug: string
                               type: string;
                               project?: { title: string; slug: string };
                               item?: { title: string; slug: string };
@@ -400,6 +398,153 @@ export const Menu = ({
                                 >
                                   <li>{item.item?.title || "Untitled Expertise"}</li>
                                 </Link>
+                              );
+                            } else if (item.type === "expertise-listing") {
+                              return (
+                                <Link
+                                  href={`/expertise`}
+                                  key={index}
+                                  className="cursor-pointer"
+                                  onClick={() => setResult(null)}
+                                >
+                                  <li>{"Expertise"}</li>
+                                </Link>
+                              );
+                            }
+                            else if (item.type === "about") {
+                              return (
+                                <Link
+                                  href={`/about`}
+                                  key={index}
+                                  className="cursor-pointer"
+                                  onClick={() => setResult(null)}
+                                >
+                                  <li>{item.item?.title || "About Us"}</li>
+                                </Link>
+                              );
+                            }
+                            else if (item.type === "group-company") {
+                              return (
+                                <Link
+                                  href={`/group-companies`}
+                                  key={index}
+                                  className="cursor-pointer"
+                                  onClick={() => setResult(null)}
+                                >
+                                  <li>{"Group Companies"}</li>
+                                </Link>
+                              );
+                            }
+                            else if (item.type === "qhse") {
+                              return (
+                                <Link
+                                  href={`/qhse`}
+                                  key={index}
+                                  className="cursor-pointer"
+                                  onClick={() => setResult(null)}
+                                >
+                                  <li>{"Qhse"}</li>
+                                </Link>
+                              );
+                            }
+                            else if (item.type === "sustainability") {
+                              return (
+                                <Link
+                                  href={`/sustainability`}
+                                  key={index}
+                                  className="cursor-pointer"
+                                  onClick={() => setResult(null)}
+                                >
+                                  <li>{"Sustainability"}</li>
+                                </Link>
+                              );
+                            }
+                            else if (item.type === "aiTechnology") {
+                              return (
+                                <Link
+                                  href={`/ai-technology`}
+                                  key={index}
+                                  className="cursor-pointer"
+                                  onClick={() => setResult(null)}
+                                >
+                                  <li>{"AI Technology"}</li>
+                                </Link>
+                              );
+                            }
+                            else if (item.type === "blogs") {
+                              return (
+                                <Link
+                                  href={`/blog`}
+                                  key={index}
+                                  className="cursor-pointer"
+                                  onClick={() => setResult(null)}
+                                >
+                                  <li>{"Blog"}</li>
+                                </Link>
+                              );
+                            }
+                            else if (item.type === "blogs-indi") {
+                              return (
+                                <Link
+                                  href={`/blog/${item.slug}`}
+                                  key={index}
+                                  className="cursor-pointer"
+                                  onClick={() => setResult(null)}
+                                >
+                                  <li>{item.title}</li>
+                                </Link>
+                              );
+                            }
+                            else if (item.type === "gallery") {
+                              return (
+                                <Link
+                                  href={`/gallery`}
+                                  key={index}
+                                  className="cursor-pointer"
+                                  onClick={() => setResult(null)}
+                                >
+                                  <li>Gallery</li>
+                                </Link>
+                              );
+                            }
+                            else if (item.type === "currentOpenings") {
+                              return (
+                                <Link
+                                  href={`/careers`}
+                                  key={index}
+                                  className="cursor-pointer"
+                                  onClick={() => setResult(null)}
+                                >
+                                  <li>Careers</li>
+                                </Link>
+                              );
+                            }
+                            else if (item.type === "contact") {
+                              return (
+                                <Link
+                                  href={`/contact-us`}
+                                  key={index}
+                                  className="cursor-pointer"
+                                  onClick={() => setResult(null)}
+                                >
+                                  <li>Contact Us</li>
+                                </Link>
+                              );
+                            }
+                            else if (item.type === "vendor") {
+                              return (
+                                <li key={index}>
+                                  <Link
+                                    href={`/${item.slug}`}
+                                    className="cursor-pointer block"
+                                    onClick={() => {
+                                      setResult(null);
+                                      setIsOpen(false);
+                                    }}
+                                  >
+                                    {item.title}
+                                  </Link>
+                                </li>
                               );
                             }
                           }

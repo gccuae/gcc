@@ -76,7 +76,7 @@ const JobApplicationForm = ({ title }: { title: string }) => {
               </span>
               {errors.firstName && (
                 <p className="text-red-500 text-sm">
-                  {errors.firstName.message} 
+                  {errors.firstName.message}
                 </p>
               )}
             </div>
@@ -155,14 +155,14 @@ const JobApplicationForm = ({ title }: { title: string }) => {
 
             <div className="space-y-2">
               <input
-                  {...register("hasConstructionExperience")}
+                {...register("currentLocation")}
                 type="text"
                 placeholder="Current Location *"
                 className="w-full px-0 py-4 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:focus:border-white/50 dark:placeholder-white transition-colors duration-300"
               />
-              {errors.hasConstructionExperience && (
+              {errors.currentLocation && (
                 <p className="text-red-500 text-sm">
-                  {errors.hasConstructionExperience.message}
+                  {errors.currentLocation.message}
                 </p>
               )}
             </div>

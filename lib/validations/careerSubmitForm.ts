@@ -6,7 +6,7 @@ const fileSchema = z
   .any()
   .refine((files) => files && files.length > 0, "This file is required")
   .refine(
-    (files) => !files?.[0] || files[0].size <= 20 * 1024 * 1024,
+    (files) => !files?.[0] || files[0].size <= 5 * 1024 * 1024,
     "File size must be less than 20MB"
   )
   .refine(
@@ -42,11 +42,16 @@ export const jobApplicationSchema = z.object({
     .trim()
     .min(1, "Nationality is required")
     .min(3, "Nationality must be at least 3 characters"),
-  hasConstructionExperience: z
+  // hasConstructionExperience: z
+  //   .string()
+  //   .trim()
+  //   .min(1, "Current location is required")
+  //   .min(3, "Current location must be at least 3 characters"),
+  currentLocation: z
     .string()
     .trim()
-    .min(1, "Current location is required")
-    .min(3, "Current location must be at least 3 characters"),
+    .min(1, "Nationality is required")
+    .min(3, "Nationality must be at least 3 characters"),
   coverLetter: fileSchema,
   resume: fileSchema,
 });
