@@ -145,6 +145,7 @@ export async function PATCH(request: NextRequest) {
       console.log(body);
       foundProject.firstSection.images = body.firstSection.images;
       foundProject.secondSection = body.secondSection;
+      foundProject.numberSection = body.numberSection;
       foundProject.thirdSection = body.thirdSection;
       foundProject.forthSection = body.forthSection;
       foundProject.fifthSection = body.fifthSection;

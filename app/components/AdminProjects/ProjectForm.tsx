@@ -68,6 +68,14 @@ interface ProjectFormProps {
     fullLocation: string;
     superficie: string;
   };
+  numberSection: {
+    items: {
+      number: string;
+      value: string;
+      image: string;
+      imageAlt: string;
+    }[]
+  }
   thirdSection: {
     items: {
       image: string;
@@ -106,6 +114,15 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
 
   const { id } = useParams();
   const router = useRouter();
+
+  const {
+    fields: numberSectionItems,
+    append: numberSectionAppend,
+    remove: numberSectionRemove,
+  } = useFieldArray({
+    control,
+    name: "numberSection.items",
+  });
 
   const {
     fields: thirdSectionItems,
@@ -222,6 +239,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
           location: data.data.secondSection.location?._id || "",
           projectType: data.data.secondSection.projectType?._id || "",
         });
+        setValue("numberSection.items", data.data.numberSection.items);
         setValue("thirdSection.items", data.data.thirdSection.items);
         setValue("forthSection", data.data.forthSection);
         setValue("forthSection.items", data.data.forthSection.items);
@@ -573,7 +591,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                   </p>
                 )}
               </div>
-              <div className="flex flex-col gap-1">
+              {/* <div className="flex flex-col gap-1">
                 <Label className="font-bold">Project Value</Label>
                 <Input
                   type="text"
@@ -585,7 +603,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                     {errors.secondSection?.projectValue.message}
                   </p>
                 )}
-              </div>
+              </div> */}
               <div className="flex flex-col gap-1">
                 <Label className="font-bold">Superficie</Label>
                 <Input
@@ -743,6 +761,105 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                   </p>
                 )}
               </div>
+            </div>
+          </div>
+        </AdminItemContainer>
+
+        <AdminItemContainer>
+          <Label className='font-bold' main>Number Section</Label>
+          <div className='p-5 rounded-md flex flex-col gap-5'>
+            <Label className='font-bold'>Items</Label>
+            <div className='border p-2 rounded-md flex flex-col gap-5'>
+
+
+              {numberSectionItems.map((field, index) => (
+                <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b pb-5 last:border-b-0'>
+                  <div className='absolute top-2 right-2'>
+                    <RiDeleteBinLine onClick={() => numberSectionRemove(index)} className='cursor-pointer text-red-600' />
+                  </div>
+
+                  <div className='flex flex-col gap-2'>
+                    <div className='flex flex-col gap-2'>
+                      <div className='flex flex-col gap-2'>
+                        <Label className='font-bold'>Number</Label>
+                        <Input type='text' placeholder='Number' {...register(`numberSection.items.${index}.number`, {
+                          required: "Value is required"
+                        })} />
+                        {errors.numberSection?.items?.[index]?.number && <p className='text-red-500'>{errors.numberSection?.items?.[index]?.number.message}</p>}
+                      </div>
+                    </div>
+
+
+                  </div>
+
+                  <div className='flex flex-col gap-2'>
+                    <div className='flex flex-col gap-2'>
+                      <div className='flex flex-col gap-2'>
+                        <Label className='font-bold'>Value</Label>
+                        <Input type='text' placeholder='Value' {...register(`numberSection.items.${index}.value`, {
+                          required: "Value is required"
+                        })} />
+                        {errors.numberSection?.items?.[index]?.value && <p className='text-red-500'>{errors.numberSection?.items?.[index]?.value.message}</p>}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2">
+                      <Label className="font-bold">Image</Label>
+                      <Controller
+                        name={`numberSection.items.${index}.image`}
+                        control={control}
+                        render={({ field }) => (
+                          <ImageUploader
+                            value={field.value}
+                            onChange={field.onChange}
+                          />
+                        )}
+                      />
+                      {errors.numberSection?.items?.[index]?.image && (
+                        <p className="text-red-500">
+                          {
+                            errors.numberSection?.items?.[index]?.image
+                              .message
+                          }
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="flex flex-col gap-2">
+                      <div className="flex flex-col gap-2">
+                        <Label className="font-bold">Alt Tag</Label>
+                        <Input
+                          type="text"
+                          placeholder="Alt Tag"
+                          {...register(
+                            `numberSection.items.${index}.imageAlt`,
+                            {
+                              required: "Value is required",
+                            }
+                          )}
+                        />
+                        {errors.numberSection?.items?.[index]?.imageAlt && (
+                          <p className="text-red-500">
+                            {
+                              errors.numberSection?.items?.[index]?.imageAlt
+                                .message
+                            }
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              ))}
+
+
+
+            </div>
+            <div className='flex justify-end mt-2'>
+              <Button type='button' addItem onClick={() => numberSectionAppend({ number: "", value: "", image: "", imageAlt: "" })}>Add Item</Button>
             </div>
           </div>
         </AdminItemContainer>

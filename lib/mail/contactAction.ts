@@ -1,6 +1,7 @@
 "use server";
 
-import { sendMailWithAttachments } from "./sendMailWithAttatchments";
+import { getToEmail } from "@/helpers/getToEmail";
+import { sendMailWithAttachments } from "@/helpers/sendMailWithAttatchments";
 
 export async function sendContactAction(formData: FormData) {
   try {
@@ -26,9 +27,12 @@ export async function sendContactAction(formData: FormData) {
       ...additional,
     ]);
 
+    const toEmail = await getToEmail("vendor");
+
     await sendMailWithAttachments({
-      to: "gccae1988@gmail.com",
-      subject: `New Vendor Registration: ${fields.vendorName}`,
+      type: "vendor",
+      to: toEmail,
+      subject: `Website - Vendor Registration`,
       fields,
       attachments,
     });
@@ -56,7 +60,8 @@ async function buildAttachments(files: File[]) {
   return Promise.all(
     files.map(async (file) => ({
       filename: file.name,
-      content: Buffer.from(await file.arrayBuffer()).toString("base64"),
+      content: Buffer.from(await file.arrayBuffer()),
+      contentType: file.type
     }))
   );
 }

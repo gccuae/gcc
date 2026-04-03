@@ -53,8 +53,34 @@ const JobApplicationModalForm = ({
   }, []);
 
   const onSubmit = async (data: FormData) => {
-    console.log("Form submitted:", data);
-    await Promise.resolve(data);
+    const formData = new FormData();
+
+    // append text fields
+    formData.append("firstName", data.firstName);
+    formData.append("lastName", data.lastName);
+    formData.append("email", data.email);
+    formData.append("phoneNumber", data.phoneNumber);
+    formData.append("nationality", data.nationality || "");
+    formData.append("currentLocation", data.currentLocation);
+
+    // append files
+    if (coverLetterFile) {
+      formData.append("coverLetter", coverLetterFile);
+    }
+
+    if (resumeFile) {
+      formData.append("resume", resumeFile);
+    }
+
+    const response = await fetch("/api/admin/career", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      alert("Something went wrong, please try again");
+      return;
+    }
 
     setIsSubmitted(true);
     reset();
@@ -157,14 +183,14 @@ const JobApplicationModalForm = ({
 
           <div className="space-y-2">
             <input
-              {...register("hasConstructionExperience")}
+              {...register("currentLocation")}
               type="text"
               placeholder="Current Location *"
               className="w-full px-0 py-3 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-foreground dark:placeholder-white"
             />
-            {errors.hasConstructionExperience && (
+            {errors.currentLocation && (
               <p className="text-primary text-sm">
-                {errors.hasConstructionExperience.message}
+                {errors.currentLocation.message}
               </p>
             )}
           </div>

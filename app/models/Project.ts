@@ -57,6 +57,25 @@ const projectSchema = new mongoose.Schema({
         },
         fullLocation: { type: String },
       },
+      numberSection: {
+        items: [{
+          number: {
+            type: String,
+            required: true
+          },
+          value: {
+            type: String,
+            required: true
+          },
+          image: {
+            type: String,
+            required: true
+          },
+          imageAlt: {
+            type: String,
+          }
+        }]
+      },
       thirdSection: {
         items: [
           {
