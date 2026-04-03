@@ -42,7 +42,7 @@ const KeyFactsGrid = ({ items }: KeyFactsGridProps) => {
                   className="w-10 h-auto xl:w-[62px] transition-all duration-500 ease-out group-hover:brightness-0"
                 />
               </div>
-              <h3 className="text-3xl xl:text-4xl leading-lh-text68 font-normal mb-3 md:mb-4 xl:mb-2 text-black dark:text-white transition-colors duration-500 ease-out group-hover:text-primary">
+              <h3 className="text-xl sm:text-2xl xl:text-3xl leading-lh-text68 font-normal mb-3 md:mb-4 xl:mb-2 text-black dark:text-white transition-colors duration-500 ease-out group-hover:text-primary">
                 {item.number}
               </h3>
               <p className="text-sm md:text-lg leading-lh-text19 text-black/70 dark:text-white/72 transition-colors duration-500 ease-out group-hover:text-black dark:group-hover:text-white">
