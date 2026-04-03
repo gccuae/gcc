@@ -133,7 +133,7 @@ const ProjectSlider = ({ data }: ProjectSliderProps) => {
               ))}
             </Swiper>
           ) : (
-            <div className="relative max-h-[715px]">
+            <div className="relative ">
               {/* placeholder background */}
               <div className="w-full h-[400px] xl:h-[550px] 2xl:h-[700px] bg-gray-200 flex items-center justify-center">
                 <span className="text-gray-500 text-2xl">1920 x 1080</span>
