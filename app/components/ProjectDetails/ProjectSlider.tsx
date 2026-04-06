@@ -16,9 +16,14 @@ interface ProjectSliderProps {
 const ProjectSlider = ({ data }: ProjectSliderProps) => {
   // const [progress, setProgress] = useState(85);
 
-  const progress = Number(
-    (data?.secondSection?.progress || "").replace(/\D/g, "")
-  );
+  // const progress = Number(
+  //   (data?.secondSection?.progress || "").replace(/\D/g, "")
+  // );
+
+  const isCompleted = data?.secondSection?.status?.toLowerCase() === "completed";
+const progress = isCompleted
+  ? 100
+  : Number((data?.secondSection?.progress || "").replace(/\D/g, ""));
 
   const [animatedProgress, setAnimatedProgress] = useState(0);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -76,7 +81,7 @@ const ProjectSlider = ({ data }: ProjectSliderProps) => {
       <div className="absolute top-0 left-0 w-full h-full bg-[#0F0D0D] opacity-[39%] z-20"></div>
       <div className="relative z-50">
         <h3 className="text-lg xl:text-2xl leading-lh-text32 font-normal text-white mb-6 xl:mb-12"> Project Specifications </h3>
-        {displayProgress == 100 && <div className="relative mb-5">
+        {isCompleted && displayProgress == 100 && <div className="relative mb-5">
           <div className="w-full h-3 bg-gray-300 rounded-full overflow-hidden shadow-inner relative">
             <div className="h-full bg-[#7AC142] rounded-full shadow-sm" style={{ width: `${displayProgress}%` }} />
             <div className="absolute inset-0 flex">
@@ -99,7 +104,7 @@ const ProjectSlider = ({ data }: ProjectSliderProps) => {
         </div>}
       </div>
       <div className="relative z-50">
-        <div className="grid grid-cols-1 md:grid-cols-2 3xl:grid-cols-[auto_1fr] gap-y-5 lg:gap-y-5 xl:gap-y-7">
+        <div className="grid grid-cols-1 md:grid-cols-[1.2fr_1.3fr] gap-y-5 lg:gap-y-5 xl:gap-y-7">
           {[
             { label: "Client", value: data?.secondSection?.client },
             { label: "Location", value: data?.secondSection?.location?.name },
