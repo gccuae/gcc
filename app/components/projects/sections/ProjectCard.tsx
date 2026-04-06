@@ -146,7 +146,7 @@ const ProjectCard = ({
 
                 <h3 className="text-xl xl:text-[1.5rem] 2xl:text-2xl leading-[1.4] font-normal mb-1 md:mb-3 xl:mb-[12px] text-black dark:text-white ">
                     <Link href={`/projects/${item.slug}`} >
-                        {item?.title?.toLowerCase()}
+                        {item?.title}
                     </Link>
                 </h3>
                 {showDescription && (

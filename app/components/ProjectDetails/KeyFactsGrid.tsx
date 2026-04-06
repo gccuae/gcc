@@ -33,13 +33,13 @@ const KeyFactsGrid = ({ items }: KeyFactsGridProps) => {
             }`}
           >
             <div className="flex w-full max-w-[170px] flex-col items-start text-left transition-all duration-500 ease-out group-hover:-translate-y-0.5 lg:w-auto lg:max-w-none">
-              <div className="mb-3 md:mb-5 xl:mb-6 flex h-10 items-center justify-start xl:h-[62px] xl:w-[62px] 2xl:w-auto 2xl:h-[100px]">
+              <div className="mb-3 md:mb-5 xl:mb-6 flex h-10 items-center justify-start xl:h-[62px] xl:w-[62px] 2xl:w-auto 2xl:h-[62px]">
                 <Image
                   src={item.image}
                   alt={item.imageAlt}
                   width={100}
                   height={100}
-                  className="w-10 h-auto xl:w-[62px] 2xl:w-[100px] transition-all duration-500 ease-out group-hover:brightness-0"
+                  className="w-10 h-auto xl:w-[62px]  transition-all duration-500 ease-out group-hover:brightness-0"
                 />
               </div>
               <h3 className="text-xl sm:text-2xl xl:text-3xl leading-lh-text68 font-normal mb-3 md:mb-4 xl:mb-2 text-black dark:text-white transition-colors duration-500 ease-out group-hover:text-primary">
