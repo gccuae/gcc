@@ -414,7 +414,7 @@ export const Menu = ({
                             else if (item.type === "about") {
                               return (
                                 <Link
-                                  href={`/about`}
+                                  href={`/about-us`}
                                   key={index}
                                   className="cursor-pointer"
                                   onClick={() => setResult(null)}
