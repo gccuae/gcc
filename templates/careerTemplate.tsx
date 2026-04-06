@@ -23,6 +23,15 @@ export const CareerTemplate = ({
 }: CareerEmailProps) => {
     const fullName = `${firstName} ${lastName}`;
 
+    console.log(firstName,
+        lastName,
+        email,
+        phone,
+        nationality,
+        currentLocation,
+        coverLetter,
+        resume)
+
     return (
         <div
             style={{
@@ -83,9 +92,8 @@ export const CareerTemplate = ({
                             <Row label="Email Address" value={email} />
                             <Row label="Phone Number" value={phone} />
                             <Row label="Current Location" value={currentLocation} />
-                            {nationality && (
-                                <Row label="Nationality" value={nationality} />
-                            )}
+                            <Row label="Nationality" value={nationality} />
+
                         </tbody>
                     </table>
 
@@ -100,7 +108,7 @@ export const CareerTemplate = ({
                             color: "#374151",
                         }}
                     >
-                        📎 Documents:
+                        {/* 📎 Documents:
                         <ul style={{ marginTop: "8px", paddingLeft: "18px" }}>
                             {resume && (
                                 <li>
@@ -118,7 +126,7 @@ export const CareerTemplate = ({
                                     </a>
                                 </li>
                             )}
-                        </ul>
+                        </ul> */}
                     </div>
                 </div>
 
