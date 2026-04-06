@@ -209,7 +209,7 @@ const FooterV = () => {
                       viewport={{ once: true, amount: 0.2 }}
                       className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300 "
                     >
-                      <Link href="/certifications"> Sustainability</Link>
+                      <Link href="/sustainability"> Sustainability</Link>
                     </motion.li>
                     <motion.li
                       variants={moveUp(0.2)}
