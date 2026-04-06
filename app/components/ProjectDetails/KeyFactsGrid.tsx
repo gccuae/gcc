@@ -27,9 +27,13 @@ const KeyFactsGrid = ({ items }: KeyFactsGridProps) => {
           whileInView="show"
           className="relative border-r border-transparent dark:border-[#3f3f3f] dark:border-white/20 pt-4 xl:pt-[22px] pb-4 xl:pb-[21px] group after:absolute after:top-4 after:bottom-4 after:-right-[10px] after:w-px after:bg-[#C2C2C2] dark:after:bg-white/20 after:content-[''] md:after:-right-[20px] xl:after:-right-[28px] 2xl:after:-right-[36px] [&:nth-child(2n)]:after:hidden lg:[&:nth-child(2n)]:after:block lg:[&:nth-child(4n)]:after:hidden last:after:hidden"
         >
-          <div
+          {/* <div
             className={`flex ${index % 2 === 1 ? "justify-center" : "justify-start"} ${
               index % 4 === 0 ? "lg:justify-start" : "lg:justify-center"
+            }`}
+          > */}
+          <div
+            className={`flex justify-left"
             }`}
           >
             <div className="flex w-full max-w-[170px] flex-col items-start text-left transition-all duration-500 ease-out group-hover:-translate-y-0.5 lg:w-auto lg:max-w-none">
