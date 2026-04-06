@@ -104,20 +104,17 @@ const CurrentOpenings = ({ data, jobs, departments, locations }: { data: careerD
   }, []);
 
   const jobTitles = [
-    "Job Title",
     "All Jobs",
     "Full Time",
     "Part Time"
   ];
 
   const jobDepartments = [
-    "Department",
     "All Departments",
     ...new Set(departments.map((department: { name: string; }) => department.name)),
   ];
 
   const jobLocations = [
-    "Location",
     "All Locations",
     ...new Set(locations.map((location: { name: string; }) => location.name)),
   ];
@@ -218,8 +215,8 @@ const CurrentOpenings = ({ data, jobs, departments, locations }: { data: careerD
                     idx === 0
                       ? toOption(pendingFilters.jobType)
                       : idx === 1
-                      ? toOption(pendingFilters.department)
-                      : toOption(pendingFilters.location)
+                        ? toOption(pendingFilters.department)
+                        : toOption(pendingFilters.location)
                   }
                   onChange={(selected) => {
                     const value = (selected as SelectOption | null)?.value;
@@ -331,7 +328,7 @@ const CurrentOpenings = ({ data, jobs, departments, locations }: { data: careerD
                   <div className="xl:w-[60%]">
                     <h3 className="text-xl lg:text-2xl leading-[1.3] lg:leading-[1.5625] font-normal text-black dark:text-white">
                       <Link href={`careers/${job.firstSection.slug}`} >
-                      {job.firstSection.jobTitle}
+                        {job.firstSection.jobTitle}
                       </Link>
                     </h3>
                     <h4 className="text-lg leading-[1.5625] font-normal text-para-color dark:text-white/50">

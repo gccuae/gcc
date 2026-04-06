@@ -56,7 +56,16 @@ export async function POST(req: NextRequest) {
         type: "career",
         to: toEmail,
         subject: `Website Form – Careers`,
-        fields: formData,
+        fields: {
+            firstName,
+            lastName,
+            email,
+            phone,
+            nationality,
+            currentLocation,
+            coverLetter,
+            resume
+        },
         attachments,
     });
 
