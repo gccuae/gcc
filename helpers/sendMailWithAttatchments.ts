@@ -23,6 +23,9 @@ export async function sendMailWithAttachments({
   attachments?: Attachment[];
 }) {
 
+  console.log("fields", fields);
+
+
   if (type == "career") {
     const { error } = await resend.emails.send({
       from: "onboarding@resend.dev",

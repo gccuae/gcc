@@ -7,7 +7,9 @@ interface VendorEmailProps {
     website?: string;
     services: string;
     expertise?: string;
-    contactDetails: string;
+    email: string;
+    phone: string;
+    address: string;
 }
 
 export const VendorEmail = ({
@@ -17,7 +19,9 @@ export const VendorEmail = ({
     website,
     services,
     expertise,
-    contactDetails,
+    email,
+    phone,
+    address
 }: VendorEmailProps) => {
     return (
         <div
@@ -112,7 +116,9 @@ export const VendorEmail = ({
                                 />
                             )}
 
-                            <Row label="Contact Details" value={contactDetails} />
+                            <Row label="Email" value={email} />
+                            <Row label="Phone" value={phone} />
+                            <Row label="Address" value={address} />
                         </tbody>
                     </table>
 
