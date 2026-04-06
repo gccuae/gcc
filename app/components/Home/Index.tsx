@@ -1,7 +1,7 @@
 import React from "react";
 import HeroSlider from "./HeroSlider";
 import AboutCompany from "./AboutCompanyV";
-import FeaturedProjects from "./FeaturedProjects";
+// import FeaturedProjects from "./FeaturedProjects";
 import AreaOfExpertise from "./AreaOfExpertise";
 import SectorSlider from "./SectorSlider";
 import NewsBlock from "./NewsBlock";

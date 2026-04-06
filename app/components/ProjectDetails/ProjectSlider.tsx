@@ -99,17 +99,17 @@ const ProjectSlider = ({ data }: ProjectSliderProps) => {
         </div>}
       </div>
       <div className="relative z-50">
-        <div className="grid grid-cold-1 md:grid-cols-2 3xl:grid-cols-[auto_1fr] gap-y-5 lg:gap-y-5 xl:gap-y-7">
+        <div className="grid grid-cols-1 md:grid-cols-2 3xl:grid-cols-[auto_1fr] gap-y-5 lg:gap-y-5 xl:gap-y-7">
           {[
             { label: "Client", value: data?.secondSection?.client },
             { label: "Location", value: data?.secondSection?.location?.name },
-            { label: "Scope of Work", value: data?.secondSection?.scopeOfWork },
-            { label: "Completion Date", value: data?.secondSection?.completionDate },
             { label: "Status", value: data?.secondSection?.status },
+            { label: "Completion Date", value: data?.secondSection?.completionDate },
+            { label: "Scope of Work", value: data?.secondSection?.scopeOfWork },
           ].map(({ label, value }) => (
-            <div key={label} className="border-b border-white/65 pb-3 xl:even:pl-3 3xl:even:pl-10 last:border-0">
+            <div key={label} className="border-b border-white/65 pb-3 xl:even:pl-3 3xl:even:pl-10 last:col-span-full last:border-0">
               <h3 className="text-base leading-lh-[1.5625] font-light text-white uppercase"> {label} </h3>
-              <h4 className="text-base lg:text-lg leading-lh-text19 text-white font-medium"> {value} </h4>
+              <h4 className="text-base lg:text-lg leading-lh-text19 text-white font-medium "> {value} </h4>
             </div>
           ))}
         </div>

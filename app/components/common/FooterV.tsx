@@ -92,34 +92,19 @@ const FooterV = () => {
                     >
                       <g clipPath="url(#clip0_614_814)">
                         <path
-                          d="M17.8859 1.72461H4.1122C2.82269 1.72461 1.77734 2.74411 1.77734 4.00172V13.998C1.77734 15.2557 2.82269 16.2751 4.1122 16.2751H17.8859C19.1754 16.2751 20.2207 15.2557 20.2207 13.998V4.00172C20.2207 2.74411 19.1754 1.72461 17.8859 1.72461Z"
-                          stroke="#EE3524"
-                          strokeWidth="2.5"
-                          strokeMiterlimit="10"
-                          strokeLinecap="round"
-                        />
+                          d="M17.8859 1.72461H4.1122C2.82269 1.72461 1.77734 2.74411 1.77734 4.00172V13.998C1.77734 15.2557 2.82269 16.2751 4.1122 16.2751H17.8859C19.1754 16.2751 20.2207 15.2557 20.2207 13.998V4.00172C20.2207 2.74411 19.1754 1.72461 17.8859 1.72461Z" stroke="#EE3524" strokeWidth="2.5" strokeMiterlimit="10" strokeLinecap="round" />
                         <path
                           d="M4.45703 4.5031L10.1549 10.06C10.6571 10.5499 11.4694 10.5499 11.9717 10.06L17.6852 4.48779"
-                          stroke="#EE3524"
-                          strokeWidth="2.5"
-                          strokeMiterlimit="10"
-                          strokeLinecap="round"
-                        />
+                          stroke="#EE3524" strokeWidth="2.5" strokeMiterlimit="10" strokeLinecap="round" />
                       </g>
                       <defs>
                         <clipPath id="clip0_614_814">
-                          <rect
-                            width="20.3279"
-                            height="16.3934"
-                            fill="white"
-                            transform="translate(0.835938 0.803223)"
-                          />
+                          <rect width="20.3279" height="16.3934" fill="white" transform="translate(0.835938 0.803223)" />
                         </clipPath>
                       </defs>
                     </svg>
                   </div>
-                  <Link
-                    href="mailto:info@gcc.ae"
+                  <Link href="mailto:info@gcc.ae"
                     className="text-md xl:text-xl font-normal text-white leading-[1.3125] hover:text-accent transition-all duration-300"
                   >
                     info@gcc.ae
@@ -248,7 +233,7 @@ const FooterV = () => {
                 </div>
                 <div>
                   <ul className="flex flex-col gap-2">
-                    <motion.li
+                    {/* <motion.li
                       variants={moveUp(0)}
                       initial="hidden"
                       whileInView="show"
@@ -256,7 +241,7 @@ const FooterV = () => {
                       className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300 "
                     >
                       <Link href="/clients">Clientele & Partnerships</Link>
-                    </motion.li>
+                    </motion.li> */}
                     <motion.li
                       variants={moveUp(0.1)}
                       initial="hidden"
@@ -266,7 +251,7 @@ const FooterV = () => {
                     >
                       <Link href="/careers">Careers</Link>
                     </motion.li>
-                    <motion.li
+                    {/* <motion.li
                       variants={moveUp(0.2)}
                       initial="hidden"
                       whileInView="show"
@@ -274,7 +259,7 @@ const FooterV = () => {
                       className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300 "
                     >
                       <Link href="/qhse">Health Safety & Environmental</Link>
-                    </motion.li>
+                    </motion.li> */}
                     <motion.li
                       variants={moveUp(0.3)}
                       initial="hidden"
@@ -298,7 +283,7 @@ const FooterV = () => {
                 whileInView="show"
                 viewport={{ once: true, amount: 0.2 }}
               >
-                <Link href="#" className="flex items-center gap-2">
+                <Link href="https://www.linkedin.com/company/gccae/" className="flex items-center gap-2">
                   <span className="text-mdgray text-md font-light leading-[1.578947368421053] uppercase hover:text-primary transition-all duration-300">
                     LinkedIn
                   </span>
