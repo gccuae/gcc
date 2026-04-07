@@ -16,18 +16,24 @@ interface ProjectSliderProps {
 const ProjectSlider = ({ data }: ProjectSliderProps) => {
   // const [progress, setProgress] = useState(85);
 
-  const progress = Number(
-    (data?.secondSection?.progress || "").replace(/\D/g, "")
-  );
+  // const progress = Number(
+  //   (data?.secondSection?.progress || "").replace(/\D/g, "")
+  // );
+
+  const isCompleted =
+    data?.secondSection?.status?.toLowerCase() === "completed";
+  const progress = isCompleted
+    ? 100
+    : Number((data?.secondSection?.progress || "").replace(/\D/g, ""));
 
   const [animatedProgress, setAnimatedProgress] = useState(0);
   const [hasAnimated, setHasAnimated] = useState(false);
   const [displayProgress, setDisplayProgress] = useState(0);
 
-
+  // Change threshold so it triggers early
   const { ref, inView } = useInView({
-    threshold: 0.9, // 40% visible
-    triggerOnce: true, // 👈 animate only once
+    threshold: 0.2, // ✅ triggers as soon as 20% is visible
+    triggerOnce: true,
   });
 
   useEffect(() => {
@@ -62,9 +68,7 @@ const ProjectSlider = ({ data }: ProjectSliderProps) => {
 
   useEffect(() => {
     console.log(`${Math.max(0, Math.min(85, displayProgress - 7.5))}%`);
-
-  }, [displayProgress])
-
+  }, [displayProgress]);
 
   const images = data?.firstSection?.images || [];
   const hasImages = Array.isArray(images) && images.length > 0;
@@ -75,41 +79,67 @@ const ProjectSlider = ({ data }: ProjectSliderProps) => {
       <div className="absolute top-0 left-0 w-full h-full bg-black/80 md:bg-white/12 z-20 backdrop-blur-xs"></div>
       <div className="absolute top-0 left-0 w-full h-full bg-[#0F0D0D] opacity-[39%] z-20"></div>
       <div className="relative z-50">
-        <h3 className="text-lg xl:text-2xl leading-lh-text32 font-normal text-white mb-6 xl:mb-12"> Project Specifications </h3>
-        {displayProgress == 100 && <div className="relative mb-5">
-          <div className="w-full h-3 bg-gray-300 rounded-full overflow-hidden shadow-inner relative">
-            <div className="h-full bg-[#7AC142] rounded-full shadow-sm" style={{ width: `${displayProgress}%` }} />
-            <div className="absolute inset-0 flex">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="absolute top-0 bottom-0 w-px bg-white opacity-60" style={{ left: `${i * 20}%` }} />
-              ))}
+        <h3 className="text-lg xl:text-2xl leading-lh-text32 font-normal text-white mb-6 xl:mb-12">
+          {" "}
+          Project Specifications{" "}
+        </h3>
+        {isCompleted && ( // ✅ just this, nothing else
+          <div className="relative mb-5">
+            <div className="w-full h-3 bg-gray-300 rounded-full overflow-hidden shadow-inner relative">
+              <div
+                className="h-full bg-[#7AC142] rounded-full shadow-sm transition-none"
+                style={{ width: `${displayProgress}%` }}
+              />
+              <div className="absolute inset-0 flex">
+                {[1, 2, 3, 4].map((i) => (
+                  <div
+                    key={i}
+                    className="absolute top-0 bottom-0 w-px bg-white opacity-60"
+                    style={{ left: `${i * 20}%` }}
+                  />
+                ))}
+              </div>
             </div>
+
+            {/* Tooltip — only shows once animation has started */}
+            {displayProgress > 0 && (
+              <div
+                className="absolute -top-12 bg-white border border-gray-200 px-[10px] py-[5.5px] rounded-md shadow-md"
+                style={{ left: `${Math.min(displayProgress, 85)}%` }} // ✅ clamped so it doesn't overflow
+              >
+                <div className="text-sm xl:text-lg leading-normal font-semibold text-black">
+                  {Math.round(displayProgress)}%
+                </div>
+                <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-5 border-r-5 border-t-8 border-l-transparent border-r-transparent border-white" />
+              </div>
+            )}
           </div>
-          <div className="absolute -top-12 bg-white border border-gray-200 px-[10px] py-[5.5px] rounded-md shadow-md"
-            style={{
-              left: `${displayProgress - 15}%`,
-              opacity: displayProgress > 0 ? 1 : 0,
-            }}
-          >
-            <div className="text-sm xl:text-lg leading-normal font-semibold text-black">
-              {Math.round(displayProgress)}%
-            </div>
-            <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-5 border-r-5 border-t-8 border-l-transparent border-r-transparent border-white"></div>
-          </div>
-        </div>}
+        )}
       </div>
       <div className="relative z-50">
-        <div className="grid grid-cols-1 md:grid-cols-2 3xl:grid-cols-[auto_1fr] gap-y-5 lg:gap-y-5 xl:gap-y-7">
+        <div className="grid grid-cols-1 md:grid-cols-[1.2fr_1.3fr] gap-y-5 lg:gap-y-5 xl:gap-y-7">
           {[
             { label: "Client", value: data?.secondSection?.client },
             { label: "Location", value: data?.secondSection?.location?.name },
             { label: "Status", value: data?.secondSection?.status },
-            { label: "Completion Date", value: data?.secondSection?.completionDate },
+            {
+              label: "Completion Date",
+              value: data?.secondSection?.completionDate,
+            },
             { label: "Scope of Work", value: data?.secondSection?.scopeOfWork },
           ].map(({ label, value }) => (
-            <div key={label} className="border-b border-white/65 pb-3 xl:even:pl-3 3xl:even:pl-10 last:col-span-full last:border-0">
-              <h3 className="text-base leading-lh-[1.5625] font-light text-white uppercase"> {label} </h3>
-              <h4 className="text-base lg:text-lg leading-lh-text19 text-white font-medium "> {value} </h4>
+            <div
+              key={label}
+              className="border-b border-white/65 pb-3 xl:even:pl-3 3xl:even:pl-10 last:col-span-full last:border-0"
+            >
+              <h3 className="text-base leading-lh-[1.5625] font-light text-white uppercase">
+                {" "}
+                {label}{" "}
+              </h3>
+              <h4 className="text-base lg:text-lg leading-lh-text19 text-white font-medium ">
+                {" "}
+                {value}{" "}
+              </h4>
             </div>
           ))}
         </div>
@@ -117,16 +147,30 @@ const ProjectSlider = ({ data }: ProjectSliderProps) => {
     </div>
   );
 
-
   return (
     <section className="py-57px">
       <div className="container">
         <div className="relative h-auto md:h-fit" ref={ref}>
           {hasImages ? (
-            <Swiper modules={[Navigation]} spaceBetween={30} slidesPerView={1} loop={false} hashNavigation={true} grabCursor={true} navigation={true} className="project-slider relative h-full" >
+            <Swiper
+              modules={[Navigation]}
+              spaceBetween={30}
+              slidesPerView={1}
+              loop={false}
+              hashNavigation={true}
+              grabCursor={true}
+              navigation={true}
+              className="project-slider relative h-full"
+            >
               {images.map((image, index) => (
                 <SwiperSlide key={index} className="relative md:max-h-[715px]">
-                  <Image src={image} width={1000} height={1000} alt="" className="w-full h-[250px] md:h-[400px] xl:h-[550px] 2xl:h-[700px] object-cover" />
+                  <Image
+                    src={image}
+                    width={1000}
+                    height={1000}
+                    alt=""
+                    className="w-full h-[250px] md:h-[400px] xl:h-[550px] 2xl:h-[700px] object-cover"
+                  />
                   {/* overlay panel */}
                   {renderOverlay()}
                 </SwiperSlide>
