@@ -96,7 +96,6 @@ const ExpertisePage = () => {
     return (
         <div className='flex flex-col gap-5'>
             <form className='flex flex-col gap-5' onSubmit={handleSubmit(handleAddExpertise)}>
-
                 <AdminItemContainer>
                     <Label main>First Section</Label>
                     <div className='p-5 rounded-md flex flex-col gap-2'>
@@ -161,6 +160,7 @@ const ExpertisePage = () => {
                                                         {errors.secondSection?.items?.[index]?.image && (
                                                             <p className="text-red-500">{errors.secondSection?.items?.[index]?.image.message}</p>
                                                         )}
+                                                        <p className="text-gray-500">Recommended: 500 x 414 (px)</p>
                                                     </div>
 
                                                     <div className='flex flex-col gap-2'>
@@ -234,6 +234,7 @@ const ExpertisePage = () => {
                                 {errors.thirdSection?.image && (
                                     <p className="text-red-500">{errors.thirdSection?.image.message}</p>
                                 )}
+                                <p className="text-gray-500">Recommended: 1920 x 598 (px)</p>
                                 <Label className='font-bold'>Alt Tag</Label>
                                 <Input type='text' placeholder='Alt Tag' {...register("thirdSection.imageAlt")} />
                             </div>

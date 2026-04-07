@@ -350,6 +350,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 {errors.banner && (
                   <p className="text-red-500">{errors.banner.message}</p>
                 )}
+                <p className="text-gray-500">Recommended: 1920 x 453 (px)</p>
               </div>
 
               <div className="flex flex-col gap-1">
@@ -376,6 +377,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 {errors.thumbnail && (
                   <p className="text-red-500">{errors.thumbnail.message}</p>
                 )}
+                <p className="text-gray-500">Recommended: 600 x 607 (px)</p>
               </div>
 
               <div className="flex flex-col gap-1">
@@ -452,48 +454,29 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
             <div>
               <div className="flex justify-between items-center">
                 <Label className="block text-sm">Images</Label>
-                <Button
-                  className="bg-green-600 text-white"
-                  type="button"
-                  onClick={() => setReorderMode(!reorderMode)}
-                >
+                <Button className="bg-green-600 text-white" type="button" onClick={() => setReorderMode(!reorderMode)} >
                   {reorderMode ? <GiConfirmed /> : <TbReorder />}
                 </Button>
               </div>
               <div className="mt-2">
-                <ImageUploader
-                  onChange={handleImageUpload}
-                  deleteAfterUpload={true}
-                  multiple={true}
-                />
+                <ImageUploader onChange={handleImageUpload} deleteAfterUpload={true} multiple={true} />
               </div>
 
               {reorderMode && (
                 <div className="mt-4 grid grid-cols-3 gap-4">
-                  <DndContext
-                    collisionDetection={closestCorners}
-                    onDragEnd={handleDragEnd}
-                  >
-                    <SortableContext
-                      items={imageUrls}
-                      strategy={verticalListSortingStrategy}
-                    >
+                  <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd} >
+                    <SortableContext items={imageUrls} strategy={verticalListSortingStrategy} >
                       {imageUrls.map((url, index) => (
-                        <ImageCard
-                          key={url}
-                          url={url}
-                          index={index}
-                          handleRemoveImage={handleRemoveImage}
-                          id={url}
-                        />
+                        <ImageCard key={url} url={url} index={index} handleRemoveImage={handleRemoveImage} id={url} />
                       ))}
                     </SortableContext>
+                    
                   </DndContext>
                 </div>
               )}
 
               {!reorderMode && (
-                <div className="mt-4 grid grid-cols-3 gap-4">
+                <div className="mt-4 grid grid-cols-3 gap-x-4 gap-y-8">
                   {imageUrls.map((url, index) => (
                     <div key={index} className="relative h-40">
                       <Image
@@ -510,6 +493,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                       >
                         ×
                       </button>
+                      <p className="text-gray-500 ">Recommented : 1600 x 736</p>
                     </div>
                   ))}
                 </div>
@@ -770,8 +754,6 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
           <div className='p-5 rounded-md flex flex-col gap-5'>
             <Label className='font-bold'>Items</Label>
             <div className='border p-2 rounded-md flex flex-col gap-5'>
-
-
               {numberSectionItems.map((field, index) => (
                 <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b pb-5 last:border-b-0'>
                   <div className='absolute top-2 right-2'>
@@ -788,10 +770,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                         {errors.numberSection?.items?.[index]?.number && <p className='text-red-500'>{errors.numberSection?.items?.[index]?.number.message}</p>}
                       </div>
                     </div>
-
-
                   </div>
-
                   <div className='flex flex-col gap-2'>
                     <div className='flex flex-col gap-2'>
                       <div className='flex flex-col gap-2'>
@@ -825,6 +804,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                           }
                         </p>
                       )}
+                      <p className="text-gray-500 ">Recommended : 100 x 100 (px)</p>
                     </div>
 
                     <div className="flex flex-col gap-2">
@@ -904,6 +884,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                               }
                             </p>
                           )}
+                          <p className="text-gray-500 ">Recommended : 600 x 400 (px)</p>
                         </div>
 
                         <div className="flex flex-col gap-2">
@@ -1218,6 +1199,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
             {...register("metaTitle")}
           />
         </div>
+
         <div className="flex flex-col gap-2">
           <Label className="pl-3 font-bold">Meta Description</Label>
           <Input
