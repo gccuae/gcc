@@ -135,8 +135,6 @@ const ExpertisePage = () => {
     return (
         <div className='flex flex-col gap-5'>
             <form className='flex flex-col gap-5' onSubmit={handleSubmit(handleAddExpertise)}>
-
-
                 <AdminItemContainer>
                     <Label className="" main>Banner</Label>
                     <div className='p-5 rounded-md grid grid-cols-2 gap-5'>
@@ -270,6 +268,7 @@ const ExpertisePage = () => {
                                                         {errors.secondSection?.items?.[index]?.image && (
                                                             <p className="text-red-500">{errors.secondSection?.items?.[index]?.image.message}</p>
                                                         )}
+                                                        <p className="text-gray-500">Recommended: 900  x 715 (px)</p>
                                                     </div>
 
                                                     <div className='flex flex-col gap-2'>
@@ -353,15 +352,13 @@ const ExpertisePage = () => {
                                                                 control={control}
                                                                 rules={{ required: "Image is required" }}
                                                                 render={({ field }) => (
-                                                                    <ImageUploader
-                                                                        value={field.value}
-                                                                        onChange={field.onChange}
-                                                                    />
+                                                                    <ImageUploader value={field.value} onChange={field.onChange} />
                                                                 )}
                                                             />
                                                             {errors.secondSection?.items?.[index]?.homeThumbnail && (
                                                                 <p className="text-red-500">{errors.secondSection?.items?.[index]?.homeThumbnail.message}</p>
                                                             )}
+                                                            <p className="text-gray-500">Recommended: 997  x 600 (px)</p>
                                                         </div>
 
                                                         <div className='flex flex-col gap-2'>
