@@ -151,8 +151,6 @@ const AboutPage = () => {
     return (
         <div className='flex flex-col gap-5'>
             <form className='flex flex-col gap-5' onSubmit={handleSubmit(handleAddAbout)}>
-
-
                 <AdminItemContainer>
                     <Label className="" main>Banner</Label>
                     <div className='p-5 rounded-md grid grid-cols-2 gap-5'>
@@ -171,6 +169,7 @@ const AboutPage = () => {
                             {errors.banner && (
                                 <p className="text-red-500">{errors.banner.message}</p>
                             )}
+                            <p className="text-gray-500">Recommended: 1920  x 453 (px)</p>
                         </div>
                         <div className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-1'>
@@ -221,6 +220,7 @@ const AboutPage = () => {
                             {errors.firstSection?.image && (
                                 <p className="text-red-500">{errors.firstSection?.image.message}</p>
                             )}
+                            <p className="text-gray-500">Recommended: 800  x 738 (px)</p>
                             <Label className='font-bold'>Alt Tag</Label>
                             <Input type='text' placeholder='Alt Tag' {...register("firstSection.imageAlt")} />
                         </div>
@@ -266,8 +266,6 @@ const AboutPage = () => {
                             <div>
                                 <Label className='font-bold'>Items</Label>
                                 <div className='border p-2 rounded-md flex flex-col gap-5'>
-
-
                                     {secondSectionItems.map((field, index) => (
                                         <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b pb-5 last:border-b-0'>
                                             <div className='absolute top-2 right-2'>
@@ -291,6 +289,7 @@ const AboutPage = () => {
                                                     {errors.secondSection?.items?.[index]?.image && (
                                                         <p className="text-red-500">{errors.secondSection?.items?.[index]?.image.message}</p>
                                                     )}
+                                                        <p className="text-gray-500">Recommended: 900  x 750 (px)</p>
                                                 </div>
 
                                                 <div className='flex flex-col gap-2'>
@@ -383,6 +382,7 @@ const AboutPage = () => {
                                                     {errors.thirdSection?.items?.[index]?.logo && (
                                                         <p className="text-red-500">{errors.thirdSection?.items?.[index]?.logo.message}</p>
                                                     )}
+                                                        <p className="text-gray-500">Recommended: 52  x 52 (px)</p>
                                                 </div>
 
                                                 <div className='flex flex-col gap-2'>
@@ -473,6 +473,7 @@ const AboutPage = () => {
                                                 {errors.historySection?.items?.[index]?.image && (
                                                     <p className="text-red-500">{errors.historySection?.items?.[index]?.image.message}</p>
                                                 )}
+                                                        <p className="text-gray-500">Recommended: 1920  x 504 (px)</p>
                                             </div>
 
                                             <div className='flex flex-col gap-2'>
@@ -592,6 +593,7 @@ const AboutPage = () => {
                                                 )}
                                             />
                                             {errors.fifthSection?.items?.[index]?.logo && <p className='text-red-500'>{errors.fifthSection?.items?.[index]?.logo.message}</p>}
+                                                        <p className="text-gray-500">Recommended: 100  x 100 (px)</p>
                                         </div>
                                         <div className='flex flex-col gap-2'>
                                             <Label className='pl-3 font-bold'>Alt Tag</Label>

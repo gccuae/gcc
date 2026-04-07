@@ -159,15 +159,14 @@ const HomePage = () => {
                                                 control={control}
                                                 rules={{ required: "Image is required" }}
                                                 render={({ field }) => (
-                                                    <ImageUploader
-                                                        value={field.value}
-                                                        onChange={field.onChange}
+                                                    <ImageUploader value={field.value} onChange={field.onChange}
                                                     />
                                                 )}
                                             />
                                             {errors.bannerSection?.items?.[index]?.image && (
                                                 <p className="text-red-500">{errors.bannerSection?.items?.[index]?.image.message}</p>
                                             )}
+                                            <p className="text-gray-500">Recommended: 1920  x 1080 (px)</p>
                                         </div>
 
                                         <div className='flex flex-col gap-2'>
@@ -313,15 +312,14 @@ const HomePage = () => {
                                     control={control}
                                     rules={{ required: "Poster is required" }}
                                     render={({ field }) => (
-                                        <ImageUploader
-                                            value={field.value}
-                                            onChange={field.onChange}
-                                        />
+                                        <ImageUploader value={field.value} onChange={field.onChange} />
                                     )}
                                 />
+
                                 {errors.firstSection?.poster && (
                                     <p className="text-red-500">{errors.firstSection?.poster.message}</p>
                                 )}
+                                <p className="text-gray-500">Recommended: 800  x 494 (px)</p>
                             </div>
 
                         </div>
@@ -492,6 +490,7 @@ const HomePage = () => {
                                                     {errors.fourthSection?.items?.[index]?.logo && (
                                                         <p className="text-red-500">{errors.fourthSection?.items?.[index]?.logo.message}</p>
                                                     )}
+                                                     <p className="text-gray-500">Recommended: 100  x 100 (px)</p>
                                                 </div>
 
                                                 <div className='flex flex-col gap-2'>
@@ -515,15 +514,13 @@ const HomePage = () => {
                                                         control={control}
                                                         rules={{ required: "Image is required" }}
                                                         render={({ field }) => (
-                                                            <ImageUploader
-                                                                value={field.value}
-                                                                onChange={field.onChange}
-                                                            />
+                                                            <ImageUploader value={field.value} onChange={field.onChange} />
                                                         )}
                                                     />
                                                     {errors.fourthSection?.items?.[index]?.image && (
                                                         <p className="text-red-500">{errors.fourthSection?.items?.[index]?.image.message}</p>
                                                     )}
+                                                        <p className="text-gray-500">Recommended: 600  x 474 (px)</p>
                                                 </div>
 
                                                 <div className='flex flex-col gap-2'>

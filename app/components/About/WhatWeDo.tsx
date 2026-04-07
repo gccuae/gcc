@@ -41,7 +41,7 @@ const WhatWeDo = ({ data, expertiseData }: WhatWeDoComponentProps) => {
       </div>
       <SpecialContainer className="pl-[15px]" side="right">
         <motion.div variants={moveUp()} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-[52%_48%]" >
-          <div className="md:pr-3 xl:pr-70px lg:border-r dark:border-white/20 dark:border-white/20  py-5 lg:py-4 xl:pt-[86px] xl:pb-[90px] flex flex-col justify-between">
+          <div className="md:pr-3 xl:pr-70px lg:border-r dark:border-white/20 dark:border-white/20  py-5 lg:py-4 xl:pt-[86px] xl:pb-[90px] flex flex-col ">
             <motion.p variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-lg leading-lh-text19 dark:text-white mb-4 xl:mb-10 text-para-color" >
               {data.firstDescription}
             </motion.p>
@@ -86,7 +86,7 @@ const WhatWeDo = ({ data, expertiseData }: WhatWeDoComponentProps) => {
               {data.secondDescription}
             </motion.p>
           </div>
-          <div className="pt-2 pb-10 md:py-5 xl:py-10 pl-0 md:pl-5 xl:pl-10  relative overflow-hidden lg:min-h-[800px]">
+          <div className="pt-2 pb-10 md:py-5 xl:py-10 pl-0 md:pl-5 xl:pl-10  relative overflow-hidden max-h-[715px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
@@ -97,11 +97,11 @@ const WhatWeDo = ({ data, expertiseData }: WhatWeDoComponentProps) => {
                 className="w-full h-full flex flex-col justify-center"
               >
                 <Image
-                  src={data.items[activeIndex].image}
+                  src={expertiseData.items[activeIndex].image}
                   alt={data.items[activeIndex].title}
                   width={1840}
                   height={1700}
-                  className="w-full h-full object-cover border-8 border-white dark:border-black"
+                  className="w-full h-full  object-cover border-8 border-white dark:border-black"
                 />
               </motion.div>
             </AnimatePresence>

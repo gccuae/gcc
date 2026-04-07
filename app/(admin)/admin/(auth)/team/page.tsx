@@ -244,6 +244,7 @@ const TeamPage = () => {
                                                 {errors.firstSection?.items?.[index]?.image && (
                                                     <p className="text-red-500">{errors.firstSection?.items?.[index]?.image.message}</p>
                                                 )}
+                                                <p className="text-gray-500">Recommended: 400  x 492 (px)</p>
                                             </div>
 
                                             <div className='flex flex-col gap-2'>

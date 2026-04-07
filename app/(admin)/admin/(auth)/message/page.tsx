@@ -94,14 +94,11 @@ const AdminHome = () => {
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <Label className='font-bold'>Items</Label>
                         <div className='border p-2 rounded-md flex flex-col gap-5'>
-
-
                             {messageSectionItems.map((field, index) => (
                                 <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b pb-5 last:border-b-0'>
                                     <div className='absolute top-2 right-2'>
                                         <RiDeleteBinLine onClick={() => messageSectionRemove(index)} className='cursor-pointer text-red-600' />
                                     </div>
-
                                     <div className='flex flex-col gap-2'>
                                         <div className='flex flex-col gap-2'>
                                             <Label className='font-bold'>Image</Label>
@@ -119,6 +116,7 @@ const AdminHome = () => {
                                             {errors.messageSection?.items?.[index]?.image && (
                                                 <p className="text-red-500">{errors.messageSection?.items?.[index]?.image.message}</p>
                                             )}
+                                            <p className="text-gray-500">Recommended: 830  x 1000 (px)</p>
                                         </div>
 
                                         <div className='flex flex-col gap-2'>
