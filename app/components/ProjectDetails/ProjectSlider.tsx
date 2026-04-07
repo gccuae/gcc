@@ -74,7 +74,7 @@ const ProjectSlider = ({ data }: ProjectSliderProps) => {
   const hasImages = Array.isArray(images) && images.length > 0;
 
   const renderOverlay = () => (
-    <div className="relative md:absolute bottom-0 md:bottom-30px md:right-0 lg:right-30px z-40 p-5 xl:p-30px w-full max-w-full md:max-w-fit xl:max-w-[515px] border dark:border-white/20/36">
+    <div className="relative md:absolute bottom-0 md:bottom-30px md:right-30px lg:right-30px z-40 p-5 xl:p-30px w-full max-w-full md:max-w-[450px] xl:max-w-[500px] border dark:border-white/20/36">
       <div className="absolute top-0 left-0 h-1 w-full" />
       <div className="absolute top-0 left-0 w-full h-full bg-black/80 md:bg-white/12 z-20 backdrop-blur-xs"></div>
       <div className="absolute top-0 left-0 w-full h-full bg-[#0F0D0D] opacity-[39%] z-20"></div>
@@ -166,10 +166,10 @@ const ProjectSlider = ({ data }: ProjectSliderProps) => {
                 <SwiperSlide key={index} className="relative md:max-h-[715px]">
                   <Image
                     src={image}
-                    width={1000}
-                    height={1000}
+                    width={1920}
+                    height={1080}
                     alt=""
-                    className="w-full h-[250px] md:h-[400px] xl:h-[550px] 2xl:h-[700px] object-cover"
+                    className="w-full h-[250px] md:h-auto md:min-h-[500px] 2xl:h-[700px] object-cover"
                   />
                   {/* overlay panel */}
                   {renderOverlay()}

@@ -5,7 +5,6 @@ import HIghlights from "./HIghlights";
 import MoreProjects from "./MoreProjects";
 import { SecondSectionItemData } from "./type";
 import { Project } from "@/types/Projects";
-import LocationDetails from "./LocationDetails";
 import KeyFacts from "./KeyFacts";
 
 interface Props {
@@ -27,6 +26,7 @@ const Index = ({ data, projects }: Props) => {
         pageTitle={data?.title || "Untitled Project"}
         bannerImg={data?.banner || ""}
         bannerAlt={data?.bannerAlt || ""}
+        titleClassName="text-white text-3xl md:text-4xl xl:text-5xl leading-[1.2] capitalize lettersp-2"
       />
       {data?.secondSection?.title && <ProjectSlider data={data} />}
       {data.numberSection && data.numberSection.items && <KeyFacts data={data.numberSection} />}

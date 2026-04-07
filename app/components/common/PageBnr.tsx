@@ -8,9 +8,14 @@ interface PageBnrProps {
   pageTitle: string;
   bannerImg: string;
   bannerAlt?: string;
+  titleClassName?: string;
 }
 
-const PageBnr = ({ pageTitle, bannerImg, bannerAlt }: PageBnrProps) => {
+const PageBnr = ({ pageTitle, bannerImg, bannerAlt, titleClassName }: PageBnrProps) => {
+  const titleClasses =
+    titleClassName ||
+    "text-white text-5xl md:text-6xl leading-[1.2] capitalize lettersp-2";
+
   return (
     <section className="relative h-[300px] md:h-[350px] xl:h-[450px] flex flex-col justify-end pb-6 md:pb-15 xl:pb-[83px]">
       <motion.div
@@ -38,7 +43,7 @@ const PageBnr = ({ pageTitle, bannerImg, bannerAlt }: PageBnrProps) => {
             initial={{ opacity: 0, x: -30, clipPath: "inset(0 100% 0 0)" }}
             animate={{ opacity: 1, x: 0, clipPath: "inset(0 0% 0 0)" }}
             transition={{ duration: 1.3, ease: "easeOut" }}
-            className="text-white text-5xl md:text-6xl leading-[1.2] capitalize lettersp-2"
+            className={titleClasses}
           >
             {pageTitle}
           </motion.h2>
