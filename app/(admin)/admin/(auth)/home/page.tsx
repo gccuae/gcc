@@ -159,14 +159,16 @@ const HomePage = () => {
                                                 control={control}
                                                 rules={{ required: "Image is required" }}
                                                 render={({ field }) => (
-                                                    <ImageUploader value={field.value} onChange={field.onChange}
+                                                    <ImageUploader
+                                                        value={field.value}
+                                                        onChange={field.onChange}
+                                                        recommendedDimension="Recommended: 1920 x 1080 (px)"
                                                     />
                                                 )}
                                             />
                                             {errors.bannerSection?.items?.[index]?.image && (
                                                 <p className="text-red-500">{errors.bannerSection?.items?.[index]?.image.message}</p>
                                             )}
-                                            <p className="text-gray-500">Recommended: 1920  x 1080 (px)</p>
                                         </div>
 
                                         <div className='flex flex-col gap-2'>
@@ -312,14 +314,17 @@ const HomePage = () => {
                                     control={control}
                                     rules={{ required: "Poster is required" }}
                                     render={({ field }) => (
-                                        <ImageUploader value={field.value} onChange={field.onChange} />
+                                        <ImageUploader
+                                            value={field.value}
+                                            onChange={field.onChange}
+                                            recommendedDimension="Recommended: 800 x 494 (px)"
+                                        />
                                     )}
                                 />
 
                                 {errors.firstSection?.poster && (
                                     <p className="text-red-500">{errors.firstSection?.poster.message}</p>
                                 )}
-                                <p className="text-gray-500">Recommended: 800  x 494 (px)</p>
                             </div>
 
                         </div>
@@ -360,12 +365,13 @@ const HomePage = () => {
                                         control={control}
                                         rules={{ required: "Image is required" }}
                                         render={({ field }) => (
-                                            <ImageUploader
-                                                value={field.value}
-                                                onChange={field.onChange}
-                                            />
-                                        )}
-                                    />
+                                                            <ImageUploader
+                                                                value={field.value}
+                                                                onChange={field.onChange}
+                                                                recommendedDimension="Recommended: 100 x 100 (px)"
+                                                            />
+                                                        )}
+                                                    />
                                     {errors.thirdSection?.items?.[index]?.logo && (
                                         <p className="text-red-500">{errors.thirdSection?.items?.[index]?.logo.message}</p>
                                     )}
@@ -464,8 +470,6 @@ const HomePage = () => {
                             <div>
                                 <Label className='font-bold'>Items</Label>
                                 <div className='border p-2 rounded-md flex flex-col gap-5'>
-
-
                                     {fourthSectionItems.map((field, index) => (
                                         <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b pb-5 last:border-b-0'>
                                             <div className='absolute top-2 right-2'>
@@ -484,13 +488,13 @@ const HomePage = () => {
                                                                 isLogo
                                                                 value={field.value}
                                                                 onChange={field.onChange}
+                                                                recommendedDimension="Recommended: 100 x 100 (px)"
                                                             />
                                                         )}
                                                     />
                                                     {errors.fourthSection?.items?.[index]?.logo && (
                                                         <p className="text-red-500">{errors.fourthSection?.items?.[index]?.logo.message}</p>
                                                     )}
-                                                     <p className="text-gray-500">Recommended: 100  x 100 (px)</p>
                                                 </div>
 
                                                 <div className='flex flex-col gap-2'>
@@ -514,14 +518,17 @@ const HomePage = () => {
                                                         control={control}
                                                         rules={{ required: "Image is required" }}
                                                         render={({ field }) => (
-                                                            <ImageUploader value={field.value} onChange={field.onChange} />
+                                                            <ImageUploader
+                                                                value={field.value}
+                                                                onChange={field.onChange}
+                                                                recommendedDimension="Recommended: 600 x 474 (px)"
+                                                            />
                                                         )}
                                                     />
                                                     {errors.fourthSection?.items?.[index]?.image && (
                                                         <p className="text-red-500">{errors.fourthSection?.items?.[index]?.image.message}</p>
                                                     )}
-                                                        <p className="text-gray-500">Recommended: 600  x 474 (px)</p>
-                                                </div>
+                                                    </div>
 
                                                 <div className='flex flex-col gap-2'>
                                                     <div className='flex flex-col gap-2'>

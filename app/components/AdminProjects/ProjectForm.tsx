@@ -344,13 +344,13 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                     <ImageUploader
                       value={field.value}
                       onChange={field.onChange}
+                      recommendedDimension="Recommended: 1920 x 453 (px)"
                     />
                   )}
                 />
                 {errors.banner && (
                   <p className="text-red-500">{errors.banner.message}</p>
                 )}
-                <p className="text-gray-500">Recommended: 1920 x 453 (px)</p>
               </div>
 
               <div className="flex flex-col gap-1">
@@ -371,13 +371,13 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                     <ImageUploader
                       value={field.value}
                       onChange={field.onChange}
+                      recommendedDimension="Recommended: 600 x 607 (px)"
                     />
                   )}
                 />
                 {errors.thumbnail && (
                   <p className="text-red-500">{errors.thumbnail.message}</p>
                 )}
-                <p className="text-gray-500">Recommended: 600 x 607 (px)</p>
               </div>
 
               <div className="flex flex-col gap-1">
@@ -459,7 +459,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 </Button>
               </div>
               <div className="mt-2">
-                <ImageUploader onChange={handleImageUpload} deleteAfterUpload={true} multiple={true} />
+                <ImageUploader onChange={handleImageUpload} deleteAfterUpload={true} multiple={true} recommendedDimension="Recommended: 1600 x 736 (px)" />
               </div>
 
               {reorderMode && (
@@ -493,7 +493,6 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                       >
                         ×
                       </button>
-                      <p className="text-gray-500 ">Recommented : 1600 x 736</p>
                     </div>
                   ))}
                 </div>
@@ -793,6 +792,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                           <ImageUploader
                             value={field.value}
                             onChange={field.onChange}
+                            recommendedDimension="Recommended: 100 x 100 (px)"
                           />
                         )}
                       />
@@ -804,7 +804,6 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                           }
                         </p>
                       )}
-                      <p className="text-gray-500 ">Recommended : 100 x 100 (px)</p>
                     </div>
 
                     <div className="flex flex-col gap-2">
@@ -873,6 +872,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                               <ImageUploader
                                 value={field.value}
                                 onChange={field.onChange}
+                                recommendedDimension="Recommended: 600 x 400 (px)"
                               />
                             )}
                           />
@@ -884,7 +884,6 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                               }
                             </p>
                           )}
-                          <p className="text-gray-500 ">Recommended : 600 x 400 (px)</p>
                         </div>
 
                         <div className="flex flex-col gap-2">

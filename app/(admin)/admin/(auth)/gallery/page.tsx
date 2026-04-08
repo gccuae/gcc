@@ -226,14 +226,9 @@ const GalleryPage = () => {
                                                 onChange={(e) => setItem(e.target.value)}
                                             />
                                             <Label className="font-bold">Thumbnail</Label>
-                                            <ImageUploader value={image} onChange={(url) => setImage(url)} />
+                                            <ImageUploader value={image} onChange={(url) => setImage(url)} recommendedDimension='Recommended: 500 x 488 (px)' />
                                             <Label className="font-bold">Thumbnail Alt</Label>
-                                            <Input
-                                                type="text"
-                                                placeholder="Thumbnail Alt"
-                                                value={imageAlt}
-                                                onChange={(e) => setImageAlt(e.target.value)}
-                                            />
+                                            <Input type="text" placeholder="Thumbnail Alt" value={imageAlt} onChange={(e) => setImageAlt(e.target.value)} />
                                         </DialogDescription>
                                     </DialogHeader>
                                     <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={handleAddItem}>
@@ -289,7 +284,7 @@ const GalleryPage = () => {
                                                         onChange={(e) => setItem(e.target.value)}
                                                     />
                                                     <Label className="font-bold">Thumbnail</Label>
-                                                    <ImageUploader value={image} onChange={(url) => setImage(url)} />
+                                                    <ImageUploader value={image} onChange={(url) => setImage(url)} recommendedDimension='Recommended: 500 x 488 (px)' />
                                                     <Label className="font-bold">Thumbnail Alt</Label>
                                                     <Input
                                                         type="text"

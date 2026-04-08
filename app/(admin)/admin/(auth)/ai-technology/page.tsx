@@ -110,17 +110,8 @@ const AiTechnologyPage = () => {
                     <Label className="" main>Banner</Label>
                     <div className='p-5 rounded-md grid grid-cols-2 gap-5'>
                         <div>
-                            <Controller
-                                name="banner"
-                                control={control}
-                                rules={{ required: "Banner is required" }}
-                                render={({ field }) => (
-                                    <ImageUploader
-                                        value={field.value}
-                                        onChange={field.onChange}
-                                    />
-                                )}
-                            />
+                            <Controller name="banner" control={control} rules={{ required: "Banner is required" }} 
+                                render={({ field }) => (<ImageUploader value={field.value} onChange={field.onChange} recommendedDimension="Recommended: 1920 x 453 (px)"  /> )}  />
                             {errors.banner && (
                                 <p className="text-red-500">{errors.banner.message}</p>
                             )}
@@ -165,10 +156,7 @@ const AiTechnologyPage = () => {
                                 control={control}
                                 rules={{ required: "Image is required" }}
                                 render={({ field }) => (
-                                    <ImageUploader
-                                        value={field.value}
-                                        onChange={field.onChange}
-                                    />
+                                    <ImageUploader value={field.value} onChange={field.onChange} recommendedDimension="Recommended: 800 x 543 (px)" />
                                 )}
                             />
                             {errors.firstSection?.image && (
@@ -187,12 +175,9 @@ const AiTechnologyPage = () => {
                     <Label main>Second Section</Label>
                     <div className='p-5 rounded-md flex flex-col gap-2'>
                         <div className='flex flex-col gap-2'>
-
                             <div>
                                 <Label className='font-bold'>Items</Label>
                                 <div className='border p-2 rounded-md flex flex-col gap-5'>
-
-
                                     {secondSectionItems.map((field, index) => (
                                         <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b pb-5 last:border-b-0'>
                                             <div className='absolute top-2 right-2'>
@@ -210,6 +195,7 @@ const AiTechnologyPage = () => {
                                                             <ImageUploader
                                                                 value={field.value}
                                                                 onChange={field.onChange}
+                                                                recommendedDimension="Recommended: 1920 x 604 (px)"
                                                             />
                                                         )}
                                                     />

@@ -238,10 +238,7 @@ const ExpertisePage = () => {
                                         control={control}
                                         rules={{ required: "Image is required" }}
                                         render={({ field }) => (
-                                            <ImageUploader
-                                                value={field.value}
-                                                onChange={field.onChange}
-                                            />
+                                            <ImageUploader value={field.value} onChange={field.onChange} recommendedDimension='Recommended : 800 x 631 (px)' />
                                         )}
                                     />
                                     {errors.secondSection?.image && (
@@ -294,10 +291,7 @@ const ExpertisePage = () => {
                                                             control={control}
                                                             rules={{ required: "Image is required" }}
                                                             render={({ field }) => (
-                                                                <ImageUploader
-                                                                    value={field.value}
-                                                                    onChange={field.onChange}
-                                                                />
+                                                                <ImageUploader value={field.value} onChange={field.onChange} recommendedDimension="Recommended: 300 x 300 (px)" />
                                                             )}
                                                         />
                                                         {errors.secondSection?.items?.[index]?.image && (
@@ -381,11 +375,7 @@ const ExpertisePage = () => {
                                                         control={control}
                                                         rules={{ required: "Image is required" }}
                                                         render={({ field }) => (
-                                                            <ImageUploader
-                                                                isLogo
-                                                                value={field.value}
-                                                                onChange={field.onChange}
-                                                            />
+                                                            <ImageUploader isLogo value={field.value} onChange={field.onChange} recommendedDimension="Recommended: 100 x 83 (px)" />
                                                         )}
                                                     />
                                                     {errors.thirdSection?.items?.[index]?.image && (
@@ -467,10 +457,7 @@ const ExpertisePage = () => {
                                                         control={control}
                                                         rules={{ required: "Thumbnail is required" }}
                                                         render={({ field }) => (
-                                                            <ImageUploader
-                                                                value={field.value}
-                                                                onChange={field.onChange}
-                                                            />
+                                                            <ImageUploader value={field.value} onChange={field.onChange} recommendedDimension="Recommended: 500 x 488 (px)" />
                                                         )}
                                                     />
                                                     {errors.forthSection?.items?.[index]?.thumbnail && (
@@ -525,6 +512,7 @@ const ExpertisePage = () => {
                                                                         onChange={(url: string) => {
                                                                             field.onChange(url); // update file URL // update size separately
                                                                         }}
+                                                                        recommendedDimension="Recommended: 1300 x 617 (px)"
                                                                     />
                                                                 )}
                                                             />
@@ -581,14 +569,11 @@ const ExpertisePage = () => {
                         <div>
                             <Label className='font-bold'>Items</Label>
                             <div className='border p-2 rounded-md flex flex-col gap-5'>
-
-
                                 {fifthSectionItems.map((field, index) => (
                                     <div key={field.id} className='grid grid-cols-1 gap-2 relative border-b pb-5 last:border-b-0'>
                                         <div className='absolute top-2 right-2'>
                                             <RiDeleteBinLine onClick={() => fifthSectionRemove(index)} className='cursor-pointer text-red-600' />
                                         </div>
-
                                         <div className='grid grid-cols-2 gap-2'>
                                             <div className='flex flex-col gap-2'>
                                                 <div className='flex flex-col gap-2'>
@@ -602,6 +587,7 @@ const ExpertisePage = () => {
                                                                 isLogo
                                                                 value={field.value}
                                                                 onChange={field.onChange}
+                                                                recommendedDimension="Recommended: 100 x 100 (px)"
                                                             />
                                                         )}
                                                     />

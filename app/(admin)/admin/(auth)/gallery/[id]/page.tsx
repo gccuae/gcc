@@ -161,12 +161,7 @@ const IndiGallery = () => {
       <h1 className="text-md font-semibold">Images</h1>
 
       {/* BULK UPLOAD */}
-      <ImageUploader
-        multiple
-        onChange={(url) =>
-          append({ image: url, imageAlt: "" })
-        }
-      />
+      <ImageUploader multiple onChange={(url) => append({ image: url, imageAlt: "" }) } recommendedDimension="Recommended: 1504 x 500 (px)" />
 
       {/* EXISTING IMAGES */}
       <div className="grid grid-cols-2 gap-5">
@@ -185,10 +180,7 @@ const IndiGallery = () => {
               name={`images.${index}.image`}
               control={control}
               render={({ field }) => (
-                <ImageUploader
-                  value={field.value}
-                  onChange={field.onChange}
-                />
+                <ImageUploader value={field.value} onChange={field.onChange} recommendedDimension="Recommended: 1504 x 500 (px)" />
               )}
             />
 
