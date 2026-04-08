@@ -236,7 +236,7 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
                     <div className='flex flex-col gap-2'>
                         <div>
                             <Label className=''>Thumbnail</Label>
-                            <ImageUploader onChange={(url) => setValue("thumbnail", url)} value={watch("thumbnail")} />
+                            <ImageUploader onChange={(url) => setValue("thumbnail", url)} value={watch("thumbnail")} recommendedDimension='600 x 607' />
                             {errors.thumbnail && <p className='text-red-500'>{errors.thumbnail.message}</p>}
                         </div>
                         <div>
@@ -253,7 +253,7 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
                 <div>
                     <Label className="block text-sm">Images</Label>
                     <div className="mt-2">
-                        <ImageUploader onChange={handleImageUpload} deleteAfterUpload={true} />
+                        <ImageUploader onChange={handleImageUpload} deleteAfterUpload={true} recommendedDimension='Recommended: 1200 x 631 (px)' />
                     </div>
                     <div className="mt-4 grid grid-cols-3 gap-4">
                         {imageUrls.map((url, index) => (

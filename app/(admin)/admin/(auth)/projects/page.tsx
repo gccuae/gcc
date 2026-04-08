@@ -391,13 +391,13 @@ export default function CurrentOpenings() {
                   <ImageUploader
                     value={field.value}
                     onChange={field.onChange}
+                    recommendedDimension="Recommended: 1920 x 453 (px)"
                   />
                 )}
               />
               {errors.banner && (
                 <p className="text-red-500">{errors.banner.message}</p>
               )}
-              <p className="text-gray-500">Recommended: 1920 x 453 (px)</p>
             </div>
             <div className='flex flex-col gap-2'>
               <div className='flex flex-col gap-1'>

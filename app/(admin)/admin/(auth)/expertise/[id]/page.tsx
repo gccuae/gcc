@@ -154,13 +154,13 @@ const ExpertisePage = () => {
                                                                 <ImageUploader
                                                                     value={field.value}
                                                                     onChange={field.onChange}
+                                                                    recommendedDimension="Recommended: 500 x 414 (px)"
                                                                 />
                                                             )}
                                                         />
                                                         {errors.secondSection?.items?.[index]?.image && (
                                                             <p className="text-red-500">{errors.secondSection?.items?.[index]?.image.message}</p>
                                                         )}
-                                                        <p className="text-gray-500">Recommended: 500 x 414 (px)</p>
                                                     </div>
 
                                                     <div className='flex flex-col gap-2'>
@@ -228,13 +228,13 @@ const ExpertisePage = () => {
                                         <ImageUploader
                                             value={field.value}
                                             onChange={field.onChange}
+                                            recommendedDimension="Recommended: 1920 x 598 (px)"
                                         />
                                     )}
                                 />
                                 {errors.thirdSection?.image && (
                                     <p className="text-red-500">{errors.thirdSection?.image.message}</p>
                                 )}
-                                <p className="text-gray-500">Recommended: 1920 x 598 (px)</p>
                                 <Label className='font-bold'>Alt Tag</Label>
                                 <Input type='text' placeholder='Alt Tag' {...register("thirdSection.imageAlt")} />
                             </div>

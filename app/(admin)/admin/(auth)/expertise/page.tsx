@@ -147,6 +147,7 @@ const ExpertisePage = () => {
                                     <ImageUploader
                                         value={field.value}
                                         onChange={field.onChange}
+                                        recommendedDimension="Recommended: 1920 x 453 (px)"
                                     />
                                 )}
                             />
@@ -197,6 +198,7 @@ const ExpertisePage = () => {
                                     <ImageUploader
                                         value={field.value}
                                         onChange={field.onChange}
+                                        recommendedDimension="Recommended: 800 x 638 (px)"
                                     />
                                 )}
                             />
@@ -262,13 +264,13 @@ const ExpertisePage = () => {
                                                                 <ImageUploader
                                                                     value={field.value}
                                                                     onChange={field.onChange}
+                                                                    recommendedDimension="Recommended: 900 x 715 (px)"
                                                                 />
                                                             )}
                                                         />
                                                         {errors.secondSection?.items?.[index]?.image && (
                                                             <p className="text-red-500">{errors.secondSection?.items?.[index]?.image.message}</p>
                                                         )}
-                                                        <p className="text-gray-500">Recommended: 900  x 715 (px)</p>
                                                     </div>
 
                                                     <div className='flex flex-col gap-2'>
@@ -352,13 +354,16 @@ const ExpertisePage = () => {
                                                                 control={control}
                                                                 rules={{ required: "Image is required" }}
                                                                 render={({ field }) => (
-                                                                    <ImageUploader value={field.value} onChange={field.onChange} />
+                                                                    <ImageUploader
+                                                                        value={field.value}
+                                                                        onChange={field.onChange}
+                                                                        recommendedDimension="Recommended: 997 x 600 (px)"
+                                                                    />
                                                                 )}
                                                             />
                                                             {errors.secondSection?.items?.[index]?.homeThumbnail && (
                                                                 <p className="text-red-500">{errors.secondSection?.items?.[index]?.homeThumbnail.message}</p>
                                                             )}
-                                                            <p className="text-gray-500">Recommended: 997  x 600 (px)</p>
                                                         </div>
 
                                                         <div className='flex flex-col gap-2'>

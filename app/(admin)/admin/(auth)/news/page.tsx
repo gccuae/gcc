@@ -188,6 +188,7 @@ const NewsPage = () => {
                                     <ImageUploader
                                         value={field.value}
                                         onChange={field.onChange}
+                                        recommendedDimension="Image size should be 1920 x 453 pixels"
                                     />
                                 )}
                             />
