@@ -7,6 +7,15 @@ const MessageSchema = new mongoose.Schema({
   metaDescription:{
     type:String
   },
+  firstSection:{
+    title:String,
+    items:[{
+      image:String,
+      imageAlt:String,
+      name:String,
+      designation:String,
+    }]
+  },
   messageSection:{
     items:[{
       title:String,

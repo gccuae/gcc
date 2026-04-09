@@ -648,7 +648,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                   </p>
                 )}
               </div> */}
-              <div className="flex flex-col gap-1">
+              {/* <div className="flex flex-col gap-1">
                 <Label className="font-bold">Superficie</Label>
                 <Input
                   type="text"
@@ -660,7 +660,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                     {errors.secondSection?.superficie.message}
                   </p>
                 )}
-              </div>
+              </div> */}
               <div className="flex flex-col gap-2">
                 <Label className="">Status</Label>
                 <Controller
@@ -1108,7 +1108,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
           </div>
         </AdminItemContainer>
 
-        <AdminItemContainer>
+        {/* <AdminItemContainer>
           <Label main>Fifth Section</Label>
 
           <div className="p-5 rounded-md flex flex-col gap-3">
@@ -1190,7 +1190,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
               )}
             </div>
           </div>
-        </AdminItemContainer>
+        </AdminItemContainer> */}
 
         <AdminItemContainer>
           <div className="flex flex-col gap-2 p-5">

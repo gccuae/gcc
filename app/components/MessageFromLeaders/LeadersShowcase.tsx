@@ -5,9 +5,10 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { moveUp } from "../motionVarients";
 import { leaders } from "./data";
+import { MessageProps } from './type';
 
 
-const LeadersShowcase = () => {
+const LeadersShowcase = ({data}:{data:MessageProps['data']['firstSection']}) => {
     return (
         <section className="pt-6 lg:pt-15 xl:pt-25px dark:pb-1 dark:bg-black ">
             <div className="container">
@@ -18,7 +19,7 @@ const LeadersShowcase = () => {
                     viewport={{ once: true }}
                     className="text-4xl 2xl:text-5xl leading-[1.205882352941176] text-black dark:text-white mb-4 md:mb-57px"
                 >
-                    More Than Structures, We Build Together
+                    {data.title}
                 </motion.h2>
                 <div className='flex md:justify-center md:items-center flex-col'>
                     <div className="grid grid-cols-1  mb-5 md:mb-12 xl:mb-[32px]">
@@ -34,8 +35,8 @@ const LeadersShowcase = () => {
                                     } group-hover:bg-gray-100 transition-all duration-300 h-[280px] xl:h-[404px] w-full xl:w-[385px] flex flex-col mb-5 xl:mb-[10px] overflow-hidden relative`}
                             >
                                 <Image
-                                    src={leaders[0].image}
-                                    alt={leaders[0].name}
+                                    src={data.items[0].image}
+                                    alt={data.items[0].imageAlt}
                                     fill
                                     className="object-contain object-bottom group-hover:scale-105 transition-all duration-300"
                                 />
@@ -43,17 +44,17 @@ const LeadersShowcase = () => {
                             </div>{" "}
                             <div>
                             <h3 className="text-xl md:text-2xl leading-[1.2] text-black dark:text-white xl:mb-2 text-center">
-                                {leaders[0].name}
+                                {data.items[0].name}
                             </h3>
                             <p className="text-lg leading-lh-text19 text-para-color dark:text-white/70 font-light text-center">
-                                {leaders[0].position}
+                                {data.items[0].designation}
                             </p>
                             </div>
                         </motion.div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2  gap-y-6 md:gap-y-6 xl:gap-y-0 md:gap-x-[60px] xl:gap-x-[100px] mb-5 md:mb-12 xl:mb-[57px]">
-                        {leaders.slice(1).map((item,index) => (
+                        {data.items.slice(1).map((item,index) => (
                             <motion.div
                                 variants={moveUp(0 * 0.23)}
                                 initial="hidden"
@@ -68,7 +69,7 @@ const LeadersShowcase = () => {
                                 >
                                     <Image
                                         src={item.image}
-                                        alt={item.name}
+                                        alt={item.imageAlt}
                                         fill
                                         className="object-contain object-bottom group-hover:scale-105 transition-all duration-300"
                                     />
@@ -78,7 +79,7 @@ const LeadersShowcase = () => {
                                     {item.name}
                                 </h3>
                                 <p className="text-lg leading-lh-text19 text-center text-para-color dark:text-white/70 font-light">
-                                    {item.position}
+                                    {item.designation}
                                 </p>
                                 </div>
                             </motion.div>

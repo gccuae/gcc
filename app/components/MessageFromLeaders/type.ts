@@ -18,6 +18,15 @@ export interface FetchedData {
   metaTitle: string;
   metaDescription: string;
   messageSection: MessageSection;
+  firstSection: {
+    title: string;
+    items: {
+      image: string;
+      imageAlt: string;
+      name: string;
+      designation: string;
+    }[]
+  }
 }
 
 // Props for Index component
