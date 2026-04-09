@@ -13,14 +13,14 @@ const dmSans = DM_Sans({
 
 export default async function GlobalNotFound() {
 
-    const navbarResponse = await fetch(`${process.env.BASE_URL}/api/admin/navbar`)
-  const navbarData = await navbarResponse.json();
+  //   const navbarResponse = await fetch(`${process.env.BASE_URL}/api/admin/navbar`)
+  // const navbarData = await navbarResponse.json();
 
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${dmSans.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <Header data={navbarData.data}/>
+          {/* <Header data={navbarData.data}/> */}
           <NotFound />
           <FooterV />
         </ThemeProvider>
