@@ -8,9 +8,11 @@ import { menuItems } from "./data";
 
 import { HoveredLink, Menu, MenuItem } from "../ui/navbar-menu";
 import { AnimatePresence, motion } from "framer-motion";
+import { Navbar } from "@/types/Common";
 
 
-const Header = () => {
+const Header = ({data}:{data:Navbar}) => {
+  console.log(data)
   // const pathname = usePathname();
   const [active, setActive] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState<null | boolean>(null);
@@ -89,11 +91,11 @@ const Header = () => {
     const renderHeader = () => {
       return (
         <Menu setActive={setActive}>
-          {menuItems.map((menuItem, index) =>
-            menuItem.children ? (
+          {data.navSection.items.map((menuItem, index) =>
+            menuItem.subItems.length > 0 ? (
               <MenuItem setActive={setActive} active={active} url={menuItem.url} item={menuItem.title} key={index} >
                 <div className="grid grid-cols-1 py-4">
-                  {menuItem.children.map((item, index) => (
+                  {menuItem.subItems.map((item, index) => (
                     <HoveredLink href={`${item.url}`} key={index}>
                       <div className="hover:bg-black/5 pl-3 pr-[80px] py-2 rounded-[8px] transition-transform duration-300 hover:text-secondary hover:scale-105 flex gap-2 items-center self-start spckbtn whts">
                         <div>

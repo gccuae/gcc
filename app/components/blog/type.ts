@@ -7,6 +7,7 @@ export type BlogData = {
     categories: {
         category: string;
         blogs: {
+            status:string;
             title: string;
             author: string;
             slug: string;

@@ -23,6 +23,7 @@ import Link from 'next/link';
 import { closestCorners, DndContext, DragEndEvent } from '@dnd-kit/core'
 import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import BlogCard from './BlogCard';
+import { FaEye } from "react-icons/fa";
 
 interface BlogFormProps {
     metaTitle: string;
@@ -41,7 +42,7 @@ const BlogsPage = () => {
     const [category, setCategory] = useState<string>("")
 
     const [categoryList, setCategoryList] = useState<{ _id: string, category: string }[]>([]);
-    const [blogList, setBlogList] = useState<{ _id: string, title: string }[]>([]);
+    const [blogList, setBlogList] = useState<{ _id: string, title: string, slug:string, status:string }[]>([]);
     const [reorderMode, setReorderMode] = useState(false);
 
 
@@ -174,7 +175,7 @@ const BlogsPage = () => {
 
         if (!over || active.id === over.id) return;
 
-        setBlogList((blogList: { _id: string; title: string }[]) => {
+        setBlogList((blogList: { _id: string; title: string, status:string, slug:string }[]) => {
             const originalPos = getTaskPos(active.id);
             const newPos = getTaskPos(over.id);
             return arrayMove(blogList, originalPos, newPos);
@@ -336,7 +337,11 @@ const BlogsPage = () => {
                                     <p>{item?.title}</p>
                                 </div>
                                 <div className='flex gap-8 items-center'>
-
+                                    {item.status == "draft" ? (<Link href={`/blog/${item.slug}`} target="_blank"><div className="text-[16px] rounded-xl bg-yellow-300 p-1 flex items-center gap-1">
+                                        <FaEye />
+                                    </div></Link>) : (<div className="text-[16px] rounded-xl bg-green-300 p-1 flex items-center gap-1">
+                                        <FaEye />
+                                    </div>)}
                                     <Link href={`/admin/blogs/edit/${item?._id}`}><FaEdit className='text-lg cursor-pointer' /></Link>
 
                                     <Dialog>

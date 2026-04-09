@@ -6,6 +6,7 @@ import MoreProjects from "./MoreProjects";
 import { SecondSectionItemData } from "./type";
 import { Project } from "@/types/Projects";
 import KeyFacts from "./KeyFacts";
+import { Item } from "@radix-ui/react-select";
 
 interface Props {
   data: SecondSectionItemData;
@@ -14,11 +15,10 @@ interface Props {
 
 const Index = ({ data, projects }: Props) => {
   //skip the current project from the more-projects list
-  const filteredProjects = projects.projects.filter(
+  const filteredProjects = projects.projects.filter((Item)=>Item.status !== "draft").filter(
     (p) => p._id !== data._id && p.slug !== data.slug
   );
 
-  console.log(data);
 
   return (
     <>

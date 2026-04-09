@@ -263,7 +263,7 @@ const AboutPage = () => {
                                 }} />
                             </div>
 
-                            <div>
+                            {/* <div>
                                 <Label className='font-bold'>Items</Label>
                                 <div className='border p-2 rounded-md flex flex-col gap-5'>
                                     {secondSectionItems.map((field, index) => (
@@ -326,7 +326,7 @@ const AboutPage = () => {
                                 <div className='flex justify-end mt-2'>
                                     <Button type='button' addItem onClick={() => secondSectionAppend({ title: "", image: "", imageAlt: "" })}>Add Item</Button>
                                 </div>
-                            </div>
+                            </div> */}
 
                         </div>
 

@@ -452,7 +452,7 @@ const GroupCompanyPage = () => {
                     </div>
                 </AdminItemContainer>
 
-                <AdminItemContainer>
+                {/* <AdminItemContainer>
                     <div className="flex justify-between items-center p-5">
                         <h1 className="text-md font-semibold">Team Category</h1>
                         <Dialog>
@@ -543,7 +543,7 @@ const GroupCompanyPage = () => {
                             </div>
                         ))}
                     </div>
-                </AdminItemContainer>
+                </AdminItemContainer> */}
 
                 <AdminItemContainer>
                     <Label main>Second Section</Label>

@@ -316,7 +316,7 @@ const CurrentOpenings = ({ data, jobs, departments, locations }: { data: careerD
               className="md:border-r dark:border-white/20 pr-6 xl:pr-[67px] pt-6 xl:pt-[67px] max-h-[842px] overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden left-col"
               ref={leftRef}
             >
-              {filteredJobs.map((job, index) => (
+              {filteredJobs.filter((item)=>item.status !== "draft").map((job, index) => (
                 <motion.div
                   variants={moveUp(index * 0.15)}
                   initial="hidden"

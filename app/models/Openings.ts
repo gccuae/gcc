@@ -1,107 +1,110 @@
 import mongoose from "mongoose";
 
 const openingsSchema = new mongoose.Schema({
-    metaTitle:{
-        type:String,
+    metaTitle: {
+        type: String,
     },
-    metaDescription:{
-        type:String,
+    metaDescription: {
+        type: String,
     },
-    firstSection:{
-        pageTitle:{
-            type:String,
-            required:true
+    firstSection: {
+        pageTitle: {
+            type: String,
+            required: true
         },
-        description:{
-            type:String,
-            required:true
+        description: {
+            type: String,
+            required: true
         },
-        image:{
-            type:String,
-            required:true
+        image: {
+            type: String,
+            required: true
         },
-        imageAlt:{
-            type:String,
+        imageAlt: {
+            type: String,
         },
     },
-    secondSection:{
-        mainTitle:{
-            type:String,
-            required:true
+    secondSection: {
+        mainTitle: {
+            type: String,
+            required: true
         },
-        subTitle:{
-            type:String,
-            required:true
+        subTitle: {
+            type: String,
+            required: true
         }
     },
-    thirdSection:{
-        title:{
-            type:String,
-            required:true
+    thirdSection: {
+        title: {
+            type: String,
+            required: true
         }
     },
-    departments:[{
-        name:{
-            type:String,
-            required:true
-        }
-    }],
-    locations:[{
-        name:{
-            type:String,
-            required:true
+    departments: [{
+        name: {
+            type: String,
+            required: true
         }
     }],
-    openings:[
+    locations: [{
+        name: {
+            type: String,
+            required: true
+        }
+    }],
+    openings: [
         {
-            metaTitle:{
-                type:String,
+            status: {
+                type: String
             },
-            metaDescription:{
-                type:String,
+            metaTitle: {
+                type: String,
             },
-            firstSection:{
-                title:{
-                    type:String,
+            metaDescription: {
+                type: String,
+            },
+            firstSection: {
+                title: {
+                    type: String,
                 },
-                jobTitle:{
-                    type:String,
+                jobTitle: {
+                    type: String,
                 },
-                department:{
-                    type:String,
+                department: {
+                    type: String,
                 },
-                location:{
-                    type:String,
+                location: {
+                    type: String,
                 },
-                employmentType:{
-                    type:String,
+                employmentType: {
+                    type: String,
                 },
-                slug:{
-                    type:String,
+                slug: {
+                    type: String,
                 }
             },
-            secondSection:{
-                title:{
-                    type:String,
+            secondSection: {
+                title: {
+                    type: String,
                 },
-                description:{
-                    type:String,
+                description: {
+                    type: String,
                 }
             },
-            thirdSection:{
-                title:{
-                    type:String,
+            thirdSection: {
+                title: {
+                    type: String,
                 },
-                description:{
-                    type:String,
+                description: {
+                    type: String,
                 }
             },
-            forthSection:{
-                title:{
-                    type:String,
+            forthSection: {
+                title: {
+                    type: String,
                 },
-                description:{
-                    type:String,
+                description: {
+                    type: String,
                 }
             }
         }

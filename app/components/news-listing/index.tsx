@@ -8,7 +8,7 @@ const Index = ({ data }: { data: NewsData }) => {
   const items = data.categories.flatMap(
     (item: { news: NewsData["categories"][number]["news"] }) => item.news
   );
-  const sortedNews = [...items].sort(
+  const sortedNews = [...items.filter((item)=>item.status !== "draft")].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   )[0];
   return (

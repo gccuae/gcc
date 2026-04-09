@@ -54,6 +54,7 @@ export async function PATCH(request: NextRequest) {
             opening.secondSection = body.secondSection;
             opening.thirdSection = body.thirdSection;
             opening.forthSection = body.forthSection;
+            opening.status = body.status;
             await openings.save();
             return NextResponse.json({data:opening,message:"Opening updated successfully"}, { status: 200 });
             

@@ -23,7 +23,7 @@ const Services = ({ data }: ServicesProps) => {
           {data.title}
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-3 gap-y-6  xl:gap-x-[30px] xl:gap-y-[37px]">
-          {data.items.map((item, index) => (
+          {data.items.filter((item)=>item.status !== "draft").map((item, index) => (
             <motion.div
               variants={moveUp(index * 0.15)}
               initial="hidden"

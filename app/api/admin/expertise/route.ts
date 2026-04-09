@@ -67,6 +67,7 @@ export async function PATCH(request: NextRequest) {
         );
         if (itemToUpdate) {
           console.log(itemToUpdate.secondSection.items);
+          itemToUpdate.status = body.status
           itemToUpdate.firstSection = body.firstSection;
           itemToUpdate.secondSection = body.secondSection;
           itemToUpdate.thirdSection = body.thirdSection;

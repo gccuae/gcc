@@ -211,7 +211,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
             }}
             watchSlidesProgress
           >
-            {data.items.map((item, index) => (
+            {data.items.filter((item)=>item.status !== "draft").map((item, index) => (
               <SwiperSlide key={item._id} className="sliderexp cursor-pointer transition mb-4 xl:mb-5 group" onClick={() => handleSlideHover(index)} >
                 <div className="exp-icon-div pb-4 mb-6 xl:pb-[30px] xl:mb-[15px] relative flex items-center gap-5">
                   <motion.div

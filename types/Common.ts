@@ -1,9 +1,9 @@
 export interface Home {
   metaTitle: string;
-  metaDescription: string; 
+  metaDescription: string;
   bannerAlt: string;
-  banners: { 
-    title: string; 
+  banners: {
+    title: string;
     subtitle: string;
     btn: string;
     btnLink: string;
@@ -12,9 +12,9 @@ export interface Home {
 }
 export interface TypeFeaturedProjects {
   title: string;
-  banners: { 
-    image: string;   
-    title: string; 
+  banners: {
+    image: string;
+    title: string;
     location: string;
     client: string;
     projectvalue: string;
@@ -24,4 +24,16 @@ export interface TypeFeaturedProjects {
     btnLink: string;
   }[];
 }
- 
+
+export interface Navbar {
+  navSection: {
+    items: {
+      title: string;
+      url: string;
+      subItems: {
+        title: string;
+        url: string;
+      }[]
+    }[]
+  }
+}

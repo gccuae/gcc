@@ -39,6 +39,7 @@ export interface SecondSectionItem {
   firstSection?: SecondSectionFirstSection;
   secondSection?: SecondSectionSecondSection;
   thirdSection?: SecondSectionThirdSection;
+  status:string;
 }
 
 export interface SecondSectionFirstSection {
