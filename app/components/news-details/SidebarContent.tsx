@@ -16,7 +16,7 @@ const SidebarContent = ({
   category: string;
   currentSlug: string;
 }) => {
-  const allItems = allNewsData.categories.flatMap((item: { news: NewsData['categories'][number]['news'] }) => item.news);
+  const allItems = allNewsData.categories.flatMap((item: { news: NewsData['categories'][number]['news'] }) => item.news.filter((item)=>item.status !== "draft"));
   const filtered = allItems
     .filter((item: { category: string; slug: string }) => item.category === category && item.slug !== currentSlug)
     .sort((a: { date: string }, b: { date: string }) => new Date(b.date).getTime() - new Date(a.date).getTime())

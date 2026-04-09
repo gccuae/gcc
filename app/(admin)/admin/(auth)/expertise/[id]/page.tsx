@@ -11,8 +11,16 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import { Textarea } from '@/components/ui/textarea'
 import AdminItemContainer from '@/app/components/common/AdminItemContainer';
 import { useParams } from 'next/navigation';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface ExpertiseFormProps {
+    status:string;
     metaTitle: string;
     metaDescription: string;
     firstSection: {
@@ -40,7 +48,7 @@ interface ExpertiseFormProps {
 const ExpertisePage = () => {
 
 
-    const { register, handleSubmit, setValue, control, formState: { errors } } = useForm<ExpertiseFormProps>();
+    const { register, handleSubmit, setValue, control, formState: { errors }, watch } = useForm<ExpertiseFormProps>();
 
     const { id } = useParams();
     const { fields: secondSectionItems, append: secondSectionAppend, remove: secondSectionRemove } = useFieldArray({
@@ -76,6 +84,7 @@ const ExpertisePage = () => {
                 setValue("secondSection", data.data.secondSection);
                 setValue("secondSection.items", data.data.secondSection.items);
                 setValue("thirdSection", data.data.thirdSection);
+                setValue("status", data.data.status);
             } else {
                 const data = await response.json();
                 alert(data.message);
@@ -96,6 +105,47 @@ const ExpertisePage = () => {
     return (
         <div className='flex flex-col gap-5'>
             <form className='flex flex-col gap-5' onSubmit={handleSubmit(handleAddExpertise)}>
+
+                <input type="hidden" {...register("status")} />
+
+        <div className="flex items-center gap-2 justify-end">
+                <Label className="">Status</Label>
+                <Controller
+                  name={`status`}
+                  control={control}
+                  // rules={{ required: "Location is required" }}
+                  render={({ field }) => (
+                    <Select
+                      onValueChange={field.onChange}
+                      value={field.value}
+                      defaultValue=""
+                    >
+                      <SelectTrigger className="w-fit">
+                        <SelectValue placeholder="Select Status" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        
+                          <SelectItem  value={"draft"}>
+                            Draft
+                          </SelectItem>
+
+                          <SelectItem  value={"published"}>
+                            Published
+                          </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  )}
+                />
+
+                        <Button
+          type="button"
+          onClick={() => handleSubmit((data) => handleAddExpertise({ ...data, status: watch("status") }))()}
+          className="bg-green-700"
+        >
+          Save
+        </Button>
+              </div>
+
                 <AdminItemContainer>
                     <Label main>First Section</Label>
                     <div className='p-5 rounded-md flex flex-col gap-2'>
@@ -270,9 +320,9 @@ const ExpertisePage = () => {
                     </div>
                 </AdminItemContainer>
 
-                <div className='flex'>
+                {/* <div className='flex'>
                     <Button type='submit' className="cursor-pointer text-white text-[16px] w-full">Submit</Button>
-                </div>
+                </div> */}
 
             </form>
         </div>

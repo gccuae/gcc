@@ -11,7 +11,7 @@ import { BlogData } from "./type";
 const BlogList = ({ data }: { data: BlogData }) => {
   const items = data.categories.flatMap(
     (item: { blogs: BlogData["categories"][number]["blogs"] }) => item.blogs
-  );
+  ).filter((item)=>item.status !== "draft");
 
   const categories = useMemo(() => {
     const unique = Array.from(
@@ -118,7 +118,7 @@ const BlogList = ({ data }: { data: BlogData }) => {
   const filteredItems =
     activeTab === 0
       ? items
-      : items.filter((item) => item.category === categories[activeTab]);
+      : items.filter((item) => item.category === categories[activeTab])
 
   return (
     <section className="pt-57px pb-12 md:pb-15 xl:py-57px bg-light-white dark:bg-black">

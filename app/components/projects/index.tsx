@@ -37,7 +37,7 @@ const Index = ({
   return (
     <>
       <PageBnr pageTitle={projects.data.pageTitle} bannerImg={projects.data.banner} bannerAlt={projects.data.bannerAlt} />
-      <FeaturedProjects data={{ projects: projects.data.projects }} />
+      <FeaturedProjects data={{ projects: projects.data.projects.filter((item)=>item.status !== "draft") }} />
       <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API as string}>
         {/* <ProjectList
           projects={projects}

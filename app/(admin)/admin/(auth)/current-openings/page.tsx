@@ -19,6 +19,8 @@ import AdminItemContainer from '@/app/components/common/AdminItemContainer';
 import { useForm, Controller } from "react-hook-form";
 import { ImageUploader } from '@/components/ui/image-uploader'
 import { Textarea } from "@/components/ui/textarea";
+import { FaEye } from "react-icons/fa";
+import Link from "next/link";
 
 
 interface CurrentOpeningsPageProps {
@@ -45,7 +47,7 @@ export default function CurrentOpenings() {
 
   const [department, setDepartment] = useState<string>("");
   const [location, setLocation] = useState<string>("");
-  const [openingsList, setOpeningsList] = useState<{ _id: string, firstSection: { jobTitle: string, description: string } }[]>([]);
+  const [openingsList, setOpeningsList] = useState<{ _id: string, status:string, firstSection: { jobTitle: string, description: string, slug:string } }[]>([]);
   const [locationList, setLocationList] = useState<{ _id: string, name: string }[]>([]);
   const [departmentList, setDepartmentList] = useState<{ _id: string, name: string }[]>([]);
 
@@ -535,7 +537,14 @@ export default function CurrentOpenings() {
                 <div className="text-[16px]">
                   {item.firstSection.jobTitle}
                 </div>
-                <div className="flex gap-5">
+                <div className="flex gap-5 items-center">
+
+                  {item.status == "draft" ? (<Link href={`/careers/${item.firstSection.slug}`} target="_blank"><div className="text-[16px] rounded-xl bg-yellow-300 p-1 flex items-center gap-1">
+                    <FaEye />
+                  </div></Link>) : (<div className="text-[16px] rounded-xl bg-green-300 p-1 flex items-center gap-1">
+                    <FaEye />
+                  </div>)}
+
                   <MdEdit onClick={() => router.push(`/admin/current-openings/edit/${item._id}`)} />
 
                   <Dialog>

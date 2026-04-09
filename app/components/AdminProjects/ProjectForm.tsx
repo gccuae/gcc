@@ -100,6 +100,7 @@ interface ProjectFormProps {
   };
   featuredProject: string;
   relatedService: string;
+  status: string;
 }
 
 const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
@@ -245,6 +246,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
         setValue("forthSection.items", data.data.forthSection.items);
         setValue("fifthSection", data.data.fifthSection);
         setValue("relatedService", data.data.relatedService._id);
+        setValue("status",data.data.status)
       } else {
         const data = await response.json();
         alert(data.message);
@@ -329,6 +331,65 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
         className="flex flex-col gap-5"
         onSubmit={handleSubmit(handleAddProject)}
       >
+        <input type="hidden" {...register("status")} />
+
+        <div className="flex items-center gap-2 justify-end">
+                <Label className="">Status</Label>
+                <Controller
+                  name={`status`}
+                  control={control}
+                  // rules={{ required: "Location is required" }}
+                  render={({ field }) => (
+                    <Select
+                      onValueChange={field.onChange}
+                      value={field.value}
+                      defaultValue=""
+                    >
+                      <SelectTrigger className="w-fit">
+                        <SelectValue placeholder="Select Status" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        
+                          <SelectItem  value={"draft"}>
+                            Draft
+                          </SelectItem>
+
+                          <SelectItem  value={"published"}>
+                            Published
+                          </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  )}
+                />
+
+                        <Button
+          type="button"
+          onClick={() => handleSubmit((data) => handleAddProject({ ...data, status: watch("status") }))()}
+          className="bg-green-700"
+        >
+          Save
+        </Button>
+              </div>
+
+        {/* <div className="flex justify-end gap-3">
+        <Button
+          type="button"
+          onClick={() => handleSubmit((data) => handleAddProject({ ...data, status: "draft" }))()}
+          className="bg-yellow-600"
+        >
+          Save as Draft
+        </Button>
+
+        <Button
+          type="button"
+          onClick={() => handleSubmit((data) => handleAddProject({ ...data, status: "published" }))()}
+          className="bg-green-600"
+        >
+          Publish
+        </Button>
+        </div> */}
+
+
         <AdminItemContainer>
           <Label className="" main>
             Banner
@@ -428,7 +489,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                   <p className="text-red-500">{errors.slug.message}</p>
                 )}
               </div>
-              <div className="flex flex-col gap-1">
+              {/* <div className="flex flex-col gap-1">
                 <Label className="font-bold">Latitude</Label>
                 <Input
                   type="text"
@@ -443,7 +504,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                   placeholder="Longitude"
                   {...register("longitude")}
                 />
-              </div>
+              </div> */}
             </div>
           </div>
         </AdminItemContainer>
@@ -470,7 +531,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                         <ImageCard key={url} url={url} index={index} handleRemoveImage={handleRemoveImage} id={url} />
                       ))}
                     </SortableContext>
-                    
+
                   </DndContext>
                 </div>
               )}
@@ -1209,14 +1270,14 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
           />
         </div>
 
-        <div className="flex">
+        {/* <div className="flex">
           <Button
             type="submit"
             className="cursor-pointer text-white text-[16px] w-full"
           >
             Submit
           </Button>
-        </div>
+        </div> */}
       </form>
     </div>
   );

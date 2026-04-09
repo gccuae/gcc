@@ -15,6 +15,8 @@ import { useRefetchServices } from '@/app/contexts/refetchServices';
 import { closestCorners, DndContext, DragEndEvent } from '@dnd-kit/core'
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import ServiceCard from './ServiceCard';
+import Link from 'next/link';
+import { FaEye } from "react-icons/fa";
 
 interface ExpertiseFormProps {
     metaTitle: string;
@@ -40,6 +42,7 @@ interface ExpertiseFormProps {
             description: string;
             homeThumbnail: string;
             homeThumbnailAlt: string;
+            status:string;
         }[];
     };
 }
@@ -246,6 +249,13 @@ const ExpertisePage = () => {
 
                                     {!reorderMode && secondSectionItems.map((field, index) => (
                                         <div key={field.id} className='grid grid-cols-1 gap-2 relative border-b pb-5 last:border-b-0'>
+                                            <div className='absolute top-1 right-10'>
+                                            {field.status == "draft" ? (<Link href={`/expertise/${field.slug}`} target="_blank"><div className="text-[16px] rounded-xl bg-yellow-300 p-1 flex items-center gap-1 w-fit">
+                                                <FaEye />
+                                            </div></Link>) : (<div className="text-[16px] rounded-xl bg-green-300 p-1 flex items-center gap-1">
+                                                <FaEye />
+                                            </div>)}
+                                            </div>
                                             <div className='absolute top-2 right-2'>
                                                 <RiDeleteBinLine onClick={() => secondSectionRemove(index)} className='cursor-pointer text-red-600' />
                                             </div>
@@ -389,7 +399,7 @@ const ExpertisePage = () => {
 
                                 </div>
                                 {!reorderMode && <div className='flex justify-end mt-2'>
-                                    <Button type='button' addItem onClick={() => secondSectionAppend({ title: "", image: "", imageAlt: "", logo: "", logoAlt: "", slug: "", description: "", homeThumbnail: "", homeThumbnailAlt: "" })}>Add Item</Button>
+                                    <Button type='button' addItem onClick={() => secondSectionAppend({ title: "", image: "", imageAlt: "", logo: "", logoAlt: "", slug: "", description: "", homeThumbnail: "", homeThumbnailAlt: "",status:"" })}>Add Item</Button>
                                 </div>}
                             </div>
 

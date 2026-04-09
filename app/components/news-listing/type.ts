@@ -7,6 +7,7 @@ export type NewsData = {
     categories: {
         category: string;
         news: {
+            status:string;
             title: string;
             subTitle: string;
             images: string[];

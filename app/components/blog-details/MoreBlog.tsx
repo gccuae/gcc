@@ -9,7 +9,7 @@ import { BlogData } from "../blog/type";
 const MoreBlog = ({ category, items }: { category: string, items: BlogData }) => {
   // filter blogs by category
 
-  const allItems = items.categories.flatMap((item: { blogs: BlogData['categories'][number]['blogs'] }) => item.blogs);
+  const allItems = items.categories.flatMap((item: { blogs: BlogData['categories'][number]['blogs'] }) => item.blogs).filter((item)=>item.status !== "draft");
   const filtered = allItems
     .filter((item) => item.category === category)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())

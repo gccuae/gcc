@@ -162,6 +162,7 @@ export async function PATCH(request: NextRequest) {
       foundProject.metaDescription = body.metaDescription;
       foundProject.featuredProject = body.featuredProject;
       foundProject.relatedService = body.relatedService;
+      foundProject.status = body.status
       await project.save();
       return NextResponse.json(
         { data: project, message: "Project updated successfully" },

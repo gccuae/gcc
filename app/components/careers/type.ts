@@ -21,6 +21,7 @@ export type careerData = {
         name:string
     }],
     openings:[{
+        status:string;
         firstSection:{
             title:string,
             jobTitle:string,

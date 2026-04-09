@@ -39,6 +39,7 @@ interface BlogFormProps {
     metaTitle: string;
     metaDescription: string;
     date: string;
+    status:string;
 }
 
 const BlogForm = ({ editMode }: { editMode?: boolean }) => {
@@ -85,6 +86,7 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
                 setValue("quoteAuthor", data.data.quoteAuthor);
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
+                setValue("status", data.data.status);
                 const isoDate = new Date(data.data.date).toISOString().split("T")[0];
                 setValue("date", isoDate);
             } else {
@@ -146,7 +148,50 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
 
     return (
         <div className='flex flex-col gap-5'>
+            <div className='flex justify-between items-center'>
             <h1 className='text-md font-bold'>{editMode ? "Edit Blog" : "Add Blog"}</h1>
+            <input type="hidden" {...register("status")} />
+            
+                    <div className="flex items-center gap-2 justify-end">
+                            <Label className="">Status</Label>
+                            <Controller
+                              name={`status`}
+                              control={control}
+                              // rules={{ required: "Location is required" }}
+                              render={({ field }) => (
+                                <Select
+                                  onValueChange={field.onChange}
+                                  value={field.value}
+                                  defaultValue=""
+                                >
+                                  <SelectTrigger className="w-fit">
+                                    <SelectValue placeholder="Select Status" />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    
+                                      <SelectItem  value={"draft"}>
+                                        Draft
+                                      </SelectItem>
+            
+                                      <SelectItem  value={"published"}>
+                                        Published
+                                      </SelectItem>
+                                  </SelectContent>
+                                </Select>
+                              )}
+                            />
+            
+                                    <Button
+                      type="button"
+                      onClick={() => handleSubmit((data) => handleAddBlog({ ...data, status: watch("status") }))()}
+                      className="bg-green-700"
+                    >
+                      Save
+                    </Button>
+                          </div>
+
+                          </div>
+
             <AdminItemContainer>
             <form className='flex flex-col gap-5 p-5 rounded-md' onSubmit={handleSubmit(handleAddBlog)}>
 
@@ -281,9 +326,9 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
                 </div>
 
 
-                <div className='flex justify-center'>
+                {/* <div className='flex justify-center'>
                     <Button type='submit' className='w-full'>Submit</Button>
-                </div>
+                </div> */}
 
             </form>
             </AdminItemContainer>

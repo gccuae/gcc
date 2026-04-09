@@ -28,6 +28,9 @@ export default async function RootLayout({
   const tagResponse = await fetch(`${process.env.BASE_URL}/api/admin/tags`);
   const tagData = await tagResponse.json();
 
+  const navbarResponse = await fetch(`${process.env.BASE_URL}/api/admin/navbar`)
+  const navbarData = await navbarResponse.json();
+
   // Get the bodyScript safely
   const bodyScript = tagData?.tag?.bodyScript || "";
 
@@ -69,7 +72,7 @@ export default async function RootLayout({
         )}
 
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <Header />
+          <Header data={navbarData.data}/>
           {children}
           <FooterV />
         </ThemeProvider>

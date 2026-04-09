@@ -1,73 +1,76 @@
 import mongoose from "mongoose";
 
 const BlogsSchema = new mongoose.Schema({
-    banner:{
+    banner: {
         type: String,
         required: true,
     },
-    bannerAlt:{
+    bannerAlt: {
         type: String,
     },
-    pageTitle:{
+    pageTitle: {
         type: String,
         required: true,
     },
-    metaTitle:{
+    metaTitle: {
         type: String,
     },
-    metaDescription:{
+    metaDescription: {
         type: String,
     },
-    categories:[{
+    categories: [{
         category: {
             type: String,
         },
         blogs: [{
+            status: {
+                type: String
+            },
             title: {
                 type: String,
             },
-            author:{
-                type:String
+            author: {
+                type: String
             },
-            slug:{
-                type:String
+            slug: {
+                type: String
             },
-            content:{
-                type:String
+            content: {
+                type: String
             },
-            category:{
-                type:String
+            category: {
+                type: String
             },
-            thumbnail:{
-                type:String
+            thumbnail: {
+                type: String
             },
-            thumbnailAlt:{
-                type:String
+            thumbnailAlt: {
+                type: String
             },
-            coverPhoto:{
-                type:String
+            coverPhoto: {
+                type: String
             },
-            coverPhotoAlt:{
-                type:String
+            coverPhotoAlt: {
+                type: String
             },
-            quote:{
-                type:String
+            quote: {
+                type: String
             },
-            quoteAuthor:{
-                type:String
+            quoteAuthor: {
+                type: String
             },
-            metaTitle:{
-                type:String
+            metaTitle: {
+                type: String
             },
-            metaDescription:{
-                type:String
+            metaDescription: {
+                type: String
             },
-            date:{
-                type:Date
+            date: {
+                type: Date
             },
-            createdAt:{
-                type:Date,
-                default:Date.now
+            createdAt: {
+                type: Date,
+                default: Date.now
             },
         }],
     }],

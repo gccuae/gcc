@@ -26,6 +26,11 @@ const projectSchema = new mongoose.Schema({
       latitude: { type: String },
       longitude: { type: String },
       featuredProject: { type: Boolean },
+      status: {
+        type: String,
+        enum: ["draft", "published"],
+        default: "draft",
+      },
       relatedService: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Expertise",

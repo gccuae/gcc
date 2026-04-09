@@ -70,7 +70,7 @@ const ProjectsList = ({
   };
 
   // Filter logic applies only when "Apply" is clicked
-  const filteredProjects = data.projects?.filter((project) => {
+  const filteredProjects = data.projects?.filter((item)=>item.status !== "draft").filter((project) => {
     const searchTerm = pendingFilters?.search.trim().toLowerCase();
 
     const matchesSearch =

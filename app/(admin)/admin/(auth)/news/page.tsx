@@ -20,6 +20,7 @@ import {
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import Link from 'next/link';
+import { FaEye } from "react-icons/fa";
 
 interface NewsFormProps {
     metaTitle: string;
@@ -38,7 +39,7 @@ const NewsPage = () => {
     const [category, setCategory] = useState<string>("")
 
     const [categoryList, setCategoryList] = useState<{ _id: string, category: string }[]>([]);
-    const [newsList, setNewsList] = useState<{ _id: string, title: string }[]>([]);
+    const [newsList, setNewsList] = useState<{ _id: string, title: string,status:string, slug:string }[]>([]);
 
 
     const handleAddNews = async (data: NewsFormProps) => {
@@ -280,6 +281,12 @@ const NewsPage = () => {
                                     <p>{item.title}</p>
                                 </div>
                                 <div className='flex gap-8 items-center'>
+                                    
+                                    {item.status == "draft" ? (<Link href={`/news/${item.slug}`} target="_blank"><div className="text-[16px] rounded-xl bg-yellow-300 p-1 flex items-center gap-1">
+                                        <FaEye />
+                                    </div></Link>) : (<div className="text-[16px] rounded-xl bg-green-300 p-1 flex items-center gap-1">
+                                        <FaEye />
+                                    </div>)}
 
                                     <Link href={`/admin/news/edit/${item._id}`}><FaEdit className='text-lg cursor-pointer' /></Link>
 
