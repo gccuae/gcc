@@ -163,13 +163,13 @@ const AboutPage = () => {
                                     <ImageUploader
                                         value={field.value}
                                         onChange={field.onChange}
+                                        recommendedDimension="Recommended: 1920 x 453 (px)"
                                     />
                                 )}
                             />
                             {errors.banner && (
                                 <p className="text-red-500">{errors.banner.message}</p>
                             )}
-                            <p className="text-gray-500">Recommended: 1920  x 453 (px)</p>
                         </div>
                         <div className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-1'>
@@ -214,13 +214,13 @@ const AboutPage = () => {
                                     <ImageUploader
                                         value={field.value}
                                         onChange={field.onChange}
+                                        recommendedDimension="Recommended: 800 x 738 (px)"
                                     />
                                 )}
                             />
                             {errors.firstSection?.image && (
                                 <p className="text-red-500">{errors.firstSection?.image.message}</p>
                             )}
-                            <p className="text-gray-500">Recommended: 800  x 738 (px)</p>
                             <Label className='font-bold'>Alt Tag</Label>
                             <Input type='text' placeholder='Alt Tag' {...register("firstSection.imageAlt")} />
                         </div>
@@ -283,13 +283,13 @@ const AboutPage = () => {
                                                             <ImageUploader
                                                                 value={field.value}
                                                                 onChange={field.onChange}
+                                                                recommendedDimension="Recommended: 900 x 750 (px)"
                                                             />
                                                         )}
                                                     />
                                                     {errors.secondSection?.items?.[index]?.image && (
                                                         <p className="text-red-500">{errors.secondSection?.items?.[index]?.image.message}</p>
                                                     )}
-                                                        <p className="text-gray-500">Recommended: 900  x 750 (px)</p>
                                                 </div>
 
                                                 <div className='flex flex-col gap-2'>
@@ -376,13 +376,13 @@ const AboutPage = () => {
                                                                 isLogo
                                                                 value={field.value}
                                                                 onChange={field.onChange}
+                                                                recommendedDimension="Recommended: 52 x 52 (px)"
                                                             />
                                                         )}
                                                     />
                                                     {errors.thirdSection?.items?.[index]?.logo && (
                                                         <p className="text-red-500">{errors.thirdSection?.items?.[index]?.logo.message}</p>
                                                     )}
-                                                        <p className="text-gray-500">Recommended: 52  x 52 (px)</p>
                                                 </div>
 
                                                 <div className='flex flex-col gap-2'>
@@ -467,13 +467,13 @@ const AboutPage = () => {
                                                         <ImageUploader
                                                             value={field.value}
                                                             onChange={field.onChange}
+                                                            recommendedDimension="Recommended: 1920 x 504 (px)"
                                                         />
                                                     )}
                                                 />
                                                 {errors.historySection?.items?.[index]?.image && (
                                                     <p className="text-red-500">{errors.historySection?.items?.[index]?.image.message}</p>
                                                 )}
-                                                        <p className="text-gray-500">Recommended: 1920  x 504 (px)</p>
                                             </div>
 
                                             <div className='flex flex-col gap-2'>
@@ -589,11 +589,11 @@ const AboutPage = () => {
                                                         isLogo
                                                         value={field.value}
                                                         onChange={field.onChange}
+                                                        recommendedDimension="Recommended: 100 x 100 (px)"
                                                     />
                                                 )}
                                             />
                                             {errors.fifthSection?.items?.[index]?.logo && <p className='text-red-500'>{errors.fifthSection?.items?.[index]?.logo.message}</p>}
-                                                        <p className="text-gray-500">Recommended: 100  x 100 (px)</p>
                                         </div>
                                         <div className='flex flex-col gap-2'>
                                             <Label className='pl-3 font-bold'>Alt Tag</Label>

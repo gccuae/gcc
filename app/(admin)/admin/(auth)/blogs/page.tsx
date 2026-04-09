@@ -228,10 +228,7 @@ const BlogsPage = () => {
                                 control={control}
                                 rules={{ required: "Banner is required" }}
                                 render={({ field }) => (
-                                    <ImageUploader
-                                        value={field.value}
-                                        onChange={field.onChange}
-                                    />
+                                    <ImageUploader value={field.value} onChange={field.onChange} recommendedDimension='Recommended: 1920 x 453 (px)' />
                                 )}
                             />
                             {errors.banner && (

@@ -315,6 +315,7 @@ export default function CurrentOpenings() {
                     <ImageUploader
                       value={field.value}
                       onChange={field.onChange}
+                      recommendedDimension="Recommended: 800 x 490 (px)"
                     />
                   )}
                 />

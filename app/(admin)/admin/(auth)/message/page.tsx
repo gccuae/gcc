@@ -110,13 +110,13 @@ const AdminHome = () => {
                                                     <ImageUploader
                                                         value={field.value}
                                                         onChange={field.onChange}
+                                                        recommendedDimension="Recommended: 830 x 1000 (px)"
                                                     />
                                                 )}
                                             />
                                             {errors.messageSection?.items?.[index]?.image && (
                                                 <p className="text-red-500">{errors.messageSection?.items?.[index]?.image.message}</p>
                                             )}
-                                            <p className="text-gray-500">Recommended: 830  x 1000 (px)</p>
                                         </div>
 
                                         <div className='flex flex-col gap-2'>

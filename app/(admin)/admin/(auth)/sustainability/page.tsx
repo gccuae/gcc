@@ -144,10 +144,7 @@ const SustainabilityPage = () => {
                                 control={control}
                                 rules={{ required: "Banner is required" }}
                                 render={({ field }) => (
-                                    <ImageUploader
-                                        value={field.value}
-                                        onChange={field.onChange}
-                                    />
+                                    <ImageUploader value={field.value} onChange={field.onChange} recommendedDimension="Recommended: 1920 x 453 (px)" />
                                 )}
                             />
                             {errors.banner && (
@@ -194,10 +191,7 @@ const SustainabilityPage = () => {
                                 control={control}
                                 rules={{ required: "Image is required" }}
                                 render={({ field }) => (
-                                    <ImageUploader
-                                        value={field.value}
-                                        onChange={field.onChange}
-                                    />
+                                    <ImageUploader value={field.value} onChange={field.onChange} recommendedDimension="Recommended: 800 x 547 (px)"  />
                                 )}
                             />
                             {errors.firstSection?.image && (
@@ -227,7 +221,7 @@ const SustainabilityPage = () => {
                             <div className='flex flex-col gap-1'>
                                 <Label className='font-bold'>Description</Label>
                                 <Controller name="secondSection.description" control={control} render={({ field }) => {
-                                    return <Textarea value={field.value} onChange={field.onChange} />
+                                    return <Textarea value={field.value} onChange={field.onChange}  />
                                 }} />
                             </div>
 
@@ -250,11 +244,7 @@ const SustainabilityPage = () => {
                                                         control={control}
                                                         rules={{ required: "Image is required" }}
                                                         render={({ field }) => (
-                                                            <ImageUploader
-                                                                isLogo
-                                                                value={field.value}
-                                                                onChange={field.onChange}
-                                                            />
+                                                            <ImageUploader isLogo value={field.value} onChange={field.onChange} recommendedDimension="Recommended: 100 x 100 (px)" />
                                                         )}
                                                     />
                                                     {errors.secondSection?.items?.[index]?.image && (
@@ -327,14 +317,11 @@ const SustainabilityPage = () => {
                             <div>
                                 <Label className='font-bold'>Items</Label>
                                 <div className='border p-2 rounded-md flex flex-col gap-5'>
-
-
                                     {thirdSectionItems.map((field, index) => (
                                         <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b pb-5 last:border-b-0'>
                                             <div className='absolute top-2 right-2'>
                                                 <RiDeleteBinLine onClick={() => thirdSectionRemove(index)} className='cursor-pointer text-red-600' />
                                             </div>
-
                                             <div className='flex flex-col gap-2'>
                                                 <div className='flex flex-col gap-2'>
                                                     <Label className='font-bold'>Logo</Label>
@@ -343,11 +330,7 @@ const SustainabilityPage = () => {
                                                         control={control}
                                                         rules={{ required: "Logo is required" }}
                                                         render={({ field }) => (
-                                                            <ImageUploader
-                                                                isLogo
-                                                                value={field.value}
-                                                                onChange={field.onChange}
-                                                            />
+                                                            <ImageUploader isLogo value={field.value} onChange={field.onChange} recommendedDimension="Recommended: 100 x 100 (px)" />
                                                         )}
                                                     />
                                                     {errors.thirdSection?.items?.[index]?.logo && (
@@ -395,10 +378,7 @@ const SustainabilityPage = () => {
                                                             control={control}
                                                             rules={{ required: "Image is required" }}
                                                             render={({ field }) => (
-                                                                <ImageUploader
-                                                                    value={field.value}
-                                                                    onChange={field.onChange}
-                                                                />
+                                                                <ImageUploader value={field.value} onChange={field.onChange} recommendedDimension="Recommended: 800 x 542 (px)" />
                                                             )}
                                                         />
                                                         {errors.thirdSection?.items?.[index]?.logo && (
@@ -474,10 +454,7 @@ const SustainabilityPage = () => {
                                                         control={control}
                                                         rules={{ required: "Logo is required" }}
                                                         render={({ field }) => (
-                                                            <ImageUploader
-                                                                value={field.value}
-                                                                onChange={field.onChange}
-                                                            />
+                                                            <ImageUploader value={field.value} onChange={field.onChange} recommendedDimension="Recommended: 200 x 204 (px)" />
                                                         )}
                                                     />
                                                     {errors.forthSection?.items?.[index]?.logo && (
@@ -525,10 +502,7 @@ const SustainabilityPage = () => {
                                                             control={control}
                                                             rules={{ required: "Image is required" }}
                                                             render={({ field }) => (
-                                                                <ImageUploader
-                                                                    value={field.value}
-                                                                    onChange={field.onChange}
-                                                                />
+                                                                <ImageUploader value={field.value} onChange={field.onChange} recommendedDimension="Recommended: 500 x 423 (px)" />
                                                             )}
                                                         />
                                                         {errors.thirdSection?.items?.[index]?.logo && (

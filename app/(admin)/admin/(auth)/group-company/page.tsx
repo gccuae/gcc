@@ -263,13 +263,13 @@ const GroupCompanyPage = () => {
                                     <ImageUploader
                                         value={field.value}
                                         onChange={field.onChange}
+                                        recommendedDimension="Recommended: 1920 x 453 (px)"
                                     />
                                 )}
                             />
                             {errors.banner && (
                                 <p className="text-red-500">{errors.banner.message}</p>
                             )}
-                            <p className="text-gray-500">Recommended: 1920  x 453 (px)</p>
                         </div>
                         <div className="flex flex-col gap-2">
                             <div className="flex flex-col gap-1">
@@ -353,6 +353,7 @@ const GroupCompanyPage = () => {
                                                             isLogo
                                                             value={field.value}
                                                             onChange={field.onChange}
+                                                            recommendedDimension="Recommended: 100 x 100 (px)"
                                                         />
                                                     )}
                                                 />
@@ -361,7 +362,6 @@ const GroupCompanyPage = () => {
                                                         {errors.firstSection?.items?.[index]?.logo.message}
                                                     </p>
                                                 )}
-                                                <p className="text-gray-500">Recommended: 100  x 100 (px)</p>
                                             </div>
 
                                             <div className="flex flex-col gap-2">
@@ -631,6 +631,7 @@ const GroupCompanyPage = () => {
                                                                 <ImageUploader
                                                                     value={field.value}
                                                                     onChange={field.onChange}
+                                                                    recommendedDimension="Recommended: 600 x 600 (px)"
                                                                 />
                                                             )}
                                                         />
@@ -642,7 +643,6 @@ const GroupCompanyPage = () => {
                                                                 }
                                                             </p>
                                                         )}
-                                                        <p className="text-gray-500">Recommended: 600  x 600 (px)</p>
                                                     </div>
 
                                                     <div className="flex flex-col gap-2">
@@ -680,7 +680,12 @@ const GroupCompanyPage = () => {
                                                             control={control}
                                                             rules={{ required: "Logo is required" }}
                                                             render={({ field }) => (
-                                                                <ImageUploader isLogo value={field.value} onChange={field.onChange} />
+                                                                <ImageUploader
+                                                                    isLogo
+                                                                    value={field.value}
+                                                                    onChange={field.onChange}
+                                                                    recommendedDimension="Recommended: 200 x 51 (px)"
+                                                                />
                                                             )}
                                                         />
                                                         {errors.secondSection?.items?.[index]?.logo && (
@@ -691,7 +696,6 @@ const GroupCompanyPage = () => {
                                                                 }
                                                             </p>
                                                         )}
-                                                        <p className="text-gray-500">Recommended: 200  x 51 (px)</p>
                                                     </div>
 
                                                     <div className="flex flex-col gap-2">
