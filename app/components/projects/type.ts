@@ -66,6 +66,7 @@ export interface ProjectsPageData {
 // ----------------------
 
 export interface Project {
+  status:string;
   _id: string;
   title: string;
   slug: string;
