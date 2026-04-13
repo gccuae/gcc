@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Swiper as SwiperType } from "swiper";
 import { SecondSectionSecondSection } from "../expertise/type";
+import { tr } from "zod/v4/locales";
 
 interface ScopsProps {
   data: SecondSectionSecondSection;
@@ -60,9 +61,10 @@ const Scops = ({ data }: ScopsProps) => {
         </div>
       </div>
 
+      <div className="container">
       <Swiper
         onSwiper={setSwiper}
-        loop={false}
+        loop={true}
         speed={500}
         allowTouchMove
         breakpoints={{
@@ -98,6 +100,7 @@ const Scops = ({ data }: ScopsProps) => {
           </SwiperSlide>
         ))}
       </Swiper>
+      </div>
     </section>
   );
 };

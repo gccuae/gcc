@@ -65,10 +65,8 @@ const ProjectTitleCta = ({ title, href }: { title: string; href: string }) => {
 };
 
 const KeyProjects = ({ projects }: KeyProjectsProps) => {
-  const headerContainerRef = useRef<HTMLDivElement | null>(null);
   const viewportRef = useRef<HTMLDivElement | null>(null);
   const [windowWidth, setWindowWidth] = useState(0);
-  const [leftOffset, setLeftOffset] = useState(0);
   const [viewportWidth, setViewportWidth] = useState(0);
   const [enableTransition, setEnableTransition] = useState(true);
   const [virtualIndex, setVirtualIndex] = useState(projects.length);
@@ -106,12 +104,6 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
   useEffect(() => {
     const updateLayout = () => {
       setWindowWidth(window.innerWidth);
-      const container = headerContainerRef.current;
-      if (container) {
-        const styles = window.getComputedStyle(container);
-        const paddingLeft = Number.parseFloat(styles.paddingLeft || "0");
-        setLeftOffset(container.getBoundingClientRect().left + paddingLeft);
-      }
       if (viewportRef.current) {
         setViewportWidth(viewportRef.current.clientWidth);
       }
@@ -122,7 +114,7 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
   }, []);
 
   const getPerView = () => {
-    if (windowWidth >= 1024) return 2.1;
+    if (windowWidth >= 1024) return 2;
     if (windowWidth >= 768) return 2;
     if (windowWidth >= 425) return 1;
     return 1.1;
@@ -248,7 +240,7 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
 
   return (
     <section className="py-57px pb-13 xl:pb-25 bg-light-white dark:bg-light-dark mx-auto overflow-hidden">
-      <div ref={headerContainerRef} className="container">
+      <div className="container">
         <div className="mb-6 xl:mb-57px flex items-center justify-between">
           <motion.h2 variants={moveUp()} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-4xl xl:text-5xl leading-lh-text68 font-normal text-black dark:text-white" >
             Key Projects
@@ -273,42 +265,39 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
             </button>
           </motion.div>
         </div>
-      </div>
-
-      <div
-        ref={viewportRef}
-        className={`overflow-hidden ${isDragging ? "cursor-grabbing" : "cursor-grab"}`}
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerUp}
-        onPointerCancel={handlePointerCancel}
-        onDragStart={(e) => e.preventDefault()}
+      
+        <div
+          ref={viewportRef}
+          className={`overflow-hidden ${isDragging ? "cursor-grabbing" : "cursor-grab"}`}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerCancel}
+          onDragStart={(e) => e.preventDefault()}
         // Only fires when didSwipeRef=true (after a real swipe) — blocks the
         // synthetic click that the browser fires after pointerup on mouse devices.
         // For a simple tap/click, didSwipeRef is always false so this is a no-op.
-        onClickCapture={(e) => {
-          if (!didSwipeRef.current) return;
-          didSwipeRef.current = false;
-          e.preventDefault();
-          e.stopPropagation();
-        }}
-        style={{
-          marginLeft: `${leftOffset}px`,
-          width: `calc(100vw - ${leftOffset}px)`,
-          visibility: isLayoutReady ? "visible" : "hidden",
-          touchAction: "pan-y",
-          userSelect: isDragging ? "none" : "auto",
-        }}
-      >
-        <div
-          className="flex"
+          onClickCapture={(e) => {
+            if (!didSwipeRef.current) return;
+            didSwipeRef.current = false;
+            e.preventDefault();
+            e.stopPropagation();
+          }}
           style={{
-            gap: `${gap}px`,
-            transform: `translate3d(${translateX + dragOffset}px, 0, 0)`,
-            transition: enableTransition && !isDragging ? "transform 0.8s ease" : "none",
-            willChange: "transform",
+            visibility: isLayoutReady ? "visible" : "hidden",
+            touchAction: "pan-y",
+            userSelect: isDragging ? "none" : "auto",
           }}
         >
+          <div
+            className="flex"
+            style={{
+              gap: `${gap}px`,
+              transform: `translate3d(${translateX + dragOffset}px, 0, 0)`,
+              transition: enableTransition && !isDragging ? "transform 0.8s ease" : "none",
+              willChange: "transform",
+            }}
+          >
           {loopItems.map((item, index) => (
             <div key={index} className="overflow-hidden shrink-0 3xl:h-[633px]" style={{ width: `${slideWidth}px` }}>
               <motion.div
@@ -367,6 +356,7 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
             />
           ))}
         </div>
+      </div>
       </div>
     </section>
   );
