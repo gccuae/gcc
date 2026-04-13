@@ -1,46 +1,51 @@
 export type SustainabilityType = {
-    metaTitle:string;
-    metaDescription:string;
-    banner:string;
-    bannerAlt:string;
-    pageTitle:string;
-    firstSection:{
-        title:string;
-        description:string;
-        image:string;
-        imageAlt:string;
+    metaTitle: string;
+    metaDescription: string;
+    banner: string;
+    bannerAlt: string;
+    pageTitle: string;
+    bannerHidden: boolean;
+    firstSection: {
+        hidden: boolean;
+        title: string;
+        description: string;
+        image: string;
+        imageAlt: string;
     },
-    secondSection:{
-        title:string;
-        description:string;
-        items:[{
-            image:string;
-            imageAlt:string;
-            title:string;
-            description:string
+    secondSection: {
+        hidden: boolean;
+        title: string;
+        description: string;
+        items: [{
+            image: string;
+            imageAlt: string;
+            title: string;
+            description: string
         }]
     },
-    thirdSection:{
-        title:string;
-        items:[{
-            logo:string;
-            logoAlt:string;
-            title:string;
-            description:string;
-            image:string;
-            imageAlt:string;
+    thirdSection: {
+        hidden: boolean;
+        title: string;
+        items: [{
+            logo: string;
+            logoAlt: string;
+            title: string;
+            description: string;
+            image: string;
+            imageAlt: string;
         }]
     },
-    forthSection:{
-        title:string;
-        description:string;
-        items:[{
-            logo:string;
-            logoAlt:string;
-            title:string;
-            description:string;
-            image:string;
-            imageAlt:string;
+    forthSection: {
+        hidden: boolean;
+        title: string;
+        description: string;
+        items: [{
+            logo: string;
+            logoAlt: string;
+            title: string;
+            description: string;
+            image: string;
+            imageAlt: string;
         }]
     }
 }

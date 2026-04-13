@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import React, { useEffect, useState } from "react";
 
-import { useForm, useFieldArray, Controller } from "react-hook-form";
+import { useForm, useFieldArray, Controller, Path } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { ImageUploader } from "@/components/ui/image-uploader";
 import { RiDeleteBinLine } from "react-icons/ri";
@@ -33,6 +33,7 @@ import {
 import { useParams, useRouter } from "next/navigation";
 import { RiAiGenerateText } from "react-icons/ri";
 import { projectStatus } from "./projectStatus";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 interface ProjectStatus {
   name: string;
@@ -51,10 +52,13 @@ interface ProjectFormProps {
   thumbDescription: string;
   latitude: string;
   longitude: string;
+  bannerHidden: boolean;
   firstSection: {
+    hidden: boolean;
     images: string[];
   };
   secondSection: {
+    hidden: boolean;
     title: string;
     progress: string;
     client: string;
@@ -69,6 +73,7 @@ interface ProjectFormProps {
     superficie: string;
   };
   numberSection: {
+    hidden: boolean;
     items: {
       number: string;
       value: string;
@@ -77,6 +82,7 @@ interface ProjectFormProps {
     }[]
   }
   thirdSection: {
+    hidden: boolean;
     items: {
       image: string;
       imageAlt: string;
@@ -85,6 +91,7 @@ interface ProjectFormProps {
     }[];
   };
   forthSection: {
+    hidden: boolean;
     title: string;
     items: {
       title: string;
@@ -92,6 +99,7 @@ interface ProjectFormProps {
     }[];
   };
   fifthSection: {
+    hidden: boolean;
     title: string;
     description: string;
     buttonTitle: string;
@@ -112,6 +120,21 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
     formState: { errors },
     watch,
   } = useForm<ProjectFormProps>();
+
+  const bannerStatus = watch("bannerHidden");
+  const firstStatus = watch("firstSection.hidden");
+  const secondStatus = watch("secondSection.hidden");
+  const numberStatus = watch("numberSection.hidden");
+  const thirdStatus = watch("thirdSection.hidden");
+  const forthStatus = watch("forthSection.hidden");
+
+  const toggleSection = (section: string, value: boolean) => {
+    if (section === "bannerHidden") {
+      setValue("bannerHidden", !value);
+    } else {
+      setValue(`${section}.hidden` as Path<ProjectFormProps>, !value);
+    }
+  };
 
   const { id } = useParams();
   const router = useRouter();
@@ -222,6 +245,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
         const data = await response.json();
         setValue("banner", data.data.banner);
         setValue("bannerAlt", data.data.bannerAlt);
+        setValue("bannerHidden", data.data.bannerHidden);
         setValue("thumbnail", data.data.thumbnail);
         setValue("thumbnailAlt", data.data.thumbnailAlt);
         setValue("title", data.data.title);
@@ -232,6 +256,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
         setValue("featuredProject", data.data.featuredProject);
         setValue("metaTitle", data.data.metaTitle);
         setValue("metaDescription", data.data.metaDescription);
+        setValue("firstSection.hidden", data.data.firstSection.hidden);
         setValue("firstSection.images", data.data.firstSection.images);
         setImageUrls(data.data.firstSection.images);
         setValue("secondSection", {
@@ -241,12 +266,14 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
           projectType: data.data.secondSection.projectType?._id || "",
         });
         setValue("numberSection.items", data.data.numberSection.items);
+        setValue("numberSection.hidden", data.data.numberSection.hidden);
         setValue("thirdSection.items", data.data.thirdSection.items);
+        setValue("thirdSection.hidden", data.data.thirdSection.hidden);
         setValue("forthSection", data.data.forthSection);
         setValue("forthSection.items", data.data.forthSection.items);
         setValue("fifthSection", data.data.fifthSection);
         setValue("relatedService", data.data.relatedService._id);
-        setValue("status",data.data.status)
+        setValue("status", data.data.status)
       } else {
         const data = await response.json();
         alert(data.message);
@@ -334,42 +361,42 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
         <input type="hidden" {...register("status")} />
 
         <div className="flex items-center gap-2 justify-end">
-                <Label className="">Status</Label>
-                <Controller
-                  name={`status`}
-                  control={control}
-                  // rules={{ required: "Location is required" }}
-                  render={({ field }) => (
-                    <Select
-                      onValueChange={field.onChange}
-                      value={field.value}
-                      defaultValue=""
-                    >
-                      <SelectTrigger className="w-fit">
-                        <SelectValue placeholder="Select Status" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        
-                          <SelectItem  value={"draft"}>
-                            Draft
-                          </SelectItem>
+          <Label className="">Status</Label>
+          <Controller
+            name={`status`}
+            control={control}
+            // rules={{ required: "Location is required" }}
+            render={({ field }) => (
+              <Select
+                onValueChange={field.onChange}
+                value={field.value}
+                defaultValue=""
+              >
+                <SelectTrigger className="w-fit">
+                  <SelectValue placeholder="Select Status" />
+                </SelectTrigger>
+                <SelectContent>
 
-                          <SelectItem  value={"published"}>
-                            Published
-                          </SelectItem>
-                      </SelectContent>
-                    </Select>
-                  )}
-                />
+                  <SelectItem value={"draft"}>
+                    Draft
+                  </SelectItem>
 
-                        <Button
-          type="button"
-          onClick={() => handleSubmit((data) => handleAddProject({ ...data, status: watch("status") }))()}
-          className="bg-green-700"
-        >
-          Save
-        </Button>
-              </div>
+                  <SelectItem value={"published"}>
+                    Published
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+            )}
+          />
+
+          <Button
+            type="button"
+            onClick={() => handleSubmit((data) => handleAddProject({ ...data, status: watch("status") }))()}
+            className="bg-green-700"
+          >
+            Save
+          </Button>
+        </div>
 
         {/* <div className="flex justify-end gap-3">
         <Button
@@ -394,6 +421,19 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
           <Label className="" main>
             Banner
           </Label>
+
+          {bannerStatus ? (
+            <FaEyeSlash
+              onClick={() => toggleSection("bannerHidden", bannerStatus)}
+              className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+            />
+          ) : (
+            <FaEye
+              onClick={() => toggleSection("bannerHidden", bannerStatus)}
+              className="absolute top-4 right-4 text-green-600 cursor-pointer"
+            />
+          )}
+
           <div className="p-5 rounded-md grid grid-cols-2 gap-5">
             <div className="flex gap-5 flex-col">
               <div>
@@ -511,6 +551,21 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
 
         <AdminItemContainer>
           <Label main>First Section</Label>
+
+          {firstStatus ? (
+            <FaEyeSlash
+              onClick={() => toggleSection("firstSection", firstStatus)}
+              className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+            />
+
+          ) : (
+            <FaEye
+              onClick={() => toggleSection("firstSection", firstStatus)}
+              className="absolute top-4 right-4 text-green-600 cursor-pointer"
+            />
+          )}
+
+
           <div className="p-5 rounded-md flex flex-col gap-2">
             <div>
               <div className="flex justify-between items-center">
@@ -564,6 +619,20 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
 
         <AdminItemContainer>
           <Label main>Second Section</Label>
+
+          {secondStatus ? (
+            <FaEyeSlash
+              onClick={() => toggleSection("secondSection", secondStatus)}
+              className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+            />
+
+          ) : (
+            <FaEye
+              onClick={() => toggleSection("secondSection", secondStatus)}
+              className="absolute top-4 right-4 text-green-600 cursor-pointer"
+            />
+          )}
+
           <div className="p-5 rounded-md flex flex-col gap-2">
             <div className="flex flex-col gap-2">
               <div className="flex flex-col gap-1">
@@ -811,6 +880,20 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
 
         <AdminItemContainer>
           <Label className='font-bold' main>Number Section</Label>
+
+          {numberStatus ? (
+            <FaEyeSlash
+              onClick={() => toggleSection("numberSection", numberStatus)}
+              className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+            />
+
+          ) : (
+            <FaEye
+              onClick={() => toggleSection("numberSection", numberStatus)}
+              className="absolute top-4 right-4 text-green-600 cursor-pointer"
+            />
+          )}
+
           <div className='p-5 rounded-md flex flex-col gap-5'>
             <Label className='font-bold'>Items</Label>
             <div className='border p-2 rounded-md flex flex-col gap-5'>
@@ -906,6 +989,20 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
 
         <AdminItemContainer>
           <Label main>Third Section</Label>
+
+          {thirdStatus ? (
+            <FaEyeSlash
+              onClick={() => toggleSection("thirdSection", thirdStatus)}
+              className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+            />
+
+          ) : (
+            <FaEye
+              onClick={() => toggleSection("thirdSection", thirdStatus)}
+              className="absolute top-4 right-4 text-green-600 cursor-pointer"
+            />
+          )}
+
           <div className="p-5 rounded-md flex flex-col gap-2">
             <div className="flex flex-col gap-2">
               <div>
@@ -1040,7 +1137,18 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
 
         <AdminItemContainer>
           <Label main>Forth Section</Label>
+          {forthStatus ? (
+            <FaEyeSlash
+              onClick={() => toggleSection("forthSection", forthStatus)}
+              className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+            />
 
+          ) : (
+            <FaEye
+              onClick={() => toggleSection("forthSection", forthStatus)}
+              className="absolute top-4 right-4 text-green-600 cursor-pointer"
+            />
+          )}
           <div className="p-5 rounded-md flex flex-col gap-3">
             <div className="flex flex-col gap-2">
               <div className="flex flex-col gap-2">

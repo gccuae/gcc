@@ -9,6 +9,7 @@ export interface MessageItem {
 }
 
 export interface MessageSection {
+  hidden: boolean;
   items: MessageItem[];
 }
 
@@ -19,6 +20,7 @@ export interface FetchedData {
   metaDescription: string;
   messageSection: MessageSection;
   firstSection: {
+    hidden: boolean;
     title: string;
     items: {
       image: string;

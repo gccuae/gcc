@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useEffect, useState } from "react";
 
-import { useForm, useFieldArray, Controller } from "react-hook-form";
+import { useForm, useFieldArray, Controller, Path } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { ImageUploader } from "@/components/ui/image-uploader";
 import { RiDeleteBinLine } from "react-icons/ri";
@@ -20,7 +20,7 @@ import {
     DialogTrigger,
     DialogClose,
 } from "@/components/ui/dialog";
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaEye, FaEyeSlash } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import {
     Select,
@@ -42,7 +42,9 @@ interface GroupCompanyFormProps {
     banner: string;
     bannerAlt: string;
     pageTitle: string;
+    bannerHidden: boolean;
     firstSection: {
+        hidden: boolean;
         title: string;
         description: string;
         items: {
@@ -53,6 +55,7 @@ interface GroupCompanyFormProps {
         }[];
     };
     secondSection: {
+        hidden: boolean;
         title: string;
         description: string;
         items: {
@@ -75,7 +78,21 @@ const GroupCompanyPage = () => {
         setValue,
         control,
         formState: { errors },
+        watch
     } = useForm<GroupCompanyFormProps>();
+
+
+    const bannerStatus = watch("bannerHidden");
+    const firstStatus = watch("firstSection.hidden");
+    const secondStatus = watch("secondSection.hidden");
+
+    const toggleSection = (section: string, value: boolean) => {
+        if (section === "bannerHidden") {
+            setValue("bannerHidden", !value);
+        } else {
+            setValue(`${section}.hidden` as Path<GroupCompanyFormProps>, !value);
+        }
+    };
 
     const {
         fields: firstSectionItems,
@@ -211,6 +228,7 @@ const GroupCompanyPage = () => {
                 setValue("pageTitle", data.data.pageTitle);
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
+                setValue("bannerHidden", data.data.bannerHidden);
                 setValue("firstSection", data.data.firstSection);
                 setValue("firstSection.items", data.data.firstSection.items);
                 setValue("secondSection", data.data.secondSection);
@@ -253,6 +271,19 @@ const GroupCompanyPage = () => {
                     <Label className="" main>
                         Banner
                     </Label>
+
+                    {bannerStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("bannerHidden", bannerStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("bannerHidden", bannerStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
                     <div className="p-5 rounded-md grid grid-cols-2 gap-5">
                         <div>
                             <Controller
@@ -294,6 +325,20 @@ const GroupCompanyPage = () => {
 
                 <AdminItemContainer>
                     <Label main>First Section</Label>
+
+                    {firstStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("firstSection", firstStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("firstSection", firstStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
                     <div className="p-5 rounded-md flex flex-col gap-2">
                         <div className="flex flex-col gap-2">
                             <div className="flex flex-col gap-1">
@@ -547,6 +592,20 @@ const GroupCompanyPage = () => {
 
                 <AdminItemContainer>
                     <Label main>Second Section</Label>
+
+                    {secondStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("secondSection", secondStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("secondSection", secondStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
                     <div className="p-5 rounded-md flex flex-col gap-2">
                         <div className="flex flex-col gap-2">
                             <div className="flex flex-col gap-1">
@@ -667,7 +726,7 @@ const GroupCompanyPage = () => {
                                                                         }
                                                                     </p>
                                                                 )}
-                                                               
+
                                                         </div>
                                                     </div>
                                                 </div>

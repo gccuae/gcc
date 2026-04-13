@@ -15,9 +15,12 @@ import Image from "next/image";
 interface HeroSliderProps {
   data: BannerItem[];
   counterData: NumberItem[];
+  bannerStatus:boolean;
+  numberStatus:boolean;
 }
 
-const HeroSlider = ({ data, counterData }: HeroSliderProps) => {
+const HeroSlider = ({ data, counterData, bannerStatus, numberStatus }: HeroSliderProps) => {
+  console.log(bannerStatus)
   const swiperRef = useRef<SwiperClass | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -32,7 +35,7 @@ const HeroSlider = ({ data, counterData }: HeroSliderProps) => {
     <section className="relative  overflow-hidden ">
       {/* <div className="relative w-full overflow-hidden h-full"> */}
       <div className="relative w-full h-full slideroverlay bg-cover bg-center" style={{ backgroundImage: `url(${data[activeIndex]?.image})`, }} >
-        <div className="slidermns h-full  container relative pt-10 md:pt-[130px] z-[9]">
+        {!bannerStatus && <div className="slidermns h-full  container relative pt-10 md:pt-[130px] z-[9]">
           <Swiper
             modules={[Autoplay, EffectFade]}
             autoplay={{ delay: 4000 }}
@@ -107,9 +110,11 @@ const HeroSlider = ({ data, counterData }: HeroSliderProps) => {
               </div>
             </div>
           </div>
-        </div>
+        </div>}
         <div className="container">
           <div className="grid grid-cols-2 lg:grid-cols-4 pt-8 xl:pt-[85px] relative z-10">
+            {!numberStatus &&
+            <>
             <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0 }} >
               <div className="text-white border border-[#C2C2C2] border-b-0 transition-all duration-300 group active:bg-primary hover:bg-primary xl:hover:translate-y-2 h-full">
                 <div className="pe-3 ps-3 xl:ps-10 py-5 xl:py-[32px]">
@@ -191,6 +196,7 @@ const HeroSlider = ({ data, counterData }: HeroSliderProps) => {
                 </div>
               </div>
             </motion.div>
+            </>}
           </div>
         </div>
       </div>

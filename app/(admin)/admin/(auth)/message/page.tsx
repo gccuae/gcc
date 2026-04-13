@@ -3,12 +3,13 @@
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import React, { useEffect } from 'react'
-import { Controller, useFieldArray, useForm } from 'react-hook-form';
+import { Controller, Path, useFieldArray, useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 import { RiDeleteBinLine } from "react-icons/ri";
 import { ImageUploader } from '@/components/ui/image-uploader';
 import { Textarea } from '@/components/ui/textarea';
 import AdminItemContainer from '@/app/components/common/AdminItemContainer';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 
 
@@ -16,6 +17,7 @@ interface MessageFormData {
     metaTitle: string;
     metaDescription: string;
     firstSection: {
+        hidden: boolean;
         title: string;
         items: {
             image: string;
@@ -25,6 +27,7 @@ interface MessageFormData {
         }[]
     }
     messageSection: {
+        hidden: boolean;
         items: {
             title: string;
             image: string;
@@ -44,9 +47,19 @@ const AdminHome = () => {
         register,
         setValue,
         formState: { errors },
+        watch
     } = useForm<MessageFormData>();
 
 
+    const firstStatus = watch("firstSection.hidden");
+    const messageStatus = watch("messageSection.hidden");
+
+    const toggleSection = (
+        section: "firstSection" | "messageSection",
+        value: boolean
+    ) => {
+        setValue(`${section}.hidden` as Path<MessageFormData>, !value);
+    };
 
     const onSubmit = async (data: MessageFormData) => {
         try {
@@ -105,6 +118,19 @@ const AdminHome = () => {
 
             <AdminItemContainer>
                 <Label main>First Section</Label>
+
+                {firstStatus ? (
+                    <FaEyeSlash
+                        onClick={() => toggleSection("firstSection", firstStatus)}
+                        className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                    />
+                ) : (
+                    <FaEye
+                        onClick={() => toggleSection("firstSection", firstStatus)}
+                        className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                    />
+                )}
+
                 <div className='p-5 rounded-md flex flex-col gap-2'>
                     <div>
                         <div className='flex flex-col gap-2'>
@@ -216,6 +242,19 @@ const AdminHome = () => {
 
             <AdminItemContainer>
                 <Label main>Message Section</Label>
+
+                {messageStatus ? (
+                    <FaEyeSlash
+                        onClick={() => toggleSection("messageSection", messageStatus)}
+                        className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                    />
+                ) : (
+                    <FaEye
+                        onClick={() => toggleSection("messageSection", messageStatus)}
+                        className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                    />
+                )}
+
                 <div className='p-5 rounded-md flex flex-col gap-2'>
                     <div>
                         <Label className='font-bold'>Items</Label>

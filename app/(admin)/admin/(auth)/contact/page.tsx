@@ -4,10 +4,11 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import React, { useEffect } from 'react'
 
-import { useForm } from "react-hook-form";
+import { Path, useForm } from "react-hook-form";
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import AdminItemContainer from '@/app/components/common/AdminItemContainer';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 interface ContactFormProps {
     metaTitle: string;
@@ -16,11 +17,13 @@ interface ContactFormProps {
     bannerAlt: string;
     pageTitle: string;
     firstSection: {
+        hidden: boolean;
         pageTitle: string;
         mainTitle: string;
         subTitle: string;
     };
     secondSection: {
+        hidden: boolean;
         mainTitle: string;
         subTitle: string;
         addressTitle: string;
@@ -36,9 +39,16 @@ interface ContactFormProps {
 const ContactPage = () => {
 
 
-    const { register, handleSubmit, setValue, formState: { errors } } = useForm<ContactFormProps>();
+    const { register, handleSubmit, setValue, formState: { errors }, watch } = useForm<ContactFormProps>();
 
+    const firstStatus = watch("firstSection.hidden");
+    const secondStatus = watch("secondSection.hidden");
 
+    const toggleSection = (section: string, value: boolean) => {
+        console.log(section);
+
+        setValue(`${section}.hidden` as Path<ContactFormProps>, !value);
+    };
 
     const handleAddContact = async (data: ContactFormProps) => {
         try {
@@ -61,13 +71,17 @@ const ContactPage = () => {
             const response = await fetch(`/api/admin/contact`);
             if (response.ok) {
                 const data = await response.json();
+                console.log(data);
+
                 setValue("banner", data.data.banner);
                 setValue("bannerAlt", data.data.bannerAlt);
                 setValue("pageTitle", data.data.pageTitle);
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
                 setValue("firstSection", data.data.firstSection);
+                setValue("firstSection.hidden", data.data.firstSection.hidden);
                 setValue("secondSection", data.data.secondSection);
+                setValue("secondSection.hidden", data.data.secondSection.hidden);
             } else {
                 const data = await response.json();
                 alert(data.message);
@@ -91,6 +105,20 @@ const ContactPage = () => {
 
                 <AdminItemContainer>
                     <Label main>First Section</Label>
+
+                    {firstStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("firstSection", firstStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("firstSection", firstStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
                     <div className='p-5 rounded-md flex flex-col gap-2'>
                         <div className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-1'>
@@ -122,6 +150,20 @@ const ContactPage = () => {
 
                 <AdminItemContainer>
                     <Label main>Second Section</Label>
+
+                    {secondStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("secondSection", secondStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("secondSection", secondStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
                     <div className='p-5 rounded-md flex flex-col gap-2'>
                         <div className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-1'>

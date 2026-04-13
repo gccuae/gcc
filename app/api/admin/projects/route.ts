@@ -144,6 +144,7 @@ export async function PATCH(request: NextRequest) {
       }
       console.log(body);
       foundProject.firstSection.images = body.firstSection.images;
+      foundProject.firstSection.hidden = body.firstSection.hidden;
       foundProject.secondSection = body.secondSection;
       foundProject.numberSection = body.numberSection;
       foundProject.thirdSection = body.thirdSection;
@@ -151,6 +152,7 @@ export async function PATCH(request: NextRequest) {
       foundProject.fifthSection = body.fifthSection;
       foundProject.banner = body.banner;
       foundProject.bannerAlt = body.bannerAlt;
+      foundProject.bannerHidden = body.bannerHidden;
       foundProject.thumbnail = body.thumbnail;
       foundProject.thumbnailAlt = body.thumbnailAlt;
       foundProject.thumbDescription = body.thumbDescription;

@@ -13,6 +13,7 @@ export interface FirstSectionItem {
 export interface FirstSection {
   title: string;
   description: string;
+  hidden: boolean;
   items: FirstSectionItem[];
 }
 
@@ -33,6 +34,7 @@ export interface SecondSectionItem {
 export interface SecondSection {
   title: string;
   description: string;
+  hidden: boolean;
   items: SecondSectionItem[];
 }
 
@@ -48,6 +50,7 @@ export interface GroupCompaniesPageData {
   pageTitle: string;
   banner: string;
   bannerAlt: string;
+  bannerHidden: boolean;
   firstSection: FirstSection;
   secondSection: SecondSection;
   categories: Category[];

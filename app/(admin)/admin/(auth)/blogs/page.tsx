@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import React, { useEffect, useState } from 'react'
 
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, Path } from "react-hook-form";
 import { Button } from '@/components/ui/button'
 import { ImageUploader } from '@/components/ui/image-uploader'
 import AdminItemContainer from '@/app/components/common/AdminItemContainer';
@@ -17,7 +17,7 @@ import {
     DialogTrigger,
     DialogClose,
 } from "@/components/ui/dialog"
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaEyeSlash } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import Link from 'next/link';
 import { closestCorners, DndContext, DragEndEvent } from '@dnd-kit/core'
@@ -31,18 +31,31 @@ interface BlogFormProps {
     banner: string;
     bannerAlt: string;
     pageTitle: string;
+    bannerHidden: boolean;
+    blogsHidden: boolean;
 }
 
 const BlogsPage = () => {
 
 
-    const { register, handleSubmit, setValue, control, formState: { errors } } = useForm<BlogFormProps>();
+    const { register, handleSubmit, setValue, control, formState: { errors }, watch } = useForm<BlogFormProps>();
+
+    const bannerStatus = watch("bannerHidden");
+    const blogStatus = watch("blogsHidden");
+
+    const toggleSection = (section: string, value: boolean) => {
+        if (section === "bannerHidden" || section === "blogsHidden") {
+            setValue(section as Path<BlogFormProps>, !value);
+        } else {
+            setValue(`${section}.hidden` as Path<BlogFormProps>, !value);
+        }
+    };
 
 
     const [category, setCategory] = useState<string>("")
 
     const [categoryList, setCategoryList] = useState<{ _id: string, category: string }[]>([]);
-    const [blogList, setBlogList] = useState<{ _id: string, title: string, slug:string, status:string }[]>([]);
+    const [blogList, setBlogList] = useState<{ _id: string, title: string, slug: string, status: string }[]>([]);
     const [reorderMode, setReorderMode] = useState(false);
 
 
@@ -88,6 +101,9 @@ const BlogsPage = () => {
                 setValue("pageTitle", data.data.pageTitle);
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
+                setValue("bannerHidden", data.data.bannerHidden);
+                setValue("blogsHidden", data.data.blogsHidden);
+
                 setBlogList(data.data.categories.flatMap((blog: { blogs: { title: string; }[]; }) => blog.blogs));
             } else {
                 const data = await response.json();
@@ -175,7 +191,7 @@ const BlogsPage = () => {
 
         if (!over || active.id === over.id) return;
 
-        setBlogList((blogList: { _id: string; title: string, status:string, slug:string }[]) => {
+        setBlogList((blogList: { _id: string; title: string, status: string, slug: string }[]) => {
             const originalPos = getTaskPos(active.id);
             const newPos = getTaskPos(over.id);
             return arrayMove(blogList, originalPos, newPos);
@@ -221,6 +237,17 @@ const BlogsPage = () => {
 
                 <AdminItemContainer>
                     <Label className="" main>Banner</Label>
+                    {bannerStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("bannerHidden", bannerStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("bannerHidden", bannerStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
                     <div className='p-5 rounded-md grid grid-cols-2 gap-5'>
                         <div>
                             <Controller
@@ -311,7 +338,19 @@ const BlogsPage = () => {
                 <AdminItemContainer>
                     <div className='flex justify-between items-center p-5 border-b'>
                         <h1 className='text-lg font-semibold'>Blogs</h1>
-                        <div className='flex gap-2'>
+                        <div className='flex gap-5 items-center'>
+                            {blogStatus ? (
+                                <FaEyeSlash
+                                    onClick={() => toggleSection("blogsHidden", blogStatus)}
+                                    className=" text-gray-400 cursor-pointer"
+                                />
+
+                            ) : (
+                                <FaEye
+                                    onClick={() => toggleSection("blogsHidden", blogStatus)}
+                                    className=" text-green-600 cursor-pointer"
+                                />
+                            )}
                             <Button type="button" className={`text-white text-[16px] ${reorderMode ? "bg-yellow-700" : "bg-green-700"}`} onClick={() => reorderMode ? confirmPosition() : setReorderMode(!reorderMode)}>{reorderMode ? "Done" : "Reorder"}</Button>
                             {!reorderMode && <Link href="/admin/blogs/add" className='bg-primary text-white px-3 py-1 rounded-md font-semibold'>Add Blog</Link>}
                         </div>

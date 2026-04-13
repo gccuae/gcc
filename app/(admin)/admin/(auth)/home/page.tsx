@@ -11,11 +11,16 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import { Textarea } from '@/components/ui/textarea'
 import AdminItemContainer from '@/app/components/common/AdminItemContainer';
 import { VideoUploader } from '@/components/ui/video-uploader';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Path } from "react-hook-form";
 
 interface HomeFormProps {
     metaTitle: string;
     metaDescription: string;
+    expertiseHidden: boolean;
+    newsHidden: boolean;
     bannerSection: {
+        hidden: boolean;
         items: {
             image: string;
             imageAlt: string;
@@ -24,18 +29,21 @@ interface HomeFormProps {
         }[]
     }
     numberSection: {
+        hidden: boolean;
         items: {
             number: string;
             value: string;
         }[]
     }
     firstSection: {
+        hidden: boolean;
         description: string;
         buttonText: string;
         video: string;
         poster: string;
     };
     thirdSection: {
+        hidden: boolean;
         title: string;
         items: {
             logo: string;
@@ -47,6 +55,7 @@ interface HomeFormProps {
         }[];
     };
     fourthSection: {
+        hidden: boolean;
         title: string;
         items: {
             logo: string;
@@ -62,7 +71,26 @@ interface HomeFormProps {
 const HomePage = () => {
 
 
-    const { register, handleSubmit, setValue, control, formState: { errors } } = useForm<HomeFormProps>();
+    const { register, handleSubmit, setValue, control, formState: { errors }, watch } = useForm<HomeFormProps>();
+
+    const bannerStatus = watch("bannerSection.hidden");
+    const numberStatus = watch("numberSection.hidden");
+    const firstStatus = watch("firstSection.hidden");
+    const fourthStatus = watch("fourthSection.hidden");
+    const expertiseStatus = watch("expertiseHidden");
+    const newsStatus = watch("newsHidden");
+
+    useEffect(() => {
+        console.log(numberStatus)
+    }, [numberStatus])
+
+    const toggleSection = (section: string, value: boolean) => {
+        if (section === "newsHidden" || section === "expertiseHidden") {
+            setValue(section as Path<HomeFormProps>, !value);
+        } else {
+            setValue(`${section}.hidden` as Path<HomeFormProps>, !value);
+        }
+    };
 
 
     const { fields: bannerSectionItems, append: bannerSectionAppend, remove: bannerSectionRemove } = useFieldArray({
@@ -110,7 +138,10 @@ const HomePage = () => {
                 const data = await response.json();
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
+                setValue("bannerSection.hidden", data.data.bannerSection.hidden)
                 setValue("bannerSection.items", data.data.bannerSection.items);
+                setValue("newsHidden", data.data.newsHidden);
+                setValue("expertiseHidden", data.data.expertiseHidden);
                 setValue("firstSection", data.data.firstSection);
                 setValue("numberSection.items", data.data.numberSection.items);
                 setValue("thirdSection", data.data.thirdSection);
@@ -140,6 +171,19 @@ const HomePage = () => {
 
                 <AdminItemContainer>
                     <Label className='font-bold' main>Banner Section</Label>
+                    {/* <input type="hidden" {...register("bannerSection.hidden")} /> */}
+
+                    {bannerStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("bannerSection", bannerStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("bannerSection", bannerStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
                     <div className='p-5 rounded-md flex flex-col gap-5'>
                         <Label className='font-bold'>Items</Label>
                         <div className='border p-2 rounded-md flex flex-col gap-5'>
@@ -220,6 +264,21 @@ const HomePage = () => {
 
                 <AdminItemContainer>
                     <Label className='font-bold' main>Number Section</Label>
+                    {/* <input type="hidden" {...register("numberSection.hidden")} /> */}
+
+                    {numberStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("numberSection", numberStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("numberSection", numberStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
                     <div className='p-5 rounded-md flex flex-col gap-5'>
                         <Label className='font-bold'>Items</Label>
                         <div className='border p-2 rounded-md flex flex-col gap-5'>
@@ -272,6 +331,21 @@ const HomePage = () => {
                 <AdminItemContainer>
                     <Label main>First Section</Label>
                     <div className='p-5 rounded-md flex flex-col gap-2'>
+                        {/* <input type="hidden" {...register("firstSection.hidden")} /> */}
+
+                        {firstStatus ? (
+                            <FaEyeSlash
+                                onClick={() => toggleSection("firstSection", firstStatus)}
+                                className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                            />
+
+                        ) : (
+                            <FaEye
+                                onClick={() => toggleSection("firstSection", firstStatus)}
+                                className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                            />
+                        )}
+
                         <div className='flex flex-col gap-2'>
                             <div>
                                 <Label className="text-sm font-bold">Description</Label>
@@ -330,6 +404,27 @@ const HomePage = () => {
                         </div>
 
 
+                    </div>
+                </AdminItemContainer>
+
+
+                <AdminItemContainer>
+                    <Label main>Expertise Section</Label>
+                    <div className='p-5 rounded-md flex flex-col gap-2'>
+                        {/* <input type="hidden" {...register("firstSection.hidden")} /> */}
+
+                        {expertiseStatus ? (
+                            <FaEyeSlash
+                                onClick={() => toggleSection("expertiseHidden", expertiseStatus)}
+                                className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                            />
+
+                        ) : (
+                            <FaEye
+                                onClick={() => toggleSection("expertiseHidden", expertiseStatus)}
+                                className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                            />
+                        )}
                     </div>
                 </AdminItemContainer>
 
@@ -458,6 +553,20 @@ const HomePage = () => {
                 <AdminItemContainer>
                     <Label main>Fourth Section</Label>
                     <div className='p-5 rounded-md flex flex-col gap-2'>
+                        {/* <input type="hidden" {...register("fourthSection.hidden")} /> */}
+
+                        {fourthStatus ? (
+                            <FaEyeSlash
+                                onClick={() => toggleSection("fourthSection", fourthStatus)}
+                                className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                            />
+                        ) : (
+                            <FaEye
+                                onClick={() => toggleSection("fourthSection", fourthStatus)}
+                                className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                            />
+
+                        )}
                         <div className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-1'>
                                 <Label className='font-bold'>Title</Label>
@@ -528,7 +637,7 @@ const HomePage = () => {
                                                     {errors.fourthSection?.items?.[index]?.image && (
                                                         <p className="text-red-500">{errors.fourthSection?.items?.[index]?.image.message}</p>
                                                     )}
-                                                    </div>
+                                                </div>
 
                                                 <div className='flex flex-col gap-2'>
                                                     <div className='flex flex-col gap-2'>
@@ -577,7 +686,25 @@ const HomePage = () => {
 
 
 
+                <AdminItemContainer>
+                    <Label main>News Section</Label>
+                    <div className='p-5 rounded-md flex flex-col gap-2'>
+                        {/* <input type="hidden" {...register("firstSection.hidden")} /> */}
 
+                        {newsStatus ? (
+                            <FaEyeSlash
+                                onClick={() => toggleSection("newsHidden", newsStatus)}
+                                className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                            />
+
+                        ) : (
+                            <FaEye
+                                onClick={() => toggleSection("newsHidden", newsStatus)}
+                                className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                            />
+                        )}
+                    </div>
+                </AdminItemContainer>
 
 
                 <AdminItemContainer>

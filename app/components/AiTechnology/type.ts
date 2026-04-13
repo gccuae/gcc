@@ -4,13 +4,16 @@ export type AiTechnologyType = {
     metaTitle: string;
     metaDescription: string;
     pageTitle: string;
+    bannerHidden: boolean;
     firstSection: {
+        hidden: boolean;
         title: string;
         description: string;
         image: string;
         imageAlt: string;
     };
     secondSection: {
+        hidden: boolean;
         items: {
             image: string;
             imageAlt: string;
@@ -20,6 +23,7 @@ export type AiTechnologyType = {
         }[];
     };
     thirdSection: {
+        hidden: boolean;
         primaryColourText: string;
         title: string;
         buttonText: string;

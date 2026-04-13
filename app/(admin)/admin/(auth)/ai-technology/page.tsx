@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import React, { useEffect } from 'react'
 
-import { useForm, useFieldArray, Controller } from "react-hook-form";
+import { useForm, useFieldArray, Controller, Path } from "react-hook-form";
 import { Button } from '@/components/ui/button'
 import { ImageUploader } from '@/components/ui/image-uploader'
 import { RiDeleteBinLine } from "react-icons/ri";
@@ -13,6 +13,7 @@ const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false })
 import 'react-quill-new/dist/quill.snow.css';
 import dynamic from 'next/dynamic'
 import AdminItemContainer from '@/app/components/common/AdminItemContainer';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 interface AiTechnologyFormProps {
     metaTitle: string;
@@ -20,13 +21,16 @@ interface AiTechnologyFormProps {
     banner: string;
     bannerAlt: string;
     pageTitle: string;
+    bannerHidden: boolean;
     firstSection: {
+        hidden: boolean;
         title: string;
         description: string;
         image: string;
         imageAlt: string;
     };
     secondSection: {
+        hidden: boolean;
         items: {
             image: string;
             imageAlt: string;
@@ -36,6 +40,7 @@ interface AiTechnologyFormProps {
         }[];
     };
     thirdSection: {
+        hidden: boolean;
         primaryColourText: string;
         title: string;
         buttonText: string;
@@ -46,8 +51,20 @@ interface AiTechnologyFormProps {
 const AiTechnologyPage = () => {
 
 
-    const { register, handleSubmit, setValue, control, formState: { errors } } = useForm<AiTechnologyFormProps>();
+    const { register, handleSubmit, setValue, control, formState: { errors }, watch } = useForm<AiTechnologyFormProps>();
 
+    const bannerStatus = watch("bannerHidden");
+    const firstStatus = watch("firstSection.hidden");
+    const secondStatus = watch("secondSection.hidden");
+    const thirdStatus = watch("thirdSection.hidden");
+
+    const toggleSection = (section: string, value: boolean) => {
+        if (section === "bannerHidden") {
+            setValue("bannerHidden", !value);
+        } else {
+            setValue(`${section}.hidden` as Path<AiTechnologyFormProps>, !value);
+        }
+    };
 
     const { fields: secondSectionItems, append: secondSectionAppend, remove: secondSectionRemove } = useFieldArray({
         control,
@@ -81,6 +98,7 @@ const AiTechnologyPage = () => {
                 setValue("pageTitle", data.data.pageTitle);
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
+                setValue("bannerHidden", data.data.bannerHidden);
                 setValue("firstSection", data.data.firstSection);
                 setValue("secondSection", data.data.secondSection);
                 setValue("secondSection.items", data.data.secondSection.items);
@@ -108,10 +126,23 @@ const AiTechnologyPage = () => {
 
                 <AdminItemContainer>
                     <Label className="" main>Banner</Label>
+
+                    {bannerStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("bannerHidden", bannerStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("bannerHidden", bannerStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
                     <div className='p-5 rounded-md grid grid-cols-2 gap-5'>
                         <div>
-                            <Controller name="banner" control={control} rules={{ required: "Banner is required" }} 
-                                render={({ field }) => (<ImageUploader value={field.value} onChange={field.onChange} recommendedDimension="Recommended: 1920 x 453 (px)"  /> )}  />
+                            <Controller name="banner" control={control} rules={{ required: "Banner is required" }}
+                                render={({ field }) => (<ImageUploader value={field.value} onChange={field.onChange} recommendedDimension="Recommended: 1920 x 453 (px)" />)} />
                             {errors.banner && (
                                 <p className="text-red-500">{errors.banner.message}</p>
                             )}
@@ -131,6 +162,20 @@ const AiTechnologyPage = () => {
 
                 <AdminItemContainer>
                     <Label main>First Section</Label>
+
+                    {firstStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("firstSection", firstStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("firstSection", firstStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
                     <div className='p-5 rounded-md flex flex-col gap-2'>
                         <div className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-1'>
@@ -173,6 +218,20 @@ const AiTechnologyPage = () => {
 
                 <AdminItemContainer>
                     <Label main>Second Section</Label>
+
+                    {secondStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("secondSection", secondStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("secondSection", secondStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
                     <div className='p-5 rounded-md flex flex-col gap-2'>
                         <div className='flex flex-col gap-2'>
                             <div>
@@ -266,6 +325,20 @@ const AiTechnologyPage = () => {
 
                 <AdminItemContainer>
                     <Label main>Third Section</Label>
+
+                    {thirdStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("thirdSection", thirdStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("thirdSection", thirdStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
                     <div className='p-5 rounded-md flex flex-col gap-2'>
                         <div className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-1'>

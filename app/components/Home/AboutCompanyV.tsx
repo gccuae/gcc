@@ -160,7 +160,7 @@ const AboutCompanyV = ({ data }: Props) => {
   return (
     <section
       ref={containerRef}
-      className="py-8 md:py-12 xl:py-15 dark:bg-black overflow-hidden"
+      className={`py-8 md:py-12 xl:py-15 dark:bg-black overflow-hidden ${data.hidden ? "hidden" : ""}`}
     >
       <div className="container">
         <div className="lg:flex gap-8 xl:gap-17">

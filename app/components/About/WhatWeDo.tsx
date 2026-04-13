@@ -16,7 +16,7 @@ interface WhatWeDoComponentProps {
 const WhatWeDo = ({ data, expertiseData }: WhatWeDoComponentProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
   return (
-    <section className="bg-light-white dark:bg-light-dark overflow-hidden">
+    <section className={`bg-light-white dark:bg-light-dark overflow-hidden ${data.hidden ? "hidden" : ""}`}>
       <div className="border-b dark:border-white/20 dark:border-white/20">
         <div className="container pt-57px pb-5 xl:py-57px">
           <motion.h2

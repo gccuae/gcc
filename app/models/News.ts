@@ -1,24 +1,41 @@
 import mongoose from "mongoose";
 
 const NewsSchema = new mongoose.Schema({
-    banner:{
+    banner: {
         type: String,
         required: true,
     },
-    bannerAlt:{
+    bannerAlt: {
         type: String,
     },
-    pageTitle:{
+    pageTitle: {
         type: String,
         required: true,
     },
-    metaTitle:{
+    metaTitle: {
         type: String,
     },
-    metaDescription:{
+    metaDescription: {
         type: String,
     },
-    categories:[{
+    bannerHidden: {
+        type: Boolean,
+        default: false
+    },
+    firstSection: {
+        hidden: {
+            type: Boolean,
+            default: false
+        },
+        title: {
+            type: String
+        }
+    },
+    newsHidden: {
+        type: Boolean,
+        default: false
+    },
+    categories: [{
         category: {
             type: String,
         },
@@ -29,42 +46,42 @@ const NewsSchema = new mongoose.Schema({
             title: {
                 type: String,
             },
-            subTitle:{
-                type:String
+            subTitle: {
+                type: String
             },
-            description:{
-                type:String
+            description: {
+                type: String
             },
-            slug:{
-                type:String
+            slug: {
+                type: String
             },
-            content:{
-                type:String
+            content: {
+                type: String
             },
-            category:{
-                type:String
+            category: {
+                type: String
             },
-            thumbnail:{
-                type:String
+            thumbnail: {
+                type: String
             },
-            thumbnailAlt:{
-                type:String
+            thumbnailAlt: {
+                type: String
             },
-            metaTitle:{
-                type:String
+            metaTitle: {
+                type: String
             },
-            metaDescription:{
-                type:String
+            metaDescription: {
+                type: String
             },
-            images:[{
-                type:String
+            images: [{
+                type: String
             }],
-            date:{
-                type:Date
+            date: {
+                type: Date
             },
-            createdAt:{
-                type:Date,
-                default:Date.now
+            createdAt: {
+                type: Date,
+                default: Date.now
             },
         }],
     }],

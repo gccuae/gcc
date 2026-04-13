@@ -10,9 +10,10 @@ const index = ({ data }: GroupCompaniesProps) => {
         pageTitle={data.pageTitle}
         bannerImg={data.banner}
         bannerAlt={data.bannerAlt}
+        bannerHidden={data.bannerHidden}
       />
-      <CounterSection data={data.firstSection} />
-      <BusinessNetworks data={data.secondSection} />
+      {!data.firstSection.hidden && <CounterSection data={data.firstSection} />}
+      {!data.secondSection.hidden && <BusinessNetworks data={data.secondSection} />}
     </>
   );
 };

@@ -1,4 +1,5 @@
 export interface SecondSectionItemData {
+  bannerHidden: boolean;
   firstSection?: FirstSection;
   secondSection?: SecondSection;
   numberSection?: NumberSection;
@@ -20,10 +21,12 @@ export interface SecondSectionItemData {
 }
 
 export interface FirstSection {
+  hidden: boolean;
   images: string[];
 }
 
 export interface NumberSection {
+  hidden: boolean;
   items: {
     number: string;
     value: string;
@@ -33,6 +36,7 @@ export interface NumberSection {
 }
 
 export interface SecondSection {
+  hidden: boolean;
   title: string;
   progress?: string;
   client?: string;
@@ -46,6 +50,7 @@ export interface SecondSection {
 }
 
 export interface ThirdSection {
+  hidden: boolean;
   items: ThirdSectionItem[];
 }
 
@@ -58,6 +63,7 @@ export interface ThirdSectionItem {
 }
 
 export interface ForthSection {
+  hidden: boolean;
   title: string;
   items: ForthSectionItem[];
 }

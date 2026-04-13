@@ -85,7 +85,7 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
   };
 
   return (
-    <div className="relative w-full bg-black overflow-hidden">
+    <div className={`relative w-full bg-black overflow-hidden`}>
       {/* Background Image */}
       <div className="absolute inset-0">
         <AnimatePresence initial={false} mode="popLayout">
@@ -148,8 +148,8 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
                         <button
                           onClick={() => handleYearClick(index)}
                           className={`cursor-pointer font-normal  duration-500 text-lg leading-[32px] xl:pb-5 hover:text-white whitespace-nowrap ${activeSlide === index
-                              ? "text-white font-semibold  md:text-2xl "
-                              : "text-gray-400 hover:text-gray-200   "
+                            ? "text-white font-semibold  md:text-2xl "
+                            : "text-gray-400 hover:text-gray-200   "
                             }`}
                         >
                           {item.year}
@@ -157,8 +157,8 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
                         <div className="!w-[60px] md:!w-[85px] h-full !flex ml-5 xl:ml-0 xl:items-center flex-col justify-center">
                           <div
                             className={`w-[2px] h-8 xl:h-14 bg-accent ${activeSlide === index
-                                ? "opacity-100"
-                                : "opacity-0"
+                              ? "opacity-100"
+                              : "opacity-0"
                               }`}
                           ></div>
                         </div>

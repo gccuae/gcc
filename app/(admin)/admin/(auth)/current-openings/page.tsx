@@ -16,10 +16,10 @@ import {
 import { Input } from "@/components/ui/input"
 import { useRouter } from "next/navigation";
 import AdminItemContainer from '@/app/components/common/AdminItemContainer';
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, Path } from "react-hook-form";
 import { ImageUploader } from '@/components/ui/image-uploader'
 import { Textarea } from "@/components/ui/textarea";
-import { FaEye } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Link from "next/link";
 
 
@@ -27,16 +27,19 @@ interface CurrentOpeningsPageProps {
   metaTitle: string;
   metaDescription: string;
   firstSection: {
+    hidden: boolean;
     pageTitle: string;
     description: string;
     image: string;
     imageAlt: string;
   },
   secondSection: {
+    hidden: boolean;
     mainTitle: string;
     subTitle: string;
   };
   thirdSection: {
+    hidden: boolean;
     title: string;
   };
 }
@@ -47,13 +50,21 @@ export default function CurrentOpenings() {
 
   const [department, setDepartment] = useState<string>("");
   const [location, setLocation] = useState<string>("");
-  const [openingsList, setOpeningsList] = useState<{ _id: string, status:string, firstSection: { jobTitle: string, description: string, slug:string } }[]>([]);
+  const [openingsList, setOpeningsList] = useState<{ _id: string, status: string, firstSection: { jobTitle: string, description: string, slug: string } }[]>([]);
   const [locationList, setLocationList] = useState<{ _id: string, name: string }[]>([]);
   const [departmentList, setDepartmentList] = useState<{ _id: string, name: string }[]>([]);
 
   const router = useRouter();
 
-  const { register, handleSubmit, setValue, control, formState: { errors } } = useForm<CurrentOpeningsPageProps>();
+  const { register, handleSubmit, setValue, control, formState: { errors }, watch } = useForm<CurrentOpeningsPageProps>();
+
+  const firstStatus = watch("firstSection.hidden");
+  const secondStatus = watch("secondSection.hidden");
+  const thirdStatus = watch("thirdSection.hidden");
+
+  const toggleSection = (section: string, value: boolean) => {
+    setValue(`${section}.hidden` as Path<CurrentOpeningsPageProps>, !value);
+  };
 
   const handleFetchCurrentOpenings = async () => {
     try {
@@ -289,6 +300,20 @@ export default function CurrentOpenings() {
 
         <AdminItemContainer>
           <Label className='' main>First Section</Label>
+
+          {firstStatus ? (
+            <FaEyeSlash
+              onClick={() => toggleSection("firstSection", firstStatus)}
+              className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+            />
+
+          ) : (
+            <FaEye
+              onClick={() => toggleSection("firstSection", firstStatus)}
+              className="absolute top-4 right-4 text-green-600 cursor-pointer"
+            />
+          )}
+
           <div className='p-5 flex flex-col gap-2'>
             <div className='flex flex-col gap-2'>
               <div className='flex flex-col gap-1'>
@@ -332,6 +357,20 @@ export default function CurrentOpenings() {
 
         <AdminItemContainer>
           <Label className='' main>Second Section</Label>
+
+          {secondStatus ? (
+            <FaEyeSlash
+              onClick={() => toggleSection("secondSection", secondStatus)}
+              className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+            />
+
+          ) : (
+            <FaEye
+              onClick={() => toggleSection("secondSection", secondStatus)}
+              className="absolute top-4 right-4 text-green-600 cursor-pointer"
+            />
+          )}
+
           <div className='p-5 flex flex-col gap-2'>
             <div className='flex flex-col gap-2'>
               <div className='flex flex-col gap-1'>
@@ -356,6 +395,20 @@ export default function CurrentOpenings() {
 
         <AdminItemContainer>
           <Label className='' main>Third Section</Label>
+
+          {thirdStatus ? (
+            <FaEyeSlash
+              onClick={() => toggleSection("thirdSection", thirdStatus)}
+              className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+            />
+
+          ) : (
+            <FaEye
+              onClick={() => toggleSection("thirdSection", thirdStatus)}
+              className="absolute top-4 right-4 text-green-600 cursor-pointer"
+            />
+          )}
+
           <div className='p-5 flex flex-col gap-2'>
             <div className='flex flex-col gap-2'>
               <div className='flex flex-col gap-1'>

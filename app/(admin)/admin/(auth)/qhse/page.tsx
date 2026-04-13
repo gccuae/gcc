@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import React, { useEffect, useState } from 'react'
 
-import { useForm, useFieldArray, Controller } from "react-hook-form";
+import { useForm, useFieldArray, Controller, Path } from "react-hook-form";
 import { Button } from '@/components/ui/button'
 import { ImageUploader } from '@/components/ui/image-uploader'
 import { RiDeleteBinLine } from "react-icons/ri";
@@ -13,17 +13,20 @@ import AdminItemContainer from '@/app/components/common/AdminItemContainer';
 import { closestCorners, DndContext, DragEndEvent } from '@dnd-kit/core'
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import CertificateCard from './CertificateCard';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 interface QhseFormProps {
     metaTitle: string;
     metaDescription: string;
     firstSection: {
+        hidden: boolean;
         mainTitle: string;
         subTitle: string;
         primaryColorText: string;
         description: string;
     };
     secondSection: {
+        hidden: boolean;
         title: string;
         description: string;
         image: string;
@@ -35,6 +38,7 @@ interface QhseFormProps {
         }[];
     };
     thirdSection: {
+        hidden: boolean;
         title: string;
         description: string;
         items: {
@@ -44,6 +48,7 @@ interface QhseFormProps {
         }[];
     };
     forthSection: {
+        hidden: boolean;
         title: string;
         description: string;
         items: {
@@ -57,6 +62,7 @@ interface QhseFormProps {
         }[];
     };
     fifthSection: {
+        hidden: boolean;
         title: string;
         description: string;
         items: {
@@ -66,12 +72,28 @@ interface QhseFormProps {
             description: string;
         }[];
     };
+    certificateHidden: boolean;
 }
 
 const ExpertisePage = () => {
 
 
     const { register, handleSubmit, setValue, control, formState: { errors }, watch } = useForm<QhseFormProps>();
+
+    const firstStatus = watch("firstSection.hidden");
+    const secondStatus = watch("secondSection.hidden");
+    const thirdStatus = watch("thirdSection.hidden");
+    const forthStatus = watch("forthSection.hidden");
+    const fifthStatus = watch("fifthSection.hidden");
+    const certificateStatus = watch("certificateHidden");
+
+    const toggleSection = (section: string, value: boolean) => {
+        if (section === "certificateHidden") {
+            setValue("certificateHidden", !value);
+        } else {
+            setValue(`${section}.hidden` as Path<QhseFormProps>, !value);
+        }
+    };
 
     const [reorderMode, setReorderMode] = useState(false);
 
@@ -176,6 +198,20 @@ const ExpertisePage = () => {
 
                 <AdminItemContainer>
                     <Label main>First Section</Label>
+
+                    {firstStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("firstSection", firstStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("firstSection", firstStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
                     <div className='p-5 rounded-md flex flex-col gap-2'>
                         <div className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-1'>
@@ -212,6 +248,20 @@ const ExpertisePage = () => {
 
                 <AdminItemContainer>
                     <Label main>Second Section</Label>
+
+                    {secondStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("secondSection", secondStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("secondSection", secondStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
                     <div className='p-5 rounded-md flex flex-col gap-2'>
                         <div className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-1'>
@@ -339,6 +389,20 @@ const ExpertisePage = () => {
 
                 <AdminItemContainer>
                     <Label main>Third Section</Label>
+
+                    {thirdStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("thirdSection", thirdStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("thirdSection", thirdStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
                     <div className='p-5 rounded-md flex flex-col gap-2'>
                         <div className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-1'>
@@ -421,6 +485,20 @@ const ExpertisePage = () => {
 
                 <AdminItemContainer>
                     <Label main>Forth Section</Label>
+
+                    {forthStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("forthSection", forthStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("forthSection", forthStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
                     <div className='p-5 rounded-md flex flex-col gap-2'>
                         <div className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-1'>
@@ -550,6 +628,20 @@ const ExpertisePage = () => {
 
                 <AdminItemContainer>
                     <Label main>Fifth Section</Label>
+
+                    {fifthStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("fifthSection", fifthStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("fifthSection", fifthStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
                     <div className='p-5 rounded-md flex flex-col gap-2'>
                         <div className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-1'>
@@ -632,6 +724,55 @@ const ExpertisePage = () => {
                             </div>
                             <div className='flex justify-end mt-2'>
                                 <Button type='button' addItem onClick={() => fifthSectionAppend({ title: "", image: "", imageAlt: "", description: "" })}>Add Item</Button>
+                            </div>
+                        </div>
+                    </div>
+                </AdminItemContainer>
+
+                <AdminItemContainer>
+                    <Label main>Certificate Section</Label>
+
+                    {certificateStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("certificateHidden", certificateStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("certificateHidden", certificateStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
+                    <div className='p-5 rounded-md flex flex-col gap-2'>
+                        <div className='flex flex-col gap-2'>
+                            <div className='flex flex-col gap-1'>
+                                <Label className='font-bold'>Main Title</Label>
+                                <Input type='text' placeholder='Main Title' {...register("firstSection.mainTitle", {
+                                    required: "Title is required"
+                                })} />
+                                {errors.firstSection?.mainTitle && <p className='text-red-500'>{errors.firstSection?.mainTitle.message}</p>}
+                            </div>
+                            <div className='flex flex-col gap-1'>
+                                <Label className='font-bold'>Sub Title</Label>
+                                <Input type='text' placeholder='Sub Title' {...register("firstSection.subTitle", {
+                                    required: "Title is required"
+                                })} />
+                                {errors.firstSection?.subTitle && <p className='text-red-500'>{errors.firstSection?.subTitle.message}</p>}
+                            </div>
+                            <div className='flex flex-col gap-1'>
+                                <Label className='font-bold'>Primary Color Text</Label>
+                                <Input type='text' placeholder='Primary Color Text' {...register("firstSection.primaryColorText", {
+                                    required: "Title is required"
+                                })} />
+                                {errors.firstSection?.primaryColorText && <p className='text-red-500'>{errors.firstSection?.primaryColorText.message}</p>}
+                            </div>
+                            <div>
+                                <Label className="text-sm font-bold">Descripiton</Label>
+                                <Controller name="firstSection.description" control={control} rules={{ required: "Description is required" }} render={({ field }) => {
+                                    return <Textarea value={field.value} onChange={field.onChange} />
+                                }} />
                             </div>
                         </div>
                     </div>

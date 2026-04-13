@@ -1,130 +1,150 @@
 import mongoose from "mongoose";
 
 const sustainabilitySchema = new mongoose.Schema({
-    metaTitle:{
-        type:String,
-        required:true
+    metaTitle: {
+        type: String,
+        required: true
     },
-    metaDescription:{
-        type:String,
-        required:true
+    metaDescription: {
+        type: String,
+        required: true
     },
-    banner:{
-        type:String,
-        required:true
+    banner: {
+        type: String,
+        required: true
     },
-    bannerAlt:{
-        type:String,
+    bannerAlt: {
+        type: String,
     },
-    pageTitle:{
-        type:String,
-        required:true
+    bannerHidden: {
+        type: Boolean,
+        default: false
     },
-    firstSection:{
-        title:{
-            type:String,
-            required:true
+    pageTitle: {
+        type: String,
+        required: true
+    },
+    firstSection: {
+        hidden: {
+            type: Boolean,
+            default: false
         },
-        description:{
-            type:String,
-            required:true
+        title: {
+            type: String,
+            required: true
         },
-        image:{
-            type:String,
-            required:true
+        description: {
+            type: String,
+            required: true
         },
-        imageAlt:{
-            type:String,
+        image: {
+            type: String,
+            required: true
+        },
+        imageAlt: {
+            type: String,
         }
     },
-    secondSection:{
-        title:{
-            type:String,
-            required:true
+    secondSection: {
+        hidden: {
+            type: Boolean,
+            default: false
         },
-        description:{
-            type:String,
-            required:true
+        title: {
+            type: String,
+            required: true
         },
-        items:[{
-            image:{
-                type:String,
-                required:true
+        description: {
+            type: String,
+            required: true
+        },
+        items: [{
+            image: {
+                type: String,
+                required: true
             },
-            imageAlt:{
-                type:String,
+            imageAlt: {
+                type: String,
             },
-            title:{
-                type:String,
-                required:true
+            title: {
+                type: String,
+                required: true
             },
-            description:{
-                type:String,
-                required:true
+            description: {
+                type: String,
+                required: true
             }
         }]
     },
-    thirdSection:{
-        title:{
-            type:String,
-            required:true
+    thirdSection: {
+        hidden: {
+            type: Boolean,
+            default: false
         },
-        items:[{
-            logo:{
-                type:String,
-                required:true
+        title: {
+            type: String,
+            required: true
+        },
+        items: [{
+            logo: {
+                type: String,
+                required: true
             },
-            logoAlt:{
-                type:String,
+            logoAlt: {
+                type: String,
             },
-            title:{
-                type:String,
-                required:true
+            title: {
+                type: String,
+                required: true
             },
-            description:{
-                type:String,
-                required:true
+            description: {
+                type: String,
+                required: true
             },
-            image:{
-                type:String,
-                required:true
+            image: {
+                type: String,
+                required: true
             },
-            imageAlt:{
-                type:String,
+            imageAlt: {
+                type: String,
             }
         }]
     },
-    forthSection:{
-        title:{
-            type:String,
-            required:true
+    forthSection: {
+        hidden: {
+            type: Boolean,
+            default: false
         },
-        description:{
-            type:String,
-            required:true
+        title: {
+            type: String,
+            required: true
         },
-        items:[{
-            logo:{
-                type:String,
-                required:true
+        description: {
+            type: String,
+            required: true
+        },
+        items: [{
+            logo: {
+                type: String,
+                required: true
             },
-            logoAlt:{
-                type:String,
+            logoAlt: {
+                type: String,
             },
-            title:{
-                type:String,
-                required:true
+            title: {
+                type: String,
+                required: true
             },
-            description:{
-                type:String,
-                required:true
+            description: {
+                type: String,
+                required: true
             },
-            image:{
-                type:String,
-                required:true
+            image: {
+                type: String,
+                required: true
             },
-            imageAlt:{
-                type:String,
+            imageAlt: {
+                type: String,
             }
         }]
     }

@@ -1,80 +1,92 @@
 import mongoose from "mongoose";
 
 const groupCompanySchema = new mongoose.Schema({
-    metaTitle:{
-        type:String,
+    metaTitle: {
+        type: String,
     },
-    metaDescription:{
-        type:String,
+    metaDescription: {
+        type: String,
     },
-    banner:{
-        type:String,
+    banner: {
+        type: String,
     },
-    bannerAlt:{
-        type:String,
+    bannerAlt: {
+        type: String,
     },
-    pageTitle:{
-        type:String,
+    pageTitle: {
+        type: String,
     },
-    firstSection:{
-        title:{
-            type:String,
+    bannerHidden: {
+        type: Boolean,
+        default: false
+    },
+    firstSection: {
+        hidden: {
+            type: Boolean,
+            default: false
         },
-        description:{
-            type:String,
+        title: {
+            type: String,
         },
-        items:[{
-            logo:{
-                type:String,
+        description: {
+            type: String,
+        },
+        items: [{
+            logo: {
+                type: String,
             },
-            logoAlt:{
-                type:String,
+            logoAlt: {
+                type: String,
             },
-            number:{
-                type:String,
+            number: {
+                type: String,
             },
-            value:{
-                type:String,
+            value: {
+                type: String,
             }
         }]
     },
-    categories:[{
+    categories: [{
         category: {
             type: String,
         },
     }],
-    secondSection:{
-        title:{
-            type:String,
+    secondSection: {
+        hidden: {
+            type: Boolean,
+            default: false
         },
-        description:{
-            type:String,
+        title: {
+            type: String,
         },
-        items:[{
-            link:{
-                type:String,
+        description: {
+            type: String,
+        },
+        items: [{
+            link: {
+                type: String,
             },
-            hideCompany:{
-                type:Boolean,
-                default:false,
+            hideCompany: {
+                type: Boolean,
+                default: false,
             },
-            image:{
-                type:String,
+            image: {
+                type: String,
             },
-            imageAlt:{
-                type:String,
+            imageAlt: {
+                type: String,
             },
-            logo:{
-                type:String,
+            logo: {
+                type: String,
             },
-            logoAlt:{
-                type:String,
+            logoAlt: {
+                type: String,
             },
-            title:{
-                type:String,
+            title: {
+                type: String,
             },
-            category:{
-                type:String,
+            category: {
+                type: String,
             }
         }]
     },
