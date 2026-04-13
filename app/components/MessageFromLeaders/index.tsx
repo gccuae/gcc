@@ -6,9 +6,9 @@ import LeadersShowcase from "./LeadersShowcase";
 const Index = ({ data }: MessageProps) => {
   return (
     <>
-    <LeadersShowcase data={data.firstSection}/>
-      <MsgChairman items={data.messageSection.items} />
-      <MsgGm items={data.messageSection.items} />
+      {!data.firstSection.hidden && <LeadersShowcase data={data.firstSection} />}
+      {!data.messageSection.hidden && <MsgChairman items={data.messageSection.items} />}
+      {!data.messageSection.hidden && <MsgGm items={data.messageSection.items} />}
     </>
   );
 };

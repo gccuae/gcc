@@ -5,18 +5,19 @@ import SocialImpact from "./SocialImpact";
 import UnGoals from "./UnGoals";
 import { SustainabilityType } from "./type";
 
-const Index = ({data}: {data: SustainabilityType}) => {
+const Index = ({ data }: { data: SustainabilityType }) => {
   return (
     <>
       <PageBnr
         pageTitle={data.pageTitle}
         bannerImg={data.banner}
         bannerAlt={data.bannerAlt}
+        bannerHidden={data.bannerHidden}
       />
-      <ImgDesc data={data.firstSection} />
-      <EnergyResource data={data.secondSection} />
-      <SocialImpact data={data.thirdSection} />
-      <UnGoals data={data.forthSection} />
+      {!data.firstSection.hidden && <ImgDesc data={data.firstSection} />}
+      {!data.secondSection.hidden && <EnergyResource data={data.secondSection} />}
+      {!data.thirdSection.hidden && <SocialImpact data={data.thirdSection} />}
+      {!data.forthSection.hidden && <UnGoals data={data.forthSection} />}
     </>
   );
 };

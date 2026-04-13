@@ -4,12 +4,13 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import React, { useEffect } from 'react'
 
-import { useForm, useFieldArray, Controller } from "react-hook-form";
+import { useForm, useFieldArray, Controller, Path } from "react-hook-form";
 import { Button } from '@/components/ui/button'
 import { ImageUploader } from '@/components/ui/image-uploader'
 import { RiDeleteBinLine } from "react-icons/ri";
 import { Textarea } from '@/components/ui/textarea'
 import AdminItemContainer from '@/app/components/common/AdminItemContainer';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 interface SustainabilityFormProps {
     metaTitle: string;
@@ -17,13 +18,16 @@ interface SustainabilityFormProps {
     banner: string;
     bannerAlt: string;
     pageTitle: string;
+    bannerHidden: boolean;
     firstSection: {
+        hidden: boolean;
         title: string;
         description: string;
         image: string;
         imageAlt: string;
     };
     secondSection: {
+        hidden: boolean;
         title: string;
         description: string;
         items: {
@@ -34,6 +38,7 @@ interface SustainabilityFormProps {
         }[];
     };
     thirdSection: {
+        hidden: boolean;
         title: string;
         items: {
             logo: string;
@@ -45,6 +50,7 @@ interface SustainabilityFormProps {
         }[];
     };
     forthSection: {
+        hidden: boolean;
         title: string;
         description: string;
         items: {
@@ -62,8 +68,21 @@ interface SustainabilityFormProps {
 const SustainabilityPage = () => {
 
 
-    const { register, handleSubmit, setValue, control, formState: { errors } } = useForm<SustainabilityFormProps>();
+    const { register, handleSubmit, setValue, control, formState: { errors }, watch } = useForm<SustainabilityFormProps>();
 
+    const bannerStatus = watch("bannerHidden");
+    const firstStatus = watch("firstSection.hidden");
+    const secondStatus = watch("secondSection.hidden");
+    const thirdStatus = watch("thirdSection.hidden");
+    const forthStatus = watch("forthSection.hidden");
+
+    const toggleSection = (section: string, value: boolean) => {
+        if (section === "bannerHidden") {
+            setValue("bannerHidden", !value);
+        } else {
+            setValue(`${section}.hidden` as Path<SustainabilityFormProps>, !value);
+        }
+    };
 
     const { fields: secondSectionItems, append: secondSectionAppend, remove: secondSectionRemove } = useFieldArray({
         control,
@@ -137,6 +156,19 @@ const SustainabilityPage = () => {
 
                 <AdminItemContainer>
                     <Label className="" main>Banner</Label>
+
+                    {bannerStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("bannerHidden", bannerStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("bannerHidden", bannerStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
                     <div className='p-5 rounded-md grid grid-cols-2 gap-5'>
                         <div>
                             <Controller
@@ -166,6 +198,20 @@ const SustainabilityPage = () => {
 
                 <AdminItemContainer>
                     <Label main>First Section</Label>
+
+                    {firstStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("firstSection", firstStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("firstSection", firstStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
                     <div className='p-5 rounded-md flex flex-col gap-2'>
                         <div className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-1'>
@@ -191,7 +237,7 @@ const SustainabilityPage = () => {
                                 control={control}
                                 rules={{ required: "Image is required" }}
                                 render={({ field }) => (
-                                    <ImageUploader value={field.value} onChange={field.onChange} recommendedDimension="Recommended: 800 x 547 (px)"  />
+                                    <ImageUploader value={field.value} onChange={field.onChange} recommendedDimension="Recommended: 800 x 547 (px)" />
                                 )}
                             />
                             {errors.firstSection?.image && (
@@ -208,6 +254,20 @@ const SustainabilityPage = () => {
 
                 <AdminItemContainer>
                     <Label main>Second Section</Label>
+
+                    {secondStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("secondSection", secondStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("secondSection", secondStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
                     <div className='p-5 rounded-md flex flex-col gap-2'>
                         <div className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-1'>
@@ -221,7 +281,7 @@ const SustainabilityPage = () => {
                             <div className='flex flex-col gap-1'>
                                 <Label className='font-bold'>Description</Label>
                                 <Controller name="secondSection.description" control={control} render={({ field }) => {
-                                    return <Textarea value={field.value} onChange={field.onChange}  />
+                                    return <Textarea value={field.value} onChange={field.onChange} />
                                 }} />
                             </div>
 
@@ -305,6 +365,20 @@ const SustainabilityPage = () => {
 
                 <AdminItemContainer>
                     <Label main>Third Section</Label>
+
+                    {thirdStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("thirdSection", thirdStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("thirdSection", thirdStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
                     <div className='p-5 rounded-md flex flex-col gap-2'>
                         <div className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-1'>
@@ -420,6 +494,20 @@ const SustainabilityPage = () => {
 
                 <AdminItemContainer>
                     <Label main>Forth Section</Label>
+
+                    {forthStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("forthSection", forthStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("forthSection", forthStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
                     <div className='p-5 rounded-md flex flex-col gap-2'>
                         <div className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-1'>

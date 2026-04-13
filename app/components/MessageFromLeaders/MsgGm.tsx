@@ -4,9 +4,13 @@ import { motion } from "framer-motion";
 import SpecialContainer from "../common/SpecialContainer";
 import Image from "next/image";
 import { moveLeft, moveUp } from "../../components/motionVarients";
-import { MessageSection } from "./type";
+import { MessageItem } from "./type";
 
-const MsgGm = ({ items }: MessageSection) => {
+interface MsgChairmanProps {
+  items: MessageItem[];
+}
+
+const MsgGm = ({ items }: MsgChairmanProps) => {
   const gmData = items[1];
 
   return (

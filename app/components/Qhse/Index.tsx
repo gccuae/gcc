@@ -16,34 +16,34 @@ const Index = ({
 }) => {
   return (
     <>
-      <Main
+      {!data.firstSection.hidden && <Main
         title={data.firstSection.mainTitle}
         subtitle={data.firstSection.subTitle}
         description={data.firstSection.description}
         primaryColorText={data.firstSection.primaryColorText}
-      />
-      <QualityAssurance
+      />}
+      {!data.secondSection.hidden && <QualityAssurance
         title={data.secondSection.title}
         description={data.secondSection.description}
         image={data.secondSection.image}
         certifications={data.secondSection.items}
-      />
-      <HealthandSafety
+      />}
+      {!data.thirdSection.hidden && <HealthandSafety
         title={data.thirdSection.title}
         description={data.thirdSection.description}
         measures={data.thirdSection.items}
-      />
-      <EnvironmentResponsibility
+      />}
+      {!data.forthSection.hidden && <EnvironmentResponsibility
         title={data.forthSection.title}
         description={data.forthSection.description}
         matters={data.forthSection.items}
-      />
-      <WhyQhse
+      />}
+      {!data.fifthSection.hidden && <WhyQhse
         title={data.fifthSection.title}
         description={data.fifthSection.description}
         matters={data.fifthSection.items}
-      />
-      <CertificationMain data={certificationsData} />
+      />}
+      {!data.certificateHidden && <CertificationMain data={certificationsData} />}
     </>
   );
 };

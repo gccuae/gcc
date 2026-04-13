@@ -49,7 +49,10 @@ export interface ProjectsResponse {
 
 export interface ProjectsPageData {
   _id: string;
+  bannerHidden: boolean;
+  projectHidden: boolean;
   firstSection: {
+    hidden: boolean;
     title: string;
   };
   metaTitle: string;
@@ -66,7 +69,7 @@ export interface ProjectsPageData {
 // ----------------------
 
 export interface Project {
-  status:string;
+  status: string;
   _id: string;
   title: string;
   slug: string;

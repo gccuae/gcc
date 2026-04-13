@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import React, { useEffect, useState } from 'react'
 
-import { useForm, useFieldArray, Controller } from "react-hook-form";
+import { useForm, useFieldArray, Controller, Path } from "react-hook-form";
 import { Button } from '@/components/ui/button'
 import { ImageUploader } from '@/components/ui/image-uploader'
 import { RiDeleteBinLine } from "react-icons/ri";
@@ -16,7 +16,7 @@ import { closestCorners, DndContext, DragEndEvent } from '@dnd-kit/core'
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import ServiceCard from './ServiceCard';
 import Link from 'next/link';
-import { FaEye } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 interface ExpertiseFormProps {
     metaTitle: string;
@@ -24,13 +24,16 @@ interface ExpertiseFormProps {
     banner: string;
     bannerAlt: string;
     pageTitle: string;
+    bannerHidden: boolean;
     firstSection: {
+        hidden: boolean;
         title: string;
         description: string;
         image: string;
         imageAlt: string;
     };
     secondSection: {
+        hidden: boolean;
         title: string;
         items: {
             image: string;
@@ -42,7 +45,7 @@ interface ExpertiseFormProps {
             description: string;
             homeThumbnail: string;
             homeThumbnailAlt: string;
-            status:string;
+            status: string;
         }[];
     };
 }
@@ -55,6 +58,18 @@ const ExpertisePage = () => {
     const { refetchServices, setRefetchServices } = useRefetchServices();
 
     const [reorderMode, setReorderMode] = useState(false);
+
+    const bannerStatus = watch("bannerHidden");
+    const firstStatus = watch("firstSection.hidden");
+    const secondStatus = watch("secondSection.hidden");
+
+    const toggleSection = (section: string, value: boolean) => {
+        if (section === "bannerHidden") {
+            setValue("bannerHidden", !value);
+        } else {
+            setValue(`${section}.hidden` as Path<ExpertiseFormProps>, !value);
+        }
+    };
 
 
     const { fields: secondSectionItems, append: secondSectionAppend, remove: secondSectionRemove, move } = useFieldArray({
@@ -90,6 +105,7 @@ const ExpertisePage = () => {
                 setValue("pageTitle", data.data.pageTitle);
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
+                setValue("bannerHidden", data.data.bannerHidden);
                 setValue("firstSection", data.data.firstSection);
                 setValue("secondSection", data.data.secondSection);
                 setValue("secondSection.items", data.data.secondSection.items);
@@ -140,6 +156,19 @@ const ExpertisePage = () => {
             <form className='flex flex-col gap-5' onSubmit={handleSubmit(handleAddExpertise)}>
                 <AdminItemContainer>
                     <Label className="" main>Banner</Label>
+
+                    {bannerStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("bannerHidden", bannerStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("bannerHidden", bannerStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
                     <div className='p-5 rounded-md grid grid-cols-2 gap-5'>
                         <div>
                             <Controller
@@ -173,6 +202,20 @@ const ExpertisePage = () => {
 
                 <AdminItemContainer>
                     <Label main>First Section</Label>
+
+                    {firstStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("firstSection", firstStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("firstSection", firstStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
                     <div className='p-5 rounded-md flex flex-col gap-2'>
                         <div className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-1'>
@@ -219,6 +262,20 @@ const ExpertisePage = () => {
 
                 <AdminItemContainer>
                     <Label main>Second Section</Label>
+
+                    {secondStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("secondSection", secondStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("secondSection", secondStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
                     <div className='p-5 rounded-md flex flex-col gap-2'>
                         <div className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-1'>
@@ -252,11 +309,11 @@ const ExpertisePage = () => {
                                     {!reorderMode && secondSectionItems.map((field, index) => (
                                         <div key={field.id} className='grid grid-cols-1 gap-2 relative border-b pb-5 last:border-b-0'>
                                             <div className='absolute top-1 right-10'>
-                                            {field.status == "draft" ? (<Link href={`/expertise/${field.slug}`} target="_blank"><div className="text-[16px] rounded-xl bg-yellow-300 p-1 flex items-center gap-1 w-fit">
-                                                <FaEye />
-                                            </div></Link>) : (<div className="text-[16px] rounded-xl bg-green-300 p-1 flex items-center gap-1">
-                                                <FaEye />
-                                            </div>)}
+                                                {field.status == "draft" ? (<Link href={`/expertise/${field.slug}`} target="_blank"><div className="text-[16px] rounded-xl bg-yellow-300 p-1 flex items-center gap-1 w-fit">
+                                                    <FaEye />
+                                                </div></Link>) : (<div className="text-[16px] rounded-xl bg-green-300 p-1 flex items-center gap-1">
+                                                    <FaEye />
+                                                </div>)}
                                             </div>
                                             <div className='absolute top-2 right-2'>
                                                 <RiDeleteBinLine onClick={() => secondSectionRemove(index)} className='cursor-pointer text-red-600' />
@@ -404,7 +461,7 @@ const ExpertisePage = () => {
 
                                 </div>
                                 {!reorderMode && <div className='flex justify-end mt-2'>
-                                    <Button type='button' addItem onClick={() => secondSectionAppend({ title: "", image: "", imageAlt: "", logo: "", logoAlt: "", slug: "", description: "", homeThumbnail: "", homeThumbnailAlt: "",status:"" })}>Add Item</Button>
+                                    <Button type='button' addItem onClick={() => secondSectionAppend({ title: "", image: "", imageAlt: "", logo: "", logoAlt: "", slug: "", description: "", homeThumbnail: "", homeThumbnailAlt: "", status: "" })}>Add Item</Button>
                                 </div>}
                             </div>
 

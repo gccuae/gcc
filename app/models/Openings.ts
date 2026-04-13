@@ -8,6 +8,7 @@ const openingsSchema = new mongoose.Schema({
         type: String,
     },
     firstSection: {
+        hidden: { type: Boolean, default: false },
         pageTitle: {
             type: String,
             required: true
@@ -25,6 +26,7 @@ const openingsSchema = new mongoose.Schema({
         },
     },
     secondSection: {
+        hidden: { type: Boolean, default: false },
         mainTitle: {
             type: String,
             required: true
@@ -35,6 +37,7 @@ const openingsSchema = new mongoose.Schema({
         }
     },
     thirdSection: {
+        hidden: { type: Boolean, default: false },
         title: {
             type: String,
             required: true
@@ -64,6 +67,7 @@ const openingsSchema = new mongoose.Schema({
                 type: String,
             },
             firstSection: {
+                hidden: { type: Boolean, default: false },
                 title: {
                     type: String,
                 },
@@ -84,6 +88,7 @@ const openingsSchema = new mongoose.Schema({
                 }
             },
             secondSection: {
+                hidden: { type: Boolean, default: false },
                 title: {
                     type: String,
                 },
@@ -92,6 +97,7 @@ const openingsSchema = new mongoose.Schema({
                 }
             },
             thirdSection: {
+                hidden: { type: Boolean, default: false },
                 title: {
                     type: String,
                 },
@@ -100,6 +106,7 @@ const openingsSchema = new mongoose.Schema({
                 }
             },
             forthSection: {
+                hidden: { type: Boolean, default: false },
                 title: {
                     type: String,
                 },

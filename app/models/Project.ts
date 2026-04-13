@@ -10,8 +10,17 @@ const projectSchema = new mongoose.Schema({
   banner: { type: String },
   bannerAlt: { type: String },
   pageTitle: { type: String },
+  bannerHidden: {
+    type: Boolean,
+    default: false
+  },
   firstSection: {
+    hidden: { type: Boolean, default: false },
     title: { type: String, required: true },
+  },
+  projectHidden: {
+    type: Boolean,
+    default: false
   },
   projects: [
     {
@@ -26,6 +35,7 @@ const projectSchema = new mongoose.Schema({
       latitude: { type: String },
       longitude: { type: String },
       featuredProject: { type: Boolean },
+      bannerHidden: { type: Boolean },
       status: {
         type: String,
         enum: ["draft", "published"],
@@ -36,9 +46,11 @@ const projectSchema = new mongoose.Schema({
         ref: "Expertise",
       },
       firstSection: {
+        hidden: { type: Boolean, default: false },
         images: [String],
       },
       secondSection: {
+        hidden: { type: Boolean, default: false },
         title: { type: String },
         progress: { type: String },
         client: { type: String },
@@ -63,6 +75,7 @@ const projectSchema = new mongoose.Schema({
         fullLocation: { type: String },
       },
       numberSection: {
+        hidden: { type: Boolean, default: false },
         items: [{
           number: {
             type: String,
@@ -82,6 +95,7 @@ const projectSchema = new mongoose.Schema({
         }]
       },
       thirdSection: {
+        hidden: { type: Boolean, default: false },
         items: [
           {
             title: { type: String },
@@ -92,6 +106,7 @@ const projectSchema = new mongoose.Schema({
         ],
       },
       forthSection: {
+        hidden: { type: Boolean, default: false },
         title: { type: String },
         items: [
           {
@@ -101,6 +116,7 @@ const projectSchema = new mongoose.Schema({
         ],
       },
       fifthSection: {
+        hidden: { type: Boolean, default: false },
         title: { type: String },
         description: { type: String },
         buttonTitle: { type: String },

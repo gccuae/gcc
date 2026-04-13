@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import React, { useEffect, useState } from 'react'
 
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, Path } from "react-hook-form";
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false })
@@ -20,12 +20,14 @@ import {
 } from "@/components/ui/select"
 import { useParams, useRouter } from 'next/navigation';
 import { RiAiGenerateText } from 'react-icons/ri'
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 interface OpeningFormProps {
-    status:string;
+    status: string;
     metaTitle: string;
     metaDescription: string;
     firstSection: {
+        hidden: boolean;
         title: string;
         jobTitle: string;
         department: string;
@@ -34,14 +36,17 @@ interface OpeningFormProps {
         slug: string;
     };
     secondSection: {
+        hidden: boolean;
         title: string;
         description: string;
     };
     thirdSection: {
+        hidden: boolean;
         title: string;
         description: string;
     };
     forthSection: {
+        hidden: boolean;
         title: string;
         description: string;
     };
@@ -52,6 +57,15 @@ const OpeningsForm = ({ editMode }: { editMode?: boolean }) => {
     const { id } = useParams();
     const router = useRouter();
     const { register, handleSubmit, setValue, control, formState: { errors }, watch } = useForm<OpeningFormProps>();
+
+    const firstStatus = watch("firstSection.hidden");
+    const secondStatus = watch("secondSection.hidden");
+    const thirdStatus = watch("thirdSection.hidden");
+    const forthStatus = watch("forthSection.hidden");
+
+    const toggleSection = (section: string, value: boolean) => {
+        setValue(`${section}.hidden` as Path<OpeningFormProps>, !value);
+    };
 
     const [departmentList, setDepartmentList] = useState<{ _id: string, name: string }[]>([]);
     const [locationList, setLocationList] = useState<{ _id: string, name: string }[]>([]);
@@ -191,6 +205,20 @@ const OpeningsForm = ({ editMode }: { editMode?: boolean }) => {
                 </div>
                 <AdminItemContainer>
                     <Label main>First Section</Label>
+
+                    {firstStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("firstSection", firstStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("firstSection", firstStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
                     <div className='p-5 rounded-md flex flex-col gap-2'>
                         <div className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-1'>
@@ -318,6 +346,20 @@ const OpeningsForm = ({ editMode }: { editMode?: boolean }) => {
 
                 <AdminItemContainer>
                     <Label main>Second Section</Label>
+
+                    {secondStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("secondSection", secondStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("secondSection", secondStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
                     <div className='p-5 rounded-md flex flex-col gap-2'>
                         <div className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-1'>
@@ -344,6 +386,20 @@ const OpeningsForm = ({ editMode }: { editMode?: boolean }) => {
 
                 <AdminItemContainer>
                     <Label main>Third Section</Label>
+
+                    {thirdStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("thirdSection", thirdStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("thirdSection", thirdStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
                     <div className='p-5 rounded-md flex flex-col gap-2'>
                         <div className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-1'>
@@ -368,6 +424,20 @@ const OpeningsForm = ({ editMode }: { editMode?: boolean }) => {
 
                 <AdminItemContainer>
                     <Label main>Forth Section</Label>
+
+                    {forthStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("forthSection", forthStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("forthSection", forthStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
                     <div className='p-5 rounded-md flex flex-col gap-2'>
                         <div className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-1'>

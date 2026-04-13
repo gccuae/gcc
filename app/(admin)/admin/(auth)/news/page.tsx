@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import React, { useEffect, useState } from 'react'
 
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, Path } from "react-hook-form";
 import { Button } from '@/components/ui/button'
 import { ImageUploader } from '@/components/ui/image-uploader'
 import AdminItemContainer from '@/app/components/common/AdminItemContainer';
@@ -17,7 +17,7 @@ import {
     DialogTrigger,
     DialogClose,
 } from "@/components/ui/dialog"
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaEyeSlash } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import Link from 'next/link';
 import { FaEye } from "react-icons/fa";
@@ -28,18 +28,35 @@ interface NewsFormProps {
     banner: string;
     bannerAlt: string;
     pageTitle: string;
+    bannerHidden: boolean;
+    firstSection: {
+        hidden: boolean;
+        title: string;
+    }
+    newsHidden: boolean;
 }
 
 const NewsPage = () => {
 
 
-    const { register, handleSubmit, setValue, control, formState: { errors } } = useForm<NewsFormProps>();
+    const { register, handleSubmit, setValue, control, formState: { errors }, watch } = useForm<NewsFormProps>();
 
+    const bannerStatus = watch("bannerHidden");
+    const firstStatus = watch("firstSection.hidden");
+    const newsStatus = watch("newsHidden");
+
+    const toggleSection = (section: string, value: boolean) => {
+        if (section === "bannerHidden" || section === "newsHidden") {
+            setValue(section as Path<NewsFormProps>, !value);
+        } else {
+            setValue(`${section}.hidden` as Path<NewsFormProps>, !value);
+        }
+    };
 
     const [category, setCategory] = useState<string>("")
 
     const [categoryList, setCategoryList] = useState<{ _id: string, category: string }[]>([]);
-    const [newsList, setNewsList] = useState<{ _id: string, title: string,status:string, slug:string }[]>([]);
+    const [newsList, setNewsList] = useState<{ _id: string, title: string, status: string, slug: string }[]>([]);
 
 
     const handleAddNews = async (data: NewsFormProps) => {
@@ -84,6 +101,9 @@ const NewsPage = () => {
                 setValue("pageTitle", data.data.pageTitle);
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
+                setValue("bannerHidden", data.data.bannerHidden);
+                setValue("firstSection", data.data.firstSection);
+                setValue("newsHidden", data.data.newsHidden);
                 setNewsList(data.data.categories.flatMap((news: { news: { title: string; }[]; }) => news.news ?? []));
             } else {
                 const data = await response.json();
@@ -179,6 +199,19 @@ const NewsPage = () => {
 
                 <AdminItemContainer>
                     <Label className="" main>Banner</Label>
+
+                    {bannerStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("bannerHidden", bannerStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("bannerHidden", bannerStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
                     <div className='p-5 rounded-md grid grid-cols-2 gap-5'>
                         <div>
                             <Controller
@@ -209,6 +242,38 @@ const NewsPage = () => {
                         </div>
                     </div>
                 </AdminItemContainer>
+
+
+                <AdminItemContainer>
+                    <Label className='' main>First Section</Label>
+
+                    {firstStatus ? (
+                        <FaEyeSlash
+                            onClick={() => toggleSection("firstSection", firstStatus)}
+                            className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+                        />
+
+                    ) : (
+                        <FaEye
+                            onClick={() => toggleSection("firstSection", firstStatus)}
+                            className="absolute top-4 right-4 text-green-600 cursor-pointer"
+                        />
+                    )}
+
+                    <div className='p-5 flex flex-col gap-2'>
+                        <div className='flex flex-col gap-2'>
+                            <div className='flex flex-col gap-1'>
+                                <Label className=' font-bold'>Title</Label>
+                                <Input type='text' placeholder='Title' {...register("firstSection.title", {
+                                    required: "Title is required"
+                                })} />
+                                {errors.firstSection?.title && <p className='text-red-500'>{errors.firstSection?.title.message}</p>}
+                            </div>
+                        </div>
+
+                    </div>
+                </AdminItemContainer>
+
 
                 <AdminItemContainer>
                     <div className='flex justify-between items-center p-5 border-b'>
@@ -271,9 +336,24 @@ const NewsPage = () => {
                 </AdminItemContainer>
 
                 <AdminItemContainer>
+
                     <div className='flex justify-between items-center p-5 border-b'>
                         <h1 className='text-lg font-semibold'>News</h1>
-                        <Link href="/admin/news/add" className='bg-primary text-white px-3 py-1 rounded-md font-semibold'>Add News</Link>
+                        <div className='flex gap-5 items-center'>
+                            {newsStatus ? (
+                                <FaEyeSlash
+                                    onClick={() => toggleSection("newsHidden", newsStatus)}
+                                    className=" text-gray-400 cursor-pointer"
+                                />
+
+                            ) : (
+                                <FaEye
+                                    onClick={() => toggleSection("newsHidden", newsStatus)}
+                                    className=" text-green-600 cursor-pointer"
+                                />
+                            )}
+                            <Link href="/admin/news/add" className='bg-primary text-white px-3 py-1 rounded-md font-semibold'>Add News</Link>
+                        </div>
                     </div>
                     <div className='px-5 flex flex-col gap-4 py-3'>
                         {newsList.map((item) => (
@@ -282,7 +362,7 @@ const NewsPage = () => {
                                     <p>{item.title}</p>
                                 </div>
                                 <div className='flex gap-8 items-center'>
-                                    
+
                                     {item.status == "draft" ? (<Link href={`/news/${item.slug}`} target="_blank"><div className="text-[16px] rounded-xl bg-yellow-300 p-1 flex items-center gap-1">
                                         <FaEye />
                                     </div></Link>) : (<div className="text-[16px] rounded-xl bg-green-300 p-1 flex items-center gap-1">

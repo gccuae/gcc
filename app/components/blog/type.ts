@@ -4,10 +4,12 @@ export type BlogData = {
     pageTitle: string;
     metaTitle: string;
     metaDescription: string;
+    bannerHidden: boolean;
+    blogsHidden: boolean;
     categories: {
         category: string;
         blogs: {
-            status:string;
+            status: string;
             title: string;
             author: string;
             slug: string;

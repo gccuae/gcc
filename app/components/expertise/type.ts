@@ -10,9 +10,11 @@ export interface ExpertiseData {
   metaDescription: string;
   metaTitle: string;
   pageTitle: string;
+  bannerHidden: boolean;
 }
 
 export interface FirstSection {
+  hidden: boolean;
   title: string;
   imageAlt: string;
   description: string;
@@ -20,6 +22,7 @@ export interface FirstSection {
 }
 
 export interface SecondSection {
+  hidden: boolean;
   title: string;
   items: SecondSectionItem[];
 }
@@ -39,7 +42,7 @@ export interface SecondSectionItem {
   firstSection?: SecondSectionFirstSection;
   secondSection?: SecondSectionSecondSection;
   thirdSection?: SecondSectionThirdSection;
-  status:string;
+  status: string;
 }
 
 export interface SecondSectionFirstSection {

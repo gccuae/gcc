@@ -18,7 +18,15 @@ const expertiseSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    bannerHidden: {
+        type: Boolean,
+        default: false
+    },
     firstSection: {
+        hidden: {
+            type: Boolean,
+            default: false
+        },
         title: {
             type: String,
             required: true
@@ -36,6 +44,10 @@ const expertiseSchema = new mongoose.Schema({
         },
     },
     secondSection: {
+        hidden: {
+            type: Boolean,
+            default: false
+        },
         title: {
             type: String,
             required: true

@@ -10,9 +10,10 @@ const Index = ({ data }: ExpertiseProps) => {
         pageTitle={data.pageTitle}
         bannerImg={data.banner}
         bannerAlt={data.bannerAlt}
+        bannerHidden={data.bannerHidden}
       />
-      <ImgDesc data={data.firstSection} />
-      <Services data={data.secondSection} />
+      {!data.firstSection.hidden && <ImgDesc data={data.firstSection} />}
+      {!data.secondSection.hidden && <Services data={data.secondSection} />}
     </>
   );
 };

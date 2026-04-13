@@ -26,6 +26,7 @@ export async function PATCH(request: NextRequest) {
             return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
         }
         await connectDB();
+        console.log(body)
         const home = await Home.findOneAndUpdate({}, body,{upsert:true,new:true});
         if (!home) {
             return NextResponse.json({ message: "Home not found" }, { status: 404 });

@@ -16,12 +16,12 @@ import {
 import { Input } from "@/components/ui/input"
 import { useRouter } from "next/navigation";
 import AdminItemContainer from '@/app/components/common/AdminItemContainer';
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, Path } from "react-hook-form";
 import { ImageUploader } from '@/components/ui/image-uploader'
 import { closestCorners, DndContext, DragEndEvent } from '@dnd-kit/core'
 import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import ProjectCard from "./ProjectCard";
-import { FaEye } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Link from "next/link";
 
 
@@ -31,9 +31,12 @@ interface CurrentOpeningsPageProps {
   banner: string;
   bannerAlt: string;
   pageTitle: string;
+  bannerHidden: boolean;
   firstSection: {
+    hidden: boolean;
     title: string;
   },
+  projectHidden: boolean
 }
 
 
@@ -43,7 +46,7 @@ export default function CurrentOpenings() {
   const [projectType, setProjectType] = useState<string>("");
   const [sector, setSector] = useState<string>("");
   const [location, setLocation] = useState<string>("");
-  const [projectsList, setProjectsList] = useState<{ _id: string, title: string,slug:string,status:string }[]>([]);
+  const [projectsList, setProjectsList] = useState<{ _id: string, title: string, slug: string, status: string }[]>([]);
   const [locationList, setLocationList] = useState<{ _id: string, name: string }[]>([]);
   const [projectTypeList, setProjectTypeList] = useState<{ _id: string, name: string }[]>([]);
   const [sectorList, setSectorList] = useState<{ _id: string, name: string }[]>([]);
@@ -51,8 +54,19 @@ export default function CurrentOpenings() {
 
   const router = useRouter();
 
-  const { register, handleSubmit, setValue, control, formState: { errors } } = useForm<CurrentOpeningsPageProps>();
+  const { register, handleSubmit, setValue, control, formState: { errors }, watch } = useForm<CurrentOpeningsPageProps>();
 
+  const bannerStatus = watch("bannerHidden");
+  const firstStatus = watch("firstSection.hidden");
+  const projectStatus = watch("projectHidden");
+
+  const toggleSection = (section: string, value: boolean) => {
+    if (section === "bannerHidden" || section === "projectHidden") {
+      setValue(section as Path<CurrentOpeningsPageProps>, !value);
+    } else {
+      setValue(`${section}.hidden` as Path<CurrentOpeningsPageProps>, !value);
+    }
+  };
 
 
   const handleAddProjectType = async () => {
@@ -336,7 +350,7 @@ export default function CurrentOpenings() {
 
     if (!over || active.id === over.id) return;
 
-    setProjectsList((projectsList: { _id: string; title: string,slug:string,status:string }[]) => {
+    setProjectsList((projectsList: { _id: string; title: string, slug: string, status: string }[]) => {
       const originalPos = getTaskPos(active.id);
       const newPos = getTaskPos(over.id);
       return arrayMove(projectsList, originalPos, newPos);
@@ -383,6 +397,19 @@ export default function CurrentOpenings() {
 
         <AdminItemContainer>
           <Label className="" main>Banner</Label>
+
+          {bannerStatus ? (
+            <FaEyeSlash
+              onClick={() => toggleSection("bannerHidden", bannerStatus)}
+              className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+            />
+          ) : (
+            <FaEye
+              onClick={() => toggleSection("bannerHidden", bannerStatus)}
+              className="absolute top-4 right-4 text-green-600 cursor-pointer"
+            />
+          )}
+
           <div className='p-5 rounded-md grid grid-cols-2 gap-5'>
             <div>
               <Controller
@@ -417,6 +444,20 @@ export default function CurrentOpenings() {
 
         <AdminItemContainer>
           <Label className='' main>First Section</Label>
+
+          {firstStatus ? (
+            <FaEyeSlash
+              onClick={() => toggleSection("firstSection", firstStatus)}
+              className="absolute top-4 right-4 text-gray-400 cursor-pointer"
+            />
+
+          ) : (
+            <FaEye
+              onClick={() => toggleSection("firstSection", firstStatus)}
+              className="absolute top-4 right-4 text-green-600 cursor-pointer"
+            />
+          )}
+
           <div className='p-5 flex flex-col gap-2'>
             <div className='flex flex-col gap-2'>
               <div className='flex flex-col gap-1'>
@@ -653,7 +694,21 @@ export default function CurrentOpenings() {
         <div className="h-screen w-full p-5 shadow-md border-gray-300 rounded-md overflow-y-hidden bg-white">
           <div className="flex justify-between border-b-2 pb-2">
             <Label className="text-sm font-bold">Projects</Label>
-            <div className="flex gap-2">
+
+
+            <div className="flex gap-4 items-center">
+              {projectStatus ? (
+                <FaEyeSlash
+                  onClick={() => toggleSection("projectHidden", projectStatus)}
+                  className=" text-gray-400 cursor-pointer"
+                />
+
+              ) : (
+                <FaEye
+                  onClick={() => toggleSection("projectHidden", projectStatus)}
+                  className=" text-green-600 cursor-pointer"
+                />
+              )}
               <Button className={`text-white text-[16px] ${reorderMode ? "bg-yellow-700" : "bg-green-700"}`} onClick={() => reorderMode ? confirmPosition() : setReorderMode(!reorderMode)}>{reorderMode ? "Done" : "Reorder"}</Button>
               <Button onClick={() => router.push("/admin/projects/add")}>Add Project</Button>
             </div>
@@ -676,13 +731,13 @@ export default function CurrentOpenings() {
                 <div className="text-[16px]">
                   {item.title}
                 </div>
-                
+
                 <div className="flex gap-5 items-center">
                   {item.status == "draft" ? (<Link href={`/projects/${item.slug}`} target="_blank"><div className="text-[16px] rounded-xl bg-yellow-300 p-1 flex items-center gap-1">
-                  <FaEye />
-                </div></Link>) : (<div className="text-[16px] rounded-xl bg-green-300 p-1 flex items-center gap-1">
-                  <FaEye />
-                </div>)}
+                    <FaEye />
+                  </div></Link>) : (<div className="text-[16px] rounded-xl bg-green-300 p-1 flex items-center gap-1">
+                    <FaEye />
+                  </div>)}
                   <MdEdit onClick={() => router.push(`/admin/projects/edit/${item._id}`)} />
 
                   <Dialog>

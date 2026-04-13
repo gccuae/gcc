@@ -18,6 +18,14 @@ const BlogsSchema = new mongoose.Schema({
     metaDescription: {
         type: String,
     },
+    bannerHidden: {
+        type: Boolean,
+        default: false
+    },
+    blogsHidden: {
+        type: Boolean,
+        default: false
+    },
     categories: [{
         category: {
             type: String,

@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import React, { useEffect, useState } from "react";
 
-import { useForm } from "react-hook-form";
+import { Path, useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import AdminItemContainer from "@/app/components/common/AdminItemContainer";
 import {
@@ -16,7 +16,7 @@ import {
     DialogTrigger,
     DialogClose,
 } from "@/components/ui/dialog";
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaEye, FaEyeSlash } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { FilesIcon } from "lucide-react";
 import Link from "next/link";
@@ -29,10 +29,23 @@ interface GalleryFormProps {
     metaTitle: string;
     metaDescription: string;
     pageTitle: string;
+    headingHidden: boolean;
+    galleryHidden: boolean;
 }
 
 const GalleryPage = () => {
-    const { register, handleSubmit, setValue } = useForm<GalleryFormProps>();
+    const { register, handleSubmit, setValue, watch } = useForm<GalleryFormProps>();
+
+    const headingStatus = watch("headingHidden");
+    const galleryStatus = watch("galleryHidden");
+
+    const toggleSection = (section: string, value: boolean) => {
+        if (section === "bannerHidden" || section === "headingHidden" || section === "galleryHidden") {
+            setValue(section as Path<GalleryFormProps>, !value);
+        } else {
+            setValue(`${section}.hidden` as Path<GalleryFormProps>, !value);
+        }
+    };
 
     const [item, setItem] = useState<string>("");
     const [image, setImage] = useState<string>("");
@@ -143,6 +156,8 @@ const GalleryPage = () => {
                 setValue("pageTitle", data.data.pageTitle);
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
+                setValue("headingHidden", data.data.headingHidden);
+                setValue("galleryHidden", data.data.galleryHidden);
             } else {
                 const data = await response.json();
                 alert(data.message);
@@ -198,44 +213,71 @@ const GalleryPage = () => {
         <div className="flex flex-col gap-5">
             <form className="flex flex-col gap-5" onSubmit={handleSubmit(handleAddGallery)}>
                 <div className="flex flex-col gap-1">
-                    <Label className="font-bold">Page Title</Label>
+                    <Label className="font-bold flex gap-2 items-center">Page Title
+                        {headingStatus ? (
+                            <FaEyeSlash
+                                onClick={() => toggleSection("headingHidden", headingStatus)}
+                                className=" text-gray-400 cursor-pointer"
+                            />
+                        ) : (
+                            <FaEye
+                                onClick={() => toggleSection("headingHidden", headingStatus)}
+                                className=" text-green-600 cursor-pointer"
+                            />
+                        )}
+                    </Label>
+
                     <Input type="text" placeholder="Page Title" {...register("pageTitle")} />
                 </div>
 
                 <AdminItemContainer>
                     <div className="flex justify-between items-center p-5">
                         <h1 className="text-md font-semibold">Gallery</h1>
-                        <div className="flex items-center gap-2">
-                            <Button type="button" className={`text-white text-[16px] ${reorderMode ? "bg-yellow-700" : "bg-green-700"}`} onClick={() => reorderMode ? confirmPosition() : setReorderMode(!reorderMode)}>{reorderMode ? "Done" : "Reorder"}</Button>
-                            {!reorderMode && <Dialog>
-                                <DialogTrigger
-                                    className="bg-primary text-white px-3 py-1 rounded-md font-semibold"
-                                    onClick={() => setItem("")}
-                                >
-                                    Add Item
-                                </DialogTrigger>
-                                <DialogContent>
-                                    <DialogHeader>
-                                        <DialogTitle>Add Item</DialogTitle>
-                                        <DialogDescription className="flex flex-col gap-2">
-                                            <Label className="font-bold">Title</Label>
-                                            <Input
-                                                type="text"
-                                                placeholder="Title"
-                                                value={item}
-                                                onChange={(e) => setItem(e.target.value)}
-                                            />
-                                            <Label className="font-bold">Thumbnail</Label>
-                                            <ImageUploader value={image} onChange={(url) => setImage(url)} recommendedDimension='Recommended: 500 x 488 (px)' />
-                                            <Label className="font-bold">Thumbnail Alt</Label>
-                                            <Input type="text" placeholder="Thumbnail Alt" value={imageAlt} onChange={(e) => setImageAlt(e.target.value)} />
-                                        </DialogDescription>
-                                    </DialogHeader>
-                                    <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={handleAddItem}>
-                                        Save
-                                    </DialogClose>
-                                </DialogContent>
-                            </Dialog>}
+                        <div className="flex gap-5 items-center">
+                            {galleryStatus ? (
+                                <FaEyeSlash
+                                    onClick={() => toggleSection("galleryHidden", galleryStatus)}
+                                    className=" text-gray-400 cursor-pointer"
+                                />
+
+                            ) : (
+                                <FaEye
+                                    onClick={() => toggleSection("galleryHidden", galleryStatus)}
+                                    className=" text-green-600 cursor-pointer"
+                                />
+                            )}
+                            <div className="flex items-center gap-2">
+                                <Button type="button" className={`text-white text-[16px] ${reorderMode ? "bg-yellow-700" : "bg-green-700"}`} onClick={() => reorderMode ? confirmPosition() : setReorderMode(!reorderMode)}>{reorderMode ? "Done" : "Reorder"}</Button>
+                                {!reorderMode && <Dialog>
+                                    <DialogTrigger
+                                        className="bg-primary text-white px-3 py-1 rounded-md font-semibold"
+                                        onClick={() => setItem("")}
+                                    >
+                                        Add Item
+                                    </DialogTrigger>
+                                    <DialogContent>
+                                        <DialogHeader>
+                                            <DialogTitle>Add Item</DialogTitle>
+                                            <DialogDescription className="flex flex-col gap-2">
+                                                <Label className="font-bold">Title</Label>
+                                                <Input
+                                                    type="text"
+                                                    placeholder="Title"
+                                                    value={item}
+                                                    onChange={(e) => setItem(e.target.value)}
+                                                />
+                                                <Label className="font-bold">Thumbnail</Label>
+                                                <ImageUploader value={image} onChange={(url) => setImage(url)} recommendedDimension='Recommended: 500 x 488 (px)' />
+                                                <Label className="font-bold">Thumbnail Alt</Label>
+                                                <Input type="text" placeholder="Thumbnail Alt" value={imageAlt} onChange={(e) => setImageAlt(e.target.value)} />
+                                            </DialogDescription>
+                                        </DialogHeader>
+                                        <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={handleAddItem}>
+                                            Save
+                                        </DialogClose>
+                                    </DialogContent>
+                                </Dialog>}
+                            </div>
                         </div>
                     </div>
                     <div className="px-5 flex flex-col gap-4 py-3">

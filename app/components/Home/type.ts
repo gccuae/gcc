@@ -9,6 +9,7 @@ export interface BannerItem {
 
 // Banner section
 export interface BannerSection {
+  hidden: boolean;
   items: BannerItem[];
 }
 
@@ -20,10 +21,12 @@ export interface NumberItem {
 }
 
 export interface NumberSection {
+  hidden: boolean;
   items: NumberItem[];
 }
 
 export interface FirstSection {
+  hidden: boolean;
   buttonText: string;
   description: string;
   video: string;
@@ -57,6 +60,7 @@ export interface SectorItem {
 
 export interface FourthSection {
   title: string;
+  hidden: boolean;
   items: SectorItem[];
 }
 
@@ -70,6 +74,8 @@ export interface HomeData {
   firstSection: FirstSection;
   thirdSection: ThirdSection;
   fourthSection: FourthSection;
+  expertiseHidden: boolean;
+  newsHidden: boolean;
 }
 
 export interface HomeResponse {

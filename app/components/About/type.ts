@@ -11,10 +11,12 @@ export interface ImgDescProps {
   imageAlt?: string;
   title: string;
   description: string;
+  hidden: boolean;
 }
 
 // ---------- What We Do Section ----------
 export interface WhatWeDoProps {
+  hidden: boolean;
   mainTitle: string;
   subTitle: string;
   firstDescription: string;
@@ -36,6 +38,7 @@ export interface VmvItem {
 }
 
 export interface ThirdSection {
+  hidden: boolean;
   mainTitle: string;
   subTitle: string;
   items: VmvItem[];
@@ -56,6 +59,7 @@ export interface LegacyItem {
 }
 
 export interface LegacySection {
+  hidden: boolean;
   title: string;
   items: LegacyItem[];
 }
@@ -63,6 +67,7 @@ export interface LegacySection {
 // ---------- Why Choose / Eng Section ----------
 export interface WhyChooseProps {
   data: {
+    hidden: boolean;
     mainTitle: string;
     subTitle: string;
     items: {
@@ -79,6 +84,7 @@ export interface HomePageData {
   pageTitle: string;
   banner: string;
   bannerAlt: string;
+  bannerHidden: boolean;
   firstSection: ImgDescProps;
   secondSection: WhatWeDoProps;
   thirdSection: ViMiVaProps["data"];

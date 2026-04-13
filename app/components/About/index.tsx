@@ -19,11 +19,12 @@ const Index = ({ data, expertiseData }: HomeIndexProps) => {
         pageTitle={data.pageTitle}
         bannerImg={data.banner}
         bannerAlt={data.bannerAlt}
+        bannerHidden={data.bannerHidden}
       />
       <ImgDesc data={data.firstSection} />
       <WhatWeDo data={data.secondSection} expertiseData={expertiseData} />
       <ViMiVa data={data.thirdSection} />
-      <LegacyTimelineSlider data={data.historySection} />
+      {!data.historySection.hidden && <LegacyTimelineSlider data={data.historySection} />}
       <WhyChoose data={data.fifthSection} />
     </>
   );

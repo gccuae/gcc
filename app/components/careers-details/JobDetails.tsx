@@ -81,7 +81,7 @@ const JobDetails = ({
     <section className="dark:bg-[#0d0d0d]">
       <div className="container">
         {/* About the Role */}
-        <div className="pt-47px pb-4 md:pb-57px border-b dark:border-white/20">
+        {!secondSection.hidden && <div className="pt-47px pb-4 md:pb-57px border-b dark:border-white/20">
           <motion.h2
             variants={moveUp()}
             initial="hidden"
@@ -103,10 +103,10 @@ const JobDetails = ({
                 {para}
               </motion.p>
             ))}
-        </div>
+        </div>}
 
         {/* Key Responsibilities */}
-        <motion.div
+        {!thirdSection.hidden && <motion.div
           className="pt-4 md:pt-47px pb-6 md:pb-57px border-b dark:border-white/20"
           variants={moveUp()}
           initial="hidden"
@@ -118,10 +118,10 @@ const JobDetails = ({
           <motion.div variants={moveUp()} initial="hidden" whileInView="show"
             className="flex flex-col gap-4 lg:gap-27px job-detail-responsibility [&_p>span]:text-para-color [&_p>span]:font-light [&_p>span]:text-lg [&_p>span]:leading-lh-text19 dark:[&_p>span]:!text-white/70 dark:[&_h3>span]:!text-white/70 dark:[&_li>span]:!text-white/70"
             dangerouslySetInnerHTML={{ __html: thirdSection.description }} />
-        </motion.div>
+        </motion.div>}
 
         {/* Apply Now */}
-        <div className="pt-4 md:pt-47px pb-13 md:pb-15 xl:pb-57px border-b dark:border-white/20">
+        {!forthSection.hidden && <div className="pt-4 md:pt-47px pb-13 md:pb-15 xl:pb-57px border-b dark:border-white/20">
           <motion.h3
             variants={moveUp()}
             initial="hidden"
@@ -150,7 +150,7 @@ const JobDetails = ({
               bgtrans={true}
             />
           </motion.div>
-        </div>
+        </div>}
       </div>
       <Modal
         isOpen={isModalOpen}

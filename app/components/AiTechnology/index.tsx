@@ -4,15 +4,15 @@ import AiSlider from "./AiSlider";
 import Cta from "./Cta";
 import { AiTechnologyType } from "./type";
 
-const Index = ({data}: {data: AiTechnologyType}) => {
+const Index = ({ data }: { data: AiTechnologyType }) => {
   return (
     <>
-      <PageBnr pageTitle={data.pageTitle} bannerImg={data.banner} bannerAlt={data.bannerAlt}/>
-      <ImgDesc data={data.firstSection} />
-      <AiSlider data={data.secondSection.items}/>
-      <Cta data={data.thirdSection}/>
+      <PageBnr pageTitle={data.pageTitle} bannerImg={data.banner} bannerAlt={data.bannerAlt} bannerHidden={data.bannerHidden} />
+      {!data.firstSection.hidden && <ImgDesc data={data.firstSection} />}
+      {!data.secondSection.hidden && <AiSlider data={data.secondSection.items} />}
+      {!data.thirdSection.hidden && <Cta data={data.thirdSection} />}
     </>
-   );
+  );
 }
- 
+
 export default Index;

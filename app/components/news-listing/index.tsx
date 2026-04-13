@@ -8,14 +8,14 @@ const Index = ({ data }: { data: NewsData }) => {
   const items = data.categories.flatMap(
     (item: { news: NewsData["categories"][number]["news"] }) => item.news
   );
-  const sortedNews = [...items.filter((item)=>item.status !== "draft")].sort(
+  const sortedNews = [...items.filter((item) => item.status !== "draft")].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   )[0];
   return (
     <>
-      <PageBnr pageTitle={data.pageTitle} bannerImg={data.banner} bannerAlt={data.bannerAlt} />
-      <Main title={"Latest Highlights"} items={[sortedNews]} />
-      <NewsList data={data} />
+      <PageBnr pageTitle={data.pageTitle} bannerImg={data.banner} bannerAlt={data.bannerAlt} bannerHidden={data.bannerHidden} />
+      {!data.firstSection.hidden && <Main title={data.firstSection.title} items={[sortedNews]} />}
+      {!data.newsHidden && <NewsList data={data} />}
     </>
   );
 };

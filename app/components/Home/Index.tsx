@@ -23,13 +23,15 @@ const Index = ({ data, projects, news, expertise }: Props) => {
       <HeroSlider
         data={data.bannerSection.items}
         counterData={data.numberSection.items}
+        bannerStatus={data.bannerSection.hidden}
+        numberStatus={data.numberSection.hidden}
       />
       <AboutCompany data={data.firstSection} />
       {/* <FeaturedProjects data={projects} /> */}
 
-      <AreaOfExpertise data={expertise.secondSection} />
+      {!data.expertiseHidden && <AreaOfExpertise data={expertise.secondSection} />}
       <SectorSlider data={data.fourthSection} />
-      <NewsBlock data={news} />
+      {!data.newsHidden && <NewsBlock data={news} />}
     </>
   );
 };

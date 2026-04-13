@@ -1,77 +1,93 @@
 import mongoose from "mongoose";
 
 const aboutSchema = new mongoose.Schema({
-    banner:{
-        type:String,
-        required:true
+    banner: {
+        type: String,
+        required: true
     },
-    bannerAlt:{
-        type:String,
+    bannerAlt: {
+        type: String,
     },
-    metaTitle:{
-        type:String,
-        required:true
+    metaTitle: {
+        type: String,
+        required: true
     },
-    metaDescription:{
-        type:String,
-        required:true
+    metaDescription: {
+        type: String,
+        required: true
     },
-    pageTitle:{
-        type:String,
-        required:true
+    pageTitle: {
+        type: String,
+        required: true
     },
-    firstSection:{
-        title:{
-            type:String,
-            required:true
+    bannerHidden: {
+        type: Boolean,
+        default: false
+    },
+    firstSection: {
+        hidden: {
+            type: Boolean,
+            default: false
         },
-        description:{
-            type:String,
-            required:true
+        title: {
+            type: String,
+            required: true
         },
-        image:{
-            type:String,
-            required:true
+        description: {
+            type: String,
+            required: true
         },
-        imageAlt:{
-            type:String,
+        image: {
+            type: String,
+            required: true
+        },
+        imageAlt: {
+            type: String,
         },
     },
-    secondSection:{
-        items:[{
-            image:{
-                type:String,
-                required:true
+    secondSection: {
+        hidden: {
+            type: Boolean,
+            default: false
+        },
+        items: [{
+            image: {
+                type: String,
+                required: true
             },
-            imageAlt:{
-                type:String,
+            imageAlt: {
+                type: String,
             },
-            mainTitle:{
-                type:String,
-                required:true
+            mainTitle: {
+                type: String,
+                required: true
             },
-            subTitle:{
-                type:String,
-                required:true
+            subTitle: {
+                type: String,
+                required: true
             },
-            description:{
-                type:String,
-                required:true
+            description: {
+                type: String,
+                required: true
             }
         }]
     },
-    thirdSection:{
-        primaryColourText:{
-            type:String,
-            required:true
+    thirdSection: {
+        hidden: {
+            type: Boolean,
+            default: false
         },
-        title:{
-            type:String,
-            required:true
+        primaryColourText: {
+            type: String,
+            required: true
         },
-        buttonText:{
-            type:String,
-            required:true
+        title: {
+            type: String,
+            required: true
+        },
+        buttonText: {
+            type: String,
+            required: true
         }
     },
 })

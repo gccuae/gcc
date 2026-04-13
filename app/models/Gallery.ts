@@ -1,17 +1,25 @@
 import mongoose from "mongoose";
 
 const gallerySchema = new mongoose.Schema({
-    metaTitle:{
-        type:String,
+    metaTitle: {
+        type: String,
     },
-    metaDescription:{
-        type:String,
+    metaDescription: {
+        type: String,
     },
-    pageTitle:{
-        type:String,
-        required:true
+    pageTitle: {
+        type: String,
+        required: true
     },
-    items:[{
+    headingHidden: {
+        type: Boolean,
+        default: false
+    },
+    galleryHidden: {
+        type: Boolean,
+        default: false
+    },
+    items: [{
         item: {
             type: String,
         },

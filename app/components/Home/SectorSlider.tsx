@@ -30,7 +30,7 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
     swiper.navigation.update();
   }, []);
   return (
-    <section className="wrapper pt-30px pb-37px md:py-37px bg-black dark:bg-light-dark text-white overflow-hidden">
+    <section className={`wrapper pt-30px pb-37px md:py-37px bg-black dark:bg-light-dark text-white overflow-hidden ${data.hidden ? "hidden" : ""}`}>
       <div className="container">
         <motion.h2
           variants={moveUp(0)}

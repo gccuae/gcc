@@ -11,7 +11,7 @@ export async function GET() {
         if (!contact) {
             return NextResponse.json({ message: "Contact not found" }, { status: 404 });
         }
-        return NextResponse.json({data:contact,message:"Contact fetched successfully"}, { status: 200 });
+        return NextResponse.json({ data: contact, message: "Contact fetched successfully" }, { status: 200 });
     } catch (error) {
         console.log(error);
         return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
@@ -25,12 +25,13 @@ export async function PATCH(request: NextRequest) {
         if (!isAdmin) {
             return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
         }
-        await connectDB();
-        const contact = await Contact.findOneAndUpdate({}, body,{upsert:true,new:true});
+        await connectDB(); console.log(body);
+
+        const contact = await Contact.findOneAndUpdate({}, body, { upsert: true, new: true });
         if (!contact) {
             return NextResponse.json({ message: "Contact not found" }, { status: 404 });
         }
-        return NextResponse.json({data:contact,message:"Contact updated successfully"}, { status: 200 });
+        return NextResponse.json({ data: contact, message: "Contact updated successfully" }, { status: 200 });
     } catch (error) {
         console.log(error);
         return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });

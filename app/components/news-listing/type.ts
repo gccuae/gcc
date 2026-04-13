@@ -4,10 +4,16 @@ export type NewsData = {
     pageTitle: string;
     metaTitle: string;
     metaDescription: string;
+    bannerHidden: boolean;
+    newsHidden: boolean;
+    firstSection: {
+        title: string;
+        hidden: boolean;
+    }
     categories: {
         category: string;
         news: {
-            status:string;
+            status: string;
             title: string;
             subTitle: string;
             images: string[];
