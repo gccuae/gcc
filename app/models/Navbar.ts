@@ -1,6 +1,11 @@
 import mongoose from "mongoose";
 
 const navbarSchema = new mongoose.Schema({
+    status: {
+        type: String,
+        enum: ["draft", "published"],
+        default: "published",
+    },
     navSection: {
         items: [
             {

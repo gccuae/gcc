@@ -23,10 +23,18 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 import { TbReorder } from "react-icons/tb";
 import { FaPlus } from "react-icons/fa6";
 
 interface QhseFormProps {
+    status: string;
     navSection: {
         items: {
             title: string;
@@ -78,6 +86,7 @@ const Navbar = () => {
             if (response.ok) {
                 const data = await response.json();
                 setValue("navSection.items", data.data.navSection.items);
+                setValue("status", data.data.status);
             } else {
                 const data = await response.json();
                 alert(data.message);
@@ -156,6 +165,45 @@ const Navbar = () => {
     return (
         <div className='flex flex-col gap-5'>
             <form className='flex flex-col gap-5' onSubmit={handleSubmit(handleAddQhse)}>
+                <input type="hidden" {...register("status")} />
+
+                <div className="flex items-center gap-2 justify-end">
+                    <Label className="">Status</Label>
+                    <Controller
+                        name={`status`}
+                        control={control}
+                        // rules={{ required: "Location is required" }}
+                        render={({ field }) => (
+                            <Select
+                                onValueChange={field.onChange}
+                                value={field.value}
+                                defaultValue=""
+                            >
+                                <SelectTrigger className="w-fit">
+                                    <SelectValue placeholder="Select Status" />
+                                </SelectTrigger>
+                                <SelectContent>
+
+                                    <SelectItem value={"draft"}>
+                                        Draft
+                                    </SelectItem>
+
+                                    <SelectItem value={"published"}>
+                                        Published
+                                    </SelectItem>
+                                </SelectContent>
+                            </Select>
+                        )}
+                    />
+
+                    <Button
+                        type="button"
+                        onClick={() => handleSubmit((data) => handleAddQhse({ ...data, status: watch("status") }))()}
+                        className="bg-green-700"
+                    >
+                        Save
+                    </Button>
+                </div>
 
                 <AdminItemContainer>
                     <Label main>Edit Navbar</Label>
@@ -184,7 +232,7 @@ const Navbar = () => {
 
                                         <Sheet>
                                             <SheetTrigger asChild>
-                                               <div className='flex gap-1 items-center'><FaPlus />/<TbReorder onClick={() => setToReorderCategory(index)} /></div> 
+                                                <div className='flex gap-1 items-center'><FaPlus />/<TbReorder onClick={() => setToReorderCategory(index)} /></div>
                                             </SheetTrigger>
                                             <SheetContent>
                                                 <SheetHeader>
@@ -243,16 +291,16 @@ const Navbar = () => {
                                                         </div>
                                                     ))}
 
-                                                    
+
 
                                                 </div>
                                                 <div className='px-4'>
-                                                        <Button type='button' className="w-full cursor-pointer text-white bg-green-400 text-[16px]" onClick={() => {
-                                                            if (toReorderCategory !== null) {
-                                                                handleAddImage(toReorderCategory);
-                                                            }
-                                                        }}>Add Sub Item</Button>
-                                                    </div>
+                                                    <Button type='button' className="w-full cursor-pointer text-white bg-green-400 text-[16px]" onClick={() => {
+                                                        if (toReorderCategory !== null) {
+                                                            handleAddImage(toReorderCategory);
+                                                        }
+                                                    }}>Add Sub Item</Button>
+                                                </div>
                                                 <SheetFooter>
                                                 </SheetFooter>
                                             </SheetContent>
@@ -354,9 +402,9 @@ const Navbar = () => {
                 </AdminItemContainer>
 
 
-                <div className='flex'>
+                {/* <div className='flex'>
                     <Button type='submit' className="cursor-pointer text-white text-[16px] w-full">Submit</Button>
-                </div>
+                </div> */}
 
             </form>
         </div>

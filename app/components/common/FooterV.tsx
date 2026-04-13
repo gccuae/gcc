@@ -4,7 +4,7 @@ import { assets } from "@/public/assets/assets";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { moveUp, fadeIn } from "../motionVarients";
-const FooterV = () => {
+const FooterV = ({ data }: any) => {
   return (
     <footer className="relative ">
       <div className="relative h-full">
@@ -18,7 +18,7 @@ const FooterV = () => {
           />
         </div>
         <div className="container relative z-2">
-          <div className="pt-8 lg:pt-15 pb-4 lg:pb-6 border-b border-para-color">
+          {!data.firstSection.hidden && <div className="pt-8 lg:pt-15 pb-4 lg:pb-6 border-b border-para-color">
             <motion.h2
               className="text-4xl font-normal leading-[1.147058823529412] text-white max-w-3xl"
               variants={moveUp(0)}
@@ -26,23 +26,26 @@ const FooterV = () => {
               whileInView="show"
               viewport={{ once: true, amount: 0.2 }}
             >
-              Innovating Spaces, Empowering Communities
+              {data.firstSection.title}
             </motion.h2>
-          </div>
+          </div>}
           <div className="grid gap-y-8 lg:grid-cols-2 xl:grid-cols-[6fr_4fr] pt-4 pb-4 xl:pt-27px xl:pb-27px border-b border-para-color">
             <div>
-              <div className="flex flex-col gap-2 lg:gap-3 pt-3 xl:pt-4 pb-5">
+              {!data.secondSection.hidden && <div className="flex flex-col gap-2 lg:gap-3 pt-3 xl:pt-4 pb-5">
                 <motion.p
-                  className="text-md font-light text-white leading-[1.526315789473684] max-w-[472px]"
+                  className="text-md font-light text-white leading-[1.526315789473684] max-w-[472px] flex flex-col"
                   variants={moveUp(0.2)}
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true, amount: 0.2 }}
                 >
-                  Gulf Contractors Company (GCC) LLC
+                  {/* Gulf Contractors Company (GCC) LLC
                   <br />
                   Suite No. 023, Liberty Tower, Khalifa St., P O Box 45363{" "}
-                  <br /> Abu Dhabi, UAE
+                  <br /> Abu Dhabi, UAE */}
+                  {data.secondSection.address.split("\n").map((item: any) => (
+                    <span>{item}</span>
+                  ))}
                 </motion.p>
                 <motion.div
                   className="flex items-center gap-4"
@@ -69,7 +72,7 @@ const FooterV = () => {
                   </div>
                   <Link
                     target="_blank"
-                    href="https://maps.app.goo.gl/peoXPWWJdxxXejpKA"
+                    href={data.secondSection.map}
                     className="text-md xl:text-xl font-normal text-white leading-[1.3125] hover:text-accent transition-all duration-300 cursor-pointer capitalize"
                   >
                     Get Directions
@@ -104,10 +107,10 @@ const FooterV = () => {
                       </defs>
                     </svg>
                   </div>
-                  <Link href="mailto:info@gcc.ae"
+                  <Link href={`mailto:${data.secondSection.email}`}
                     className="text-md xl:text-xl font-normal text-white leading-[1.3125] hover:text-accent transition-all duration-300"
                   >
-                    info@gcc.ae
+                    {data.secondSection.email}
                   </Link>
                 </motion.div>
                 <motion.div
@@ -163,15 +166,15 @@ const FooterV = () => {
                     </svg>
                   </div>
                   <Link
-                    href="tel:+97126267510"
+                    href={`tel:${data.secondSection.phone}`}
                     className="text-md xl:text-xl font-normal text-white leading-[1.3125] hover:text-accent transition-all duration-300"
                   >
-                    +971 2 626 7510
+                    {data.secondSection.phone}
                   </Link>
                 </motion.div>
-              </div>
+              </div>}
             </div>
-            <div>
+            {!data.thirdSection.hidden && <div>
               <motion.h3
                 variants={moveUp(0)}
                 initial="hidden"
@@ -179,7 +182,7 @@ const FooterV = () => {
                 viewport={{ once: true, amount: 0.2 }}
                 className="text-xl font-normal text-white leading-[1.3125] pb-4"
               >
-                Quick Links
+                {data.thirdSection.title}
               </motion.h3>
               <div className="flex gap-10">
                 <div>
@@ -272,31 +275,34 @@ const FooterV = () => {
                   </ul>
                 </div>
               </div>
-            </div>
+            </div>}
           </div>
           <div className="grid lg:grid-cols-2 xl:grid-cols-[6fr_4fr] pt-6 pb-8 xl:pt-8 xl:pb-27px gap-y-8">
-            <div className="flex flex-wrap gap-4 xl:gap-6">
-              <motion.div
-                className="flex items-center gap-2"
-                variants={moveUp(0)}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, amount: 0.2 }}
-              >
-                <Link href="https://www.linkedin.com/company/gccae/" className="flex items-center gap-2">
-                  <span className="text-mdgray text-md font-light leading-[1.578947368421053] uppercase hover:text-primary transition-all duration-300">
-                    LinkedIn
-                  </span>
-                  <Image
-                    src={assets.linkArrowGreen}
-                    alt="linkArrowGreen"
-                    width={22}
-                    height={22}
-                    className="w-5 h-5 xl:w-[10.97px] xl:h-auto"
-                  />
-                </Link>
-              </motion.div>
-              <motion.div
+            {!data.forthSection.hidden && <div className="flex flex-wrap gap-4 xl:gap-6">
+              {data.forthSection.items.map((item: any) => (
+                <motion.div
+                  className="flex items-center gap-2"
+                  variants={moveUp(0)}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true, amount: 0.2 }}
+                >
+                  <Link href={item.link} className="flex items-center gap-2">
+                    <span className="text-mdgray text-md font-light leading-[1.578947368421053] uppercase hover:text-primary transition-all duration-300">
+                      {item.title}
+                    </span>
+                    <Image
+                      src={assets.linkArrowGreen}
+                      alt="linkArrowGreen"
+                      width={22}
+                      height={22}
+                      className="w-5 h-5 xl:w-[10.97px] xl:h-auto"
+                    />
+                  </Link>
+                </motion.div>
+              ))}
+
+              {/* <motion.div
                 className="flex items-center gap-2"
                 variants={moveUp(0.1)}
                 initial="hidden"
@@ -335,21 +341,21 @@ const FooterV = () => {
                     className="w-5 h-5 xl:w-[10.97px] xl:h-auto"
                   />
                 </Link>
-              </motion.div>
-            </div>
-            <motion.div
+              </motion.div> */}
+            </div>}
+            {!data.fifthSection.hidden && <motion.div
               variants={moveUp(0.5)}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, amount: 0.2 }}
             >
               <a
-                href="#"
+                href={"#"}
                 className="bg-white text-para-color hover:bg-primary hover:text-white flex items-center justify-center rounded-4xl py-2 px-4 gap-2 transition-all
                duration-300 ease-in-out group max-w-fit "
               >
                 <span className="text-xs font-medium uppercase leading-[1.578947368421053]">
-                  Download Brochure
+                  {data.fifthSection.buttonText}
                 </span>
                 <svg
                   width="33"
@@ -393,7 +399,7 @@ const FooterV = () => {
                   />
                 </svg>
               </a>
-            </motion.div>
+            </motion.div>}
           </div>
         </div>
       </div>
