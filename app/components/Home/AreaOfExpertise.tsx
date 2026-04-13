@@ -150,7 +150,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
   }, [thumbsSwiper, mainSwiper]);
 
   return (
-    <section className="wrapper pt-30px md:pt-37px pb-5 overflow-hidden dark:bg-black">
+    <section className="wrapper pt-30px md:pt-37px pb-5 overflow-hidden bg-light-white dark:bg-black">
       <div>
         <div ref={headingRef} className="flex justify-between items-center container mb-6 xl:mb-[43px]" >
           <motion.h2
@@ -264,7 +264,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true }}
-                  className="container h-full slide-container grid md:grid-cols-2 xl:grid-cols-[6fr_4fr] items-start gap-3 md:gap-6 xl:gap-50px bg-white dark:bg-black group"
+                  className="container h-full slide-container grid md:grid-cols-2 xl:grid-cols-[6fr_4fr] items-start gap-3 md:gap-6 xl:gap-50px  group"
                 >
                   <div className="img-wrapper md:border-r-1 border-r-smgray dark:border-white/20 pr-4 xl:pr-[50px] pb-0 xl:py-5 relative">
                     <Image
