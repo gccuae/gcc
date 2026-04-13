@@ -26,6 +26,7 @@ export interface NumberSection {
 }
 
 export interface FirstSection {
+  hidden: boolean;
   buttonText: string;
   description: string;
   video: string;
