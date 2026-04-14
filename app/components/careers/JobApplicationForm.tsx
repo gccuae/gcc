@@ -71,9 +71,6 @@ const JobApplicationForm = ({ title }: { title: string }) => {
               <input {...register("firstName")} type="text" placeholder="First Name *"
                 className="w-full px-0 py-4 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:focus:border-white/50 dark:placeholder-white transition-colors duration-300"
               />
-              <span className="absolute left-0 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
-                First Name <span className="text-red-500">*</span>
-              </span>
               {errors.firstName && (
                 <p className="text-red-500 text-sm">
                   {errors.firstName.message}

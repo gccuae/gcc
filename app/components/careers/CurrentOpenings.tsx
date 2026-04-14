@@ -12,6 +12,10 @@ import { careerData } from "./type";
 
 const Select = dynamic(() => import("react-select"), { ssr: false });
 
+const isDarkMode = () =>
+  typeof document !== "undefined" &&
+  document.documentElement.classList.contains("dark");
+
 type FilterState = {
   jobType: string;
   department: string;
@@ -178,7 +182,7 @@ const CurrentOpenings = ({ data, jobs, departments, locations }: { data: careerD
   };
 
   return (
-    <section className="pt-57px">
+    <section className="pt-57px dark:bg-light-dark overflow-hidden">
       <div className="container">
         <div className="lg:mb-6 xl:mb-27px">
           <motion.h2
@@ -247,6 +251,9 @@ const CurrentOpenings = ({ data, jobs, departments, locations }: { data: careerD
                     }),
                     input: (base) => ({
                       ...base,
+                      color: isDarkMode() ? "#fff" : "#000",
+                      fontSize: "19px",
+                      fontWeight: 300,
                       margin: 0,
                       padding: 0,
                     }),

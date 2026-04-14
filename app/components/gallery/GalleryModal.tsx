@@ -21,32 +21,68 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
   const [thumbAtStart, setThumbAtStart] = useState(true);
   const [thumbAtEnd, setThumbAtEnd] = useState(false);
   const thumbsSwiperRef = useRef<SwiperType | null>(null);
+  const imageCount = item.images.length;
+  const hasImages = imageCount > 0;
 
   useEffect(() => {
     setMounted(true);
+    const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = previousOverflow;
     };
   }, []);
 
+  useEffect(() => {
+    if (!hasImages) {
+      setCurrentIndex(0);
+      return;
+    }
+
+    setCurrentIndex((prev) => Math.min(prev, imageCount - 1));
+  }, [hasImages, imageCount, item]);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onClose]);
+
   const goPrev = () => {
-    setCurrentIndex((prev) => (prev === 0 ? item.images.length - 1 : prev - 1));
+    if (!hasImages) return;
+
+    setCurrentIndex((prev) => (prev === 0 ? imageCount - 1 : prev - 1));
   };
 
   const goNext = () => {
-    setCurrentIndex((prev) => (prev === item.images.length - 1 ? 0 : prev + 1));
+    if (!hasImages) return;
+
+    setCurrentIndex((prev) => (prev === imageCount - 1 ? 0 : prev + 1));
   };
 
   const selectImage = (index: number) => {
+    if (!hasImages) return;
+
     setCurrentIndex(index);
   };
 
   useEffect(() => {
-    if (thumbsSwiperRef.current) {
-      thumbsSwiperRef.current.slideTo(currentIndex);
-      setThumbAtStart(thumbsSwiperRef.current.isBeginning);
-      setThumbAtEnd(thumbsSwiperRef.current.isEnd);
+    const swiper = thumbsSwiperRef.current;
+
+    if (swiper && !swiper.destroyed) {
+      swiper.slideTo(currentIndex);
+      swiper.update();
+      setThumbAtStart(swiper.isBeginning);
+      setThumbAtEnd(swiper.isEnd);
     }
   }, [currentIndex]);
 
@@ -54,6 +90,9 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
 
   return createPortal(
     <motion.div
+      role="dialog"
+      aria-modal="true"
+      aria-label={item.item}
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}
@@ -75,7 +114,7 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
               {item.item}
             </div>
 
-            <button onClick={onClose} className="absolute right-0 top-1/2 z-20 flex h-8 w-8 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/30 bg-black/40 text-2xl font-light text-white backdrop-blur-sm sm:h-10 sm:w-10 sm:text-[34px]" >
+            <button type="button" onClick={onClose} className="absolute right-0 top-1/2 z-20 flex h-8 w-8 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/30 bg-black/40 text-2xl font-light text-white backdrop-blur-sm sm:h-10 sm:w-10 sm:text-[34px]" >
               &times;
             </button>
           </div>
@@ -84,31 +123,46 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
           <div className="relative flex w-full flex-col items-center justify-center rounded-[12px]">
             {/* Prev */}
             <button
+              type="button"
               onClick={goPrev}
-              className="absolute left-2 top-1/2 z-20 -translate-y-1/2 cursor-pointer rounded-full bg-black/50 p-2 backdrop-blur-sm sm:left-0 sm:bg-transparent sm:p-0"
+              disabled={!hasImages}
+              className="absolute left-2 top-1/2 z-20 -translate-y-1/2 cursor-pointer rounded-full bg-black/50 p-2 backdrop-blur-sm disabled:cursor-default disabled:opacity-40 sm:left-0 sm:bg-transparent sm:p-0"
             >
               <SlArrowLeft className="h-4 w-4 text-white transition-all duration-300 hover:text-primary sm:h-[20px] sm:w-[20px] lg:h-[28px] lg:w-[28px]" />
             </button>
 
             {/* Image */}
-            <div className="relative mt-2 flex h-[240px] max-h-[70dvh] w-full items-center justify-center overflow-hidden rounded-[12px] sm:mt-4 sm:h-[320px] md:h-[420px] lg:mt-0 lg:w-[800px] lg:max-h-[640px] xl:w-[1000px] 2xl:w-[1264px]">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={item?.images[currentIndex]?.image}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.4, ease: "easeInOut" }}
-                  className="absolute inset-0"
-                >
-                  <Image src={item?.images[currentIndex]?.image} alt={`slide-${currentIndex}`} fill className="object-contain rounded-[12px]" sizes="(max-width: 768px) 100vw, 80vw" />
-                </motion.div>
-              </AnimatePresence>
+            <div className="relative mt-2 flex h-[240px] max-h-[70dvh] 3xl:max-h-[85dvh] w-full items-center justify-center overflow-hidden rounded-[12px] sm:mt-4 sm:h-[320px] md:h-[70vh] xl:h-[70vh] lg:mt-0 lg:w-[800px] lg:max-h-[640px] xl:w-[1000px] 2xl:w-[1264px]">
+              {hasImages ? (
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={item.images[currentIndex].image}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                    className="absolute inset-0"
+                  >
+                    <Image
+                      src={item.images[currentIndex].image}
+                      alt={`${item.item} image ${currentIndex + 1}`}
+                      fill
+                      className="h-auto rounded-[12px] object-contain"
+                      sizes="(max-width: 768px) 100vw, 80vw"
+                    />
+                  </motion.div>
+                </AnimatePresence>
+              ) : (
+                <div className="flex h-full w-full items-center justify-center rounded-[12px] border border-white/10 bg-white/5 px-6 text-center text-sm text-white/70 sm:text-base">
+                  No gallery images available for this item.
+                </div>
+              )}
             </div>
 
             {/* Next */}
-            <button onClick={goNext}
-              className="absolute right-2 top-1/2 z-20 -translate-y-1/2 cursor-pointer rounded-full bg-black/50 p-2 backdrop-blur-sm sm:right-0 sm:bg-transparent sm:p-0"
+            <button type="button" onClick={goNext}
+              disabled={!hasImages}
+              className="absolute right-2 top-1/2 z-20 -translate-y-1/2 cursor-pointer rounded-full bg-black/50 p-2 backdrop-blur-sm disabled:cursor-default disabled:opacity-40 sm:right-0 sm:bg-transparent sm:p-0"
             >
               <SlArrowRight className="h-4 w-4 text-white transition-all duration-300 hover:text-primary sm:h-[20px] sm:w-[20px] lg:h-[28px] lg:w-[28px]" />
             </button>
@@ -119,6 +173,7 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
             <button
               type="button"
               onClick={() => thumbsSwiperRef.current?.slidePrev()}
+              disabled={thumbAtStart || !hasImages}
               className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 ${
                 thumbAtStart ? "opacity-40 cursor-default" : "opacity-100 cursor-pointer"
               }`}
@@ -127,7 +182,10 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
             </button>
 
             <Swiper
+              key={`${item.item}-${currentIndex}`}
+              className="gallery-thumb-swiper"
               slidesPerView="auto"
+              initialSlide={currentIndex}
               spaceBetween={10}
               onSwiper={(swiper) => {
                 thumbsSwiperRef.current = swiper;
@@ -149,12 +207,16 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
 
                 return (
                   <SwiperSlide key={idx} className="!w-auto !h-auto">
-                    <div
+                    <button
+                      key={`${idx}-${isActive ? "active" : "inactive"}`}
+                      type="button"
                       onClick={() => selectImage(idx)}
-                      className="relative flex h-[56px] items-center justify-center overflow-hidden rounded-[9px] cursor-pointer transition-all duration-200 sm:h-[73px]"
+                      aria-label={`Show image ${idx + 1}`}
+                      aria-pressed={isActive}
+                      className="relative flex h-[56px] cursor-pointer items-center justify-center overflow-hidden rounded-[9px] transition-all duration-200 sm:h-[73px]"
                     >
                       <div
-                        className="relative rounded-[9px] w-full h-full flex items-center justify-center"
+                        className="relative flex h-full w-full items-center justify-center rounded-[9px]"
                         style={{
                           width: isActive ? "84px" : "64px",
                           height: isActive ? "56px" : "44px",
@@ -168,7 +230,7 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
                           <div className="absolute inset-0 bg-white/60 rounded-[9px] pointer-events-none transition-opacity duration-200" />
                         )}
                       </div>
-                    </div>
+                    </button>
                   </SwiperSlide>
                 );
               })}
@@ -177,6 +239,7 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
             <button
               type="button"
               onClick={() => thumbsSwiperRef.current?.slideNext()}
+              disabled={thumbAtEnd || !hasImages}
               className={`absolute right-0 top-1/2 -translate-y-1/2 z-20 ${
                 thumbAtEnd ? "opacity-40 cursor-default" : "opacity-100 cursor-pointer"
               }`}
