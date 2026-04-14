@@ -98,7 +98,7 @@ const DetailsTab = ({ data }: { data: ThirdSection }) => {
             <div>
               <motion.div variants={moveUp(0.2)} initial="hidden" animate="show"
                 className="text-lg leading-[1.380952380952381] !text-[#515151] dark:!text-white 
-                dark:[&_*]:!text-white/90 [&_p]:mb-2 xl:[&_p]:mb-4 [&_p:last-child]:mb-0 [&_span]:!text-[#515151]"
+                dark:[&_*]:!text-white/90 [&_p]:mb-2 xl:[&_p]:mb-4 [&_p:last-child]:mb-0 [&_span]:!text-[#515151] dark:[&_span]:!text-white/90"
               >
                 {parse(projectDetails[activeTab]?.description || "")}
               </motion.div>

@@ -15,7 +15,7 @@ const Cta = ({ data }: CtaProps) => {
       <div className="pointer-events-none select-none" aria-hidden="true">
         <Image src={data.image} alt={data.imageAlt} width={500} height={500} className="absolute inset-0 w-full h-full object-cover" />
       </div>
-      <div className="pointer-events-none absolute inset-0 z-10 h-full w-full bg-black/80 xl:bg-[linear-gradient(270deg,rgba(0,0,0,0.75)_41.12%,rgba(0,0,0,0.1875)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 z-10 h-full w-full opacity-80 xl:opacity-75 bg-gradient-to-l from-black to-black/80 xl:bg-gradient-to-l from-black to-black/25 " />
       <div className="container">
         <div className="relative z-10">
           <h2 className=" text-4xl xl:text-5xl leading-lh-text68 font-normal text-white mb-4 xl:mb-[87px]">

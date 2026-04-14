@@ -57,7 +57,7 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
-@media (max-width:1024px){
+@media (max-width:1024px) {
   :root {
     --spacing-57px: clamp(2.5rem, 5vw + 0.1em, 40px);
   }
@@ -341,12 +341,13 @@ h2 {
 .slideroverlay:after {
   content: "";
   z-index: 1;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.55) 45.64%, rgba(0, 0, 0, 0.85) 89.56%);
+  /* background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.55) 51%, rgba(0, 0, 0, 0.85) 100%); */
   width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
-
+  left: 0;
+  @apply bg-gradient-to-b from-black/80 from-0%  via-black/50 via-51% to-black/85 to-100%;
 }
 
 .area-of-expertise-thumbs .swiper-slide.swiper-slide-thumb-active .icon-wrapper {
@@ -470,7 +471,7 @@ header.modal-open {
 }
 
 .project-slider .swiper-button-prev {
-  @apply left-30px ;
+  @apply left-30px;
 }
 
 .project-slider .swiper-button-next svg,
@@ -587,6 +588,16 @@ header.modal-open {
 .dark .react-select__placeholder,
 .dark .react-select__single-value {
   color: white;
+}
+
+.react-select__input-container,
+.react-select__input-container input {
+  color: black !important;
+}
+
+.dark .react-select__input-container,
+.dark .react-select__input-container input {
+  color: white !important;
 }
 
 .select-down-arrow {
@@ -903,4 +914,8 @@ html {
 
 .vision-mission-section p span {
   @apply text-para-color dark:text-white;
+}
+
+.gallery-thumb-swiper .swiper-wrapper{
+  @apply flex items-center justify-center;
 }
