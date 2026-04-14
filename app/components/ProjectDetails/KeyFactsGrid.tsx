@@ -25,7 +25,7 @@ const KeyFactsGrid = ({ items }: KeyFactsGridProps) => {
           viewport={{ once: true }}
           initial="hidden"
           whileInView="show"
-          className="relative border-r border-transparent dark:border-[#3f3f3f] dark:border-white/20 pt-4 xl:pt-[22px] pb-4 xl:pb-[21px] group after:absolute after:top-4 after:bottom-4 after:-right-[10px] after:w-px after:bg-[#C2C2C2] dark:after:bg-white/20 after:content-[''] md:after:-right-[20px] xl:after:-right-[28px] 2xl:after:-right-[36px] [&:nth-child(2n)]:after:hidden lg:[&:nth-child(2n)]:after:block lg:[&:nth-child(4n)]:after:hidden last:after:hidden"
+          className="relative border-r border-transparent pt-4 xl:pt-[22px] pb-4 xl:pb-[21px] group after:absolute after:top-4 after:bottom-4 after:-right-[10px] after:w-px after:bg-[#C2C2C2] dark:after:bg-white/20 after:content-[''] md:after:-right-[20px] xl:after:-right-[28px] 2xl:after:-right-[36px] [&:nth-child(2n)]:after:hidden lg:[&:nth-child(2n)]:after:block lg:[&:nth-child(4n)]:after:hidden last:after:hidden"
         >
           {/* <div
             className={`flex ${index % 2 === 1 ? "justify-center" : "justify-start"} ${
@@ -43,7 +43,7 @@ const KeyFactsGrid = ({ items }: KeyFactsGridProps) => {
                   alt={item.imageAlt}
                   width={100}
                   height={100}
-                  className="w-10 h-auto xl:w-[62px]  transition-all duration-500 ease-out group-hover:brightness-0"
+                  className="w-10 h-auto xl:w-[62px] transition-all duration-500 ease-out group-hover:brightness-0 dark:group-hover:brightness-200"
                 />
               </div>
               <h3 className="text-xl sm:text-2xl xl:text-3xl leading-lh-text68 font-normal mb-3 md:mb-4 xl:mb-2 text-black dark:text-white transition-colors duration-500 ease-out group-hover:text-primary">

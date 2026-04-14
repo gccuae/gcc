@@ -56,9 +56,11 @@ const ProjectTitleCta = ({ title, href }: { title: string; href: string }) => {
     <Link
       href={href}
       onMouseEnter={() => setPlayTick((p) => p + 1)}
-      className="bg-light-white w-fit p-2 lg:p-4 min-w-[50%] flex items-center justify-between gap-4 group cursor-pointer"
+      className="bg-light-white inline-flex max-w-[85%] min-w-0 p-2 lg:p-4 items-center justify-between gap-4 group cursor-pointer"
     >
-      <h3 className="text-xl lg:text-2xl leading-normal font-normal text-black">{title}</h3>
+      <h3 className="min-w-0 flex-1 text-xl lg:text-2xl leading-normal font-normal text-black break-words">
+        {title}
+      </h3>
       <ArrowLoopIcon playTick={playTick} />
     </Link>
   );
@@ -299,11 +301,11 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
             }}
           >
           {loopItems.map((item, index) => (
-            <div key={index} className="overflow-hidden shrink-0 3xl:h-[633px]" style={{ width: `${slideWidth}px` }}>
+            <div key={index} className="overflow-hidden shrink-0 3xl:h-[533px]" style={{ width: `${slideWidth}px` }}>
               <motion.div
                 variants={moveUp((projectsCount ? index % projectsCount : index) * 0.15)}
                 initial="hidden" whileInView="show" viewport={{ once: true }}
-                className="relative h-[350px] xl:h-[450px] 3xl:h-[633px] w-full flex flex-col justify-end px-4 md:px-6 py-6 xl:py-8 group"
+                className="relative h-[350px] xl:h-[450px] 3xl:h-[533px] w-full flex flex-col justify-end px-4 md:px-6 py-6 xl:py-8 group"
               >
                 {/* Full-card image link — no setPointerCapture means click events
                     fire on this Link (not the viewport), so navigation works.
@@ -325,9 +327,8 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
                   />
                 </Link>
 
-                <div className={`relative z-10 transition-all duration-500 content-box ${activeIndex === index % projectsCount ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                  }`}>
-                  <Link href={`/projects/${item.slug}`} className="bg-black w-fit p-2 lg:px-5 lg:py-3 block">
+                <div className="relative z-10 max-w-full transition-all duration-500 content-box opacity-100 translate-y-0">
+                  <Link href={`/projects/${item.slug}`} className="bg-black inline-block max-w-full p-2 lg:px-5 lg:py-3">
                     <p className="text-lg leading-lh-text19 font-normal text-white !text-left">
                       {item.secondSection.projectType.name},{" "}
                       {item.secondSection.sector.name},{" "}
