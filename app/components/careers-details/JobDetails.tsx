@@ -4,7 +4,7 @@ import BtnPrimary from "../common/BtnPrimary";
 import { AnimatePresence, motion } from "framer-motion";
 import { moveUp } from "../../components/motionVarients";
 import { jobDetails } from "./data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import JobApplicationModal from "./JobApplicationModal";
 import { careerData } from "../careers/type";
@@ -20,6 +20,17 @@ const Modal = ({
   disableClose?: boolean;
   children: React.ReactNode;
 }) => {
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return (

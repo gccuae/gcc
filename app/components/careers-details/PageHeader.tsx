@@ -4,7 +4,7 @@ import BreadcrumbStd from "../common/BreadCrumbStd";
 import BtnPrimary from "../common/BtnPrimary";
 import { AnimatePresence, motion } from "framer-motion";
 import { moveLeft, moveUp } from "../motionVarients";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import JobApplicationModal from "./JobApplicationModal";
 import Image from "next/image";
 
@@ -19,6 +19,17 @@ const Modal = ({
   disableClose?: boolean;
   children: React.ReactNode;
 }) => {
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return (

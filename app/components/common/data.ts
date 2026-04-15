@@ -72,10 +72,10 @@ export const menuItems: MenuItem[] = [
         title: "News",
         url: "/news",
       },
-      {
-        title: "Blog",
-        url: "/blog",
-      },
+      // {
+      //   title: "Blog",
+      //   url: "/blog",
+      // },
       {
         title: "Gallery",
         url: "/gallery",
@@ -161,10 +161,10 @@ export const menuItemsV3: MenuItem[] = [
         title: "News",
         url: "/news",
       },
-      {
-        title: "Blog",
-        url: "/blog",
-      },
+      // {
+      //   title: "Blog",
+      //   url: "/blog",
+      // },
       {
         title: "Gallery",
         url: "/gallery",

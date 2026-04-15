@@ -50,8 +50,8 @@ export const jobApplicationSchema = z.object({
   currentLocation: z
     .string()
     .trim()
-    .min(1, "Nationality is required")
-    .min(3, "Nationality must be at least 3 characters"),
+    .min(1, "Current location is required")
+    .min(3, "Current location must be at least 3 characters"),
   coverLetter: fileSchema,
   resume: fileSchema,
 });
