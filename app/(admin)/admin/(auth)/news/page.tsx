@@ -195,8 +195,6 @@ const NewsPage = () => {
     return (
         <div className='flex flex-col gap-5'>
             <form className='flex flex-col gap-5' onSubmit={handleSubmit(handleAddNews)}>
-
-
                 <AdminItemContainer>
                     <Label className="" main>Banner</Label>
 

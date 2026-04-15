@@ -168,12 +168,12 @@ const JobApplicationModalForm = ({
         {/* Third Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="space-y-2">
-            <input
-              {...register("nationality")}
-              type="text"
-              placeholder="Nationality"
-              className="w-full px-0 py-3 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-foreground dark:placeholder-white"
-            />
+              <input
+                {...register("nationality")}
+                type="text"
+                placeholder="Nationality *"
+                className="w-full px-0 py-3 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-foreground dark:placeholder-white"
+              />
             {errors.nationality && (
               <p className="text-primary text-sm">
                 {errors.nationality.message}
@@ -272,9 +272,9 @@ const JobApplicationModalForm = ({
                   height={30}
                 />
                 <div className="flex flex-col lg:flex-row gap-1 lg:items-center">
-                  <span className="text-lg">
-                    {resumeFile ? resumeFile.name : "Upload Your Resume"}
-                  </span>
+                   <span className="text-lg">
+                      {resumeFile ? resumeFile.name : "Upload Your Resume *"}
+                    </span>
                   {resumeFile ? (
                     ""
                   ) : (

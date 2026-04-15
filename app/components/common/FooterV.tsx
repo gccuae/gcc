@@ -263,7 +263,7 @@ const FooterV = ({ data }: any) => {
                     >
                       <Link href="/qhse">Health Safety & Environmental</Link>
                     </motion.li> */}
-                    <motion.li
+                    {/* <motion.li
                       variants={moveUp(0.3)}
                       initial="hidden"
                       whileInView="show"
@@ -271,7 +271,7 @@ const FooterV = ({ data }: any) => {
                       className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300 "
                     >
                       <Link href="/blog">Blog</Link>
-                    </motion.li>
+                    </motion.li> */}
                   </ul>
                 </div>
               </div>

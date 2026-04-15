@@ -249,7 +249,7 @@ const JobApplicationForm = ({ title }: { title: string }) => {
                   </div>
                   <div className="text-para-color dark:text-white transition-colors flex flex-col xl:flex-row xl:items-center justify-between xl:gap-2">
                     <span className="text-lg">
-                      {resumeFile ? resumeFile.name : "Upload Your Resume"}
+                      {resumeFile ? resumeFile.name : "Upload Your Resume *"}
                     </span>
                     {resumeFile ? (
                       ""

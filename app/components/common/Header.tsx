@@ -4,7 +4,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import MobileNav from "./MobileNav";
 import Image from "next/image";
-import { menuItems } from "./data";
+// import { menuItems } from "./data";
 
 import { HoveredLink, Menu, MenuItem } from "../ui/navbar-menu";
 import { AnimatePresence, motion } from "framer-motion";
