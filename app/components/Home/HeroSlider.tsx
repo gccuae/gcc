@@ -38,7 +38,7 @@ const HeroSlider = ({ data, counterData, bannerStatus, numberStatus }: HeroSlide
         {!bannerStatus && <div className="slidermns h-full  container relative pt-10 md:pt-[130px] z-[9]">
           <Swiper
             modules={[Autoplay, EffectFade]}
-            autoplay={{ delay: 4000 }}
+            autoplay={{ delay: 6000 }}
             loop
             effect="fade"
             fadeEffect={{ crossFade: true }}
@@ -63,13 +63,13 @@ const HeroSlider = ({ data, counterData, bannerStatus, numberStatus }: HeroSlide
                     <motion.div variants={moveUp(1.8)} initial="hidden" animate="show" >
                       {
                         index === 0 && (
-                          <BtnPrimary link="/about-us" text="Explore Projects" bgtrans={true} borderwight={true} />
+                          <BtnPrimary link="/about-us" text="Read more" bgtrans={true} borderwight={true} />
                         )
                         
                       }
                       {
                         index === 1 && (
-                          <BtnPrimary link="/projects" text="Read more" bgtrans={true} borderwight={true}  />
+                          <BtnPrimary link="/projects" text="Explore Projects" bgtrans={true} borderwight={true}  />
                         )
 
                       }
