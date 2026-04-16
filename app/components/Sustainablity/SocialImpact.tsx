@@ -242,7 +242,7 @@ const SocialImpact = ({
                   initial="hidden"
                   animate="show"
                   viewport={{ once: true, amount: 0.1 }}
-                  className="text-xl text-white/80 font-normal leading-sm xl:leading-[1] group-hover:text-white transition-colors duration-300"
+                  className="text-xl text-white/80 font-normal leading-sm xl:leading-[1] max-w-[20ch] group-hover:text-white transition-colors duration-300"
                 >
                   {item.title}
                 </motion.h3>

@@ -23,7 +23,7 @@ const ExpertiseCard = ({ item, index }: ExpertiseCardProps) => {
             height={1500}
             className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-all duration-300"
           />
-          <div className="bg-white rounded-full border border-accent w-12 h-12 xl:w-20 xl:h-20 relative z-10 flex items-center justify-center xl:opacity-0 group-hover:opacity-100 transition-all duration-300">
+          <div className="bg-white rounded-full border border-accent w-12 h-12 xl:w-20 xl:h-20 relative z-[1] flex items-center justify-center xl:opacity-0 group-hover:opacity-100 transition-all duration-300">
             <Image src={assets.linkArrowGreen} alt={item.title} width={15} height={15}
               className="w-6 h-6 xl:w-[19px] xl:h-[19.05px] xl:translate-x-2 xl:translate-y-2 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300"
             />

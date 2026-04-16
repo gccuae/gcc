@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { menuItems } from "./data";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
@@ -10,10 +10,19 @@ import {
 } from "react-icons/fa";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
-import { Navbar } from "@/types/Common";
 
+type MobileNavItem = {
+  title: string;
+  url: string;
+  hidden?: boolean;
+  subItems: {
+    title: string;
+    url: string;
+    hidden?: boolean;
+  }[];
+};
 
-const MobileNav = ({data}:{data:Navbar}) => {
+const MobileNav = ({ items }: { items?: MobileNavItem[] }) => {
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
   const [menuOpen, setMenuOpen] = useState(false); // State for menu visibility
   // const [projectList, setProjectList] = useState<
@@ -111,11 +120,66 @@ const MobileNav = ({data}:{data:Navbar}) => {
   // useEffect(() => {
   //   handleFetchProjects();
   // }, []);
+
+  const navItems =
+    items && items.length > 0
+      ? items
+      : menuItems.map((item) => ({
+          title: item.title,
+          url: item.url,
+          hidden: false,
+          subItems: (item.children ?? []).map((child) => ({
+            title: child.title,
+            url: child.url,
+            hidden: false,
+          })),
+        }));
+
+  useEffect(() => {
+    if (!menuOpen) {
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+      return;
+    }
+
+    const scrollY = window.scrollY;
+
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+
+    return () => {
+      const bodyTop = document.body.style.top;
+      const lockedScrollY = bodyTop ? Math.abs(parseInt(bodyTop, 10)) : 0;
+
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+
+      if (menuOpen) {
+        window.scrollTo(0, lockedScrollY);
+      }
+    };
+  }, [menuOpen]);
+
   return (
     <>
 
       {/* Navbar */}
-      <nav className="w-full bg-white text-black dark:bg-black dark:text-white tanspheader py-4 top-0 z-10 transition-colors duration-300">
+      <nav className="sticky top-0 w-full bg-white text-black dark:bg-black dark:text-white tanspheader py-4 z-50 transition-colors duration-300">
         <div className="container mx-auto flex items-center justify-between">
           <div>
             <div className="flex items-center">
@@ -178,42 +242,53 @@ const MobileNav = ({data}:{data:Navbar}) => {
           </div>
           {/* Navigation Items */}
           <ul className="flex flex-col gap-4">
-            {data.navSection.items.map((item, index) =>
-              item.subItems ? (
-                !item.hidden ? (<li key={index}>
-                  <div className="pb-2 flex justify-between items-center cursor-pointer uppercase"
-                    onClick={() =>
-                      setActiveDropdown(activeDropdown === index ? null : index)
-                    }>
-                    <span className="font-semibold">{item.title}</span>
-                    <ChevronDown
-                      className={`transition-transform duration-300 ${activeDropdown === index ? "rotate-180" : ""
+            {navItems
+              .filter((item) => !item.hidden)
+              .map((item, index) => {
+              if (item.subItems.length > 0) {
+                return (
+                  <li key={index}>
+                    <div
+                      className="pb-2 flex justify-between items-center cursor-pointer uppercase"
+                      onClick={() =>
+                        setActiveDropdown(activeDropdown === index ? null : index)
+                      }
+                    >
+                      <span className="font-semibold">{item.title}</span>
+                      <ChevronDown
+                        className={`transition-transform duration-300 ${
+                          activeDropdown === index ? "rotate-180" : ""
                         }`}
-                    />
-                  </div>
-                  {/* Dropdown */}
-                  {activeDropdown === index && (
-                    <ul className="">
-                      {item.subItems.map((childItem, childIndex) => (
-                        !childItem.hidden ? (<Link
-                          href={childItem.url}
-                          onClick={() => setMenuOpen(false)}>
-                      <li key={childIndex} className="py-1 text-black dark:text-white">
-                            {childItem.title}
+                      />
+                    </div>
+                    {activeDropdown === index && (
+                      <ul>
+                        {item.subItems
+                          .filter((childItem) => !childItem.hidden)
+                          .map((childItem, childIndex) => (
+                          <li key={childIndex} className="py-1 text-black dark:text-white">
+                            <Link
+                              href={childItem.url}
+                              onClick={() => setMenuOpen(false)}
+                            >
+                              {childItem.title}
+                            </Link>
                           </li>
-                        </Link>) : null
-                      ))}
-                    </ul>
-                  )}
-                </li>) : null
-              ) : (
-                !item.hidden ? (<Link href={item.url} onClick={() => setMenuOpen(false)} className="font-semibold">
-                  <li key={index} className="pb-2 uppercase">
-                    {item.title}
+                        ))}
+                      </ul>
+                    )}
                   </li>
-                </Link>) : null
-              )
-            )}
+                );
+              }
+
+              return (
+                <li key={index} className="pb-2 uppercase font-semibold">
+                  <Link href={item.url} onClick={() => setMenuOpen(false)}>
+                    {item.title}
+                  </Link>
+                </li>
+              );
+            })}
 
             {/* Contact Link */}
             <li className="uppercase">
