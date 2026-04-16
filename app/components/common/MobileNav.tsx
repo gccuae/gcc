@@ -229,42 +229,49 @@ const MobileNav = ({ items }: { items?: MobileNavItem[] }) => {
           </div>
           {/* Navigation Items */}
           <ul className="flex flex-col gap-4">
-            {navItems.map((item, index) =>
-              item.subItems.length > 0 ? (
-                <li key={index}>
-                  <div className="pb-2 flex justify-between items-center cursor-pointer uppercase"
-                    onClick={() =>
-                      setActiveDropdown(activeDropdown === index ? null : index)
-                    }>
-                    <span className="font-semibold">{item.title}</span>
-                    <ChevronDown
-                      className={`transition-transform duration-300 ${activeDropdown === index ? "rotate-180" : ""
+            {navItems.map((item, index) => {
+              if (item.subItems.length > 0) {
+                return (
+                  <li key={index}>
+                    <div
+                      className="pb-2 flex justify-between items-center cursor-pointer uppercase"
+                      onClick={() =>
+                        setActiveDropdown(activeDropdown === index ? null : index)
+                      }
+                    >
+                      <span className="font-semibold">{item.title}</span>
+                      <ChevronDown
+                        className={`transition-transform duration-300 ${
+                          activeDropdown === index ? "rotate-180" : ""
                         }`}
-                    />
-                  </div>
-                  {/* Dropdown */}
-                  {activeDropdown === index && (
-                    <ul className="">
-                      {item.subItems.map((childItem, childIndex) => (
-                        <li key={childIndex} className="py-1 text-black dark:text-white">
-                          <Link
-                            href={childItem.url}
-                            onClick={() => setMenuOpen(false)}>
-                            {childItem.title}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              ) : (
+                      />
+                    </div>
+                    {activeDropdown === index && (
+                      <ul>
+                        {item.subItems.map((childItem, childIndex) => (
+                          <li key={childIndex} className="py-1 text-black dark:text-white">
+                            <Link
+                              href={childItem.url}
+                              onClick={() => setMenuOpen(false)}
+                            >
+                              {childItem.title}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                );
+              }
+
+              return (
                 <li key={index} className="pb-2 uppercase font-semibold">
                   <Link href={item.url} onClick={() => setMenuOpen(false)}>
                     {item.title}
                   </Link>
                 </li>
-              )
-            )}
+              );
+            })}
 
             {/* Contact Link */}
             <li className="uppercase">
