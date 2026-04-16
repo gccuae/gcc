@@ -10,9 +10,17 @@ import {
 } from "react-icons/fa";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
-import { Navbar } from "@/types/Common";
 
-type MobileNavItem = Navbar["navSection"]["items"][number];
+type MobileNavItem = {
+  title: string;
+  url: string;
+  hidden?: boolean;
+  subItems: {
+    title: string;
+    url: string;
+    hidden?: boolean;
+  }[];
+};
 
 const MobileNav = ({ items }: { items?: MobileNavItem[] }) => {
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
@@ -119,7 +127,12 @@ const MobileNav = ({ items }: { items?: MobileNavItem[] }) => {
       : menuItems.map((item) => ({
           title: item.title,
           url: item.url,
-          subItems: item.children ?? [],
+          hidden: false,
+          subItems: (item.children ?? []).map((child) => ({
+            title: child.title,
+            url: child.url,
+            hidden: false,
+          })),
         }));
 
   useEffect(() => {
@@ -229,7 +242,9 @@ const MobileNav = ({ items }: { items?: MobileNavItem[] }) => {
           </div>
           {/* Navigation Items */}
           <ul className="flex flex-col gap-4">
-            {navItems.map((item, index) => {
+            {navItems
+              .filter((item) => !item.hidden)
+              .map((item, index) => {
               if (item.subItems.length > 0) {
                 return (
                   <li key={index}>
@@ -248,7 +263,9 @@ const MobileNav = ({ items }: { items?: MobileNavItem[] }) => {
                     </div>
                     {activeDropdown === index && (
                       <ul>
-                        {item.subItems.map((childItem, childIndex) => (
+                        {item.subItems
+                          .filter((childItem) => !childItem.hidden)
+                          .map((childItem, childIndex) => (
                           <li key={childIndex} className="py-1 text-black dark:text-white">
                             <Link
                               href={childItem.url}
