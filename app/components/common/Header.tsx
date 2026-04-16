@@ -84,7 +84,7 @@ const Header = ({data}:{data:Navbar}) => {
   // }, []);
 
   if (isMobile) {
-    return <MobileNav />;
+    return <MobileNav items={data.navSection.items} />;
   } else if (isMobile == null) {
     return null;
   } else {

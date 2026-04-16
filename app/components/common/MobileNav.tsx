@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { menuItems } from "./data";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
@@ -10,9 +10,11 @@ import {
 } from "react-icons/fa";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
+import { Navbar } from "@/types/Common";
 
+type MobileNavItem = Navbar["navSection"]["items"][number];
 
-const MobileNav = () => {
+const MobileNav = ({ items }: { items?: MobileNavItem[] }) => {
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
   const [menuOpen, setMenuOpen] = useState(false); // State for menu visibility
   // const [projectList, setProjectList] = useState<
@@ -110,11 +112,61 @@ const MobileNav = () => {
   // useEffect(() => {
   //   handleFetchProjects();
   // }, []);
+
+  const navItems =
+    items && items.length > 0
+      ? items
+      : menuItems.map((item) => ({
+          title: item.title,
+          url: item.url,
+          subItems: item.children ?? [],
+        }));
+
+  useEffect(() => {
+    if (!menuOpen) {
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+      return;
+    }
+
+    const scrollY = window.scrollY;
+
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+
+    return () => {
+      const bodyTop = document.body.style.top;
+      const lockedScrollY = bodyTop ? Math.abs(parseInt(bodyTop, 10)) : 0;
+
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+
+      if (menuOpen) {
+        window.scrollTo(0, lockedScrollY);
+      }
+    };
+  }, [menuOpen]);
+
   return (
     <>
 
       {/* Navbar */}
-      <nav className="w-full bg-white text-black dark:bg-black dark:text-white tanspheader py-4 top-0 z-10 transition-colors duration-300">
+      <nav className="sticky top-0 w-full bg-white text-black dark:bg-black dark:text-white tanspheader py-4 z-50 transition-colors duration-300">
         <div className="container mx-auto flex items-center justify-between">
           <div>
             <div className="flex items-center">
@@ -177,8 +229,8 @@ const MobileNav = () => {
           </div>
           {/* Navigation Items */}
           <ul className="flex flex-col gap-4">
-            {menuItems.map((item, index) =>
-              item.children ? (
+            {navItems.map((item, index) =>
+              item.subItems.length > 0 ? (
                 <li key={index}>
                   <div className="pb-2 flex justify-between items-center cursor-pointer uppercase"
                     onClick={() =>
@@ -193,24 +245,24 @@ const MobileNav = () => {
                   {/* Dropdown */}
                   {activeDropdown === index && (
                     <ul className="">
-                      {item.children.map((childItem, childIndex) => (
-                        <Link
-                          href={childItem.url}
-                          onClick={() => setMenuOpen(false)}>
-                      <li key={childIndex} className="py-1 text-black dark:text-white">
+                      {item.subItems.map((childItem, childIndex) => (
+                        <li key={childIndex} className="py-1 text-black dark:text-white">
+                          <Link
+                            href={childItem.url}
+                            onClick={() => setMenuOpen(false)}>
                             {childItem.title}
-                          </li>
-                        </Link>
+                          </Link>
+                        </li>
                       ))}
                     </ul>
                   )}
                 </li>
               ) : (
-                <Link href={item.url} onClick={() => setMenuOpen(false)} className="font-semibold">
-                  <li key={index} className="pb-2 uppercase">
+                <li key={index} className="pb-2 uppercase font-semibold">
+                  <Link href={item.url} onClick={() => setMenuOpen(false)}>
                     {item.title}
-                  </li>
-                </Link>
+                  </Link>
+                </li>
               )
             )}
 

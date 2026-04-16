@@ -82,7 +82,15 @@ const HeaderV3 = () => {
   // }, []);
 
   if (isMobile) {
-    return <MobileNav />;
+    return (
+      <MobileNav
+        items={menuItemsV3.map((item) => ({
+          title: item.title,
+          url: item.url,
+          subItems: item.children ?? [],
+        }))}
+      />
+    );
   } else if (isMobile == null) {
     return null;
   } else {

@@ -163,7 +163,7 @@ const ProjectSlider = ({ data }: ProjectSliderProps) => {
               className="project-slider relative h-full"
             >
               {images.map((image, index) => (
-                <SwiperSlide key={index} className="relative md:max-h-[715px]">
+                <SwiperSlide key={index} className="relative lg:max-h-[715px]">
                   <Image
                     src={image}
                     width={1920}

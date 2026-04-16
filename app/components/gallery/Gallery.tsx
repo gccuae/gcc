@@ -1,4 +1,4 @@
-"use client";
+ "use client";
 
 import React, { useRef, useState } from "react";
 import { assets } from "@/public/assets/assets";
@@ -30,13 +30,7 @@ const GalleryCard: React.FC<{
             className={`w-8 h-8 xl:w-[50px] xl:h-[50px] rounded-full overflow-hidden border-1 border-white shadow-sm ${index % 2 === 0 ? "" : "-ml-2"
               }`}
           >
-            <Image
-              width={50}
-              height={50}
-              src={image.image}
-              alt={`Thumbnail ${index + 1}`}
-              className="w-full h-full object-cover"
-            />
+            <Image width={50} height={50} src={image.image} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
           </div>
           {isLast && hasMoreThan9 && (
             <div className="absolute inset-0 bg-black/38 rounded-full flex items-center justify-center">
@@ -51,7 +45,7 @@ const GalleryCard: React.FC<{
   };
 
   return (
-    <div className="overflow-hidden transition-transform group border-b dark:border-white/20 hover:border-primary transition-colors duration-300 cursor-pointer" onClick={() => item.images.length > 0 && onOpenModal(item)}>
+    <div className="flex h-full flex-col overflow-hidden group border-b dark:border-white/20 hover:border-primary transition-colors duration-300 cursor-pointer" onClick={() => item.images.length > 0 && onOpenModal(item)}>
       {/* Header Image */}
       <div
         className="relative h-48 xl:h-[475px] overflow-hidden cursor-pointer"
@@ -73,8 +67,8 @@ const GalleryCard: React.FC<{
       </div>
 
       {/* Card Content */}
-      <div className="flex items-center justify-between py-5 xl:py-8">
-        <h3 className="text-xl lg:text-2xl leading-[1] font-normal text-black dark:text-white">
+      <div className="flex flex-1 items-end justify-between gap-4 py-5 xl:py-8">
+        <h3 className="flex-1 text-xl lg:text-2xl leading-[1] font-normal text-black dark:text-white">
           {item.item}
         </h3>
 
@@ -117,6 +111,7 @@ const Gallery: React.FC<{ data: GalleryType }> = ({ data }) => {
           {data.items.slice(0, visibleCount + 1).map((item, index) => (
             <motion.div
               key={index}
+              className="h-full"
               variants={moveUp(index * 0.13)}
               initial="hidden"
               whileInView="show"

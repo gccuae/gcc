@@ -59,7 +59,7 @@ const EnvironmentModal: React.FC<EnvironmentModalProps> = ({
         {/* Modal Content */}
         <div className="relative z-10 w-full overflow-y-auto">
           {/* Header with centered title and right-aligned close button */}
-          <div className="relative flex items-center justify-center mb-[15px]">
+          <div className="relative flex items-center justify-center mb-[15px] xl:w-[1000px] 2xl:w-[1264px] mx-auto">
             {/* Centered Title */}
             <div className="absolute left-1/2 transform -translate-x-1/2 text-black text-xl xl:text-2xl leading-lh-text32 md:text-center w-full dark:text-white">
               {item.title}
@@ -85,7 +85,7 @@ const EnvironmentModal: React.FC<EnvironmentModalProps> = ({
             </button>
 
             {/* Image Container */}
-            <div className="relative mt-10 lg:mt-0 w-full lg:w-[800px] rounded-[12px] xl:w-[1000px] 2xl:w-[1264px] h-[250px] 2xl:h-[500px] 3xl:h-[600px] max-h-[800px] flex items-center justify-center overflow-hidden">
+            <div className="relative mt-10 lg:mt-0 w-full lg:w-[800px] rounded-[12px] xl:w-[1000px] 2xl:w-[1264px] h-[60dvh] 2xl:h-[60dvh] 3xl:h-[600px] max-h-[800px] flex items-center justify-center overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={item.images[currentIndex]?.image}
@@ -96,7 +96,7 @@ const EnvironmentModal: React.FC<EnvironmentModalProps> = ({
                   className="absolute inset-0"
                 >
                   <Image src={item.images[currentIndex]?.image} alt={`slide-${currentIndex}`} fill
-                   className="object-cover h-full object-top rounded-[12px] w-auto" sizes="(max-width: 768px) 100vw, 80vw" />
+                   className="object-cover h-full object-top rounded-[12px] w-auto min-h-[70dvh]" sizes="(max-width: 768px) 100vw, 80vw" />
                 </motion.div>
               </AnimatePresence>
             </div>

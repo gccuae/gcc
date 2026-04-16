@@ -125,7 +125,7 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
                 </SwiperSlide>
               ))}
             </Swiper>
-            <div className="absolute left-0 right-0 bottom-2/7 xl:bottom-[120px] z-50 flex h-10 w-full translate-y-1/2 items-center justify-between gap-4 sm:bottom-[140px] md:right-[-10px] md:left-auto md:top-2/4 md:bottom-auto md:h-[50px] md:w-[50px] md:translate-y-0 md:justify-center md:bg-black xl:top-4/6 xl:-right-12 xl:h-[94px] xl:w-[94px] rounded-full xl:gap-6">
+            <div className="absolute left-0 right-0 bottom-2/7 xl:bottom-[120px] z-10 flex h-10 w-full translate-y-1/2 items-center justify-between gap-4 sm:bottom-[140px] md:right-[-10px] md:left-auto md:top-2/4 md:bottom-auto md:h-[50px] md:w-[50px] md:translate-y-0 md:justify-center md:bg-black xl:top-4/6 xl:-right-12 xl:h-[94px] xl:w-[94px] rounded-full xl:gap-6">
               <button ref={prevRef} className="text-accent w-10 h-10 md:w-2 xl:w-[12px] md:h-auto bg-black border border-white/20 md:border-0 md:bg-transparent rounded-full flex items-center justify-center cursor-pointer">
                 <svg width="15" height="26" viewBox="0 0 15 26" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 md:w-full md:h-full">
                   <path d="M14 1L2 13L14 25" stroke="#7AC142" strokeWidth="2" strokeLinecap="round" />
