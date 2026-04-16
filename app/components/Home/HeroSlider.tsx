@@ -51,13 +51,13 @@ const HeroSlider = ({ data, counterData, bannerStatus, numberStatus }: HeroSlide
           >
             {data.map((slide, index) => (
               <SwiperSlide key={index}>
-                <div className="  w-full h-full  ">
+                <div className="w-full h-full">
                   
                   <motion.div key={animationKey} initial="hidden" animate="show" variants={moveUp(0)} >
                     <motion.h2 variants={moveUp(0.5)} initial="hidden" animate="show" className="text-white text-6xl font-normal max-w-[20ch] leading-[1.180555555555556] " >
                       {slide.title}
                     </motion.h2>
-                    <motion.p variants={moveUp(1.25)} initial="hidden" animate="show" className="text-white text-lg lg:text-xl font-light max-w-[73ch] leading-[1.521739130434783] pt-[35px] pb-[35px]" >
+                    <motion.p variants={moveUp(1.25)} initial="hidden" animate="show" className="text-white text-lg lg:text-xl font-light max-w-[73ch] leading-[1.521739130434783] py-5 md:py-6 xl:py-[35px]" >
                       {slide.description}
                     </motion.p>
                     <motion.div variants={moveUp(1.8)} initial="hidden" animate="show" >
@@ -129,7 +129,7 @@ const HeroSlider = ({ data, counterData, bannerStatus, numberStatus }: HeroSlide
                       {parseCounterValue(counterData[0].number).suffix}
                     </p>
                   </div>
-                  <p className="uppercase font-light text-base xl:text-lg leading-[1]">Years of Expertise</p>
+                  <p className="uppercase font-light text-base xl:text-lg leading-[1.2]">Years of Expertise</p>
                 </div>
               </div>
             </motion.div>
@@ -149,7 +149,7 @@ const HeroSlider = ({ data, counterData, bannerStatus, numberStatus }: HeroSlide
                       {parseCounterValue(counterData[1].number).suffix}
                     </p>
                   </div>
-                  <p className="uppercase font-light text-base xl:text-lg leading-[1]">
+                  <p className="uppercase font-light text-base xl:text-lg leading-[1.2]">
                     {" "}
                     Portfolio Value{" "}
                   </p>
@@ -171,7 +171,7 @@ const HeroSlider = ({ data, counterData, bannerStatus, numberStatus }: HeroSlide
                       {parseCounterValue(counterData[2].number).suffix}
                     </p>
                  </div>
-                  <p className="uppercase font-light text-base xl:text-lg leading-[1]">
+                  <p className="uppercase font-light text-base xl:text-lg leading-[1.2]">
                     Projects Completed
                   </p>
                 </div>
@@ -184,15 +184,11 @@ const HeroSlider = ({ data, counterData, bannerStatus, numberStatus }: HeroSlide
                   <div className="min-h-12 xl:min-h-20 3xl:min-h-22">
                     <p className="text-2xl md:text-3xl xl:text-4xl 2xl:text-5xl font-normal leading-[0.7352941176470588] mb-4 lg:mb-6 transition-transform duration-500  ease-in-out group-hover:translate-y-1">
                       {parseCounterValue(counterData[3].number).prefix}
-                      <Counter
-                        from={0}
-                        to={parseCounterValue(counterData[3].number).number}
-                        duration={2}
-                      />
+                      <Counter from={0} to={parseCounterValue(counterData[3].number).number} duration={2} />
                       {parseCounterValue(counterData[3].number).suffix}
                     </p>
                   </div>
-                  <p className="uppercase font-light text-base xl:text-lg  leading-[1]"> Dedicated Manpower </p>
+                  <p className="uppercase font-light text-base xl:text-lg  leading-[1.2]"> Dedicated Manpower </p>
                 </div>
               </div>
             </motion.div>
