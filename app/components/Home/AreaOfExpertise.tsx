@@ -13,8 +13,7 @@ import BtnPrimary from "../common/BtnPrimary";
 import { motion } from "framer-motion";
 import { fadeIn, moveUp } from "../motionVarients";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Thumbs, Autoplay, Navigation } from "swiper/modules";
-import "swiper/css/navigation";
+import { Thumbs, Autoplay } from "swiper/modules";
 import { SecondSection } from "../expertise/type";
 
 interface AreaOfExpertiseProps {
@@ -22,36 +21,31 @@ interface AreaOfExpertiseProps {
 }
 
 const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
+  const expertiseItems = data.items.filter((item) => item.status !== "draft");
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
   const [mainSwiper, setMainSwiper] = useState<SwiperType | null>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const [leftOffset, setLeftOffset] = useState(0);
   const prevRef = useRef<HTMLDivElement>(null);
   const nextRef = useRef<HTMLDivElement>(null);
-  const [canClick, setCanClick] = useState(true);
+  const isNavigatingRef = useRef(false);
 
   const handlePrev = () => {
-    if (!canClick || !thumbsSwiper || !mainSwiper) return;
+    if (!mainSwiper || isNavigatingRef.current || mainSwiper.animating) return;
 
-    setCanClick(false); // lock further clicks
-
-    // Slide both swipers immediately
-    thumbsSwiper.slidePrev();
+    isNavigatingRef.current = true;
+    mainSwiper.autoplay?.stop();
     mainSwiper.slidePrev();
-
-    // Unlock clicks after 600ms
-    setTimeout(() => setCanClick(true), 200);
+    mainSwiper.autoplay?.start();
   };
 
   const handleNext = () => {
-    if (!canClick || !thumbsSwiper || !mainSwiper) return;
+    if (!mainSwiper || isNavigatingRef.current || mainSwiper.animating) return;
 
-    setCanClick(false); // lock further clicks
-
-    thumbsSwiper.slideNext();
+    isNavigatingRef.current = true;
+    mainSwiper.autoplay?.stop();
     mainSwiper.slideNext();
-
-    setTimeout(() => setCanClick(true), 200);
+    mainSwiper.autoplay?.start();
   };
 
   useEffect(() => {
@@ -68,7 +62,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
 
   const handleSlideHover = (index: number) => {
     if (mainSwiper) {
-      mainSwiper.slideTo(index);
+      mainSwiper.slideToLoop(index);
       mainSwiper.autoplay?.stop();
       mainSwiper.autoplay?.start();
     }
@@ -118,23 +112,6 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
     };
   }, []);
 
-  useEffect(() => {
-    if (
-      thumbsSwiper &&
-      prevRef.current &&
-      nextRef.current &&
-      thumbsSwiper.params.navigation &&
-      thumbsSwiper.params.navigation !== true
-    ) {
-      thumbsSwiper.params.navigation.prevEl = prevRef.current;
-      thumbsSwiper.params.navigation.nextEl = nextRef.current;
-
-      thumbsSwiper.navigation.destroy();
-      thumbsSwiper.navigation.init();
-      thumbsSwiper.navigation.update();
-    }
-  }, [thumbsSwiper]);
-
   // Pause main swiper autoplay when hovering over thumbs swiper
   useEffect(() => {
     if (!thumbsSwiper || !mainSwiper) return;
@@ -148,6 +125,21 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
       el.removeEventListener("mouseleave", handleLeave);
     };
   }, [thumbsSwiper, mainSwiper]);
+
+  useEffect(() => {
+    if (!mainSwiper || !thumbsSwiper) return;
+
+    const handleTransitionEnd = () => {
+      thumbsSwiper.slideToLoop(mainSwiper.realIndex);
+      isNavigatingRef.current = false;
+    };
+
+    mainSwiper.on("slideChangeTransitionEnd", handleTransitionEnd);
+
+    return () => {
+      mainSwiper.off("slideChangeTransitionEnd", handleTransitionEnd);
+    };
+  }, [mainSwiper, thumbsSwiper]);
 
   return (
     <section className="wrapper pt-30px md:pt-37px pb-5 overflow-hidden bg-light-white dark:bg-black">
@@ -200,7 +192,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
             onSwiper={setThumbsSwiper}
             spaceBetween={20}
             slidesPerView={4}
-            modules={[Thumbs, Autoplay, Navigation]}
+            modules={[Thumbs, Autoplay]}
             allowTouchMove={false}
             loop={true}
             breakpoints={{
@@ -211,7 +203,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
             }}
             watchSlidesProgress
           >
-            {data.items.filter((item)=>item.status !== "draft").map((item, index) => (
+            {expertiseItems.map((item, index) => (
               <SwiperSlide key={item._id} className="sliderexp cursor-pointer transition mb-4 xl:mb-5 group" onClick={() => handleSlideHover(index)} >
                 <div className="exp-icon-div pb-4 mb-6 xl:pb-[30px] xl:mb-[15px] relative flex items-center gap-5">
                   <motion.div
@@ -257,7 +249,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
             }}
             className="px-6"
           >
-            {data.items.map((item) => (
+            {expertiseItems.map((item) => (
               <SwiperSlide key={item._id}>
                 <motion.div
                   variants={moveUp(0.17)}
@@ -266,7 +258,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                   viewport={{ once: true }}
                   className="container h-full slide-container grid md:grid-cols-2 xl:grid-cols-[6fr_4fr] items-start gap-3 md:gap-6 xl:gap-50px  group"
                 >
-                  <div className="img-wrapper md:border-r-1 border-r-smgray dark:border-white/20 pr-4 xl:pr-[50px] pb-0 xl:py-5 relative">
+                  <div className="img-wrapper md:border-r-1 border-r-smgray dark:border-white/20 md:pr-4 xl:pr-[50px] pb-0 xl:py-5 relative">
                     <Image
                       src={item.homeThumbnail}
                       alt={item.homeThumbnailAlt}
@@ -279,7 +271,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                     <h3 className="text-2xl font-normal leading-[1.2] mb-2 xl:mb-5 dark:text-white hover:text-primary transition-all duration-300">
                       {item.title}
                     </h3>
-                    <p className="slide-text text-lg font-[300] leading-[1.526315789473684] text-para-color dark:text-white/80 transition-all duration-300 w-full">
+                    <p className="text-lg font-[300] leading-[1.526315789473684] text-para-color dark:text-white/80 transition-all duration-300 w-full">
                       {item.description}
                     </p>
                     <div className="lg:slide-btn mt-6 xl:mt-[43px] mb-4">
