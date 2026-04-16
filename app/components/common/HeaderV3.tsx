@@ -82,7 +82,8 @@ const HeaderV3 = () => {
   // }, []);
 
   if (isMobile) {
-    return <MobileNav />;
+    // return <MobileNav />;
+    return null
   } else if (isMobile == null) {
     return null;
   } else {
