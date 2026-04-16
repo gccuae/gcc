@@ -10,9 +10,10 @@ import {
 } from "react-icons/fa";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
+import { Navbar } from "@/types/Common";
 
 
-const MobileNav = () => {
+const MobileNav = ({data}:{data:Navbar}) => {
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
   const [menuOpen, setMenuOpen] = useState(false); // State for menu visibility
   // const [projectList, setProjectList] = useState<
@@ -177,9 +178,9 @@ const MobileNav = () => {
           </div>
           {/* Navigation Items */}
           <ul className="flex flex-col gap-4">
-            {menuItems.map((item, index) =>
-              item.children ? (
-                <li key={index}>
+            {data.navSection.items.map((item, index) =>
+              item.subItems ? (
+                !item.hidden ? (<li key={index}>
                   <div className="pb-2 flex justify-between items-center cursor-pointer uppercase"
                     onClick={() =>
                       setActiveDropdown(activeDropdown === index ? null : index)
@@ -193,24 +194,24 @@ const MobileNav = () => {
                   {/* Dropdown */}
                   {activeDropdown === index && (
                     <ul className="">
-                      {item.children.map((childItem, childIndex) => (
-                        <Link
+                      {item.subItems.map((childItem, childIndex) => (
+                        !childItem.hidden ? (<Link
                           href={childItem.url}
                           onClick={() => setMenuOpen(false)}>
                       <li key={childIndex} className="py-1 text-black dark:text-white">
                             {childItem.title}
                           </li>
-                        </Link>
+                        </Link>) : null
                       ))}
                     </ul>
                   )}
-                </li>
+                </li>) : null
               ) : (
-                <Link href={item.url} onClick={() => setMenuOpen(false)} className="font-semibold">
+                !item.hidden ? (<Link href={item.url} onClick={() => setMenuOpen(false)} className="font-semibold">
                   <li key={index} className="pb-2 uppercase">
                     {item.title}
                   </li>
-                </Link>
+                </Link>) : null
               )
             )}
 
