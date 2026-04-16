@@ -31,7 +31,7 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { TbReorder } from "react-icons/tb";
-import { FaPlus } from "react-icons/fa6";
+import { FaEye, FaEyeSlash, FaPlus } from "react-icons/fa6";
 
 interface QhseFormProps {
     status: string;
@@ -39,10 +39,12 @@ interface QhseFormProps {
         items: {
             title: string;
             url: string;
+            hidden: boolean;
             subItems: {
                 id: string;
                 title: string;
                 url: string;
+                hidden: boolean;
             }[]
         }[];
     };
@@ -85,11 +87,18 @@ const Navbar = () => {
             const response = await fetch(`/api/admin/navbar`);
             if (response.ok) {
                 const data = await response.json();
-                setValue("navSection.items", data.data.navSection.items);
+
+                const normalizedItems = data.data.navSection.items.map((item: any) => ({
+                    ...item,
+                    hidden: item.hidden ?? false, // ✅ ensure boolean
+                    subItems: (item.subItems || []).map((sub: any) => ({
+                        ...sub,
+                        hidden: sub.hidden ?? false // ✅ for subItems too
+                    }))
+                }));
+
+                setValue("navSection.items", normalizedItems);
                 setValue("status", data.data.status);
-            } else {
-                const data = await response.json();
-                alert(data.message);
             }
         } catch (error) {
             console.log("Error in fetching qhse data", error);
@@ -106,7 +115,8 @@ const Navbar = () => {
             {
                 id: crypto.randomUUID(), // ✅ REQUIRED
                 title: "",
-                url: ""
+                url: "",
+                hidden: false
             }
         ]);
     };
@@ -155,6 +165,19 @@ const Navbar = () => {
     const subItems = toReorderCategory !== null
         ? watch(`navSection.items.${toReorderCategory}.subItems`)
         : [];
+
+    const toggleItem = (index: number, value: boolean) => {
+        console.log(index, value);
+
+        setValue(`navSection.items.${index}.hidden`, !value);
+    };
+
+    const toggleSubItem = (itemIndex: number, subIndex: number, value: boolean) => {
+        setValue(
+            `navSection.items.${itemIndex}.subItems.${subIndex}.hidden`,
+            !value
+        );
+    };
 
     useEffect(() => {
         fetchQhseData();
@@ -230,6 +253,19 @@ const Navbar = () => {
 
                                     <div key={field.id} className='grid grid-cols-1 gap-2 relative border-b pb-5 last:border-b-0'>
 
+                                        {/* 👇 TOGGLE ICON */}
+                                        {watch(`navSection.items.${index}.hidden`) ? (
+                                            <FaEyeSlash
+                                                onClick={() => toggleItem(index, watch(`navSection.items.${index}.hidden`))}
+                                                className="absolute top-2 right-10 text-gray-400 cursor-pointer"
+                                            />
+                                        ) : (
+                                            <FaEye
+                                                onClick={() => toggleItem(index, watch(`navSection.items.${index}.hidden`))}
+                                                className="absolute top-2 right-10 text-green-600 cursor-pointer"
+                                            />
+                                        )}
+
                                         <Sheet>
                                             <SheetTrigger asChild>
                                                 <div className='flex gap-1 items-center'><FaPlus />/<TbReorder onClick={() => setToReorderCategory(index)} /></div>
@@ -262,6 +298,31 @@ const Navbar = () => {
 
                                                     {toReorderCategory !== null && !reorderModeSubItem && subItems && subItems.map((file, fileIndex) => (
                                                         <div key={fileIndex} className='grid grid-cols-1 gap-2 relative border p-2 rounded-md h-fit'>
+                                                            {/* 👇 SUB ITEM TOGGLE */}
+                                                            {watch(`navSection.items.${toReorderCategory}.subItems.${fileIndex}.hidden`) ? (
+                                                                <FaEyeSlash
+                                                                    onClick={() =>
+                                                                        toggleSubItem(
+                                                                            toReorderCategory!,
+                                                                            fileIndex,
+                                                                            watch(`navSection.items.${toReorderCategory}.subItems.${fileIndex}.hidden`)
+                                                                        )
+                                                                    }
+                                                                    className="absolute top-2 right-12 text-gray-400 cursor-pointer"
+                                                                />
+                                                            ) : (
+                                                                <FaEye
+                                                                    onClick={() =>
+                                                                        toggleSubItem(
+                                                                            toReorderCategory!,
+                                                                            fileIndex,
+                                                                            watch(`navSection.items.${toReorderCategory}.subItems.${fileIndex}.hidden`)
+                                                                        )
+                                                                    }
+                                                                    className="absolute top-2 right-12 text-green-600 cursor-pointer"
+                                                                />
+                                                            )}
+
                                                             <div className='absolute top-2 right-2'>
                                                                 <RiDeleteBinLine onClick={() => handleRemoveImage(index, fileIndex)} className='cursor-pointer text-red-600' />
                                                             </div>
@@ -395,7 +456,7 @@ const Navbar = () => {
 
                             </div>
                             <div className='flex justify-end mt-2'>
-                                <Button type='button' addItem onClick={() => navSectionAppend({ title: "", url: "", subItems: [] })}>Add Item</Button>
+                                <Button type='button' addItem onClick={() => navSectionAppend({ title: "", url: "", subItems: [], hidden: false })}>Add Item</Button>
                             </div>
                         </div>
                     </div>

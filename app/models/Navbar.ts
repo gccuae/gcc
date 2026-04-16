@@ -16,6 +16,10 @@ const navbarSchema = new mongoose.Schema({
                 url: {
                     type: String,
                 },
+                hidden: {
+                    type: Boolean,
+                    default: false
+                },
                 subItems: [
                     {
                         id: {
@@ -26,6 +30,10 @@ const navbarSchema = new mongoose.Schema({
                         },
                         url: {
                             type: String
+                        },
+                        hidden: {
+                            type: Boolean,
+                            default: false
                         },
                     }
                 ]
