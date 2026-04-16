@@ -43,8 +43,8 @@ const FooterV = ({ data }: any) => {
                   <br />
                   Suite No. 023, Liberty Tower, Khalifa St., P O Box 45363{" "}
                   <br /> Abu Dhabi, UAE */}
-                  {data.secondSection.address.split("\n").map((item: any) => (
-                    <span>{item}</span>
+                  {data.secondSection.address.split("\n").map((item: any,index:number) => (
+                    <span key={index}>{item}</span>
                   ))}
                 </motion.p>
                 <motion.div
@@ -187,16 +187,20 @@ const FooterV = ({ data }: any) => {
               <div className="flex gap-10">
                 <div>
                   <ul className="flex flex-col gap-2">
-                    <motion.li
-                      variants={moveUp(0)}
-                      initial="hidden"
-                      whileInView="show"
-                      viewport={{ once: true, amount: 0.2 }}
-                      className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300 "
-                    >
-                      <Link href="/about-us">About GCC</Link>
-                    </motion.li>
-                    <motion.li
+                    {data.thirdSection.items.slice(0, 5).map((item: { title: string, link: string },index:number) => (
+                      <motion.li
+                      key={item.title}
+                        variants={moveUp(index)}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true, amount: 0.2 }}
+                        className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300 "
+                      >
+                        <Link href={item.link}>{item.title}</Link>
+                      </motion.li>
+                    ))}
+
+                    {/* <motion.li
                       variants={moveUp(0.05)}
                       initial="hidden"
                       whileInView="show"
@@ -231,7 +235,7 @@ const FooterV = ({ data }: any) => {
                       className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300 "
                     >
                       <Link href="/vendor-registration">Vendor Registration</Link>
-                    </motion.li>
+                    </motion.li> */}
                   </ul>
                 </div>
                 <div>
@@ -245,7 +249,19 @@ const FooterV = ({ data }: any) => {
                     >
                       <Link href="/clients">Clientele & Partnerships</Link>
                     </motion.li> */}
-                    <motion.li
+                    {data.thirdSection.items.slice(5).map((item:{title:string,link:string},index:number) => (
+                      <motion.li
+                      key={index}
+                        variants={moveUp(index)}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true, amount: 0.2 }}
+                        className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300 "
+                      >
+                        <Link href={item.link}>{item.title}</Link>
+                      </motion.li>
+                    ))}
+                    {/* <motion.li
                       variants={moveUp(0.1)}
                       initial="hidden"
                       whileInView="show"
@@ -253,7 +269,7 @@ const FooterV = ({ data }: any) => {
                       className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300 "
                     >
                       <Link href="/careers">Careers</Link>
-                    </motion.li>
+                    </motion.li> */}
                     {/* <motion.li
                       variants={moveUp(0.2)}
                       initial="hidden"
@@ -279,8 +295,9 @@ const FooterV = ({ data }: any) => {
           </div>
           <div className="grid lg:grid-cols-2 xl:grid-cols-[6fr_4fr] pt-6 pb-8 xl:pt-8 xl:pb-27px gap-y-8">
             {!data.forthSection.hidden && <div className="flex flex-wrap gap-4 xl:gap-6">
-              {data.forthSection.items.map((item: any) => (
+              {data.forthSection.items.map((item: any,index:number) => (
                 <motion.div
+                key={index}
                   className="flex items-center gap-2"
                   variants={moveUp(0)}
                   initial="hidden"

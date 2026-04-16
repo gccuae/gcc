@@ -256,7 +256,7 @@ const MobileNav = ({ items }: { items?: MobileNavItem[] }) => {
                       ))}
                     </ul>
                   )}
-                </li>
+                </li>) : null
               ) : (
                 <li key={index} className="pb-2 uppercase font-semibold">
                   <Link href={item.url} onClick={() => setMenuOpen(false)}>

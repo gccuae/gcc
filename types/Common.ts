@@ -30,9 +30,11 @@ export interface Navbar {
     items: {
       title: string;
       url: string;
+      hidden:boolean;
       subItems: {
         title: string;
         url: string;
+        hidden:boolean;
       }[]
     }[]
   }
