@@ -112,7 +112,7 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
         <div className="bg-black overflow-hidden">
           <div className="container relative h-full">
             {/* Header */}
-            <div className="pt-10 xl:pt-20 h-full  lg:pb-0 flex items-start flex-wrap ">
+            <div className="pt-10 xl:pt-20 h-full  lg:pb-0 flex items-start flex-wrap gap-y-5">
               <h2 className=" text-4xl xl:text-5xl leading-[1] font-light text-white pb-4 tracking-wide ">
                 {data.title}
               </h2>
@@ -126,7 +126,8 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
                     modules={[Autoplay]}
                     spaceBetween={22}
                     slidesPerView={5}
-                    allowTouchMove={false}
+                    allowTouchMove={true}
+                    grabCursor={true}
                     slideToClickedSlide={false}
                     preventClicks={true}
                     preventClicksPropagation={true}
@@ -200,7 +201,8 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
             modules={[EffectFade, Autoplay]}
             spaceBetween={0}
             slidesPerView={1}
-            allowTouchMove={false}
+            allowTouchMove={true}
+            grabCursor={true}
             slideToClickedSlide={false}
             preventClicks={true}
             preventClicksPropagation={true}

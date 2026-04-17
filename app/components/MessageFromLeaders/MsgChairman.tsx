@@ -14,10 +14,19 @@ const MsgChairman = ({ items }: MsgChairmanProps) => {
   const chairmanData = items[0];
 
   return (
-    <section className="pt-[57px] dark:bg-light-dark lg:pb-0 bg-[#F5F3F0]">
+    <section className="pt-47px xl:pt-57px dark:bg-light-dark lg:pb-0 bg-[#F5F3F0]">
       <SpecialContainer className="xl:ps-0" side="left">
         <div className="grid grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 items-end gap-6 md:gap-5 xl:gap-13 lg:border-b lg:border-[#c2c2c2] dark:border-light-dark overflow-hidden">
-          <motion.div variants={moveRight()} viewport={{ once: true }} initial="hidden" whileInView="show" className="relative pt-10" >
+          <motion.h2
+            variants={moveUp()}
+            viewport={{ once: true }}
+            initial="hidden"
+            whileInView="show"
+            className="order-1 xl:hidden text-2xl leading-lh-title text-black dark:text-white mb-0"
+          >
+            {chairmanData.title}
+          </motion.h2>
+          <motion.div variants={moveRight()} viewport={{ once: true }} initial="hidden" whileInView="show" className="relative pt-10 order-2 xl:order-1" >
             <div className="absolute top-0 left-0 xl:w-[80%] w-full h-[100%] bg-[#0000001A] dark:bg-black z-0"></div>
             <motion.div variants={moveRight(0.3)} viewport={{ once: true }} initial="hidden" whileInView="show" >
               <Image src={chairmanData?.image} alt="msg chairman" width={1500} height={1500} className="w-full h-[300px] md:h-[400px] xl:h-[60%] max-h-[900px] object-contain relative z-10" />
@@ -34,9 +43,9 @@ const MsgChairman = ({ items }: MsgChairmanProps) => {
             </div>
           </motion.div>
           {/* <div className="pb-0 lg:pb-6"> */}
-          <div>
+          <div className="order-3 xl:order-2">
             <motion.h2 variants={moveUp()} viewport={{ once: true }} initial="hidden" whileInView="show"
-              className="text-2xl lg:text-[55px] 3xl:text-6xl leading-lh-title text-black dark:text-white mb-2 md:mb-5 xl:mb-[34px] 3xl:max-w-[16ch]"
+              className="hidden xl:block text-2xl lg:text-[55px] 3xl:text-6xl leading-lh-title text-black dark:text-white mb-2 md:mb-5 xl:mb-[34px] 3xl:max-w-[16ch]"
             >
               {chairmanData.title}
             </motion.h2>

@@ -17,13 +17,22 @@ const MsgGm = ({ items }: MsgChairmanProps) => {
     <section className="pb-13 md:pb-15 xl::pb-25 dark:bg-black overflow-hidden bg-[#F5F3F0] pt-57px xl:pt-25">
       <SpecialContainer className="" side="right">
         <div className="flex flex-col lg:grid grid-cols-1 xl:grid-cols-2 lg:items-center gap-6 md:gap-8 lg:border-b lg:border-[#c2c2c2] dark:border-transparent overflow-hidden">
-          <div className="max-xl:order-2">
+          <motion.h2
+            variants={moveUp()}
+            viewport={{ once: true }}
+            initial="hidden"
+            whileInView="show"
+            className="order-1 xl:hidden text-2xl leading-[1.2] text-black dark:text-white mb-0"
+          >
+            {gmData?.title}
+          </motion.h2>
+          <div className="order-3 xl:order-1">
             <motion.h2
               variants={moveUp()}
               viewport={{ once: true }}
               initial="hidden"
               whileInView="show"
-              className="text-2xl lg:text-[55px] 3xl:text-6xl leading-[1.2] xl:leading-lh-title text-black dark:text-white   mb-2 md:mb-5 xl:mb-[34px] 2xl:max-w-[10ch]"
+              className="hidden xl:block text-2xl lg:text-[55px] 3xl:text-6xl leading-[1.2] xl:leading-lh-title text-black dark:text-white mb-2 md:mb-5 xl:mb-[34px] 2xl:max-w-[10ch]"
             >
               {gmData?.title}
             </motion.h2>
@@ -50,7 +59,7 @@ const MsgGm = ({ items }: MsgChairmanProps) => {
             viewport={{ once: true }}
             initial="hidden"
             whileInView="show"
-            className="relative pt-10 dark:bg-light-dark"
+            className="relative pt-10 dark:bg-light-dark order-2 xl:order-2"
           >
             <div className="absolute top-0 right-0 w-full xl:w-[85%] h-full bg-[#0000001A] dark:bg-light-dark z-0"></div>
             <motion.div

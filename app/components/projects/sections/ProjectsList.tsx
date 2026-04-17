@@ -105,13 +105,13 @@ const ProjectsList = ({
 
   return (
     // <section className="dark:bg-light-dark pb-37px" ref={sectionRef}>
-    <section className="dark:bg-light-dark pb-12 md:pb-15 xl:pb-57px " ref={sectionRef}>
+    <section className="dark:bg-light-dark pt-8 xl:pt-0 pb-12 md:pb-15 xl:pb-57px " ref={sectionRef}>
       {/* ===================== Filter Bar ===================== */}
       <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" className="border-b border-gray-300 dark:border-white/20 pb-27px xl:pb-0 mb-57px" >
         <div className="container">
           <div className="grid grid-cols-1 2xl:grid-cols-[1fr_repeat(4,1fr)_auto] xl:grid-cols-[2fr_repeat(4,1fr)_auto] items-center gap-4 xl:gap-[30px]">
             {/* Search Input */}
-            <div className="flex items-center justify-start gap-5 xl:border-r border-gray-300 dark:border-white/20 h-full pb-[12px] xl:py-47px 2xl:w-[303px] pr-8">
+            <div className="flex items-center justify-start gap-5 border-b xl:border-0 xl:border-r border-gray-300 dark:border-white/20 h-full pb-[12px] xl:py-47px 2xl:w-[303px] pr-8">
               <Image src={"/assets/img/projects/searchIcon.svg"} alt="search" width={32} height={32} className="dark:invert-100" />
               <input
                 type="text"
@@ -135,7 +135,7 @@ const ProjectsList = ({
               }
             >
               <div className="relative">
-                <Listbox.Button className="flex w-full items-center justify-between border-b border-sm-gray dark:border-white/50 pb-1 font-light text-para-color dark:text-white/70 text-lg capitalize min-w-[140px] 2xl:max-w-[220px] cursor-pointer">
+                <Listbox.Button className="flex w-full items-center justify-between border-b border-sm-gray dark:border-white/50 pb-2 font-light text-para-color dark:text-white/70 text-lg capitalize min-w-[140px] 2xl:max-w-[220px] cursor-pointer">
                   <span className="truncate">
                     {pendingFilters.projectType === "All"
                       ? "Project Type"
@@ -171,7 +171,7 @@ const ProjectsList = ({
                     <Image src={"/assets/img/projects/downArrow.svg"} alt="arrowDown" width={15} height={15} className="w-[15px] h-[15px] cursor-pointer transition-opacity duration-300 hover:opacity-60 dark:invert-100 dark:hover:invert-80" />
                   </div>
                 </Listbox.Button>
-                <Listbox.Options className="absolute mt-1 w-full bg-white border border-sm-gray  rounded-md z-50">
+                <Listbox.Options modal={false} className="absolute mt-1 w-full max-h-50 overflow-y-auto bg-white border border-sm-gray rounded-md z-50 [scrollbar-width:thin] [scrollbar-color:#7AC142_transparent]">
                   {["All", ...projectTypesData.map((pt) => pt.name)].map(
                     (option) => (
                       <Listbox.Option
@@ -198,7 +198,7 @@ const ProjectsList = ({
               }
             >
               <div className="relative">
-                <Listbox.Button className="flex w-full items-center justify-between border-b border-sm-gray dark:border-white/50 pb-1 text-para-color dark:text-white/70 text-lg font-light capitalize min-w-[140px] 2xl:max-w-[220px] cursor-pointer">
+                <Listbox.Button className="flex w-full items-center justify-between border-b border-sm-gray dark:border-white/50 pb-2 text-para-color dark:text-white/70 text-lg font-light capitalize min-w-[140px] 2xl:max-w-[220px] cursor-pointer">
                   <span className="truncate ">
                     {pendingFilters.sector === "All"
                       ? "Sector"
@@ -237,7 +237,7 @@ const ProjectsList = ({
                     />
                   </div>
                 </Listbox.Button>
-                <Listbox.Options className="absolute mt-1 w-full bg-white border border-sm-gray  rounded-md z-50">
+                <Listbox.Options modal={false} className="absolute mt-1 w-full max-h-40 overflow-y-auto bg-white border border-sm-gray rounded-md z-50 [scrollbar-width:thin] [scrollbar-color:#7AC142_transparent]">
                   {["All", ...sectorsData.map((s) => s.name)].map((option) => (
                     <Listbox.Option
                       key={option}
@@ -262,7 +262,7 @@ const ProjectsList = ({
               }
             >
               <div className="relative">
-                <Listbox.Button className="flex w-full items-center justify-between border-b border-sm-gray dark:border-white/50 pb-1 text-para-color dark:text-white/70 text-lg font-light capitalize min-w-[140px] 2xl:max-w-[220px] cursor-pointer">
+                <Listbox.Button className="flex w-full items-center justify-between border-b border-sm-gray dark:border-white/50 pb-2 text-para-color dark:text-white/70 text-lg font-light capitalize min-w-[140px] 2xl:max-w-[220px] cursor-pointer">
                   <span className="truncate">
                     {pendingFilters.location === "All"
                       ? "Location"
@@ -303,7 +303,7 @@ const ProjectsList = ({
                     />
                   </div>
                 </Listbox.Button>
-                <Listbox.Options className="absolute mt-1 w-full bg-white border border-sm-gray rounded-md z-50">
+                <Listbox.Options modal={false} className="absolute mt-1 w-full max-h-40 overflow-y-auto bg-white border border-sm-gray rounded-md z-50 [scrollbar-width:thin] [scrollbar-color:#7AC142_transparent]">
                   <Listbox.Option
                     key="All"
                     value="All"
@@ -338,7 +338,7 @@ const ProjectsList = ({
               }
             >
               <div className="relative">
-                <Listbox.Button className="flex w-full items-center justify-between border-b border-sm-gray dark:border-white/50 pb-1 text-para-color dark:text-white/70 text-lg font-light capitalize min-w-[140px] 2xl:max-w-[220px] cursor-pointer">
+                <Listbox.Button className="flex w-full items-center justify-between border-b border-sm-gray dark:border-white/50 pb-2 text-para-color dark:text-white/70 text-lg font-light capitalize min-w-[140px] 2xl:max-w-[220px] cursor-pointer">
                   <span className="truncate">
                     {pendingFilters.status === "All"
                       ? "Status"
@@ -372,7 +372,7 @@ const ProjectsList = ({
                     className="w-[15px] h-[15px] cursor-pointer transition-opacity duration-300 hover:opacity-60 dark:invert-100 dark:hover:invert-80" />
                   </div>
                 </Listbox.Button>
-                <Listbox.Options className="absolute mt-1 w-full bg-white border border-sm-gray rounded-md z-50">
+                <Listbox.Options modal={false} className="absolute mt-1 w-full max-h-40 overflow-y-auto bg-white border border-sm-gray rounded-md z-50 [scrollbar-width:thin] [scrollbar-color:#7AC142_transparent]">
                   <Listbox.Option
                     key="All"
                     value="All"
@@ -400,7 +400,7 @@ const ProjectsList = ({
             </Listbox>
 
             {/* Apply Filter Button */}
-            <button className="bg-[#7AC142] hover:bg-[#5cb43d] text-white px-6 py-[11px] rounded-[25px] font-semibold uppercase text-base leading-[1] transition-colors cursor-pointer"
+            <button className="bg-[#7AC142] hover:bg-[#5cb43d] text-white mt-3 px-6 py-[11px] rounded-[25px] font-semibold uppercase text-base leading-[1] transition-colors cursor-pointer"
               onClick={handleApplyFilters} >
               Apply Filter
             </button>

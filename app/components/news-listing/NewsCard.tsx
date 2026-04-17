@@ -69,12 +69,28 @@ const NewsCard = ({
   return (
     <div key={index} className="relative border-b dark:border-white/20 hover:border-primary pb-27px group transition-all duration-300 h-full" >
       <div className="relative p-3 xl:p-5 h-[250px] md:h-[300px] 2xl:h-[486px] overflow-hidden group/img" ref={containerRef} onMouseMove={handleMouseMove} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
+        <Link
+          href={`/news/${item.slug}`}
+          rel="noopener noreferrer"
+          className="absolute inset-0 z-10 block lg:hidden"
+          aria-label={`View news: ${item.title}`}
+        >
+          <span className="absolute right-3 bottom-3 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-sm">
+            <Image
+              src={assets.linkArrowGreen}
+              alt="arrow"
+              width={16}
+              height={16}
+              className="w-4 h-4 object-contain"
+            />
+          </span>
+        </Link>
         <Image src={item.thumbnail} alt={item.thumbnailAlt} width={1000} height={1000}
           className="w-full h-full object-cover absolute top-0 left-0   group-hover:blur-[4px] group-hover:backdrop-blur-xl transition-all duration-300"
         />
-        <div className="absolute bottom-0 left-0 w-full h-0 bg-black opacity-25 group-hover:h-full transition-all duration-300"></div>
+        <div className="absolute bottom-0 left-0 hidden lg:block w-full h-0 bg-black opacity-25 group-hover:h-full transition-all duration-300"></div>
         <div
-          className="absolute pointer-events-none z-20 transition-opacity duration-300 ease-out"
+          className="hidden lg:block absolute pointer-events-none z-20 transition-opacity duration-300 ease-out"
           style={{
             left: `${currentPosition.x}px`,
             top: `${currentPosition.y}px`,
@@ -91,7 +107,7 @@ const NewsCard = ({
             <Image src={assets.linkArrowGreen} alt="arrow" width={20} height={20} className="w-5 h-5 md:w-6 md:h-6 object-contain xl:w-[19px] xl:h-[19px]" />
           </Link>
         </div>
-        <div className="absolute top-50 left-50 pointer-events-none z-20 opacity-0 group-hover:opacity-100 group-hover/img:opacity-0 transition-opacity duration-300 ease-out">
+        <div className="hidden lg:block absolute top-50 left-50 pointer-events-none z-20 opacity-0 group-hover:opacity-100 group-hover/img:opacity-0 transition-opacity duration-300 ease-out">
           <Link href={`/news/${item.slug}`} rel="noopener noreferrer"
             className="bg-white rounded-full flex items-center justify-center w-10 h-10 xl:w-20 xl:h-20 pointer-events-auto transition-transform duration-200 hover:scale-110 group-hover:opacity-100 "
           >
