@@ -86,9 +86,7 @@ const ProjectCard = ({
         //   key={index}
         //   className="relative border-b dark:border-white/20 hover:border-primary pb-[15px] lg:pb-27px group transition-all duration-300"
         // >
-        <div key={index}
-            className="relative border-b dark:border-white/20 hover:border-primary pb-[15px] lg:pb-27px group transition-all duration-300 flex flex-col h-full"
-        >
+        <div key={index} className="relative border-b dark:border-white/20 hover:border-primary pb-[15px] lg:pb-27px group transition-all duration-300 flex flex-col h-full" >
             <div
                 className="relative p-3 xl:p-5 h-[250px] md:h-[300px] 2xl:h-[486px] overflow-hidden group/img"
                 ref={containerRef}
@@ -96,6 +94,22 @@ const ProjectCard = ({
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
             >
+                <Link
+                    href={`/projects/${item.slug}`}
+                    rel="noopener noreferrer"
+                    className="absolute inset-0 z-10 block lg:hidden"
+                    aria-label={`View project: ${item.title}`}
+                >
+                    <span className="absolute right-3 bottom-3 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-sm">
+                        <Image
+                            src={assets.linkArrowGreen}
+                            alt="arrow"
+                            width={16}
+                            height={16}
+                            className="w-4 h-4 object-contain"
+                        />
+                    </span>
+                </Link>
                 {item.thumbnail ?
                     <Image
                         src={item.thumbnail}
