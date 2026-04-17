@@ -383,7 +383,7 @@ const CurrentOpenings = ({ data, jobs, departments, locations }: { data: careerD
                   className="pt-27px"
                 >
                   <Link
-                    href="mailto:info@gcc.ae"
+                    href="mailto:careers@gcc.ae"
                     className="flex items-center gap-[10.28px] bg-black/5 p-4 xl:p-5 dark:bg-black"
                   >
                     <svg
