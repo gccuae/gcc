@@ -23,10 +23,10 @@ const EnvironmentalResponsibility = ({
 }: Props) => {
   const [selectedItem, setSelectedItem] = useState<Matter | null>(null);
   return (
-    <section className="pb-2 md:pb-57px py-57px bg-white dark:bg-black">
+    <section className="py-47px xl:py-57px bg-white dark:bg-black">
       <div className="container">
         {/* Title */}
-        <motion.h2 variants={moveUp()} initial="hidden" whileInView="show" viewport={{ once: true }} className=" text-4xl xl:text-5xl md:text-6xl font-light leading-lh-title text-black dark:text-white mb-4 md:mb-27px" >
+        <motion.h2 variants={moveUp()} initial="hidden" whileInView="show" viewport={{ once: true }} className=" text-4xl xl:text-5xl md:text-6xl font-light leading-lh-title text-black dark:text-white mb-3 md:mb-27px" >
           {title}
         </motion.h2>
 
@@ -48,7 +48,7 @@ const EnvironmentalResponsibility = ({
               className="group flex flex-col overflow-hidden md:border-b border-gray-200 dark:border-white/50 hover:border-primary transition-colors duration-300 pb-27px xl:pb-[31px]"
             >
               {/* Thumbnail */}
-              <div className="relative overflow-hidden">
+              <div className="relative overflow-hidden ">
                 <Image src={item.thumbnail} alt={item.thumbnailAlt} width={486} height={475}
                   className="object-cover w-full max-w-full max-h-[300px] lg:max-h-[475px] group-hover:scale-[1.02] transition-all duration-300 group-hover:blur-[2px]"
                 />
@@ -60,7 +60,7 @@ const EnvironmentalResponsibility = ({
                 </div>
               </div>
 
-              <div className="mt-[27px] flex justify-between items-center">
+              <div className="mt-4 xl:mt-[27px] flex justify-between items-center">
                 {/* Title */}
                 <h3 className="text-xl font-medium text-black dark:text-white leading-lh-text32">
                   {item.title}
