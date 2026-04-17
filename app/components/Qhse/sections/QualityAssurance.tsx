@@ -19,7 +19,7 @@ const QualityAssurance = ({
   certifications,
 }: Props) => {
   return (
-    <section className="bg-light-white dark:bg-black py-57px">
+    <section className="bg-light-white dark:bg-black py-57px overflow-hidden">
       <div className="container flex flex-col-reverse lg:flex-row items-stretch gap-[35px] xl:gap-[70px]">
         {/* Left Image */}
         <motion.div

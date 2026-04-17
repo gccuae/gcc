@@ -6,21 +6,16 @@ import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { GalleryType } from "./type";
-import { Swiper, SwiperSlide } from "swiper/react";
-import type { Swiper as SwiperType } from "swiper";
-import "swiper/css";
 
 interface GalleryModalProps {
-  item: GalleryType['items'][number]; // single album item
+  item: GalleryType['items'][number];
   onClose: () => void;
 }
 
 const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
-  const [thumbAtStart, setThumbAtStart] = useState(true);
-  const [thumbAtEnd, setThumbAtEnd] = useState(false);
-  const thumbsSwiperRef = useRef<SwiperType | null>(null);
+  const thumbRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const imageCount = item.images.length;
   const hasImages = imageCount > 0;
 
@@ -57,34 +52,31 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
     };
   }, [onClose]);
 
+  useEffect(() => {
+    const el = thumbRefs.current[currentIndex];
+    if (el) {
+      el.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center",
+      });
+    }
+  }, [currentIndex]);
+
   const goPrev = () => {
     if (!hasImages) return;
-
     setCurrentIndex((prev) => (prev === 0 ? imageCount - 1 : prev - 1));
   };
 
   const goNext = () => {
     if (!hasImages) return;
-
     setCurrentIndex((prev) => (prev === imageCount - 1 ? 0 : prev + 1));
   };
 
   const selectImage = (index: number) => {
     if (!hasImages) return;
-
     setCurrentIndex(index);
   };
-
-  useEffect(() => {
-    const swiper = thumbsSwiperRef.current;
-
-    if (swiper && !swiper.destroyed) {
-      swiper.slideTo(currentIndex);
-      swiper.update();
-      setThumbAtStart(swiper.isBeginning);
-      setThumbAtEnd(swiper.isEnd);
-    }
-  }, [currentIndex]);
 
   if (!mounted) return null;
 
@@ -114,7 +106,11 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
               {item.item}
             </div>
 
-            <button type="button" onClick={onClose} className="absolute right-0 top-1/2 z-20 flex h-8 w-8 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/30 bg-black/40 text-2xl font-light text-white backdrop-blur-sm sm:h-10 sm:w-10 sm:text-[34px]" >
+            <button
+              type="button"
+              onClick={onClose}
+              className="absolute right-0 top-1/2 z-20 flex h-8 w-8 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/30 bg-black/40 text-2xl font-light text-white backdrop-blur-sm sm:h-10 sm:w-10 sm:text-[34px]"
+            >
               &times;
             </button>
           </div>
@@ -160,7 +156,9 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
             </div>
 
             {/* Next */}
-            <button type="button" onClick={goNext}
+            <button
+              type="button"
+              onClick={goNext}
               disabled={!hasImages}
               className="absolute right-2 top-1/2 z-20 -translate-y-1/2 cursor-pointer rounded-full bg-black/50 p-2 backdrop-blur-sm disabled:cursor-default disabled:opacity-40 sm:right-0 sm:bg-transparent sm:p-0"
             >
@@ -172,77 +170,53 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
           <div className="relative mt-4 px-6 sm:mt-[15px] sm:px-8 lg:mt-[30px]">
             <button
               type="button"
-              onClick={() => thumbsSwiperRef.current?.slidePrev()}
-              disabled={thumbAtStart || !hasImages}
-              className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 ${
-                thumbAtStart ? "opacity-40 cursor-default" : "opacity-100 cursor-pointer"
-              }`}
+              onClick={goPrev}
+              disabled={!hasImages}
+              className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 ${!hasImages ? "opacity-40 cursor-default" : "opacity-100 cursor-pointer"
+                }`}
             >
               <SlArrowLeft className="h-[14px] w-[14px] text-white transition-all duration-300 hover:text-primary sm:h-[16px] sm:w-[16px] lg:h-[20px] lg:w-[20px]" />
             </button>
 
-            <Swiper
-              key={`${item.item}-${currentIndex}`}
-              className="gallery-thumb-swiper"
-              slidesPerView="auto"
-              initialSlide={currentIndex}
-              spaceBetween={10}
-              onSwiper={(swiper) => {
-                thumbsSwiperRef.current = swiper;
-                swiper.slideTo(currentIndex, 0);
-                setThumbAtStart(swiper.isBeginning);
-                setThumbAtEnd(swiper.isEnd);
-              }}
-              onSlideChange={(swiper) => {
-                setThumbAtStart(swiper.isBeginning);
-                setThumbAtEnd(swiper.isEnd);
-              }}
-              onResize={(swiper) => {
-                setThumbAtStart(swiper.isBeginning);
-                setThumbAtEnd(swiper.isEnd);
-              }}
-            >
+            {/* Scrollable thumb strip */}
+            <div className="flex gap-[10px] overflow-x-auto scroll-smooth scrollbar-none px-1 items-center justify-start">
               {item.images.map((img, idx) => {
                 const isActive = currentIndex === idx;
-
                 return (
-                  <SwiperSlide key={idx} className="!w-auto !h-auto">
-                    <button
-                      key={`${idx}-${isActive ? "active" : "inactive"}`}
-                      type="button"
-                      onClick={() => selectImage(idx)}
-                      aria-label={`Show image ${idx + 1}`}
-                      aria-pressed={isActive}
-                      className="relative flex h-[56px] cursor-pointer items-center justify-center overflow-hidden rounded-[9px] transition-all duration-200 sm:h-[73px]"
-                    >
-                      <div
-                        className="relative flex h-full w-full items-center justify-center rounded-[9px]"
-                        style={{
-                          width: isActive ? "84px" : "64px",
-                          height: isActive ? "56px" : "44px",
-                          margin: "auto",
-                          transition: "width 0.2s, height 0.2s",
-                        }}
-                      >
-                        <Image src={img.image} alt={`thumb-${idx}`} width={isActive ? 84 : 64} height={isActive ? 56 : 44} className="h-full w-full rounded-[9px] object-cover sm:hidden" />
-                        <Image src={img.image} alt={`thumb-${idx}`} width={isActive ? 110 : 80} height={isActive ? 73 : 54} className="hidden h-full w-full rounded-[9px] object-cover sm:block" />
-                        {!isActive && (
-                          <div className="absolute inset-0 bg-white/60 rounded-[9px] pointer-events-none transition-opacity duration-200" />
-                        )}
-                      </div>
-                    </button>
-                  </SwiperSlide>
+                  <button
+                    key={idx}
+                    type="button"
+                    ref={(el) => { thumbRefs.current[idx] = el; }}
+                    onClick={() => selectImage(idx)}
+                    aria-label={`Show image ${idx + 1}`}
+                    aria-pressed={isActive}
+                    className="relative flex-shrink-0 cursor-pointer rounded-[9px] overflow-hidden transition-all duration-200"
+                    style={{
+                      width: isActive ? "84px" : "64px",
+                      height: isActive ? "56px" : "44px",
+                    }}
+                  >
+                    <Image
+                      src={img.image}
+                      alt={`thumb-${idx}`}
+                      fill
+                      className="object-cover rounded-[9px]"
+                      sizes="110px"
+                    />
+                    {!isActive && (
+                      <div className="absolute inset-0 bg-white/60 rounded-[9px] pointer-events-none transition-opacity duration-200" />
+                    )}
+                  </button>
                 );
               })}
-            </Swiper>
+            </div>
 
             <button
               type="button"
-              onClick={() => thumbsSwiperRef.current?.slideNext()}
-              disabled={thumbAtEnd || !hasImages}
-              className={`absolute right-0 top-1/2 -translate-y-1/2 z-20 ${
-                thumbAtEnd ? "opacity-40 cursor-default" : "opacity-100 cursor-pointer"
-              }`}
+              onClick={goNext}
+              disabled={!hasImages}
+              className={`absolute right-0 top-1/2 -translate-y-1/2 z-20 ${!hasImages ? "opacity-40 cursor-default" : "opacity-100 cursor-pointer"
+                }`}
             >
               <SlArrowRight className="h-[14px] w-[14px] text-white transition-all duration-300 hover:text-primary sm:h-[16px] sm:w-[16px] lg:h-[20px] lg:w-[20px]" />
             </button>

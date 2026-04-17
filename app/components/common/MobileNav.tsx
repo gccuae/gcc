@@ -269,9 +269,20 @@ const MobileNav = ({ items }: { items?: MobileNavItem[] }) => {
                           <li key={childIndex} className="py-1 text-black dark:text-white">
                             <Link
                               href={childItem.url}
-                              onClick={() => setMenuOpen(false)}
+                              onClick={() => {
+                                setActiveDropdown(null);
+                                setMenuOpen(false);
+                              }}
+                              className="flex items-center gap-2 rounded-[8px] py-1 transition-colors duration-300 hover:text-primary"
                             >
-                              {childItem.title}
+                              <Image
+                                src="/assets/img/icons/arrow.svg"
+                                alt=""
+                                width={12}
+                                height={12}
+                                className="h-3 w-3 dark:invert-50"
+                              />
+                              <span>{childItem.title}</span>
                             </Link>
                           </li>
                         ))}

@@ -58,9 +58,9 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
     <section className="bg-light-white dark:bg-light-dark overflow-hidden">
       <div>
         <div className="container" ref={containerRef}>
-          <div className="md:flex justify-between items-center pt-30px pb-5 xl:py-37px border-b border-[#C2C2C2] dark:border-white/20">
+          <div className="flex justify-between items-center pt-30px pb-5 xl:py-37px border-b border-[#C2C2C2] dark:border-white/20">
             <motion.h2
-              className=" text-4xl xl:text-5xl font-normal text-black dark:text-white mb-4 md:mb-0 leading-[1.147058823529412] lettersp-2"
+              className=" text-4xl xl:text-5xl font-normal text-black dark:text-white mb-0 leading-[1.147058823529412] lettersp-2"
               variants={moveUp(0)}
               initial="hidden"
               whileInView="show"
@@ -68,7 +68,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
             >
               Featured Projects
             </motion.h2>
-            <div className="flex gap-3 md:gap-5 items-center flex-row-reverse md:flex-row w-full justify-between md:w-auto md:justify-start">
+            <div className="flex gap-3 md:gap-5 items-center flex-row-reverse md:flex-row w-fit h-fit justify-between md:w-auto md:justify-start">
               <motion.div
                 variants={moveUp(0.5)}
                 initial="hidden"

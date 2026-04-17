@@ -301,6 +301,15 @@ body {
   }
 }
 
+@utility scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 .section-spacing {
   @apply py-[60px] lg:py-[90px] xl:py-[100px] 2xl:py-[120px];
 }
@@ -317,7 +326,7 @@ body {
   .swiper-pagination-bullet {
     @apply w-[9px] h-[3px] rounded-full bg-foreground opacity-100;
     border-radius: 4px;
-    margin: 0 2px !important;
+    margin: 0 2px!important;
   }
 
   .swiper-pagination-bullet-active {

@@ -51,16 +51,25 @@ const ArrowLoopIcon = ({ playTick }: { playTick: number }) => {
 };
 
 const ProjectTitleCta = ({ title, href }: { title: string; href: string }) => {
+  return (
+    <div className="bg-light-white inline-flex max-w-[85%] min-w-0 p-2 lg:p-4 items-center">
+      <h3 className="min-w-0 md:flex-1 text-lg lg:text-2xl leading-normal font-normal text-black break-words">
+        {title}
+      </h3>
+    </div>
+  );
+};
+
+const ProjectArrowCta = ({ href, title }: { href: string; title: string }) => {
   const [playTick, setPlayTick] = useState(0);
+
   return (
     <Link
       href={href}
       onMouseEnter={() => setPlayTick((p) => p + 1)}
-      className="bg-light-white inline-flex max-w-[85%] min-w-0 p-2 lg:p-4 items-center justify-between gap-4 group cursor-pointer"
+      className="absolute top-4 right-4 xl:top-6 xl:right-6 z-10"
+      aria-label={`View project: ${title}`}
     >
-      <h3 className="min-w-0 flex-1 text-xl lg:text-2xl leading-normal font-normal text-black break-words">
-        {title}
-      </h3>
       <ArrowLoopIcon playTick={playTick} />
     </Link>
   );
@@ -317,19 +326,12 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
                   aria-label={`View project: ${item.title}`}
                   draggable={false}
                 >
-                  <Image
-                    src={item.thumbnail}
-                    alt={item.title}
-                    width={2000}
-                    height={1633}
-                    className="w-full h-full object-cover"
-                    draggable={false}
-                  />
+                  <Image src={item.thumbnail} alt={item.title} width={2000} height={1633} className="w-full h-full object-cover" draggable={false} />
                 </Link>
 
                 <div className="relative z-10 max-w-full transition-all duration-500 content-box opacity-100 translate-y-0">
                   <Link href={`/projects/${item.slug}`} className="bg-black inline-block max-w-full p-2 lg:px-5 lg:py-3">
-                    <p className="text-lg leading-lh-text19 font-normal text-white !text-left">
+                    <p className="text-sm md:text-lg leading-lh-text19 font-normal text-white !text-left">
                       {item.secondSection.projectType.name},{" "}
                       {item.secondSection.sector.name},{" "}
                       {item.secondSection.location.name}
@@ -337,6 +339,7 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
                   </Link>
                   <ProjectTitleCta title={item.title} href={`/projects/${item.slug}`} />
                 </div>
+                <ProjectArrowCta href={`/projects/${item.slug}`} title={item.title} />
               </motion.div>
             </div>
           ))}
