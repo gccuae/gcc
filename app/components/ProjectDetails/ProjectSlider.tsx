@@ -171,8 +171,6 @@ const ProjectSlider = ({ data }: ProjectSliderProps) => {
                     alt=""
                     className="w-full h-[250px] md:h-auto md:min-h-[500px] 2xl:h-[700px] object-cover"
                   />
-                  {/* overlay panel */}
-                  {renderOverlay()}
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -182,11 +180,10 @@ const ProjectSlider = ({ data }: ProjectSliderProps) => {
               <div className="w-full h-[400px] xl:h-[550px] 2xl:h-[700px] bg-gray-200 flex items-center justify-center">
                 <span className="text-gray-500 text-2xl">1920 x 1080</span>
               </div>
-
-              {/* same overlay */}
-              {renderOverlay()}
             </div>
           )}
+
+          {renderOverlay()}
 
           {/* <div className="absolute bottom-30px left-30px z-50 flex gap-5 w-[200px]">
                 <div className="swiper-button-next cursor-pointer bg-white w-12 h-12 xl:w-20 xl:h-20 rounded-full flex items-center justify-center" aria-label="Next">
