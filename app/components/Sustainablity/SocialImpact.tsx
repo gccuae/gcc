@@ -133,7 +133,7 @@ const SocialImpact = ({
   }, [thumbsSwiper, mainSwiper]);
 
   return (
-    <section className="wrapper py-57px overflow-hidden bg-black">
+    <section className="wrapper py-37px md:py-47px xl:py-57px overflow-hidden bg-black">
       <div className="container">
         <div className="flex justify-between items-center mb-6 xl:mb-[43px]">
           <motion.h2 variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-4xl xl:text-5xl font-normal leading-[1.147058823529412] text-white">

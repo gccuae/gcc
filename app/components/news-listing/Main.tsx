@@ -13,10 +13,10 @@ const Main = ({
   items: NewsData["categories"][number]["news"];
 }) => {
   return (
-    <section className="pt-10 pb-10 xl:pt-57px xl:pb-57px  bg-light-white dark:bg-black relative overflow-hidden">
+    <section className="pt-37px md:pt-47px xl:pt-57px pb-10 xl:pb-57px  bg-light-white dark:bg-black relative overflow-hidden">
       {/* <div className="reveal-overlay absolute inset-0 bg-black z-20"></div> */}
       <div className="container">
-        <div className="flex justify-between items-center pb-4 md:pb-8 xl:pb-[47px]">
+        <div className="flex justify-between items-center pb-4 md:pb-4 xl:pb-[47px]">
           <motion.h2
             variants={moveUp(0)}
             initial="hidden"

@@ -13,7 +13,7 @@ type Props = {
 
 const WhyQhse = ({ title, description, matters }: Props) => {
   return (
-    <section className="pt-57px pb-12 md:pb-15 xl:py-57px bg-light-white dark:bg-light-dark">
+    <section className="py-37px md:py-47px pb-12 md:pb-15 xl:py-57px bg-light-white dark:bg-light-dark">
       <div className="container">
         <motion.h2
           variants={moveUp()}

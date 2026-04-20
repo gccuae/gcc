@@ -13,7 +13,7 @@ type Props = {
 
 const HealthandSafety = ({ title, description, measures }: Props) => {
   return (
-    <section className="py-57px bg-black dark:bg-light-dark">
+    <section className="py-37px md:py-47px xl:py-57px bg-black dark:bg-light-dark">
       <div className="container">
         <div className="mb-6 xl:mb-[47px]">
           <motion.h2
@@ -41,7 +41,7 @@ const HealthandSafety = ({ title, description, measures }: Props) => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid lg:grid-cols-4 border dark:border-white/20 overflow-hidden"
+          className="grid md:grid-cols-2 lg:grid-cols-4 border dark:border-white/20 overflow-hidden"
         >
           {measures.map((item, index) => {
             const isLastCol = (index + 1) % 4 === 0; // last col in lg grid
@@ -54,12 +54,11 @@ const HealthandSafety = ({ title, description, measures }: Props) => {
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true }}
-                className={`
-          p-[20px] lg:p-[32px] xl:p-[35px] 2xl:p-[40px]
+                className={`p-[20px] lg:p-[32px] xl:p-[35px] 2xl:p-[40px]
           hover:bg-primary hover:text-white transition-colors duration-300 group
           border-b lg:border-b-0 dark:border-white/20 lg:border-b-${isLastRow ? "0" : "smgray"
                   } 
-          ${!isLastCol ? "lg:border-r dark:border-white/20" : ""}
+          ${!isLastCol ? "md:border-r dark:border-white/20" : ""}
         `}
               >
                 <div>

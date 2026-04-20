@@ -99,7 +99,7 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
         />
 
         {/* Modal Content */}
-        <div className="relative z-10 w-full max-h-[calc(100dvh-2rem)] overflow-y-auto sm:max-h-[calc(100dvh-3rem)]">
+        <div className="relative z-10 w-full max-h-[calc(100dvh-2rem)] overflow-y-auto sm:max-h-[calc(100dvh-3rem)] ">
           {/* Header */}
           <div className="relative mb-4 flex min-h-10 items-center justify-center sm:mb-[15px]">
             <div className="w-full px-10 text-center text-xl leading-tight text-white sm:text-25 sm:leading-[40px]">

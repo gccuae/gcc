@@ -6,7 +6,7 @@ import { contactType } from "./type";
 
 const ContactInfo = ({ data }: { data: contactType["secondSection"] }) => {
   return (
-    <section className="pt-57px pb-12 md:pb-15 xl:py-57px bg-light-white dark:bg-black overflow-hidden">
+    <section className="pt-37px md:pt-47px xl:pt-57px pb-12 md:pb-15 xl:pb-57px bg-light-white dark:bg-black overflow-hidden">
       <div className="container">
         <div className="grid grid-cols-1 xl:grid-cols-[387px_auto] gap-6 xl:gap-12">
           <div className="">

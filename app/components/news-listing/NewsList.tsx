@@ -39,7 +39,7 @@ const NewsList = ({ data }: { data: NewsData }) => {
   };
 
   return (
-    <section className="pt-47px pb-12 md:pb-15 xl:py-57px dark:bg-light-dark" ref={sectionRef}>
+    <section className=" pt-37px pb-37px md:pt-47px md:pb-57px xl:py-57px dark:bg-light-dark" ref={sectionRef}>
       <div className="container">
         <motion.h2
           variants={moveUp()}

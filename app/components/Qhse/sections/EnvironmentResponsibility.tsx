@@ -23,7 +23,7 @@ const EnvironmentalResponsibility = ({
 }: Props) => {
   const [selectedItem, setSelectedItem] = useState<Matter | null>(null);
   return (
-    <section className="py-47px xl:py-57px bg-white dark:bg-black">
+    <section className="py-37px md:py-47px xl:py-57px bg-white dark:bg-black">
       <div className="container">
         {/* Title */}
         <motion.h2 variants={moveUp()} initial="hidden" whileInView="show" viewport={{ once: true }} className=" text-4xl xl:text-5xl md:text-6xl font-light leading-lh-title text-black dark:text-white mb-3 md:mb-27px" >

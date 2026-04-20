@@ -11,7 +11,7 @@ const EnergyResource = ({
   data: SustainabilityType["secondSection"];
 }) => {
   return (
-    <section className=" pt-47px md:pt-57px pb-57px bg-light-white dark:bg-light-dark">
+    <section className="pt-37px md:pt-47px xl:pt-57px pb-57px bg-light-white dark:bg-light-dark">
       <div className="container">
         <motion.h2
           variants={moveUp(0.2)}

@@ -182,7 +182,7 @@ const CurrentOpenings = ({ data, jobs, departments, locations }: { data: careerD
   };
 
   return (
-    <section className="pt-57px dark:bg-light-dark overflow-hidden">
+    <section className="pt-37px md:pb-57px md:pt-47px xl:pt-57px dark:bg-light-dark overflow-hidden">
       <div className="container">
         <div className="lg:mb-6 xl:mb-27px">
           <motion.h2
