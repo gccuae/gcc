@@ -19,6 +19,7 @@ const AiSlider = ({
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [isSingleSlideMode, setIsSingleSlideMode] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [displayBgImage, setDisplayBgImage] = useState(data[0]?.image || "");
   const [overlayBgImage, setOverlayBgImage] = useState<string | null>(null);
   const [isBgTransitioning, setIsBgTransitioning] = useState(false);
@@ -62,29 +63,22 @@ const AiSlider = ({
     };
   }, [activeIndex, data, displayBgImage]);
 
-  useEffect(() => {
-    return () => {
-      if (bgTransitionTimeoutRef.current) {
-        clearTimeout(bgTransitionTimeoutRef.current);
-      }
-      if (bgTransitionFrameRef.current) {
-        cancelAnimationFrame(bgTransitionFrameRef.current);
-      }
-    };
-  }, []);
+
 
   useEffect(() => {
     const updateSingleSlideMode = () => {
       const swiper = swiperRef.current?.swiper;
+      const mobile = window.innerWidth < 590;
       const slidesPerView =
         typeof swiper?.params.slidesPerView === "number"
           ? swiper.params.slidesPerView
-          : window.innerWidth < 590
+          : mobile
             ? 1
             : window.innerWidth < 1024
               ? 2
               : visibleSlides;
 
+      setIsMobile(mobile);
       setIsSingleSlideMode(slidesPerView <= 1);
     };
 
@@ -106,17 +100,22 @@ const AiSlider = ({
         const firstVisible = swiper.activeIndex;
         const lastVisible = firstVisible + currentPerView - 1;
 
+        // Update ref immediately so goNext/goPrev math stays correct
+        activeIndexRef.current = index;
+
         if (currentPerView <= 1) {
-          activeIndexRef.current = index;
+          // Mobile: slideTo handles everything; activeIndex synced in onSlideChangeTransitionEnd
           swiper.slideTo(index, 1800);
         } else {
-          activeIndexRef.current = index;
-          setActiveIndex(index);
-
+          // Desktop: don't setActiveIndex yet — wait for transition to finish
+          // so the expanded content doesn't jump before the slide animates
           if (index > lastVisible) {
-          swiper.slideNext();
+            swiper.slideNext();
           } else if (index < firstVisible) {
-          swiper.slidePrev();
+            swiper.slidePrev();
+          } else {
+            // Slide already visible — safe to update immediately
+            setActiveIndex(index);
           }
         }
       }
@@ -134,11 +133,16 @@ const AiSlider = ({
     moveTo(prevIndex);
   }, [totalSlides, moveTo]);
 
+  // Stop the auto-play interval
+  const stopInterval = useCallback(() => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+  }, []);
+
   // Start/restart the auto-play interval
   const startInterval = useCallback(() => {
-    if (intervalRef.current) clearInterval(intervalRef.current);
+    stopInterval();
     intervalRef.current = setInterval(goNext, 4500);
-  }, [goNext]);
+  }, [goNext, stopInterval]);
 
   // Auto-slide on mount
   useEffect(() => {
@@ -195,11 +199,12 @@ const AiSlider = ({
           className="w-full pt-5 md:pt-0"
         >
           <Swiper
+            key={isMobile ? "mobile" : "desktop"}
             ref={swiperRef}
             allowTouchMove={true}
             className="islider"
-            loop={false}
-            rewind={true}
+            loop={isMobile}
+            rewind={!isMobile}
             modules={[Navigation]}
             speed={1800}
             grabCursor={true}
@@ -211,6 +216,8 @@ const AiSlider = ({
                   : visibleSlides;
               setIsSingleSlideMode(currentPerView <= 1);
             }}
+            onTouchStart={() => stopInterval()}
+            onTouchEnd={() => startInterval()}
             onSlideChangeTransitionEnd={(swiper) => {
               const currentPerView =
                 typeof swiper.params.slidesPerView === "number"
@@ -220,8 +227,12 @@ const AiSlider = ({
               setIsSingleSlideMode(currentPerView <= 1);
 
               if (currentPerView <= 1) {
+                // Mobile: sync from swiper's real position (handles drag too)
                 activeIndexRef.current = swiper.activeIndex;
                 setActiveIndex(swiper.activeIndex);
+              } else {
+                // Desktop: now safe to show expanded content — slide has landed
+                setActiveIndex(activeIndexRef.current);
               }
             }}
             breakpoints={{
