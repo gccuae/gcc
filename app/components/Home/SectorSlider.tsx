@@ -7,7 +7,7 @@ import "swiper/css/navigation";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FourthSection } from "./type";
 
 interface SectorSliderProps {
@@ -16,6 +16,9 @@ interface SectorSliderProps {
 const SectorSlider = ({ data }: SectorSliderProps) => {
   const prevRef = useRef<HTMLButtonElement | null>(null);
   const nextRef = useRef<HTMLButtonElement | null>(null);
+  const [pressedNav, setPressedNav] = useState<'prev' | 'next' | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const swiperRef = useRef<any>(null);
 
   useEffect(() => {
@@ -66,7 +69,9 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
                 swiper.navigation.destroy();
                 swiper.navigation.init();
                 swiper.navigation.update();
+                setActiveIndex(swiper.realIndex);
               }}
+              onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
               navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
               autoplay={{ delay: 5000 }}
               breakpoints={{
@@ -76,13 +81,18 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
                 1360: { slidesPerView: 3 },
               }}
             >
-              {data.items.map((item, index) => (
+              {data.items.map((item, index) => {
+                const isEffectivelyHovered = hoveredIndex !== null ? index === hoveredIndex : index === activeIndex;
+
+                return (
                 <SwiperSlide
                   key={index}
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
                   // ✅ h-full so the slide fills the swiper height
                   className="border-t-1 md:border-r-1 border-foreground dark:border-black/20 relative group  xl:pr-0 xl:pl-0 h-full"
                 >
-                  <div className="absolute -top-1 left-0 w-full h-0 group-hover:h-[6px] bg-accent transition-all duration-300 z-50"></div>
+                  <div className={`absolute -top-1 left-0 w-full bg-accent transition-all duration-300 z-50 ${isEffectivelyHovered ? 'h-[6px]' : 'h-0'}`}></div>
                   <motion.div
                     variants={moveUp(index * 0.2)}
                     initial="hidden"
@@ -105,8 +115,8 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
                         </h3>
                       </div>
                     </div>
-                    <div className="xl:pl-4 xl:pr-3 3xl:pt-6 group-hover:3xl:pt-[35px] group-first:pl-0 transition-all duration-300">
-                      <p className="text-lg font-[300] leading-[1.526315789473684] pb-5 xl:pb-0 xl:opacity-0 xl:h-0 group-hover:xl:h-auto group-hover:xl:opacity-100 transition-all ease-in-out duration-300 group-hover:xl:pb-[23px] sector-description relative z-10 dark:text-white/80">
+                    <div className={`xl:pl-4 xl:pr-3 3xl:pt-6 group-first:pl-0 transition-all duration-300 ${isEffectivelyHovered ? '3xl:pt-[35px]' : ''}`}>
+                      <p className={`text-lg font-[300] leading-[1.526315789473684] pb-5 transition-all ease-in-out duration-300 sector-description relative z-10 dark:text-white/80 ${isEffectivelyHovered ? 'xl:h-auto xl:opacity-100 xl:pb-[23px]' : 'xl:pb-0 xl:opacity-0 xl:h-0'}`}>
                         {item.description}
                       </p>
                     </div>
@@ -123,17 +133,30 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
                     </div>
                   </motion.div>
                 </SwiperSlide>
-              ))}
+                );
+              })}
             </Swiper>
-            <div className="absolute left-0 right-0 bottom-2/7 xl:bottom-[120px] z-10 flex h-10 w-full translate-y-1/2 items-center justify-between gap-4 sm:bottom-[140px] md:right-[-10px] md:left-auto md:top-2/4 md:bottom-auto md:h-[50px] md:w-[50px] md:translate-y-0 md:justify-center md:bg-black xl:top-4/6 xl:-right-12 xl:h-[94px] xl:w-[94px] rounded-full xl:gap-6">
-              <button ref={prevRef} className="text-accent w-10 h-10 md:w-2 xl:w-[12px] md:h-auto bg-black border border-white/20 md:border-0 md:bg-transparent rounded-full flex items-center justify-center cursor-pointer">
-                <svg width="15" height="26" viewBox="0 0 15 26" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 md:w-full md:h-full">
-                  <path d="M14 1L2 13L14 25" stroke="#7AC142" strokeWidth="2" strokeLinecap="round" />
+            <div className="absolute left-0 right-0 bottom-2/7 xl:bottom-[120px] z-10 flex h-10 w-full translate-y-1/2 items-center justify-between sm:bottom-[140px] md:right-[-10px] md:left-auto md:top-2/4 md:bottom-auto md:h-[50px] md:w-[50px] md:translate-y-0 md:justify-center md:bg-black xl:top-4/6 xl:-right-12 xl:h-[94px] xl:w-[94px] rounded-full md:overflow-hidden">
+              <button
+                ref={prevRef}
+                onClick={() => { setPressedNav('prev'); setTimeout(() => setPressedNav(null), 1800); }}
+                className={`group flex items-center justify-center cursor-pointer transition-all duration-300 w-10 h-10 rounded-full border border-white/20 md:border-transparent md:w-1/2 md:h-full md:rounded-none md:border-r
+                  ${pressedNav === 'prev' ? 'bg-primary text-white' : 'bg-black text-[#7AC142] hover:bg-primary hover:text-white'}`}
+              >
+                <svg width="15" height="26" viewBox="0 0 15 26" fill="none" xmlns="http://www.w3.org/2000/svg"
+                  className="w-4 h-4 md:w-[35%] md:h-auto transition-transform duration-300 md:translate-x-[8px] md:group-hover:translate-x-0">
+                  <path d="M14 1L2 13L14 25" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                 </svg>
               </button>
-              <button ref={nextRef} className="text-accent w-10 h-10 md:w-2 xl:w-[12px] md:h-auto bg-black border border-white/20 md:border-0 md:bg-transparent rounded-full flex items-center justify-center cursor-pointer">
-                <svg width="15" height="26" viewBox="0 0 15 26" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 md:w-full md:h-full">
-                  <path d="M1 1L13 13L1 25" stroke="#7AC142" strokeWidth="2" strokeLinecap="round" />
+              <button
+                ref={nextRef}
+                onClick={() => { setPressedNav('next'); setTimeout(() => setPressedNav(null), 1800); }}
+                className={`group flex items-center justify-center cursor-pointer transition-all duration-300 w-10 h-10 rounded-full border border-white/20 md:border-transparent md:w-1/2 md:h-full md:rounded-none
+                  ${pressedNav === 'next' ? 'bg-primary text-white' : 'bg-black text-[#7AC142] hover:bg-primary hover:text-white'}`}
+              >
+                <svg width="15" height="26" viewBox="0 0 15 26" fill="none" xmlns="http://www.w3.org/2000/svg"
+                  className="w-4 h-4 md:w-[35%] md:h-auto transition-transform duration-300 md:-translate-x-[8px] md:group-hover:translate-x-0">
+                  <path d="M1 1L13 13L1 25" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                 </svg>
               </button>
             </div>

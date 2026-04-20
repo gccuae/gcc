@@ -430,16 +430,40 @@ const ProjectsList = ({
 
         {/* Load More / Show Less */}
         {filteredProjects.length > 9 && (
-          <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true }} className="flex justify-center mt-8" >
+          <motion.div
+            variants={moveUp(0.2)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="flex justify-center mt-8"
+          >
             {visibleCount < filteredProjects.length ? (
-              <button onClick={handleLoadMore} className="px-6 py-2 bg-light-white text-black rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition cursor-pointer" >
+              <button
+                onClick={handleLoadMore}
+                className="group px-6 py-2 bg-light-white text-black rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition-all duration-300 cursor-pointer hover:shadow-lg hover:-translate-y-1 hover:scale-[1.03] active:scale-[0.97]"
+              >
                 <span>Load More</span>
-                <Image src={assets.singleGreenArrow} alt="arrow" width={20} height={20} className="inline rotate-90" />
+                <Image
+                  src={assets.singleGreenArrow}
+                  alt="arrow"
+                  width={20}
+                  height={20}
+                  className="inline rotate-90 transition-transform duration-300 group-hover:translate-x-1"
+                />
               </button>
             ) : filteredProjects.length > 9 ? (
-              <button onClick={handleShowLess} className="px-6 py-2 bg-light-white text-black rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition cursor-pointer" >
+              <button
+                onClick={handleShowLess}
+                className="group px-6 py-2 bg-light-white text-black rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition-all duration-300 cursor-pointer hover:shadow-lg hover:-translate-y-1 hover:scale-[1.03] active:scale-[0.97]"
+              >
                 <span>Show Less</span>
-                <Image src={assets.singleGreenArrow} alt="arrow" width={20} height={20} className="inline -rotate-90" />
+                <Image
+                  src={assets.singleGreenArrow}
+                  alt="arrow"
+                  width={20}
+                  height={20}
+                  className="inline -rotate-90 transition-transform duration-300 group-hover:-translate-x-1"
+                />
               </button>
             ) : null}
           </motion.div>

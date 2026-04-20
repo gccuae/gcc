@@ -7,7 +7,7 @@ import { ImgDescProps } from "../About/type";
 
 const ImgDesc = ({ data }: { data: ImgDescProps }) => {
   return (
-    <section className={`pt-47px xl:pt-67px pb-57px dark:bg-black ${data.hidden ? "hidden" : ""}`}>
+    <section className={`pt-37px pb-37px xl:pt-67px xl:pb-57px dark:bg-black ${data.hidden ? "hidden" : ""}`}>
       <div className="container">
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-y-4 xl:gap-x-13 3xl:gap-x-17 items-stretch">
           <motion.h2
@@ -32,7 +32,7 @@ const ImgDesc = ({ data }: { data: ImgDescProps }) => {
               >
                 {data.title}
               </motion.h2>
-              <div>
+              <div className="group">
                 {data.description
                   .split("\n")
                   .map((line: string, idx: number) => (

@@ -15,7 +15,7 @@ const ViMiVa = ({ data }: ViMiVaProps) => {
   };
 
   return (
-    <section className={`py-57px dark:bg-black ${data.hidden ? "hidden" : ""}`}>
+    <section className={`py-37px xl:py-57px dark:bg-black ${data.hidden ? "hidden" : ""}`}>
       <div className="container">
         {/* <div className="border-b dark:border-white/20  pb-8 xl:pb-57px"> */}
         <div className="pb-8 xl:pb-57px">

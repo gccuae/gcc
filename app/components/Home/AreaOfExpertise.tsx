@@ -24,48 +24,31 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
   const expertiseItems = data.items.filter((item) => item.status !== "draft");
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
   const [mainSwiper, setMainSwiper] = useState<SwiperType | null>(null);
-  const headingRef = useRef<HTMLHeadingElement>(null);
-  const [leftOffset, setLeftOffset] = useState(0);
   const prevRef = useRef<HTMLDivElement>(null);
   const nextRef = useRef<HTMLDivElement>(null);
-  const isNavigatingRef = useRef(false);
+  const autoplayTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const pauseAutoplay = () => {
+    if (!mainSwiper) return;
+    mainSwiper.autoplay?.stop();
+    if (autoplayTimeoutRef.current) {
+      clearTimeout(autoplayTimeoutRef.current);
+    }
+    autoplayTimeoutRef.current = setTimeout(() => {
+      mainSwiper.autoplay?.start();
+    }, 6000);
+  };
 
   const handlePrev = () => {
-    if (!mainSwiper || isNavigatingRef.current || mainSwiper.animating) return;
-
-    isNavigatingRef.current = true;
-    mainSwiper.autoplay?.stop();
+    if (!mainSwiper) return;
     mainSwiper.slidePrev();
-    mainSwiper.autoplay?.start();
+    pauseAutoplay();
   };
 
   const handleNext = () => {
-    if (!mainSwiper || isNavigatingRef.current || mainSwiper.animating) return;
-
-    isNavigatingRef.current = true;
-    mainSwiper.autoplay?.stop();
+    if (!mainSwiper) return;
     mainSwiper.slideNext();
-    mainSwiper.autoplay?.start();
-  };
-
-  useEffect(() => {
-    const updateOffset = () => {
-      if (headingRef.current) {
-        const rect = headingRef.current.getBoundingClientRect();
-        setLeftOffset(rect.left + 15); // distance from viewport left
-      }
-    };
-    updateOffset();
-    window.addEventListener("resize", updateOffset);
-    return () => window.removeEventListener("resize", updateOffset);
-  }, []);
-
-  const handleSlideHover = (index: number) => {
-    if (mainSwiper) {
-      mainSwiper.slideToLoop(index);
-      mainSwiper.autoplay?.stop();
-      mainSwiper.autoplay?.start();
-    }
+    pauseAutoplay();
   };
 
   useEffect(() => {
@@ -126,25 +109,12 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
     };
   }, [thumbsSwiper, mainSwiper]);
 
-  useEffect(() => {
-    if (!mainSwiper || !thumbsSwiper) return;
 
-    const handleTransitionEnd = () => {
-      thumbsSwiper.slideToLoop(mainSwiper.realIndex);
-      isNavigatingRef.current = false;
-    };
-
-    mainSwiper.on("slideChangeTransitionEnd", handleTransitionEnd);
-
-    return () => {
-      mainSwiper.off("slideChangeTransitionEnd", handleTransitionEnd);
-    };
-  }, [mainSwiper, thumbsSwiper]);
 
   return (
     <section className="wrapper pt-30px md:pt-37px pb-5 overflow-hidden bg-light-white dark:bg-black">
       <div>
-        <div ref={headingRef} className="flex justify-between items-center container mb-6 xl:mb-[43px]" >
+        <div className="flex justify-between items-center container mb-6 xl:mb-[43px]" >
           <motion.h2
             variants={moveUp(0)}
             initial="hidden"
@@ -186,13 +156,13 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
           </div>
         </div>
 
-        <motion.div variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true }} className="relative" style={{ paddingLeft: `${leftOffset}px`, paddingRight: 0 }} >
+        <motion.div variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true }} className="container relative" >
           <Swiper
             className="area-of-expertise-thumbs relative"
             onSwiper={setThumbsSwiper}
             spaceBetween={20}
             slidesPerView={4}
-            modules={[Thumbs, Autoplay]}
+            modules={[Thumbs]}
             allowTouchMove={false}
             loop={true}
             breakpoints={{
@@ -204,7 +174,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
             watchSlidesProgress
           >
             {expertiseItems.map((item, index) => (
-              <SwiperSlide key={item._id} className="sliderexp cursor-pointer transition mb-4 xl:mb-5 group" onClick={() => handleSlideHover(index)} >
+              <SwiperSlide key={item._id} className="sliderexp cursor-pointer transition mb-4 xl:mb-5 group" onClick={pauseAutoplay} >
                 <div className="exp-icon-div pb-4 mb-6 xl:pb-[30px] xl:mb-[15px] relative flex items-center gap-5">
                   <motion.div
                     variants={fadeIn(index * 0.15)}
@@ -243,10 +213,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
             effect="fade"
             fadeEffect={{ crossFade: true }}
             autoplay={{ delay: 6000, disableOnInteraction: false }}
-            onSlideChange={() => {
-              mainSwiper?.autoplay?.stop();
-              mainSwiper?.autoplay?.start();
-            }}
+            onTouchStart={pauseAutoplay}
             className="px-6"
           >
             {expertiseItems.map((item) => (

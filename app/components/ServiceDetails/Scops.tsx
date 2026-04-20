@@ -27,7 +27,7 @@ const Scops = ({ data }: ScopsProps) => {
   };
 
   return (
-    <section className="pt-47px pb-47px xl:pt-57px xl:pb-57px bg-black">
+    <section className="pt-37px pb-37px md:pb-67px xl:pt-57px xl:pb-57px bg-black">
       <div className="container">
         <div className="mb-4 md:mb-47px xl:mb-57px flex items-center justify-between gap-4">
           <h2 className="text-4xl xl:text-5xl leading-lh-text68 font-normal text-white">
@@ -69,17 +69,17 @@ const Scops = ({ data }: ScopsProps) => {
         allowTouchMove
         breakpoints={{
           0: { slidesPerView: 1, spaceBetween: 12 },
-          425: { slidesPerView: 1.2, spaceBetween: 12 },
-          768: { slidesPerView: 2, spaceBetween: 16 },
+          425: { slidesPerView: 1.2, spaceBetween: 20 },
+          768: { slidesPerView: 2, spaceBetween: 40},
           1024: { slidesPerView: 3, spaceBetween: 20 },
           1360: { slidesPerView: 4, spaceBetween: 24 },
         }}
         className="scope-swiper w-full"
       >
         {data.items.map((item, index) => (
-          <SwiperSlide key={index}>
-            <div className="px-[15px] md:px-0 border-b border-sm-gray hover:border-primary transition-colors duration-300 flex flex-col h-full justify-between">
-              <div className="aspect-[4/3] md:aspect-[5/4] 2xl:aspect-auto h-[250px] 2xl:h-[380px]">
+          <SwiperSlide key={index} className="!h-auto">
+            <div className=" border-b border-sm-gray hover:border-primary transition-colors duration-300 flex flex-col h-full justify-between">
+              <div className="aspect-[4/3] md:aspect-[5/4] 2xl:aspect-auto h-[250px] xl:h-[300px] 3xl:h-[380px] flex-shrink-0">
                 <Image
                   src={item.image}
                   alt={item.imageAlt}
@@ -93,8 +93,8 @@ const Scops = ({ data }: ScopsProps) => {
                 />
               </div>
 
-              <div className="mt-4 xl:mt-[27px] h-[75px]">
-                <h3 className="text-[21px] leading-normal text-white">{item.title}</h3>
+              <div className="mt-4 xl:mt-[27px] pb-4 flex-grow flex flex-col ">
+                <h3 className="text-[21px] leading-[1.2] xl:leading-normal text-white max-w-[90%]">{item.title}</h3>
               </div>
             </div>
           </SwiperSlide>

@@ -402,7 +402,7 @@ const CurrentOpenings = ({ data, jobs, departments, locations }: { data: careerD
                       />
                     </svg>
                     <span className="text-lg leading-[1.526315789473684] font-normal text-para-color dark:text-white/50">
-                      Mail Your Resume to info@gcc.ae
+                      Mail Your Resume to careers@gcc.ae
                     </span>
                   </Link>
                 </motion.div>

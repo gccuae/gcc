@@ -76,7 +76,7 @@ const NewsList = ({ data }: { data: NewsData }) => {
           {visibleCount < totalNews ? (
             <button
               onClick={handleLoadMore}
-              className="px-6 py-2 bg-light-white text-black rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition cursor-pointer"
+              className="group px-6 py-2 bg-light-white text-black rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition-all duration-300 cursor-pointer hover:shadow-lg hover:-translate-y-1 hover:scale-[1.03] active:scale-[0.97]"
             >
               <span>Load More</span>
               <Image
@@ -84,13 +84,22 @@ const NewsList = ({ data }: { data: NewsData }) => {
                 alt="arrow"
                 width={20}
                 height={20}
-                className="inline rotate-90"
+                className="inline rotate-90 transition-transform duration-300 group-hover:translate-x-1"
               />
             </button>
           ) : totalNews > 6 ? (
-            <button onClick={handleShowLess} className="px-6 py-2 bg-light-white text-black rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition cursor-pointer" >
+            <button
+              onClick={handleShowLess}
+              className="group px-6 py-2 bg-light-white text-black rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition-all duration-300 cursor-pointer hover:shadow-lg hover:-translate-y-1 hover:scale-[1.03] active:scale-[0.97]"
+            >
               <span>Show Less</span>
-              <Image src={assets.singleGreenArrow} alt="arrow" width={20} height={20} className="inline -rotate-90" />
+              <Image
+                src={assets.singleGreenArrow}
+                alt="arrow"
+                width={20}
+                height={20}
+                className="inline -rotate-90 transition-transform duration-300 group-hover:-translate-x-1"
+              />
             </button>
           ) : null}
         </motion.div>

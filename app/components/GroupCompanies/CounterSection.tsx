@@ -12,7 +12,7 @@ export interface FirstSectionProps {
 
 const CounterSection = ({ data }: FirstSectionProps) => {
   return (
-    <section className="py-57px lg:pb-0 bg-light-white dark:bg-light-dark">
+    <section className="pt-37px pb-47px xl:py-57px bg-light-white dark:bg-light-dark">
       <div className="container">
         <div className="mb-6 xl:mb-[47px]">
           <motion.h2
@@ -20,7 +20,7 @@ const CounterSection = ({ data }: FirstSectionProps) => {
             viewport={{ once: true }}
             initial="hidden"
             whileInView="show"
-            className="text-4xl xl:text-5xl leading-[1.147058823529412] font-normal mb-4 xl:mb-[27px] text-black dark:text-white letterSp-2"
+            className="text-4xl xl:text-5xl leading-[1.147058823529412] font-normal mb-2 xl:mb-[27px] text-black dark:text-white letterSp-2"
           >
             {data.title}
           </motion.h2>
