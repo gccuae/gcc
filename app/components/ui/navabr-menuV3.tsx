@@ -165,7 +165,6 @@ export const Menu = ({ setActive, children }: { setActive: (item: string | null)
                 if (data.success) {
                     console.log(data);
                     setResult(data.data);
-                    setSearchQuery("");
                 }
             }
         } catch (error) {
@@ -428,7 +427,7 @@ export const Menu = ({ setActive, children }: { setActive: (item: string | null)
                                                                     className="cursor-pointer"
                                                                     onClick={() => {
                                                                         setResult(null);
-                                                                        setIsOpen(false);
+                                                                        closePopup();
                                                                     }}
                                                                 >
                                                                     <li>{item.item?.title || "Untitled Project"}</li>
@@ -442,7 +441,7 @@ export const Menu = ({ setActive, children }: { setActive: (item: string | null)
                                                                     className="cursor-pointer"
                                                                     onClick={() => {
                                                                         setResult(null);
-                                                                        setIsOpen(false);
+                                                                        closePopup();
                                                                     }}
                                                                 >
                                                                     <li>{item.item?.title || "Untitled"}</li>
@@ -454,10 +453,91 @@ export const Menu = ({ setActive, children }: { setActive: (item: string | null)
                                                                     href={`/expertise/${item.item?.slug}`}
                                                                     key={index}
                                                                     className="cursor-pointer"
-                                                                    onClick={() => setResult(null)}
+                                                                    onClick={() => { setResult(null); closePopup(); }}
                                                                 >
                                                                     <li>{item.item?.title || "Untitled Expertise"}</li>
                                                                 </Link>
+                                                            );
+                                                        } else if (item.type === "expertise-listing") {
+                                                            return (
+                                                                <Link href={`/expertise`} key={index} className="cursor-pointer" onClick={() => { setResult(null); closePopup(); }}>
+                                                                    <li>{"Expertise"}</li>
+                                                                </Link>
+                                                            );
+                                                        } else if (item.type === "about") {
+                                                            return (
+                                                                <Link href={`/about-us`} key={index} className="cursor-pointer" onClick={() => { setResult(null); closePopup(); }}>
+                                                                    <li>{item.item?.title || "About Us"}</li>
+                                                                </Link>
+                                                            );
+                                                        } else if (item.type === "group-company") {
+                                                            return (
+                                                                <Link href={`/group-companies`} key={index} className="cursor-pointer" onClick={() => { setResult(null); closePopup(); }}>
+                                                                    <li>{"Group Companies"}</li>
+                                                                </Link>
+                                                            );
+                                                        } else if (item.type === "qhse") {
+                                                            return (
+                                                                <Link href={`/qhse`} key={index} className="cursor-pointer" onClick={() => { setResult(null); closePopup(); }}>
+                                                                    <li>{"Qhse"}</li>
+                                                                </Link>
+                                                            );
+                                                        } else if (item.type === "sustainability") {
+                                                            return (
+                                                                <Link href={`/sustainability`} key={index} className="cursor-pointer" onClick={() => { setResult(null); closePopup(); }}>
+                                                                    <li>{"Sustainability"}</li>
+                                                                </Link>
+                                                            );
+                                                        } else if (item.type === "aiTechnology") {
+                                                            return (
+                                                                <Link href={`/ai-technology`} key={index} className="cursor-pointer" onClick={() => { setResult(null); closePopup(); }}>
+                                                                    <li>{"AI Technology"}</li>
+                                                                </Link>
+                                                            );
+                                                        } else if (item.type === "blogs") {
+                                                            return (
+                                                                <Link href={`/blog`} key={index} className="cursor-pointer" onClick={() => { setResult(null); closePopup(); }}>
+                                                                    <li>{"Blog"}</li>
+                                                                </Link>
+                                                            );
+                                                        } else if (item.type === "blogs-indi") {
+                                                            return (
+                                                                <Link href={`/blog/${(item as any).slug}`} key={index} className="cursor-pointer" onClick={() => { setResult(null); closePopup(); }}>
+                                                                    <li>{(item as any).title}</li>
+                                                                </Link>
+                                                            );
+                                                        } else if (item.type === "gallery") {
+                                                            return (
+                                                                <Link href={`/gallery`} key={index} className="cursor-pointer" onClick={() => { setResult(null); closePopup(); }}>
+                                                                    <li>Gallery</li>
+                                                                </Link>
+                                                            );
+                                                        } else if (item.type === "currentOpenings") {
+                                                            return (
+                                                                <Link href={`/careers`} key={index} className="cursor-pointer" onClick={() => { setResult(null); closePopup(); }}>
+                                                                    <li>Careers</li>
+                                                                </Link>
+                                                            );
+                                                        } else if (item.type === "contact") {
+                                                            return (
+                                                                <Link href={`/contact-us`} key={index} className="cursor-pointer" onClick={() => { setResult(null); closePopup(); }}>
+                                                                    <li>Contact Us</li>
+                                                                </Link>
+                                                            );
+                                                        } else if (item.type === "vendor") {
+                                                            return (
+                                                                <li key={index}>
+                                                                    <Link
+                                                                        href={`/${(item as any).slug}`}
+                                                                        className="cursor-pointer block"
+                                                                        onClick={() => {
+                                                                            setResult(null);
+                                                                            closePopup();
+                                                                        }}
+                                                                    >
+                                                                        {(item as any).title}
+                                                                    </Link>
+                                                                </li>
                                                             );
                                                         }
                                                     },

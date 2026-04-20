@@ -11,14 +11,14 @@ interface ServicesProps {
 
 const Services = ({ data }: ServicesProps) => {
   return (
-    <section className="pt-47px xl:pt-57px pb-12 md:pb-15 xl:py-57px bg-light-white dark:bg-light-dark">
+    <section className="pt-37px xl:pt-57px pb-47px xl:py-57px bg-light-white dark:bg-light-dark">
       <div className="container">
         <motion.h2
           variants={moveUp(0.2)}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="text-4xl xl:text-5xl leading-[1.147058823529412] text-black dark:text-white pb-6 xl:pb-[47px]"
+          className="text-4xl xl:text-5xl leading-[1.147058823529412] text-black dark:text-white pb-4 xl:pb-47px"
         >
           {data.title}
         </motion.h2>

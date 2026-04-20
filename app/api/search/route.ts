@@ -20,28 +20,6 @@ export async function POST(req: NextRequest) {
 
   // --- PROJECTS ---
   const projectResults = await Project.aggregate([
-    {
-      $search: {
-        index: "default", // Atlas Search index name
-        compound: {
-          should: [
-            {
-              text: {
-                query: searchQuery,
-                path: [
-                  "projects.title",
-                  "projects.description",
-                  "projects.secondSection.location.name",
-                  "projects.secondSection.sector.name",
-                  "projects.secondSection.projectType.name",
-                ],
-                fuzzy: { maxEdits: 2, prefixLength: 0 },
-              },
-            },
-          ],
-        },
-      },
-    },
     { $unwind: "$projects" },
     {
       $lookup: {
@@ -71,6 +49,17 @@ export async function POST(req: NextRequest) {
     },
     { $unwind: { path: "$projects.projectType", preserveNullAndEmptyArrays: true } },
     {
+      $match: {
+        $or: [
+          { "projects.title": { $regex: searchQuery, $options: "i" } },
+          { "projects.description": { $regex: searchQuery, $options: "i" } },
+          { "projects.location.name": { $regex: searchQuery, $options: "i" } },
+          { "projects.sector.name": { $regex: searchQuery, $options: "i" } },
+          { "projects.projectType.name": { $regex: searchQuery, $options: "i" } },
+        ]
+      }
+    },
+    {
       $project: {
         _id: 0,
         type: { $literal: "project" },
@@ -81,27 +70,15 @@ export async function POST(req: NextRequest) {
 
   // --- EXPERTISE ---
   const expertiseResults = await Expertise.aggregate([
-    {
-      $search: {
-        index: "default",
-        compound: {
-          should: [
-            {
-              text: {
-                query: searchQuery,
-                path: [
-                  "secondSection.items.title",
-                  "secondSection.items.description",
-                  "secondSection.items.slug",
-                ],
-                fuzzy: { maxEdits: 2, prefixLength: 0 },
-              },
-            },
-          ],
-        },
-      },
-    },
     { $unwind: "$secondSection.items" },
+    {
+      $match: {
+        $or: [
+          { "secondSection.items.title": { $regex: searchQuery, $options: "i" } },
+          { "secondSection.items.description": { $regex: searchQuery, $options: "i" } },
+        ]
+      }
+    },
     {
       $project: {
         _id: 0,
@@ -113,31 +90,19 @@ export async function POST(req: NextRequest) {
 
   // --- NEWS ---
   const newsResults = await News.aggregate([
-    {
-      $search: {
-        index: "default",
-        compound: {
-          should: [
-            {
-              text: {
-                query: searchQuery,
-                path: [
-                  "categories.news.title",
-                  "categories.news.subTitle",
-                  "categories.news.description",
-                  "categories.news.content",
-                  "categories.news.slug",
-                  "categories.news.category",
-                ],
-                fuzzy: { maxEdits: 2, prefixLength: 0 },
-              },
-            },
-          ],
-        },
-      },
-    },
     { $unwind: "$categories" },
     { $unwind: "$categories.news" },
+    {
+      $match: {
+        $or: [
+          { "categories.news.title": { $regex: searchQuery, $options: "i" } },
+          { "categories.news.subTitle": { $regex: searchQuery, $options: "i" } },
+          { "categories.news.description": { $regex: searchQuery, $options: "i" } },
+          { "categories.news.content": { $regex: searchQuery, $options: "i" } },
+          { "categories.news.category": { $regex: searchQuery, $options: "i" } },
+        ]
+      }
+    },
     {
       $project: {
         _id: 0,

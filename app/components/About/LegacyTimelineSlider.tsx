@@ -85,35 +85,14 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
   };
 
   return (
-    <div className={`relative w-full bg-black overflow-hidden`}>
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <AnimatePresence initial={false} mode="popLayout">
-          <motion.div
-            key={`${activeSlide}-${data.items[activeSlide].year}`}
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="absolute inset-0 w-full h-full"
-          >
-            <Image
-              src={data.items[activeSlide].image}
-              alt={data.items[activeSlide].imageAlt}
-              fill
-              className="object-cover w-full h-full"
-            />
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
+    <section className={`relative w-full bg-black overflow-hidden`}>
       {/* Content */}
       <div className="relative z-10 h-full flex flex-col">
         <div className="bg-black overflow-hidden">
           <div className="container relative h-full">
             {/* Header */}
-            <div className="pt-10 xl:pt-20 h-full  lg:pb-0 flex items-start flex-wrap gap-y-5">
-              <h2 className=" text-4xl xl:text-5xl leading-[1] font-light text-white pb-4 tracking-wide ">
+            <div className="pt-37px xl:pt-20 h-full lg:pb-0 flex items-start flex-wrap gap-y-3 md:gap-y-5">
+              <h2 className="text-4xl xl:text-5xl leading-[1] font-light text-white pb-4 tracking-wide ">
                 {data.title}
               </h2>
               {/* Timeline Years Navigation Slider */}
@@ -190,10 +169,32 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
         </div>
 
         <div className="w-full h-[1px] bg-[#716c6c]"></div>
-
         {/* History Slider */}
-        <div className="flex-1 flex items-center relative z-50 pb-[40px] pt-[90px] md:py-[95px] lg:py-[128px]">
+        <div className="flex-1 flex items-center relative z-50 py-37px md:py-[95px] lg:py-[128px] 2xl:py-[144px]">
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black from-0% to-black/0 to-100% z-0"></div>
+
+          {/* Background Image */}
+          <div className="absolute inset-0 z-[-1]">
+            <AnimatePresence initial={false} mode="popLayout">
+              <motion.div
+                key={`${activeSlide}-${data.items[activeSlide].year}`}
+                initial={{ opacity: 0, scale: 1 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.8, ease: "easeInOut" }}
+                className="absolute inset-0 w-full h-full"
+              >
+                <Image
+                  src={data.items[activeSlide].image}
+                  alt={data.items[activeSlide].imageAlt}
+                  width={1920}
+                  height={1080}
+                  className="object-cover object-right w-full h-full"
+                />
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
           <Swiper
             onSwiper={(swiper) => {
               mainSwiperRef.current = swiper;
@@ -241,7 +242,7 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
           </Swiper>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

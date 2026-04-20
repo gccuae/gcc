@@ -12,7 +12,7 @@ export interface SecondSectionProps {
 
 const BusinessNetworks = ({ data }: SecondSectionProps) => {
   return (
-    <section className="pt-57px pb-12 md:pb-15 xl:py-57px">
+    <section className="pt-37px pb-57px xl:pt-57px xl:pb-57px">
       <div className="container">
         <div className="mb-5 xl:mb-[47px]">
           <motion.h2

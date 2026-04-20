@@ -43,7 +43,7 @@ const MsgChairman = ({ items }: MsgChairmanProps) => {
             </div>
           </motion.div>
           {/* <div className="pb-0 lg:pb-6"> */}
-          <div className="order-3 xl:order-2">
+          <div className="order-3 xl:order-2 border-b border-border-color dark:border-light-dark md:border-b-0 pb-4 md:pb-0">
             <motion.h2 variants={moveUp()} viewport={{ once: true }} initial="hidden" whileInView="show"
               className="hidden xl:block text-2xl lg:text-[55px] 3xl:text-6xl leading-lh-title text-black dark:text-white mb-2 md:mb-5 xl:mb-[34px] 3xl:max-w-[16ch]"
             >

@@ -161,7 +161,6 @@ export const Menu = ({
         if (data.success) {
           console.log(data)
           setResult(data.data);
-          setSearchQuery("")
         }
       }
     } catch (error) {
@@ -372,7 +371,10 @@ export const Menu = ({
                                   href={`/projects/${item.item?.slug}`}
                                   key={index}
                                   className="cursor-pointer"
-                                  onClick={() => { setResult(null); setIsOpen(false) }}
+                                  onClick={() => {
+                                    setResult(null);
+                                    closePopup();
+                                  }}
                                 >
                                   <li>{item.item?.title || "Untitled Project"}</li>
                                 </Link>
@@ -383,7 +385,10 @@ export const Menu = ({
                                   href={`/news/${item.item?.slug}`}
                                   key={index}
                                   className="cursor-pointer"
-                                  onClick={() => { setResult(null); setIsOpen(false) }}
+                                  onClick={() => {
+                                    setResult(null);
+                                    closePopup();
+                                  }}
                                 >
                                   <li>{item.item?.title || "Untitled"}</li>
                                 </Link>
@@ -394,7 +399,7 @@ export const Menu = ({
                                   href={`/expertise/${item.item?.slug}`}
                                   key={index}
                                   className="cursor-pointer"
-                                  onClick={() => setResult(null)}
+                                  onClick={() => { setResult(null); closePopup(); }}
                                 >
                                   <li>{item.item?.title || "Untitled Expertise"}</li>
                                 </Link>
@@ -405,7 +410,7 @@ export const Menu = ({
                                   href={`/expertise`}
                                   key={index}
                                   className="cursor-pointer"
-                                  onClick={() => setResult(null)}
+                                  onClick={() => { setResult(null); closePopup(); }}
                                 >
                                   <li>{"Expertise"}</li>
                                 </Link>
@@ -417,7 +422,7 @@ export const Menu = ({
                                   href={`/about-us`}
                                   key={index}
                                   className="cursor-pointer"
-                                  onClick={() => setResult(null)}
+                                  onClick={() => { setResult(null); closePopup(); }}
                                 >
                                   <li>{item.item?.title || "About Us"}</li>
                                 </Link>
@@ -429,7 +434,7 @@ export const Menu = ({
                                   href={`/group-companies`}
                                   key={index}
                                   className="cursor-pointer"
-                                  onClick={() => setResult(null)}
+                                  onClick={() => { setResult(null); closePopup(); }}
                                 >
                                   <li>{"Group Companies"}</li>
                                 </Link>
@@ -441,7 +446,7 @@ export const Menu = ({
                                   href={`/qhse`}
                                   key={index}
                                   className="cursor-pointer"
-                                  onClick={() => setResult(null)}
+                                  onClick={() => { setResult(null); closePopup(); }}
                                 >
                                   <li>{"Qhse"}</li>
                                 </Link>
@@ -453,7 +458,7 @@ export const Menu = ({
                                   href={`/sustainability`}
                                   key={index}
                                   className="cursor-pointer"
-                                  onClick={() => setResult(null)}
+                                  onClick={() => { setResult(null); closePopup(); }}
                                 >
                                   <li>{"Sustainability"}</li>
                                 </Link>
@@ -465,7 +470,7 @@ export const Menu = ({
                                   href={`/ai-technology`}
                                   key={index}
                                   className="cursor-pointer"
-                                  onClick={() => setResult(null)}
+                                  onClick={() => { setResult(null); closePopup(); }}
                                 >
                                   <li>{"AI Technology"}</li>
                                 </Link>
@@ -477,7 +482,7 @@ export const Menu = ({
                                   href={`/blog`}
                                   key={index}
                                   className="cursor-pointer"
-                                  onClick={() => setResult(null)}
+                                  onClick={() => { setResult(null); closePopup(); }}
                                 >
                                   <li>{"Blog"}</li>
                                 </Link>
@@ -489,7 +494,7 @@ export const Menu = ({
                                   href={`/blog/${item.slug}`}
                                   key={index}
                                   className="cursor-pointer"
-                                  onClick={() => setResult(null)}
+                                  onClick={() => { setResult(null); closePopup(); }}
                                 >
                                   <li>{item.title}</li>
                                 </Link>
@@ -501,7 +506,7 @@ export const Menu = ({
                                   href={`/gallery`}
                                   key={index}
                                   className="cursor-pointer"
-                                  onClick={() => setResult(null)}
+                                  onClick={() => { setResult(null); closePopup(); }}
                                 >
                                   <li>Gallery</li>
                                 </Link>
@@ -513,7 +518,7 @@ export const Menu = ({
                                   href={`/careers`}
                                   key={index}
                                   className="cursor-pointer"
-                                  onClick={() => setResult(null)}
+                                  onClick={() => { setResult(null); closePopup(); }}
                                 >
                                   <li>Careers</li>
                                 </Link>
@@ -525,7 +530,7 @@ export const Menu = ({
                                   href={`/contact-us`}
                                   key={index}
                                   className="cursor-pointer"
-                                  onClick={() => setResult(null)}
+                                  onClick={() => { setResult(null); closePopup(); }}
                                 >
                                   <li>Contact Us</li>
                                 </Link>
@@ -539,7 +544,7 @@ export const Menu = ({
                                     className="cursor-pointer block"
                                     onClick={() => {
                                       setResult(null);
-                                      setIsOpen(false);
+                                      closePopup();
                                     }}
                                   >
                                     {item.title}

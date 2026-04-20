@@ -6,7 +6,7 @@ import { WhyChooseProps } from "./type";
 
 const WhyChoose = ({ data }: WhyChooseProps) => {
   return (
-    <section className={`pb-13 md:pb-15 py-57px bg-light-white dark:bg-black overflow-hidden ${data.hidden ? "hidden" : ""}`}>
+    <section className={`pt-37px pb-57px xl:py-57px bg-light-white dark:bg-black overflow-hidden ${data.hidden ? "hidden" : ""}`}>
       <div className="container">
         <motion.h2
           variants={moveUp()}

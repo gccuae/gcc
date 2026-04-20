@@ -250,9 +250,9 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
   };
 
   return (
-    <section className="py-57px pb-13 xl:pb-25 bg-light-white dark:bg-light-dark mx-auto overflow-hidden">
+    <section className="py-37px pb-13 xl:pt-57px xl:pb-25 bg-light-white dark:bg-light-dark mx-auto overflow-hidden">
       <div className="container">
-        <div className="mb-6 xl:mb-57px flex items-center justify-between">
+        <div className="mb-4 md:mb-6 xl:mb-47px 3xl:mb-57px flex items-center justify-between">
           <motion.h2 variants={moveUp()} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-4xl xl:text-5xl leading-lh-text68 font-normal text-black dark:text-white" >
             Key Projects
           </motion.h2>

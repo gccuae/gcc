@@ -18,7 +18,7 @@ const WhatWeDo = ({ data, expertiseData }: WhatWeDoComponentProps) => {
   return (
     <section className={`bg-light-white dark:bg-light-dark overflow-hidden ${data.hidden ? "hidden" : ""}`}>
       <div className="border-b dark:border-white/20 dark:border-white/20">
-        <div className="container pt-57px pb-5 xl:py-57px">
+        <div className="container pt-47px pb-5 xl:py-57px">
           <motion.h2
             variants={moveUp()}
             initial="hidden"
@@ -86,7 +86,7 @@ const WhatWeDo = ({ data, expertiseData }: WhatWeDoComponentProps) => {
               {data.secondDescription}
             </motion.p>
           </div>
-          <div className="pt-2 pb-10 md:py-5 xl:py-10 pl-0 md:pl-5 xl:pl-10  relative overflow-hidden 3xl:max-h-[715px]">
+          <div className="pt-2 pb-10 md:py-5 xl:py-10 pl-0 lg:pl-5 xl:pl-10  relative overflow-hidden 3xl:max-h-[715px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
@@ -101,7 +101,7 @@ const WhatWeDo = ({ data, expertiseData }: WhatWeDoComponentProps) => {
                   alt={data.items[activeIndex].title}
                   width={1840}
                   height={1700}
-                  className="w-full h-full  object-cover border-8 border-white dark:border-black"
+                  className="w-full h-full max-h-[36vh] lg:max-h-full object-cover border-8 border-white dark:border-black"
                 />
               </motion.div>
             </AnimatePresence>

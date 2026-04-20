@@ -18,6 +18,7 @@ const AiSlider = ({
   const visibleSlides = 3;
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const [pressedNav, setPressedNav] = useState<'prev' | 'next' | null>(null);
   const [isSingleSlideMode, setIsSingleSlideMode] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [displayBgImage, setDisplayBgImage] = useState(data[0]?.image || "");
@@ -161,15 +162,19 @@ const AiSlider = ({
     [moveTo, startInterval]
   );
 
-  // Handle nav button clicks — also reset timer
+  // Handle nav button clicks — also reset timer + highlight pressed arrow
   const handleNext = useCallback(() => {
     goNext();
     startInterval();
+    setPressedNav('next');
+    setTimeout(() => setPressedNav(null), 1800);
   }, [goNext, startInterval]);
 
   const handlePrev = useCallback(() => {
     goPrev();
     startInterval();
+    setPressedNav('prev');
+    setTimeout(() => setPressedNav(null), 1800);
   }, [goPrev, startInterval]);
 
   if (!data || data.length === 0) return null;
@@ -301,19 +306,47 @@ const AiSlider = ({
             ))}
           </Swiper>
 
-          {/* Navigation Buttons */}
-          <div className="cursor-pointer absolute bottom-2 right-2 md:top-[40%] ring-1 ring-white/40 md:ring-0 xl:-right-3 2xl:-right-8 z-10 w-[50px] h-[50px] xl:w-[65px] xl:h-[65px] 2xl:w-[94px] 2xl:h-[94px] bg-black rounded-full flex items-center justify-center gap-4 xl:gap-6">
+          {/* Navigation Buttons — Split Half-Circle */}
+          <div className="absolute bottom-2 right-2 md:top-[40%] xl:-right-3 2xl:-right-8 z-10 w-[50px] h-[50px] xl:w-[65px] xl:h-[65px] 2xl:w-[94px] 2xl:h-[94px] flex ring-1 ring-transparent rounded-full overflow-hidden">
+            {/* Prev — Left half */}
             <button
               onClick={handlePrev}
-              className="text-accent w-2 xl:w-[12px] h-auto cursor-pointer"
+              className={`group w-1/2 h-full flex items-center justify-center transition-all duration-300 cursor-pointer border-r border-transparent
+                ${
+                  pressedNav === 'prev'
+                    ? 'bg-primary text-white'
+                    : 'bg-black text-[#7AC142] hover:bg-primary hover:text-white'
+                }`}
             >
-              <svg width="15" height="26" viewBox="0 0 15 26" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full" >
-                <path d="M14 1L2 13L14 25" stroke="#7AC142" strokeWidth="2" strokeLinecap="round" />
+              <svg width="10" height="20" viewBox="0 0 15 26" fill="none" xmlns="http://www.w3.org/2000/svg"
+                className="w-[35%] h-auto transition-transform duration-300 translate-x-[8px] group-hover:translate-x-0">
+                <path
+                  d="M14 1L2 13L14 25"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                />
               </svg>
             </button>
-            <button onClick={handleNext} className="text-accent w-2 xl:w-[12px] h-auto cursor-pointer" >
-              <svg width="15" height="26" viewBox="0 0 15 26" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full" >
-                <path d="M1 1L13 13L1 25" stroke="#7AC142" strokeWidth="2" strokeLinecap="round" />
+
+            {/* Next — Right half */}
+            <button
+              onClick={handleNext}
+              className={`group w-1/2 h-full flex items-center justify-center transition-all duration-300 cursor-pointer
+                ${
+                  pressedNav === 'next'
+                    ? 'bg-primary text-white'
+                    : 'bg-black text-[#7AC142] hover:bg-primary hover:text-white'
+                }`}
+            >
+              <svg width="10" height="20" viewBox="0 0 15 26" fill="none" xmlns="http://www.w3.org/2000/svg"
+                className="w-[35%] h-auto transition-transform duration-300 -translate-x-[8px] group-hover:translate-x-0">
+                <path
+                  d="M1 1L13 13L1 25"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                />
               </svg>
             </button>
           </div>
