@@ -98,8 +98,8 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
         </div>
         <div className="onside-margin">
           <div className="container">
-            <div className="flex md:flex-row flex-col-reverse">
-              <div className="pt-4 pb-6 md:py-10 md:w-[31.5%] w-full md:border-r border-[#C2C2C2] dark:border-white/20">
+            <div className="flex xl:flex-row flex-col-reverse">
+              <div className="pt-4 pb-6 xl:py-10 xl:w-[31.5%] w-full xl:border-r border-[#C2C2C2] dark:border-white/20">
                 <Swiper
                   modules={[Autoplay, Navigation]}
                   navigation={{
@@ -199,15 +199,14 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                   ))}
                 </Swiper>
               </div>
-              <motion.div
-                className="pb-0 pt-4 md:py-10 md:ps-10 md:w-[68.5%] w-full"
+              <motion.div className="pb-0 pt-4 xl:py-10 xl:ps-10 xl:w-[68.5%] w-full"
                 variants={moveLeft(0.5)}
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true, amount: 0.2 }}
               >
                 <Swiper
-                  className="h-full featured-slider"
+                  className="h-full featured-slider min-h-[250px] md:h-[350px] lg:h-full "
                   modules={[Autoplay, Navigation]}
                   autoplay={{ delay: 6500 }}
                   allowTouchMove={false}
@@ -228,10 +227,10 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                   slidesPerView={1}
                 >
                   {featuredProjects.map((slide, index) => (
-                    <SwiperSlide key={index} className="h-full min-h-[250px] relative overflow-hidden group" >
-                      <div className="absolute inset-0">
+                    <SwiperSlide key={index} className="h-full min-h-[250px] md:h-full relative overflow-hidden group" >
+                      <div className="absolute inset-0 h-full">
                         <Link href={"/projects/" + slide.slug} className="w-full h-full block">
-                          <Image src={slide.thumbnail} alt={slide.thumbnailAlt} width={2000} height={2000} className="w-full h-full object-cover hover:scale-105 transition-all duration-300" />
+                          <Image src={slide.thumbnail} alt={slide.thumbnailAlt} width={2000} height={2000} className="w-full h-full object-cover hover:scale-105 transition-all duration-300 " />
                         </Link>
                       </div>
 

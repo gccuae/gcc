@@ -40,7 +40,7 @@ const JobApplicationForm = ({ title }: { title: string }) => {
   const resumeRegister = register("resume");
 
   return (
-    <section className="pt-57px pb-12 md:pb-15 xl:py-57px bg-light-white dark:bg-black">
+    <section className="pt-37px md:pt-47px xl:pt-57px pb-12 md:pb-15 xl:pb-57px bg-light-white dark:bg-black">
       <div className="container">
         <motion.h2
           variants={moveUp()}

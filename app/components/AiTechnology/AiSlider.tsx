@@ -189,9 +189,8 @@ const AiSlider = ({
       />
       {overlayBgImage && (
         <div
-          className={`absolute inset-0 z-0 bg-center bg-cover bg-no-repeat transition-opacity duration-500 ${
-            isBgTransitioning ? "opacity-100" : "opacity-0"
-          }`}
+          className={`absolute inset-0 z-0 bg-center bg-cover bg-no-repeat transition-opacity duration-500 ${isBgTransitioning ? "opacity-100" : "opacity-0"
+            }`}
           style={{ backgroundImage: `url(${overlayBgImage})` }}
         />
       )}
@@ -258,47 +257,47 @@ const AiSlider = ({
                     const isExpanded = isSingleSlideMode || activeIndex === index;
 
                     return (
-                  <div
-                    className="itmmn h-[411px] flex flex-col justify-start transition-all duration-300"
-                    style={isExpanded
-                      ? {
-                        background: "linear-gradient(180deg, rgba(0,0,0,0.56) 0%, rgba(0,0,0,0.0) 100%)",
-                        backdropFilter: "blur(1px)",
-                      }
-                      : {}
-                    }
-                  >
-                    <div className="transition-all duration-300">
-                      {/* ===== MAIN TITLE (Clickable) ===== */}
                       <div
-                        onClick={() => handleTitleClick(index)}
-                        className={`bgsre transition-all duration-300 cursor-pointer border-b border-[#c2c2c2] ${isExpanded
-                            ? "bg-primary"
-                            : "bg-white/8 backdrop-blur-[1px]"
-                          }`}
+                        className="itmmn h-[411px] flex flex-col justify-start transition-all duration-300"
+                        style={isExpanded
+                          ? {
+                            background: "linear-gradient(180deg, rgba(0,0,0,0.56) 0%, rgba(0,0,0,0.0) 100%)",
+                            backdropFilter: "blur(1px)",
+                          }
+                          : {}
+                        }
                       >
-                        <h3 className="text-xl xl:text-2xl leading-[1] font-normal text-white px-2 py-3 md:py-5 md:p-8 lg:p-10">
-                          {item.mainTitle}
-                        </h3>
-                      </div>
+                        <div className="transition-all duration-300">
+                          {/* ===== MAIN TITLE (Clickable) ===== */}
+                          <div
+                            onClick={() => handleTitleClick(index)}
+                            className={`bgsre transition-all duration-300 cursor-pointer border-b border-[#c2c2c2] ${isExpanded
+                              ? "bg-primary"
+                              : "bg-white/8 backdrop-blur-[1px]"
+                              }`}
+                          >
+                            <h3 className="text-xl xl:text-2xl leading-[1] font-normal text-white px-2 py-3 md:py-5 md:p-8 lg:p-10">
+                              {item.mainTitle}
+                            </h3>
+                          </div>
 
-                      {/* ===== SUBTITLE + DESCRIPTION (Only active slide) ===== */}
-                      <div className={`px-6 lg:px-10 py-57px transition-all duration-500 ${isExpanded
-                          ? "opacity-100 max-h-[800px] pointer-events-auto"
-                          : "opacity-0 max-h-0 overflow-hidden pointer-events-none"
-                        }`}
-                      >
-                        <p className="text-white xl:text-22 mb-[18px] xl:mb-[23px] leading-[1.3] !text-left">
-                          {item.subTitle}
-                        </p>
-                        <div className="ai-technology-items"
-                          dangerouslySetInnerHTML={{
-                            __html: item.description,
-                          }}
-                        />
+                          {/* ===== SUBTITLE + DESCRIPTION (Only active slide) ===== */}
+                          <div className={`px-6 lg:px-10 py-57px transition-all duration-500 ${isExpanded
+                            ? "opacity-100 max-h-[800px] pointer-events-auto"
+                            : "opacity-0 max-h-0 overflow-hidden pointer-events-none"
+                            }`}
+                          >
+                            <p className="text-white xl:text-22 mb-[18px] xl:mb-[23px] leading-[1.3] !text-left">
+                              {item.subTitle}
+                            </p>
+                            <div className="ai-technology-items"
+                              dangerouslySetInnerHTML={{
+                                __html: item.description,
+                              }}
+                            />
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
                     );
                   })()}
                 </motion.div>
@@ -312,14 +311,13 @@ const AiSlider = ({
             <button
               onClick={handlePrev}
               className={`group w-1/2 h-full flex items-center justify-center transition-all duration-300 cursor-pointer border-r border-transparent
-                ${
-                  pressedNav === 'prev'
-                    ? 'bg-primary text-white'
-                    : 'bg-black text-[#7AC142] hover:bg-primary hover:text-white'
+                ${pressedNav === 'prev'
+                  ? 'bg-primary text-white'
+                  : 'bg-black text-[#7AC142] hover:bg-primary hover:text-white'
                 }`}
             >
               <svg width="10" height="20" viewBox="0 0 15 26" fill="none" xmlns="http://www.w3.org/2000/svg"
-                className="w-[35%] h-auto transition-transform duration-300 translate-x-[8px] group-hover:translate-x-0">
+                className="w-[35%] h-auto transition-transform duration-300 translate-x-[4px] xl:translate-x-[8px] group-hover:translate-x-0">
                 <path
                   d="M14 1L2 13L14 25"
                   stroke="currentColor"
@@ -333,14 +331,13 @@ const AiSlider = ({
             <button
               onClick={handleNext}
               className={`group w-1/2 h-full flex items-center justify-center transition-all duration-300 cursor-pointer
-                ${
-                  pressedNav === 'next'
-                    ? 'bg-primary text-white'
-                    : 'bg-black text-[#7AC142] hover:bg-primary hover:text-white'
+                ${pressedNav === 'next'
+                  ? 'bg-primary text-white'
+                  : 'bg-black text-[#7AC142] hover:bg-primary hover:text-white'
                 }`}
             >
               <svg width="10" height="20" viewBox="0 0 15 26" fill="none" xmlns="http://www.w3.org/2000/svg"
-                className="w-[35%] h-auto transition-transform duration-300 -translate-x-[8px] group-hover:translate-x-0">
+                className="w-[35%] h-auto transition-transform duration-300 -translate-x-[4px] xl:-translate-x-[8px] group-hover:translate-x-0">
                 <path
                   d="M1 1L13 13L1 25"
                   stroke="currentColor"

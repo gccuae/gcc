@@ -24,7 +24,7 @@
   --text68-line-height: 0.7352941176470588;
   --spacing-57px: clamp(2rem, 6vw + 0.1em, 57px);
   --spacing-67px: clamp(2.5rem, 7vw + 0.1em, 67px);
-  --spacing-47px: clamp(1.8rem, 3vw + 0.1em, 47px);
+  --spacing-47px: clamp(2.5rem, 4vw + 0.1em, 47px);
   --radius: 0.625rem;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
