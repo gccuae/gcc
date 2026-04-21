@@ -24,7 +24,7 @@ const ViMiVa = ({ data }: ViMiVaProps) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className=" text-4xl xl:text-5xl leading-lh-title text-black dark:text-white mb-2 md:mb-3 xl:mb-[17px] letterSp-2"
+            className=" text-4xl 2xl:text-5xl leading-lh-title text-black dark:text-white mb-2 md:mb-3 xl:mb-[17px] letterSp-2"
           >
             {data.mainTitle}
           </motion.h2>

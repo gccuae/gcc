@@ -5,6 +5,8 @@ import { assets } from "@/public/assets/assets";
 import Lenis from "@studio-freight/lenis";
 import DetailsBlock from "./DetailsBlock";
 import { AwardsProps, CertificationItem } from "./type";
+import { motion } from "framer-motion";
+import { moveUp } from "../motionVarients";
 
 declare global {
   interface Window {
@@ -135,9 +137,9 @@ const Main = ({ data }: AwardsProps) => {
     <>
       <section className="pt-6 lg:pt-15 xl:pt-25px ">
         <div className="container mx-auto px-4">
-          <h2 className=" text-4xl xl:text-5xl leading-[1.205882352941176] text-black dark:text-white pb-6 xl:pb-[47px]">
+          <motion.h2 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.5 }} className=" text-4xl 2xl:text-5xl leading-[1.205882352941176] text-black dark:text-white pb-6 xl:pb-[47px]">
             {data.pageTitle}
-          </h2>
+          </motion.h2>
         </div>
 
         <div className="bg-light-white dark:bg-light-dark py-10 md:py-57px">
@@ -182,11 +184,10 @@ const Main = ({ data }: AwardsProps) => {
                                 setSelectedItem(file);
                                 handleMobileToggle(combinedIndex);
                               }}
-                              className={`w-full text-left flex items-center justify-between cursor-pointer transition-all duration-200 group ${
-                                fileIndex !== item.files.length - 1
-                                  ? "pb-4 xl:pb-[27px] mb-4 xl:mb-[27px] border-b"
-                                  : "pb-0 mb-0"
-                              } ${selectedItem === file ? "border-b-primary" : ""}`}
+                              className={`w-full text-left flex items-center justify-between cursor-pointer transition-all duration-200 group ${fileIndex !== item.files.length - 1
+                                ? "pb-4 xl:pb-[27px] mb-4 xl:mb-[27px] border-b"
+                                : "pb-0 mb-0"
+                                } ${selectedItem === file ? "border-b-primary" : ""}`}
                             >
                               <div>
                                 <h3 className={`text-lg md:text-xl leading-normal mb-1 transition-all duration-300 

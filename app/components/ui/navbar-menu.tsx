@@ -200,8 +200,8 @@ export const Menu = ({
                 <div className="">
                   <Link href="/">
                     <div className="flex items-center ">
-                      <Image src="/assets/img/logo-light.svg" alt="Crest Logo" width={233} height={66} className="h-[66px] w-auto dark:hidden" />
-                      <Image src="/assets/img/logo.svg" alt="Crest Logo" width={233} height={66} className="h-[66px] w-auto hidden dark:block" />
+                      <img src="/assets/img/logo-light.svg" alt="Crest Logo" width={500} height={160} className="h-[66px] object-contain w-auto dark:hidden" />
+                      <img src="/assets/img/logo.svg" alt="Crest Logo" width={500} height={160} className="h-[66px] object-contain w-auto hidden dark:block" />
                     </div>
                   </Link>
                 </div>

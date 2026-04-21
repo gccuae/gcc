@@ -6,8 +6,8 @@ import Image from "next/image";
 import { useState } from "react";
 import { Swiper as SwiperType } from "swiper";
 import { SecondSectionSecondSection } from "../expertise/type";
-import { tr } from "zod/v4/locales";
-
+import { moveUp } from "../motionVarients";
+import { motion } from "framer-motion";
 interface ScopsProps {
   data: SecondSectionSecondSection;
 }
@@ -30,11 +30,11 @@ const Scops = ({ data }: ScopsProps) => {
     <section className="pt-37px pb-37px md:pb-67px xl:pt-57px xl:pb-57px bg-black">
       <div className="container">
         <div className="mb-4 md:mb-47px xl:mb-57px flex items-center justify-between gap-4">
-          <h2 className="text-4xl xl:text-5xl leading-lh-text68 font-normal text-white">
+          <motion.h2 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-4xl 2xl:text-5xl leading-lh-text68 font-normal text-white">
             {data.title}
-          </h2>
+          </motion.h2>
 
-          <div className="flex border border-white rounded-full">
+          <motion.div variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ once: true }} className="flex border border-white rounded-full">
             <button
               type="button"
               aria-label="Previous scope"
@@ -57,49 +57,58 @@ const Scops = ({ data }: ScopsProps) => {
                 <path d="M1.66406 1.33154L8.33269 8.00017L1.66406 14.6688" stroke="#7AC142" className="group-hover:stroke-white transition-all duration-300" strokeWidth="2" strokeLinecap="round" />
               </svg>
             </button>
-          </div>
+          </motion.div>
         </div>
-      </div>
 
-      <div className="container">
-      <Swiper
-        onSwiper={setSwiper}
-        loop={true}
-        speed={500}
-        allowTouchMove
-        breakpoints={{
-          0: { slidesPerView: 1, spaceBetween: 12 },
-          425: { slidesPerView: 1.2, spaceBetween: 20 },
-          768: { slidesPerView: 2, spaceBetween: 40},
-          1024: { slidesPerView: 3, spaceBetween: 20 },
-          1360: { slidesPerView: 4, spaceBetween: 24 },
-        }}
-        className="scope-swiper w-full"
-      >
-        {data.items.map((item, index) => (
-          <SwiperSlide key={index} className="!h-auto">
-            <div className=" border-b border-sm-gray hover:border-primary transition-colors duration-300 flex flex-col h-full justify-between">
-              <div className="aspect-[4/3] md:aspect-[5/4] 2xl:aspect-auto h-[250px] xl:h-[300px] 3xl:h-[380px] flex-shrink-0">
-                <Image
-                  src={item.image}
-                  alt={item.imageAlt}
-                  width={500}
-                  height={500}
-                  draggable={false}
-                  sizes="(min-width: 1280px) 22vw, (min-width: 1024px) 28vw, (min-width: 768px) 33vw, 85vw"
-                  loading={index < 4 ? "eager" : "lazy"}
-                  fetchPriority={index < 2 ? "high" : "auto"}
-                  className="w-full h-full object-cover select-none"
-                />
-              </div>
 
-              <div className="mt-4 xl:mt-[27px] pb-4 flex-grow flex flex-col ">
-                <h3 className="text-[21px] leading-[1.2] xl:leading-normal text-white max-w-[90%]">{item.title}</h3>
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      
+
+        <Swiper
+          onSwiper={setSwiper}
+          loop={true}
+          slidesPerView={1}
+          spaceBetween={12}
+          speed={500}
+          allowTouchMove
+          breakpoints={{
+            0: { slidesPerView: 1, spaceBetween: 12 },
+            425: { slidesPerView: 1.2, spaceBetween: 20 },
+            768: { slidesPerView: 2, spaceBetween: 40 },
+            1024: { slidesPerView: 3, spaceBetween: 20 },
+            1360: { slidesPerView: 4, spaceBetween: 24 },
+          }}
+          className="scope-swiper w-full"
+        >
+          {data.items.map((item, index) => (
+            <SwiperSlide key={index} className="!h-auto">
+              <motion.div
+                variants={moveUp((index % 4) * 0.1)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 0.2 }}
+                className=" border-b border-sm-gray hover:border-primary transition-colors duration-300 flex flex-col h-full justify-between"
+              >
+                <div className="aspect-[4/3] md:aspect-[5/4] 2xl:aspect-auto h-[250px] xl:h-[300px] 3xl:h-[380px] flex-shrink-0">
+                  <Image
+                    src={item.image}
+                    alt={item.imageAlt}
+                    width={500}
+                    height={500}
+                    draggable={false}
+                    sizes="(min-width: 1280px) 22vw, (min-width: 1024px) 28vw, (min-width: 768px) 33vw, 85vw"
+                    loading={index < 4 ? "eager" : "lazy"}
+                    fetchPriority={index < 2 ? "high" : "auto"}
+                    className="w-full h-full object-cover select-none"
+                  />
+                </div>
+
+                <div className="mt-4 xl:mt-[27px] pb-4 flex-grow flex flex-col ">
+                  <h3 className="text-[21px] leading-[1.2] xl:leading-normal text-white max-w-[90%]">{item.title}</h3>
+                </div>
+              </motion.div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </section>
   );

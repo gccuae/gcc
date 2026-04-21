@@ -24,7 +24,7 @@ const SectorSlider = ({
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
-          className=" text-4xl xl:text-5xl font-normal leading-[1.147058823529412] pb-4 xl:pb-27px text-black dark:text-white"
+          className=" text-4xl 2xl:text-5xl font-normal leading-[1.147058823529412] pb-4 xl:pb-27px text-black dark:text-white"
         >
           {data.title}
         </motion.h2>
@@ -44,7 +44,7 @@ const SectorSlider = ({
               <button
                 onClick={() => { setPressedNav('prev'); setTimeout(() => setPressedNav(null), 1800); }}
                 className={`un-goals-prev group flex items-center justify-center h-10 w-10 md:h-14 md:w-14 xl:w-1/2 xl:h-full cursor-pointer transition-all duration-300 rounded-full xl:rounded-none xl:border-r xl:border-transparent
-                  ${ pressedNav === 'prev' ? 'bg-primary text-white' : 'bg-black text-[#7AC142] hover:bg-primary hover:text-white' }`}
+                  ${pressedNav === 'prev' ? 'bg-primary text-white' : 'bg-black text-[#7AC142] hover:bg-primary hover:text-white'}`}
                 aria-label="Previous slide"
               >
                 <svg width="15" height="26" viewBox="0 0 15 26" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +55,7 @@ const SectorSlider = ({
               <button
                 onClick={() => { setPressedNav('next'); setTimeout(() => setPressedNav(null), 1800); }}
                 className={`un-goals-next group flex items-center justify-center w-10 h-10 md:w-14 md:h-14 xl:w-1/2 xl:h-full cursor-pointer transition-all duration-300 rounded-full xl:rounded-none
-                  ${ pressedNav === 'next' ? 'bg-primary text-white' : 'bg-black text-[#7AC142] hover:bg-primary hover:text-white' }`}
+                  ${pressedNav === 'next' ? 'bg-primary text-white' : 'bg-black text-[#7AC142] hover:bg-primary hover:text-white'}`}
                 aria-label="Next slide"
               >
                 <svg width="15" height="26" viewBox="0 0 15 26" fill="none" xmlns="http://www.w3.org/2000/svg"

@@ -66,12 +66,7 @@ export default async function RootLayout({
 
         {/* External Zoho script */}
         {externalSrc && (
-          <Script
-            id="zoho-external"
-            src={externalSrc}
-            strategy="afterInteractive"
-            defer
-          />
+          <Script id="zoho-external" src={externalSrc} strategy="afterInteractive" defer />
         )}
 
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>

@@ -26,7 +26,7 @@ const Index = ({ data, projects }: Props) => {
         pageTitle={data?.title || "Untitled Project"}
         bannerImg={data?.banner || ""}
         bannerAlt={data?.bannerAlt || ""}
-        titleClassName="text-white text-3xl md:text-4xl xl:text-5xl leading-[1.2] capitalize lettersp-2"
+        titleClassName="text-white text-3xl md:text-4xl 2xl:text-5xl leading-[1.2] capitalize lettersp-2"
         bannerHidden={data.bannerHidden}
       />
       {!data?.firstSection?.hidden && !data?.secondSection?.hidden && data?.secondSection?.title && <ProjectSlider data={data} />}

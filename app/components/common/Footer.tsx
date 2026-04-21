@@ -20,7 +20,7 @@ const Footer = () => {
         <div className="container relative z-2">
           <div className="pt-10 pb-6 xl:pb-37px xl:pt-[63px] border-b border-foreground">
             <motion.h2
-              className=" text-4xl xl:text-5xl font-normal leading-[1.147058823529412] text-white max-w-3xl"
+              className=" text-4xl 2xl:text-5xl font-normal leading-[1.147058823529412] text-white max-w-3xl"
               variants={moveUp(0)}
               initial="hidden"
               whileInView="show"

@@ -14,7 +14,7 @@ const NewsList = ({ data }: { data: NewsData }) => {
 
   // sort news by date (latest first)
   const items = data.categories.flatMap(
-    (item: { news: NewsData["categories"][number]["news"] }) => item.news.filter((item)=>item.status !== "draft")
+    (item: { news: NewsData["categories"][number]["news"] }) => item.news.filter((item) => item.status !== "draft")
   );
   console.log(items);
   const sortedNews = [...items].sort(
@@ -46,7 +46,7 @@ const NewsList = ({ data }: { data: NewsData }) => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className=" text-4xl xl:text-5xl font-normal text-black dark:text-white mb-4 md:mb-27px"
+          className=" text-4xl 2xl:text-5xl font-normal text-black dark:text-white mb-4 md:mb-27px"
         >
           More News
         </motion.h2>

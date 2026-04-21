@@ -136,26 +136,24 @@ const SocialImpact = ({
     <section className="wrapper py-37px md:py-47px xl:py-57px overflow-hidden bg-black">
       <div className="container">
         <div className="flex justify-between items-center mb-6 xl:mb-[43px]">
-          <motion.h2 variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-4xl xl:text-5xl font-normal leading-[1.147058823529412] text-white">
+          <motion.h2 variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-4xl 2xl:text-5xl font-normal leading-[1.147058823529412] text-white">
             {data.title}
           </motion.h2>
           <div className="flex items-center gap-2">
             <motion.div variants={moveUp(0.5)} initial="hidden" whileInView="show" viewport={{ once: true }} className="flex border border-white/50 dark:border-white/50 rounded-full">
               <div
                 onClick={handlePrev}
-                className={`px-3 py-2 md:px-6 md:py-4 xl:py-[12px] rounded-tl-full rounded-bl-full group transition-all duration-300 ${
-                  isBeginning
+                className={`px-3 py-2 md:px-6 md:py-4 xl:py-[12px] rounded-tl-full rounded-bl-full group transition-all duration-300 ${isBeginning
                     ? "cursor-not-allowed opacity-50 bg-black/30"
                     : "cursor-pointer hover:bg-accent"
-                }`}
+                  }`}
               >
                 <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]">
                   <path
                     d="M8.33594 1.33154L1.66731 8.00017L8.33594 14.6688"
                     stroke="#7AC142"
-                    className={`transition-all duration-300 ${
-                      isBeginning ? "" : "group-hover:stroke-white"
-                    }`}
+                    className={`transition-all duration-300 ${isBeginning ? "" : "group-hover:stroke-white"
+                      }`}
                     strokeWidth="2"
                     strokeLinecap="round"
                   />
@@ -163,19 +161,17 @@ const SocialImpact = ({
               </div>
               <div
                 onClick={handleNext}
-                className={`px-3 py-2 md:px-6 md:py-4 xl:py-[12px] border-l border-white/30 rounded-tr-full rounded-br-full group transition-all duration-300 ${
-                  isEnd
+                className={`px-3 py-2 md:px-6 md:py-4 xl:py-[12px] border-l border-white/30 rounded-tr-full rounded-br-full group transition-all duration-300 ${isEnd
                     ? "cursor-not-allowed opacity-50 bg-black/30"
                     : "cursor-pointer hover:bg-accent dark:hover:bg-accent"
-                }`}
+                  }`}
               >
                 <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]">
                   <path
                     d="M1.66406 1.33154L8.33269 8.00017L1.66406 14.6688"
                     stroke="#7AC142"
-                    className={`transition-all duration-300 ${
-                      isEnd ? "" : "group-hover:stroke-white"
-                    }`}
+                    className={`transition-all duration-300 ${isEnd ? "" : "group-hover:stroke-white"
+                      }`}
                     strokeWidth="2"
                     strokeLinecap="round"
                   />

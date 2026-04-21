@@ -416,7 +416,7 @@ const ProjectsList = ({
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 xl:gap-10">
             {filteredProjects.slice(0, visibleCount).map((item, index) => (
               <motion.div
-                variants={moveUp(index * 0.17)}
+                variants={moveUp((index % 6) * 0.1)}
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true }}

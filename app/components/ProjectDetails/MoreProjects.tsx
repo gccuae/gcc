@@ -20,7 +20,7 @@ const MoreProjects = ({ projects }: Props) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className=" text-4xl xl:text-5xl leading-[1.147058823529412] text-black dark:text-white"
+            className=" text-4xl 2xl:text-5xl leading-[1.147058823529412] text-black dark:text-white"
           >
             More Projects
           </motion.h2>
@@ -35,43 +35,15 @@ const MoreProjects = ({ projects }: Props) => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 xl:gap-10">
           {projects?.slice(0, 3).map((item, index) => (
-
-            <ProjectCard key={index} item={item} index={index} showDescription={false} />
-
-            // <motion.div
-
-            //   key={index}
-            //   className="group border-b dark:border-white/20 pb-27px"
-            //   variants={moveUp(index * 0.24)}
-            //   initial="hidden"
-            //   whileInView="show"
-            //   viewport={{ once: true }}
-            // >
-            //   <div>
-            //     <Image
-            //       onClick={() => router.push(`/projects/${project.slug}`)}
-            //       src={project.thumbnail || ""}
-            //       alt={project.thumbnailAlt || ""}
-            //       width={1000}
-            //       height={1000}
-            //       className="object-cover w-full h-[300px] md:h-[400px] xl:h-[430px] 2xl:h-[475px] cursor-pointer"
-            //     />
-            //   </div>
-            //   <div className="pt-5 xl:pt-[27px]">
-            //     <p className="text-lg leading-lh-text19 text-[#515151] dark:text-white/80 mb-2 xl:mb-[12px]">
-            //       {project.secondSection?.projectType?.name}{" "}
-            //       <span className="mx-2">|</span>{" "}
-            //       {project.secondSection?.sector?.name}{" "}
-            //       <span className="mx-2">|</span>{" "}
-            //       {project.secondSection?.location?.name}
-            //     </p>
-            //     <h3 className="text-2xl leading-normal text-black dark:text-white " >
-            //       <Link href={`/projects/${project.slug}`} >
-            //       {project.title}
-            //       </Link>
-            //     </h3>
-            //   </div>
-            // </motion.div>
+            <motion.div
+              key={index}
+              variants={moveUp((index % 6) * 0.1)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+            >
+              <ProjectCard item={item} index={index} showDescription={false} />
+            </motion.div>
           ))}
         </div>
       </div>
