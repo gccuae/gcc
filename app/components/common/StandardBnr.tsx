@@ -20,7 +20,7 @@
 //         initial={{ opacity: 0, x: -30, clipPath: "inset(0 100% 0 0)" }}
 //         animate={{ opacity: 1, x: 0, clipPath: "inset(0 0% 0 0)" }}
 //         transition={{ duration: 1.3, ease: "easeOut" }}
-//         className=" text-4xl xl:text-5xl leading-[1.205882352941176] font-normal text-black dark:text-white"
+//         className=" text-4xl 2xl:text-5xl leading-[1.205882352941176] font-normal text-black dark:text-white"
 //       >
 //         {title}
 //       </motion.h2>
@@ -63,15 +63,14 @@ const StandardBnr = ({ title }: Props) => {
         }
       );
 
-      // title animation (matches your Framer version)
+      // title animation (move up)
       gsap.fromTo(
         titleRef.current,
-        { opacity: 0, x: -30, clipPath: "inset(0 100% 0 0)" },
+        { opacity: 0, y: 30 },
         {
           opacity: 1,
-          x: 0,
-          clipPath: "inset(0 0% 0 0)",
-          duration: 1.3,
+          y: 0,
+          duration: 1,
           ease: "power2.out",
           scrollTrigger: {
             trigger: titleRef.current,
@@ -86,14 +85,8 @@ const StandardBnr = ({ title }: Props) => {
   }, []);
 
   return (
-    <div
-      ref={containerRef}
-      className="border-b dark:border-white/20 pb-5 xl:pb-10 mb-8 xl:mb-57px"
-    >
-      <h2
-        ref={titleRef}
-        className=" text-4xl xl:text-5xl leading-[1.205882352941176] font-normal text-black dark:text-white"
-      >
+    <div ref={containerRef} className="border-b dark:border-white/20 pb-5 xl:pb-10 mb-8 xl:mb-57px" >
+      <h2 ref={titleRef} className=" text-4xl 2xl:text-5xl leading-[1.205882352941176] font-normal text-black dark:text-white" >
         {title}
       </h2>
       <BreadcrumbStd standard={true} />

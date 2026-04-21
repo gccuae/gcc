@@ -56,7 +56,7 @@ const NewsBlock = ({ data }: NewsBlockProps) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.2 }}
-            className=" text-4xl xl:text-5xl font-normal leading-[1.147058823529412] text-black dark:text-white hover:text-primary transition-colors duration-300"
+            className=" text-4xl 2xl:text-5xl font-normal leading-[1.147058823529412] text-black dark:text-white hover:text-primary transition-colors duration-300"
           >
             News
           </motion.h2>
@@ -76,7 +76,7 @@ const NewsBlock = ({ data }: NewsBlockProps) => {
                   <motion.div variants={fadeIn(0.1)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="xl:w-1/2 overflow-hidden flex items-stretch w-full" >
                     <Link href={"/news/" + item.slug} className="w-full">
                       <Image src={item.thumbnail} alt={item.thumbnailAlt} width={1000} height={579}
-                        className="w-full h-[330px] md:h-[431px] object-cover hover:scale-110 transition-all duration-400" />
+                        className="w-full h-[250px] md:h-[320px] 2xl:h-[431px] object-cover hover:scale-110 transition-all duration-400" />
                     </Link>
                   </motion.div>
                   <div className="xl:w-1/2 group">
@@ -101,7 +101,7 @@ const NewsBlock = ({ data }: NewsBlockProps) => {
                       initial="hidden"
                       whileInView="show"
                       viewport={{ once: true, amount: 0.2 }}
-                      className="text-2xl font-normal leading-[1.40625] text-forground mb-3 xl:mb-[22px] dark:text-white hover:text-primary transition-colors duration-300"
+                      className="text-[1.5rem] sm:text-[2rem] xl:text-2xl font-normal leading-[1.40625] text-forground mb-3 xl:mb-[22px] dark:text-white hover:text-primary transition-colors duration-300"
                     >
                       <Link href={"/news/" + item.slug} >
                         {item.title}

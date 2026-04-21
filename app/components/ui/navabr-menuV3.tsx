@@ -213,15 +213,15 @@ export const Menu = ({ setActive, children }: { setActive: (item: string | null)
                                             <Image
                                                 src="/assets/img/logo-light.svg"
                                                 alt="Crest Logo"
-                                                width={203}
-                                                height={66}
+                                                width={500}
+                                                height={160}
                                                 className="h-[60px] w-auto dark:hidden"
                                             />
                                             <Image
                                                 src="/assets/img/logo.svg"
                                                 alt="Crest Logo"
-                                                width={203}
-                                                height={66}
+                                                width={500}
+                                                height={160}
                                                 className="h-[60px] w-auto hidden dark:block"
                                             />
                                         </div>

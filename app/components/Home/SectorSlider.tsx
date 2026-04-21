@@ -40,7 +40,7 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
-          className="text-4xl xl:text-5xl font-normal leading-[1.147058823529412] pb-4 xl:pb-27px"
+          className="text-4xl 2xl:text-5xl font-normal leading-[1.147058823529412] pb-4 xl:pb-27px"
         >
           {data.title}
         </motion.h2>
@@ -94,7 +94,7 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
                 >
                   <div className={`absolute -top-1 left-0 w-full h-[6px] bg-accent transition-transform duration-700 ease-in-out z-50 origin-left ${isEffectivelyHovered ? 'scale-x-100' : 'scale-x-0'}`}></div>
                   <motion.div
-                    variants={moveUp(index * 0.2)}
+                    variants={moveUp(0)}
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, amount: 0.2 }}
@@ -115,7 +115,7 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
                         </h3>
                       </div>
                     </div>
-                    <div className={`md:pl-4 md:pr-3 3xl:pt-6 group-first:pl-0 transition-all duration-500 ${isEffectivelyHovered ? '3xl:pt-[35px]' : ''}`}>
+                    <div className={`md:pl-4 md:pr-3 group-first:pl-0 transition-all duration-500`}>
                       <div className={`grid transition-all duration-500 ease-in-out ${isEffectivelyHovered ? 'grid-rows-[1fr] opacity-100 pb-[23px]' : 'grid-rows-[0fr] opacity-0 pb-0'}`}>
                         <div className="overflow-hidden">
                           <p className={`text-lg font-[300] leading-[1.526315789473684] sector-description relative z-10 dark:text-white/80`}>

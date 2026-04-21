@@ -59,7 +59,7 @@ const HeroSliderV = ({ data }: HeroSliderProps) => {
                         initial="hidden"
                         animate="show"
                         variants={moveUp(0)}>
-                        <motion.h2 variants={moveUp(0)} initial="hidden" animate="show" className="text-white text-[35px]  lg:text-[55px] xl:text-[65px] font-normal max-w-[20ch] leading-none">{slide.title}</motion.h2>
+                        <motion.h2 variants={moveUp(0)} initial="hidden" animate="show" className="text-white text-xl md:text-[35px]  lg:text-[55px] xl:text-[65px] font-normal max-w-[20ch] leading-none">{slide.title}</motion.h2>
                         <motion.p variants={moveUp(0.5)} initial="hidden" animate="show" className="text-white text-xl font-light max-w-[73ch] leading-[1.521739130434783] pt-[35px] pb-[35px]">{slide.subtitle}</motion.p>
                         <motion.div variants={moveUp(1)} initial="hidden" animate="show" >
                           <BtnPrimary link={slide.btnLink} text={slide.btn} bgtrans={true} borderwight={true} className="gap-4" />

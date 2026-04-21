@@ -54,7 +54,7 @@ const HeroSlider = ({ data, counterData, bannerStatus, numberStatus }: HeroSlide
                 <div className="w-full h-full">
                   
                   <motion.div key={animationKey} initial="hidden" animate="show" variants={moveUp(0)} >
-                    <motion.h2 variants={moveUp(0.5)} initial="hidden" animate="show" className="text-white text-6xl font-normal max-w-[20ch] leading-[1.180555555555556] " >
+                    <motion.h2 variants={moveUp(0.5)} initial="hidden" animate="show" className="text-white text-5xl 2xl:text-6xl font-normal max-w-[20ch] leading-[1.180555555555556] " >
                       {slide.title}
                     </motion.h2>
                     <motion.p variants={moveUp(1.25)} initial="hidden" animate="show" className="text-white text-lg lg:text-xl font-light max-w-[73ch] leading-[1.521739130434783] py-5 md:py-6 xl:py-[35px]" >

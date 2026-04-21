@@ -96,15 +96,14 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
                 {data.title}
               </h2>
               {/* Timeline Years Navigation Slider */}
-              <div className="xl:ml-auto md:mb-0 lg:top-12 xl:top-19 right-3 md:right-0 flex items-center z-10 lg:h-full order-3 xl:order-2">
-                <div className="max-w-[300px] sm:max-w-[400px] md:max-w-[700px] lg:max-w-[500px] overflow-hidden h-full relative ">
+              <div className="lg:ml-auto md:mb-0 lg:top-12 xl:top-19 right-3 md:right-0 flex items-center z-10 lg:h-full order-3 lg:order-2">
+                <div className="max-w-[400px] sm:max-w-[400px] md:max-w-[700]  lg:max-w-[500px]  overflow-hidden h-full relative ">
                   <Swiper
                     onSwiper={(swiper) => {
                       yearSwiperRef.current = swiper;
                     }}
                     modules={[Autoplay]}
-                    spaceBetween={22}
-                    slidesPerView={5}
+                    
                     allowTouchMove={true}
                     grabCursor={true}
                     slideToClickedSlide={false}
@@ -115,9 +114,12 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
                     speed={500}
                     className="year-navigation-slider h-full "
                     breakpoints={{
-                      0: { slidesPerView: 4, spaceBetween: 5 },
-                      400: { slidesPerView: 4, spaceBetween: 22 },
-                      768: { slidesPerView: 4, spaceBetween: 22 },
+                      1024: { slidesPerView: 4, spaceBetween: 10 },
+                      992: { slidesPerView: 6, spaceBetween: 10 },
+                      768: { slidesPerView: 6, spaceBetween: 22 },
+                      400: { slidesPerView: 6, spaceBetween: 22 },
+                      0: { slidesPerView: 3, spaceBetween: 22 },
+
                     }}
                   >
                     {data.items.map((item, index) => (

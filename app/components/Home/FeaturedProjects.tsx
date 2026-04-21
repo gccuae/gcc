@@ -44,7 +44,7 @@ interface FeaturedProjectsProps {
   };
 }
 
-const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
+const   FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
   const featuredProjects = data.projects.filter(
     (project) => project.featuredProject === true
   );
@@ -60,7 +60,7 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
         <div className="container" ref={containerRef}>
           <div className="flex justify-between items-center pt-30px pb-5 xl:py-37px border-b border-[#C2C2C2] dark:border-white/20">
             <motion.h2
-              className=" text-4xl xl:text-5xl font-normal text-black dark:text-white mb-0 leading-[1.147058823529412] lettersp-2"
+              className=" text-4xl 2xl:text-5xl font-normal text-black dark:text-white mb-0 leading-[1.147058823529412] lettersp-2"
               variants={moveUp(0)}
               initial="hidden"
               whileInView="show"
@@ -122,11 +122,11 @@ const FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
                   {featuredProjects?.map((slide, index) => (
                     <SwiperSlide key={index}>
                       <div className="">
-                        <h3 className="text-2xl font-normal mb-5 lg:mb-15 dark:text-white leading-[1.40625] pr-5">
+                        <motion.h3 variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-2xl font-normal mb-5 lg:mb-15 dark:text-white leading-[1.40625] pr-5">
                           <Link href={"/projects/" + slide.slug} className="hover:text-primary transition-all duration-300">
                             {slide.title}
                           </Link>
-                        </h3>
+                        </motion.h3>
                         <div className="w-full pr-10">
                           <motion.div
                             variants={moveUp(0.5)}

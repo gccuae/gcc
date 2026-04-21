@@ -253,7 +253,7 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
     <section className="py-37px pb-13 xl:pt-57px xl:pb-25 bg-light-white dark:bg-light-dark mx-auto overflow-hidden">
       <div className="container">
         <div className="mb-4 md:mb-6 xl:mb-47px 3xl:mb-57px flex items-center justify-between">
-          <motion.h2 variants={moveUp()} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-4xl xl:text-5xl leading-lh-text68 font-normal text-black dark:text-white" >
+          <motion.h2 variants={moveUp()} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-4xl 2xl:text-5xl leading-lh-text68 font-normal text-black dark:text-white" >
             Key Projects
           </motion.h2>
           <motion.div
@@ -276,7 +276,7 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
             </button>
           </motion.div>
         </div>
-      
+
         <div
           ref={viewportRef}
           className={`overflow-hidden ${isDragging ? "cursor-grabbing" : "cursor-grab"}`}
@@ -285,9 +285,9 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
           onPointerUp={handlePointerUp}
           onPointerCancel={handlePointerCancel}
           onDragStart={(e) => e.preventDefault()}
-        // Only fires when didSwipeRef=true (after a real swipe) — blocks the
-        // synthetic click that the browser fires after pointerup on mouse devices.
-        // For a simple tap/click, didSwipeRef is always false so this is a no-op.
+          // Only fires when didSwipeRef=true (after a real swipe) — blocks the
+          // synthetic click that the browser fires after pointerup on mouse devices.
+          // For a simple tap/click, didSwipeRef is always false so this is a no-op.
           onClickCapture={(e) => {
             if (!didSwipeRef.current) return;
             didSwipeRef.current = false;
@@ -309,58 +309,58 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
               willChange: "transform",
             }}
           >
-          {loopItems.map((item, index) => (
-            <div key={index} className="overflow-hidden shrink-0 3xl:h-[533px]" style={{ width: `${slideWidth}px` }}>
-              <motion.div
-                variants={moveUp((projectsCount ? index % projectsCount : index) * 0.15)}
-                initial="hidden" whileInView="show" viewport={{ once: true }}
-                className="relative h-[350px] xl:h-[450px] 3xl:h-[533px] w-full flex flex-col justify-end px-4 md:px-6 py-6 xl:py-8 group"
-              >
-                {/* Full-card image link — no setPointerCapture means click events
+            {loopItems.map((item, index) => (
+              <div key={index} className="overflow-hidden shrink-0 3xl:h-[533px]" style={{ width: `${slideWidth}px` }}>
+                <motion.div
+                  variants={moveUp((projectsCount ? index % projectsCount : index) * 0.15)}
+                  initial="hidden" whileInView="show" viewport={{ once: true }}
+                  className="relative h-[350px] xl:h-[450px] 3xl:h-[533px] w-full flex flex-col justify-end px-4 md:px-6 py-6 xl:py-8 group"
+                >
+                  {/* Full-card image link — no setPointerCapture means click events
                     fire on this Link (not the viewport), so navigation works.
                     Drag works because pointermove/pointerup still bubble to the viewport. */}
-                <Link
-                  href={`/projects/${item.slug}`}
-                  className="absolute inset-0 z-0"
-                  tabIndex={-1}
-                  aria-label={`View project: ${item.title}`}
-                  draggable={false}
-                >
-                  <Image src={item.thumbnail} alt={item.title} width={2000} height={1633} className="w-full h-full object-cover" draggable={false} />
-                </Link>
-
-                <div className="relative z-10 max-w-full transition-all duration-500 content-box opacity-100 translate-y-0">
-                  <Link href={`/projects/${item.slug}`} className="bg-black inline-block max-w-full p-2 lg:px-5 lg:py-3">
-                    <p className="text-sm md:text-lg leading-lh-text19 font-normal text-white !text-left">
-                      {item.secondSection.projectType.name},{" "}
-                      {item.secondSection.sector.name},{" "}
-                      {item.secondSection.location.name}
-                    </p>
+                  <Link
+                    href={`/projects/${item.slug}`}
+                    className="absolute inset-0 z-0"
+                    tabIndex={-1}
+                    aria-label={`View project: ${item.title}`}
+                    draggable={false}
+                  >
+                    <Image src={item.thumbnail} alt={item.title} width={2000} height={1633} className="w-full h-full object-cover" draggable={false} />
                   </Link>
-                  <ProjectTitleCta title={item.title} href={`/projects/${item.slug}`} />
-                </div>
-                <ProjectArrowCta href={`/projects/${item.slug}`} title={item.title} />
-              </motion.div>
-            </div>
-          ))}
-        </div>
-      </div>
 
-      <div className="swiper-pagination w-full">
-        <div className="flex justify-center items-center gap-2 mt-4 lg:mt-[40px] w-fit mx-auto">
-          {projects.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => {
-                setEnableTransition(true);
-                setVirtualIndex(projectsCount + idx);
-              }}
-              className={`w-3 h-[3px] rounded-full cursor-pointer transition-all duration-300 ${activeIndex === idx ? "bg-accent w-[27px]" : "bg-mdgray"
-                }`}
-            />
-          ))}
+                  <div className="relative z-10 max-w-full transition-all duration-500 content-box opacity-100 translate-y-0">
+                    <Link href={`/projects/${item.slug}`} className="bg-black inline-block max-w-full p-2 lg:px-5 lg:py-3">
+                      <p className="text-sm md:text-lg leading-lh-text19 font-normal text-white !text-left">
+                        {item.secondSection.projectType.name},{" "}
+                        {item.secondSection.sector.name},{" "}
+                        {item.secondSection.location.name}
+                      </p>
+                    </Link>
+                    <ProjectTitleCta title={item.title} href={`/projects/${item.slug}`} />
+                  </div>
+                  <ProjectArrowCta href={`/projects/${item.slug}`} title={item.title} />
+                </motion.div>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+
+        <div className="swiper-pagination w-full">
+          <div className="flex justify-center items-center gap-2 mt-4 lg:mt-[40px] w-fit mx-auto">
+            {projects.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => {
+                  setEnableTransition(true);
+                  setVirtualIndex(projectsCount + idx);
+                }}
+                className={`w-3 h-[3px] rounded-full cursor-pointer transition-all duration-300 ${activeIndex === idx ? "bg-accent w-[27px]" : "bg-mdgray"
+                  }`}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

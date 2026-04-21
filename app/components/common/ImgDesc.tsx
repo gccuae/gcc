@@ -15,7 +15,7 @@ const ImgDesc = ({ data }: { data: ImgDescProps }) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="order-1 xl:hidden text-4xl leading-[1.147058823529412] capitalize text-black dark:text-white pb-0"
+            className="order-1 xl:hidden text-4xl 2xl:text-5xl leading-[1.147058823529412] capitalize text-black dark:text-white pb-0"
           >
             {data.title}
           </motion.h2>

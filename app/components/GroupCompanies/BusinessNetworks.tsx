@@ -20,7 +20,7 @@ const BusinessNetworks = ({ data }: SecondSectionProps) => {
             viewport={{ once: true }}
             initial="hidden"
             whileInView="show"
-            className=" text-4xl xl:text-5xl leading-[1.147058823529412] text-black dark:text-white mb-2 md:mb-4 xl:mb-[27px]"
+            className=" text-4xl 2xl:text-5xl leading-[1.147058823529412] text-black dark:text-white mb-2 md:mb-4 xl:mb-[27px]"
           >
             {data.title}
           </motion.h2>
@@ -38,7 +38,7 @@ const BusinessNetworks = ({ data }: SecondSectionProps) => {
           {data.items.filter((item) => !item.hideCompany).map((item, index) => (
             <motion.div className="border-b dark:border-white/20 hover:border-primary"
               key={index}
-              variants={moveUp(index * 0.12)}
+              variants={moveUp((index % 6) * 0.1)}
               viewport={{ once: true }}
               initial="hidden"
               whileInView="show"

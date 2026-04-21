@@ -13,7 +13,7 @@ const WhyChoose = ({ data }: WhyChooseProps) => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className=" text-4xl xl:text-5xl leading-[1.147058823529412] text-black dark:text-white mb-2 xl:mb-3  tracking-[-1.9px]"
+          className=" text-4xl 2xl:text-5xl leading-[1.147058823529412] text-black dark:text-white mb-2 xl:mb-3  tracking-[-1.9px]"
         >
           {data.mainTitle}
         </motion.h2>

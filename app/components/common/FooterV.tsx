@@ -20,7 +20,7 @@ const FooterV = ({ data,socialMediaData }: any) => {
         <div className="container relative z-2">
           {!data.firstSection.hidden && <div className="pt-8 lg:pt-15 pb-4 lg:pb-6 border-b border-para-color">
             <motion.h2
-              className="text-4xl font-normal leading-[1.147058823529412] text-white max-w-3xl"
+              className="text-3xl 2xl:text-4xl font-normal leading-[1.147058823529412] text-white max-w-3xl"
               variants={moveUp(0)}
               initial="hidden"
               whileInView="show"
@@ -29,9 +29,9 @@ const FooterV = ({ data,socialMediaData }: any) => {
               {data.firstSection.title}
             </motion.h2>
           </div>}
-          <div className="grid gap-y-8 lg:grid-cols-2 xl:grid-cols-[6fr_4fr] pt-4 pb-4 xl:pt-27px xl:pb-27px border-b border-para-color">
+          <div className="grid gap-y-8 md:gap-x-6 md:grid-cols-2 xl:grid-cols-[6fr_4fr] pt-4 pb-4 xl:pt-27px xl:pb-27px border-b border-para-color">
             <div>
-              {!data.secondSection.hidden && <div className="flex flex-col gap-2 lg:gap-3 pt-3 xl:pt-4 pb-5">
+              {!data.secondSection.hidden && <div className="flex flex-col gap-y-4 lg:gap-3 pt-0 xl:pt-4 pb-5">
                 <motion.p
                   className="text-md font-light text-white leading-[1.526315789473684] max-w-[472px] flex flex-col"
                   variants={moveUp(0.2)}
@@ -49,7 +49,7 @@ const FooterV = ({ data,socialMediaData }: any) => {
                 </motion.p>
                 <motion.div
                   className="flex items-center gap-4"
-                  variants={moveUp(0.6)}
+                  variants={moveUp(0.2)}
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true, amount: 0.2 }}
@@ -78,26 +78,12 @@ const FooterV = ({ data,socialMediaData }: any) => {
                     Get Directions
                   </Link>
                 </motion.div>
-                <motion.div
-                  className="flex items-center gap-4"
-                  variants={moveUp(0.4)}
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={{ once: true, amount: 0.2 }}
-                >
+                <motion.div className="flex items-center gap-4" variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} >
                   <div className="flex items-center justify-center bg-black rounded-full border border-foreground w-10 h-10">
-                    <svg
-                      width="22"
-                      height="18"
-                      viewBox="0 0 22 18"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                    <svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clipPath="url(#clip0_614_814)">
-                        <path
-                          d="M17.8859 1.72461H4.1122C2.82269 1.72461 1.77734 2.74411 1.77734 4.00172V13.998C1.77734 15.2557 2.82269 16.2751 4.1122 16.2751H17.8859C19.1754 16.2751 20.2207 15.2557 20.2207 13.998V4.00172C20.2207 2.74411 19.1754 1.72461 17.8859 1.72461Z" stroke="#EE3524" strokeWidth="2.5" strokeMiterlimit="10" strokeLinecap="round" />
-                        <path
-                          d="M4.45703 4.5031L10.1549 10.06C10.6571 10.5499 11.4694 10.5499 11.9717 10.06L17.6852 4.48779"
+                        <path d="M17.8859 1.72461H4.1122C2.82269 1.72461 1.77734 2.74411 1.77734 4.00172V13.998C1.77734 15.2557 2.82269 16.2751 4.1122 16.2751H17.8859C19.1754 16.2751 20.2207 15.2557 20.2207 13.998V4.00172C20.2207 2.74411 19.1754 1.72461 17.8859 1.72461Z" stroke="#EE3524" strokeWidth="2.5" strokeMiterlimit="10" strokeLinecap="round" />
+                        <path d="M4.45703 4.5031L10.1549 10.06C10.6571 10.5499 11.4694 10.5499 11.9717 10.06L17.6852 4.48779"
                           stroke="#EE3524" strokeWidth="2.5" strokeMiterlimit="10" strokeLinecap="round" />
                       </g>
                       <defs>
@@ -121,13 +107,7 @@ const FooterV = ({ data,socialMediaData }: any) => {
                   viewport={{ once: true, amount: 0.2 }}
                 >
                   <div className="flex items-center justify-center bg-black rounded-full border border-foreground w-10 h-10">
-                    <svg
-                      width="22"
-                      height="22"
-                      viewBox="0 0 22 22"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clipPath="url(#clip0_614_808)">
                         <path
                           fillRule="evenodd"
@@ -186,11 +166,11 @@ const FooterV = ({ data,socialMediaData }: any) => {
               </motion.h3>
               <div className="flex gap-10">
                 <div>
-                  <ul className="flex flex-col gap-2">
-                    {data.thirdSection.items.slice(0, 5).map((item: { title: string, link: string },index:number) => (
+                  <ul className="flex flex-col gap-2 mb-5">
+                    {data.thirdSection.items.slice(0, 6).map((item: { title: string, link: string },index:number) => (
                       <motion.li
                       key={item.title}
-                        variants={moveUp(index)}
+                        variants={moveUp(index * 0.1)}
                         initial="hidden"
                         whileInView="show"
                         viewport={{ once: true, amount: 0.2 }}
@@ -200,59 +180,15 @@ const FooterV = ({ data,socialMediaData }: any) => {
                       </motion.li>
                     ))}
 
-                    {/* <motion.li
-                      variants={moveUp(0.05)}
-                      initial="hidden"
-                      whileInView="show"
-                      viewport={{ once: true, amount: 0.2 }}
-                      className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300 "
-                    >
-                      <Link href="/group-companies">Group Companies</Link>
-                    </motion.li>
-                    <motion.li
-                      variants={moveUp(0.1)}
-                      initial="hidden"
-                      whileInView="show"
-                      viewport={{ once: true, amount: 0.2 }}
-                      className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300 "
-                    >
-                      <Link href="/sustainability"> Sustainability</Link>
-                    </motion.li>
-                    <motion.li
-                      variants={moveUp(0.2)}
-                      initial="hidden"
-                      whileInView="show"
-                      viewport={{ once: true, amount: 0.2 }}
-                      className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300 "
-                    >
-                      <Link href="/projects">Projects</Link>
-                    </motion.li>
-                    <motion.li
-                      variants={moveUp(0.2)}
-                      initial="hidden"
-                      whileInView="show"
-                      viewport={{ once: true, amount: 0.2 }}
-                      className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300 "
-                    >
-                      <Link href="/vendor-registration">Vendor Registration</Link>
-                    </motion.li> */}
                   </ul>
                 </div>
                 <div>
                   <ul className="flex flex-col gap-2">
-                    {/* <motion.li
-                      variants={moveUp(0)}
-                      initial="hidden"
-                      whileInView="show"
-                      viewport={{ once: true, amount: 0.2 }}
-                      className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300 "
-                    >
-                      <Link href="/clients">Clientele & Partnerships</Link>
-                    </motion.li> */}
-                    {data.thirdSection.items.slice(5).map((item:{title:string,link:string},index:number) => (
+                  
+                    {data.thirdSection.items.slice(6).map((item:{title:string,link:string},index:number) => (
                       <motion.li
                       key={index}
-                        variants={moveUp(index)}
+                        variants={moveUp((index + 6) * 0.1)}
                         initial="hidden"
                         whileInView="show"
                         viewport={{ once: true, amount: 0.2 }}
@@ -261,41 +197,15 @@ const FooterV = ({ data,socialMediaData }: any) => {
                         <Link href={item.link}>{item.title}</Link>
                       </motion.li>
                     ))}
-                    {/* <motion.li
-                      variants={moveUp(0.1)}
-                      initial="hidden"
-                      whileInView="show"
-                      viewport={{ once: true, amount: 0.2 }}
-                      className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300 "
-                    >
-                      <Link href="/careers">Careers</Link>
-                    </motion.li> */}
-                    {/* <motion.li
-                      variants={moveUp(0.2)}
-                      initial="hidden"
-                      whileInView="show"
-                      viewport={{ once: true, amount: 0.2 }}
-                      className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300 "
-                    >
-                      <Link href="/qhse">Health Safety & Environmental</Link>
-                    </motion.li> */}
-                    {/* <motion.li
-                      variants={moveUp(0.3)}
-                      initial="hidden"
-                      whileInView="show"
-                      viewport={{ once: true, amount: 0.2 }}
-                      className="text-white font-light leading-[1.578947368421053] hover:text-accent transition-colors duration-300 "
-                    >
-                      <Link href="/blog">Blog</Link>
-                    </motion.li> */}
+                    
                   </ul>
                 </div>
               </div>
             </div>}
           </div>
           <div className="grid lg:grid-cols-2 xl:grid-cols-[6fr_4fr] pt-6 pb-8 xl:pt-8 xl:pb-27px gap-y-8">
-            {!socialMediaData.hidden && <div className="flex flex-wrap gap-4 xl:gap-6">
-              {socialMediaData.socialSection.items.map((item: any,index:number) => (
+            {!data.forthSection.hidden && <div className="flex flex-wrap gap-x-8 sm:gap-x-10 xl:gap-x-6">
+              {data.forthSection.items.map((item: any,index:number) => (
                 <motion.div
                 key={index}
                   className="flex items-center gap-2"
@@ -305,60 +215,13 @@ const FooterV = ({ data,socialMediaData }: any) => {
                   viewport={{ once: true, amount: 0.2 }}
                 >
                   <Link href={item.link} className="flex items-center gap-2">
-                    <span className="text-mdgray text-md font-light leading-[1.578947368421053] uppercase hover:text-primary transition-all duration-300">
+                    <span className="text-white/60 md:text-mdgray text-base sm:text-md font-light leading-[1.578947368421053] uppercase hover:text-primary transition-all duration-300">
                       {item.title}
                     </span>
-                    <Image
-                      src={assets.linkArrowGreen}
-                      alt="linkArrowGreen"
-                      width={22}
-                      height={22}
-                      className="w-5 h-5 xl:w-[10.97px] xl:h-auto"
-                    />
+                    <Image src={assets.linkArrowGreen} alt="linkArrowGreen" width={22} height={22} className="w-3 h-3 md:w-5 md:h-5 xl:w-[10.97px] xl:h-auto" />
                   </Link>
                 </motion.div>
               ))}
-
-              {/* <motion.div
-                className="flex items-center gap-2"
-                variants={moveUp(0.1)}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, amount: 0.2 }}
-              >
-                <Link href="https://www.facebook.com/profile.php?id=61585660241145" className="flex items-center gap-2">
-                  <span className="text-mdgray text-md font-light leading-[1.578947368421053] uppercase hover:text-primary transition-all duration-300">
-                    Facebook
-                  </span>
-                  <Image
-                    src={assets.linkArrowGreen}
-                    alt="linkArrowGreen"
-                    width={22}
-                    height={22}
-                    className="w-5 h-5 xl:w-[10.97px] xl:h-auto"
-                  />
-                </Link>
-              </motion.div>
-              <motion.div
-                className="flex items-center gap-2"
-                variants={moveUp(0.2)}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, amount: 0.2 }}
-              >
-                <Link href="https://www.youtube.com/@GCCae" className="flex items-center gap-2">
-                  <span className="text-mdgray text-md font-light leading-[1.578947368421053] uppercase hover:text-primary transition-all duration-300">
-                    Youtube
-                  </span>
-                  <Image
-                    src={assets.linkArrowGreen}
-                    alt="linkArrowGreen"
-                    width={22}
-                    height={22}
-                    className="w-5 h-5 xl:w-[10.97px] xl:h-auto"
-                  />
-                </Link>
-              </motion.div> */}
             </div>}
             {!data.fifthSection.hidden && <motion.div
               variants={moveUp(0.5)}

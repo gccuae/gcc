@@ -9,7 +9,7 @@ import { BlogData } from "../blog/type";
 const MoreBlog = ({ category, items }: { category: string, items: BlogData }) => {
   // filter blogs by category
 
-  const allItems = items.categories.flatMap((item: { blogs: BlogData['categories'][number]['blogs'] }) => item.blogs).filter((item)=>item.status !== "draft");
+  const allItems = items.categories.flatMap((item: { blogs: BlogData['categories'][number]['blogs'] }) => item.blogs).filter((item) => item.status !== "draft");
   const filtered = allItems
     .filter((item) => item.category === category)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -23,7 +23,7 @@ const MoreBlog = ({ category, items }: { category: string, items: BlogData }) =>
           whileInView="show"
           className="flex justify-between items-center pb-5 xl:pb-[45px] mb-8 xl:mb-15 border-b dark:border-white/20"
         >
-          <h2 className=" text-4xl xl:text-5xl leading-[1.147058823529412] text-black dark:text-white">
+          <h2 className=" text-4xl 2xl:text-5xl leading-[1.147058823529412] text-black dark:text-white">
             More Blog
           </h2>
           <BtnPrimary link={`/blog`} text="View All" bgtrans={true} />
