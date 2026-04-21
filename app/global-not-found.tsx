@@ -21,14 +21,17 @@ export default async function GlobalNotFound() {
   const footerResponse = await fetch(`${process.env.BASE_URL}/api/admin/footer`)
   const footerData = await footerResponse.json();
 
+  const socialResponse = await fetch(`${process.env.BASE_URL}/api/admin/social-media`)
+  const socialMediaData = await socialResponse.json();
+
 
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${dmSans.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          {navbarData.data.status == "published" && <Header data={navbarData.data} />}
+          {navbarData.data.status == "published" && <Header data={navbarData.data} socialMediaData={socialMediaData.data}/>}
           <NotFound />
-          {footerData.data.status == "published" && <FooterV data={footerData.data} />}
+          {footerData.data.status == "published" && <FooterV data={footerData.data} socialMediaData={socialMediaData.data}/>}
         </ThemeProvider>
       </body>
     </html>

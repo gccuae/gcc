@@ -243,6 +243,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
       const response = await fetch(`/api/admin/projects?id=${id}`);
       if (response.ok) {
         const data = await response.json();
+        setValue("status", data.data.status)
         setValue("banner", data.data.banner);
         setValue("bannerAlt", data.data.bannerAlt);
         setValue("bannerHidden", data.data.bannerHidden);
@@ -273,7 +274,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
         setValue("forthSection.items", data.data.forthSection.items);
         setValue("fifthSection", data.data.fifthSection);
         setValue("relatedService", data.data.relatedService._id);
-        setValue("status", data.data.status)
+        
       } else {
         const data = await response.json();
         alert(data.message);
