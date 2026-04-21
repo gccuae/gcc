@@ -22,7 +22,7 @@ type MobileNavItem = {
   }[];
 };
 
-const MobileNav = ({ items }: { items?: MobileNavItem[] }) => {
+const MobileNav = ({ items, socialMediaData }: { items?: MobileNavItem[], socialMediaData: any }) => {
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
   const [menuOpen, setMenuOpen] = useState(false); // State for menu visibility
   // const [projectList, setProjectList] = useState<
@@ -125,15 +125,15 @@ const MobileNav = ({ items }: { items?: MobileNavItem[] }) => {
     items && items.length > 0
       ? items
       : menuItems.map((item) => ({
-          title: item.title,
-          url: item.url,
+        title: item.title,
+        url: item.url,
+        hidden: false,
+        subItems: (item.children ?? []).map((child) => ({
+          title: child.title,
+          url: child.url,
           hidden: false,
-          subItems: (item.children ?? []).map((child) => ({
-            title: child.title,
-            url: child.url,
-            hidden: false,
-          })),
-        }));
+        })),
+      }));
 
   useEffect(() => {
     if (!menuOpen) {
@@ -245,61 +245,60 @@ const MobileNav = ({ items }: { items?: MobileNavItem[] }) => {
             {navItems
               .filter((item) => !item.hidden)
               .map((item, index) => {
-              if (item.subItems.length > 0) {
+                if (item.subItems.length > 0) {
+                  return (
+                    <li key={index}>
+                      <div
+                        className="pb-2 flex justify-between items-center cursor-pointer uppercase"
+                        onClick={() =>
+                          setActiveDropdown(activeDropdown === index ? null : index)
+                        }
+                      >
+                        <span className="font-semibold">{item.title}</span>
+                        <ChevronDown
+                          className={`transition-transform duration-300 ${activeDropdown === index ? "rotate-180" : ""
+                            }`}
+                        />
+                      </div>
+                      {activeDropdown === index && (
+                        <ul>
+                          {item.subItems
+                            .filter((childItem) => !childItem.hidden)
+                            .map((childItem, childIndex) => (
+                              <li key={childIndex} className="py-1 text-black dark:text-white">
+                                <Link
+                                  href={childItem.url}
+                                  onClick={() => {
+                                    setActiveDropdown(null);
+                                    setMenuOpen(false);
+                                  }}
+                                  className="flex items-center gap-2 rounded-[8px] py-1 transition-colors duration-300 hover:text-primary"
+                                >
+                                  <Image
+                                    src="/assets/img/icons/arrow.svg"
+                                    alt=""
+                                    width={12}
+                                    height={12}
+                                    className="h-3 w-3 dark:invert-50"
+                                  />
+                                  <span>{childItem.title}</span>
+                                </Link>
+                              </li>
+                            ))}
+                        </ul>
+                      )}
+                    </li>
+                  );
+                }
+
                 return (
-                  <li key={index}>
-                    <div
-                      className="pb-2 flex justify-between items-center cursor-pointer uppercase"
-                      onClick={() =>
-                        setActiveDropdown(activeDropdown === index ? null : index)
-                      }
-                    >
-                      <span className="font-semibold">{item.title}</span>
-                      <ChevronDown
-                        className={`transition-transform duration-300 ${
-                          activeDropdown === index ? "rotate-180" : ""
-                        }`}
-                      />
-                    </div>
-                    {activeDropdown === index && (
-                      <ul>
-                        {item.subItems
-                          .filter((childItem) => !childItem.hidden)
-                          .map((childItem, childIndex) => (
-                          <li key={childIndex} className="py-1 text-black dark:text-white">
-                            <Link
-                              href={childItem.url}
-                              onClick={() => {
-                                setActiveDropdown(null);
-                                setMenuOpen(false);
-                              }}
-                              className="flex items-center gap-2 rounded-[8px] py-1 transition-colors duration-300 hover:text-primary"
-                            >
-                              <Image
-                                src="/assets/img/icons/arrow.svg"
-                                alt=""
-                                width={12}
-                                height={12}
-                                className="h-3 w-3 dark:invert-50"
-                              />
-                              <span>{childItem.title}</span>
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
+                  <li key={index} className="pb-2 uppercase font-semibold">
+                    <Link href={item.url} onClick={() => setMenuOpen(false)}>
+                      {item.title}
+                    </Link>
                   </li>
                 );
-              }
-
-              return (
-                <li key={index} className="pb-2 uppercase font-semibold">
-                  <Link href={item.url} onClick={() => setMenuOpen(false)}>
-                    {item.title}
-                  </Link>
-                </li>
-              );
-            })}
+              })}
 
             {/* Contact Link */}
             <li className="uppercase">
@@ -313,19 +312,22 @@ const MobileNav = ({ items }: { items?: MobileNavItem[] }) => {
           <div className="mt-auto">
             <hr />
             <div className="flex space-x-4 mt-4">
-              <div>
+              {!socialMediaData.hidden && <div>
                 <div className="flex space-x-4" >
-                  <Link href="https://www.facebook.com/profile.php?id=61585660241145" target="_blank" className="cursor-pointer rounded-full p-2 bg-black text-white dark:bg-white dark:text-black hover:bg-primary transition-all duration-500">
-                    <FaFacebookF className="cursor-pointer w-5 h-5 transition-all duration-500" />
-                  </Link>
-                  <Link href="https://www.linkedin.com" target="_blank" className="cursor-pointer rounded-full p-2 bg-black text-white dark:bg-white dark:text-black hover:bg-primary transition-all duration-500">
+                  {socialMediaData.socialSection.items.map((item:{hidden:boolean, image:string, imageAlt:string, link:string}) => (
+                    !item.hidden ? (<Link href={item.link} target="_blank" className="cursor-pointer rounded-full p-2 bg-black text-white dark:bg-white dark:text-black hover:bg-primary transition-all duration-500">
+                      <Image src={item.image} alt={item.imageAlt} width={5} height={5} className="cursor-pointer w-5 h-5 transition-all duration-500 invert brightness-0" />
+                    </Link>) : null
+                  ))}
+
+                  {/* <Link href="https://www.linkedin.com" target="_blank" className="cursor-pointer rounded-full p-2 bg-black text-white dark:bg-white dark:text-black hover:bg-primary transition-all duration-500">
                     <FaLinkedinIn className="cursor-pointer w-5 h-5 transition-all duration-500" />
                   </Link>
                   <Link href="https://www.youtube.com/@GCCae" target="_blank" className="cursor-pointer rounded-full p-2 bg-black text-white dark:bg-white dark:text-black hover:bg-primary transition-all duration-500">
                     <FaYoutube className="cursor-pointer w-5 h-5 transition-all duration-500" />
-                  </Link>
+                  </Link> */}
                 </div>
-              </div>
+              </div>}
             </div>
           </div>
         </div>

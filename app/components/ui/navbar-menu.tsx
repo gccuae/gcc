@@ -71,13 +71,18 @@ export const MenuItem = ({
 export const Menu = ({
   setActive,
   children,
+  socialMediaData
 }: {
   setActive: (item: string | null) => void;
   children: React.ReactNode;
+  socialMediaData: any
 }) => {
 
   const containerRef = useRef<HTMLDivElement>(null);
   const [rightMargin, setRightMargin] = useState(0);
+
+  console.log(socialMediaData);
+
 
   useEffect(() => {
     const updateMargin = () => {
@@ -208,20 +213,25 @@ export const Menu = ({
                 <div>
 
                   <div className="flex items-center gap-4 w-fit ml-auto  mb-[19px] ">
-                    <div className="flex items-center justify-end gap-2">
-                      <Link href="https://www.facebook.com/profile.php?id=61585660241145" target="_blank" className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center group" >
-                        <Image src="/assets/img/icons/fb.svg" alt="fb" width={8} height={14} className="group-hover:filter-[brightness(0)_invert(1)] transition-all duration-300" />
-                      </Link>
-                      <Link href="https://www.linkedin.com/company/gccae/ " target="_blank" className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center group" >
+                    {!socialMediaData.hidden && <div className="flex items-center justify-end gap-2">
+                      {socialMediaData.socialSection.items.map((item: { link: string, image: string, imageAlt: string, hidden: boolean }) => (
+                        !item.hidden ? (<Link href={item.link} target="_blank" className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center group" >
+                          <div className="relative w-3 h-3">
+                            <Image src={item.image} alt={item.imageAlt} fill className="group-hover:filter-[brightness(0)_invert(1)] object-contain group-hover:brightness-0 group-hover:invert transition-all duration-300" />
+                          </div>
+                        </Link>) : null
+                      ))}
+
+                      {/* <Link href="https://www.linkedin.com/company/gccae/ " target="_blank" className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center group" >
                         <Image src="/assets/img/icons/ln.svg" alt="ln" width={12} height={11} className="group-hover:filter-[brightness(0)_invert(1)] transition-all duration-300" />
                       </Link>
                       <Link href="https://www.youtube.com/@GCCae" target="_blank" className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center group" >
                         <Image src="/assets/img/icons/youtube.svg" alt="youtube" width={14} height={10} className="group-hover:filter-[brightness(0)_invert(1)] transition-all duration-300" />
-                      </Link>
+                      </Link> */}
                       <button onClick={openPopup} className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center group" >
                         <Image src="/assets/img/icons/search.svg" alt="youtube" width={14} height={10} className="group-hover:filter-[brightness(0)_invert(1)] transition-all duration-300" />
                       </button>
-                    </div>
+                    </div>}
                     <div>
                       <button onClick={() => setTheme(theme === "light" ? "dark" : "light")}
                         className="relative w-[68px] h-[30px] flex items-center  overflow-hidden rounded-full border border-foreground dark:border-white bg-light-white dark:bg-black cursor-pointer" >

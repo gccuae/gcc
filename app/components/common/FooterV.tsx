@@ -4,7 +4,7 @@ import { assets } from "@/public/assets/assets";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { moveUp, fadeIn } from "../motionVarients";
-const FooterV = ({ data }: any) => {
+const FooterV = ({ data,socialMediaData }: any) => {
   return (
     <footer className="relative ">
       <div className="relative h-full">

@@ -82,6 +82,7 @@ const AdminNavbar = () => {
       name: "Layout", href: "#", icon: LayoutIcon, hasChild: true, children: [
         { name: "Navbar", href: "/admin/navbar" },
         { name: "Footer", href: "/admin/footer" },
+        { name: "Social Media", href: "/admin/social-media" },
       ]
     },
     // { name: "Sustainability", href: "/admin/sustainability", icon: LeafIcon },

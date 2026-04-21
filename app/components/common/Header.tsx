@@ -11,7 +11,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Navbar } from "@/types/Common";
 
 
-const Header = ({data}:{data:Navbar}) => {
+const Header = ({data,socialMediaData}:{data:Navbar,socialMediaData:any}) => {
   // const pathname = usePathname();
   const [active, setActive] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState<null | boolean>(null);
@@ -83,13 +83,13 @@ const Header = ({data}:{data:Navbar}) => {
   // }, []);
 
   if (isMobile) {
-    return <MobileNav items={data.navSection.items} />;
+    return <MobileNav items={data.navSection.items} socialMediaData={socialMediaData}/>;
   } else if (isMobile == null) {
     return null;
   } else {
     const renderHeader = () => {
       return (
-        <Menu setActive={setActive}>
+        <Menu setActive={setActive} socialMediaData={socialMediaData}>
           {data.navSection.items.map((menuItem, index) =>
             menuItem.subItems.length > 0 ? (
               !menuItem.hidden ? (<MenuItem setActive={setActive} active={active} url={menuItem.url} item={menuItem.title} key={index} >
