@@ -13,7 +13,7 @@ const WhyChoose = ({ data }: WhyChooseProps) => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className=" text-4xl xl:text-5xl leading-[1.147058823529412] text-black dark:text-white mb-3  tracking-[-1.9px]"
+          className=" text-4xl xl:text-5xl leading-[1.147058823529412] text-black dark:text-white mb-2 xl:mb-3  tracking-[-1.9px]"
         >
           {data.mainTitle}
         </motion.h2>
@@ -22,7 +22,7 @@ const WhyChoose = ({ data }: WhyChooseProps) => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="text-xl 2xl:text-2xl max-w-[96ch] leading-[1.526315789473684] text-para-color dark:text-white/70"
+          className="text-lg xl:text-xl 2xl:text-2xl max-w-[96ch] leading-[1.526315789473684] text-para-color dark:text-white/70"
         >
           {data.subTitle}
         </motion.p>
