@@ -39,7 +39,7 @@ const QualityAssurance = ({
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className=" text-4xl 2xl:text-5xl text-black dark:text-white leading-lh-title mb-4 md:mb-0"
+            className=" text-4xl 2xl:text-5xl text-black dark:text-white leading-lh-title mb-2 md:mb-4 md:mb-0"
           >
             {title}
           </motion.h2>

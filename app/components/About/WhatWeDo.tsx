@@ -18,13 +18,13 @@ const WhatWeDo = ({ data, expertiseData }: WhatWeDoComponentProps) => {
   return (
     <section className={`bg-light-white dark:bg-light-dark overflow-hidden ${data.hidden ? "hidden" : ""}`}>
       <div className="border-b dark:border-white/20 dark:border-white/20">
-        <div className="container pt-47px pb-5 xl:py-57px">
+        <div className="container pt-37px md:pt-47px pb-5 xl:py-57px">
           <motion.h2
             variants={moveUp()}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className=" text-4xl xl:text-5xl leading-lh-title text-black dark:text-white mb-4 lg:mb-[13px]"
+            className=" text-4xl xl:text-5xl leading-lh-title text-black dark:text-white mb-2 md:mb-4 lg:mb-[13px]"
           >
             {data.mainTitle}
           </motion.h2>
