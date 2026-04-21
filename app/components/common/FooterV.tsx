@@ -4,7 +4,7 @@ import { assets } from "@/public/assets/assets";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { moveUp, fadeIn } from "../motionVarients";
-const FooterV = ({ data }: any) => {
+const FooterV = ({ data,socialMediaData }: any) => {
   return (
     <footer className="relative ">
       <div className="relative h-full">
@@ -294,8 +294,8 @@ const FooterV = ({ data }: any) => {
             </div>}
           </div>
           <div className="grid lg:grid-cols-2 xl:grid-cols-[6fr_4fr] pt-6 pb-8 xl:pt-8 xl:pb-27px gap-y-8">
-            {!data.forthSection.hidden && <div className="flex flex-wrap gap-4 xl:gap-6">
-              {data.forthSection.items.map((item: any,index:number) => (
+            {!socialMediaData.hidden && <div className="flex flex-wrap gap-4 xl:gap-6">
+              {socialMediaData.socialSection.items.map((item: any,index:number) => (
                 <motion.div
                 key={index}
                   className="flex items-center gap-2"

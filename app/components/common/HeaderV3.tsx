@@ -83,13 +83,14 @@ const HeaderV3 = () => {
 
   if (isMobile) {
     return (
-      <MobileNav
-        items={menuItemsV3.map((item) => ({
-          title: item.title,
-          url: item.url,
-          subItems: item.children ?? [],
-        }))}
-      />
+      // <MobileNav
+      //   items={menuItemsV3.map((item) => ({
+      //     title: item.title,
+      //     url: item.url,
+      //     subItems: item.children ?? [],
+      //   }))}
+      // />
+      null
     );
   } else if (isMobile == null) {
     return null;

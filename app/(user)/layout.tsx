@@ -34,6 +34,9 @@ export default async function RootLayout({
   const footerResponse = await fetch(`${process.env.BASE_URL}/api/admin/footer`)
   const footerData = await footerResponse.json();
 
+  const socialResponse = await fetch(`${process.env.BASE_URL}/api/admin/social-media`)
+  const socialMediaData = await socialResponse.json();
+
   // Get the bodyScript safely
   const bodyScript = tagData?.tag?.bodyScript || "";
 
@@ -75,9 +78,9 @@ export default async function RootLayout({
         )}
 
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          {navbarData.data.status == "published" && <Header data={navbarData.data} />}
+          {navbarData.data.status == "published" && <Header data={navbarData.data} socialMediaData={socialMediaData.data}/>}
           {children}
-          {footerData.data.status == "published" && <FooterV data={footerData.data} />}
+          {footerData.data.status == "published" && <FooterV data={footerData.data} socialMediaData={socialMediaData.data}/>}
         </ThemeProvider>
       </body>
     </html>

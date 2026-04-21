@@ -45,52 +45,52 @@ export function ImageUploader({
         setError(null);
         setIsUploadComplete(false);
 
-        if(multiple){
+        if (multiple) {
           const formData = new FormData();
-      acceptedFiles.forEach((file) => {
-        formData.append("files", file); // same key for all files
-      });
-      formData.append("fileType", "image");
-      const response = await fetch("/api/admin/upload-multiple", {
-        method: "POST",
-        body: formData,
-      });
+          acceptedFiles.forEach((file) => {
+            formData.append("files", file); // same key for all files
+          });
+          formData.append("fileType", "image");
+          const response = await fetch("/api/admin/upload-multiple", {
+            method: "POST",
+            body: formData,
+          });
 
-      if (response.status !== 200) {
-        alert("Upload failed");
-        return;
-      }
+          if (response.status !== 200) {
+            alert("Upload failed");
+            return;
+          }
 
-      const data = await response.json();
-      // You get back an array of URLs
-      if (Array.isArray(data.urls)) {
-        data.urls.forEach((url: string, index: number) => {
-          onChange(url, acceptedFiles[index]); // optional second arg
-        });
-      }
+          const data = await response.json();
+          // You get back an array of URLs
+          if (Array.isArray(data.urls)) {
+            data.urls.forEach((url: string, index: number) => {
+              onChange(url, acceptedFiles[index]); // optional second arg
+            });
+          }
 
-        }else{
+        } else {
           const formData = new FormData();
-        formData.append("file", file);
-        formData.append("fileType", "image");
-        const response = await fetch("/api/admin/upload", {
-          method: "POST",
-          body: formData,
-        });
+          formData.append("file", file);
+          formData.append("fileType", "image");
+          const response = await fetch("/api/admin/upload", {
+            method: "POST",
+            body: formData,
+          });
 
-        if (response.status !== 200) {
-          setLocalImageUrl(null);
-          alert("Upload failed");
-          return;
+          if (response.status !== 200) {
+            setLocalImageUrl(null);
+            alert("Upload failed");
+            return;
+          }
+
+          const data = await response.json();
+          setLocalImageUrl(data.url);
+          onChange(data.url, file);
+          setIsUploadComplete(true);
         }
 
-        const data = await response.json();
-        setLocalImageUrl(data.url);
-        onChange(data.url, file);
-        setIsUploadComplete(true);
-        }
 
-        
         if (deleteAfterUpload) {
           setLocalImageUrl(null);
           setIsUploadComplete(false);
@@ -108,7 +108,7 @@ export function ImageUploader({
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: {
-      "image/*": [".png", ".jpg", ".jpeg", ".gif",".svg"],
+      "image/*": [".png", ".jpg", ".jpeg", ".gif", ".svg"],
     },
     maxFiles: multiple ? undefined : 1,
     multiple: multiple,
