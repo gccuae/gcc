@@ -73,12 +73,12 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
               }}
               onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
               navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
-              autoplay={{ delay: 5000 }}
+              // spaceBetween={15}
               breakpoints={{
-                0: { slidesPerView: 1 },
-                768: { slidesPerView: 2 },
-                1024: { slidesPerView: 2 },
-                1360: { slidesPerView: 3 },
+                0: { slidesPerView: 1, spaceBetween: 15 },
+                768: { slidesPerView: 2, spaceBetween: 20 },
+                1024: { slidesPerView: 2, spaceBetween: 20 },
+                1360: { slidesPerView: 3, spaceBetween: 10 },
               }}
             >
               {data.items.map((item, index) => {
@@ -90,16 +90,16 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                   // ✅ h-full so the slide fills the swiper height
-                  className="border-t-1 md:border-r-1 border-foreground dark:border-black/20 relative group  xl:pr-0 xl:pl-0 h-full"
+                  className="border-t-1 border-foreground dark:border-black/20 relative group xl:pr-0 xl:pl-0 h-full"
                 >
-                  <div className={`absolute -top-1 left-0 w-full bg-accent transition-all duration-300 z-50 ${isEffectivelyHovered ? 'h-[6px]' : 'h-0'}`}></div>
+                  <div className={`absolute -top-1 left-0 w-full h-[6px] bg-accent transition-transform duration-700 ease-in-out z-50 origin-left ${isEffectivelyHovered ? 'scale-x-100' : 'scale-x-0'}`}></div>
                   <motion.div
                     variants={moveUp(index * 0.2)}
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, amount: 0.2 }}
-                    // ✅ h-full so the flex column stretches the full slide height
-                    className="flex flex-col justify-between xl:max-h-[35em] overflow-hidden z-40 relative group h-full"
+                    // ✅ Fixed height matched to Header + Image to avoid gaps
+                    className="flex flex-col h-[450px] md:h-[480px] xl:h-[550px] overflow-hidden z-40 relative group"
                   >
                     <div className="flex items-center justify-between mb-3 xl:mb-[25px] xl:pl-4 xl:pr-3 pt-6 xl:pt-[37px] group-first:pl-0 transition-all duration-300">
                       <div className="flex items-center gap-2 xl:gap-4">
@@ -115,14 +115,19 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
                         </h3>
                       </div>
                     </div>
-                    <div className={`xl:pl-4 xl:pr-3 3xl:pt-6 group-first:pl-0 transition-all duration-300 ${isEffectivelyHovered ? '3xl:pt-[35px]' : ''}`}>
-                      <p className={`text-lg font-[300] leading-[1.526315789473684] pb-5 transition-all ease-in-out duration-300 sector-description relative z-10 dark:text-white/80 ${isEffectivelyHovered ? 'xl:h-auto xl:opacity-100 xl:pb-[23px]' : 'xl:pb-0 xl:opacity-0 xl:h-0'}`}>
-                        {item.description}
-                      </p>
+                    <div className={`md:pl-4 md:pr-3 3xl:pt-6 group-first:pl-0 transition-all duration-500 ${isEffectivelyHovered ? '3xl:pt-[35px]' : ''}`}>
+                      <div className={`grid transition-all duration-500 ease-in-out ${isEffectivelyHovered ? 'grid-rows-[1fr] opacity-100 pb-[23px]' : 'grid-rows-[0fr] opacity-0 pb-0'}`}>
+                        <div className="overflow-hidden">
+                          <p className={`text-lg font-[300] leading-[1.526315789473684] sector-description relative z-10 dark:text-white/80`}>
+                            {item.description}
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                    {/* ✅ flex-1 on mobile makes image grow to fill leftover height,
-                        keeping total slide height locked. md+ reverts to explicit heights. */}
-                    <div className="relative z-20 mt-auto overflow-hidden transition-all duration-300 group-first:pl-0 flex-1 md:flex-none md:h-[320px] xl:h-[400px]">
+                    {/* ✅ flex-1 makes the image container fill remaining space.
+                        When the description expands above it, this container will naturally shrink,
+                        keeping the total slide height locked. */}
+                    <div className="relative z-20 overflow-hidden transition-all duration-500 group-first:pl-0 flex-1 w-full">
                       <Image
                         src={item.image}
                         alt={item.title}
@@ -136,7 +141,7 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
                 );
               })}
             </Swiper>
-            <div className="absolute left-0 right-0 bottom-2/7 xl:bottom-[120px] z-10 flex h-10 w-full translate-y-1/2 items-center justify-between sm:bottom-[140px] md:right-[-10px] md:left-auto md:top-2/4 md:bottom-auto md:h-[50px] md:w-[50px] md:translate-y-0 md:justify-center md:bg-black xl:top-4/6 xl:-right-12 xl:h-[94px] xl:w-[94px] rounded-full md:overflow-hidden">
+            <div className="absolute left-0 right-0 bottom-2/7 xl:bottom-[120px] z-10 flex h-10 w-full translate-y-1/2 items-center justify-between sm:bottom-[140px] md:right-[-20px] lg:-right-10 xl:-right-12 md:left-auto md:top-2/4 md:bottom-auto md:h-[80px] md:w-[80px] xl:h-[94px] xl:w-[94px] md:translate-y-0 md:justify-center md:bg-black rounded-full md:overflow-hidden">
               <button
                 ref={prevRef}
                 onClick={() => { setPressedNav('prev'); setTimeout(() => setPressedNav(null), 1800); }}
