@@ -28,17 +28,17 @@ const MainContent = ({
   return (
     <div>
       <motion.h3
-        variants={moveUp()}
+        variants={moveUp(0.2)}
         initial="hidden"
-        whileInView="show"
+        animate="show"
         viewport={{ once: true }}
         className="text-xl xl:text-2xl leading-lh-text32 font-normal mb-5 xl:mb-[27px] text-black dark:text-white"
       >
         {subTitle}
       </motion.h3>
-      <motion.div variants={moveUp(0.2)}
+      <motion.div variants={moveUp(0.4)}
         initial="hidden"
-        whileInView="show"
+        animate="show"
         viewport={{ once: true }}
         className="relative h-fit">
           <Swiper
@@ -99,7 +99,10 @@ const MainContent = ({
           {item}
         </motion.p>
       ))} */}
-      <motion.div dangerouslySetInnerHTML={{ __html: content }} className="news-details [&_p]:!text-base 2xl:[&_p]:!text-lg [&_p]:!leading-[1.7] "/>
+      <motion.div variants={moveUp(0.1)}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }} dangerouslySetInnerHTML={{ __html: content }} className="news-details [&_p]:!text-base 2xl:[&_p]:!text-lg [&_p]:!leading-[1.7] "/>
 
       
     </div>

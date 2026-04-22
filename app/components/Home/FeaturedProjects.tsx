@@ -59,33 +59,20 @@ const   FeaturedProjects = ({ data }: FeaturedProjectsProps) => {
       <div>
         <div className="container" ref={containerRef}>
           <div className="flex justify-between items-center pt-30px pb-5 xl:py-37px border-b border-[#C2C2C2] dark:border-white/20">
-            <motion.h2
-              className=" text-4xl 2xl:text-5xl font-normal text-black dark:text-white mb-0 leading-[1.147058823529412] lettersp-2"
-              variants={moveUp(0)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.2 }}
-            >
+            <motion.h2 className=" text-4xl 2xl:text-5xl font-normal text-black dark:text-white mb-0 leading-[1.147058823529412] lettersp-2" variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} >
               Featured Projects
             </motion.h2>
             <div className="flex gap-3 md:gap-5 items-center flex-row-reverse md:flex-row w-fit h-fit justify-between md:w-auto md:justify-start">
-              <motion.div
-                variants={moveUp(0.5)}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, amount: 0.2 }}
-                className="flex border border-foreground dark:border-white/20 rounded-full "
-              >
-                <div ref={prevRef}
-                  className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] border-r border-foreground dark:border-white/20 rounded-tl-full rounded-bl-full group  cursor-pointer hover:bg-accent  transition-all duration-300"
+              <motion.div variants={moveUp(0.5)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="flex border border-foreground dark:border-white/20 rounded-full " >
+                <div ref={prevRef} className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] border-r border-foreground dark:border-white/20 rounded-tl-full rounded-bl-full group  cursor-pointer hover:bg-accent  transition-all duration-300"
                 >
-                  <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]" >
+                  <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-3 h-3 md:w-5 md:h-5 lg:w-[10px] lg:h-[16px]" >
                     <path d="M8.33594 1.33154L1.66731 8.00017L8.33594 14.6688" stroke="#7AC142" className="group-hover:stroke-white transition-all duration-300" strokeWidth="2" strokeLinecap="round" />
                   </svg>
                 </div>
                 <div ref={nextRef} className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] rounded-tr-full rounded-br-full cursor-pointer group hover:bg-accent dark:hover:bg-secondary transition-all duration-300"
                 >
-                  <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]" >
+                  <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-3 h-3 md:w-5 md:h-5 lg:w-[10px] lg:h-[16px]" >
                     <path d="M1.66406 1.33154L8.33269 8.00017L1.66406 14.6688" stroke="#7AC142" className="group-hover:stroke-white transition-all duration-300" strokeWidth="2" strokeLinecap="round" />
                   </svg>
                 </div>

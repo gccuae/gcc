@@ -133,22 +133,17 @@ const SocialImpact = ({
   }, [thumbsSwiper, mainSwiper]);
 
   return (
-    <section className="wrapper py-37px md:py-47px xl:py-57px overflow-hidden bg-black">
+    <section className="wrapper pt-37px pb-47px md:py-47px xl:pt-57px xl:pb-57px overflow-hidden bg-black">
       <div className="container">
-        <div className="flex justify-between items-center mb-6 xl:mb-[43px]">
-          <motion.h2 variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-4xl 2xl:text-5xl font-normal leading-[1.147058823529412] text-white">
+        <div className="flex justify-between items-center mb-6 md:mb-10 xl:mb-[43px]">
+          <motion.h2 variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-4xl 2xl:text-5xl font-normal leading-[1.147058823529412] text-white max-lg:max-w-[18ch]">
             {data.title}
           </motion.h2>
           <div className="flex items-center gap-2">
             <motion.div variants={moveUp(0.5)} initial="hidden" whileInView="show" viewport={{ once: true }} className="flex border border-white/50 dark:border-white/50 rounded-full">
-              <div
-                onClick={handlePrev}
-                className={`px-3 py-2 md:px-6 md:py-4 xl:py-[12px] rounded-tl-full rounded-bl-full group transition-all duration-300 ${isBeginning
-                    ? "cursor-not-allowed opacity-50 bg-black/30"
-                    : "cursor-pointer hover:bg-accent"
-                  }`}
-              >
-                <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]">
+              <div onClick={handlePrev} className={`px-3 py-2 md:px-6 md:py-4 xl:py-[12px] rounded-tl-full rounded-bl-full group transition-all duration-300 ${isBeginning ? "cursor-not-allowed opacity-50 bg-black/30" : "cursor-pointer hover:bg-accent"}`}> 
+                <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" 
+                className="flex w-3 h-3 md:w-5 md:h-5 lg:w-[10px] lg:h-[16px]">
                   <path
                     d="M8.33594 1.33154L1.66731 8.00017L8.33594 14.6688"
                     stroke="#7AC142"
@@ -166,7 +161,7 @@ const SocialImpact = ({
                     : "cursor-pointer hover:bg-accent dark:hover:bg-accent"
                   }`}
               >
-                <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]">
+                <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-3 h-3 md:w-5 md:h-5 lg:w-[10px] lg:h-[16px]">
                   <path
                     d="M1.66406 1.33154L8.33269 8.00017L1.66406 14.6688"
                     stroke="#7AC142"
@@ -216,14 +211,14 @@ const SocialImpact = ({
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, amount: 0.1 }}
-                    className={`flex items-center justify-center rounded-full bg-white w-[85px] h-[85px] border-3 border-white group-hover:border-accent transition-all duration-300 icon-wrapper`}
+                    className={`flex items-center justify-center rounded-full bg-white w-15 h-15 md:w-[85px] md:h-[85px] border-3 border-white group-hover:border-accent transition-all duration-300 icon-wrapper`}
                   >
                     <Image
                       src={item.logo}
                       alt={item.logoAlt}
                       width={200}
                       height={200}
-                      className="mb-2 w-10 h-10 object-contain transition-all duration-500 ease-out"
+                      className="w-8 h-8 md:w-10 md:h-10 object-contain transition-all duration-500 ease-out"
                     />
                   </motion.div>
                   <div className="absolute bottom-[-6px] left-0 w-full h-[2px] bg-smgray dark:bg-white/50 -z-[1]">
@@ -281,7 +276,7 @@ const SocialImpact = ({
                         alt={item.title}
                         width={775}
                         height={483}
-                        className="w-full max-w-[775px] h-[250px] lg:h-[433px] xl:h-[483px] object-cover"
+                        className="w-full max-w-[775px] h-[250px] md:h-[350px] lg:h-[433px] xl:h-[483px] object-cover"
                       />
                     </motion.div>
 

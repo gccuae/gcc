@@ -214,8 +214,8 @@ export const Menu = ({
 
                   <div className="flex items-center gap-4 w-fit ml-auto  mb-[19px] ">
                     {!socialMediaData.hidden && <div className="flex items-center justify-end gap-2">
-                      {socialMediaData.socialSection.items.map((item: { link: string, image: string, imageAlt: string, hidden: boolean }) => (
-                        !item.hidden ? (<Link href={item.link} target="_blank" className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center group" >
+                      {socialMediaData.socialSection.items.map((item: { link: string, image: string, imageAlt: string, hidden: boolean }, index: number) => (
+                        !item.hidden ? (<Link key={index} href={item.link} target="_blank" className="w-8 h-8 rounded-full group hover:bg-primary border border-[#C2C2C2] bg-white hover:border-none cursor-pointer flex items-center justify-center group" >
                           <div className="relative w-3 h-3">
                             <Image src={item.image} alt={item.imageAlt} fill className="group-hover:filter-[brightness(0)_invert(1)] object-contain group-hover:brightness-0 group-hover:invert transition-all duration-300" />
                           </div>

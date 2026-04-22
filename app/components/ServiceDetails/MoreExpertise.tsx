@@ -20,13 +20,13 @@ const MoreExpertise = ({ allServices, exclude }: MoreExpertiseProps) => {
   return (
     <section className="pt-37px pb-47px xl:py-57px bg-light-white dark:bg-black">
       <div className="container">
-        <div className="flex flex-wrap gap-y-3 justify-between items-center pb-5 md:pb-8 xl:pb-47px mb-5 md:mb-8 xl:mb-47px border-b dark:border-white/20">
+        <div className="flex flex-wrap gap-y-3 justify-between items-center pb-4 md:pb-5 xl:pb-47px mb-5 md:mb-8 xl:mb-47px border-b dark:border-white/20">
           <motion.h2
             variants={moveUp(0.2)}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className=" text-4xl 2xl:text-5xl leading-[1.147058823529412] text-black dark:text-white"
+            className=" text-4xl 2xl:text-5xl leading-[1.147058823529412] text-black dark:text-white max-sm:max-w-[10ch]"
           >
             {serviceDetailsData.moreExperiences.title}
           </motion.h2>
@@ -35,7 +35,7 @@ const MoreExpertise = ({ allServices, exclude }: MoreExpertiseProps) => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="flex items-center gap-6"
+            className="flex items-center gap-6 ml-auto md:ml-0"
           >
             <BtnPrimary link={"/expertise"} text="View All" bgtrans={true} />
           </motion.div>
