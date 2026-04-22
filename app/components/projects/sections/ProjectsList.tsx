@@ -109,31 +109,17 @@ const ProjectsList = ({
       {/* ===================== Filter Bar ===================== */}
       <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" className="border-b border-gray-300 dark:border-white/20 pb-27px xl:pb-0 mb-57px" >
         <div className="container">
-          <div className="grid grid-cols-1 2xl:grid-cols-[1fr_repeat(4,1fr)_auto] xl:grid-cols-[2fr_repeat(4,1fr)_auto] items-center gap-4 xl:gap-[30px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-[1fr_repeat(4,1fr)_auto] xl:grid-cols-[2fr_repeat(4,1fr)_auto] items-center gap-y-4 xl:gap-x-[30px] md:gap-x-8">
             {/* Search Input */}
-            <div className="flex items-center justify-start gap-5 border-b xl:border-0 xl:border-r border-gray-300 dark:border-white/20 h-full pb-[12px] xl:py-47px 2xl:w-[303px] pr-8">
+            <div className="md:col-span-2 xl:col-span-1 flex items-center justify-start gap-5 border-b xl:border-0 xl:border-r border-gray-300 dark:border-white/20 h-full pb-[12px] xl:py-47px 2xl:w-[303px] pr-8">
               <Image src={"/assets/img/projects/searchIcon.svg"} alt="search" width={32} height={32} className="dark:invert-100" />
-              <input
-                type="text"
-                placeholder="FIND A PROJECT"
-                value={pendingFilters.search}
-                onChange={(e) =>
-                  setPendingFilters((prev) => ({
-                    ...prev,
-                    search: e.target.value,
-                  }))
-                }
+              <input type="text" placeholder="FIND A PROJECT" value={pendingFilters.search} onChange={(e) => setPendingFilters((prev) => ({ ...prev, search: e.target.value, })) }
                 className="w-full bg-transparent outline-none text-para-color dark:text-white  placeholder-para-color dark:placeholder-white/70 uppercase tracking-wide"
               />
             </div>
 
             {/* Project Type */}
-            <Listbox
-              value={pendingFilters?.projectType}
-              onChange={(value) =>
-                setPendingFilters((prev) => ({ ...prev, projectType: value }))
-              }
-            >
+            <Listbox value={pendingFilters?.projectType} onChange={(value) => setPendingFilters((prev) => ({ ...prev, projectType: value })) } >
               <div className="relative">
                 <Listbox.Button className="flex w-full items-center justify-between border-b border-sm-gray dark:border-white/50 pb-2 font-light text-para-color dark:text-white/70 text-lg capitalize min-w-[140px] 2xl:max-w-[220px] cursor-pointer">
                   <span className="truncate">
@@ -400,7 +386,7 @@ const ProjectsList = ({
             </Listbox>
 
             {/* Apply Filter Button */}
-            <button className="bg-[#7AC142] hover:bg-[#5cb43d] text-white mt-3 px-6 py-[11px] rounded-[25px] font-semibold uppercase text-base leading-[1] transition-colors cursor-pointer"
+            <button className="md:col-span-2 xl:col-span-1 bg-[#7AC142] hover:bg-[#5cb43d] text-white mt-3 px-6 py-[11px] rounded-[25px] font-semibold uppercase text-base leading-[1] transition-colors cursor-pointer"
               onClick={handleApplyFilters} >
               Apply Filter
             </button>

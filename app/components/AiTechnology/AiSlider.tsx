@@ -80,7 +80,7 @@ const AiSlider = ({
               : visibleSlides;
 
       setIsMobile(mobile);
-      setIsSingleSlideMode(slidesPerView <= 1);
+      setIsSingleSlideMode(slidesPerView <= 2);
     };
 
     updateSingleSlideMode();
@@ -218,7 +218,7 @@ const AiSlider = ({
                 typeof swiper?.params.slidesPerView === "number"
                   ? swiper.params.slidesPerView
                   : visibleSlides;
-              setIsSingleSlideMode(currentPerView <= 1);
+              setIsSingleSlideMode(currentPerView <= 2);
             }}
             onTouchStart={() => stopInterval()}
             onTouchEnd={() => startInterval()}
@@ -228,9 +228,9 @@ const AiSlider = ({
                   ? swiper.params.slidesPerView
                   : visibleSlides;
 
-              setIsSingleSlideMode(currentPerView <= 1);
+              setIsSingleSlideMode(currentPerView <= 2);
 
-              if (currentPerView <= 1) {
+              if (currentPerView <= 2) {
                 // Mobile: sync from swiper's real position (handles drag too)
                 activeIndexRef.current = swiper.activeIndex;
                 setActiveIndex(swiper.activeIndex);

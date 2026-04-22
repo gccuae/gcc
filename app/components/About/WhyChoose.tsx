@@ -40,7 +40,7 @@ const WhyChoose = ({ data }: WhyChooseProps) => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 mt-5 md:mt-[58px] lg:mt-[35px] gap-5 xl:gap-0"
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 mt-5 md:mt-8 lg:mt-[35px] gap-5 xl:gap-0"
         >
           {data.items.map((item, index) => (
             <motion.div

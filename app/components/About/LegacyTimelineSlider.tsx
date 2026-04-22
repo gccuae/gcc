@@ -10,6 +10,7 @@ import "swiper/css";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { LegacySection } from "./type";
+import { moveUp } from "../motionVarients";
 
 const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
   if (!data.items?.length) return null;
@@ -92,12 +93,17 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
           <div className="container relative h-full">
             {/* Header */}
             <div className="pt-37px xl:pt-20 h-full lg:pb-0 flex items-start flex-wrap gap-y-3 md:gap-y-5">
-              <h2 className="text-4xl xl:text-5xl leading-[1] font-light text-white pb-4 tracking-wide ">
+              <motion.h2
+               variants={moveUp(0.2)}
+               initial="hidden"
+               whileInView="show"
+               viewport={{ once: true }}
+               className="text-4xl xl:text-5xl leading-[1] font-light text-white pb-4 tracking-wide ">
                 {data.title}
-              </h2>
+              </motion.h2>
               {/* Timeline Years Navigation Slider */}
               <div className="lg:ml-auto md:mb-0 lg:top-12 xl:top-19 right-3 md:right-0 flex items-center z-10 lg:h-full order-3 lg:order-2">
-                <div className="max-w-[400px] sm:max-w-[400px] md:max-w-[700]  lg:max-w-[500px]  overflow-hidden h-full relative ">
+                <div className="max-w-[300px] sm:max-w-[400px] md:max-w-[700]  lg:max-w-[500px]  overflow-hidden h-full relative ">
                   <Swiper
                     onSwiper={(swiper) => {
                       yearSwiperRef.current = swiper;
@@ -117,8 +123,8 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
                       1024: { slidesPerView: 4, spaceBetween: 10 },
                       992: { slidesPerView: 6, spaceBetween: 10 },
                       768: { slidesPerView: 6, spaceBetween: 22 },
-                      400: { slidesPerView: 6, spaceBetween: 22 },
-                      0: { slidesPerView: 3, spaceBetween: 22 },
+                      400: { slidesPerView: 4, spaceBetween: 15 },
+                      0: { slidesPerView: 4, spaceBetween: 10 },
 
                     }}
                   >

@@ -26,10 +26,8 @@ const GalleryCard: React.FC<{
 
       return (
         <div key={index} className="relative flex last:-ml-2">
-          <div
-            className={`w-8 h-8 xl:w-[50px] xl:h-[50px] rounded-full overflow-hidden border-1 border-white shadow-sm ${index % 2 === 0 ? "" : "-ml-2"
-              }`}
-          >
+          <div className={`w-8 h-8 xl:w-[50px] xl:h-[50px] rounded-full overflow-hidden border-1 border-white shadow-sm
+           ${index % 2 === 0 ? "" : "-ml-2"}`} >
             <Image width={50} height={50} src={image.image} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
           </div>
           {isLast && hasMoreThan9 && (
@@ -112,16 +110,12 @@ const Gallery: React.FC<{ data: GalleryType }> = ({ data }) => {
             <motion.div
               key={index}
               className="h-full"
-              variants={moveUp(index * 0.13)}
+              variants={moveUp((index % 6) * 0.1)}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
             >
-              <GalleryCard
-                key={index}
-                item={item}
-                onOpenModal={setSelectedItem}
-              />
+              <GalleryCard key={index} item={item} onOpenModal={setSelectedItem} />
             </motion.div>
           ))}
         </div>
