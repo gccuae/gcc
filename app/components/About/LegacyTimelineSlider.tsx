@@ -92,7 +92,7 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
         <div className="bg-black overflow-hidden">
           <div className="container relative h-full">
             {/* Header */}
-            <div className="pt-37px xl:pt-20 h-full lg:pb-0 flex items-start flex-wrap gap-y-3 md:gap-y-5">
+            <div className="pt-37px lg:pt-47px xl:pt-20 h-full lg:pb-0 flex items-start flex-wrap gap-y-3 md:gap-y-5">
               <motion.h2
                variants={moveUp(0.2)}
                initial="hidden"
@@ -103,7 +103,7 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
               </motion.h2>
               {/* Timeline Years Navigation Slider */}
               <div className="lg:ml-auto md:mb-0 lg:top-12 xl:top-19 right-3 md:right-0 flex items-center z-10 lg:h-full order-3 lg:order-2">
-                <div className="max-w-[300px] sm:max-w-[400px] md:max-w-[700]  lg:max-w-[500px]  overflow-hidden h-full relative ">
+                <div className="max-w-[300px] sm:max-w-[400px] md:max-w-[700] lg:max-w-[400px] xl:max-w-[500px]  overflow-hidden h-full relative ">
                   <Swiper
                     onSwiper={(swiper) => {
                       yearSwiperRef.current = swiper;
@@ -144,7 +144,7 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
                         </button>
                         <div className="!w-[60px] md:!w-[85px] h-full !flex ml-5 xl:ml-0 xl:items-center flex-col justify-center">
                           <div
-                            className={`w-[2px] h-8 xl:h-14 bg-accent ${activeSlide === index
+                            className={`w-[2px] h-8 md:h-10 lg:h-14 xl:h-14 bg-accent ${activeSlide === index
                               ? "opacity-100"
                               : "opacity-0"
                               }`}
@@ -156,7 +156,7 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
                 </div>
 
               </div>
-              <div className="flex items-center space-x-[1px] order-2 xl:order-3 ml-auto xl:ml-0">
+              <div className="flex items-center space-x-[1px] order-2 xl:order-3 ml-auto lg:ml-0">
                 <button
                   onClick={() => handleNavigation("prev")}
                   className="cursor-pointer py-2 px-4 rounded-l-2xl bg-white hover:bg-white/20 transition-colors duration-300 backdrop-blur-sm"

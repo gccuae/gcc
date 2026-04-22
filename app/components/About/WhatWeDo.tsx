@@ -16,9 +16,9 @@ interface WhatWeDoComponentProps {
 const WhatWeDo = ({ data, expertiseData }: WhatWeDoComponentProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
   return (
-    <section className={`bg-light-white dark:bg-light-dark overflow-hidden ${data.hidden ? "hidden" : ""}`}>
+    <section className={`bg-light-white dark:bg-light-dark overflow-hidden  ${data.hidden ? "hidden" : ""}`}>
       <div className="border-b dark:border-white/20 dark:border-white/20">
-        <div className="container pt-37px md:pt-47px pb-5 xl:py-57px">
+        <div className="container pt-37px pb-5 md:pt-47px lg:pt-47px xl:pt-57px  xl:pb-57px">
           <motion.h2
             variants={moveUp()}
             initial="hidden"
@@ -41,7 +41,7 @@ const WhatWeDo = ({ data, expertiseData }: WhatWeDoComponentProps) => {
       </div>
       <SpecialContainer className="pl-[15px]" side="right">
         <motion.div variants={moveUp()} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-[52%_48%] items-stretch" >
-          <div className="md:pr-3 xl:pr-70px lg:border-r dark:border-white/20 dark:border-white/20  py-5 lg:py-4 xl:pt-[86px] xl:pb-[90px] flex flex-col ">
+          <div className="md:pr-3 xl:pr-70px lg:border-r dark:border-white/20 dark:border-white/20 py-5 lg:pt-4 lg:pb-47px xl:pt-[86px] xl:pb-[90px] flex flex-col ">
             <motion.p variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-lg leading-lh-text19 dark:text-white mb-4 xl:mb-10 text-para-color" >
               {data.firstDescription}
             </motion.p>
@@ -86,7 +86,7 @@ const WhatWeDo = ({ data, expertiseData }: WhatWeDoComponentProps) => {
               {data.secondDescription}
             </motion.p>
           </div>
-          <div className="pt-2 pb-10 md:py-5 xl:py-10 pl-0 lg:pl-5 xl:pl-10  relative overflow-hidden 3xl:max-h-[715px]">
+          <div className="pt-2 pb-10 md:pt-5 md:pb-67px lg:pb-47px xl:py-10 pl-0 lg:pl-5 xl:pl-10  relative overflow-hidden 3xl:max-h-[715px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}

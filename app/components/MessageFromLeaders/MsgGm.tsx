@@ -22,7 +22,7 @@ const MsgGm = ({ items }: MsgChairmanProps) => {
             viewport={{ once: true }}
             initial="hidden"
             whileInView="show"
-            className="order-1 xl:hidden text-2xl leading-[1.2] text-black dark:text-white mb-0"
+            className="order-1 xl:hidden text-4xl xl:text-5xl leading-[1.2] text-black dark:text-white mb-0"
           >
             {gmData?.title}
           </motion.h2>
@@ -32,7 +32,7 @@ const MsgGm = ({ items }: MsgChairmanProps) => {
               viewport={{ once: true }}
               initial="hidden"
               whileInView="show"
-              className="hidden xl:block text-2xl lg:text-[55px] 3xl:text-6xl leading-[1.2] xl:leading-lh-title text-black dark:text-white mb-2 md:mb-5 xl:mb-[34px] 2xl:max-w-[10ch]"
+              className="hidden xl:block text-2xl lg:text-[55px] text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl leading-[1.2] xl:leading-lh-title text-black dark:text-white mb-2 md:mb-5 xl:mb-[34px] 2xl:max-w-[10ch]"
             >
               {gmData?.title}
             </motion.h2>

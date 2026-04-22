@@ -7,14 +7,10 @@ import { ImgDescProps } from "../About/type";
 
 const ImgDesc = ({ data }: { data: ImgDescProps }) => {
   return (
-    <section className={`pt-37px pb-37px xl:pt-67px xl:pb-57px dark:bg-black ${data.hidden ? "hidden" : ""}`}>
+    <section className={`pt-37px pb-37px md:pt-47px md:pb-47px xl:pt-67px xl:pb-57px dark:bg-black ${data.hidden ? "hidden" : ""}`}>
       <div className="container">
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-y-4 xl:gap-x-13 3xl:gap-x-17 items-stretch">
-          <motion.h2
-            variants={moveUp(0.2)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
+          <motion.h2 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true }}
             className="order-1 xl:hidden text-4xl 2xl:text-5xl leading-[1.147058823529412] capitalize text-black dark:text-white pb-0"
           >
             {data.title}
@@ -52,7 +48,8 @@ const ImgDesc = ({ data }: { data: ImgDescProps }) => {
           </div>
 
           {/* Image Section */}
-          <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true }} className=" relative order-2 xl:order-1 h-[250px] md:h-[300px] lg:h-[500px] xl:h-full " >
+          <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true }} 
+          className=" relative order-2 xl:order-1 h-[250px] md:h-[300px] lg:h-[400px] 2xl:h-full " >
             <Image src={data.image} alt={data.imageAlt || ""} fill className="object-cover" />
           </motion.div>
         </div>

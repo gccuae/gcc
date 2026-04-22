@@ -22,7 +22,7 @@ const MsgChairman = ({ items }: MsgChairmanProps) => {
             viewport={{ once: true }}
             initial="hidden"
             whileInView="show"
-            className="order-1 xl:hidden text-2xl leading-lh-title text-black dark:text-white mb-0"
+            className="order-1 xl:hidden text-4xl xl:text-5xl leading-lh-title text-black dark:text-white mb-0"
           >
             {chairmanData.title}
           </motion.h2>
@@ -45,7 +45,7 @@ const MsgChairman = ({ items }: MsgChairmanProps) => {
           {/* <div className="pb-0 lg:pb-6"> */}
           <div className="order-3 xl:order-2 border-b border-border-color dark:border-light-dark md:border-b-0 pb-4 md:pb-0">
             <motion.h2 variants={moveUp()} viewport={{ once: true }} initial="hidden" whileInView="show"
-              className="hidden xl:block text-2xl lg:text-[55px] 3xl:text-6xl leading-lh-title text-black dark:text-white mb-2 md:mb-5 xl:mb-[34px] 3xl:max-w-[16ch]"
+              className="hidden xl:block text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl leading-lh-title text-black dark:text-white mb-2 md:mb-5 xl:mb-[34px] 3xl:max-w-[16ch]"
             >
               {chairmanData.title}
             </motion.h2>
