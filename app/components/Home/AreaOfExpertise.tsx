@@ -135,20 +135,20 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
               <div
                 ref={prevRef}
                 onClick={handlePrev}
-                className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] border-r border-foreground dark:border-white/20 rounded-tl-full rounded-bl-full group  cursor-pointer hover:bg-accent  transition-all duration-300"
+                className="px-3 py-2 md:px-4 md:py-2 xl:py-[12px] border-r border-foreground dark:border-white/20 rounded-tl-full rounded-bl-full group  cursor-pointer hover:bg-accent  transition-all duration-300"
               >
                 {/* <Image src="/assets/img/icons/greenrightarrow.svg" alt="image" className="rotate-180 group-hover:brightness-0 group-hover:invert transition-all duration-300 min-w-[6px] min-h-[13px]" width={6} height={13} /> */}
-                <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]" >
+                <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-3 h-3 md:w-5 md:h-5  lg:w-[10px] lg:h-[16px]" >
                   <path d="M8.33594 1.33154L1.66731 8.00017L8.33594 14.6688" stroke="#7AC142" className="group-hover:stroke-white transition-all duration-300" strokeWidth="2" strokeLinecap="round" />
                 </svg>
               </div>
               <div
                 ref={nextRef}
                 onClick={handleNext}
-                className="px-3 py-2 md:px-6 md:py-4 xl:py-[12px] rounded-tr-full rounded-br-full cursor-pointer group hover:bg-accent dark:hover:bg-secondary transition-all duration-300"
+                className="px-3 py-2 md:px-4 md:py-2 xl:py-[12px] rounded-tr-full rounded-br-full cursor-pointer group hover:bg-accent dark:hover:bg-secondary transition-all duration-300"
               >
                 {/* <Image src="/assets/img/icons/greenrightarrow.svg" alt="image" className="group-hover:brightness-0 group-hover:invert transition-all duration-300 min-w-[6px] min-h-[13px]" width={6} height={13} /> */}
-                <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-[6px] h-[13px] lg:w-[10px] lg:h-[16px]" >
+                <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-3 h-3 md:w-5 md:h-5  lg:w-[10px] lg:h-[16px]" >
                   <path d="M1.66406 1.33154L8.33269 8.00017L1.66406 14.6688" stroke="#7AC142" className="group-hover:stroke-white transition-all duration-300" strokeWidth="2" strokeLinecap="round" />
                 </svg>
               </div>
@@ -181,9 +181,9 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true }}
-                    className="flex items-center justify-center flex-shrink-0 rounded-full border-1 dark:border-white/20 dark:border-white/20 w-[85px] h-[85px] group-hover:bg-primary transition-colors duration-300 icon-wrapper dark:bg-[#0d0d0d]"
+                    className="flex items-center justify-center flex-shrink-0 rounded-full border-1 dark:border-white/20 dark:border-white/20 w-13 h-13 md:w-15 md:h-15 xl:w-[85px] xl:h-[85px] group-hover:bg-primary transition-colors duration-300 icon-wrapper dark:bg-[#0d0d0d]"
                   >
-                    <Image src={item.logo} alt={item.logoAlt} width={200} height={200} className="mb-2 w-10 h-10 object-contain group-hover:brightness-0 group-hover:invert-100" />
+                    <Image src={item.logo} alt={item.logoAlt} width={200} height={200} className="w-7 h-7 md:w-8 md:h-8 xl:w-10 xl:h-10 object-contain group-hover:brightness-0 group-hover:invert-100" />
                   </motion.div>
                   <motion.h3
                     variants={moveUp(index * 0.13)}

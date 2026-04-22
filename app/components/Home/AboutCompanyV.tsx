@@ -158,25 +158,16 @@ const AboutCompanyV = ({ data }: Props) => {
   }, []);
 
   return (
-    <section
-      ref={containerRef}
-      className={`py-8 md:py-12 xl:py-15 dark:bg-black overflow-hidden ${data.hidden ? "hidden" : ""}`}
-    >
+    <section ref={containerRef} className={`py-8 md:py-12 xl:py-15 dark:bg-black overflow-hidden ${data.hidden ? "hidden" : ""}`}>
       <div className="container">
         <div className="lg:flex gap-8 xl:gap-17">
           {/* Video Block */}
-          <motion.div
-            variants={moveRight(0.12)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="relative w-full h-full lg:w-[48%] mb-8 lg:mb-0 overflow-hidden"
-          >
+          <motion.div variants={moveRight(0.12)} initial="hidden" whileInView="show" viewport={{ once: true }} className="relative w-full h-full lg:w-[48%] mb-8 lg:mb-0 overflow-hidden">
             <video
               ref={videoRef}
               poster={data.poster}
               controls={false}
-              className="xl:h-[400px] 2xl:h-[431px] w-full 2xl:max-w-[705px] object-cover hover:scale-110"
+              className="h-[200px] md:h-[350px] lg:h-[380px] xl:h-[400px] 2xl:h-[431px] w-full 2xl:max-w-[705px] object-cover hover:scale-110"
               width={705}
               height={740}
               playsInline
