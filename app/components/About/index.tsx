@@ -15,12 +15,7 @@ interface HomeIndexProps {
 const Index = ({ data, expertiseData }: HomeIndexProps) => {
   return (
     <>
-      <PageBnr
-        pageTitle={data.pageTitle}
-        bannerImg={data.banner}
-        bannerAlt={data.bannerAlt}
-        bannerHidden={data.bannerHidden}
-      />
+      <PageBnr pageTitle={data.pageTitle} bannerImg={data.banner} bannerAlt={data.bannerAlt} bannerHidden={data.bannerHidden} />
       <ImgDesc data={data.firstSection} />
       <WhatWeDo data={data.secondSection} expertiseData={expertiseData} />
       <ViMiVa data={data.thirdSection} />
