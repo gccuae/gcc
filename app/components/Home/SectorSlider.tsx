@@ -102,14 +102,8 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
                     className="flex flex-col h-[450px] md:h-[480px] xl:h-[550px] overflow-hidden z-40 relative group"
                   >
                     <div className="flex items-center justify-between mb-3 xl:mb-[25px] xl:pl-4 xl:pr-3 pt-6 xl:pt-[37px] group-first:pl-0 transition-all duration-300">
-                      <div className="flex items-center gap-2 xl:gap-4">
-                        <Image
-                          src={item.logo}
-                          alt={item.logoAlt}
-                          width={200}
-                          height={200}
-                          className="w-auto h-15 object-contain"
-                        />
+                      <div className="flex items-center gap-4 xl:gap-4">
+                        <Image src={item.logo} alt={item.logoAlt} width={200} height={200} className="w-auto h-10 md:h-12 xl:h-15 object-contain" />
                         <h3 className="xl:text-2xl text-xl leading-[1.2] font-normal transition-all duration-300 min-h-[50px] lg:min-h-[77px] flex items-center">
                           {item.title}
                         </h3>
