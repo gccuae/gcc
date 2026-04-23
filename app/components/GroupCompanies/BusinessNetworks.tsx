@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { moveUp } from "../../components/motionVarients";
 import { SecondSection } from "./type";
 import Link from "next/link";
+import { BRANCH_TITLES } from "./branchTitles";
 
 export interface SecondSectionProps {
   data: SecondSection;
@@ -35,7 +36,11 @@ const BusinessNetworks = ({ data }: SecondSectionProps) => {
           </motion.p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-8 xl:gap-x-8 xl:gap-y-47px">
-          {data.items.filter((item) => !item.hideCompany).map((item, index) => (
+          {data.items
+            .filter(
+              (item) => !item.hideCompany && !BRANCH_TITLES.includes(item.title)
+            )
+            .map((item, index) => (
             <motion.div className="border-b dark:border-white/20 hover:border-primary"
               key={index}
               variants={moveUp((index % 6) * 0.1)}
@@ -53,7 +58,7 @@ const BusinessNetworks = ({ data }: SecondSectionProps) => {
                 </div>
               )}
             </motion.div>
-          ))}
+            ))}
         </div>
       </div>
     </section>

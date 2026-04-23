@@ -3,14 +3,13 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import BusinessNetworkCard from "./BusinessNetworkCard";
+import { BRANCH_TITLES } from "./branchTitles";
 import { moveUp } from "../../components/motionVarients";
 import { SecondSection } from "./type";
 
 interface BranchesProps {
   data: SecondSection;
 }
-
-const BRANCH_TITLES = ["Gulf Contractors Co. LLC"];
 
 const Branches = ({ data }: BranchesProps) => {
   const branchItems = data.items.filter((item) =>
