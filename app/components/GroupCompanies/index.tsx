@@ -1,6 +1,7 @@
 import PageBnr from "../common/PageBnr";
 import CounterSection from "./CounterSection";
 import BusinessNetworks from "./BusinessNetworks";
+import Branches from "./Branches";
 import { GroupCompaniesProps } from "./type";
 
 const index = ({ data }: GroupCompaniesProps) => {
@@ -14,6 +15,7 @@ const index = ({ data }: GroupCompaniesProps) => {
       />
       {!data.firstSection.hidden && <CounterSection data={data.firstSection} />}
       {!data.secondSection.hidden && <BusinessNetworks data={data.secondSection} />}
+      {!data.secondSection.hidden && <Branches data={data.secondSection} />}
     </>
   );
 };

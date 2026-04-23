@@ -79,19 +79,20 @@ const BusinessNetworkCard = ({ item, index, hasLink }: BusinessNetworkCardProps)
     <div key={index} className="group pb-3 xl:pb-[17px] transition-all duration-300 flex flex-col justify-between h-full" >
       {/* Top: Image + title */}
       <div>
-        <div className="relative p-3 xl:p-5 h-[300px] xl:h-[486px] overflow-hidden group/img"
+        <div className="relative isolate p-3 xl:p-5 h-[300px] xl:h-[486px] overflow-hidden group/img"
           ref={containerRef}
           onMouseMove={!isMobile && hasLink ? handleMouseMove : undefined}
           onMouseEnter={!isMobile && hasLink ? handleMouseEnter : undefined}
           onMouseLeave={!isMobile && hasLink ? handleMouseLeave : undefined}
         >
-          <div className="bg-white rounded-[5px] w-[175px] max-h-[45px] flex items-center justify-center px-3 py-5">
+          <Image src={item.image} alt={item.imageAlt} width={1000} height={1000} className="w-full h-full object-cover absolute inset-0 z-0 transition-all duration-300" />
+
+          <div className="relative z-10 bg-white rounded-[5px] w-[175px] max-h-[45px] flex items-center justify-center px-3 py-5">
             <Image src={item.logo} alt={item.logoAlt} width={400} height={400} className="w-auto h-10 xl:h-[38px] object-contain"
             />
           </div>
-          <Image src={item.image} alt={item.imageAlt} width={1000} height={1000} className="w-full h-full object-cover absolute top-0 left-0 -z-10  transition-all duration-300" />
           {hasLink && (
-            <div className="absolute bottom-0 left-0 w-full h-0 bg-black/45 group-hover:h-full transition-all duration-300"></div>
+            <div className="absolute bottom-0 left-0 z-10 w-full h-0 bg-black/45 group-hover:h-full transition-all duration-300"></div>
           )}
 
           {/* Hover link (mouse follow + centered option) */}
