@@ -2,7 +2,7 @@
 
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { Button } from '@/components/ui/button'
@@ -13,6 +13,12 @@ import AdminItemContainer from '@/app/components/common/AdminItemContainer';
 import { VideoUploader } from '@/components/ui/video-uploader';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Path } from "react-hook-form";
+import { closestCorners, DndContext, DragEndEvent } from "@dnd-kit/core";
+import {
+    SortableContext,
+    verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import CompanyCard from './CompanyCard';
 
 interface HomeFormProps {
     metaTitle: string;
@@ -80,6 +86,8 @@ const HomePage = () => {
     const expertiseStatus = watch("expertiseHidden");
     const newsStatus = watch("newsHidden");
 
+    const [reorderMode, setReorderMode] = useState(false);
+
     useEffect(() => {
         console.log(numberStatus)
     }, [numberStatus])
@@ -108,7 +116,7 @@ const HomePage = () => {
     //     name: "thirdSection.items"
     // });
 
-    const { fields: fourthSectionItems, append: fourthSectionAppend, remove: fourthSectionRemove } = useFieldArray({
+    const { fields: fourthSectionItems, append: fourthSectionAppend, remove: fourthSectionRemove, move} = useFieldArray({
         control,
         name: "fourthSection.items"
     });
@@ -156,6 +164,22 @@ const HomePage = () => {
             console.log("Error in fetching home data", error);
         }
     }
+
+
+    const getTaskPos = (id: number | string) =>
+        fourthSectionItems.findIndex((item: { id: string }) => item.id == id);
+    const handleDragEnd = (event: DragEndEvent) => {
+        const { active, over } = event;
+
+        if (!over || active.id === over.id) return;
+
+        const originalPos = getTaskPos(active.id);
+        const newPos = getTaskPos(over.id);
+
+        if (originalPos !== -1 && newPos !== -1) {
+            move(originalPos, newPos);
+        }
+    };
 
 
 
@@ -577,9 +601,36 @@ const HomePage = () => {
                             </div>
 
                             <div>
-                                <Label className='font-bold'>Items</Label>
+                                <div className='flex justify-between my-5'>
+                                    <Label className='font-bold'>Items</Label>
+                                    <Button
+                                        disabled={fourthSectionItems.length < 2}
+                                        type="button"
+                                        className={`text-white text-[16px] ${reorderMode ? "bg-yellow-700" : "bg-green-700"}`}
+                                        onClick={() => setReorderMode(!reorderMode)}
+                                    >
+                                        {reorderMode ? "Done" : "Reorder"}
+                                    </Button>
+                                </div>
                                 <div className='border p-2 rounded-md flex flex-col gap-5'>
-                                    {fourthSectionItems.map((field, index) => (
+
+                                    {reorderMode && (
+                                        <DndContext
+                                            collisionDetection={closestCorners}
+                                            onDragEnd={handleDragEnd}
+                                        >
+                                            <SortableContext
+                                                items={fourthSectionItems.map((item) => item.id)}
+                                                strategy={verticalListSortingStrategy}
+                                            >
+                                                {fourthSectionItems?.map((item, index) => (
+                                                    <CompanyCard key={index} item={item} id={item.id} />
+                                                ))}
+                                            </SortableContext>
+                                        </DndContext>
+                                    )}
+
+                                    {!reorderMode && fourthSectionItems.map((field, index) => (
                                         <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b pb-5 last:border-b-0'>
                                             <div className='absolute top-2 right-2'>
                                                 <RiDeleteBinLine onClick={() => fourthSectionRemove(index)} className='cursor-pointer text-red-600' />
