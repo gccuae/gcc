@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import BusinessNetworkCard from "./BusinessNetworkCard";
-import { BRANCH_TITLES } from "./branchTitles";
+import { isBranchItem } from "./branchTitles";
 import { moveUp } from "../../components/motionVarients";
 import { SecondSection } from "./type";
 
@@ -12,9 +12,7 @@ interface BranchesProps {
 }
 
 const Branches = ({ data }: BranchesProps) => {
-  const branchItems = data.items.filter((item) =>
-    BRANCH_TITLES.includes(item.title)
-  );
+  const branchItems = data.items.filter(isBranchItem);
 
   if (!branchItems.length) {
     return null;
