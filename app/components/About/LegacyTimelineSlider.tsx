@@ -193,12 +193,21 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
                 transition={{ duration: 0.8, ease: "easeInOut" }}
                 className="absolute inset-0 w-full h-full"
               >
+                {/* Desktop Image */}
                 <Image
                   src={data.items[activeSlide].image}
                   alt={data.items[activeSlide].imageAlt}
                   width={1920}
                   height={1080}
-                  className="object-cover object-right w-full h-full"
+                  className="object-cover object-right w-full h-full hidden lg:block"
+                />
+                {/* Mobile Image */}
+                <Image
+                  src={data.items[activeSlide].mobileImage || data.items[activeSlide].image}
+                  alt={data.items[activeSlide].imageAlt}
+                  width={1080}
+                  height={1920}
+                  className="object-cover object-center w-full h-full lg:hidden"
                 />
               </motion.div>
             </AnimatePresence>
