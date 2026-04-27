@@ -94,16 +94,17 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
             {/* Header */}
             <div className="pt-37px lg:pt-47px xl:pt-20 h-full lg:pb-0 flex items-start flex-wrap gap-y-3 md:gap-y-5">
               <motion.h2
-               variants={moveUp(0.2)}
-               initial="hidden"
-               whileInView="show"
-               viewport={{ once: true }}
-               className="text-4xl xl:text-5xl leading-[1] font-light text-white pb-4 tracking-wide ">
+                variants={moveUp(0.2)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                className="text-4xl xl:text-5xl leading-[1] font-light text-white pb-4 tracking-wide w-auto"
+              >
                 {data.title}
               </motion.h2>
               {/* Timeline Years Navigation Slider */}
-              <div className="lg:ml-auto md:mb-0 lg:top-12 xl:top-19 right-3 md:right-0 flex items-center z-10 lg:h-full order-3 lg:order-2">
-                <div className="max-w-[300px] sm:max-w-[400px] md:max-w-[700] lg:max-w-[400px] xl:max-w-[500px]  overflow-hidden h-full relative ">
+              <div className="w-full lg:w-auto lg:ml-auto md:mb-0 lg:top-12 xl:top-19 right-3 md:right-0 flex items-center z-10 lg:h-full order-3 lg:order-2">
+                <div className="w-full max-w-full lg:max-w-[400px] xl:max-w-[500px] overflow-hidden h-full relative ">
                   <Swiper
                     onSwiper={(swiper) => {
                       yearSwiperRef.current = swiper;
@@ -178,17 +179,17 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
 
         <div className="w-full h-[1px] bg-[#716c6c]"></div>
         {/* History Slider */}
-        <div className="flex-1 flex items-center relative z-50 py-37px md:py-[95px] lg:py-[128px] 2xl:py-[144px]">
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black from-0% to-black/0 to-100% z-0"></div>
+        <div className="flex-1 flex flex-col lg:block relative z-50 pb-10 lg:py-[128px] 2xl:py-[144px]">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black from-0% to-black/0 to-100% z-0 hidden lg:block"></div>
 
           {/* Background Image */}
-          <div className="absolute inset-0 z-[-1]">
-            <AnimatePresence initial={false} mode="popLayout">
+          <div className="relative w-full aspect-video order-1 lg:absolute lg:inset-0 lg:z-[-1]">
+            <AnimatePresence initial={false}>
               <motion.div
                 key={`${activeSlide}-${data.items[activeSlide].year}`}
-                initial={{ opacity: 0, scale: 1 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
                 transition={{ duration: 0.8, ease: "easeInOut" }}
                 className="absolute inset-0 w-full h-full"
               >
@@ -223,14 +224,14 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
             loop={true}
             speed={50}
             onSlideChange={handleMainSlideChange}
-            className="w-full h-full history-slider relative z-50"
+            className="w-full h-auto lg:h-full order-2 history-slider relative z-50"
           >
             {data.items.map((item, index) => (
               <SwiperSlide key={index} className="history-slide">
-                <div className="w-full">
+                <div className="w-full pt-8 lg:pt-0">
                   <div className="container relative z-10">
                     {/* Year */}
-                    <div className="history-year text-5xl text-white mb-3 opacity-0">
+                    <div className="history-year text-5xl text-white mb-3 opacity-0 hidden lg:block">
                       {item.year}
                     </div>
 
