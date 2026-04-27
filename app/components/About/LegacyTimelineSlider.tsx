@@ -179,11 +179,11 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
 
         <div className="w-full h-[1px] bg-[#716c6c]"></div>
         {/* History Slider */}
-        <div className="flex-1 flex flex-col lg:block relative z-50 pb-10 lg:py-[128px] 2xl:py-[144px]">
+        <div className="flex-1 flex flex-col lg:flex lg:items-center relative z-50 pb-10 lg:py-[128px] 2xl:py-[144px]">
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-black from-0% to-black/0 to-100% z-0 hidden lg:block"></div>
 
           {/* Background Image */}
-          <div className="relative w-full aspect-video order-1 lg:absolute lg:inset-0 lg:z-[-1]">
+          <div className="relative w-full aspect-video order-1 lg:absolute lg:inset-0 lg:z-[-1] lg:aspect-auto">
             <AnimatePresence initial={false}>
               <motion.div
                 key={`${activeSlide}-${data.items[activeSlide].year}`}
@@ -197,17 +197,19 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
                 <Image
                   src={data.items[activeSlide].image}
                   alt={data.items[activeSlide].imageAlt}
-                  width={1920}
-                  height={1080}
-                  className="object-cover object-right w-full h-full hidden lg:block"
+                  fill
+                  priority
+                  quality={90}
+                  sizes="100vw"
+                  className="object-cover object-right hidden lg:block"
                 />
                 {/* Mobile Image */}
                 <Image
                   src={data.items[activeSlide].mobileImage || data.items[activeSlide].image}
                   alt={data.items[activeSlide].imageAlt}
-                  width={1080}
-                  height={1920}
-                  className="object-cover object-center w-full h-full lg:hidden"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 0vw"
+                  className="object-cover object-center lg:hidden"
                 />
               </motion.div>
             </AnimatePresence>
@@ -236,8 +238,8 @@ const LegacyTimelineSlider = ({ data }: { data: LegacySection }) => {
             className="w-full h-auto lg:h-full order-2 history-slider relative z-50"
           >
             {data.items.map((item, index) => (
-              <SwiperSlide key={index} className="history-slide">
-                <div className="w-full pt-8 lg:pt-0">
+              <SwiperSlide key={index} className="history-slide !h-auto !items-start lg:!items-center lg:!h-full">
+                <div className="w-full pt-5 lg:pt-0 lg:h-full lg:flex lg:items-center">
                   <div className="container relative z-10">
                     {/* Year */}
                     <div className="history-year text-5xl text-white mb-3 opacity-0 hidden lg:block">
