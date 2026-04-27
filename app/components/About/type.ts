@@ -56,6 +56,7 @@ export interface LegacyItem {
   description: string;
   image: string;
   imageAlt: string;
+  mobileImage?: string;
 }
 
 export interface LegacySection {
