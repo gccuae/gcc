@@ -58,6 +58,8 @@ interface AboutFormProps {
         items: {
             image: string;
             imageAlt: string;
+            mobileImage: string;
+            mobileImageAlt: string;
             year: string;
             subTitle: string;
             mainTitle: string;
@@ -96,11 +98,6 @@ const AboutPage = () => {
             setValue(`${section}.hidden` as Path<AboutFormProps>, !value);
         }
     };
-
-    const { fields: secondSectionItems, append: secondSectionAppend, remove: secondSectionRemove } = useFieldArray({
-        control,
-        name: "secondSection.items"
-    });
 
     const { fields: thirdSectionItems, append: thirdSectionAppend, remove: thirdSectionRemove } = useFieldArray({
         control,
@@ -578,6 +575,36 @@ const AboutPage = () => {
                                             </div>
 
 
+                                            <div className='flex flex-col gap-2'>
+                                                <Label className='font-bold'>Mobile Image</Label>
+                                                <Controller
+                                                    name={`historySection.items.${index}.mobileImage`}
+                                                    control={control}
+                                                    rules={{ required: "Image is required" }}
+                                                    render={({ field }) => (
+                                                        <ImageUploader
+                                                            value={field.value}
+                                                            onChange={field.onChange}
+                                                            recommendedDimension="Recommended: 1920 x 504 (px)"
+                                                        />
+                                                    )}
+                                                />
+                                                {errors.historySection?.items?.[index]?.mobileImage && (
+                                                    <p className="text-red-500">{errors.historySection?.items?.[index]?.mobileImage.message}</p>
+                                                )}
+                                            </div>
+
+                                            <div className='flex flex-col gap-2'>
+                                                <div className='flex flex-col gap-2'>
+                                                    <Label className='font-bold'>Alt Tag</Label>
+                                                    <Input type='text' placeholder='Alt Tag' {...register(`historySection.items.${index}.mobileImageAlt`, {
+                                                        required: "Value is required"
+                                                    })} />
+                                                    {errors.historySection?.items?.[index]?.mobileImageAlt && <p className='text-red-500'>{errors.historySection?.items?.[index]?.mobileImageAlt.message}</p>}
+                                                </div>
+                                            </div>
+
+
                                         </div>
 
                                         <div className='flex flex-col gap-2'>
@@ -631,7 +658,7 @@ const AboutPage = () => {
 
                             </div>
                             <div className='flex justify-end mt-2'>
-                                <Button type='button' addItem onClick={() => historySectionAppend({ year: "", mainTitle: "", subTitle: "", description: "", image: "", imageAlt: "" })}>Add Item</Button>
+                                <Button type='button' addItem onClick={() => historySectionAppend({ year: "", mainTitle: "", subTitle: "", description: "", image: "", imageAlt: "", mobileImage: "", mobileImageAlt: "" })}>Add Item</Button>
                             </div>
                         </div>
 
