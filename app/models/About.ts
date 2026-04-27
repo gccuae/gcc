@@ -143,6 +143,13 @@ const aboutSchema = new mongoose.Schema({
             },
             imageAlt: {
                 type: String,
+            },
+            mobileImage: {
+                type: String,
+                required: true
+            },
+            mobileImageAlt: {
+                type: String,
             }
         }]
     },
