@@ -585,7 +585,7 @@ const AboutPage = () => {
                                                         <ImageUploader
                                                             value={field.value}
                                                             onChange={field.onChange}
-                                                            recommendedDimension="Recommended: 1920 x 504 (px)"
+                                                            recommendedDimension="Recommended: 1170 x 714 (px)"
                                                         />
                                                     )}
                                                 />
