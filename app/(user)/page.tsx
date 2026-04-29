@@ -23,12 +23,7 @@ export default async function Home() {
 
   return (
     <>
-      <Index
-        data={HomeData.data}
-        projects={projectsData.data}
-        news={newsData.data}
-        expertise={expertiseData.data}
-      />
+      <Index data={HomeData.data} projects={projectsData.data} news={newsData.data} expertise={expertiseData.data} />
     </>
   );
 }
