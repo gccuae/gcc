@@ -16,6 +16,7 @@ import { useRefetchServices } from '@/app/contexts/refetchServices';
 import { RiShakeHandsLine } from 'react-icons/ri';
 import { GiHealthNormal } from 'react-icons/gi';
 import { FaRobot } from 'react-icons/fa';
+import { MdAppRegistration } from 'react-icons/md';
 
 
 
@@ -78,6 +79,7 @@ const AdminNavbar = () => {
         { name: "Enquiries", href: "/admin/contact/enquiries" }
       ]
     },
+    { name: "Vendor Registrations", href: "/admin/vendor-registration", icon: MdAppRegistration },
     {
       name: "Layout", href: "#", icon: LayoutIcon, hasChild: true, children: [
         { name: "Navbar", href: "/admin/navbar" },

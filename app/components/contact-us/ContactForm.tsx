@@ -24,20 +24,29 @@ const ContactForm: React.FC = () => {
     mode: "onChange",
   });
 
-  const onSubmit: SubmitHandler<ContactFormData> = async (data) => {
-    try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      console.log("Form submitted:", data);
+const onSubmit: SubmitHandler<ContactFormData> = async (data) => {
+  try {
+    const response = await fetch("/api/admin/contact/enquiry", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
 
-      // Reset form after successful submission
-      reset();
-      alert("Message sent successfully!");
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("Error sending message. Please try again.");
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.message || "Something went wrong");
     }
-  };
+
+    reset();
+    alert("Message sent successfully!");
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    alert("Error sending message. Please try again.");
+  }
+};
 
   return (
     <div className="w-full ">
