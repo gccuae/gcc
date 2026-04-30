@@ -1,7 +1,9 @@
 "use server";
 
+import Vendor from "@/app/models/Vendor";
 import { getToEmail } from "@/helpers/getToEmail";
 import { sendMailWithAttachments } from "@/helpers/sendMailWithAttatchments";
+import { uploadToDropbox } from "@/lib/connectDropbox";
 
 export async function sendContactAction(formData: FormData) {
   try {
@@ -17,9 +19,38 @@ export async function sendContactAction(formData: FormData) {
       address: formData.get("address") as string,
     };
 
-    const icv = formData.getAll("icvCertificate") as File[];
-    const companyDocs = formData.getAll("companyDocuments") as File[];
-    const additional = formData.getAll("additionalAttachments") as File[];
+    const filterFiles = (files: File[]) =>
+      files.filter((file) => file && file.size > 0);
+
+    // const icv = formData.getAll("icvCertificate") as File[];
+    // const companyDocs = formData.getAll("companyDocuments") as File[];
+    // const additional = formData.getAll("additionalAttachments") as File[];
+
+    const icv = filterFiles(formData.getAll("icvCertificate") as File[]);
+    const companyDocs = filterFiles(formData.getAll("companyDocuments") as File[]);
+    const additional = filterFiles(formData.getAll("additionalAttachments") as File[]);
+
+    const uploadFiles = async (files: File[], folder: string) => {
+      return Promise.all(
+        files.map(async (file) => {
+          const path = `/uploads/${folder}/${Date.now()}-${file.name}`;
+          return await uploadToDropbox(file, path);
+        })
+      );
+    };
+
+    // ✅ Upload files
+    const icvUrls = await uploadFiles(icv, "icv");
+    const companyDocsUrls = await uploadFiles(companyDocs, "company");
+    const additionalUrls = await uploadFiles(additional, "additional");
+
+    // ✅ Save to DB
+    await Vendor.create({
+      ...fields,
+      icvCertificate: icvUrls,
+      companyDocuments: companyDocsUrls,
+      additionalAttachments: additionalUrls,
+    });
 
     const attachments = await buildAttachments([
       ...icv,

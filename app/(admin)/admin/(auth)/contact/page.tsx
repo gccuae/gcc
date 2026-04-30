@@ -71,8 +71,6 @@ const ContactPage = () => {
             const response = await fetch(`/api/admin/contact`);
             if (response.ok) {
                 const data = await response.json();
-                console.log(data);
-
                 setValue("banner", data.data.banner);
                 setValue("bannerAlt", data.data.bannerAlt);
                 setValue("pageTitle", data.data.pageTitle);
