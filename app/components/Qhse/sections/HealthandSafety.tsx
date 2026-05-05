@@ -68,10 +68,10 @@ const HealthandSafety = ({ title, description, measures }: Props) => {
                       alt={item.imageAlt}
                       width={50}
                       height={50}
-                      className="w-[50px] h-[50px] xl:w-15 group-hover:brightness-0 group-hover:invert-100 transition-all duration-300"
+                      className="w-[50px] h-[50px] xl:w-15 group-hover:brightness-0 group-hover:invert-100 transition-all duration-300 group-hover:scale-[1.05]"
                     />
                   </div>
-                  <h3 className="text-2xl leading-lh-text32 text-white group-hover:text-white transition-all duration-300">
+                  <h3 className="text-2xl leading-lh-text32 text-white group-hover:text-white transition-all duration-300 group-hover:scale-[1.05]">
                     {item.title}
                   </h3>
                 </div>

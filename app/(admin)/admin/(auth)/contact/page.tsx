@@ -33,6 +33,7 @@ interface ContactFormProps {
         fax: string;
         timings: string;
         map: string;
+        getDirection: string;
     };
 }
 
@@ -233,6 +234,11 @@ const ContactPage = () => {
                                     required: "Fax is required"
                                 })} />
                                 {errors.secondSection?.map && <p className='text-red-500'>{errors.secondSection?.map.message}</p>}
+                            </div>
+
+                            <div className='flex flex-col gap-1'>
+                                <Label className='font-bold'>Get Direction</Label>
+                                <Input type='text' placeholder='Get Direction' {...register("secondSection.getDirection")} />
                             </div>
 
 

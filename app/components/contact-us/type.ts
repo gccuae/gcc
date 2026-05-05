@@ -16,5 +16,6 @@ export type contactType = {
         fax: string,
         timings: string,
         map: string
+        getDirection: string
     }
 }
