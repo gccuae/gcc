@@ -1,8 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useRef, useState } from "react";
-
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { assets } from "@/public/assets/assets";
 import { motion } from "framer-motion";
@@ -80,6 +79,7 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
   const [windowWidth, setWindowWidth] = useState(0);
   const [viewportWidth, setViewportWidth] = useState(0);
   const [enableTransition, setEnableTransition] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
   const [virtualIndex, setVirtualIndex] = useState(projects.length);
   const [dragOffset, setDragOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
@@ -147,7 +147,15 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
     return () => cancelAnimationFrame(id);
   }, [enableTransition]);
 
-  const recenterWithoutJump = (direction: "next" | "prev") => {
+  useEffect(() => {
+    if (!projectsCount || isPaused || isDragging) return;
+    const id = setInterval(() => recenterWithoutJump("next"), 3500);
+    return () => clearInterval(id);
+  }, [projectsCount, isPaused, isDragging]);
+
+
+
+const recenterWithoutJump = useCallback((direction: "next" | "prev") => {
     if (!projectsCount) return;
     const current = virtualIndexRef.current;
     if (direction === "next" && current >= projectsCount * 2 - 1) {
@@ -170,7 +178,7 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
     }
     setEnableTransition(true);
     setVirtualIndex((prev) => (direction === "next" ? prev + 1 : prev - 1));
-  };
+}, [projectsCount]);
 
   const handlePrevClick = () => { if (projectsCount) recenterWithoutJump("prev"); };
   const handleNextClick = () => { if (projectsCount) recenterWithoutJump("next"); };
@@ -279,6 +287,8 @@ const KeyProjects = ({ projects }: KeyProjectsProps) => {
         <div
           ref={viewportRef}
           className={`overflow-hidden ${isDragging ? "cursor-grabbing" : "cursor-grab"}`}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}

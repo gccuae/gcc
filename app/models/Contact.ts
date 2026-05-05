@@ -73,6 +73,9 @@ const contactSchema = new mongoose.Schema({
             type: String,
             required: true
         },
+        getDirection: {
+            type: String,
+        }
     },
 })
 
