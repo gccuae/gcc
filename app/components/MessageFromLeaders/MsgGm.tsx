@@ -11,6 +11,7 @@ interface MsgChairmanProps {
 }
 
 const MsgGm = ({ items }: MsgChairmanProps) => {
+  const FALLBACK_IMAGE = "/assets/img/avatar.png";
   const gmData = items[1];
 
   return (
@@ -69,8 +70,8 @@ const MsgGm = ({ items }: MsgChairmanProps) => {
               whileInView="show"
             >
               <Image
-                src={gmData?.image}
-                alt={gmData?.imageAlt}
+                src={gmData?.image || FALLBACK_IMAGE}
+                alt={gmData?.imageAlt || "msg gm"}
                 width={1500}
                 height={1500}
                 className="img-fluid h-[300px] md:h-[400px] xl:h-[60%] max-h-[750px] object-contain relative right-0 md:right-14 z-10"

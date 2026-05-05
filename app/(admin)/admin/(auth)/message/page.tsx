@@ -156,7 +156,6 @@ const AdminHome = () => {
                                             <Controller
                                                 name={`firstSection.items.${index}.image`}
                                                 control={control}
-                                                rules={{ required: "Image is required" }}
                                                 render={({ field }) => (
                                                     <ImageUploader
                                                         value={field.value}
@@ -165,18 +164,12 @@ const AdminHome = () => {
                                                     />
                                                 )}
                                             />
-                                            {errors.firstSection?.items?.[index]?.image && (
-                                                <p className="text-red-500">{errors.firstSection?.items?.[index]?.image.message}</p>
-                                            )}
                                         </div>
 
                                         <div className='flex flex-col gap-2'>
                                             <div className='flex flex-col gap-2'>
                                                 <Label className='font-bold'>Alt Tag</Label>
-                                                <Input type='text' placeholder='Alt Tag' {...register(`firstSection.items.${index}.imageAlt`, {
-                                                    required: "Value is required"
-                                                })} />
-                                                {errors.firstSection?.items?.[index]?.imageAlt && <p className='text-red-500'>{errors.firstSection?.items?.[index]?.imageAlt.message}</p>}
+                                                <Input type='text' placeholder='Alt Tag' {...register(`firstSection.items.${index}.imageAlt`)} />
                                             </div>
                                         </div>
 
@@ -270,7 +263,6 @@ const AdminHome = () => {
                                             <Controller
                                                 name={`messageSection.items.${index}.image`}
                                                 control={control}
-                                                rules={{ required: "Image is required" }}
                                                 render={({ field }) => (
                                                     <ImageUploader
                                                         value={field.value}
@@ -279,18 +271,12 @@ const AdminHome = () => {
                                                     />
                                                 )}
                                             />
-                                            {errors.messageSection?.items?.[index]?.image && (
-                                                <p className="text-red-500">{errors.messageSection?.items?.[index]?.image.message}</p>
-                                            )}
                                         </div>
 
                                         <div className='flex flex-col gap-2'>
                                             <div className='flex flex-col gap-2'>
                                                 <Label className='font-bold'>Alt Tag</Label>
-                                                <Input type='text' placeholder='Alt Tag' {...register(`messageSection.items.${index}.imageAlt`, {
-                                                    required: "Value is required"
-                                                })} />
-                                                {errors.messageSection?.items?.[index]?.imageAlt && <p className='text-red-500'>{errors.messageSection?.items?.[index]?.imageAlt.message}</p>}
+                                                <Input type='text' placeholder='Alt Tag' {...register(`messageSection.items.${index}.imageAlt`)} />
                                             </div>
                                         </div>
 
