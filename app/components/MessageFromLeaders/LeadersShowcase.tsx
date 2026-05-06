@@ -34,7 +34,7 @@ const FALLBACK_IMAGE = "/assets/img/avatar.png";
               className="group flex flex-col"
             >
               <div
-                className={`${0 % 2 === 0 ? "bg-[#ebebeb]" : "bg-[#dfdfdf]"} group-hover:bg-gray-100 transition-all duration-300 h-[280px] xl:h-[404px] w-full xl:w-[385px] flex flex-col mb-5 xl:mb-[10px] overflow-hidden relative`}
+                className={`${0 % 2 === 0 ? "bg-[#ebebeb]" : "bg-[#dfdfdf]"} group-hover:bg-gray-100 transition-all duration-300 h-[280px] xl:h-[350px] w-full xl:w-[385px] flex flex-col mb-5 xl:mb-[10px] overflow-hidden relative`}
               >
                 <Image
                   src={data.items[0].image || FALLBACK_IMAGE}
