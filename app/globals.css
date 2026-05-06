@@ -807,6 +807,12 @@ header.modal-open {
 
   }
 }
+.news-details h2{
+   
+    @apply mb-2 xl:mb-3   text-lg xl:text-[26px] leading-[1.380952380952381] font-normal text-black dark:text-white/70;
+
+ 
+}
 
 
 .loader {
