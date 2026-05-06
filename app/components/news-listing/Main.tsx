@@ -58,7 +58,7 @@ const Main = ({
                     </Link>
                   </motion.div>
                   <div className="xl:w-1/2 group xl:py-3">
-                    <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true }} className="flex items-center justify-between mb-4 xl:mb-[47px]" >
+                    {/* <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ once: true }} className="flex items-center justify-between mb-4 xl:mb-[47px]" >
                       <button className="bg-accent px-5 py-2 transition-all duration-300 uppercase ">
                         <span className="text-para-color group-hover:text-white transition-all duration-300">
                           {item.category}
@@ -73,7 +73,7 @@ const Main = ({
                             .toLocaleDateString("en-GB")
                             .replace(/\//g, "-")}
                       </p>
-                    </motion.div>
+                    </motion.div> */}
                     <motion.h3
                       variants={moveUp(0.2)}
                       initial="hidden"
