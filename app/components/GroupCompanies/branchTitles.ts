@@ -1,8 +1,8 @@
 import { SecondSectionItem } from "./type";
 
 export const BRANCH_TITLES = [
-  "Gulf Contractors Co. LLC",
-  "Gulf Contractors Co. LLC, KSA",
+  "Gulf Contractors Landscape & Development (GCCLD)",
+  "Gulf Contractors Company (GCC), KSA Branch",
 ];
 
 const normalizeValue = (value: string) =>
