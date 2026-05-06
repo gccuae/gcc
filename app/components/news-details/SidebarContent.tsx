@@ -20,7 +20,7 @@ const SidebarContent = ({
   const filtered = allItems
     .filter((item: { category: string; slug: string }) => item.category === category && item.slug !== currentSlug)
     .sort((a: { date: string }, b: { date: string }) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 4);
+    .slice(0, 2);
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(window.location.href);
@@ -141,7 +141,7 @@ const SidebarContent = ({
         >
           Related News
         </motion.h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 xl:block">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-5 xl:grid-cols-1 xl:gap-4">
           {filtered.map((item, index) => (
             <motion.div
               variants={moveUp(index * 0.1)}
@@ -149,28 +149,30 @@ const SidebarContent = ({
               whileInView="show"
               viewport={{ once: true }}
               key={index}
-              className="mb-8 md:mb-5 xl:mb-[17px] border-b dark:border-white/20 pb-5 xl:pb-[17px]"
+              className="mb-8 md:mb-5 xl:mb-[17px]  dark:border-white/20 pb-5 xl:pb-[17px] bg-light-white/50  p-3 hover:bg-light-white/70 transition-colors duration-300 ease-in-out group"
             >
               <Link href={`/news/${item.slug}`}>
-                <Image
-                  src={item.thumbnail}
-                  alt={item.thumbnailAlt}
-                  width={700}
-                  height={700}
-                  className="w-full h-50 object-cover"
-                />
+               <div className="w-full border  py-4 bg-white">
+                  <Image
+                    src={item.thumbnail}
+                    alt={item.thumbnailAlt}
+                    width={700}
+                    height={700}
+                    className="w-full h-50 object-contain group-hover:scale-105 transition-transform duration-300 ease-in-out"
+                  />
+               </div>
                 <h4 className="text-lg leading-lh-text19 font-light text-black dark:text-white mt-3 xl:mt-[17px]">
                   {item.title}
                 </h4>
               </Link>
-              <div className="flex mt-3 items-center justify-between">
+              {/* <div className="flex mt-3 items-center justify-between">
                 <span className="font-light text-base text-para-color dark:text-white/70">
                   {item.category}
                 </span>
                 <span className="font-light text-base text-para-color dark:text-white/70">
                   {item.date ? new Date(item.date).toLocaleDateString("en-GB").replace(/\//g, "-") : new Date(item.createdAt).toLocaleDateString("en-GB").replace(/\//g, "-")}
                 </span>
-              </div>
+              </div> */}
             </motion.div>
           ))}
         </div>
@@ -180,7 +182,7 @@ const SidebarContent = ({
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="group cursor-pointer px-6 py-2 text-black rounded-3xl bg-light-white border border-mdgray uppercase flex items-center gap-2 hover:bg-primary hover:text-white transition-colors duration-300 ease-in-out"
+            className="group cursor-pointer px-6 py-2 mt-5 text-black rounded-3xl bg-light-white border border-mdgray uppercase flex items-center gap-2 hover:bg-primary hover:text-white transition-colors duration-300 ease-in-out"
           >
             <span>View All</span>
             <Image
