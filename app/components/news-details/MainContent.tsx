@@ -99,12 +99,21 @@ const MainContent = ({
           {item}
         </motion.p>
       ))} */}
-      <motion.div variants={moveUp(0.1)}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }} dangerouslySetInnerHTML={{ __html: content }} className="news-details [&_p]:!text-base 2xl:[&_p]:!text-lg [&_p]:!leading-[1.7] "/>
+     
+      <motion.div
+  variants={moveUp(0.1)}
+  initial="hidden"
+  whileInView="show"
+  viewport={{ once: true }}
+  dangerouslySetInnerHTML={{
+    __html: content
+      ?.replace(/&nbsp;/g, ' ')  
+      .replace(/\u00a0/g, ' ')    
+      .replace(/ {2,}/g, ' ')     
+  }}
+  className="news-details [&_p]:!text-base 2xl:[&_p]:!text-lg [&_p]:!leading-[1.7] [&_p]:!whitespace-normal [&_p]:!break-words"
+/>
 
-      
     </div>
   );
 };
