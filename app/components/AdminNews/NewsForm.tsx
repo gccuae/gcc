@@ -217,7 +217,8 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
                     </div>
                     <div>
                         <Label className=''>Sub Title</Label>
-                        <Input type='text' placeholder='Sub Title' {...register("subTitle", { required: "Sub Title is required" })} />
+                        {/* <Input type='text' placeholder='Sub Title' {...register("subTitle", { required: "Sub Title is required" })} /> */}
+                        <Input type='text' placeholder='Sub Title' {...register("subTitle")} />
                         {errors.subTitle && <p className='text-red-500'>{errors.subTitle.message}</p>}
                     </div>
                     <div>
