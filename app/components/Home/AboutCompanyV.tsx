@@ -163,6 +163,7 @@ const AboutCompanyV = ({ data }: Props) => {
         <div className="lg:flex gap-8 xl:gap-17">
           {/* Video Block */}
           <motion.div variants={moveRight(0.12)} initial="hidden" whileInView="show" viewport={{ once: true }} className="relative w-full h-full lg:w-[48%] mb-8 lg:mb-0 overflow-hidden">
+            <div className="absolute inset-0 bg-black/30"></div>
             <video
               ref={videoRef}
               poster={data.poster}

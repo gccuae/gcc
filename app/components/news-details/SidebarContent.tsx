@@ -20,7 +20,7 @@ const SidebarContent = ({
   const filtered = allItems
     .filter((item: { category: string; slug: string }) => item.category === category && item.slug !== currentSlug)
     .sort((a: { date: string }, b: { date: string }) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 4);
+    .slice(0, 2);
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(window.location.href);
@@ -163,14 +163,14 @@ const SidebarContent = ({
                   {item.title}
                 </h4>
               </Link>
-              <div className="flex mt-3 items-center justify-between">
+              {/* <div className="flex mt-3 items-center justify-between">
                 <span className="font-light text-base text-para-color dark:text-white/70">
                   {item.category}
                 </span>
                 <span className="font-light text-base text-para-color dark:text-white/70">
                   {item.date ? new Date(item.date).toLocaleDateString("en-GB").replace(/\//g, "-") : new Date(item.createdAt).toLocaleDateString("en-GB").replace(/\//g, "-")}
                 </span>
-              </div>
+              </div> */}
             </motion.div>
           ))}
         </div>
