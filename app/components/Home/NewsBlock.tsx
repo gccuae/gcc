@@ -80,7 +80,7 @@ const NewsBlock = ({ data }: NewsBlockProps) => {
                     </Link>
                   </motion.div>
                   <div className="xl:w-1/2 group">
-                    <motion.div
+                    {/* <motion.div
                       variants={moveUp(0.2)}
                       initial="hidden"
                       whileInView="show"
@@ -95,7 +95,7 @@ const NewsBlock = ({ data }: NewsBlockProps) => {
                       <p className="text-base font-light text-forground underline underline-offset-10 dark:text-white hover:text-black dark:hover:text-white transition-all duration-300">
                         {item.date.split("T")[0].split("-").reverse().join("-")}
                       </p>
-                    </motion.div>
+                    </motion.div> */}
                     <motion.h3
                       variants={moveUp(0.2)}
                       initial="hidden"
