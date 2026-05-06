@@ -15,7 +15,7 @@ const HealthandSafety = ({ title, description, measures }: Props) => {
   return (
     <section className="py-37px md:py-47px xl:py-57px bg-black dark:bg-light-dark">
       <div className="container">
-        <div className="mb-6 xl:mb-[47px]">
+        <div className="mb-6 xl:mb-8">
           <motion.h2
             variants={moveUp()}
             initial="hidden"
@@ -34,6 +34,11 @@ const HealthandSafety = ({ title, description, measures }: Props) => {
           >
             {description}
           </motion.p>
+        </div>
+        <div className="grid grid-cols-3 gap-5 md:gap-10 w-fit mb-6 xl:mb-10 items-center p-3 rounded-[8px] bg-white">
+          <div><Image src="assets/img/qhse/logo1.png" alt="Health and Safety" width={100} height={100} className="h-[40px] md:h-[55px] w-full" /></div>
+          <div><Image src="assets/img/qhse/logo2.png" alt="Health and Safety" width={100} height={100} className="h-[40px] md:h-[55px] w-full" /></div>
+          <div><Image src="assets/img/qhse/logo3.png" alt="Health and Safety" width={100} height={100} className="h-[40px] md:h-[55px] w-full" /></div>
         </div>
 
         <motion.div
