@@ -96,12 +96,22 @@ const DetailsTab = ({ data }: { data: ThirdSection }) => {
           >
             {/* Text */}
             <div>
-              <motion.div variants={moveUp(0.2)} initial="hidden" animate="show"
-                className="text-lg leading-[1.380952380952381] !text-[#515151] dark:!text-white 
-                dark:[&_*]:!text-white/90 [&_p]:mb-2 xl:[&_p]:mb-4 [&_p:last-child]:mb-0 [&_span]:!text-[#515151] dark:[&_span]:!text-white/90"
-              >
-                {parse(projectDetails[activeTab]?.description || "")}
-              </motion.div>
+              <motion.div
+              variants={moveUp(0.2)}
+              initial="hidden"
+              animate="show"
+              className="text-lg leading-[1.380952380952381] !text-[#515151] dark:!text-white 
+              dark:[&_*]:!text-white/90 [&_p]:mb-2 xl:[&_p]:mb-4 [&_p:last-child]:mb-0 
+              [&_span]:!text-[#515151] dark:[&_span]:!text-white/90
+              [&_p]:!whitespace-normal [&_p]:!break-words"
+            >
+              {parse(
+                (projectDetails[activeTab]?.description || "")
+                  .replace(/&nbsp;/g, ' ')
+                  .replace(/\u00a0/g, ' ')
+                  .replace(/ {2,}/g, ' ')
+              )}
+            </motion.div>
             </div>
 
             {/* Image */}
