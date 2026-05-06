@@ -198,9 +198,8 @@ const ContactInfo = ({ data }: { data: contactType["secondSection"] }) => {
                   </p>
                 </motion.div> */}
               </div>
-            </motion.div>
-                            <motion.div
-                  className="flex items-start gap-[10px]"
+              <motion.div
+                  className="flex items-start gap-[10px] mt-3 lg:mt-5"
                   variants={moveUp(0.2)}
                   initial="hidden"
                   whileInView="show"
@@ -230,6 +229,8 @@ const ContactInfo = ({ data }: { data: contactType["secondSection"] }) => {
                     Get Directions
                   </Link>
                 </motion.div>
+            </motion.div>
+                            
             {/* <motion.div
               variants={moveLeft(0.4)}
               initial="hidden"
