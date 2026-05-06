@@ -68,7 +68,7 @@ const NewsCard = ({
 
   return (
     <div key={index} className="relative border-b dark:border-white/20 hover:border-primary pb-27px group transition-all duration-300 h-full" >
-      <div className="relative p-3 xl:p-5 h-[250px] md:h-[300px] 2xl:h-[486px] overflow-hidden group/img" ref={containerRef} onMouseMove={handleMouseMove} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
+      <div className="relative p-3 xl:p-5 h-[250px] md:h-[300px] 2xl:h-[340px] overflow-hidden group/img" ref={containerRef} onMouseMove={handleMouseMove} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
         <Link
           href={`/news/${item.slug}`}
           rel="noopener noreferrer"
@@ -116,7 +116,7 @@ const NewsCard = ({
         </div>
       </div>
       <div className="mt-5 xl:mt-[27px] relative">
-        <div className="flex justify-between items-center mb-2 xl:mb-[12px]">
+        {/* <div className="flex justify-between items-center mb-2 xl:mb-[12px]">
           <p className="text-lg leading-lh-text19 font-light dark:text-white">
             {item.category}
           </p>
@@ -129,9 +129,9 @@ const NewsCard = ({
                 .toLocaleDateString("en-GB")
                 .replace(/\//g, "-")}
           </p>
-        </div>
+        </div> */}
         <h3 className="text-xl xl:text-[1.8rem] 2xl:text-2xl 2xl:leading-normal font-normal mb-1 md:mb-3 xl:mb-[12px] text-black dark:text-white">
-          <Link href={`/news/${item.slug}`} className="hover:text-primary transition-colors duration-300">
+          <Link href={`/news/${item.slug}`} className="hover:text-primary transition-colors duration-300 line-clamp-2 !overflow-hidden !text-ellipsis">
           {item.title}
           </Link>
         </h3>

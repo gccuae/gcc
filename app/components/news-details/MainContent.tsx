@@ -56,7 +56,7 @@ const MainContent = ({
           >
             {images.map((image, index) => (
               <SwiperSlide key={index} className="relative max-h-[600px]">
-                <Image src={image} width={1000} height={1000} alt="" className="w-full h-[250px] lg:h-[400px] xl:h-[550px] 2xl:h-[700px] object-cover" />
+                <Image src={image} width={1000} height={1000} alt="" className="w-full h-[250px] lg:h-[400px] xl:h-[550px] 2xl:h-[600px] object-cover" />
               </SwiperSlide>
             ))}
            
@@ -77,7 +77,7 @@ const MainContent = ({
           )}
 
         </motion.div>
-      <motion.div
+      {/* <motion.div
         variants={moveUp(0.4)}
         initial="hidden"
         whileInView="show"
@@ -86,7 +86,7 @@ const MainContent = ({
       >
         <span className="text-[16px] uppercase">{sector}</span>
         <span className="text-[16px]">{date}</span>
-      </motion.div>
+      </motion.div> */}
       {/* {desc.map((item, index) => (
         <motion.p
           key={index}
@@ -99,21 +99,21 @@ const MainContent = ({
           {item}
         </motion.p>
       ))} */}
-     
-      <motion.div
-  variants={moveUp(0.1)}
-  initial="hidden"
-  whileInView="show"
-  viewport={{ once: true }}
-  dangerouslySetInnerHTML={{
-    __html: content
-      ?.replace(/&nbsp;/g, ' ')  
-      .replace(/\u00a0/g, ' ')    
-      .replace(/ {2,}/g, ' ')     
-  }}
-  className="news-details [&_p]:!text-base 2xl:[&_p]:!text-lg [&_p]:!leading-[1.7] [&_p]:!whitespace-normal [&_p]:!break-words"
-/>
-
+     <div className="mt-3 md:mt-6">
+        <motion.div
+          variants={moveUp(0.1)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          dangerouslySetInnerHTML={{
+            __html: content
+              ?.replace(/&nbsp;/g, ' ')  
+              .replace(/\u00a0/g, ' ')    
+              .replace(/ {2,}/g, ' ')     
+          }}
+          className="news-details [&_p]:!text-base 2xl:[&_p]:!text-lg [&_p]:!leading-[1.7] [&_p]:!whitespace-normal [&_p]:!break-words"
+        /> 
+    </div>
     </div>
   );
 };
