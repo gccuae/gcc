@@ -86,11 +86,12 @@ const BusinessNetworkCard = ({ item, index, hasLink }: BusinessNetworkCardProps)
           onMouseLeave={!isMobile && hasLink ? handleMouseLeave : undefined}
         >
           <Image src={item.image} alt={item.imageAlt} width={1000} height={1000} className="w-full h-full object-cover absolute inset-0 z-0 transition-all duration-300" />
-
+{item.logo && (
           <div className="relative z-10 bg-white rounded-[5px] w-[175px] max-h-[45px] flex items-center justify-center px-3 py-5">
             <Image src={item.logo} alt={item.logoAlt} width={400} height={400} className="w-auto h-10 xl:h-[38px] object-contain"
             />
           </div>
+)}
           {hasLink && (
             <div className="absolute bottom-0 left-0 z-10 w-full h-0 bg-black/45 group-hover:h-full transition-all duration-300"></div>
           )}
