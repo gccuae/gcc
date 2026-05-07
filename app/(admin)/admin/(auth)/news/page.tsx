@@ -2,7 +2,7 @@
 
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback, useRef } from 'react'
 
 import { useForm, Controller, Path } from "react-hook-form";
 import { Button } from '@/components/ui/button'
@@ -44,6 +44,7 @@ const NewsPage = () => {
     const bannerStatus = watch("bannerHidden");
     const firstStatus = watch("firstSection.hidden");
     const newsStatus = watch("newsHidden");
+        const dragIndexRef = useRef<number | null>(null);
 
     const toggleSection = (section: string, value: boolean) => {
         if (section === "bannerHidden" || section === "newsHidden") {
@@ -56,7 +57,13 @@ const NewsPage = () => {
     const [category, setCategory] = useState<string>("")
 
     const [categoryList, setCategoryList] = useState<{ _id: string, category: string }[]>([]);
-    const [newsList, setNewsList] = useState<{ _id: string, title: string, status: string, slug: string }[]>([]);
+const [newsList, setNewsList] = useState<{
+  _id: string;
+  title: string;
+  status: string;
+  slug: string;
+  categoryId: string; // track which category each news belongs to
+}[]>([]);
 
 
     const handleAddNews = async (data: NewsFormProps) => {
@@ -104,7 +111,11 @@ const NewsPage = () => {
                 setValue("bannerHidden", data.data.bannerHidden);
                 setValue("firstSection", data.data.firstSection);
                 setValue("newsHidden", data.data.newsHidden);
-                setNewsList(data.data.categories.flatMap((news: { news: { title: string; }[]; }) => news.news ?? []));
+                setNewsList(
+  data.data.categories.flatMap((cat: { _id: string; news: { _id: string; title: string; status: string; slug: string }[] }) =>
+    (cat.news ?? []).map((n) => ({ ...n, categoryId: cat._id }))
+  )
+);
             } else {
                 const data = await response.json();
                 alert(data.message);
@@ -190,6 +201,42 @@ const NewsPage = () => {
         fetchNewsData();
         handleFetchCategory();
     }, []);
+
+
+const handleDragStart = (index: number) => {
+  dragIndexRef.current = index;
+};
+
+const handleDrop = (toIndex: number) => {
+  const from = dragIndexRef.current;
+  if (from === null || from === toIndex) return;
+
+  if (newsList[from].categoryId !== newsList[toIndex].categoryId) {
+    alert("Cannot move news between categories");
+    return;
+  }
+
+  const updated = [...newsList];
+  const [moved] = updated.splice(from, 1);
+  updated.splice(toIndex, 0, moved);
+  setNewsList(updated);
+  dragIndexRef.current = null;
+
+  const categoryId = newsList[toIndex].categoryId;
+  const categoryNews = updated.filter((n) => n.categoryId === categoryId);
+
+  fetch("/api/admin/news/reorder", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      categoryId,
+      orderedNewsIds: categoryNews.map((n) => n._id),
+    }),
+  })
+    .then((r) => r.json())
+    .then((d) => { if (!d.success) alert("Reorder failed — " + d.message); })
+    .catch(() => alert("Reorder request failed"));
+};
 
 
     return (
@@ -333,64 +380,72 @@ const NewsPage = () => {
                     </div>
                 </AdminItemContainer>
 
-                <AdminItemContainer>
+<AdminItemContainer>
+  <div className='flex justify-between items-center p-5 border-b'>
+    <h1 className='text-lg font-semibold'>News</h1>
+    <div className='flex gap-5 items-center'>
+      {newsStatus ? (
+        <FaEyeSlash onClick={() => toggleSection("newsHidden", newsStatus)} className="text-gray-400 cursor-pointer" />
+      ) : (
+        <FaEye onClick={() => toggleSection("newsHidden", newsStatus)} className="text-green-600 cursor-pointer" />
+      )}
+      <Link href="/admin/news/add" className='bg-primary text-white px-3 py-1 rounded-md font-semibold'>
+        Add News
+      </Link>
+    </div>
+  </div>
 
-                    <div className='flex justify-between items-center p-5 border-b'>
-                        <h1 className='text-lg font-semibold'>News</h1>
-                        <div className='flex gap-5 items-center'>
-                            {newsStatus ? (
-                                <FaEyeSlash
-                                    onClick={() => toggleSection("newsHidden", newsStatus)}
-                                    className=" text-gray-400 cursor-pointer"
-                                />
+  <div className='px-5 flex flex-col gap-4 py-3'>
+    {newsList.map((item, index) => (
+      <div
+  key={item._id}
+  draggable
+  onDragStart={() => handleDragStart(index)}
+  onDragOver={(e) => e.preventDefault()}
+  onDrop={() => handleDrop(index)}
+        className='flex justify-between items-center border rounded-md p-4 hover:bg-gray-100 hover:shadow-md transition-all cursor-grab active:cursor-grabbing'
+      >
+        {/* Drag handle */}
+        <div className="flex items-center gap-3">
+          <div className="flex flex-col gap-[3px] opacity-40 shrink-0">
+            <div className="w-4 h-[2px] bg-gray-500 rounded" />
+            <div className="w-4 h-[2px] bg-gray-500 rounded" />
+            <div className="w-4 h-[2px] bg-gray-500 rounded" />
+          </div>
+          <div>
+            <p>{item.title}</p>
+            <p className="text-xs text-gray-400">{item.categoryId}</p>
+          </div>
+        </div>
 
-                            ) : (
-                                <FaEye
-                                    onClick={() => toggleSection("newsHidden", newsStatus)}
-                                    className=" text-green-600 cursor-pointer"
-                                />
-                            )}
-                            <Link href="/admin/news/add" className='bg-primary text-white px-3 py-1 rounded-md font-semibold'>Add News</Link>
-                        </div>
-                    </div>
-                    <div className='px-5 flex flex-col gap-4 py-3'>
-                        {newsList.map((item) => (
-                            <div className='flex justify-between items-center border rounded-md p-4 hover:bg-gray-100  hover:shadow-md transform  transition-all' key={item._id}>
-                                <div>
-                                    <p>{item.title}</p>
-                                </div>
-                                <div className='flex gap-8 items-center'>
+        <div className='flex gap-8 items-center'>
+          {item.status === "draft" ? (
+            <Link href={`/news/${item.slug}`} target="_blank">
+              <div className="text-[16px] rounded-xl bg-yellow-300 p-1"><FaEye /></div>
+            </Link>
+          ) : (
+            <div className="text-[16px] rounded-xl bg-green-300 p-1"><FaEye /></div>
+          )}
 
-                                    {item.status == "draft" ? (<Link href={`/news/${item.slug}`} target="_blank"><div className="text-[16px] rounded-xl bg-yellow-300 p-1 flex items-center gap-1">
-                                        <FaEye />
-                                    </div></Link>) : (<div className="text-[16px] rounded-xl bg-green-300 p-1 flex items-center gap-1">
-                                        <FaEye />
-                                    </div>)}
+          <Link href={`/admin/news/edit/${item._id}`}>
+            <FaEdit className='text-lg cursor-pointer' />
+          </Link>
 
-                                    <Link href={`/admin/news/edit/${item._id}`}><FaEdit className='text-lg cursor-pointer' /></Link>
-
-
-
-                                    <Dialog>
-                                        <DialogTrigger><MdDelete className='text-lg cursor-pointer' /></DialogTrigger>
-                                        <DialogContent>
-                                            <DialogHeader>
-                                                <DialogTitle>Are you sure?</DialogTitle>
-                                            </DialogHeader>
-                                            <div className="flex gap-2">
-                                                <DialogClose className="bg-black text-white px-2 py-1 rounded-md">No</DialogClose>
-                                                <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={() => handleDeleteNews(item._id)}>Yes</DialogClose>
-                                            </div>
-
-                                        </DialogContent>
-
-                                    </Dialog>
-
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </AdminItemContainer>
+          <Dialog>
+            <DialogTrigger><MdDelete className='text-lg cursor-pointer' /></DialogTrigger>
+            <DialogContent>
+              <DialogHeader><DialogTitle>Are you sure?</DialogTitle></DialogHeader>
+              <div className="flex gap-2">
+                <DialogClose className="bg-black text-white px-2 py-1 rounded-md">No</DialogClose>
+                <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={() => handleDeleteNews(item._id)}>Yes</DialogClose>
+              </div>
+            </DialogContent>
+          </Dialog>
+        </div>
+      </div>
+    ))}
+  </div>
+</AdminItemContainer>
 
                 <AdminItemContainer>
                     <Label main>SEO</Label>

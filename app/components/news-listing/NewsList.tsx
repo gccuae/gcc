@@ -8,27 +8,29 @@ import { moveUp } from "../motionVarients";
 import { NewsData } from "./type";
 
 const NewsList = ({ data }: { data: NewsData }) => {
-  const [visibleCount, setVisibleCount] = useState(6); // show 6 initially
+  const [visibleCount, setVisibleCount] = useState(6);
 
   const sectionRef = useRef<HTMLElement | null>(null);
 
   // sort news by date (latest first)
   const items = data.categories.flatMap(
-    (item: { news: NewsData["categories"][number]["news"] }) => item.news.filter((item) => item.status !== "draft")
+    (item: { news: NewsData["categories"][number]["news"] }) =>
+      item.news.filter((item) => item.status !== "draft"),
   );
-  console.log(items);
+  
   const sortedNews = [...items].sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
   );
 
-  const totalNews = sortedNews.length;
+const displayNews = sortedNews.slice(1);
+const totalDisplay = displayNews.length;
 
   const handleLoadMore = () => {
     setVisibleCount((prev) => prev + 6);
   };
 
   const handleShowLess = () => {
-    setVisibleCount(6); // reset back to first 6
+    setVisibleCount(6);
     const topOffset = 80;
     const sectionTop =
       (sectionRef.current?.getBoundingClientRect().top || 0) + window.scrollY;
@@ -39,7 +41,10 @@ const NewsList = ({ data }: { data: NewsData }) => {
   };
 
   return (
-    <section className=" pt-37px pb-37px md:pt-47px md:pb-57px xl:py-57px dark:bg-light-dark" ref={sectionRef}>
+    <section
+      className=" pt-37px pb-37px md:pt-47px md:pb-57px xl:py-57px dark:bg-light-dark"
+      ref={sectionRef}
+    >
       <div className="container">
         <motion.h2
           variants={moveUp()}
@@ -53,7 +58,7 @@ const NewsList = ({ data }: { data: NewsData }) => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 xl:gap-10">
           {/* skip the latest (index 0), then show visibleCount */}
-          {sortedNews.slice(1, visibleCount + 1).map((item, index) => (
+          {displayNews.slice(0, visibleCount).map((item, index) => (
             <motion.div
               variants={moveUp(index * 0.17)}
               initial="hidden"
@@ -73,17 +78,33 @@ const NewsList = ({ data }: { data: NewsData }) => {
           viewport={{ once: true }}
           className="flex justify-center mt-8"
         >
-          {visibleCount < totalNews ? (
-            <button onClick={handleLoadMore}
-              className="group px-6 py-2 bg-light-white text-black rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition-all duration-300 cursor-pointer hover:shadow-lg  " >
+          {visibleCount < totalDisplay ? (
+            <button
+              onClick={handleLoadMore}
+              className="group px-6 py-2 bg-light-white text-black rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition-all duration-300 cursor-pointer hover:shadow-lg  "
+            >
               <span>Load More</span>
-              <Image src={assets.singleGreenArrow} alt="arrow" width={20} height={20} className="inline rotate-90 transition-transform duration-300 group-hover:translate-y-1" />
+              <Image
+                src={assets.singleGreenArrow}
+                alt="arrow"
+                width={20}
+                height={20}
+                className="inline rotate-90 transition-transform duration-300 group-hover:translate-y-1"
+              />
             </button>
-          ) : totalNews > 6 ? (
-            <button onClick={handleShowLess}
-              className="group px-6 py-2 bg-light-white text-black rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition-all duration-300 cursor-pointer hover:shadow-lg " >
+          ) : visibleCount > 6 ? (
+            <button
+              onClick={handleShowLess}
+              className="group px-6 py-2 bg-light-white text-black rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition-all duration-300 cursor-pointer hover:shadow-lg "
+            >
               <span>Show Less</span>
-              <Image src={assets.singleGreenArrow} alt="arrow" width={20} height={20} className="inline -rotate-90 transition-transform duration-300 group-hover:-translate-y-1" />
+              <Image
+                src={assets.singleGreenArrow}
+                alt="arrow"
+                width={20}
+                height={20}
+                className="inline -rotate-90 transition-transform duration-300 group-hover:-translate-y-1"
+              />
             </button>
           ) : null}
         </motion.div>

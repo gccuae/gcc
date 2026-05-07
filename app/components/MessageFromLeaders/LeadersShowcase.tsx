@@ -10,8 +10,7 @@ const LeadersShowcase = ({
 }: {
   data: MessageProps["data"]["firstSection"];
 }) => {
-
-const FALLBACK_IMAGE = "/assets/img/avatar.png";
+  const FALLBACK_IMAGE = "/assets/img/avatar.png";
   return (
     <section className="pt-6 lg:pt-15 xl:pt-25px dark:pb-1 dark:bg-black ">
       <div className="container">
@@ -67,7 +66,7 @@ const FALLBACK_IMAGE = "/assets/img/avatar.png";
                 <div
                   className={`${
                     0 % 2 === 0 ? "bg-[#ebebeb]" : "bg-[#dfdfdf]"
-                  } group-hover:bg-gray-100 transition-all duration-300 h-[280px] xl:h-[308px] w-full xl:w-[288px] flex flex-col mb-5 xl:mb-[10px] overflow-hidden relative`}
+                  } group-hover:bg-gray-100 transition-all duration-300 h-[280px] xl:h-[350px] w-full xl:w-[385px] flex flex-col mb-5 xl:mb-[10px] overflow-hidden relative`}
                 >
                   <Image
                     src={item.image || FALLBACK_IMAGE}

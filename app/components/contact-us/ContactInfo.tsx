@@ -199,7 +199,7 @@ const ContactInfo = ({ data }: { data: contactType["secondSection"] }) => {
                 </motion.div> */}
               </div>
               <motion.div
-                  className="flex items-start gap-[10px] mt-3 lg:mt-5"
+                  className="flex items-start gap-[10px] mt-3 lg:mt-30px"
                   variants={moveUp(0.2)}
                   initial="hidden"
                   whileInView="show"
@@ -226,7 +226,7 @@ const ContactInfo = ({ data }: { data: contactType["secondSection"] }) => {
                     href={data.getDirection}
                     className="text-md xl:text-xl font-normal text-black dark:text-white leading-[1.3125] hover:text-accent transition-all duration-300 cursor-pointer capitalize"
                   >
-                    Get Directions
+                    Get Direction
                   </Link>
                 </motion.div>
             </motion.div>
