@@ -392,7 +392,7 @@ const GroupCompanyPage = () => {
                                                 <Controller
                                                     name={`firstSection.items.${index}.logo`}
                                                     control={control}
-                                                    rules={{ required: "Logo is required" }}
+                                                    // rules={{ required: "Logo is required" }}
                                                     render={({ field }) => (
                                                         <ImageUploader
                                                             isLogo
@@ -737,7 +737,7 @@ const GroupCompanyPage = () => {
                                                         <Controller
                                                             name={`secondSection.items.${index}.logo`}
                                                             control={control}
-                                                            rules={{ required: "Logo is required" }}
+                                                            // rules={{ required: "Logo is required" }}
                                                             render={({ field }) => (
                                                                 <ImageUploader
                                                                     isLogo
