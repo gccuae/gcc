@@ -15,7 +15,8 @@ const MsgChairman = ({ items }: MsgChairmanProps) => {
   const chairmanData = items[0];
 
   return (
-    <section className="pt-37px md:pt-47px xl:pt-57px dark:bg-light-dark lg:pb-0 bg-[#F5F3F0]">
+    <section className="pt-37px md:pt-47px xl:pt-57px dark:bg-light-dark lg:pb-0 bg-[#F5F3F0] relative">
+      <div className="hidden xl:block absolute z-[1] top-0 w-[580px] 2xl:w-[683px]   h-full bg-[#dfdddb]"></div>
       <SpecialContainer className="xl:ps-0" side="left">
         <div className="grid grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 items-end gap-3 md:gap-5 xl:gap-13 lg:border-b lg:border-[#c2c2c2] dark:border-light-dark overflow-hidden">
           <motion.h2
@@ -55,7 +56,7 @@ const MsgChairman = ({ items }: MsgChairmanProps) => {
                 .split(/\r?\n/)
                 .map((line: string, index: number) => (
                   <motion.p variants={moveUp(index * 0.2)} viewport={{ once: true }} initial="hidden" whileInView="show" key={index}
-                    className="mb-3 last:mb-0 lg:last:mb-[17px] xl:last:mb-20 lg:mb-[17px] text-lg leading-lh-text19 text-para-color dark:text-white font-light"
+                    className="mb-3 last:mb-0 lg:last:mb-[17px] xl:last:mb-20 lg:mb-[17px] text-lg xl:text-[14px] xl:text-sm 3xl:text-lg leading-lh-text19 text-para-color dark:text-white font-light"
                   >
                     {line}
                   </motion.p>
