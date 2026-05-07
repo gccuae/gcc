@@ -35,20 +35,20 @@ const HealthandSafety = ({ title, description, measures }: Props) => {
             {description}
           </motion.p>
         </div>
-        <div className="grid grid-cols-3 gap-5 md:gap-10 w-fit mb-6 xl:mb-10 items-center px-8 py-3 rounded-[8px] bg-white">
-          <div>
-            <Image src="assets/img/qhse/logo3.png" alt="Health and Safety" width={100} height={100} className="h-[40px] md:h-[55px] w-auto object-contain" />
-            <p className="text-sm text-gray-500 mt-2 max-w-[20ch]">12 Million Safe Man-Hours With No LTI</p>
-            </div>
-          <div>
-            <Image src="assets/img/qhse/logo2.png" alt="Health and Safety" width={100} height={100} className="h-[40px] md:h-[55px] w-auto object-contain" />
-            <p className="text-sm text-gray-500 mt-2 max-w-[20ch]">4.5 Million Man-Hours Without a Lost Time Injury (LTI)</p>
-          </div>
-          <div>
-            <Image src="assets/img/qhse/logo1.png" alt="Health and Safety" width={100} height={100} className="h-[40px] md:h-[55px] w-auto object-contain" />
-            <p className="text-sm text-gray-500 mt-2 max-w-[20ch]">1M Man-Hours Without LTI for Abu Dhabi Municipality Project</p>
-          </div>
+        <div className="grid grid-cols-3 gap-5 md:gap-3 w-fit mb-6 xl:mb-10 items-center px-8 py-3 rounded-[8px] bg-light-white  divide-x divide-gray-250 dark:divide-gray-300">
+        <div className="pr-5 md:pr-8 h-full">
+          <Image src="assets/img/qhse/logo33.png" alt="Health and Safety" width={100} height={100} className="h-[40px] md:h-[55px] w-auto object-contain" />
+          <p className="text-sm text-black mt-2 md:mt-3 max-w-[20ch]">12 Million Safe Man-Hours With No LTI</p>
         </div>
+        <div className="px-5 md:px-8 h-full">
+          <Image src="assets/img/qhse/logo22.png" alt="Health and Safety" width={100} height={100} className="h-[40px] md:h-[55px] w-auto object-contain" />
+          <p className="text-sm text-black mt-2 md:mt-3 max-w-[20ch]">4.5 Million Man-Hours Without a Lost Time Injury (LTI)</p>
+        </div>
+        <div className="pl-5 md:pl-8 h-full">
+          <Image src="assets/img/qhse/logo11.png" alt="Health and Safety" width={100} height={100} className="h-[40px] md:h-[55px] w-auto object-contain " />
+          <p className="text-sm text-black mt-2 md:mt-3 max-w-[20ch]">1M Man-Hours Without LTI for Abu Dhabi Municipality Project</p>
+        </div>
+      </div>
 
         <motion.div
           variants={moveUp()}
