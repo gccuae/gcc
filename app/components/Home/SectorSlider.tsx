@@ -54,6 +54,11 @@ const SectorSlider = ({ data }: SectorSliderProps) => {
               loop={true}
               modules={[Pagination, Navigation, Autoplay]}
               pagination={false}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              speed={800}
               onBeforeInit={(swiper) => {
                 // @ts-expect-error
                 swiper.params.navigation.prevEl = prevRef.current;
