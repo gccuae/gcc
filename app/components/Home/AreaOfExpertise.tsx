@@ -65,7 +65,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
               duration: 1,
               ease: "power3.out",
               scrollTrigger: { trigger: text, start: "top 80%" },
-            }
+            },
           );
         });
 
@@ -84,7 +84,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                 start: "top 70%",
                 toggleActions: "play none none reverse",
               },
-            }
+            },
           );
         });
       },
@@ -109,12 +109,10 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
     };
   }, [thumbsSwiper, mainSwiper]);
 
-
-
   return (
     <section className="wrapper pt-30px md:pt-37px pb-5 overflow-hidden bg-light-white dark:bg-black">
       <div>
-        <div className="flex justify-between items-center container mb-6 xl:mb-[43px]" >
+        <div className="flex justify-between items-center container mb-6 xl:mb-[43px]">
           <motion.h2
             variants={moveUp(0)}
             initial="hidden"
@@ -138,8 +136,21 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                 className="px-3 py-2 md:px-4 md:py-2 xl:py-[12px] border-r border-foreground dark:border-white/20 rounded-tl-full rounded-bl-full group  cursor-pointer hover:bg-accent  transition-all duration-300"
               >
                 {/* <Image src="/assets/img/icons/greenrightarrow.svg" alt="image" className="rotate-180 group-hover:brightness-0 group-hover:invert transition-all duration-300 min-w-[6px] min-h-[13px]" width={6} height={13} /> */}
-                <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-3 h-3 md:w-5 md:h-5  lg:w-[10px] lg:h-[16px]" >
-                  <path d="M8.33594 1.33154L1.66731 8.00017L8.33594 14.6688" stroke="#7AC142" className="group-hover:stroke-white transition-all duration-300" strokeWidth="2" strokeLinecap="round" />
+                <svg
+                  width="10"
+                  height="16"
+                  viewBox="0 0 10 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="flex w-3 h-3 md:w-5 md:h-5  lg:w-[10px] lg:h-[16px]"
+                >
+                  <path
+                    d="M8.33594 1.33154L1.66731 8.00017L8.33594 14.6688"
+                    stroke="#7AC142"
+                    className="group-hover:stroke-white transition-all duration-300"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
                 </svg>
               </div>
               <div
@@ -148,15 +159,34 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                 className="px-3 py-2 md:px-4 md:py-2 xl:py-[12px] rounded-tr-full rounded-br-full cursor-pointer group hover:bg-accent dark:hover:bg-secondary transition-all duration-300"
               >
                 {/* <Image src="/assets/img/icons/greenrightarrow.svg" alt="image" className="group-hover:brightness-0 group-hover:invert transition-all duration-300 min-w-[6px] min-h-[13px]" width={6} height={13} /> */}
-                <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex w-3 h-3 md:w-5 md:h-5  lg:w-[10px] lg:h-[16px]" >
-                  <path d="M1.66406 1.33154L8.33269 8.00017L1.66406 14.6688" stroke="#7AC142" className="group-hover:stroke-white transition-all duration-300" strokeWidth="2" strokeLinecap="round" />
+                <svg
+                  width="10"
+                  height="16"
+                  viewBox="0 0 10 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="flex w-3 h-3 md:w-5 md:h-5  lg:w-[10px] lg:h-[16px]"
+                >
+                  <path
+                    d="M1.66406 1.33154L8.33269 8.00017L1.66406 14.6688"
+                    stroke="#7AC142"
+                    className="group-hover:stroke-white transition-all duration-300"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
                 </svg>
               </div>
             </motion.div>
           </div>
         </div>
 
-        <motion.div variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ once: true }} className="container relative" >
+        <motion.div
+          variants={moveUp(0)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="container relative"
+        >
           <Swiper
             className="area-of-expertise-thumbs relative"
             onSwiper={setThumbsSwiper}
@@ -174,7 +204,11 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
             watchSlidesProgress
           >
             {expertiseItems.map((item, index) => (
-              <SwiperSlide key={item._id} className="sliderexp cursor-pointer transition mb-4 xl:mb-5 group" onClick={pauseAutoplay} >
+              <SwiperSlide
+                key={item._id}
+                className="sliderexp cursor-pointer transition mb-4 xl:mb-5 group"
+                onClick={pauseAutoplay}
+              >
                 <div className="exp-icon-div pb-4 mb-6 xl:pb-[30px] xl:mb-[15px] relative flex items-center gap-5">
                   <motion.div
                     variants={fadeIn(index * 0.15)}
@@ -183,7 +217,13 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                     viewport={{ once: true }}
                     className="flex items-center justify-center flex-shrink-0 rounded-full border-1 dark:border-white/20 dark:border-white/20 w-13 h-13 md:w-15 md:h-15 xl:w-[85px] xl:h-[85px] group-hover:bg-primary transition-colors duration-300 icon-wrapper dark:bg-[#0d0d0d]"
                   >
-                    <Image src={item.logo} alt={item.logoAlt} width={200} height={200} className="w-7 h-7 md:w-8 md:h-8 xl:w-10 xl:h-10 object-contain group-hover:brightness-0 group-hover:invert-100" />
+                    <Image
+                      src={item.logo}
+                      alt={item.logoAlt}
+                      width={200}
+                      height={200}
+                      className="w-7 h-7 md:w-8 md:h-8 xl:w-10 xl:h-10 object-contain group-hover:brightness-0 group-hover:invert-100"
+                    />
                   </motion.div>
                   <motion.h3
                     variants={moveUp(index * 0.13)}
@@ -226,6 +266,9 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                   className="container h-full slide-container grid md:grid-cols-2 xl:grid-cols-[6fr_4fr] items-start gap-3 md:gap-6 xl:gap-50px  group"
                 >
                   <div className="img-wrapper md:border-r-1 border-r-smgray dark:border-white/20 md:pr-4 xl:pr-[50px] pb-0 xl:py-5 relative">
+                    {/* Line — scoped to image width, not full wrapper */}
+                    <div className="relative">
+                      <div className="absolute left-1/2 -translate-x-1/2 top-[1px] bottom-[1px] w-[3px] bg-white z-10" />
                       <Image
                         src={item.homeThumbnail}
                         alt={item.homeThumbnailAlt}
@@ -233,6 +276,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                         height={1000}
                         className="slide-img w-full sm:h-[300px] md:h-[400px] 2xl:h-[500px] rounded object-cover mb-2 border border-smgray dark:border-white/20 p-1 bg-white dark:bg-[#0d0d0d]"
                       />
+                    </div>
                   </div>
                   <div className="group">
                     <h3 className="text-2xl font-normal leading-[1.2] mb-2 xl:mb-5 dark:text-white hover:text-primary transition-all duration-300">
@@ -242,7 +286,11 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                       {item.description}
                     </p>
                     <div className="lg:slide-btn mt-6 xl:mt-[43px] mb-4">
-                      <BtnPrimary link={"/expertise/" + item.slug} text="Read More" bgtrans={false} />
+                      <BtnPrimary
+                        link={"/expertise/" + item.slug}
+                        text="Read More"
+                        bgtrans={false}
+                      />
                     </div>
                   </div>
                 </motion.div>
