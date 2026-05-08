@@ -13,10 +13,10 @@ const Index = ({ data }: { data: contactType }) => {
               <StandardBnr title={data.firstSection.pageTitle} />
             </div>
           </section>
-          {/* <Main data={data.firstSection} /> */}
         </>
       )}
       {!data.secondSection.hidden && <ContactInfo data={data.secondSection} />}
+      <Main data={data.firstSection} />
     </>
   );
 };

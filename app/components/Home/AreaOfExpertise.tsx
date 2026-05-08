@@ -226,13 +226,13 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
                   className="container h-full slide-container grid md:grid-cols-2 xl:grid-cols-[6fr_4fr] items-start gap-3 md:gap-6 xl:gap-50px  group"
                 >
                   <div className="img-wrapper md:border-r-1 border-r-smgray dark:border-white/20 md:pr-4 xl:pr-[50px] pb-0 xl:py-5 relative">
-                    <Image
-                      src={item.homeThumbnail}
-                      alt={item.homeThumbnailAlt}
-                      width={1000}
-                      height={1000}
-                      className="slide-img w-full sm:h-[300px] md:h-[400px] 2xl:h-[500px] rounded object-cover mb-2"
-                    />
+                      <Image
+                        src={item.homeThumbnail}
+                        alt={item.homeThumbnailAlt}
+                        width={1000}
+                        height={1000}
+                        className="slide-img w-full sm:h-[300px] md:h-[400px] 2xl:h-[500px] rounded object-cover mb-2 border border-smgray dark:border-white/20 p-1 bg-white dark:bg-[#0d0d0d]"
+                      />
                   </div>
                   <div className="group">
                     <h3 className="text-2xl font-normal leading-[1.2] mb-2 xl:mb-5 dark:text-white hover:text-primary transition-all duration-300">
