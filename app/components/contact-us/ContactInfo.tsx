@@ -294,7 +294,7 @@ const ContactInfo = ({ data }: { data: contactType["secondSection"] }) => {
               {data.subTitle}
             </motion.p>
           </div>
-          <div className="inline-grid grid-cols-1 xl:grid-cols-2 gap-4 xl:gap-30px">
+          <div className="inline-grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-30px">
             <motion.div
               variants={moveLeft()}
               initial="hidden"
@@ -491,7 +491,7 @@ const ContactInfo = ({ data }: { data: contactType["secondSection"] }) => {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, amount: 0.2 }}
-              className="relative min-h-[200px] self-stretch"
+              className="relative min-h-[300px] self-stretch"
             >
               <Image
                 src={"/assets/img/about/contact-us-gcc.jpg"}
