@@ -18,7 +18,7 @@ interface NewsBlockProps {
 }
 const NewsBlock = ({ data }: NewsBlockProps) => {
   const allNews = data.categories.flatMap((cat) =>
-    cat.news.slice(0, 3).map((news) => ({
+    cat.news.slice(0, 8).map((news) => ({
       ...news,
       category: cat.category, // ensure category is attached
     }))
