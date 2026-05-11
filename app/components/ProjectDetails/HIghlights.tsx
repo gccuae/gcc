@@ -25,14 +25,14 @@ const HIghlights = ({ data }: { data: ForthSection }) => {
               whileInView="show"
               viewport={{ once: true }}
               key={index}
-              className="group grid gap-3 xl:gap-30px grid-rows-[auto_1fr]"
+              className="group grid grid-rows-subgrid row-span-2 gap-0"
             >
               <div className="border-b dark:border-white/20 group-hover:border-b-primary pb-4 xl:pb-30px transition-all duration-300">
                 <h3 className="text-xl xl:text-2xl leading-[1.12] xl:leading-[1.5625] text-black dark:text-white">
                   {item.title}
                 </h3>
               </div>
-              <p className="text-lg leading-[1.5625] text-para-color dark:text-white/70 font-light">
+              <p className="text-lg leading-[1.5625] text-para-color dark:text-white/70 font-light pt-3 xl:pt-30px">
                 {item.description}
               </p>
             </motion.div>

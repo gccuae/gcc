@@ -179,7 +179,7 @@ const GalleryModal: React.FC<GalleryModalProps> = ({ item, onClose }) => {
             </button>
 
             {/* Scrollable thumb strip */}
-            <div className="flex gap-[10px] overflow-x-auto scroll-smooth scrollbar-none px-1 items-center justify-start">
+            <div className="flex gap-[10px] overflow-x-auto scroll-smooth scrollbar-none px-1 items-center justify-center">
               {item.images.map((img, idx) => {
                 const isActive = currentIndex === idx;
                 return (

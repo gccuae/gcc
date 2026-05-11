@@ -316,7 +316,7 @@ const MobileNav = ({ items, socialMediaData }: { items?: MobileNavItem[], social
                 <div className="flex space-x-4" >
                   {socialMediaData.socialSection.items.map((item:{hidden:boolean, image:string, imageAlt:string, link:string}, index: number) => (
                     !item.hidden ? (<Link key={index} href={item.link} target="_blank" className="cursor-pointer rounded-full p-2 bg-black text-white dark:bg-white dark:text-black hover:bg-primary transition-all duration-500">
-                      <Image src={item.image} alt={item.imageAlt} width={5} height={5} className="cursor-pointer w-5 h-5 transition-all duration-500 invert brightness-0" />
+                      <Image src={item.image} alt={item.imageAlt} width={5} height={5} className="cursor-pointer w-5 h-5 transition-all duration-500 invert brightness-0 dark:invert-0 dark:brightness-100" />
                     </Link>) : null
                   ))}
 

@@ -200,7 +200,7 @@ const JobApplicationForm = ({ title }: { title: string }) => {
                     <span className="text-lg">
                       {coverLetterFile
                         ? coverLetterFile.name
-                        : "Upload Your Cover Letter"}
+                        : "Upload Your Cover Letter *"}
                     </span>
                     {coverLetterFile ? (
                       ""

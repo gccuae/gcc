@@ -1,4 +1,4 @@
- "use client";
+"use client";
 
 import React, { useRef, useState } from "react";
 import { assets } from "@/public/assets/assets";
@@ -8,10 +8,9 @@ import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
 import { GalleryType } from "./type";
 
-
 const GalleryCard: React.FC<{
-  item: GalleryType['items'][number];
-  onOpenModal: (item: GalleryType['items'][number]) => void;
+  item: GalleryType["items"][number];
+  onOpenModal: (item: GalleryType["items"][number]) => void;
 }> = ({ item, onOpenModal }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -23,12 +22,19 @@ const GalleryCard: React.FC<{
       const isLast = index === maxCircles - 1;
       const hasMoreThan9 = item.images.length > 9;
 
-
       return (
         <div key={index} className="relative flex last:-ml-2">
-          <div className={`w-8 h-8 xl:w-[50px] xl:h-[50px] rounded-full overflow-hidden border-1 border-white shadow-sm
-           ${index % 2 === 0 ? "" : "-ml-2"}`} >
-            <Image width={50} height={50} src={image.image} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
+          <div
+            className={`w-8 h-8 xl:w-[50px] xl:h-[50px] rounded-full overflow-hidden border-1 border-white shadow-sm
+           ${index % 2 === 0 ? "" : "-ml-2"}`}
+          >
+            <Image
+              width={50}
+              height={50}
+              src={image.image}
+              alt={`Thumbnail ${index + 1}`}
+              className="w-full h-full object-cover"
+            />
           </div>
           {isLast && hasMoreThan9 && (
             <div className="absolute inset-0 bg-black/38 rounded-full flex items-center justify-center">
@@ -43,7 +49,10 @@ const GalleryCard: React.FC<{
   };
 
   return (
-    <div className="flex h-full flex-col overflow-hidden group border-b dark:border-white/20 hover:border-primary transition-colors duration-300 cursor-pointer" onClick={() => item.images.length > 0 && onOpenModal(item)}>
+    <div
+      className="flex h-full flex-col overflow-hidden group border-b dark:border-white/20 hover:border-primary transition-colors duration-300 cursor-pointer"
+      onClick={() => item.images.length > 0 && onOpenModal(item)}
+    >
       {/* Header Image */}
       <div
         className="relative h-48 xl:h-[475px] overflow-hidden cursor-pointer"
@@ -51,14 +60,25 @@ const GalleryCard: React.FC<{
         onMouseLeave={() => setIsHovered(false)}
         onClick={() => item.images.length > 0 && onOpenModal(item)}
       >
-        <Image width={1920} height={1280} src={item.thumbnail} alt={item.thumbnailAlt} className="w-full h-full object-cover group-hover:blur-[2px] transition-transform" />
+        <Image
+          width={1920}
+          height={1280}
+          src={item.thumbnail}
+          alt={item.thumbnailAlt}
+          className="w-full h-full object-cover group-hover:blur-[2px] transition-transform"
+        />
 
         {/* Hover Icon */}
         <div className="absolute inset-0 bg-white/12 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
           <div className="w-12 h-12 xl:w-20 xl:h-20 bg-white rounded-full flex items-center justify-center shadow-lg">
-            <Image src={assets.expandPlusIcon} alt="Expand" width={30} height={30}
-              className={`w-full h-full xl:w-[29.99px] xl:h-[29.99px] object-contain transition-transform duration-300 ${isHovered ? "scale-110" : ""
-                }`}
+            <Image
+              src={assets.expandPlusIcon}
+              alt="Expand"
+              width={30}
+              height={30}
+              className={`w-full h-full xl:w-[29.99px] xl:h-[29.99px] object-contain transition-transform duration-300 ${
+                isHovered ? "scale-110" : ""
+              }`}
             />
           </div>
         </div>
@@ -78,35 +98,39 @@ const GalleryCard: React.FC<{
 };
 
 const Gallery: React.FC<{ data: GalleryType }> = ({ data }) => {
-  const [selectedItem, setSelectedItem] = useState<GalleryType['items'][number] | null>(null);
-  const [visibleCount, setVisibleCount] = useState(8);
+  const [selectedItem, setSelectedItem] = useState<
+    GalleryType["items"][number] | null
+  >(null);
   const sectionRef = useRef<HTMLElement | null>(null);
 
   const totalAlbum = data.items.length;
+  const INITIAL_COUNT = 6;
+  const STEP = 3;
+
+  const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
 
   const handleLoadMore = () => {
-    setVisibleCount((prev) => (prev ? prev + 3 : 8));
+    setVisibleCount((prev) => prev + STEP);
   };
-
   const handleShowLess = () => {
-    setVisibleCount((prev) => (prev ? prev - 3 : 6));
+    setVisibleCount(INITIAL_COUNT);
     if (sectionRef.current) {
-      const elementTop = sectionRef.current.offsetTop;
-      const offsetPosition = elementTop - 200;
-
       window.scrollTo({
-        top: offsetPosition,
+        top: sectionRef.current.offsetTop - 200,
         behavior: "smooth",
       });
     }
   };
 
   return (
-    <section className="min-h-screen pb-12 md:pb-15 xl:pb-57px" ref={sectionRef}>
+    <section
+      className="min-h-screen pb-12 md:pb-15 xl:pb-57px"
+      ref={sectionRef}
+    >
       <div className="container">
         {/* Gallery Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-30px gap-y-47px">
-          {data.items.slice(0, visibleCount + 1).map((item, index) => (
+          {data.items.slice(0, visibleCount).map((item, index) => (
             <motion.div
               key={index}
               className="h-full"
@@ -115,7 +139,11 @@ const Gallery: React.FC<{ data: GalleryType }> = ({ data }) => {
               whileInView="show"
               viewport={{ once: true }}
             >
-              <GalleryCard key={index} item={item} onOpenModal={setSelectedItem} />
+              <GalleryCard
+                key={index}
+                item={item}
+                onOpenModal={setSelectedItem}
+              />
             </motion.div>
           ))}
         </div>
@@ -131,7 +159,7 @@ const Gallery: React.FC<{ data: GalleryType }> = ({ data }) => {
           {visibleCount < totalAlbum ? (
             <button
               onClick={handleLoadMore}
-              className="group px-6 py-2 bg-light-white hover:bg-primary text-black group-hover:text-white rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition"
+              className="group cursor-pointer px-6 py-2 bg-light-white hover:bg-primary text-black group-hover:text-white rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:scale-[1.03] active:scale-[0.97]"
             >
               <span>Load More</span>
               <Image
@@ -139,13 +167,13 @@ const Gallery: React.FC<{ data: GalleryType }> = ({ data }) => {
                 alt="arrow"
                 width={20}
                 height={20}
-                className="inline rotate-90"
+                className="inline rotate-90 transition-transform duration-300 group-hover:translate-x-1"
               />
             </button>
-          ) : totalAlbum > 6 ? (
+          ) : totalAlbum > INITIAL_COUNT ? (
             <button
               onClick={handleShowLess}
-              className="group px-6 py-2 bg-light-white hover:bg-primary text-black hover:text-white rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition"
+              className="group cursor-pointer px-6 py-2 bg-light-white hover:bg-primary text-black hover:text-white rounded-3xl border border-mdgray uppercase flex items-center gap-2 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:scale-[1.03] active:scale-[0.97]"
             >
               <span>Show Less</span>
               <Image
@@ -153,7 +181,7 @@ const Gallery: React.FC<{ data: GalleryType }> = ({ data }) => {
                 alt="arrow"
                 width={20}
                 height={20}
-                className="inline -rotate-90"
+                className="inline -rotate-90 transition-transform duration-300 group-hover:translate-x-1"
               />
             </button>
           ) : null}
