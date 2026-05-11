@@ -202,6 +202,17 @@ body {
   @apply dark:bg-black;
 }
 
+/* input autofill bg-remove */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  box-shadow: 0 0 0 1000px transparent inset !important;
+  -webkit-text-fill-color: var(--input-text-color) !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 .justify-txt {
   @apply text-left;
   /* text-wrap: balance;
@@ -754,10 +765,10 @@ header.modal-open {
 
 .ai-technology-items {
   h3 {
-    @apply text-lg font-medium text-foreground dark:text-white;
+    @apply text-lg font-medium text-white;
   }
 
-  ol {
+  ol, ul {
     @apply text-white;
     list-style-type: square;
 
