@@ -275,6 +275,7 @@ const ContactForm: React.FC = () => {
           )}
         </motion.div>
 
+{process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY && (
         <motion.div
           variants={moveUp(0.55)}
           initial="hidden"
@@ -289,6 +290,7 @@ const ContactForm: React.FC = () => {
             <p className="mt-2 text-sm text-red-600">{captchaError}</p>
           )}
         </motion.div>
+)}
 
         {/* Privacy Checkbox */}
 
