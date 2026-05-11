@@ -48,7 +48,7 @@ const MsgGm = ({ items }: MsgChairmanProps) => {
                     initial="hidden"
                     whileInView="show"
                     key={index}
-                    className="mb-3 last:mb-0 lg:last:mb-[17px] xl:last:mb-20 lg:mb-[17px] text-lg xl:text-[14px] 2xl:text-lg leading-lh-text19 text-para-color dark:text-white font-light"
+                    className="mb-3 last:mb-0 lg:last:mb-[17px] xl:last:mb-20 lg:mb-[17px] text-lg lg:text-[15px] 3xl:text-lg leading-lh-text19 text-para-color dark:text-white font-light"
                   >
                     {line}
                   </motion.p>

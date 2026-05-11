@@ -279,7 +279,7 @@ const onSubmit: SubmitHandler<ContactFormData> = async (data) => {
             <input
               type="checkbox"
               id="acceptPrivacy"
-              className={`mt-1 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 ${
+              className={`mt-1 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 cursor-pointer ${
                 errors.acceptPrivacy ? "border-red-500" : ""
               }`}
               {...register("acceptPrivacy", {

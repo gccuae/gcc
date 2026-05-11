@@ -150,7 +150,7 @@ const ProjectSlider = ({ data }: ProjectSliderProps) => {
   return (
     <section className="py-57px">
       <div className="container">
-        <div className="relative h-auto md:h-fit" ref={ref}>
+        <div className="relative h-auto md:h-fit select-none" ref={ref}>
           {hasImages ? (
             <Swiper
               modules={[Navigation]}
@@ -159,8 +159,8 @@ const ProjectSlider = ({ data }: ProjectSliderProps) => {
               loop={false}
               hashNavigation={true}
               grabCursor={true}
-              navigation={true}
-              className="project-slider relative h-full"
+  navigation={images.length > 1}  
+              className="project-slider relative h-full select-none"
             >
               {images.map((image, index) => (
                 <SwiperSlide key={index} className="relative md:max-h-[715px]">

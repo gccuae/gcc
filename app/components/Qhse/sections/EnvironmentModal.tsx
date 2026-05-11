@@ -143,7 +143,7 @@ const EnvironmentModal: React.FC<EnvironmentModalProps> = ({
                       src={item.images[currentIndex].image}
                       alt={`${item.title} image ${currentIndex + 1}`}
                       fill
-                      className="h-auto rounded-[12px] object-contain"
+                      className="h-auto rounded-[12px] object-cover"
                       sizes="(max-width: 768px) 100vw, 80vw"
                     />
                   </motion.div>

@@ -12,7 +12,7 @@ export interface FirstSectionProps {
 
 const CounterSection = ({ data }: FirstSectionProps) => {
   return (
-    <section className="pt-37px pb-47px xl:py-57px bg-light-white dark:bg-light-dark">
+    <section className="pt-37px xl:pt-57px bg-light-white dark:bg-light-dark">
       <div className="container">
         <div className="mb-6 xl:mb-[47px]">
           <motion.h2

@@ -8,7 +8,7 @@ const Index = ({ data }: { data: careerData['openings'][number] }) => {
     <>
       {!data.firstSection.hidden && <PageHeader title={data.firstSection.jobTitle} />}
       {!data.firstSection.hidden && <JobSpecs data={data.firstSection} />}
-      <JobDetails secondSection={data.secondSection} thirdSection={data.thirdSection} forthSection={data.forthSection} />
+      <JobDetails secondSection={data.secondSection} thirdSection={data.thirdSection} forthSection={data.forthSection} title={data.firstSection.jobTitle} />
     </>
   );
 };

@@ -14,8 +14,12 @@ const ViMiVa = ({ data }: ViMiVaProps) => {
     setActiveReadMore((prev) => (prev === id ? null : id));
   };
 
+  const sanitizeHtml = (html: string) => html.replace(/&nbsp;/g, " ");
+
   return (
-    <section className={`py-37px md:py-47px lg:py-47px xl:py-57px dark:bg-black ${data.hidden ? "hidden" : ""}`}>
+    <section
+      className={`py-37px md:py-47px lg:py-47px xl:py-57px dark:bg-black dark:border-b ${data.hidden ? "hidden" : ""}`}
+    >
       <div className="container">
         {/* <div className="border-b dark:border-white/20  pb-8 xl:pb-57px"> */}
         <div className="pb-8 xl:pb-57px">
@@ -49,14 +53,20 @@ const ViMiVa = ({ data }: ViMiVaProps) => {
               className="bg-white dark:bg-black flex flex-col md:gap-5 md:border-r dark:border-white/20 md:last:border-r-0 xl:pl-8 xl:pr-8 last:pr-0 border-b last:border-b-0 last:pb-0 dark:border-white/20 pb-5 md:pb-8 xl:pb-0 px-0 md:px-5 xl:px-0 md:border-b-0"
             >
               <div>
-                <Image src={item.logo} alt={item.logoAlt} width={50} height={50} className="w-auto h-10 xl:h-13 mb-4 md:mb-0" />
+                <Image
+                  src={item.logo}
+                  alt={item.logoAlt}
+                  width={50}
+                  height={50}
+                  className="w-auto h-10 xl:h-13 mb-4 md:mb-0"
+                />
               </div>
               <h3 className="text-2xl leading-lh-title dark:text-white text-para-color mb-3 md:mb-0">
                 {item.title}
               </h3>
 
               <div className="text-base xl:text-lg leading-[1.5] dark:text-white text-para-color flex flex-col vision-mission-section">
-                {item.description.split(" ").length > 30 &&
+                {/* {item.description.split(" ").length > 30 &&
                   activeReadMore !== item._id
                   ? parse(
                     item.description.split(" ").slice(0, 30).join(" ") + "..."
@@ -70,7 +80,8 @@ const ViMiVa = ({ data }: ViMiVaProps) => {
                   >
                     {activeReadMore === item._id ? " Read Less" : " Read More"}
                   </span>
-                )}
+                )} */}
+                {parse(sanitizeHtml(item.description))}
               </div>
             </motion.div>
           ))}

@@ -53,7 +53,7 @@ const Modal = ({
             }}
             className="relative w-full max-w-7xl max-h-[90vh] overflow-y-auto rounded-xl bg-light-white dark:bg-[#0d0d0d] shadow-lg p-6 sm:p-10 md:p-[57px] 2xl:p-[77px]"
           >
-            <button onClick={disableClose ? undefined : onClose} disabled={disableClose} className={`absolute top-5 right-5 md:top-6 md:right-6 xl:top-8 xl:right-8 p-1 rounded-full text-gray-500 hover:text-black dark:hover:text-white ${disableClose ? "cursor-not-allowed opacity-50" : "cursor-pointer"}`}
+            <button onClick={disableClose ? undefined : onClose} disabled={disableClose} className={`absolute top-2 right-2 sm:top-5 sm:right-5 md:top-6 md:right-6 xl:top-8 xl:right-8 p-1 rounded-full text-gray-500 hover:text-black dark:hover:text-white ${disableClose ? "cursor-not-allowed opacity-50" : "cursor-pointer"}`}
             >
               <Image
                 src="/assets/img/careers/close-popup.svg"
@@ -125,6 +125,7 @@ const PageHeader = ({ title }: PageHeaderProps) => {
         }}
       >
         <JobApplicationModal
+          title={title}
           onSubmittingChange={setIsSubmittingApplication}
           onSuccess={() => {
             setIsSubmittingApplication(false);

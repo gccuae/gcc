@@ -3,7 +3,6 @@ import Gallery from "./Gallery";
 import { GalleryType } from "./type";
 
 const Index = ({ data }: { data: GalleryType }) => {
-  console.log(data)
   return (
     <>
       {!data.headingHidden && <section className="pt-57px">

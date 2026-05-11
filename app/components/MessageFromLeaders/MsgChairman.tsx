@@ -31,7 +31,7 @@ const MsgChairman = ({ items }: MsgChairmanProps) => {
           <motion.div variants={moveRight()} viewport={{ once: true }} initial="hidden" whileInView="show" className="relative pt-10 order-2 xl:order-1" >
             <div className="absolute top-0 left-0 xl:w-[80%] w-full h-[100%] bg-[#0000001A] dark:bg-black z-0"></div>
             <motion.div variants={moveRight(0.3)} viewport={{ once: true }} initial="hidden" whileInView="show" >
-              <Image src={chairmanData?.image || FALLBACK_IMAGE} alt="msg chairman" width={1500} height={1500} className="w-full h-[300px] md:h-[400px] xl:h-[60%] max-h-[900px] object-contain relative z-10" />
+              <Image src={chairmanData?.image || FALLBACK_IMAGE} alt="msg chairman" width={1500} height={1500} className="w-full h-[300px] md:h-[400px] xl:h-[60%] max-h-[1900px] object-contain relative z-10" />
             </motion.div>
             <div className="absolute bottom-5 md:bottom-10 lg:bottom-20 left-3 md:left-10 lg:left-30 w-full  xl:w-[70%] h-fit px-4 xl:px-[38px] py-2 xl:py-[18px] bg-gradient-to-r from-primary to-transparent dark:from-[50%] z-20">
               <motion.div variants={moveUp()} viewport={{ once: true }} initial="hidden" whileInView="show" >
@@ -56,7 +56,7 @@ const MsgChairman = ({ items }: MsgChairmanProps) => {
                 .split(/\r?\n/)
                 .map((line: string, index: number) => (
                   <motion.p variants={moveUp(index * 0.2)} viewport={{ once: true }} initial="hidden" whileInView="show" key={index}
-                    className="mb-3 last:mb-0 lg:last:mb-[17px] xl:last:mb-20 lg:mb-[17px] text-lg xl:text-[14px] xl:text-sm 3xl:text-lg leading-lh-text19 text-para-color dark:text-white font-light"
+                    className="mb-3 last:mb-0 lg:last:mb-[17px] xl:last:mb-20 lg:mb-[17px] text-lg lg:text-[15px] 3xl:text-lg leading-lh-text19 text-para-color dark:text-white font-light"
                   >
                     {line}
                   </motion.p>

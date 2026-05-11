@@ -16,7 +16,7 @@ const JobSpecs = ({ data }: { data: careerData['openings'][number]['firstSection
   ];
 
   return (
-    <section className="dark:bg-black pt-47px xl:pt-57px">
+    <section className="dark:bg-black pt-47px xl:pt-57px overflow-hidden">
       <motion.div
         className="container"
         variants={moveUp()}

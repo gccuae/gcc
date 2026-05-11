@@ -291,7 +291,7 @@ const CurrentOpenings = ({ data, jobs, departments, locations }: { data: careerD
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="bg-accent px-6 py-3 rounded-3xl uppercase w-full md:w-auto cursor-pointer hover:bg-primary transition-all duration-300 text-white font-semibold"
+              className="bg-accent px-6 py-3 rounded-3xl uppercase w-full md:w-auto cursor-pointer hover:bg-primary transition-colors duration-300 text-white font-semibold"
               onClick={() => setAppliedFilters(pendingFilters)}
             >
               Apply filter
@@ -302,7 +302,7 @@ const CurrentOpenings = ({ data, jobs, departments, locations }: { data: careerD
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true }}
-                className="px-6 py-3 rounded-3xl uppercase w-full md:w-auto cursor-pointer border border-priamry text-mdgray dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300 font-light "
+                className="px-6 py-3 rounded-3xl uppercase w-full md:w-auto cursor-pointer border border-priamry text-mdgray dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors duration-300 font-light "
                 onClick={handleClearFilters}
               >
                 Clear filter

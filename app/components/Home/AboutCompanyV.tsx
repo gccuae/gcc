@@ -190,9 +190,9 @@ const AboutCompanyV = ({ data }: Props) => {
             {/* Popup Video */}
             {isPopupOpen && (
               <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm sm:p-6">
-                <div className="relative w-full max-w-[1080px] overflow-hidden rounded-lg  aspect-[1080/740] max-h-[70vh] sm:max-h-[75vh] md:max-h-[78vh] lg:max-w-[960px] lg:h-[66vh] lg:max-h-[66vh] xl:max-w-[980px] xl:h-[68vh] xl:max-h-[68vh] 2xl:max-w-[1080px] 2xl:h-[72vh] 2xl:max-h-[72vh] ">
+                <div className="relative w-full max-w-[1080px] rounded-lg  aspect-[1080/740] max-h-[70vh] sm:max-h-[75vh] md:max-h-[78vh] lg:max-w-[960px] lg:h-[66vh] lg:max-h-[66vh] xl:max-w-[980px] xl:h-[68vh] xl:max-h-[68vh] 2xl:max-w-[1080px] 2xl:h-[72vh] 2xl:max-h-[72vh] ">
                   {/* Close Button */}
-                  <button className="absolute z-10 right-0 top-0 cursor-pointer bg-white bg-opacity-50 p-2 rounded-full hover:bg-opacity-100 transition size-10 dark:text-black"
+                  <button className="absolute z-10 right-0 -top-8 sm:top-[-5px] cursor-pointer bg-white bg-opacity-50 p-2 rounded-full hover:bg-opacity-100 transition size-10 dark:text-black"
                     onClick={() => setIsPopupOpen(false)}
                     aria-label="Close video modal"
                   >

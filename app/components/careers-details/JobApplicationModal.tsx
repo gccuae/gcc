@@ -12,11 +12,13 @@ import { moveUp } from "../../components/motionVarients";
 type FormData = z.infer<typeof jobApplicationSchema>;
 
 type Props = {
+  title: string;
   onSuccess?: () => void;
   onSubmittingChange?: (isSubmitting: boolean) => void;
 };
 
 const JobApplicationModalForm = ({
+  title,
   onSuccess,
   onSubmittingChange,
 }: Props) => {
@@ -96,8 +98,8 @@ const JobApplicationModalForm = ({
 
   return (
     <div className="w-full">
-      <h2 className=" text-4xl 2xl:text-5xl leading-1h-title text-black dark:text-white mb-[36px]">
-        Apply for Site Engineer Position
+      <h2 className=" text-4xl 2xl:text-5xl leading-1h-title text-black dark:text-white mb-[36px] max-w-[80%] lg:max-w-none">
+        Apply for {title}
       </h2>
 
       <div className="w-full border-t-[1px] dark:border-white/20 mb-[36px]" />

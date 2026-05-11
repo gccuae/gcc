@@ -105,7 +105,7 @@ const ProjectsList = ({
 
   return (
     // <section className="dark:bg-light-dark pb-37px" ref={sectionRef}>
-    <section className="dark:bg-light-dark pt-8 xl:pt-0 pb-12 md:pb-15 xl:pb-57px " ref={sectionRef}>
+    <section className="dark:bg-black pt-8 xl:pt-0 pb-12 md:pb-15 xl:pb-57px " ref={sectionRef}>
       {/* ===================== Filter Bar ===================== */}
       <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" className="border-b border-gray-300 dark:border-white/20 pb-27px xl:pb-0 mb-57px" >
         <div className="container">
