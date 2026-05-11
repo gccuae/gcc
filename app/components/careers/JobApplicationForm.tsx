@@ -289,6 +289,7 @@ const JobApplicationForm = ({ title }: { title: string }) => {
           </motion.div>
 
           {/* reCAPTCHA */}
+          {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY && (
           <motion.div
             variants={moveUp(0.7)}
             initial="hidden"
@@ -303,6 +304,7 @@ const JobApplicationForm = ({ title }: { title: string }) => {
               <p className="mt-2 text-sm text-red-500">{captchaError}</p>
             )}
           </motion.div>
+          )}
 
           {/* Submit */}
           <motion.div
