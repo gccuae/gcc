@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { jobApplicationSchema } from "../../../lib/validations/careerSubmitForm";
@@ -8,10 +8,14 @@ import { z } from "zod";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { moveUp } from "../../components/motionVarients";
+import ReCAPTCHA from "react-google-recaptcha";
 
 type FormData = z.infer<typeof jobApplicationSchema>;
 
 const JobApplicationForm = ({ title }: { title: string }) => {
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const [captchaError, setCaptchaError] = useState("");
+
   const {
     register,
     handleSubmit,
@@ -25,15 +29,22 @@ const JobApplicationForm = ({ title }: { title: string }) => {
   const [isSubmitted, setIsSubmitted] = React.useState(false);
 
   const onSubmit = (data: FormData) => {
-    console.log("Form submitted:", data);
+    const captchaValue = recaptchaRef?.current?.getValue();
+    if (!captchaValue) {
+      setCaptchaError("Please verify yourself to continue");
+      return;
+    }
+    setCaptchaError("");
+
     setIsSubmitted(true);
     reset();
     setCoverLetterFile(null);
     setResumeFile(null);
+    recaptchaRef.current?.reset();
   };
 
   const [coverLetterFile, setCoverLetterFile] = React.useState<File | null>(
-    null
+    null,
   );
   const [resumeFile, setResumeFile] = React.useState<File | null>(null);
   const coverLetterRegister = register("coverLetter");
@@ -68,7 +79,10 @@ const JobApplicationForm = ({ title }: { title: string }) => {
             className="grid grid-cols-1 md:grid-cols-2 lg:gap-8 text-black dark:text-white"
           >
             <div className="space-y-2">
-              <input {...register("firstName")} type="text" placeholder="First Name *"
+              <input
+                {...register("firstName")}
+                type="text"
+                placeholder="First Name *"
                 className="w-full px-0 py-4 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:focus:border-white/50 dark:placeholder-white transition-colors duration-300"
               />
               {errors.firstName && (
@@ -194,7 +208,12 @@ const JobApplicationForm = ({ title }: { title: string }) => {
                   className="flex items-center space-x-3 py-6 cursor-pointer group"
                 >
                   <div className="flex items-center justify-center">
-                    <Image src="/assets/img/careers/upload-icon.svg" alt="Upload Icon" width={24} height={30} />
+                    <Image
+                      src="/assets/img/careers/upload-icon.svg"
+                      alt="Upload Icon"
+                      width={24}
+                      height={30}
+                    />
                   </div>
                   <div className="text-para-color dark:text-white transition-colors flex flex-col xl:flex-row xl:items-center justify-between xl:gap-2 ">
                     <span className="text-lg">
@@ -267,6 +286,22 @@ const JobApplicationForm = ({ title }: { title: string }) => {
                 </p>
               )}
             </div>
+          </motion.div>
+
+          {/* reCAPTCHA */}
+          <motion.div
+            variants={moveUp(0.7)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+          >
+            <ReCAPTCHA
+              sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+              ref={recaptchaRef}
+            />
+            {captchaError && (
+              <p className="mt-2 text-sm text-red-500">{captchaError}</p>
+            )}
           </motion.div>
 
           {/* Submit */}
