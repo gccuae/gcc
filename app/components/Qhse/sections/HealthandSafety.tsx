@@ -46,7 +46,7 @@ const HealthandSafety = ({ title, description, measures }: Props) => {
         </div>
         <div className="pl-5 md:pl-8 h-full">
           <Image src="assets/img/qhse/logo11.png" alt="Health and Safety" width={100} height={100} className="h-[40px] md:h-[55px] w-auto object-contain " />
-          <p className="text-sm text-black mt-2 md:mt-3 max-w-[20ch]">1M Man-Hours Without LTI for Abu Dhabi Municipality Project</p>
+          <p className="text-sm text-black mt-2 md:mt-3 max-w-[20ch]">4M Man-Hours Without LTI for Abu Dhabi Municipality Project</p>
         </div>
       </div>
 
