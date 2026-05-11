@@ -4,7 +4,7 @@ import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
-
+import Link from "next/link";
 interface ContactFormData {
   firstName: string;
   lastName: string;
@@ -290,7 +290,7 @@ const onSubmit: SubmitHandler<ContactFormData> = async (data) => {
               htmlFor="acceptPrivacy"
               className="text-base font-light text-para-color dark:text-white"
             >
-              I ACCEPT THE PRIVACY AND TERMS <span className="text-primary">*</span>
+              I ACCEPT THE <Link href="/terms-and-conditions" className="text-black">PRIVACY AND TERMS</Link>  <span className="text-primary">*</span>
             </label>
           </motion.div>
           {errors.acceptPrivacy && (
