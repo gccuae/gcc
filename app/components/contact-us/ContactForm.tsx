@@ -323,7 +323,7 @@ const ContactForm: React.FC = () => {
               className="text-base font-light text-para-color dark:text-white"
             >
               I ACCEPT THE{" "}
-              <Link href="/terms-and-conditions" className="text-black">
+              <Link href="/terms-and-conditions" className="text-black dark:text-white">
                 PRIVACY AND TERMS
               </Link>{" "}
               <span className="text-primary">*</span>
