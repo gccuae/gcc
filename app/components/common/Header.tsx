@@ -14,6 +14,7 @@ import { Navbar } from "@/types/Common";
 const Header = ({data,socialMediaData}:{data:Navbar,socialMediaData:any}) => {
   // const pathname = usePathname();
   const [active, setActive] = useState<string | null>(null);
+  const [floatingActive, setFloatingActive] = useState<string | null>(null); 
   const [isMobile, setIsMobile] = useState<null | boolean>(null);
   // const [isScrolled, setIsScrolled] = useState(false);
   const [scrollY, setScrollY] = useState(0);
@@ -87,59 +88,85 @@ const Header = ({data,socialMediaData}:{data:Navbar,socialMediaData:any}) => {
   } else if (isMobile == null) {
     return null;
   } else {
-    const renderHeader = () => {
-      return (
-        <Menu setActive={setActive} socialMediaData={socialMediaData}>
-          {data.navSection.items.map((menuItem, index) =>
-            menuItem.subItems.length > 0 ? (
-              !menuItem.hidden ? (<MenuItem setActive={setActive} active={active} url={menuItem.url} item={menuItem.title} key={index} >
-                <div className="grid grid-cols-1 py-4">
-                  {menuItem.subItems.map((item, index) => (
-                    !item.hidden ? (<HoveredLink href={`${item.url}`} key={index}>
+const renderHeader = (
+  activeState: string | null,
+  setActiveState: (val: string | null) => void
+) => {
+  return (
+    <Menu setActive={setActiveState} socialMediaData={socialMediaData}>
+      {data.navSection.items.map((menuItem, index) =>
+        menuItem.subItems.length > 0 ? (
+          !menuItem.hidden ? (
+            <MenuItem
+              setActive={setActiveState}
+              active={activeState}
+              url={menuItem.url}
+              item={menuItem.title}
+              key={index}
+            >
+              <div className="grid grid-cols-1 py-4">
+                {menuItem.subItems.map((item, index) =>
+                  !item.hidden ? (
+                    <HoveredLink href={`${item.url}`} key={index}>
                       <div className="hover:bg-black/5 pl-3 pr-[80px] py-2 rounded-[8px] transition-transform duration-300 hover:text-secondary hover:scale-105 flex gap-2 items-center self-start spckbtn whts">
                         <div>
-                          <Image src={"/assets/img/icons/arrow.svg"} alt="" width={15} height={15} className="dark:invert-50" />
-                        </div>{" "}
-                        <p className="m-0 p-0 text-[16px] uppercase ">
+                          <Image
+                            src={"/assets/img/icons/arrow.svg"}
+                            alt=""
+                            width={15}
+                            height={15}
+                            className="dark:invert-50"
+                          />
+                        </div>
+                        <p className="m-0 p-0 text-[16px] uppercase">
                           {item.title}
                         </p>
                       </div>
-                    </HoveredLink>) : null
-                  ))}
-                </div>
-              </MenuItem>) : null
-            ) : (
-              !menuItem.hidden ? (<MenuItem item={menuItem.title} url={menuItem.url} setActive={setActive} active={active} noMenu={true} key={index} >
-                <div className="p-2">
-                  <Link href={menuItem.url}>{menuItem.title}</Link>
-                </div>
-              </MenuItem>) : null
-            )
-          )}
-        </Menu>
-      );
-    };
+                    </HoveredLink>
+                  ) : null
+                )}
+              </div>
+            </MenuItem>
+          ) : null
+        ) : !menuItem.hidden ? (
+          <MenuItem
+            item={menuItem.title}
+            url={menuItem.url}
+            setActive={setActiveState}
+            active={activeState}
+            noMenu={true}
+            key={index}
+          >
+            <div className="p-2">
+              <Link href={menuItem.url}>{menuItem.title}</Link>
+            </div>
+          </MenuItem>
+        ) : null
+      )}
+    </Menu>
+  );
+};
 
-    return (
-      <header className={``}>
-        <AnimatePresence>
-          {renderHeader()}
+return (
+  <header>
+    <AnimatePresence>
+      {renderHeader(active, setActive)}  {/* 👈 initial navbar */}
 
-          {scrollY > 130 && (
-            <motion.header
-              key="navbar"
-              initial={{ y: -100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -100, opacity: 0 }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-              className={`fixed top-0 left-0 w-full z-[999] bg-white text-black shadow-md`}
-            >
-              {renderHeader()}
-            </motion.header>
-          )}
-        </AnimatePresence>
-      </header>
-    );
+      {scrollY > 130 && (
+        <motion.header
+          key="navbar"
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -100, opacity: 0 }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
+          className="fixed top-0 left-0 w-full z-[999] bg-white text-black shadow-md"
+        >
+          {renderHeader(floatingActive, setFloatingActive)}  {/* 👈 floating navbar */}
+        </motion.header>
+      )}
+    </AnimatePresence>
+  </header>
+);
   }
 };
 

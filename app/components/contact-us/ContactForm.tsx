@@ -5,6 +5,9 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
 import Link from "next/link";
+import { useRef, useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
+
 interface ContactFormData {
   firstName: string;
   lastName: string;
@@ -15,6 +18,9 @@ interface ContactFormData {
 }
 
 const ContactForm: React.FC = () => {
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const [captchaError, setCaptchaError] = useState("");
+
   const {
     register,
     handleSubmit,
@@ -24,29 +30,38 @@ const ContactForm: React.FC = () => {
     mode: "onChange",
   });
 
-const onSubmit: SubmitHandler<ContactFormData> = async (data) => {
-  try {
-    const response = await fetch("/api/admin/contact/enquiry", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+  const onSubmit: SubmitHandler<ContactFormData> = async (data) => {
+    try {
+      const captchaValue = recaptchaRef?.current?.getValue();
+      if (!captchaValue) {
+        setCaptchaError("Please verify yourself to continue");
+        return;
+      }
+      setCaptchaError("");
 
-    const result = await response.json();
+      const response = await fetch("/api/admin/contact/enquiry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-    if (!response.ok) {
-      throw new Error(result.message || "Something went wrong");
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || "Something went wrong");
+      }
+
+      reset();
+      alert("Message sent successfully!");
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Error sending message. Please try again.");
+    } finally {
+      recaptchaRef?.current?.reset();
     }
-
-    reset();
-    alert("Message sent successfully!");
-  } catch (error) {
-    console.error("Error submitting form:", error);
-    alert("Error sending message. Please try again.");
-  }
-};
+  };
 
   return (
     <div className="w-full ">
@@ -115,10 +130,10 @@ const onSubmit: SubmitHandler<ContactFormData> = async (data) => {
               placeholder="Enter Last Name"
               className={`w-full pb-3 dark:focus:border-white/50 border-b-2 transition-colors duration-200
                 bg-transparent focus:bg-transparent dark:focus:border-white/50  dark:bg-transparent  dark:focus:bg-black focus:outline-none placeholder:text-lg placeholder:text-[#979797] dark:placeholder:text-white placeholder:font-normal placeholder:leading-lh-base ${
-                errors.lastName
-                  ? "border-red-500 "
-                  : "border-[#C2C2C2]/35 focus:border-black"
-              }`}
+                  errors.lastName
+                    ? "border-red-500 "
+                    : "border-[#C2C2C2]/35 focus:border-black"
+                }`}
               {...register("lastName", {
                 required: "Last name is required",
                 minLength: {
@@ -260,6 +275,21 @@ const onSubmit: SubmitHandler<ContactFormData> = async (data) => {
           )}
         </motion.div>
 
+        <motion.div
+          variants={moveUp(0.55)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
+          <ReCAPTCHA
+            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+            ref={recaptchaRef}
+          />
+          {captchaError && (
+            <p className="mt-2 text-sm text-red-600">{captchaError}</p>
+          )}
+        </motion.div>
+
         {/* Privacy Checkbox */}
 
         <motion.div
@@ -290,7 +320,11 @@ const onSubmit: SubmitHandler<ContactFormData> = async (data) => {
               htmlFor="acceptPrivacy"
               className="text-base font-light text-para-color dark:text-white"
             >
-              I ACCEPT THE <Link href="/terms-and-conditions" className="text-black">PRIVACY AND TERMS</Link>  <span className="text-primary">*</span>
+              I ACCEPT THE{" "}
+              <Link href="/terms-and-conditions" className="text-black">
+                PRIVACY AND TERMS
+              </Link>{" "}
+              <span className="text-primary">*</span>
             </label>
           </motion.div>
           {errors.acceptPrivacy && (

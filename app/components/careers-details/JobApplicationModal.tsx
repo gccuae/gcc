@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, {useRef, useState} from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { jobApplicationSchema } from "../../../lib/validations/careerSubmitForm";
@@ -8,6 +8,7 @@ import { z } from "zod";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { moveUp } from "../../components/motionVarients";
+import ReCAPTCHA from "react-google-recaptcha";
 
 type FormData = z.infer<typeof jobApplicationSchema>;
 
@@ -22,6 +23,9 @@ const JobApplicationModalForm = ({
   onSuccess,
   onSubmittingChange,
 }: Props) => {
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const [captchaError, setCaptchaError] = useState("");
+
   const {
     register,
     handleSubmit,
@@ -55,6 +59,13 @@ const JobApplicationModalForm = ({
   }, []);
 
   const onSubmit = async (data: FormData) => {
+    const captchaValue = recaptchaRef?.current?.getValue();
+    if (!captchaValue) {
+      setCaptchaError("Please verify yourself to continue");
+      return;
+    }
+    setCaptchaError("");
+
     const formData = new FormData();
 
     // append text fields
@@ -88,6 +99,7 @@ const JobApplicationModalForm = ({
     reset();
     setCoverLetterFile(null);
     setResumeFile(null);
+    recaptchaRef.current?.reset(); 
 
     if (onSuccess) {
       closeTimeoutRef.current = window.setTimeout(() => {
@@ -293,6 +305,17 @@ const JobApplicationModalForm = ({
               </p>
             )}
           </div>
+        </div>
+
+                {/* reCAPTCHA */}
+        <div>
+          <ReCAPTCHA
+            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+            ref={recaptchaRef}
+          />
+          {captchaError && (
+            <p className="mt-1 text-sm text-red-500">{captchaError}</p>
+          )}
         </div>
 
         {/* Submit */}
