@@ -14,6 +14,9 @@ const expertiseSchema = new mongoose.Schema({
     metaDescription: {
         type: String,
     },
+    script: {
+        type: String,
+    },
     pageTitle: {
         type: String,
         required: true
@@ -99,6 +102,9 @@ const expertiseSchema = new mongoose.Schema({
                 type: String,
             },
             metaDescription: {
+                type: String,
+            },
+            script: {
                 type: String,
             },
             firstSection: {

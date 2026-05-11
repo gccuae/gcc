@@ -7,6 +7,9 @@ const projectSchema = new mongoose.Schema({
   metaDescription: {
     type: String,
   },
+  script: {
+    type: String,
+  },
   banner: { type: String },
   bannerAlt: { type: String },
   pageTitle: { type: String },
@@ -26,6 +29,7 @@ const projectSchema = new mongoose.Schema({
     {
       metaTitle: { type: String },
       metaDescription: { type: String },
+      script: { type: String },
       banner: { type: String },
       bannerAlt: { type: String },
       thumbnail: { type: String },

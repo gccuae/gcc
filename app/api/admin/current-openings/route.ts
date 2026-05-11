@@ -53,6 +53,7 @@ export async function PATCH(request: NextRequest) {
 
             opening.metaTitle = body.metaTitle;
             opening.metaDescription = body.metaDescription;
+            opening.script = body.script;
             opening.firstSection = body.firstSection;
             opening.secondSection = body.secondSection;
             opening.thirdSection = body.thirdSection;

@@ -37,6 +37,7 @@ interface NewsFormProps {
     thumbnailAlt: string;
     metaTitle: string;
     metaDescription: string;
+    script: string;
     images: string[]
     date: string;
 }
@@ -82,6 +83,7 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
                 setValue("thumbnailAlt", data.data[0].thumbnailAlt);
                 setValue("metaTitle", data.data[0].metaTitle);
                 setValue("metaDescription", data.data[0].metaDescription);
+                setValue("script", data.data[0].script);
                 setValue("status", data.data[0].status);
                 setValue("images", data.data[0].images);
                 const isoDate = new Date(data.data[0].date).toISOString().split("T")[0];
@@ -347,6 +349,10 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
                             <div>
                                 <Label>Meta Description</Label>
                                 <Input type="text" {...register("metaDescription")} />
+                            </div>
+                            <div>
+                                <Label>Script</Label>
+                                <Textarea {...register("script")} />
                             </div>
                         </div>
                     </div>

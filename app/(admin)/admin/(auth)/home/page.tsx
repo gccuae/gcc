@@ -23,6 +23,7 @@ import CompanyCard from './CompanyCard';
 interface HomeFormProps {
     metaTitle: string;
     metaDescription: string;
+    script: string;
     expertiseHidden: boolean;
     newsHidden: boolean;
     bannerSection: {
@@ -146,6 +147,7 @@ const HomePage = () => {
                 const data = await response.json();
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
+                setValue("script", data.data.script);
                 setValue("bannerSection.hidden", data.data.bannerSection.hidden)
                 setValue("bannerSection.items", data.data.bannerSection.items);
                 setValue("newsHidden", data.data.newsHidden);
@@ -768,6 +770,10 @@ const HomePage = () => {
                         <div className='flex flex-col gap-2'>
                             <Label className='font-bold'>Description</Label>
                             <Input type='text' placeholder='' {...register("metaDescription")} />
+                        </div>
+                        <div className='flex flex-col gap-2'>
+                            <Label className='font-bold'>Script</Label>
+                            <Textarea placeholder='' {...register("script")} />
                         </div>
                     </div>
                 </AdminItemContainer>

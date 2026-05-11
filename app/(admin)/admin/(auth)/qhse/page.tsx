@@ -18,6 +18,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 interface QhseFormProps {
     metaTitle: string;
     metaDescription: string;
+    script: string;
     firstSection: {
         hidden: boolean;
         mainTitle: string;
@@ -141,6 +142,7 @@ const ExpertisePage = () => {
                 const data = await response.json();
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
+                setValue("script", data.data.script);
                 setValue("firstSection", data.data.firstSection);
                 setValue("secondSection", data.data.secondSection);
                 setValue("secondSection.items", data.data.secondSection.items);
@@ -788,6 +790,10 @@ const ExpertisePage = () => {
                         <div className='flex flex-col gap-2'>
                             <Label className='font-bold'>Description</Label>
                             <Input type='text' placeholder='' {...register("metaDescription")} />
+                        </div>
+                        <div className='flex flex-col gap-2'>
+                            <Label className='font-bold'>Script</Label>
+                            <Textarea {...register("script")} />
                         </div>
                     </div>
                 </AdminItemContainer>

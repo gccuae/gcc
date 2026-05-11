@@ -7,6 +7,9 @@ const groupCompanySchema = new mongoose.Schema({
     metaDescription: {
         type: String,
     },
+    script: {
+        type: String,
+    },
     banner: {
         type: String,
     },

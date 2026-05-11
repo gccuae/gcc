@@ -18,6 +18,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 interface AiTechnologyFormProps {
     metaTitle: string;
     metaDescription: string;
+    script: string;
     banner: string;
     bannerAlt: string;
     pageTitle: string;
@@ -98,6 +99,7 @@ const AiTechnologyPage = () => {
                 setValue("pageTitle", data.data.pageTitle);
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
+                setValue("script", data.data.script);
                 setValue("bannerHidden", data.data.bannerHidden);
                 setValue("firstSection", data.data.firstSection);
                 setValue("secondSection", data.data.secondSection);
@@ -376,6 +378,10 @@ const AiTechnologyPage = () => {
                         <div className='flex flex-col gap-2'>
                             <Label className='font-bold'>Description</Label>
                             <Input type='text' placeholder='' {...register("metaDescription")} />
+                        </div>
+                        <div className='flex flex-col gap-2'>
+                            <Label className='font-bold'>Script</Label>
+                            <Textarea {...register("script")} />
                         </div>
                     </div>
                 </AdminItemContainer>

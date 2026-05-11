@@ -162,6 +162,7 @@ export async function PATCH(request: NextRequest) {
       foundProject.longitude = body.longitude;
       foundProject.metaTitle = body.metaTitle;
       foundProject.metaDescription = body.metaDescription;
+      foundProject.script = body.script;
       foundProject.featuredProject = body.featuredProject;
       foundProject.relatedService = body.relatedService;
       foundProject.status = body.status
