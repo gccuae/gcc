@@ -6,6 +6,7 @@ import UnGoals from "./UnGoals";
 import { SustainabilityType } from "./type";
 
 const Index = ({ data }: { data: SustainabilityType }) => {
+
   return (
     <>
       <PageBnr
