@@ -20,6 +20,7 @@ import { useParams } from 'next/navigation'
 import { ImageUploader } from '@/components/ui/image-uploader'
 import { RiAiGenerateText } from 'react-icons/ri'
 import AdminItemContainer from '@/app/components/common/AdminItemContainer'
+import { Textarea } from '@/components/ui/textarea'
 
 
 
@@ -38,6 +39,7 @@ interface BlogFormProps {
     quoteAuthor: string;
     metaTitle: string;
     metaDescription: string;
+    script: string;
     date: string;
     status:string;
 }
@@ -86,6 +88,7 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
                 setValue("quoteAuthor", data.data.quoteAuthor);
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
+                setValue("script", data.data.script);
                 setValue("status", data.data.status);
                 const isoDate = new Date(data.data.date).toISOString().split("T")[0];
                 setValue("date", isoDate);
@@ -321,6 +324,10 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
                             <div>
                                 <Label>Meta Description</Label>
                                 <Input type="text" {...register("metaDescription")} />
+                            </div>
+                            <div>
+                                <Label>Script</Label>
+                                <Textarea {...register("script")} />
                             </div>
                         </div>
                     </div>

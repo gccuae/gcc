@@ -26,6 +26,7 @@ interface OpeningFormProps {
     status: string;
     metaTitle: string;
     metaDescription: string;
+    script: string;
     firstSection: {
         hidden: boolean;
         title: string;
@@ -119,6 +120,7 @@ const OpeningsForm = ({ editMode }: { editMode?: boolean }) => {
                 const data = await response.json();
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
+                setValue("script", data.data.script);
                 setValue("firstSection", data.data.firstSection);
                 setValue("secondSection", data.data.secondSection);
                 setValue("thirdSection", data.data.thirdSection);
@@ -467,6 +469,10 @@ const OpeningsForm = ({ editMode }: { editMode?: boolean }) => {
                 <div className='flex flex-col gap-2'>
                     <Label className='pl-3 font-bold'>Meta Description</Label>
                     <Input type='text' placeholder='Meta Description' {...register("metaDescription")} />
+                </div>
+                <div className='flex flex-col gap-2'>
+                    <Label className='pl-3 font-bold'>Script</Label>
+                    <Textarea {...register("script")} />
                 </div>
 
                 {/* <div className='flex'>

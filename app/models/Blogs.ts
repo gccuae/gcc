@@ -18,6 +18,9 @@ const BlogsSchema = new mongoose.Schema({
     metaDescription: {
         type: String,
     },
+    script: {
+        type: String,
+    },
     bannerHidden: {
         type: Boolean,
         default: false
@@ -71,6 +74,9 @@ const BlogsSchema = new mongoose.Schema({
                 type: String
             },
             metaDescription: {
+                type: String
+            },
+            script: {
                 type: String
             },
             date: {

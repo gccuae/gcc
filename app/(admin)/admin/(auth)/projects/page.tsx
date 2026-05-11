@@ -23,11 +23,13 @@ import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-ki
 import ProjectCard from "./ProjectCard";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Link from "next/link";
+import { Textarea } from "@/components/ui/textarea";
 
 
 interface CurrentOpeningsPageProps {
   metaTitle: string;
   metaDescription: string;
+  script: string;
   banner: string;
   bannerAlt: string;
   pageTitle: string;
@@ -329,6 +331,7 @@ export default function CurrentOpenings() {
         const data = await response.json();
         setValue("metaTitle", data.data.metaTitle);
         setValue("metaDescription", data.data.metaDescription);
+        setValue("script", data.data.script);
         setValue("banner", data.data.banner);
         setValue("bannerAlt", data.data.bannerAlt);
         setValue("pageTitle", data.data.pageTitle);
@@ -484,6 +487,10 @@ export default function CurrentOpenings() {
             <div className='flex flex-col gap-2'>
               <Label className='font-bold'>Description</Label>
               <Input type='text' placeholder='' {...register("metaDescription")} />
+            </div>
+            <div className="flex flex-col gap-2 mt-3">
+              <Label className="font-bold">Script</Label>
+              <Textarea placeholder="" {...register("script")} />
             </div>
           </div>
         </AdminItemContainer>

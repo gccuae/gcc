@@ -13,6 +13,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 interface ContactFormProps {
     metaTitle: string;
     metaDescription: string;
+    script: string;
     banner: string;
     bannerAlt: string;
     pageTitle: string;
@@ -76,6 +77,7 @@ const ContactPage = () => {
                 setValue("bannerAlt", data.data.bannerAlt);
                 setValue("pageTitle", data.data.pageTitle);
                 setValue("metaTitle", data.data.metaTitle);
+                setValue("script", data.data.script);
                 setValue("metaDescription", data.data.metaDescription);
                 setValue("firstSection", data.data.firstSection);
                 setValue("firstSection.hidden", data.data.firstSection.hidden);
@@ -258,6 +260,10 @@ const ContactPage = () => {
                         <div className='flex flex-col gap-2'>
                             <Label className='font-bold'>Description</Label>
                             <Input type='text' placeholder='' {...register("metaDescription")} />
+                        </div>
+                        <div className='flex flex-col gap-2'>
+                            <Label className='font-bold'>Script</Label>
+                            <Textarea {...register("script")} />
                         </div>
                     </div>
                 </AdminItemContainer>

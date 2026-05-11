@@ -16,6 +16,9 @@ const aboutSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    script: {
+        type: String,
+    },
     pageTitle: {
         type: String,
         required: true

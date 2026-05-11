@@ -7,6 +7,9 @@ const MessageSchema = new mongoose.Schema({
   metaDescription: {
     type: String
   },
+  script: {
+    type: String
+  },
   firstSection: {
     hidden: {
       type: Boolean,

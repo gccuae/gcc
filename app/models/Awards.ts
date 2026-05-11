@@ -7,6 +7,9 @@ const awardsSchema = new mongoose.Schema({
     metaDescription:{
         type:String,
     },
+    script:{
+        type:String,
+    },
     pageTitle:{
         type:String,
         required:true

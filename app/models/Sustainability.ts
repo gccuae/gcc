@@ -9,6 +9,9 @@ const sustainabilitySchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    script: {
+        type: String,
+    },
     banner: {
         type: String,
         required: true

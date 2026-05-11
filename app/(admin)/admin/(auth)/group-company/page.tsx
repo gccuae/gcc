@@ -39,6 +39,7 @@ import CompanyCard from "./CompanyCard";
 interface GroupCompanyFormProps {
     metaTitle: string;
     metaDescription: string;
+    script: string;
     banner: string;
     bannerAlt: string;
     pageTitle: string;
@@ -228,6 +229,7 @@ const GroupCompanyPage = () => {
                 setValue("pageTitle", data.data.pageTitle);
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
+                setValue("script", data.data.script);
                 setValue("bannerHidden", data.data.bannerHidden);
                 setValue("firstSection", data.data.firstSection);
                 setValue("firstSection.items", data.data.firstSection.items);
@@ -944,6 +946,10 @@ const GroupCompanyPage = () => {
                                 placeholder=""
                                 {...register("metaDescription")}
                             />
+                        </div>
+                        <div className="flex flex-col gap-2 mt-3">
+                            <Label className="font-bold">Script</Label>
+                            <Textarea placeholder="" {...register("script")} />
                         </div>
                     </div>
                 </AdminItemContainer>

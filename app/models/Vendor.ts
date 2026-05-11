@@ -2,6 +2,19 @@ import mongoose from "mongoose";
 
 const vendorSchema = new mongoose.Schema(
   {
+    isPageSeo: { 
+      type: Boolean,
+      default: false,
+    },
+    metaTitle: {
+      type: String,
+    },
+    metaDescription: {
+      type: String,
+    },
+    script: {
+      type: String,
+    },
     vendorName: String,
     tradeLicense: String,
     classification: String,

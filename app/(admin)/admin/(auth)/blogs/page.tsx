@@ -24,10 +24,12 @@ import { closestCorners, DndContext, DragEndEvent } from '@dnd-kit/core'
 import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import BlogCard from './BlogCard';
 import { FaEye } from "react-icons/fa";
+import { Textarea } from '@/components/ui/textarea';
 
 interface BlogFormProps {
     metaTitle: string;
     metaDescription: string;
+    script: string;
     banner: string;
     bannerAlt: string;
     pageTitle: string;
@@ -101,6 +103,7 @@ const BlogsPage = () => {
                 setValue("pageTitle", data.data.pageTitle);
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
+                setValue("script", data.data.script);
                 setValue("bannerHidden", data.data.bannerHidden);
                 setValue("blogsHidden", data.data.blogsHidden);
 
@@ -414,6 +417,10 @@ const BlogsPage = () => {
                         <div className='flex flex-col gap-2'>
                             <Label className='font-bold'>Description</Label>
                             <Input type='text' placeholder='' {...register("metaDescription")} />
+                        </div>
+                        <div className='flex flex-col gap-2'>
+                            <Label className='font-bold'>Script</Label>
+                            <Textarea {...register("script")} />
                         </div>
                     </div>
                 </AdminItemContainer>

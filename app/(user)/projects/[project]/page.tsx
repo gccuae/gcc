@@ -1,4 +1,40 @@
 import Index from "@/app/components/ProjectDetails";
+import { Metadata } from "next";
+const BASE_URL = process.env.BASE_URL!;
+
+export async function generateMetadata({ params }: { params: Promise<{ project: string }> }): Promise<Metadata> {
+  const { project } = await params;
+  const res = await fetch(`${BASE_URL}/api/admin/projects?slug=${project}`, {
+    next: { revalidate: 60 },
+  });
+  const { data } = await res.json();
+
+  const title =
+    data?.metaTitle?.trim() ||
+    data?.title?.trim() ||
+    data?.pageTitle?.trim() ||
+    data?.firstSection?.title?.trim() ||
+    data?.firstSection?.mainTitle?.trim() ||
+    "GCC";
+
+  const description =
+    data?.metaDescription?.trim() ||
+    data?.title?.trim() ||
+    data?.pageTitle?.trim() ||
+    data?.firstSection?.title?.trim() ||
+    data?.firstSection?.mainTitle?.trim() ||
+    "GCC";
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `${BASE_URL}/`,
+    },
+  };
+}
+
+
 
 type Props = {
   params: Promise<{ project: string }>;

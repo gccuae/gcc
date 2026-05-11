@@ -43,6 +43,7 @@ interface ProjectStatus {
 interface ProjectFormProps {
   metaTitle: string;
   metaDescription: string;
+  script: string;
   banner: string;
   bannerAlt: string;
   thumbnail: string;
@@ -257,6 +258,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
         setValue("featuredProject", data.data.featuredProject);
         setValue("metaTitle", data.data.metaTitle);
         setValue("metaDescription", data.data.metaDescription);
+        setValue("script", data.data.script);
         setValue("firstSection.hidden", data.data.firstSection.hidden);
         setValue("firstSection.images", data.data.firstSection.images);
         setImageUrls(data.data.firstSection.images);
@@ -1375,6 +1377,14 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
             type="text"
             placeholder="Meta Description"
             {...register("metaDescription")}
+          />
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <Label className="pl-3 font-bold">Script</Label>
+          <Textarea
+            placeholder="Script"
+            {...register("script")}
           />
         </div>
 

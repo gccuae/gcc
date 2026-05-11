@@ -24,10 +24,12 @@ import { ImageUploader } from "@/components/ui/image-uploader";
 import { closestCorners, DndContext, DragEndEvent } from '@dnd-kit/core'
 import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import GalleryCard from "./ProjectCard";
+import { Textarea } from "@/components/ui/textarea";
 
 interface GalleryFormProps {
     metaTitle: string;
     metaDescription: string;
+    script: string;
     pageTitle: string;
     headingHidden: boolean;
     galleryHidden: boolean;
@@ -155,6 +157,7 @@ const GalleryPage = () => {
                 const data = await response.json();
                 setValue("pageTitle", data.data.pageTitle);
                 setValue("metaTitle", data.data.metaTitle);
+                setValue("script", data.data.script);
                 setValue("metaDescription", data.data.metaDescription);
                 setValue("headingHidden", data.data.headingHidden);
                 setValue("galleryHidden", data.data.galleryHidden);
@@ -386,6 +389,10 @@ const GalleryPage = () => {
                         <div className="flex flex-col gap-2">
                             <Label className="font-bold">Description</Label>
                             <Input type="text" placeholder="" {...register("metaDescription")} />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                            <Label className="font-bold">Script</Label>
+                            <Textarea {...register("script")} />
                         </div>
                     </div>
                 </AdminItemContainer>

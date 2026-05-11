@@ -1,5 +1,40 @@
 import Index from "@/app/components/ServiceDetails";
 import { SingleProject } from "@/app/components/expertise/type";
+import { Metadata } from "next";
+
+const BASE_URL = process.env.BASE_URL!;
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { service } = await params;
+  const res = await fetch(`${BASE_URL}/api/admin/expertise?slug=${service}`, {
+    next: { revalidate: 60 },
+  });
+  const { data } = await res.json();
+
+  const title =
+    data?.metaTitle?.trim() ||
+    data?.title?.trim() ||
+    data?.pageTitle?.trim() ||
+    data?.firstSection?.title?.trim() ||
+    data?.firstSection?.mainTitle?.trim() ||
+    "GCC";
+
+  const description =
+    data?.metaDescription?.trim() ||
+    data?.title?.trim() ||
+    data?.pageTitle?.trim() ||
+    data?.firstSection?.title?.trim() ||
+    data?.firstSection?.mainTitle?.trim() ||
+    "GCC";
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `${BASE_URL}/`,
+    },
+  };
+}
 
 type Props = {
   params: Promise<{ service: string }>;

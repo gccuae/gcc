@@ -9,6 +9,9 @@ const homeSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    script: {
+        type: String,
+    },
     expertiseHidden: {
         type: Boolean,
         default: false

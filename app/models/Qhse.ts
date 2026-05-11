@@ -9,6 +9,9 @@ const qhseSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    script: {
+        type: String,
+    },
     firstSection: {
         hidden: {
             type: Boolean,

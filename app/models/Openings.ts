@@ -7,6 +7,9 @@ const openingsSchema = new mongoose.Schema({
     metaDescription: {
         type: String,
     },
+    script: {
+        type: String,
+    },
     firstSection: {
         hidden: { type: Boolean, default: false },
         pageTitle: {
@@ -64,6 +67,9 @@ const openingsSchema = new mongoose.Schema({
                 type: String,
             },
             metaDescription: {
+                type: String,
+            },
+            script: {
                 type: String,
             },
             firstSection: {
