@@ -70,7 +70,8 @@ const AdminNavbar = () => {
     {
       name: "Current Openings", href: "####", icon: BriefcaseIcon, hasChild: true, children: [
         { name: "Main Page", href: "/admin/current-openings" },
-        { name: "Enquiries", href: "/admin/current-openings/enquiries" }
+        { name: "Enquiries", href: "/admin/current-openings/enquiries" },
+        { name: "General Enquiries", href: "/admin/current-openings/general-enquiries" },
       ]
     },
     {

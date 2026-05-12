@@ -216,12 +216,12 @@ const ContactForm: React.FC = () => {
               {...register("contact", {
                 required: "Contact number is required",
                 pattern: {
-                  value: /^[\+]?[1-9][\d]{0,15}$/,
+                  value: /^\+?[1-9]\d{6,14}$/,
                   message: "Please enter a valid phone number",
                 },
                 minLength: {
-                  value: 10,
-                  message: "Phone number must be at least 10 digits",
+                  value: 7,
+                  message: "Phone number must be at least 7 digits",
                 },
               })}
             />
@@ -275,22 +275,22 @@ const ContactForm: React.FC = () => {
           )}
         </motion.div>
 
-{process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY && (
-        <motion.div
-          variants={moveUp(0.55)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-        >
-          <ReCAPTCHA
-            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
-            ref={recaptchaRef}
-          />
-          {captchaError && (
-            <p className="mt-2 text-sm text-red-600">{captchaError}</p>
-          )}
-        </motion.div>
-)}
+        {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY && (
+          <motion.div
+            variants={moveUp(0.55)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+          >
+            <ReCAPTCHA
+              sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+              ref={recaptchaRef}
+            />
+            {captchaError && (
+              <p className="mt-2 text-sm text-red-600">{captchaError}</p>
+            )}
+          </motion.div>
+        )}
 
         {/* Privacy Checkbox */}
 
@@ -323,7 +323,10 @@ const ContactForm: React.FC = () => {
               className="text-base font-light text-para-color dark:text-white"
             >
               I ACCEPT THE{" "}
-              <Link href="/terms-and-conditions" className="text-black dark:text-white">
+              <Link
+                href="/terms-and-conditions"
+                className="text-black dark:text-white"
+              >
                 PRIVACY AND TERMS
               </Link>{" "}
               <span className="text-primary">*</span>

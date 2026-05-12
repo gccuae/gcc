@@ -1,7 +1,6 @@
 import connectDB from "@/lib/mongodb";
 import Email from "@/app/models/Emails";
 
-
 export async function getToEmail(type: string) {
   await connectDB();
 
@@ -17,6 +16,11 @@ export async function getToEmail(type: string) {
     case "career":
       return emails.toEmailCareer;
 
+    case "careerGeneral":
+      return emails.toEmailCareerGeneral;
+
+    case "contact":
+      return emails.toEmailContact;
 
     default:
       return null;

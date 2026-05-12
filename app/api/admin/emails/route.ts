@@ -26,7 +26,7 @@ export async function PATCH(request: NextRequest) {
             return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
         }
         await connectDB();
-        const emails = await Email.findOneAndUpdate({}, { toEmailCareer: body.toEmailCareer, toEmailVendor: body.toEmailVendor }, { upsert: true, new: true });
+        const emails = await Email.findOneAndUpdate({}, { toEmailCareer: body.toEmailCareer, toEmailVendor: body.toEmailVendor, toEmailCareerGeneral: body.toEmailCareerGeneral, toEmailContact: body.toEmailContact }, { upsert: true, new: true });
         if (!emails) {
             return NextResponse.json({ message: "Emails not found" }, { status: 404 });
         }
