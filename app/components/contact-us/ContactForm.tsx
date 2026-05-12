@@ -215,13 +215,11 @@ const ContactForm: React.FC = () => {
               }`}
               {...register("contact", {
                 required: "Contact number is required",
-                pattern: {
-                  value: /^\+?[1-9]\d{6,14}$/,
-                  message: "Please enter a valid phone number",
-                },
-                minLength: {
-                  value: 7,
-                  message: "Phone number must be at least 7 digits",
+                validate: (value) => {
+                  const digits = value.replace(/\D/g, "");
+                  if (digits.length < 7) return "Phone number too short";
+                  if (digits.length > 15) return "Phone number too long";
+                  return true;
                 },
               })}
             />

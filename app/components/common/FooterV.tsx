@@ -364,7 +364,7 @@ const FooterV = ({ data, socialMediaData }: any) => {
                   Terms & Conditions
                 </Link>
               </motion.li>
-              <motion.li
+              {/* <motion.li
                 variants={fadeIn(0.1)}
                 initial="hidden"
                 whileInView="show"
@@ -376,7 +376,7 @@ const FooterV = ({ data, socialMediaData }: any) => {
                 >
                   Feedback
                 </Link>
-              </motion.li>
+              </motion.li> */}
             </ul>
             <div>
               <p className="text-base leading-[1.875] font-light text-mdgray">
