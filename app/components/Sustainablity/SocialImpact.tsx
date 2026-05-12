@@ -177,7 +177,7 @@ const SocialImpact = ({
         </div>
         <div>
           <Swiper
-            className="area-of-expertise-thumbs greenslide"
+            className="area-of-expertise-thumbs greenslide select-none"
             onSwiper={setThumbsSwiper}
             spaceBetween={0}
             slidesPerView={4}
@@ -195,7 +195,7 @@ const SocialImpact = ({
             {data.items.map((item, index) => (
               <SwiperSlide
                 key={index}
-                className="cursor-pointer transition mb-4 xl:mb-[65px] group"
+                className="cursor-pointer transition mb-4 xl:mb-[65px] group select-none"
                 onClick={() => handleThumbSelect(index)}
               >
                 <motion.div
