@@ -8,11 +8,19 @@ const nextConfig: NextConfig = {
     },
   },
   images: {
-    dangerouslyAllowSVG:true,
-    unoptimized:true,
-    domains: ["dl.dropboxusercontent.com"] // Add Dropbox domain here
+    dangerouslyAllowSVG: true,
+    unoptimized: true,
+    domains: ["dl.dropboxusercontent.com"],
   },
-  /* config options here */
+  async redirects() {
+    return [
+      {
+        source: "/news/adssc-certificate-of-appreciation-contract-o-12733",
+        destination: "/news/adssc-certificate-of-appreciation",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
