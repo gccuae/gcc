@@ -494,8 +494,8 @@ const ContactInfo = ({ data }: { data: contactType["secondSection"] }) => {
               className="relative min-h-[300px] self-stretch"
             >
               <Image
-                src={"/assets/img/about/contact-us-gcc.jpg"}
-                alt="contact"
+                src={data.image}
+                alt={data.imageAlt}
                 fill
                 className="object-cover"
               />

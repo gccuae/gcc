@@ -78,6 +78,12 @@ const contactSchema = new mongoose.Schema({
         },
         getDirection: {
             type: String,
+        },
+        image: {
+            type: String,
+        },
+        imageAlt: {
+            type: String,
         }
     },
 })

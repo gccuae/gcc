@@ -17,5 +17,7 @@ export type contactType = {
         timings: string,
         map: string
         getDirection: string
+        image: string
+        imageAlt: string
     }
 }
