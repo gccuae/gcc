@@ -325,7 +325,7 @@ const ContactForm: React.FC = () => {
               I ACCEPT THE{" "}
               <Link
                 href="/terms-and-conditions"
-                className="text-black dark:text-white"
+                className="text-black dark:text-white/50"
               >
                 PRIVACY AND TERMS
               </Link>{" "}
