@@ -235,6 +235,7 @@ const CurrentOpenings = ({ data, jobs, departments, locations }: { data: careerD
                     control: (base) => ({
                       ...base,
                       border: "none",
+                      cursor: "pointer",
                       backgroundColor: "transparent",
                       borderBottom: "1px solid #BCBCBC",
                       borderRadius: 0,

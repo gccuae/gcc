@@ -185,10 +185,10 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="container relative"
+          className="container relative select-none"
         >
           <Swiper
-            className="area-of-expertise-thumbs relative"
+            className="area-of-expertise-thumbs relative select-none"
             onSwiper={setThumbsSwiper}
             spaceBetween={20}
             slidesPerView={4}
@@ -206,7 +206,7 @@ const AreaOfExpertise = ({ data }: AreaOfExpertiseProps) => {
             {expertiseItems.map((item, index) => (
               <SwiperSlide
                 key={item._id}
-                className="sliderexp cursor-pointer transition mb-4 xl:mb-5 group"
+                className="sliderexp cursor-pointer transition mb-4 xl:mb-5 group select-none"
                 onClick={pauseAutoplay}
               >
                 <div className="exp-icon-div pb-4 mb-6 xl:pb-[30px] xl:mb-[15px] relative flex items-center gap-5">

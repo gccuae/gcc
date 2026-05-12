@@ -1,4 +1,4 @@
-import Index from "@/app/components/contact-us/index"
+import Index from "@/app/components/contact-us/index";
 import { Metadata } from "next";
 
 const BASE_URL = process.env.BASE_URL!;
@@ -35,11 +35,11 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const Page = async () => {
-      const response = await fetch(`${process.env.BASE_URL}/api/admin/contact`, {
+  const response = await fetch(`${process.env.BASE_URL}/api/admin/contact`, {
     next: { revalidate: 60 },
   });
   const data = await response.json();
-    
-    return <Index data={data.data}/>
-}
-export default Page
+
+  return <Index data={data.data} />;
+};
+export default Page;

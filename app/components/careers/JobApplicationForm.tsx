@@ -20,7 +20,7 @@ const JobApplicationForm = ({ title }: { title: string }) => {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<FormData>({
     resolver: zodResolver(jobApplicationSchema),
     mode: "onChange",
@@ -28,13 +28,40 @@ const JobApplicationForm = ({ title }: { title: string }) => {
   });
   const [isSubmitted, setIsSubmitted] = React.useState(false);
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = async (data: FormData) => {
     const captchaValue = recaptchaRef?.current?.getValue();
     if (!captchaValue) {
       setCaptchaError("Please verify yourself to continue");
       return;
     }
     setCaptchaError("");
+
+    const formData = new FormData();
+
+    formData.append("firstName", data.firstName);
+    formData.append("lastName", data.lastName);
+    formData.append("email", data.email);
+    formData.append("phoneNumber", data.phoneNumber);
+    formData.append("nationality", data.nationality || "");
+    formData.append("currentLocation", data.currentLocation);
+
+    if (coverLetterFile) {
+      formData.append("coverLetter", coverLetterFile);
+    }
+
+    if (resumeFile) {
+      formData.append("resume", resumeFile);
+    }
+
+    const response = await fetch("/api/admin/general-career", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      alert("Something went wrong, please try again");
+      return;
+    }
 
     setIsSubmitted(true);
     reset();
@@ -290,20 +317,20 @@ const JobApplicationForm = ({ title }: { title: string }) => {
 
           {/* reCAPTCHA */}
           {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY && (
-          <motion.div
-            variants={moveUp(0.7)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-          >
-            <ReCAPTCHA
-              sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
-              ref={recaptchaRef}
-            />
-            {captchaError && (
-              <p className="mt-2 text-sm text-red-500">{captchaError}</p>
-            )}
-          </motion.div>
+            <motion.div
+              variants={moveUp(0.7)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+            >
+              <ReCAPTCHA
+                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+                ref={recaptchaRef}
+              />
+              {captchaError && (
+                <p className="mt-2 text-sm text-red-500">{captchaError}</p>
+              )}
+            </motion.div>
           )}
 
           {/* Submit */}
@@ -352,28 +379,57 @@ const JobApplicationForm = ({ title }: { title: string }) => {
                 </p>
               </div>
             )}
-            <button
-              type="submit"
-              className="hover:bg-accent cursor-pointer hover:border-accent dark:hover:bg-transparent hover:text-white flex items-center justify-center py-1 xl:py-[7.39px] px-4 xl:px-[28px] gap-2 transition-all duration-300 ease-in-out group border border-foreground dark:border-white rounded-4xl w-fit hover:shadow-xl dark:bg-transparent group 2xl:min-w-[230px]"
-            >
-              <span className="font-normal">SUBMIT</span>
-              <svg
-                width="26"
-                height="10"
-                viewBox="0 0 26 10"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="group-hover:translate-x-2 transition-all duration-300"
-              >
-                <path
-                  d="M0 9.53027H24L15 0.530273"
-                  stroke="#7AC142"
-                  strokeWidth="1.5"
-                  strokeMiterlimit="10"
-                  className="group-hover:stroke-white transition-all duration-300"
-                />
-              </svg>
-            </button>
+<button
+  type="submit"
+  disabled={isSubmitting}
+  className="hover:bg-accent cursor-pointer hover:border-accent dark:hover:bg-transparent hover:text-white flex items-center justify-center py-1 xl:py-[7.39px] px-4 xl:px-[28px] gap-2 transition-all duration-300 ease-in-out group border border-foreground dark:border-white rounded-4xl w-fit hover:shadow-xl dark:bg-transparent group 2xl:min-w-[230px]"
+>
+  {isSubmitting ? (
+    <>
+      <svg
+        className="animate-spin -ml-1 mr-2 h-4 w-4"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <circle
+          className="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          strokeWidth="4"
+        />
+        <path
+          className="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+        />
+      </svg>
+      <span className="font-normal">SUBMITTING...</span>
+    </>
+  ) : (
+    <>
+      <span className="font-normal">SUBMIT</span>
+      <svg
+        width="26"
+        height="10"
+        viewBox="0 0 26 10"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="group-hover:translate-x-2 transition-all duration-300"
+      >
+        <path
+          d="M0 9.53027H24L15 0.530273"
+          stroke="#7AC142"
+          strokeWidth="1.5"
+          strokeMiterlimit="10"
+          className="group-hover:stroke-white transition-all duration-300"
+        />
+      </svg>
+    </>
+  )}
+</button>
           </motion.div>
         </form>
       </div>
