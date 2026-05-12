@@ -26,7 +26,7 @@ export async function sendMailWithAttachments({
 
   if (type === "career") {
     const { error } = await resend.emails.send({
-      from: "onboarding@resend.dev",
+      from: "no-reply@gcc.ae",
       to,
       subject,
       react: CareerTemplate(fields) as ReactElement,
@@ -38,7 +38,7 @@ export async function sendMailWithAttachments({
     }
   } else if (type === "contact") {
     const { error } = await resend.emails.send({
-      from: "onboarding@resend.dev",
+      from: "no-reply@gcc.ae",
       to,
       subject,
       react: ContactTemplate(fields) as ReactElement,
@@ -49,7 +49,7 @@ export async function sendMailWithAttachments({
     }
   } else {
     const { error } = await resend.emails.send({
-      from: "onboarding@resend.dev",
+      from: "no-reply@gcc.ae",
       to,
       subject,
       react: VendorEmail(fields) as ReactElement,

@@ -7,13 +7,13 @@ const fileSchema = z
   .refine((files) => files && files.length > 0, "This file is required")
   .refine(
     (files) => !files?.[0] || files[0].size <= 5 * 1024 * 1024,
-    "File size must be less than 20MB"
+    "File size must be less than 20MB",
   )
   .refine(
     (files) =>
       !files?.[0] ||
       fileTypes.some((type) => files[0].name.toLowerCase().endsWith(type)),
-    "Only PDF, DOC, and DOCX files are allowed"
+    "Only PDF, DOC, and DOCX files are allowed",
   );
 
 export const jobApplicationSchema = z.object({
@@ -36,7 +36,13 @@ export const jobApplicationSchema = z.object({
     .string()
     .trim()
     .min(1, "Phone number is required")
-    .regex(/^[\+]?[1-9][\d]{6,14}$/, "Please enter a valid phone number"),
+    .refine(
+      (val) => {
+        const digits = val.replace(/\D/g, "");
+        return digits.length >= 7 && digits.length <= 15;
+      },
+      { message: "Please enter a valid phone number" },
+    ),
   nationality: z
     .string()
     .trim()

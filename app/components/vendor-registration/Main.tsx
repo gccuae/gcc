@@ -375,9 +375,12 @@ const ContactForm: React.FC = () => {
     `}
               {...register("phone", {
                 required: "Phone number is required",
-                pattern: {
-                  value: /^\+?[0-9]{7,15}$/,
-                  message: "Enter a valid phone number",
+                validate: (val) => {
+                  const digits = val.replace(/\D/g, "");
+                  return (
+                    (digits.length >= 7 && digits.length <= 15) ||
+                    "Enter a valid phone number"
+                  );
                 },
               })}
             />
@@ -442,20 +445,20 @@ const ContactForm: React.FC = () => {
 
         {/* reCAPTCHA */}
         {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY && (
-        <motion.div
-          variants={moveUp(0.95)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-        >
-          <ReCAPTCHA
-            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
-            ref={recaptchaRef}
-          />
-          {captchaError && (
-            <p className="mt-1 text-sm text-red-600">{captchaError}</p>
-          )}
-        </motion.div>
+          <motion.div
+            variants={moveUp(0.95)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+          >
+            <ReCAPTCHA
+              sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+              ref={recaptchaRef}
+            />
+            {captchaError && (
+              <p className="mt-1 text-sm text-red-600">{captchaError}</p>
+            )}
+          </motion.div>
         )}
 
         {/* Submit Button */}
