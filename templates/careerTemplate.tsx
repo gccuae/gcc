@@ -7,6 +7,7 @@ interface CareerEmailProps {
     phone: string;
     nationality?: string;
     currentLocation: string;
+    position:string;
     coverLetter?: string;
     resume?: string;
 }
@@ -18,6 +19,7 @@ export const CareerTemplate = ({
     phone,
     nationality,
     currentLocation,
+    position,
     coverLetter,
     resume,
 }: CareerEmailProps) => {
@@ -93,6 +95,7 @@ export const CareerTemplate = ({
                             <Row label="Phone Number" value={phone} />
                             <Row label="Current Location" value={currentLocation} />
                             <Row label="Nationality" value={nationality} />
+                            <Row label="Position" value={position} />
 
                         </tbody>
                     </table>

@@ -13,7 +13,7 @@ const Index = ({ data }: { data: careerData }) => {
       </section>
         <Main data={data.firstSection} /></>}
       {!data.secondSection.hidden && <CurrentOpenings data={data.secondSection} jobs={data.openings} departments={data.departments} locations={data.locations} />}
-      {!data.thirdSection.hidden && <JobApplicationForm title={data.thirdSection.title} />}
+      {!data.thirdSection.hidden && <JobApplicationForm title={data.thirdSection.title} jobs={data.openings}/>}
     </>
   );
 };

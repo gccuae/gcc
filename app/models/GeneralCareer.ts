@@ -10,6 +10,7 @@ const generalCareerSchema = new mongoose.Schema(
     currentLocation: String,
     coverLetter: String,
     resume: String,
+    position:String,
   },
   { timestamps: true }
 );

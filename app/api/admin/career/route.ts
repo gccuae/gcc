@@ -15,6 +15,7 @@ export async function POST(req: NextRequest) {
     const phone = formData.get("phoneNumber");
     const nationality = formData.get("nationality");
     const currentLocation = formData.get("currentLocation");
+    const position = formData.get("position");
 
     const coverLetter = formData.get("coverLetter") as File | null;
     const resume = formData.get("resume") as File | null;
@@ -46,6 +47,7 @@ export async function POST(req: NextRequest) {
         currentLocation,
         coverLetter: coverLetterUrl,
         resume: resumeUrl,
+        position
     });
 
     const toEmail = await getToEmail("career");
@@ -64,6 +66,7 @@ export async function POST(req: NextRequest) {
             nationality,
             currentLocation,
             coverLetter,
+            position,
             resume
         },
         attachments,
