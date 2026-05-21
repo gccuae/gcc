@@ -75,6 +75,7 @@ const JobApplicationModalForm = ({
     formData.append("phoneNumber", data.phoneNumber);
     formData.append("nationality", data.nationality || "");
     formData.append("currentLocation", data.currentLocation);
+    formData.append("position", title);
 
     // append files
     if (coverLetterFile) {

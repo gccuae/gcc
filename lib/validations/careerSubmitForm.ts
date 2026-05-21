@@ -58,6 +58,12 @@ export const jobApplicationSchema = z.object({
     .trim()
     .min(1, "Current location is required")
     .min(3, "Current location must be at least 3 characters"),
+    position: z
+  .string()
+  .catch("")
+  .refine((val) => val.trim().length > 0, {
+    message: "Position is required",
+  }),
   coverLetter: fileSchema,
   resume: fileSchema,
 });

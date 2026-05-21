@@ -17,6 +17,7 @@ type GeneralEnquiry = {
   currentLocation: string;
   coverLetter: string;
   resume: string;
+  position:string;
 };
 
 const AdminGeneralCareerEnquiry = () => {
@@ -172,6 +173,15 @@ const AdminGeneralCareerEnquiry = () => {
                                 </label>
                                 <span className="text-gray-900">
                                   {selectedEnquiry.lastName}
+                                </span>
+                              </div>
+
+                              <div className="flex flex-col">
+                                <label className="font-semibold text-gray-600">
+                                  Applied for
+                                </label>
+                                <span className="text-gray-900">
+                                  {selectedEnquiry.position}
                                 </span>
                               </div>
 

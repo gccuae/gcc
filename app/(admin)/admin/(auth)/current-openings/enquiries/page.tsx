@@ -18,6 +18,7 @@ type Enquiry = {
     currentLocation: string;
     coverLetter: string;
     resume: string;
+    position:string;
 }
 
 const AdminEnquiry = () => {
@@ -172,6 +173,11 @@ const AdminEnquiry = () => {
                                                         <div className="flex flex-col">
                                                             <label className="font-semibold text-gray-600">Last Name</label>
                                                             <span className="text-gray-900">{selectedEnquiry.lastName}</span>
+                                                        </div>
+
+                                                        <div className="flex flex-col">
+                                                            <label className="font-semibold text-gray-600">Applied Postion</label>
+                                                            <span className="text-gray-900">{selectedEnquiry.position}</span>
                                                         </div>
 
                                                         <div className="flex flex-col">
