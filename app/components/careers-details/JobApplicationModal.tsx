@@ -59,6 +59,7 @@ const JobApplicationModalForm = ({
   }, []);
 
   const onSubmit = async (data: FormData) => {
+    console.log("dwdw")
     const captchaValue = recaptchaRef?.current?.getValue();
     if (!captchaValue) {
       setCaptchaError("Please verify yourself to continue");
@@ -68,6 +69,7 @@ const JobApplicationModalForm = ({
 
     const formData = new FormData();
 
+    console.log(data)
     // append text fields
     formData.append("firstName", data.firstName);
     formData.append("lastName", data.lastName);
@@ -118,7 +120,7 @@ const JobApplicationModalForm = ({
       <div className="w-full border-t-[1px] dark:border-white/20 mb-[36px]" />
 
       <form
-        onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(onSubmit)}
         onChange={() => {
           if (isSubmitted) setIsSubmitted(false);
         }}
@@ -137,6 +139,14 @@ const JobApplicationModalForm = ({
               <p className="text-primary text-sm">{errors.firstName.message}</p>
             )}
           </div>
+
+          <input
+              {...register("position")}
+              type="hidden"
+              value={title}
+              placeholder="First Name *"
+              className="w-full px-0 py-3 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-foreground dark:placeholder-white"
+            />
 
           <div className="space-y-2">
             <input
@@ -371,7 +381,7 @@ const JobApplicationModalForm = ({
           <button
             type="submit"
             disabled={isSubmitting}
-            className="hover:bg-accent hover:border-accent dark:hover:bg-transparent hover:text-white flex items-center justify-center py-1 xl:py-[7.39px] px-4 xl:px-[28px] gap-2 transition-all duration-300 ease-in-out group border border-foreground dark:border-white rounded-4xl w-fit hover:shadow-xl dark:bg-transparent group max-w-[143px]"
+            className="cursor-pointer hover:bg-accent hover:border-accent dark:hover:bg-transparent hover:text-white flex items-center justify-center py-1 xl:py-[7.39px] px-4 xl:px-[28px] gap-2 transition-all duration-300 ease-in-out group border border-foreground dark:border-white rounded-4xl w-fit hover:shadow-xl dark:bg-transparent group max-w-[143px]"
           >
             <span className="font-normal">
               {isSubmitting ? "SUBMITTING..." : "SUBMIT"}

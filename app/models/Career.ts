@@ -8,7 +8,7 @@ const careerSchema = new mongoose.Schema({
     nationality: { type: String, required: true },
     currentLocation: { type: String, required: true },
     position: { type: String, required: true },
-    coverLetter: { type: String, required: true },
+    coverLetter: { type: String },
     resume: { type: String, required: true },
 })
 
