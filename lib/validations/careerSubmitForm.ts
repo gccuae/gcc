@@ -16,6 +16,26 @@ const fileSchema = z
     "Only PDF, DOC, and DOCX files are allowed",
   );
 
+  const optionalFileSchema = z
+  .any()
+  .optional()
+  .refine(
+    (files) =>
+      !files ||
+      files.length === 0 ||
+      files[0].size <= 5 * 1024 * 1024,
+    "File size must be less than 5MB",
+  )
+  .refine(
+    (files) =>
+      !files ||
+      files.length === 0 ||
+      fileTypes.some((type) =>
+        files[0].name.toLowerCase().endsWith(type),
+      ),
+    "Only PDF, DOC, and DOCX files are allowed",
+  );
+
 export const jobApplicationSchema = z.object({
   firstName: z
     .string()
@@ -64,6 +84,6 @@ export const jobApplicationSchema = z.object({
   .refine((val) => val.trim().length > 0, {
     message: "Position is required",
   }),
-  coverLetter: fileSchema,
+  coverLetter: optionalFileSchema,
   resume: fileSchema,
 });
