@@ -213,6 +213,53 @@ const JobApplicationModalForm = ({
 
         {/* File Uploads */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+          {/* Resume */}
+          <div className="space-y-2">
+            <div className="relative border-b dark:border-white/20 hover:border-black dark:hover:border-white/50 transition-colors">
+              <input
+                {...resumeRegister}
+                type="file"
+                accept=".pdf,.doc,.docx"
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                id="resume"
+                onChange={(e) => {
+                  resumeRegister.onChange(e);
+                  setResumeFile(e.target.files?.[0] || null);
+                  setIsSubmitted(false);
+                }}
+              />
+              <label
+                htmlFor="resume"
+                className="flex items-center gap-3 py-4 cursor-pointer text-para-color dark:text-white"
+              >
+                <Image
+                  src="/assets/img/careers/upload-icon.svg"
+                  alt="Upload Icon"
+                  width={24}
+                  height={30}
+                />
+                <div className="flex flex-col lg:flex-row gap-1 lg:items-center">
+                  <span className="text-lg">
+                    {resumeFile ? resumeFile.name : "Upload Your Resume *"}
+                  </span>
+                  {resumeFile ? (
+                    ""
+                  ) : (
+                    <span className="text-sm">
+                      (Pdf, Doc, Docx | Max File Size: 20 MB)
+                    </span>
+                  )}
+                </div>
+              </label>
+            </div>
+            {errors.resume && (
+              <p className="text-red-500 text-sm">
+                {errors.resume.message as string}
+              </p>
+            )}
+          </div>
+          
           {/* Cover Letter */}
           <div className="space-y-2">
             <div className="relative border-b dark:border-white/20 hover:border-black dark:hover:border-white/50 transition-colors">
@@ -261,51 +308,7 @@ const JobApplicationModalForm = ({
             )}
           </div>
 
-          {/* Resume */}
-          <div className="space-y-2">
-            <div className="relative border-b dark:border-white/20 hover:border-black dark:hover:border-white/50 transition-colors">
-              <input
-                {...resumeRegister}
-                type="file"
-                accept=".pdf,.doc,.docx"
-                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                id="resume"
-                onChange={(e) => {
-                  resumeRegister.onChange(e);
-                  setResumeFile(e.target.files?.[0] || null);
-                  setIsSubmitted(false);
-                }}
-              />
-              <label
-                htmlFor="resume"
-                className="flex items-center gap-3 py-4 cursor-pointer text-para-color dark:text-white"
-              >
-                <Image
-                  src="/assets/img/careers/upload-icon.svg"
-                  alt="Upload Icon"
-                  width={24}
-                  height={30}
-                />
-                <div className="flex flex-col lg:flex-row gap-1 lg:items-center">
-                  <span className="text-lg">
-                    {resumeFile ? resumeFile.name : "Upload Your Resume *"}
-                  </span>
-                  {resumeFile ? (
-                    ""
-                  ) : (
-                    <span className="text-sm">
-                      (Pdf, Doc, Docx | Max File Size: 20 MB)
-                    </span>
-                  )}
-                </div>
-              </label>
-            </div>
-            {errors.resume && (
-              <p className="text-red-500 text-sm">
-                {errors.resume.message as string}
-              </p>
-            )}
-          </div>
+          
         </div>
 
                 {/* reCAPTCHA */}

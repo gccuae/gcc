@@ -41,10 +41,10 @@ const DropdownIndicator = (props: DropdownIndicatorProps<PositionOption, false>)
 const JobApplicationForm = ({ title, jobs }: { title: string, jobs: careerData['openings'] }) => {
   const recaptchaRef = useRef<ReCAPTCHA>(null);
   const [captchaError, setCaptchaError] = useState("");
-  const positionOptions: PositionOption[] = jobs.map((job) => ({
-    value: job.firstSection.jobTitle,
-    label: job.firstSection.jobTitle,
-  }));
+  // const positionOptions: PositionOption[] = jobs.map((job) => ({
+  //   value: job.firstSection.jobTitle,
+  //   label: job.firstSection.jobTitle,
+  // }));
 
 
   const {
@@ -177,7 +177,22 @@ const JobApplicationForm = ({ title, jobs }: { title: string, jobs: careerData['
           >
 
             <div className="space-y-2">
-  <Controller
+
+              <div className="space-y-2">
+                <input
+                  {...register("position")}
+                  type="text"
+                  placeholder="Applied Position *"
+                  className="w-full px-0 py-4 text-lg border-0 border-b dark:border-white/20 bg-transparent focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none placeholder-para-color dark:focus:border-white/50 dark:placeholder-white transition-colors duration-300"
+                />
+                {errors.position && (
+                  <p className="text-red-500 text-sm">
+                    {errors.position.message}
+                  </p>
+                )}
+              </div>
+
+              {/* <Controller
     name="position"
     control={control}
     render={({ field }) => (
@@ -297,14 +312,14 @@ const JobApplicationForm = ({ title, jobs }: { title: string, jobs: careerData['
         }}
       />
     )}
-  />
+  /> */}
 
-  {errors.position && (
-    <p className="text-red-500 text-sm">
-      {errors.position.message}
-    </p>
-  )}
-</div>
+              {/* {errors.position && (
+                <p className="text-red-500 text-sm">
+                  {errors.position.message}
+                </p>
+              )} */}
+            </div>
 
             <div className="space-y-2">
               <input
@@ -389,56 +404,6 @@ const JobApplicationForm = ({ title, jobs }: { title: string, jobs: careerData['
             viewport={{ once: true }}
             className="grid grid-cols-1 md:grid-cols-2 lg:gap-8 text-para-color dark:text-white"
           >
-            {/* Cover Letter */}
-            <div className="space-y-2">
-              <div className="relative border-b dark:border-white/20 focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none transition-colors duration-300">
-                <input
-                  {...coverLetterRegister}
-                  type="file"
-                  accept=".pdf,.doc,.docx"
-                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                  id="coverLetter"
-                  onChange={(e) => {
-                    coverLetterRegister.onChange(e);
-                    setCoverLetterFile(e.target.files?.[0] || null);
-                    setIsSubmitted(false);
-                  }}
-                />
-
-                <label
-                  htmlFor="coverLetter"
-                  className="flex items-center space-x-3 py-6 cursor-pointer group"
-                >
-                  <div className="flex items-center justify-center">
-                    <Image
-                      src="/assets/img/careers/upload-icon.svg"
-                      alt="Upload Icon"
-                      width={24}
-                      height={30}
-                    />
-                  </div>
-                  <div className="text-para-color dark:text-white transition-colors flex flex-col xl:flex-row xl:items-center justify-between xl:gap-2 ">
-                    <span className="text-lg">
-                      {coverLetterFile
-                        ? coverLetterFile.name
-                        : "Upload Your Cover Letter *"}
-                    </span>
-                    {coverLetterFile ? (
-                      ""
-                    ) : (
-                      <span className="text-sm">
-                        (Pdf, Doc, Docx | Max File Size: 20 MB)
-                      </span>
-                    )}
-                  </div>
-                </label>
-              </div>
-              {errors.coverLetter && (
-                <p className="text-red-500 text-sm">
-                  {errors.coverLetter.message as string}
-                </p>
-              )}
-            </div>
 
             {/* Resume */}
             <div className="space-y-2">
@@ -489,7 +454,60 @@ const JobApplicationForm = ({ title, jobs }: { title: string, jobs: careerData['
               )}
             </div>
 
-                        {/* reCAPTCHA */}
+            {/* Cover Letter */}
+            <div className="space-y-2">
+              <div className="relative border-b dark:border-white/20 focus:border-black hover:border-black dark:hover:border-white/50 focus:outline-none transition-colors duration-300">
+                <input
+                  {...coverLetterRegister}
+                  type="file"
+                  accept=".pdf,.doc,.docx"
+                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                  id="coverLetter"
+                  onChange={(e) => {
+                    coverLetterRegister.onChange(e);
+                    setCoverLetterFile(e.target.files?.[0] || null);
+                    setIsSubmitted(false);
+                  }}
+                />
+
+                <label
+                  htmlFor="coverLetter"
+                  className="flex items-center space-x-3 py-6 cursor-pointer group"
+                >
+                  <div className="flex items-center justify-center">
+                    <Image
+                      src="/assets/img/careers/upload-icon.svg"
+                      alt="Upload Icon"
+                      width={24}
+                      height={30}
+                    />
+                  </div>
+                  <div className="text-para-color dark:text-white transition-colors flex flex-col xl:flex-row xl:items-center justify-between xl:gap-2 ">
+                    <span className="text-lg">
+                      {coverLetterFile
+                        ? coverLetterFile.name
+                        : "Upload Your Cover Letter *"}
+                    </span>
+                    {coverLetterFile ? (
+                      ""
+                    ) : (
+                      <span className="text-sm">
+                        (Pdf, Doc, Docx | Max File Size: 20 MB)
+                      </span>
+                    )}
+                  </div>
+                </label>
+              </div>
+              {/* {errors.coverLetter && (
+                <p className="text-red-500 text-sm">
+                  {errors.coverLetter.message as string}
+                </p>
+              )} */}
+            </div>
+
+            
+
+            {/* reCAPTCHA */}
             {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY && (
               <motion.div
                 variants={moveUp(0.7)}
