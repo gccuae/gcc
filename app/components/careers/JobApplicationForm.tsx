@@ -486,7 +486,7 @@ const JobApplicationForm = ({ title, jobs }: { title: string, jobs: careerData['
                     <span className="text-lg">
                       {coverLetterFile
                         ? coverLetterFile.name
-                        : "Upload Your Cover Letter *"}
+                        : "Upload Your Cover Letter "}
                     </span>
                     {coverLetterFile ? (
                       ""
