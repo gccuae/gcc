@@ -35,6 +35,7 @@ import {
     verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import CompanyCard from "./CompanyCard";
+import { IconPicker } from "@/app/components/common/IconPicker";
 
 interface GroupCompanyFormProps {
     metaTitle: string;
@@ -396,11 +397,14 @@ const GroupCompanyPage = () => {
                                                     control={control}
                                                     // rules={{ required: "Logo is required" }}
                                                     render={({ field }) => (
-                                                        <ImageUploader
-                                                            isLogo
+                                                        <IconPicker
                                                             value={field.value}
-                                                            onChange={field.onChange}
-                                                            recommendedDimension="Recommended: 100 x 100 (px)"
+                                                            onChange={(image, imageAlt) => {
+                                                                field.onChange(image);
+                                                                if (imageAlt) {
+                                                                    setValue(`firstSection.items.${index}.logoAlt`, imageAlt);
+                                                                }
+                                                            }}
                                                         />
                                                     )}
                                                 />
@@ -741,11 +745,14 @@ const GroupCompanyPage = () => {
                                                             control={control}
                                                             // rules={{ required: "Logo is required" }}
                                                             render={({ field }) => (
-                                                                <ImageUploader
-                                                                    isLogo
+                                                                <IconPicker
                                                                     value={field.value}
-                                                                    onChange={field.onChange}
-                                                                    recommendedDimension="Recommended: 200 x 51 (px)"
+                                                                    onChange={(image, imageAlt) => {
+                                                                        field.onChange(image);
+                                                                        if (imageAlt) {
+                                                                            setValue(`secondSection.items.${index}.logoAlt`, imageAlt);
+                                                                        }
+                                                                    }}
                                                                 />
                                                             )}
                                                         />

@@ -17,6 +17,7 @@ import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import ServiceCard from './ServiceCard';
 import Link from 'next/link';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { IconPicker } from '@/app/components/common/IconPicker';
 
 interface ExpertiseFormProps {
     metaTitle: string;
@@ -363,10 +364,14 @@ const ExpertisePage = () => {
                                                             control={control}
                                                             rules={{ required: "Logo is required" }}
                                                             render={({ field }) => (
-                                                                <ImageUploader
-                                                                    isLogo
+                                                                <IconPicker
                                                                     value={field.value}
-                                                                    onChange={field.onChange}
+                                                                    onChange={(image, imageAlt) => {
+                                                                        field.onChange(image);
+                                                                        if (imageAlt) {
+                                                                            setValue(`secondSection.items.${index}.logoAlt`, imageAlt);
+                                                                        }
+                                                                    }}
                                                                 />
                                                             )}
                                                         />

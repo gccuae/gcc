@@ -14,6 +14,7 @@ import 'react-quill-new/dist/quill.snow.css';
 import dynamic from 'next/dynamic'
 import AdminItemContainer from '@/app/components/common/AdminItemContainer';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { IconPicker } from '@/app/components/common/IconPicker';
 
 interface AboutFormProps {
     metaTitle: string;
@@ -448,11 +449,14 @@ const AboutPage = () => {
                                                         control={control}
                                                         rules={{ required: "Logo is required" }}
                                                         render={({ field }) => (
-                                                            <ImageUploader
-                                                                isLogo
+                                                            <IconPicker
                                                                 value={field.value}
-                                                                onChange={field.onChange}
-                                                                recommendedDimension="Recommended: 52 x 52 (px)"
+                                                                onChange={(image, imageAlt) => {
+                                                                    field.onChange(image);
+                                                                    if (imageAlt) {
+                                                                        setValue(`thirdSection.items.${index}.logoAlt`, imageAlt);
+                                                                    }
+                                                                }}
                                                             />
                                                         )}
                                                     />
@@ -716,11 +720,14 @@ const AboutPage = () => {
                                                 control={control}
                                                 rules={{ required: "Logo is required" }}
                                                 render={({ field }) => (
-                                                    <ImageUploader
-                                                        isLogo
+                                                    <IconPicker
                                                         value={field.value}
-                                                        onChange={field.onChange}
-                                                        recommendedDimension="Recommended: 100 x 100 (px)"
+                                                        onChange={(image, imageAlt) => {
+                                                            field.onChange(image);
+                                                            if (imageAlt) {
+                                                                setValue(`fifthSection.items.${index}.logoAlt`, imageAlt);
+                                                            }
+                                                        }}
                                                     />
                                                 )}
                                             />

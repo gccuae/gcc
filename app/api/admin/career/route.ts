@@ -17,6 +17,20 @@ export async function POST(req: NextRequest) {
     const currentLocation = formData.get("currentLocation");
     const position = formData.get("position");
 
+    if (
+        typeof firstName !== "string" ||
+        typeof lastName !== "string" ||
+        typeof email !== "string" ||
+        typeof phone !== "string" ||
+        typeof currentLocation !== "string" ||
+        typeof position !== "string"
+    ) {
+        return Response.json(
+            { success: false, message: "Missing required fields" },
+            { status: 400 }
+        );
+    }
+    
     const coverLetter = formData.get("coverLetter") as File | null;
     const resume = formData.get("resume") as File | null;
 
@@ -71,6 +85,23 @@ export async function POST(req: NextRequest) {
         },
         attachments,
     });
+
+
+    // Notify the applicant
+    try {
+        await sendMailWithAttachments({
+            type: "career-acknowledgement",
+            to: email,
+            subject: `Your Application to GCC – ${position}`,
+            fields: {
+                firstName,
+                position,
+            },
+        });
+    } catch (err) {
+        console.error("Failed to send applicant acknowledgement email", err);
+    }
+
 
     return Response.json({ success: true });
 }

@@ -10,6 +10,7 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import AdminItemContainer from "@/app/components/common/AdminItemContainer";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { ImageUploader } from "@/components/ui/image-uploader";
+import { IconPicker } from "@/app/components/common/IconPicker";
 
 interface GroupCompanyFormProps {
     socialSection: {
@@ -232,11 +233,14 @@ const GroupCompanyPage = () => {
                                                         control={control}
                                                         rules={{ required: "Image is required" }}
                                                         render={({ field }) => (
-                                                            <ImageUploader
-                                                            isLogo
+                                                            <IconPicker
                                                                 value={field.value}
-                                                                onChange={field.onChange}
-                                                                recommendedDimension="Recommended: 800 x 738 (px)"
+                                                                onChange={(image, imageAlt) => {
+                                                                    field.onChange(image);
+                                                                    if (imageAlt) {
+                                                                        setValue(`socialSection.items.${index}.image`, imageAlt);
+                                                                    }
+                                                                }}
                                                             />
                                                         )}
                                                     />
