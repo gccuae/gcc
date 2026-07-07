@@ -20,15 +20,15 @@ interface FormValues2 {
 }
 
 const Settings = () => {
-  const { register, handleSubmit, setValue, getValues } = useForm<
-    FormValues | FormValues2
-  >();
+  const { register, handleSubmit, setValue, getValues } = useForm<(FormValues | FormValues2)>();
   const [currentPasswordIsCorrect, setCurrentPasswordIsCorrect] =
     React.useState<boolean>(false);
   const [toEmailVendor, setToEmailVendor] = useState("");
   const [toEmailCareer, setToEmailCareer] = useState("");
   const [toEmailCareerGeneral, setToEmailCareerGeneral] = useState("");
   const [toEmailContact, setToEmailContact] = useState("");
+  const [role, setRole] = useState<string | null>(null);
+  const [hrNewPassword, setHrNewPassword] = useState("");
 
   const onSubmit = async (data: FormValues | FormValues2) => {
     try {
@@ -83,9 +83,22 @@ const Settings = () => {
     }
   };
 
+  const fetchRole = async () => {
+    try {
+      const response = await fetch("/api/admin/me");
+      if (response.ok) {
+        const data = await response.json();
+        setRole(data.role);
+      }
+    } catch (error) {
+      console.log("Error fetching role", error);
+    }
+  };
+
   useEffect(() => {
     fetchTag();
     fetchEmails();
+    fetchRole();
   }, []);
 
   const checkCurrentPassword = async () => {
@@ -145,6 +158,28 @@ const Settings = () => {
       }
     } catch (error) {
       console.log("Error saving details", error);
+    }
+  };
+
+  const submitHrPassword = async () => {
+    try {
+      if (!hrNewPassword) {
+        alert("Please enter a new password for HR");
+        return;
+      }
+      const response = await fetch("/api/admin/settings/hr-password", {
+        method: "PATCH",
+        body: JSON.stringify({ newPassword: hrNewPassword }),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        setHrNewPassword("");
+        alert(data.message);
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.log("Error updating HR password", error);
     }
   };
 
@@ -242,6 +277,33 @@ const Settings = () => {
           </form>
         )}
       </AdminItemContainer>
+
+      {role === "admin" && (
+        <AdminItemContainer>
+          <Label main>Change HR Password</Label>
+          <form className="flex flex-col gap-5 p-5">
+            <div className="space-y-4">
+              <Label className="">New Password for HR</Label>
+              <Input
+                type="text"
+                value={hrNewPassword}
+                onChange={(e) => setHrNewPassword(e.target.value)}
+              />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              
+              <Button
+                type="button"
+                className="w-full cursor-pointer text-white text-[16px]"
+                onClick={submitHrPassword}
+              >
+                Update HR Password
+              </Button>
+            </div>
+          </form>
+        </AdminItemContainer>
+      )}
 
       <AdminItemContainer>
         <Label main>Email Section</Label>

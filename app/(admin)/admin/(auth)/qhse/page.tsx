@@ -14,6 +14,7 @@ import { closestCorners, DndContext, DragEndEvent } from '@dnd-kit/core'
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import CertificateCard from './CertificateCard';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { IconPicker } from '@/app/components/common/IconPicker';
 
 interface QhseFormProps {
     metaTitle: string;
@@ -441,7 +442,15 @@ const ExpertisePage = () => {
                                                         control={control}
                                                         rules={{ required: "Image is required" }}
                                                         render={({ field }) => (
-                                                            <ImageUploader isLogo value={field.value} onChange={field.onChange} recommendedDimension="Recommended: 100 x 83 (px)" />
+                                                            <IconPicker
+                                                                value={field.value}
+                                                                onChange={(image, imageAlt) => {
+                                                                    field.onChange(image);
+                                                                    if (imageAlt) {
+                                                                        setValue(`thirdSection.items.${index}.imageAlt`, imageAlt);
+                                                                    }
+                                                                }}
+                                                            />
                                                         )}
                                                     />
                                                     {errors.thirdSection?.items?.[index]?.image && (
@@ -677,11 +686,14 @@ const ExpertisePage = () => {
                                                         control={control}
                                                         rules={{ required: "Image is required" }}
                                                         render={({ field }) => (
-                                                            <ImageUploader
-                                                                isLogo
+                                                            <IconPicker
                                                                 value={field.value}
-                                                                onChange={field.onChange}
-                                                                recommendedDimension="Recommended: 100 x 100 (px)"
+                                                                onChange={(image, imageAlt) => {
+                                                                    field.onChange(image);
+                                                                    if (imageAlt) {
+                                                                        setValue(`fifthSection.items.${index}.imageAlt`, imageAlt);
+                                                                    }
+                                                                }}
                                                             />
                                                         )}
                                                     />

@@ -34,6 +34,7 @@ import { useParams, useRouter } from "next/navigation";
 import { RiAiGenerateText } from "react-icons/ri";
 import { projectStatus } from "./projectStatus";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { IconPicker } from "../common/IconPicker";
 
 interface ProjectStatus {
   name: string;
@@ -276,7 +277,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
         setValue("forthSection.items", data.data.forthSection.items);
         setValue("fifthSection", data.data.fifthSection);
         setValue("relatedService", data.data.relatedService._id);
-        
+
       } else {
         const data = await response.json();
         alert(data.message);
@@ -936,10 +937,14 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                         name={`numberSection.items.${index}.image`}
                         control={control}
                         render={({ field }) => (
-                          <ImageUploader
+                          <IconPicker
                             value={field.value}
-                            onChange={field.onChange}
-                            recommendedDimension="Recommended: 100 x 100 (px)"
+                            onChange={(image, imageAlt) => {
+                              field.onChange(image);
+                              if (imageAlt) {
+                                setValue(`numberSection.items.${index}.imageAlt`, imageAlt);
+                              }
+                            }}
                           />
                         )}
                       />

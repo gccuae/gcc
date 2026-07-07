@@ -266,9 +266,18 @@ const Navbar = () => {
                                             />
                                         )}
 
-                                        <Sheet>
+                                        <Sheet
+                                            onOpenChange={(open) => {
+                                                if (open) {
+                                                    setToReorderCategory(index);
+                                                    setReorderModeSubItem(false); // always start a fresh sheet in non-reorder view
+                                                } else {
+                                                    setToReorderCategory(null);
+                                                    setReorderModeSubItem(false);
+                                                }
+                                            }}>
                                             <SheetTrigger asChild>
-                                                <div className='flex gap-1 items-center'><FaPlus />/<TbReorder onClick={() => setToReorderCategory(index)} /></div>
+                                                <div className='flex gap-1 items-center'><FaPlus />/<TbReorder/></div>
                                             </SheetTrigger>
                                             <SheetContent>
                                                 <SheetHeader>

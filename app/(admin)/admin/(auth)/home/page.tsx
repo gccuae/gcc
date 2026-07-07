@@ -19,6 +19,7 @@ import {
     verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import CompanyCard from './CompanyCard';
+import { IconPicker } from '@/app/components/common/IconPicker';
 
 interface HomeFormProps {
     metaTitle: string;
@@ -117,7 +118,7 @@ const HomePage = () => {
     //     name: "thirdSection.items"
     // });
 
-    const { fields: fourthSectionItems, append: fourthSectionAppend, remove: fourthSectionRemove, move} = useFieldArray({
+    const { fields: fourthSectionItems, append: fourthSectionAppend, remove: fourthSectionRemove, move } = useFieldArray({
         control,
         name: "fourthSection.items"
     });
@@ -638,7 +639,7 @@ const HomePage = () => {
                                                 <RiDeleteBinLine onClick={() => fourthSectionRemove(index)} className='cursor-pointer text-red-600' />
                                             </div>
 
-                                            <div className='flex flex-col gap-2'>
+                                            {/* <div className='flex flex-col gap-2'>
                                                 <div className='flex flex-col gap-2'>
                                                     <Label className='font-bold'>Logo</Label>
                                                     <Controller
@@ -670,6 +671,41 @@ const HomePage = () => {
                                                 </div>
 
 
+                                            </div> */}
+
+                                            <div className='flex flex-col gap-2'>
+                                                <div className='flex flex-col gap-2'>
+                                                    <Label className='font-bold'>Logo</Label>
+                                                    <Controller
+                                                        name={`fourthSection.items.${index}.logo`}
+                                                        control={control}
+                                                        rules={{ required: "Logo is required" }}
+                                                        render={({ field }) => (
+                                                            <IconPicker
+                                                                value={field.value}
+                                                                onChange={(image, imageAlt) => {
+                                                                    field.onChange(image);
+                                                                    if (imageAlt) {
+                                                                        setValue(`fourthSection.items.${index}.logoAlt`, imageAlt);
+                                                                    }
+                                                                }}
+                                                            />
+                                                        )}
+                                                    />
+                                                    {errors.fourthSection?.items?.[index]?.logo && (
+                                                        <p className="text-red-500">{errors.fourthSection?.items?.[index]?.logo.message}</p>
+                                                    )}
+                                                </div>
+
+                                                <div className='flex flex-col gap-2'>
+                                                    <div className='flex flex-col gap-2'>
+                                                        <Label className='font-bold'>Alt Tag</Label>
+                                                        <Input type='text' placeholder='Alt Tag' {...register(`fourthSection.items.${index}.logoAlt`, {
+                                                            required: "Value is required"
+                                                        })} />
+                                                        {errors.fourthSection?.items?.[index]?.logoAlt && <p className='text-red-500'>{errors.fourthSection?.items?.[index]?.logoAlt.message}</p>}
+                                                    </div>
+                                                </div>
                                             </div>
 
                                             <div className='flex flex-col gap-2'>

@@ -94,6 +94,12 @@ const JobDetails = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmittingApplication, setIsSubmittingApplication] = useState(false);
       const sanitizeHtml = (html: string) => html.replace(/&nbsp;/g, " ");
+
+  const cleanedContent = thirdSection.description
+  .replace(/<span[^>]*>/g, "")
+  .replace(/<\/span>/g, "")
+  .replace(/ style="[^"]*"/g, "");
+
   return (
     <section className="dark:bg-[#0d0d0d] overflow-hidden">
       <div className="container">
@@ -140,7 +146,7 @@ const JobDetails = ({
               initial="hidden"
               whileInView="show"
               className="flex flex-col gap-4 lg:gap-27px job-detail-responsibility [&_p>span]:text-para-color [&_p>span]:font-light [&_p>span]:text-lg [&_p>span]:leading-lh-text19 dark:[&_p>span]:!text-white/70 dark:[&_h3>span]:!text-white/70 dark:[&_li>span]:!text-white/70"
-              dangerouslySetInnerHTML={{ __html: sanitizeHtml(thirdSection.description) }}
+              dangerouslySetInnerHTML={{ __html: sanitizeHtml(cleanedContent) }}
             />
           </motion.div>
         )}

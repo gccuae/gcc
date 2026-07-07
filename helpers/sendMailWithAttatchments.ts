@@ -3,6 +3,7 @@ import { CareerTemplate } from "@/templates/careerTemplate";
 import { VendorEmail } from "@/templates/vendorTemplate";
 import { ContactTemplate } from "@/templates/contactTemplate";
 import type { ReactElement } from "react";
+import { CareerAcknowledgementTemplate } from "@/templates/careerAcknowledgementTemplate";
 
 interface Attachment {
   filename: string;
@@ -36,7 +37,19 @@ export async function sendMailWithAttachments({
       console.error("Resend error:", error);
       throw new Error("Failed to send email");
     }
-  } else if (type === "contact") {
+  } else if (type === "career-acknowledgement") {
+    const { error } = await resend.emails.send({
+      from: "no-reply@gcc.ae",
+      to,
+      subject,
+      react: CareerAcknowledgementTemplate(fields) as ReactElement,
+    });
+    if (error) {
+      console.error("Resend error:", error);
+      throw new Error("Failed to send acknowledgement email");
+    }
+  }
+   else if (type === "contact") {
     const { error } = await resend.emails.send({
       from: "no-reply@gcc.ae",
       to,

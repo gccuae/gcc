@@ -11,6 +11,7 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import { Textarea } from '@/components/ui/textarea'
 import AdminItemContainer from '@/app/components/common/AdminItemContainer';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { IconPicker } from '@/app/components/common/IconPicker';
 
 interface SustainabilityFormProps {
     metaTitle: string;
@@ -306,7 +307,15 @@ const SustainabilityPage = () => {
                                                         control={control}
                                                         rules={{ required: "Image is required" }}
                                                         render={({ field }) => (
-                                                            <ImageUploader isLogo value={field.value} onChange={field.onChange} recommendedDimension="Recommended: 100 x 100 (px)" />
+                                                            <IconPicker
+                                                                value={field.value}
+                                                                onChange={(image, imageAlt) => {
+                                                                    field.onChange(image);
+                                                                    if (imageAlt) {
+                                                                        setValue(`secondSection.items.${index}.imageAlt`, imageAlt);
+                                                                    }
+                                                                }}
+                                                            />
                                                         )}
                                                     />
                                                     {errors.secondSection?.items?.[index]?.image && (
@@ -406,7 +415,15 @@ const SustainabilityPage = () => {
                                                         control={control}
                                                         rules={{ required: "Logo is required" }}
                                                         render={({ field }) => (
-                                                            <ImageUploader isLogo value={field.value} onChange={field.onChange} recommendedDimension="Recommended: 100 x 100 (px)" />
+                                                            <IconPicker
+                                                                value={field.value}
+                                                                onChange={(image, imageAlt) => {
+                                                                    field.onChange(image);
+                                                                    if (imageAlt) {
+                                                                        setValue(`thirdSection.items.${index}.logoAlt`, imageAlt);
+                                                                    }
+                                                                }}
+                                                            />
                                                         )}
                                                     />
                                                     {errors.thirdSection?.items?.[index]?.logo && (
@@ -544,7 +561,15 @@ const SustainabilityPage = () => {
                                                         control={control}
                                                         rules={{ required: "Logo is required" }}
                                                         render={({ field }) => (
-                                                            <ImageUploader value={field.value} onChange={field.onChange} recommendedDimension="Recommended: 200 x 204 (px)" />
+                                                            <IconPicker
+                                                                value={field.value}
+                                                                onChange={(image, imageAlt) => {
+                                                                    field.onChange(image);
+                                                                    if (imageAlt) {
+                                                                        setValue(`forthSection.items.${index}.logoAlt`, imageAlt);
+                                                                    }
+                                                                }}
+                                                            />
                                                         )}
                                                     />
                                                     {errors.forthSection?.items?.[index]?.logo && (

@@ -662,6 +662,10 @@ header.modal-open {
   transition-timing-function: ease-in-out !important;
 }
 
+.job-detail-responsibility h3{
+  @apply text-lg font-medium text-para-color dark:text-white -mb-3;
+}
+
 .job-detail-responsibility {
   h3 {
     @apply text-lg font-medium text-para-color dark:text-white -mb-3;

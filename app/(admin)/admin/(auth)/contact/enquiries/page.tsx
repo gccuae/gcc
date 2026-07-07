@@ -31,6 +31,7 @@ const AdminEnquiry = () => {
     const pathname = usePathname();
     const [selectedIds, setSelectedIds] = useState<string[]>([]);
     const [selectedEnquiry, setSelectedEnquiry] = useState<Enquiry | null>(null);
+    const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
 
     const toggleSelect = (id: string) => {
         setSelectedIds((prev) =>
@@ -100,6 +101,8 @@ const AdminEnquiry = () => {
             }
         } catch (error) {
             console.error(error);
+        } finally {
+            setIsDeleteConfirmOpen(false);
         }
     };
 
@@ -156,7 +159,7 @@ const AdminEnquiry = () => {
                             : "Select All"}
                     </button> */}
                     {selectedIds.length > 0 && <div className="relative">
-                        <MdDelete className="text-red-600 cursor-pointer text-2xl" onClick={handleBulkDelete} />
+                        <MdDelete className="text-red-600 cursor-pointer text-2xl" onClick={() => setIsDeleteConfirmOpen(true)} />
                         {selectedIds.length > 0 && <span className="absolute -top-1 left-4 w-full h-full bg-red-600 text-white flex items-center justify-center text-[10px] rounded-full h-[15px] w-[15px]">{selectedIds.length}</span>}
                     </div>}
 
@@ -179,7 +182,7 @@ const AdminEnquiry = () => {
 
                         <div className='flex h-12 items-center px-5 justify-between bg-white border border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700'>
                             <div className="">
-                                <h5 className=" text-xl font-bold tracking-tight text-gray-900 dark:text-white">{item.firstName}</h5>
+                                <h5 className=" text-md font-bold tracking-tight text-gray-900 dark:text-white">{item.firstName}</h5>
                             </div>
                             <div className='flex items-center gap-10'>
                                 <button onClick={() => setSelectedEnquiry(item)}><LuMessageSquareShare className='' /></button>
@@ -248,12 +251,48 @@ const AdminEnquiry = () => {
                                         <span className="text-gray-900">{selectedEnquiry.message}</span>
                                     </div>
 
-                                    
+
 
                                 </div>
                                 <div className="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                                     {/* <button type="button" className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-red-500 sm:ml-3 sm:w-auto">Save</button> */}
                                     <button type="button" className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset hover:bg-gray-50 sm:mt-0 sm:w-auto" onClick={() => setSelectedEnquiry(null)}>Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+            {isDeleteConfirmOpen &&
+                <div className="relative z-20" aria-labelledby="delete-confirm-title" role="dialog" aria-modal="true">
+                    <div className="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
+
+                    <div className="fixed inset-0 z-20 w-screen overflow-y-auto">
+                        <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                            <div className="p-5 flex flex-col gap-4 relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm">
+                                <h3 id="delete-confirm-title" className="text-lg font-semibold text-gray-900">
+                                    Delete {selectedIds.length} {selectedIds.length === 1 ? "enquiry" : "enquiries"}?
+                                </h3>
+                                <p className="text-sm text-gray-600">
+                                    This action cannot be undone. Are you sure you want to proceed?
+                                </p>
+                                <div className="flex justify-end gap-3 mt-2">
+                                    <button
+                                        type="button"
+                                        className="inline-flex justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset hover:bg-gray-50"
+                                        onClick={() => setIsDeleteConfirmOpen(false)}
+                                    >
+                                        Cancel
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className="inline-flex justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-red-500"
+                                        onClick={handleBulkDelete}
+                                    >
+                                        Delete
+                                    </button>
                                 </div>
                             </div>
                         </div>
