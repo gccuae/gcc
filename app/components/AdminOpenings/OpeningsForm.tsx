@@ -166,14 +166,14 @@ const OpeningsForm = ({ editMode }: { editMode?: boolean }) => {
     return (
         <div className='flex flex-col gap-5'>
             <form className='flex flex-col gap-5' onSubmit={handleSubmit(handleAddOpening)}>
-                <input type="hidden" {...register("status")} />
+                {/* <input type="hidden" {...register("status", { required: "Status is required" })} /> */}
 
                 <div className="flex items-center gap-2 justify-end">
                     <Label className="">Status</Label>
                     <Controller
                         name={`status`}
                         control={control}
-                        // rules={{ required: "Location is required" }}
+                        rules={{ required: "Status is required" }}   // 👈 also validate here since Controller doesn't use register()
                         render={({ field }) => (
                             <Select
                                 onValueChange={field.onChange}
@@ -184,14 +184,8 @@ const OpeningsForm = ({ editMode }: { editMode?: boolean }) => {
                                     <SelectValue placeholder="Select Status" />
                                 </SelectTrigger>
                                 <SelectContent>
-
-                                    <SelectItem value={"draft"}>
-                                        Draft
-                                    </SelectItem>
-
-                                    <SelectItem value={"published"}>
-                                        Published
-                                    </SelectItem>
+                                    <SelectItem value={"draft"}>Draft</SelectItem>
+                                    <SelectItem value={"published"}>Published</SelectItem>
                                 </SelectContent>
                             </Select>
                         )}
@@ -205,6 +199,7 @@ const OpeningsForm = ({ editMode }: { editMode?: boolean }) => {
                         Save
                     </Button>
                 </div>
+                {errors.status && <p className='text-red-500 text-right'>{errors.status.message}</p>}
                 <AdminItemContainer>
                     <Label main>First Section</Label>
 
@@ -223,13 +218,13 @@ const OpeningsForm = ({ editMode }: { editMode?: boolean }) => {
 
                     <div className='p-5 rounded-md flex flex-col gap-2'>
                         <div className='flex flex-col gap-2'>
-                            <div className='flex flex-col gap-1'>
+                            {/* <div className='flex flex-col gap-1'>
                                 <Label className='font-bold'>Title</Label>
                                 <Input type='text' placeholder='Title' {...register("firstSection.title", {
                                     required: "Title is required"
                                 })} />
                                 {errors.firstSection?.title && <p className='text-red-500'>{errors.firstSection?.title.message}</p>}
-                            </div>
+                            </div> */}
                             <div className='flex flex-col gap-1'>
                                 <Label className='font-bold'>Job Title</Label>
                                 <Input type='text' placeholder='Title' {...register("firstSection.jobTitle", {
@@ -444,15 +439,13 @@ const OpeningsForm = ({ editMode }: { editMode?: boolean }) => {
                         <div className='flex flex-col gap-2'>
                             <div className='flex flex-col gap-1'>
                                 <Label className='font-bold'>Title</Label>
-                                <Input type='text' placeholder='Title' {...register("forthSection.title", {
-                                    required: "Title is required"
-                                })} />
-                                {errors.forthSection?.title && <p className='text-red-500'>{errors.forthSection?.title.message}</p>}
+                                <Input type='text' placeholder='Title' {...register("forthSection.title")} />
+                                {/* {errors.forthSection?.title && <p className='text-red-500'>{errors.forthSection?.title.message}</p>} */}
                             </div>
                             <div className='flex flex-col gap-1'>
                                 <Label className='font-bold'>Description</Label>
-                                <Controller name="forthSection.description" control={control} render={({ field }) => {
-                                    return <Textarea value={field.value} onChange={field.onChange} />
+                                <Controller name={`forthSection.description`} control={control} render={({ field }) => {
+                                    return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
                                 }} />
                             </div>
 
