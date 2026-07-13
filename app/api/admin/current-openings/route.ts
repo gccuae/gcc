@@ -49,7 +49,6 @@ export async function PATCH(request: NextRequest) {
                 return NextResponse.json({ message: "Opening not found" }, { status: 404 });
             }
 
-            console.log(body);
 
             opening.metaTitle = body.metaTitle;
             opening.metaDescription = body.metaDescription;

@@ -167,8 +167,8 @@ const JobDetails = ({
               initial="hidden"
               whileInView="show"
               className="text-lg leading-lh-text19 font-light mb-27px text-para-color dark:text-white/70"
-            >
-              {forthSection.description}
+            dangerouslySetInnerHTML={{__html:sanitizeHtml(forthSection.description)}}>
+              {/* {forthSection.description} */}
             </motion.p>
             <motion.div
               variants={moveUp(0.4)}

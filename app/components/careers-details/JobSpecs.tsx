@@ -26,7 +26,8 @@ const JobSpecs = ({ data }: { data: careerData['openings'][number]['firstSection
         {/* Section Heading */}
         <div className="pb-4 xl:pb-57px">
           <h2 className="text-2xl leading-lh-text32 font-normal text-black dark:text-white">
-            {data.title}
+            {/* {data.title} */}
+            Job Specifications
           </h2>
         </div>
 
