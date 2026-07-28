@@ -162,6 +162,7 @@ const JobDetails = ({
             >
               {forthSection.title}
             </motion.h3>
+            <div className="job-detail-responsibility">
             <motion.p
               variants={moveUp(0.2)}
               initial="hidden"
@@ -170,6 +171,7 @@ const JobDetails = ({
             dangerouslySetInnerHTML={{__html:sanitizeHtml(forthSection.description)}}>
               {/* {forthSection.description} */}
             </motion.p>
+            </div>
             <motion.div
               variants={moveUp(0.4)}
               initial="hidden"

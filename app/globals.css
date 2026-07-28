@@ -662,7 +662,7 @@ header.modal-open {
   transition-timing-function: ease-in-out !important;
 }
 
-.job-detail-responsibility h3{
+.job-detail-responsibility h3 {
   @apply text-lg font-medium text-para-color dark:text-white -mb-3;
 }
 
@@ -676,6 +676,22 @@ header.modal-open {
   }
 
   ol {
+    @apply list-inside space-y-3;
+    list-style-type: square;
+
+    li {
+      @apply text-lg font-light text-para-color dark:text-white/70 lg:pl-5;
+
+      &::marker {
+        color: var(--color-accent);
+      }
+    }
+  }
+
+}
+
+.job-detail-responsibility {
+  ul {
     @apply list-inside space-y-3;
     list-style-type: square;
 
@@ -772,7 +788,8 @@ header.modal-open {
     @apply text-lg font-medium text-white;
   }
 
-  ol, ul {
+  ol,
+  ul {
     @apply text-white;
     list-style-type: square;
 
@@ -822,11 +839,12 @@ header.modal-open {
 
   }
 }
-.news-details h2{
-   
-    @apply mb-2 xl:mb-3   text-lg xl:text-[26px] leading-[1.380952380952381] font-normal text-black dark:text-white/70;
 
- 
+.news-details h2 {
+
+  @apply mb-2 xl:mb-3 text-lg xl:text-[26px] leading-[1.380952380952381] font-normal text-black dark:text-white/70;
+
+
 }
 
 
