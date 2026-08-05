@@ -183,9 +183,7 @@ const JobDetails = ({
                 dangerouslySetInnerHTML={{
                   __html: formatHtml(forthSection.description),
                 }}
-              >
-                {/* {forthSection.description} */}
-              </motion.p>
+              />
             </div>
             <motion.div
               variants={moveUp(0.4)}
