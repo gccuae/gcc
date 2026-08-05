@@ -93,12 +93,19 @@ const JobDetails = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmittingApplication, setIsSubmittingApplication] = useState(false);
-      const sanitizeHtml = (html: string) => html.replace(/&nbsp;/g, " ");
+  // const sanitizeHtml = (html: string) => html.replace(/&nbsp;/g, " ");
 
-  const cleanedContent = thirdSection.description
-  .replace(/<span[^>]*>/g, "")
-  .replace(/<\/span>/g, "")
-  .replace(/ style="[^"]*"/g, "");
+  // const cleanedContent = thirdSection.description
+  //   .replace(/<span[^>]*>/g, "")
+  //   .replace(/<\/span>/g, "")
+  //   .replace(/ style="[^"]*"/g, "");
+
+  const formatHtml = (html: string) => {
+    return html.replace(
+      /<p>(?:&nbsp;|\s|<br\s*\/?>)*<\/p>/gi,
+      '<p class="empty-paragraph"></p>',
+    );
+  };
 
   return (
     <section className="dark:bg-[#0d0d0d] overflow-hidden">
@@ -141,13 +148,18 @@ const JobDetails = ({
             <h2 className="text-2xl leading-lh-text32 text-black dark:text-white mb-3 lg:mb-27px">
               {thirdSection.title}
             </h2>
-            <motion.div
-              variants={moveUp()}
-              initial="hidden"
-              whileInView="show"
-              className="flex flex-col gap-4 lg:gap-27px job-detail-responsibility [&_p>span]:text-para-color [&_p>span]:font-light [&_p>span]:text-lg [&_p>span]:leading-lh-text19 dark:[&_p>span]:!text-white/70 dark:[&_h3>span]:!text-white/70 dark:[&_li>span]:!text-white/70"
-              dangerouslySetInnerHTML={{ __html: sanitizeHtml(cleanedContent) }}
-            />
+            <div className="job-detail-responsibility">
+              <motion.div
+                variants={moveUp()}
+                initial="hidden"
+                whileInView="show"
+                className="text-lg leading-lh-text19 font-light text-para-color dark:text-white/70"
+                // className="flex flex-col gap-4 lg:gap-27px job-detail-responsibility [&_p>span]:text-para-color [&_p>span]:font-light [&_p>span]:text-lg [&_p>span]:leading-lh-text19 dark:[&_p>span]:!text-white/70 dark:[&_h3>span]:!text-white/70 dark:[&_li>span]:!text-white/70"
+                dangerouslySetInnerHTML={{
+                  __html: formatHtml(thirdSection.description),
+                }}
+              />
+            </div>
           </motion.div>
         )}
 
@@ -163,19 +175,21 @@ const JobDetails = ({
               {forthSection.title}
             </motion.h3>
             <div className="job-detail-responsibility">
-            <motion.p
-              variants={moveUp(0.2)}
-              initial="hidden"
-              whileInView="show"
-              className="text-lg leading-lh-text19 font-light mb-27px text-para-color dark:text-white/70"
-            dangerouslySetInnerHTML={{__html:sanitizeHtml(forthSection.description)}}>
-              {/* {forthSection.description} */}
-            </motion.p>
+              <motion.p
+                variants={moveUp(0.2)}
+                initial="hidden"
+                whileInView="show"
+                className="text-lg leading-lh-text19 font-light text-para-color dark:text-white/70"
+                dangerouslySetInnerHTML={{
+                  __html: formatHtml(forthSection.description),
+                }}
+              />
             </div>
             <motion.div
               variants={moveUp(0.4)}
               initial="hidden"
               whileInView="show"
+              className="mt-27px"
               onClick={() => setIsModalOpen(true)}
             >
               <BtnPrimary
