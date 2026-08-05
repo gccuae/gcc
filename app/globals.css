@@ -663,28 +663,36 @@ header.modal-open {
 }
 
 .job-detail-responsibility h3 {
-  @apply text-lg font-medium text-para-color dark:text-white -mb-3;
+  /* @apply text-lg font-medium text-para-color dark:text-white -mb-3; */
+  @apply text-lg font-medium text-para-color dark:text-white;
+}
+
+.job-detail-responsibility .empty-paragraph {
+  height: 15px;
+  margin: 0;
+  padding: 0;
 }
 
 .job-detail-responsibility {
   h3 {
-    @apply text-lg font-medium text-para-color dark:text-white -mb-3;
+    /* @apply text-lg font-medium text-para-color dark:text-white -mb-3; */
+    @apply text-lg font-medium text-para-color dark:text-white;
   }
 
   p {
-    @apply mb-5 text-lg font-light text-para-color dark:text-white/70;
+    @apply text-lg font-light text-para-color dark:text-white/70;
   }
 
   ol {
     @apply list-inside space-y-3;
-    list-style-type: square;
+    list-style-type: decimal;
 
     li {
       @apply text-lg font-light text-para-color dark:text-white/70 lg:pl-5;
 
-      &::marker {
+      /* &::marker {
         color: var(--color-accent);
-      }
+      } */
     }
   }
 
