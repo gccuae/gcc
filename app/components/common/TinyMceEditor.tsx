@@ -89,6 +89,15 @@ export default function TinyEditor({
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
+  const hasSetInitialContent = useRef(false);
+
+  useEffect(() => {
+    if (!hasSetInitialContent.current && newsContent && editorRef.current) {
+      editorRef.current.setContent(newsContent);
+      hasSetInitialContent.current = true;
+    }
+  }, [newsContent]);
+
   const uploadImageToDropbox = useCallback(
     async (file: File | Blob, filename = "image.png") => {
       const formData = new FormData();
@@ -240,8 +249,12 @@ export default function TinyEditor({
         apiKey={process.env.NEXT_PUBLIC_TINY_MCE_KEY}
         onInit={(_evt, editor) => {
           editorRef.current = editor;
+          if (!hasSetInitialContent.current && newsContent) {
+            editor.setContent(newsContent);
+            hasSetInitialContent.current = true;
+          }
         }}
-        initialValue={newsContent || "<p></p>"}
+        initialValue="<p></p>"
         onEditorChange={(content) => setNewsContent(content)}
         init={editorInit}
       />
