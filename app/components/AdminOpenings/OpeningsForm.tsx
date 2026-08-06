@@ -479,6 +479,7 @@ const OpeningsForm = ({ editMode }: { editMode?: boolean }) => {
                     <TinyEditor
                       setNewsContent={field.onChange}
                       newsContent={field.value}
+                      useCareerStyles
                     />
                   )}
                 />
@@ -525,6 +526,7 @@ const OpeningsForm = ({ editMode }: { editMode?: boolean }) => {
                     <TinyEditor
                       setNewsContent={field.onChange}
                       newsContent={field.value}
+                      useCareerStyles
                     />
                   )}
                 />
