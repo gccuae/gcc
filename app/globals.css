@@ -663,7 +663,6 @@ header.modal-open {
 }
 
 .job-detail-responsibility h3 {
-  /* @apply text-lg font-medium text-para-color dark:text-white -mb-3; */
   @apply text-lg font-medium text-para-color dark:text-white;
 }
 
@@ -675,7 +674,6 @@ header.modal-open {
 
 .job-detail-responsibility {
   h3 {
-    /* @apply text-lg font-medium text-para-color dark:text-white -mb-3; */
     @apply text-lg font-medium text-para-color dark:text-white;
   }
 
@@ -689,10 +687,6 @@ header.modal-open {
 
     li {
       @apply text-lg font-light text-para-color dark:text-white/70 lg:pl-5;
-
-      /* &::marker {
-        color: var(--color-accent);
-      } */
     }
   }
 
