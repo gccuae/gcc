@@ -109,6 +109,7 @@ const JobApplicationModalForm = ({
         onSuccess();
       }, 1200);
     }
+    window.location.replace("/thank-you");
   };
 
   return (
@@ -340,7 +341,7 @@ const JobApplicationModalForm = ({
           viewport={{ once: true }}
           className="flex justify-end pt-3"
         >
-          {isSubmitted && (
+          {/* {isSubmitted && (
             <div className="mr-4 self-center flex items-center gap-3 px-4 py-2 rounded-xl border border-green-200 dark:border-green-500/40 bg-green-50 dark:bg-green-900/20">
               <motion.svg
                 width="22"
@@ -377,7 +378,7 @@ const JobApplicationModalForm = ({
                 Application submitted successfully.
               </p>
             </div>
-          )}
+          )} */}
           <button
             type="submit"
             disabled={isSubmitting}
