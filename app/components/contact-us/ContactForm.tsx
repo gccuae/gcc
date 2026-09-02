@@ -54,7 +54,8 @@ const ContactForm: React.FC = () => {
       }
 
       reset();
-      alert("Message sent successfully!");
+      // alert("Message sent successfully!");
+      window.location.replace("/thank-you");
     } catch (error) {
       console.error("Error submitting form:", error);
       alert("Error sending message. Please try again.");
