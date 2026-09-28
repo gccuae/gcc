@@ -4,6 +4,7 @@ import Vendor from "@/app/models/Vendor";
 import { getToEmail } from "@/helpers/getToEmail";
 import { sendMailWithAttachments } from "@/helpers/sendMailWithAttatchments";
 import { uploadToDropbox } from "@/lib/connectDropbox";
+import connectDB from "../mongodb";
 
 export async function sendContactAction(formData: FormData) {
   try {
@@ -44,6 +45,7 @@ export async function sendContactAction(formData: FormData) {
     const companyDocsUrls = await uploadFiles(companyDocs, "company");
     const additionalUrls = await uploadFiles(additional, "additional");
 
+    await connectDB()
     // ✅ Save to DB
     await Vendor.create({
       ...fields,
