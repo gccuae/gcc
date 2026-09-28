@@ -68,8 +68,7 @@ const ContactForm: React.FC = () => {
       if (!result?.success) {
         setFormStatus({
           type: "error",
-          message:
-            result?.message || "Error sending message. Please try again.",
+          message: "Error sending message. Please try again.",
         });
         return;
       }
@@ -82,10 +81,7 @@ const ContactForm: React.FC = () => {
       });
     } catch (error) {
       console.error("Error submitting form:", error);
-      const errorMessage =
-        error instanceof Error && error.message
-          ? error.message
-          : "Error sending message. Please try again.";
+      const errorMessage = "Error sending message. Please try again.";
       setFormStatus({ type: "error", message: errorMessage });
     } finally {
       recaptchaRef?.current?.reset();
