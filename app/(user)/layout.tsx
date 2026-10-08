@@ -25,17 +25,19 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const tagResponse = await fetch(`${process.env.BASE_URL}/api/admin/tags`);
-  const tagData = await tagResponse.json();
-
-  const navbarResponse = await fetch(`${process.env.BASE_URL}/api/admin/navbar`)
-  const navbarData = await navbarResponse.json();
-
-  const footerResponse = await fetch(`${process.env.BASE_URL}/api/admin/footer`)
-  const footerData = await footerResponse.json();
-
-  const socialResponse = await fetch(`${process.env.BASE_URL}/api/admin/social-media`)
-  const socialMediaData = await socialResponse.json();
+  // Independent requests — fetch in parallel, cached for 60s like the page fetches
+  const [tagResponse, navbarResponse, footerResponse, socialResponse] = await Promise.all([
+    fetch(`${process.env.BASE_URL}/api/admin/tags`, { next: { revalidate: 60 } }),
+    fetch(`${process.env.BASE_URL}/api/admin/navbar`, { next: { revalidate: 60 } }),
+    fetch(`${process.env.BASE_URL}/api/admin/footer`, { next: { revalidate: 60 } }),
+    fetch(`${process.env.BASE_URL}/api/admin/social-media`, { next: { revalidate: 60 } }),
+  ]);
+  const [tagData, navbarData, footerData, socialMediaData] = await Promise.all([
+    tagResponse.json(),
+    navbarResponse.json(),
+    footerResponse.json(),
+    socialResponse.json(),
+  ]);
 
   // Get the bodyScript safely
   const bodyScript = tagData?.tag?.bodyScript || "";

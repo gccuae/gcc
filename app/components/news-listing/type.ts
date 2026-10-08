@@ -29,6 +29,7 @@ export type NewsData = {
             date: string;
             createdAt: string;
             description: string;
+            videoUrl?: string;
         }[];
     }[];
 }

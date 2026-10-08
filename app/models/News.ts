@@ -82,6 +82,9 @@ const NewsSchema = new mongoose.Schema({
             images: [{
                 type: String
             }],
+            videoUrl: {
+                type: String
+            },
             date: {
                 type: Date
             },

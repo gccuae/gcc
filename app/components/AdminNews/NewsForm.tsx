@@ -22,6 +22,8 @@ import Image from 'next/image'
 import { RiAiGenerateText } from 'react-icons/ri'
 import AdminItemContainer from '@/app/components/common/AdminItemContainer'
 import { Textarea } from '@/components/ui/textarea'
+import { getLinkedInEmbedUrl } from '@/lib/linkedinEmbed'
+import { getYouTubeId } from '@/lib/youtubeEmbed'
 
 
 
@@ -40,6 +42,7 @@ interface NewsFormProps {
     script: string;
     images: string[]
     date: string;
+    videoUrl: string;
 }
 
 const NewsForm = ({ editMode }: { editMode?: boolean }) => {
@@ -86,6 +89,7 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
                 setValue("script", data.data[0].script);
                 setValue("status", data.data[0].status);
                 setValue("images", data.data[0].images);
+                setValue("videoUrl", data.data[0].videoUrl ?? "");
                 const isoDate = new Date(data.data[0].date).toISOString().split("T")[0];
                 setValue("date", isoDate);
                 setImageUrls(data.data[0].images);
@@ -327,6 +331,14 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
 
 
 
+                    </div>
+
+                    <div>
+                        <Label className=''>Video Link (LinkedIn / YouTube)</Label>
+                        <Input type='text' placeholder='https://www.linkedin.com/posts/... or https://www.youtube.com/watch?v=...' {...register("videoUrl", {
+                            validate: (value) => !value?.trim() || !!getYouTubeId(value) || !!getLinkedInEmbedUrl(value) || "Enter a valid LinkedIn post or YouTube video link"
+                        })} />
+                        {errors.videoUrl && <p className='text-red-500'>{errors.videoUrl.message}</p>}
                     </div>
 
                     <div className='flex flex-col gap-2'>
